@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="gsanderson" />
+<meta name="description" content="Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released. New features in this sprint REST API: A new API for managing SIP accounts has been added. The API can be used for creating SIP accounts and associating them with users on a ..." />
+<meta name="keywords" content="XiVO, development">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint Review 15.17"/>
+<meta property="og:description" content="Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released. New features in this sprint REST API: A new API for managing SIP accounts has been added. The API can be used for creating SIP accounts and associating them with users on a ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/drafts/sprint-review-1517.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-10-16 12:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/gsanderson.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="XiVO"/>
+<meta property="article:tag" content="development"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint Review 15.17</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1517">Sprint Review 15.17</h1>
+    <p>Posted on Fri 16 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.</p>
+<h2>New features in this sprint</h2>
+<p><strong>REST API:</strong> A new API for managing SIP accounts has been added. The API can be used for creating
+SIP accounts and associating them with users on a XiVO server. This API also offers third parties,
+such as developers or administrators, the flexibility of configuring all of the advanced SIP
+parameters offered by asterisk. This new API helps us expand on our goal of offering a more
+customizable and flexible system ideal for use in a wide range of environments, such as cloud
+infrastructures.</p>
+<p><strong>Directories:</strong> The contacts system used by the phones has been improved. Contact sources have been
+unified. This means that phones will now search through the same places as searches in the XiVO
+Client. Phones will also be able to search through personal contacts. Up until now, personal
+contacts could only be used from the XiVO Client. But with this release, any contact added through
+the client can be used on the phone.</p>
+<h2>Ongoing features</h2>
+<p><strong>SCCP:</strong> In a similar fashion to the SIP API, we will be adding a new API for managing
+ SCCP accounts. This will make configuration of advanced SCCP parameters more flexible for
+ administrators and other tech specialists.</p>
+<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
+ voicemails. The goal is to make configuration of advanced parameters easier while
+ still keeping the interface simple.</p>
+<p><strong>LDAP:</strong> We are working on a new authentication mecanism for allowing users access
+ to XiVO based on LDAP credentials. This will allow administrators to integrate
+ XiVO with their existing infrastructure and give them finer grained access
+ to xivo's services.</p>
+<h2>Technical features</h2>
+<p><strong>Asterisk:</strong> Minor Asterisk upgrade from 13.5.0 to 13.6.0. This upgrade fixes the latest bugs and
+improves overall stability.</p>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I
+wish you shall remain in high spirits until our next fateful encounter, 3 weeks from now. May the
+freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
+<p>Source: <a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap">XiVO 15.17 Roadmap</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>
+      <a href="http://blog.xivo.io/tag/development.html">development</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint Review 15.17",
+  "headline": "Sprint Review 15.17",
+  "datePublished": "2015-10-16 12:00:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "gsanderson",
+    "url": "http://blog.xivo.io/author/gsanderson.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/drafts/sprint-review-1517.html",
+  "description": "Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released. New features in this sprint REST API: A new API for managing SIP accounts has been added. The API can be used for creating SIP accounts and associating them with users on a ..."
+}
+</script></body>
+</html>
