@@ -54,6 +54,50 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1517.html#sprint-review-1517">Sprint Review 15.17</a></h2>
+    <p>
+      Posted on Fri 16 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.</p>
+<h2>New features in this sprint</h2>
+<p><strong>REST API:</strong> A new API for managing SIP accounts has been added. The API can be used for creating
+SIP accounts and associating them with users on a XiVO server. This API also offers third parties,
+such as developers or administrators, the flexibility of configuring all of the advanced SIP
+parameters offered by asterisk. This new API helps us expand on our goal of offering a more
+customizable and flexible system ideal for use in a wide range of environments, such as cloud
+infrastructures.</p>
+<p><strong>Directories:</strong> The contacts system used by the phones has been improved. Contact sources have been
+unified. This means that phones will now search through the same places as searches in the XiVO
+Client. Phones will also be able to search through personal contacts. Up until now, personal
+contacts could only be used from the XiVO Client. But with this release, any contact added through
+the client can be used on the phone.</p>
+<h2>Ongoing features</h2>
+<p><strong>SCCP:</strong> In a similar fashion to the SIP API, we will be adding a new API for managing
+ SCCP accounts. This will make configuration of advanced SCCP parameters more flexible for
+ administrators and other tech specialists.</p>
+<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
+ voicemails. The goal is to make configuration of advanced parameters easier while
+ still keeping the interface simple.</p>
+<p><strong>LDAP:</strong> We are working on a new authentication mecanism for allowing users access
+ to XiVO based on LDAP credentials. This will allow administrators to integrate
+ XiVO with their existing infrastructure and give them finer grained access
+ to xivo's services.</p>
+<h2>Technical features</h2>
+<p><strong>Asterisk:</strong> Minor Asterisk upgrade from 13.5.0 to 13.6.0. This upgrade fixes the latest bugs and
+improves overall stability.</p>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I
+wish you shall remain in high spirits until our next fateful encounter, 3 weeks from now. May the
+freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
+<p>Source: <a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap">XiVO 15.17 Roadmap</a></p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-bluemind-integration.html#xivo-bluemind-integration">XiVO + Bluemind Integration</a></h2>
     <p>
       Posted on Wed 30 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -206,77 +250,6 @@ untilour next fateful encounter, 3 weeks from now. May the freedom of
 XiVObless your communications across the vast VoIP expanse.</p>
 <p>Source: <a href="http://projects.xivo.io/versions/231" title="XiVO 15.15 Roadmap">XiVO 15.15
 Roadmap</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1514.html#sprint-review-1514">Sprint review 15.14</a></h2>
-    <p>
-      Posted on Fri 14 August 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>Hello everyone,</p>
-<p>With the end of this sprint, most of the work on our new personal
-contacts system has been completed. We have also continued working on
-features already in progress in order to improve and solidify XiVO as a
-whole.</p>
-<h3>New features in this sprint</h3>
-<ul>
-<li>XiVO Client: Work on personal contacts has continued, brining us
-    closer to our goal of merging contact-related features into one
-    simple and feature-complete Xlet. New features this sprint include
-    editing, importing and exporting personal contacts. They can be
-    easily imported/exported with CSV files. Contacts stored in the old
-    Personal Directoy Xlet will be automatically migrated to the new
-    People Xlet after the upgrade. You can also mass delete all your
-    contacts in case of a problem during an importation.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Yealink: The firmware for Yealink phones has been upgraded to v80.
-    Upgrading the firmware allows us to support the latest models, fix
-    bugs and offer new features. These upgrades also add small
-    improvements, such as a better display for long names and support
-    for searching the XiVO directoy on T4X models.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Codecs: Opus and text codecs are now supported in XiVO. Adding
-    codecs enhances the interoperability of VoIP technologies, increases
-    the quality of audio, and helps in using less bandwidth. You can
-    configure the use of these codecs through the web interface.</li>
-</ul>
-<h3>Ongoing features</h3>
-<ul>
-<li>Directories: In the last sprint review, we mentioned our ongoing
-    work on unifiying directories. We now want to work on making the new
-    contact infrastructure usable by phones. This means that contacts
-    coming from different sources, such as an LDAP server, your personal
-    contacts, or other people on the same XiVO server, can be
-    transparently accessed and used from a phone.</li>
-</ul>
-<h3>Technical features</h3>
-<ul>
-<li>Asterisk: Minor upgrade from Asterisk 13.4 to 13.5. This upgrade
-    fixes the latest bugs and improves overall stability.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>The default password on polycom phones has been changed to 9486,
-    which represents 'XIVO' in numeric form. Users are strongly
-    encouraged to change this after an installation in order to prevent
-    security exploits.</li>
-</ul>
-<p><em>My fellow xivoists, as the Lord of XiVO allow me to bid you a happy and
-invigorating reading. I wish you shall remain in high spirits until our
-next fateful encounter, 3 weeks from now. May the freedom of xivo bless
-your communications, where ever they may be.</em></p>
 </p>
   </div>
 </article>

@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-09-30T15:57:00-04:00</updated><entry><title>XiVO + Bluemind Integration</title><link href="http://blog.xivo.io/xivo-bluemind-integration.html" rel="alternate"></link><updated>2015-09-30T15:57:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-30:xivo-bluemind-integration.html</id><summary type="html">&lt;p&gt;Telephone systems are nice, but it gets even better when they meld into
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-10-16T12:00:00-04:00</updated><entry><title>Sprint Review 15.17</title><link href="http://blog.xivo.io/sprint-review-1517.html" rel="alternate"></link><updated>2015-10-16T12:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-10-16:sprint-review-1517.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for managing SIP accounts has been added. The API can be used for creating
+SIP accounts and associating them with users on a XiVO server. This API also offers third parties,
+such as developers or administrators, the flexibility of configuring all of the advanced SIP
+parameters offered by asterisk. This new API helps us expand on our goal of offering a more
+customizable and flexible system ideal for use in a wide range of environments, such as cloud
+infrastructures.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Directories:&lt;/strong&gt; The contacts system used by the phones has been improved. Contact sources have been
+unified. This means that phones will now search through the same places as searches in the XiVO
+Client. Phones will also be able to search through personal contacts. Up until now, personal
+contacts could only be used from the XiVO Client. But with this release, any contact added through
+the client can be used on the phone.&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;SCCP:&lt;/strong&gt; In a similar fashion to the SIP API, we will be adding a new API for managing
+ SCCP accounts. This will make configuration of advanced SCCP parameters more flexible for
+ administrators and other tech specialists.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lines:&lt;/strong&gt; We are revamping the web interface in a similar fashion to what was done for
+ voicemails. The goal is to make configuration of advanced parameters easier while
+ still keeping the interface simple.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LDAP:&lt;/strong&gt; We are working on a new authentication mecanism for allowing users access
+ to XiVO based on LDAP credentials. This will allow administrators to integrate
+ XiVO with their existing infrastructure and give them finer grained access
+ to xivo's services.&lt;/p&gt;
+&lt;h2&gt;Technical features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Asterisk:&lt;/strong&gt; Minor Asterisk upgrade from 13.5.0 to 13.6.0. This upgrade fixes the latest bugs and
+improves overall stability.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;My fellow xivoists, as the &lt;strong&gt;Lord of XiVO&lt;/strong&gt; allow me to bid you a happy and invigorating farewell. I
+wish you shall remain in high spirits until our next fateful encounter, 3 weeks from now. May the
+freedom of XiVO bless your communications across the vast VoIP expanse.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap"&gt;XiVO 15.17 Roadmap&lt;/a&gt;&lt;/p&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>XiVO + Bluemind Integration</title><link href="http://blog.xivo.io/xivo-bluemind-integration.html" rel="alternate"></link><updated>2015-09-30T15:57:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-30:xivo-bluemind-integration.html</id><summary type="html">&lt;p&gt;Telephone systems are nice, but it gets even better when they meld into
 the computer interfaces that we use to communicate daily. After all, a
 big part of our daily lives revolves around email, contacts and agendas.
 That is why we are excited to introduce you to Bluemind. BlueMind is a

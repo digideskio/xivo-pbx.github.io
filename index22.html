@@ -54,6 +54,54 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/pcb-prototypes-and-flash-spi-testing.html#pcb-prototypes-and-flash-spi-testing">PCB prototypes and flash SPI testing</a></h2>
+    <p>
+      Posted on Tue 04 October 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>On the XiVO Open Hardware side, we have been very busy lately writing
+various bits of low level software, preparing the production of the
+first prototypes, validating some hardware subsystems and doing all sort
+of hardware + low level software debugging.</p>
+<p>We are starting again to have things interesting to show, with some cute
+photos.</p>
+<p><strong>PCB prototypes</strong></p>
+<p>We recently received our first PCB prototypes for our motherboard:</p>
+<p><img alt="XIOH motherboard
+prototype" src="/public/.xioh_motherboard_proto_m.jpg" title="XIOH motherboard prototype, oct. 2011" /></p>
+<p>To prepare for testing the first assembled prototypes, we wanted to
+somehow test the communication between the EP80579 and the SPI flash.
+For now we have a 74LVC125A buffer between the two chips in order to
+isolate the flash from the SoC, and we wanted to validate this design.</p>
+<p>We previously did a small model of the flash subsystem, A few days ago I
+heavily hacked it to make it work. (Well some of the modifications were
+probably not really necessary, but now we have a perfect signal quality
+:)</p>
+<p><img alt="Heavily hacked flash prototype
+board" src="/public/.heavily_hacked_flash_proto_m.jpg" title="Heavily hacked flash prototype board, oct. 2011" /></p>
+<p>The next step was to do the same test, this time using one of our spare
+naked PCBs dedicated to that kind of testing.We first soldered the flash
+and the buffer, then we strapped a HE10 ISP header to replace the
+EP80579 SPI drivers by a flash programmer (this is obviously not a
+perfect replacement, but we can't do much better...)</p>
+<p>Here is a photo of the header being soldered:</p>
+<p><img alt="Soldering an SPI header at SoC
+position" src="/public/.soldering_an_SPI_header_at_SoC_position_m.jpg" title="Soldering an SPI header at SoC position, oct. 2011" /></p>
+<p>Here is the soldered result, connected to the programmer:</p>
+<p><img alt="Testing flash
+communication" src="/public/.testing_flash_communication_m.jpg" title="Testing flash communication, oct. 2011" /></p>
+<p>And here is the result:</p>
+<p><img alt="SPI flash communication test
+results" src="/public/.flash_comm_test_result_m.jpg" title="SPI flash communication test results, oct. 2011" /></p>
+<p>So we are now hopeful that at least the SPI flash communication will
+work on our assembled board \\o/</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-client-architecture.html#xivo-client-architecture">XiVO Client architecture</a></h2>
     <p>
       Posted on Fri 30 September 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -342,58 +390,6 @@ VERSION_COMPUTE=false.The message explaining that no update is needed
 is <a href="http://packaging-farm.dachary.org/trac/changeset/d6c8676bd54b95b76ce475d7fe7dbe0d2592aafa">moved to the need_update
 function</a>
 and displays the exact reason, path included, why no update is required.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/after-the-summer-an-active-start-for-xivo-open-hardware.html#after-the-summer-an-active-start-for-xivo-open-hardware">After the summer, an active start for XiVO Open Hardware !</a></h2>
-    <p>
-      Posted on Tue 13 September 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>No doubt, XiVO Open Hardware creates much interest and Avencall teams
-will demonstrate the project in different events in the coming months.</p>
-<ul>
-<li>On September 15 th , we will be at Open Hardware Summit in New York,
-    THE worldwide event about Open Hardware. We are in the breakout
-    sessions with <a href="http://www.openhardwaresummit.org/breakouts/" title="Open Hardware Summit">"Open Hardware in Voice
-    Telecommunications"</a> .</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>On September 17 th , we will be at Software Freedom Day in Montreal
-    for a talk at 1pm <a href="http://wiki.softwarefreedomday.org/2011/Canada/Montreal/SFD-ETS" title="Software Freedom Day">“Xivo: aller plus loin que le logiciel libre,
-    libérer le matériel aussi (VoIP,
-    Asterisk)”</a> .</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>On September 22 nd , we will be at Open World Forum in Paris for a
-    track <a href="http://www.openworldforum.org/Conferences/The-OpenHardware-movement-The-community-is-moving-from-software-to-hardware" title="Open World Forum">“The OpenHardware movement - The community is moving from
-    software to
-    hardware”</a>.
-    The Open World Forum is the first Open Source Forum in Europe.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>On October, 26 th (10:00-10:35am), we will be at Astricon, the First
-    Asterisk User Conference in the world, for the track <a href="http://www.astricon.net/conferenceProgram.aspx" title="Astricon2011">"XiVO IPBX
-    OpenHardware: a full-open telephony solution for
-    SOHO"</a> .
-    This is a great opportunity to develop our XiVO Open
-    Hardware community.</li>
-</ul>
-<p>And don’t forget, from October 18-21, two tradeshows: <a href="http://www.ipconvergence.fr/" title="IP Convergence">IP
-Convergence</a> and <a href="/index.php?post/2011/07/29/AVENCALL-at-GIF-2011" title="IP Convergence">GIF
-2011</a>
-where we will make some demonstrations of XiVO Open Hardware.</p>
-<p>Come to visit us !</p>
 </p>
   </div>
 </article>

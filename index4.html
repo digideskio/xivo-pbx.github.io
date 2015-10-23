@@ -54,6 +54,60 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/authentication-in-xivo.html#authentication-in-xivo">Authentication in XiVO</a></h2>
+    <p>
+      Posted on Mon 25 May 2015 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/authentification.html">authentification</a>,      <a href="http://blog.xivo.io/tag/http.html">HTTP</a>,      <a href="http://blog.xivo.io/tag/consul.html">consul</a>,      <a href="http://blog.xivo.io/tag/directory.html">directory</a>    </p>
+  </header>
+  <div>
+      <p>In recent months we have been working on the new XiVO client which
+included amajor rework of the directory services in XiVO. A new daemon
+is born from thiswork, xivo-dird. One of the challenge of the new
+directory service is to allowusers to have access to their favorites and
+personal contacts from any device- the current implementation of
+personal contacts are stored locally and arelost in a context where
+users change seats.</p>
+<p>Bringing the personal information to xivo-dird means that some form
+ofauthentication is now required. The first step is to be able to use
+user'sCTI login and password and to evolve from there to add more
+flexibility.</p>
+<h3>Meet xivo-auth</h3>
+<p>xivo-auth is a new service that is going to be used as the single entry
+pointfor authentication in XiVO. The first step being the authentication
+in xivo-dird.Some of the requirements for xivo-auth is to be able to
+implement other forms ofauthentication. The plugin architecture used,
+similar to xivo-dird, will makethe development of new authentication
+source fast and easy. This mean that LDAPserver, CSV file, Facebook or
+Twitter authentication should and will be possibleto implement without
+having to modify xivo-auth.</p>
+<h3>The internals of xivo-auth</h3>
+<p>xivo-auth is a simple HTTP server that checks a username and
+passwordcombination (though other forms of authentication might appear)
+and delivers a tokenthat can be forwarded to other services that require
+authentication. Otherservices can validate that token and also forward
+it to other services on behalfof the user. Tokens and ACLs are generated
+and managed by <a href="https://consul.io" title="Consul">consul</a> which is alsoused
+for personal data storage.</p>
+<p>The following sequence diagram show the interaction when a user
+connectsto its XiVO client.</p>
+<p><img alt="login.png" src="/public/architecture/login_cti_via_xivo_auth.png" title="login.png, mai 2015" /></p>
+<p>After this step, xivo-ctid has a token with a limited lifetime for this
+user.</p>
+<p>When a logged-in user performs a lookup in its XiVO client, the user's
+token isforwarded to xivo-dird which can return the appropriate results
+for this user.</p>
+<p><img alt="lookup.png" src="/public/architecture/lookup_cti_via_dird_xivo_auth.png" title="lookup.png, mai 2015" /></p>
+<p>Stay tuned for more information as we implement xivo-auth and the
+firstauthentication plugins.</p>
+<p><em>* Images created with
+<a href="https://github.com/violetumleditor/violetumleditor" title="Violet">Violet</a></em></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/2nd-barcamp-about-voip-and-open-source-telephony-system.html#2nd-barcamp-about-voip-and-open-source-telephony-system">2nd BarCamp about VoIP and open source telephony system</a></h2>
     <p>
       Posted on Mon 20 April 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
@@ -368,191 +422,6 @@ bugs among which:</p>
 <p>We also included a new Asterisk version 11.17.0 and added a new tutorial
 to the contributions section.</p>
 <p>Enjoy! ;)</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/les-contributeurs-de-la-communaute-xivo.html#les-contributeurs-de-la-communaute-xivo">Les contributeurs de la communauté XiVO</a></h2>
-    <p>
-      Posted on Tue 07 April 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
-    </p>
-  </header>
-  <div>
-      <p><strong>RÉSULTAT DU SONDAGE: les réponses des contributeurs de XiVO</strong></p>
-<p><strong>Le statut, le genre et l'âge des répondants, contributeurs sur XiVO</strong></p>
-<p><strong>Parmi les 20 répondants</strong>, 19 sont des hommes et 60% des répondants
-ont entre 31 et 40 ans. 25% se définissent passionnés de
-télécommunications et 10% sont membres d'un groupe utilisateur Linux ou
-open source.</p>
-<p><strong>L'activité des répondants est :</strong>1 dirigeant d'une société en
-informatique et télécommunications, 3 directeurs informatique, 1
-administrateur réseau/téléphonie, 2 employés dans un centre d’appel, 2
-développeurs informatique, 4 employés en informatique ou télécom, 2
-administrateur système, 2 Technico-commercial, 2 techniciens en
-informatique et réseau, 1 responsable informatique. Parmi eux 25% sont
-des clients.</p>
-<p><strong>L'objectif de cette section est :</strong></p>
-<ul>
-<li>d'avoir un portrait des répondants qui se sont mobilisés par ce
-    sondage;</li>
-<li>de situer les profils professionnels et la diversité métiers
-    des répondants. En identifiant les profils absents pour accueillir
-    d'autres contributeurs on évite de renforcer la communication
-    seulement sur les profils identifiés.</li>
-<li>d'identifier les ressources dont les contributeurs auront besoin
-    selon leurs métiers et les prochaines réponses.</li>
-</ul>
-<p><strong>Q.1 Avant de connaître XiVO, quelles solutions avez-vous envisagé ?
-Qu'est ce qui vous a fait garder XiVO ?</strong></p>
-<p>Les 20 répondants citent les solutions qu'ils ont testé avant de
-connaître le système XiVO et le support d'Avencall. Ils partagent plus
-de 23 argumentations pour avoir gardé XiVO. Des arguments :</p>
-<ul>
-<li>la possibilité de nouvelles fonctionnalités et l'absence de
-    contraintes évolutives;</li>
-<li>de s'affranchir des licences propriétaires;</li>
-<li>de connaître la communauté Asterisk et des solutions Libres;</li>
-<li>soit le système XiVO était déjà en place dans l'entreprise et vous
-    avez découvert XiVO durant votre prise de poste soit à l'occasion
-    d'un remplacement des postes, votre entreprise a installé des
-    systèmes XiVO;</li>
-<li>l'importance de la relation de proximité, le support et la qualité
-    des livrables;</li>
-<li>l'accès à la documentation et votre auto-formation pour tester;</li>
-<li>qu'il s'agit d'un produit complet et souple.</li>
-</ul>
-<p><strong>Q.2 Comment avez-vous connu XiVO ?</strong></p>
-<p>Les 20 répondants ont présenté 4 sources où ils ont découvert XiVO:</p>
-<ul>
-<li>par l'entreprise ou des collègues, donc dans un contexte
-    professionnel;</li>
-<li>par des activités de veille technologique et des recherches
-    professionnelles;</li>
-<li>par le réseau de connaissance, de confiance et de proximité;</li>
-<li>par l'accès à des ressources documentaires.</li>
-</ul>
-<p><img alt="Comment_Avez_vous_connu_XiVO-Mars2015.png" src="/public/Comment_Avez_vous_connu_XiVO-Mars2015.png" title="Comment_Avez_vous_connu_XiVO-Mars2015.png, avr. 2015" /></p>
-<p><strong>Q.3 Pourquoi avez-vous installé XiVO et quand l'avez-vous testé pour
-la première fois ? Quels téléphones utilisez-vous ?</strong></p>
-<p>Les 20 répondants citent 30 exemples qui révèlent ces raisons pour
-installer XiVO:</p>
-<ul>
-<li>pour tester et renouveler le parc téléphonique;</li>
-<li>comme une alternative, un choix et une adaptation.</li>
-<li>2 témoignages d'usages professionnels et sur le potentiel de XiVO.</li>
-</ul>
-<p>Les 20 répondants citent 14 produits:</p>
-<ul>
-<li>Les plus citées sont Aastra et Gigaset puis Snom, Cisco et Polycom
-    suivis de Yealink et Jitsi pour finir par Thomson, Grandstream,
-    Autocom Xorcom, Mitel, Siemens, Spectra Link et Tiptel.</li>
-<li>Les répondants témoignent utiliser depuis peu ou déployer
-    prochainement des produits comme : Yealink, Spectra Link, Jitsi
-    et Mitel.</li>
-</ul>
-<p><strong>Q.4 Quels sont les supports ou tutoriels que vous utilisez le plus ?</strong></p>
-<p>Les 20 répondants présentent 48 sources de supports d'informations. Ces
-réponses révèlent 4 groupes :</p>
-<ul>
-<li>ceux qui se dirigent sur les ressources documentaires, tutoriels,
-    IRC, forums, code source et fiches produits de XiVO (51%);</li>
-<li>ceux qui vont sur l'IRC, code source et forum d'Asterisk (25%);</li>
-<li>ceux qui vont chercher ou échanger sur les forums communautaires
-    (14%);</li>
-<li>ceux qui développent des solutions eux-même : autodidacte ou en
-    interne de leur entreprise et qui proposent de les mettre à
-    disposition (10%).</li>
-</ul>
-<p><img alt="Les_supports_les_plus_utilisees_XiVO-Mars2015.png" src="/public/Les_supports_les_plus_utilisees_XiVO-Mars2015.png" title="Les_supports_les_plus_utilisees_XiVO-Mars2015.png, avr. 2015" /></p>
-<p><strong>Q.5 Quels bénéfices vous a apporté XiVO ? Vous recommanderiez XiVO à
-qui et pourquoi ?</strong>Les 20 répondants présentent :</p>
-<ul>
-<li>34 argumentations sur les bénéfices de XiVO tels que :</li>
-</ul>
-<p>la simplicité d'installation, de prise en main, de déploiement, de mise
-à jour et un support efficace; des avantages sur les coûts; la
-possibilité de modifier, la flexibilité de choix de modèles de
-terminaux, des solutions adaptées; un produit open source;
-l'indépendance face à des solutions propriétaires; une stabilité et
-fiabilité; des évolutions régulières; adapté aux entreprises; s'appuyant
-sur Asterisk; XiVO apporte de la communication unifiée; la présence
-d'une communauté francophone.</p>
-<ul>
-<li>3 argumentations sur les manques de XiVO tels que :</li>
-</ul>
-<p>l'absence de support sur tous les modèles; la demande d'une
-documentation complète en français.</p>
-<ul>
-<li>12 avis pour recommander XiVO et Avencall :</li>
-</ul>
-<p>car c'est un produit phare; pour réduire les coûts et s'affranchir de
-solutions propriétaires; cela convient aux collectivités territoriales,
-aux services publics (ex : les commissions scolaires), TPE et PME; à des
-amis en télécommunications; Avencall pour l'installation et la
-maintenance; pour ceux qui connaissent Linux et Debian; à tous le monde.</p>
-<p><strong>Q.6 Vous avez un projet d'étude</strong>60% des répondants ont témoigné avoir
-des projets personnels qu'ils cherchent à développer. Parmi ces
-répondants :</p>
-<ul>
-<li>4 témoignages portent sur leurs activités actuelles;</li>
-<li>11 témoignages sur ce que les répondants aimeraient voir de
-    développé avec XiVO;</li>
-<li>5 expriment des attentes sur les évolutions pour « demain ».</li>
-</ul>
-<p>Comme: « le Web RTC », « l'intégration d’Open VPN », « l'intégration de
-XiVO avec Outlook 2013 », « la fin des REST API à développer », « la
-création d’un softphone XiVO».</p>
-<p><strong>Q.7 Ce que vous aimeriez faire avec la communauté XiVO</strong></p>
-<p>Les répondants ont témoigné avoir des compétences qu'ils souhaitent
-partager sur des projets communs : tutoriels, développement internes
-puis mise à disposition (GNU GPL), traduction, se tenir informer ou
-donner des avis sur des fonctionnalités.</p>
-<ul>
-<li>3 témoignages sur les activités actuelles des contributeurs :
-    publications de tutoriels, échanger sur le forum Asterisk.</li>
-<li>7 témoignages sur vos actions à venir qui vous motivent :
-    publications, mise en licence GNU GPL, modifier des configurations,
-    rester informer sur l'évolution de XiVO.</li>
-</ul>
-<p><strong>Les remerciements envoyés par les contributeurs de XiVO</strong></p>
-<ul>
-<li>C.L témoigne  « Je pense avoir effectué une bonne partie des
-    premières installation XiVO depuis ses débuts, avec M. Boily ;-) »</li>
-<li>Y.G témoigne : « Je tiens à remercier tous les gens qui nous ont
-    aidés sur le chat.  »</li>
-<li>T.G témoigne  « Merci aux développeurs pour leur travail, merci à
-    leur maison mère de distribuer gratuitement et librement XiVO et
-    nous permettre d'en profiter même lorsque nous ne pouvons pas nous
-    payer de solution de téléphonie hors de prix, merci à Valérie pour
-    tout ce qu'elle a fait pour NyXD. Et merci à tous pour cette
-    sympathie, cette ambiance, cette proximité (bien que virtuelle,
-    distance oblige), ce logiciel bien sûr, cette ouverture d'esprit,
-    l'aide que vous nous apportez au fil des jours, les connaissances et
-    compétences que vous nous aidez à acquérir, et le plaisir que vous
-    nous offrez en nous permettant d'opérer notre propre serveur de
-    téléphonie. »</li>
-<li>M.F témoigne  « Nous avons eu d'excellents contacts avec l'agence
-    Avencall de Rennes nous sommes heureux d'avoir fait ce choix ...
-    merci ! »</li>
-</ul>
-<p>« Les utilisateurs ont une réaction très positive par rapport au client
-CTI »</p>
-<ul>
-<li>Y.C témoigne  « À la question si je conseillerai XiVO, je vous
-    répondrai que je serai même prêt à le distribuer ! il correspond à
-    tous mes besoins. »</li>
-</ul>
-<p>« Je suis tombé récemment sur le blog XiVO pour les nul que j'ai trouver
-très intéressant, j'aurai aimé l'avoir à mes débuts, le blogueur a
-l'aire sympas et motivé. »« Longue vie à XiVO et à sa communauté !  »</p>
-<ul>
-<li>G.R témoigne  « Déploiement plus rapide des postes. Recommandé sans
-    soucis, simple, efficace. »</li>
-<li>A. témoigne : « Ce logiciel est parfait =) .»</li>
-</ul>
-<p>Avec les remerciements de Valérie, C.M de XIVO :)</p>
 </p>
   </div>
 </article>

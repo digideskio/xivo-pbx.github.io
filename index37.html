@@ -54,6 +54,104 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html#using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface">Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</a></h2>
+    <p>
+      Posted on Tue 22 June 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>In the process of developing an OpenHardware project, the prototyping
+process is quite important and namely the validation of the data buses
+exchanging telecommunications data (synchronization, reset, interrupts,
+tx/rx data, signaling...) between the different interfaces and chips on
+the hardware product.</p>
+<p>At this step of, once the analog SP (Signal Processing) is validated,
+one can test the data-buses using the so-called "LogicAnalyzer" that
+will put the signal on the bus into readable binary data (from the TTL
+levels triggered on edges or any other events on the trigger line
+chosen).LogicAnalyzer can be quite expensive appliance (such as digital
+scope or frequency analyzer) but nowadays affordable device exist also
+allowing the hardware designer / tester to monitor the data on one bus.
+Such kind of LogicAnalyzer are usually based on 3 parts:</p>
+<ul>
+<li>EZ-Hook type of connectors to probe the pins/headers on the
+    prototype card or PCB (i.e. TP - TestPoint)</li>
+<li>TTL-to-USB chip to transform the analog signal probed into binary
+    signals</li>
+<li>USB interface to connect the host-PC with the right analyzer
+    software (usually unfortunately running for MS)</li>
+</ul>
+<p>Please find a list of USB Logic Analyzer available (some supported with
+sigrok ^[<span id="rev-pnote-24-1"><a href="#pnote-24-1">1</a></span>]^</p>
+<ul>
+<li>USBee SX Test Pod Logic Analyzer ^[<span
+    id="rev-pnote-24-2"><a href="#pnote-24-2">2</a></span>]^ (a HUGE sample buffer
+    PC and USB based multifunction logic analyzer)</li>
+<li>EE Electronics XLA ESLA100 (a cheap 8-channel logic analyzer)</li>
+<li>ASIX Sigma (a 6 channel logic analyzer with sample rate support up
+    to 200 MHz and with 256 Mbit on-board memory)</li>
+<li>Openbench Logic Sniffer (a FPGA-based logic analyzer, supporting 32
+    probes for probing up to 100MHz signals)</li>
+<li>Braintechnology USB-LPS (a Cypress FX2 based logic analyzer and
+    signal generator with up to 16 channels)</li>
+<li>Buspirate ^[<span id="rev-pnote-24-3"><a href="#pnote-24-3">3</a></span>]^</li>
+<li>Intronix Logicport LA1034 (a FPGA-based logic analyzer, capable of
+    sampling data on 34 channels at up to 500MHz) ^[<span
+    id="rev-pnote-24-4"><a href="#pnote-24-4">4</a></span>]^</li>
+</ul>
+<p>The one we are using for the prototyping of the XiVO OpenHardware IPBX
+is a Saleae Logic Analyzer with the 1.0.21 software ^[<span
+id="rev-pnote-24-5"><a href="#pnote-24-5">5</a></span>]^</p>
+<p>Below are 2 snapshots of signals probed on the Local Expansion Bus
+connecting the CPU with the ISDN chip:</p>
+<ul>
+<li>/CS: Chip Select signal (to indicate which chip on the LEB should
+    be driven)</li>
+<li>/RD: ReaD signal (from the CPU indicating that the data will be read
+    from the ISDN chip registers)</li>
+<li>/WR: WRite signal (from the CPU indicating that the data will be
+    written into the ISDN chip registers)</li>
+<li>ALE: Address LatchE to indicate which Address of Data to retrieve</li>
+<li>D0: Bit 0 from the LEB data bus</li>
+<li>D1: Bit 1 from the LEB data bus</li>
+<li>D2: Bit 2 from the LEB data bus</li>
+<li>A8: Address 8 (EX_ADDR<a href="8" title="8">8</a>) line on the CPU used to trigger
+    the scope or the logic analyzer</li>
+</ul>
+<p>As one can see in the screenshot below, the A8 line is set on "0" + "1"
+which means the triggering is done on upper edge from this signal.</p>
+<p><img alt="LEB CPU ISDN LogicAnalyzer
+traces" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot1_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces, juin 2010" /></p>
+<p>The view below is a zoomed view of the above screenshot with a focus on
+the triggering on A8 line</p>
+<p><img alt="LEB CPU ISDN LogicAnalyzer traces
+zoom" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot2_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces zoom, juin 2010" /></p>
+<div class="footnotes">
+
+#### Notes
+
+\[<span id="pnote-24-1">[1](#rev-pnote-24-1)</span>\]
+http://sigrok.org/wiki/Main\_Page
+
+\[<span id="pnote-24-2">[2](#rev-pnote-24-2)</span>\] http://usbee.com
+
+\[<span id="pnote-24-3">[3](#rev-pnote-24-3)</span>\]
+http://dangerousprototypes.com/2009/11/03/bus-pirate-logic-analyzer-mode/
+
+\[<span id="pnote-24-4">[4](#rev-pnote-24-4)</span>\]
+http://www.pctestinstruments.com/
+
+\[<span id="pnote-24-5">[5](#rev-pnote-24-5)</span>\]
+http://www.saleae.com
+
+</div>
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/the-xivo-ipbx-openhardware-eco-system.html#the-xivo-ipbx-openhardware-eco-system">The XiVO IPBX OpenHardware eco-system</a></h2>
     <p>
       Posted on Thu 17 June 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -232,44 +330,6 @@ wires (like the precious HIRSCHMANN MKL0,64/25-0,25 - reference
 soldering wires (RoHS with 1mm and 0.5mm diameter), screw-drivers, SMT
 and non SMT resistors, capacitors and selfs, labels for different wire
 description.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html#prototype-pcb-for-the-isdn-and-fxofxs-interfaces">Prototype PCB for the ISDN and FXO/FXS interfaces</a></h2>
-    <p>
-      Posted on Tue 04 May 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>As the XiVO IPBX OpenHardware project moves forward, we are now doing
-the prototyping of the different fonctionnal bloc of the PCB and namely
-the interaction between the CPU and the Telco interfaces (ISDN and
-FXO/FXS).In order to do a clean prototyping, it is usually adviced to
-use the different EVB (EValuationBoards) and SDK (Software Development
-Kits) supplied by the chip manufacturer (CPU, ISDN, FXO/FXS) and try to
-do the "proof-of-concept" of the hardware design connecting the
-different EVBs and use the SDKs provided to run the SPI and TDM buses
-(Master and Slaves) from the CPU.</p>
-<p>In our case, we made some intermediate PCBs that can make a clean
-connection between the CPU EVB and the ISDN and FXO/FXS interfaces. With
-the great help of Mehdi Khairy (that used to work with me on the
-OpenPattern project) using KiCAD to route the different PCBs (some
-bugfixes sent to the KiCAD bugtracker during the routing at
-https://bugs.launchpad.net/kicad).</p>
-<p>The ISDN connection from the CPU EVB to the ISDN EVB chip (XHFC-4SU - a
-4 T1 lines ISDN frame buffers on-chip from CologneChip) is done using
-the following PCB (XHFC-4SU-Protoboard) ;</p>
-<p><img alt="XHFC-4SU-Protoboard" src="/public/.XHFC-4SU_Protoboard_m.jpg" title="XHFC-4SU-Protoboard, mai 2010" /></p>
-<p>The FXO/FXS connection from the CPU EVB to the FXO/FXS EVB chip (VE890
-EVB from Zarlink implementing 2 FXS and 1 FXO) is done using the
-following PCB (Zarlink-VE890-Protoboard) ;</p>
-<p><img alt="Zarlink-VE890-Protoboard" src="/public/.Zarlink_VE890_Protoboard_m.jpg" title="Zarlink-VE890-Protoboard, mai 2010" /></p>
-<p>Next posts will be presenting the results and the signal obtained on the
-SPI and TDM buses from a Digital Oscilloscope and from a Logic Analyzer
-(like the saleae one),</p>
 </p>
   </div>
 </article>

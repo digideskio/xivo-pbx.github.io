@@ -54,6 +54,141 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">An alternate XiVO gallifrey repository (part 1/2)</a></h2>
+    <p>
+      Posted on Mon 18 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Kernel module dependencies</h4>
+<p>When binary kernel modules need to be rebuilt, a Makefile containing
+<em>ROLE = kernel-module</em> is created for the packaging-farm to work with,
+as explained in the manual page. It depends on the source package
+providing the <em>MODULE = module-source</em> package. A script was added to
+the global dependency computation facility of packaging-farm</p>
+<div class="highlight"><pre>packaging-farm depends
+</pre></div>
+
+
+<p>to figure out if the source package is known. If it is a dependency, it
+is added to the <em>/var/cache/packaing-farm/depends.mk</em> file so that it is
+rebuilt before the binary kernel modules.</p>
+<h4>Gallifrey dedicated farm.</h4>
+<p>A <a href="http://gallifrey.dachary.org/packaging-farm/">dedicated virtual
+machine</a> was created to
+host the making of gallifrey packages and the resulting repository. It
+has been installed from scratch, using the latest
+<a href="http://packaging-farm.dachary.org/download/">packaging-farm</a> package.It
+turned out that the submission form of <em>submit-xivo.sh(1)</em> relies on
+being able to find some dependencies of the source package being
+submitted, such as <em>cdbs</em> or <em>quilt</em>. Although the <em>dpkg-buildpackage
+-d</em> command is used (which is supposed to be insensitive to the lack of
+source dependencies), it could not work unless it is able to interpret
+the <em>debian/rules</em> file. The <em>cdbs</em> and <em>quilt</em> dependencies were added
+to the packaging-farm package and all general purpose dependencies
+should be as well.</p>
+<h4>Patching debian configuration</h4>
+<p>When something is not right with the debian package, it can be patched
+directly on the farm instead of going thru the repository. It may be
+useful as a temporary measure when the correct patch is still unclear.</p>
+<div class="highlight"><pre>cd /var/cache/packaging-farm/sources/PACKAGE
+# fix something in PACKAGE/debian/rules
+dpkg-source -b PACKAGE
+</pre></div>
+
+
+<p>Note that once the fix is correct, it must be saved because the sources
+will be overriden when</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=PACKAGE submit
+</pre></div>
+
+
+<p>is run.This method was used to produce patches for
+<a href="https://projects.proformatique.com/issues/2194">asterisk</a>,
+<a href="https://projects.proformatique.com/issues/2195">dahdi-linux</a> and
+<a href="https://projects.proformatique.com/issues/2196">dahdi-tools</a>.</p>
+<h4>Configuring packaging-farm</h4>
+<p>In order for the packages to be signed, a GPG key is generated, without
+a password and added tothe <em>packaging-farm.conf</em> file (see below
+SIGN_debian=-kD08ED067 )</p>
+<div class="highlight"><pre>gpg --gen-key
+</pre></div>
+
+
+<p>The <em>/etc/packaging-farm/packaging-farm.conf</em> was modified for
+<em>gallifrey</em> as follows:</p>
+<div class="highlight"><pre>#
+# Exclusively built for lenny
+#
+DISTRIBUTIONS=lenny
+#
+# Exclusively built for i386
+#
+ARCHITECTURES=i386
+#
+# Source submission porcess configuration
+#
+SUBMIT=xivo
+#
+# gallifrey only ships for lenny
+#
+export SUITE=lenny
+export XIVO=gallifrey
+#
+# List of subdirectories of CHROOT_SOURCE that are cached
+# localy in CHROOT_ROOT on a daily basis with
+# packaging-farm chroot-master-sync
+#
+CHROOT_WANTED=debian/i386/lenny
+#
+# Signing related options for Debian GNU/Linux
+# See dpkg-buildpackage(1) for more information
+#
+SIGN_debian=-kD08ED067
+#
+# Signing related options for Debian GNU/Linux
+# See reprepro(1) for more information
+#
+SIGN_WITH=SignWith: yes
+</pre></div>
+
+
+<h4>Collecting gallifrey modules.</h4>
+<p>The <em>gallifrey</em> sources and debian packages are to be found in the
+following repositories:</p>
+<div class="highlight"><pre>http://git.xivo.fr/xivo-gallifrey.git/ sources
+http://git.xivo.fr/debian/lenny-xivo-gallifrey.git/ debian packages
+</pre></div>
+
+
+<p>And the following were submitted :</p>
+<div class="highlight"><pre><span class="x">for dir in dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+</pre></div>
+
+
+<p>However, some of them were rebuilt manually:</p>
+<div class="highlight"><pre>dahdi-linux-modules libasterisk-perl libpri misdn-kernel misdn-kernel-modules pf-asterisk-prompt-fr-xivo pf-xivo pf-xivo-backup sangoma-wanpipe sangoma-wanpipe-modules spandsp
+</pre></div>
+
+
+<p>and must be retrieved from the development repository:</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>using the method laid out in the <a href="http://blog.xivo.fr/index.php?post/2011/02/21/Creating-an-independant-XiVO-Debian-GNU/Linux-repository-from-scratch-%28part-3%29">Creating an independant XiVO Debian
+GNU/Linux repository from
+scratch</a>
+series.At the moment the development repository is incomplete. But it is
+being worked on and the making of the repository will resume when it is
+back online.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/signing-and-naming-xivo-packages.html#signing-and-naming-xivo-packages">Signing and naming XiVO packages</a></h2>
     <p>
       Posted on Mon 11 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -629,30 +764,6 @@ virtual machine that will eventually replace http://xivo.dachary.org/</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html#sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey">Sourcing the components and scripting the components parts e-shops (digikey, ...)</a></h2>
-    <p>
-      Posted on Wed 30 March 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>As I am constantly searching for informations on the different parts
-(i.e. components on the PCB), <strong>i have scripted www.digikey.com</strong> (the
-HTML form is quite stable) in python in order to automatize the search
-on the website.</p>
-<p>The script can be found here :
-<a href="http://carcelle.fu8.com/digikey.py" title="digikey.py">digikey.py</a></p>
-<p>This script can be used like : python digikey.py BC847BVNDITR-ND
-(BC847BVNDITR-ND is a part reference on the digikey website).</p>
-<p>I am looking for similar that can be used/optimized for the other e-shop
-such as Farnell, Mouser, Radiospares in order to have a common script
-tool able to search all these e-shops in one and give a report on the
-availability for parts in a db run daily or weekly.</p>
 </p>
   </div>
 </article>
