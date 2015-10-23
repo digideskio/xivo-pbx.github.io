@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="pf-release.sh The pf-release.sh shell script merges the GIT repository containing the sources and the SVN repository containing the debian packages into a well formed Debian GNU/Linux source package. For instance pf-release.sh lib-javascript squeeze skaro would create the pf-xivo-lib-js package. The discussion about the publication of the ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Creating a Debian GNU/Linux source package from the VCS (2/2)"/>
+<meta property="og:description" content="pf-release.sh The pf-release.sh shell script merges the GIT repository containing the sources and the SVN repository containing the debian packages into a well formed Debian GNU/Linux source package. For instance pf-release.sh lib-javascript squeeze skaro would create the pf-xivo-lib-js package. The discussion about the publication of the ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-03-14 22:04:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Creating a Debian GNU/Linux source package from the VCS (2/2)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</h1>
+    <p>Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>pf-release.sh</h4>
+<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
+merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
+containing the sources and the SVN repository containing the debian
+packages into a well formed Debian GNU/Linux source package. For
+instance</p>
+<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+</pre></div>
+
+
+<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
+<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the private SVN
+repostory</a>
+concluded that it will be bound to a public GIT repository shortly. When
+it is ready, the pf-release.sh script will be updated accordingly.In
+order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
+argument:</p>
+<div class="highlight"><pre>pf-release.sh TEST
+</pre></div>
+
+
+<p>This will simulate border cases using a temporary direcotry to check
+that it behaves as expected. Reading the tests (which are embeded in the
+script) is currently the only documentation.</p>
+<h4>packaging-farm submission</h4>
+<p>The output of <em>pf-release.sh</em> is stored in a directory that uses the
+same conventions as packaging-farm. Because of that, submitting the
+package to the host running the packaging farm can be done by copying
+the directory as follows:</p>
+<div class="highlight"><pre>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
+</pre></div>
+
+
+<h4>dependency generation</h4>
+<p>A recent addition to the packaging-farm was the automatic generation of
+dependencies. It calculates which source package depends on other
+packages built by the packaging-farm. Support for meta packages was
+added to the dependency generation. In the packaging-farm vocabulary, a
+meta package is a package that aggregates others but has no sources of
+its own. For instance, the meta package <em>skaro</em> was created to produce
+the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
+repository</a>.
+When running the depencency generations as follows:</p>
+<div class="highlight"><pre>packaging-farm depends
+</pre></div>
+
+
+<p>it includes the meta packages in the graph so that skaro can be built
+with:</p>
+<div class="highlight"><pre>packaging-farm skaro
+</pre></div>
+
+
+<p>If, for instance, <em>pf-xivo-lib-js</em> has been updated as shown with the
+<em>rsync</em> command above it will be rebuilt because the skaro meta package
+depends on it.</p>
+<h4>makefile generation</h4>
+<p>Each package entering the packaging-farm must have a <em>Makefile</em>
+associated with it. Setting the variables in this <em>Makefile</em> allows the
+administrator to tune the behaviour on a per package basis. When a
+package is simple enough, its <em>Makefile</em> can be automatically generated
+as follows:</p>
+<div class="highlight"><pre>packaging-farm makefiles
+</pre></div>
+
+
+<h4>packaging-farm sensible defaults</h4>
+<p>The <a href="http://packaging-farm.dachary.org/download/">version 1.2.33</a> of
+packaging-farm includes the modifications above to help reduce the
+number of steps required to rebuild a suite or a specific package.
+Submitting a package requires four steps:</p>
+<ul>
+<li>pf-release.sh</li>
+<li>rsync</li>
+<li>packaging-farm generate which calls depends and makefiles</li>
+<li>packaging-farm the_package</li>
+</ul>
+<p>This completes the making of the building blocks enabling the creation
+and maintainance of packages based on the XiVO development repository.
+The next step will be to document and simplify the usage, reducing the
+learning curve to a minimum.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Creating a Debian GNU/Linux source package from the VCS (2/2)",
+  "headline": "Creating a Debian GNU/Linux source package from the VCS (2/2)",
+  "datePublished": "2011-03-14 22:04:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html",
+  "description": "pf-release.sh The pf-release.sh shell script merges the GIT repository containing the sources and the SVN repository containing the debian packages into a well formed Debian GNU/Linux source package. For instance pf-release.sh lib-javascript squeeze skaro would create the pf-xivo-lib-js package. The discussion about the publication of the ..."
+}
+</script></body>
+</html>

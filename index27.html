@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Testing a XiVO gallifrey repository (1/2)</a></h2>
+    <p>
+      Posted on Mon 09 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Methodology</h4>
+<p>Assuming a host running <a href="http://www.debian.org/releases/squeeze/">Debian GNU/Linux
+Squeeze</a>, the general idea is
+to boot a virtual machine thatwill auto-install using
+<a href="http://www.debian.org/devel/debian-installer/">debian-installer</a> so
+that it uses <a href="http://git.proformatique.com/?p=official/debian-installer.git;a=tree;f=squeeze/classes/skaro-farm;h=155b14e82c906b968d6d42a7b8e20faf0209d687;hb=692498d23dcd2daa173e2ed152010b6c22dd7fda">a specific
+class</a>
+that will pull packages from <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">the
+gallifrey</a>
+repository <a href="http://blog.xivo.fr/index.php?post/2011/04/27/An-alternate-XiVO-gallifrey-repository-%28part-2/2%29">created with
+packaging-farm</a>.</p>
+<h4>Virtual machine</h4>
+<p>The <a href="http://libvirt.org/">libvirt</a> virtual machine is given 512MB RAM,
+8GB RAW disk image, 1CPU.The configuration of libvirt is made to accept
+VNC connections from anywhere to gain access tothe console over the
+network:</p>
+<div class="highlight"><pre><span class="gh">diff --git a/libvirt/qemu.conf b/libvirt/qemu.conf</span>
+<span class="gh">index dc8eb83..282e734 100644</span>
+<span class="gd">--- a/libvirt/qemu.conf</span>
+<span class="gi">+++ b/libvirt/qemu.conf</span>
+<span class="gu">@@ -9,7 +9,7 @@</span>
+ # NB, strong recommendation to enable TLS + x509 certificate
+ # verification when allowing public access
+ #
+<span class="gd">-# vnc_listen = &quot;0.0.0.0&quot;</span>
+<span class="gi">+vnc_listen = &quot;0.0.0.0&quot;</span>
+
+
+ # Enable use of TLS encryption on the VNC server. This requires
+</pre></div>
+
+
+<h4>dhcpd and network boot</h4>
+<p>The dhcp server is instructed to allow for network boot in
+<em>/etc/dhcp/dhcpd.conf</em></p>
+<div class="highlight"><pre>subnet 10.10.70.0 netmask 255.255.255.0 {
+        range 10.10.70.70 10.10.70.100;
+        filename &quot;pxelinux&quot;;
+        next-server 10.10.70.254;
+        option domain-name &quot;farm&quot;;
+        option domain-name-servers 10.10.70.254;
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.10.70.255;
+        option routers 10.10.70.254;
+}
+</pre></div>
+
+
+<p>The TFTP server is installed:</p>
+<div class="highlight"><pre>apt-get install tftpd-hpa
+</pre></div>
+
+
+<p>The kernel and pxelinux configuration files are <a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386">copied from a i386
+lenny
+directory</a>
+into <em>/var/lib/tftp/</em>. Actually a more elaborated variation rsync'ed
+from a machine on the avencall lan named kenny.avencall.com but this is
+not strictly necessary for the test: fai-linux-lenny below is equivalent
+to
+<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/linux">linux</a>
+and fai-initrd-lenny is equivalent to
+<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz">initrd</a>.The
+libvirt configuration of the virtual machineis instructed to boot from
+the network:</p>
+<div class="highlight"><pre><span class="nt">&lt;os&gt;</span>
+    <span class="nt">&lt;type</span> <span class="na">arch=</span><span class="s">&#39;i686&#39;</span> <span class="na">machine=</span><span class="s">&#39;pc-0.12&#39;</span><span class="nt">&gt;</span>hvm<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;network&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;hd&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;bootmenu</span> <span class="na">enable=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
+</pre></div>
+
+
+<p>When the virtual machine is started with</p>
+<div class="highlight"><pre>virsh start skaro.xivo.vm.test
+</pre></div>
+
+
+<p>it will show the following and be ready to boot from the
+network.<img alt="d-i" src="/public/.i_m.jpg" title="d-i, May 2011" />A new entry has been
+added to the menu displayed:</p>
+<div class="highlight"><pre>label xivo_gallifrey_farm
+        menu label gallifrey-farm
+        kernel fai-linux-lenny
+        append initrd=fai-initrd-lenny rw auto=true url=http://66.254.41.119 priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,xivo-gallifrey-farm hostname=xivo --
+</pre></div>
+
+
+<p>in the file <em>/var/lib/tftp/pxelinux.cfg/xivo_devel/xivo_devel.cfg</em>
+that has beenextracted with</p>
+<div class="highlight"><pre>cd /var/lib/tftp
+git clone git://git.proformatique.com/official/debian-pxelinux.git pxelinux.cfg
+</pre></div>
+
+
+<p>and contains all the menu for all the XiVO configurations.</p>
+<h4>Other packages</h4>
+<p>The <a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/postinst_script">debian-installer
+script</a>
+starts by installing <a href="pf-fai-xivo-1.1-gallifrey-farm">a package</a> whose
+sole purpose is to add files in the /etc/apt/sources.list.d/ so that
+packages are extracted from the . The sources of the package are in the
+packages/branches/official/lenny/pf-fai/ directory of the internal
+rcs.lan.proformatique.com/rcs/svn/common-softwares repository. They can
+also be retrieved from the package sources at</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>with the command</p>
+<div class="highlight"><pre>apt-get source pf-fai
+</pre></div>
+
+
+<h4>Installation</h4>
+<p>All the common files are in the <a href="http://66.254.41.119/d-i/lenny/">lenny
+directory</a>, forinstance the
+<a href="http://66.254.41.119/d-i/lenny/preseed.cfg">preseed.cfg</a> and
+<a href="http://66.254.41.119/d-i/lenny/installer.cfg">installer.cfg</a> that sets
+the passwords and other package values.</p>
+<div class="highlight"><pre><span class="x">d-i passwd/root-password-crypted password </span><span class="p">$</span><span class="x">1</span><span class="p">$</span><span class="nv">NHxfkWun</span><span class="p">$</span><span class="nv">PMGLFNFtPKwIFT532sinD1</span><span class="x"></span>
+</pre></div>
+
+
+<p>That should be replaced with a known password, for instance:</p>
+<div class="highlight"><pre>d-i passwd/root-password password foobar
+</pre></div>
+
+
+<p>otherwise it will be impossible to login.The installation asks for the
+disk partition. If it fails,the error logs can be found at
+<em>/var/log/pf-fai/postinst.log</em>The key of the packaging-farm repository
+is addedto
+<a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/late_script">late_script</a></p>
+<div class="highlight"><pre>if [ -x /usr/bin/apt-key ]; then
+        apt-get -y install gnupg
+        wget http://gallifrey.dachary.org/gallifrey.gpg -O - | apt-key add -
+fi
+</pre></div>
+
+
+<p>It also removes any repository added by
+<a href="http://66.254.41.119/d-i/lenny/late_script_target">late_script_target</a>
+and replace them with the packaging-farm repository:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>If a script (such as late_script) fails, the error message can be found
+after login on the machine in the <em>/var/log/installer/syslog</em> file.</p>
+<h4>gallifrey distribution</h4>
+<p>The <a href="http://gallifrey.dachary.org/packaging-farm/">gallifrey
+distribution</a> has been
+updated to include the <em>misdn-user</em> package that was missing from the
+list although it was already created. The <em>pf-asterisk-module-xivo</em>,
+<em>pf-asterisk-res-sqlite2</em>, <em>pf-asterisk-ami-aoriginate</em>,
+<em>asterisk-chan-sccp</em>, <em>pf-asterisk-app-fax</em>,
+<em>pf-asterisk-app-nv-faxdetect</em> packages were imported into the farm from
+the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">official
+repository</a>
+and added to the list of packages necessary to install gallifrey.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-from-2007-until-now-with-gource.html#xivo-from-2007-until-now-with-gource">XiVO from 2007 until now with Gource</a></h2>
+    <p>
+      Posted on Fri 06 May 2011 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/gource.html">gource</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>    </p>
+  </header>
+  <div>
+      <p><em>5 years of development, 24 contributors, 7824 commits, 195k lines of
+code.</em><br />
+History of Xivo in 2'30 minutes, done with Gource.</p>
+<iframe width="425" height="349" src="http://www.youtube.com/embed/g0jI9A53BoM" frameborder="0" allowfullscreen>
+</iframe>
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-packages-versions.html#xivo-packages-versions">XiVO packages versions</a></h2>
+    <p>
+      Posted on Mon 02 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>package names and multiple distributions</h4>
+<p>As it is, packaging-farm will create packages with names that are not
+dependent on the distribution. It creates a problem that is immediately
+visible when trying to build a repository that includes all the
+packages: the pool can only accomodate for a single package with a given
+name.When building packages for multiple distributions, packaging-farm
+should rename the packages built so that they carry the distribution
+name. The names must compare in the same order as the distribution
+chronology. For instance, <em>foo-1.2-1</em> would be renamed into
+<em>foo-1.2-1\~3wheezy</em>. Such a behavior is intrusive and may not be
+appropriate if building for a single distribution. The proposed names
+are as follow, for each of the supported distributions, following the
+<a href="http://backports.debian.org/Contribute/#index5h3">Debian GNU/Linux
+backport</a> naming
+scheme, with the distribution name added for clarity:</p>
+<div class="highlight"><pre>* <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://wiki.ubuntu.com/Releases&quot;</span><span class="nt">&gt;</span>Ubuntu<span class="nt">&lt;/a&gt;</span>
+** natty = ~bpo1104natty+1
+** maverick = ~bpo1010maverick+1
+** lucid = ~bpo1004lucid+1
+** etc.
+* <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://wiki.debian.org/DebianReleases&quot;</span><span class="nt">&gt;</span>Debian GNU/Linux<span class="nt">&lt;/a&gt;</span>
+** wheezy = ~bpo70wheezy+1
+** squeeze = ~bpo60squeeze+1
+** lenny = ~bpo50lenny+1
+** etch = ~bpo40etch+1
+** etc.
+</pre></div>
+
+
+<p>For the record, here is the chat log that led to the proposal above.</p>
+<div class="highlight"><pre><span class="p">(</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">29</span><span class="s-Atom">:</span><span class="mi">46</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nv">Hi</span><span class="p">,</span> <span class="nv">I</span><span class="s-Atom">&#39;m facing a problem organizing repositories made with reprepro. A package (the name is xivo) is fit to build for Debian wheezy, unstable &amp; Ubunty maverick and naty, for i386 &amp; amd64, without requiring any change. Because reprepro uses a pool to store the packages, these four packages (for wheezy, unstable, maverick &amp; naty) cannot coexist with the exact same name. I could either a) change the package name by adding the target distribution although these packages are strictly identical, b) make a separate repository for each distribution (which still is useful to aggregate the various architectures). Do you have any advice ?</span>
+<span class="s-Atom">(10:30:43 AM) twb: FWIW I just use apt-ftparchive</span>
+<span class="s-Atom">(10:31:44 AM) twb: http://paste.debian.net/115729/</span>
+<span class="s-Atom">(10:31:49 AM) twb: Not very nice, but it does the job</span>
+<span class="s-Atom">(10:32:51 AM) loicd: twb: you mean that it is imune to this kind of trouble (the pool) ? (10:34:57 AM) twb: Basically each dir is an apt repo</span>
+<span class="s-Atom">(10:35:26 AM) twb: So instead of dists/ and pool/x/xivo, you&#39;d</span> <span class="s-Atom">just</span> <span class="s-Atom">have</span> <span class="s-Atom">xivo</span><span class="o">/</span> <span class="s-Atom">as</span> <span class="s-Atom">a</span> <span class="s-Atom">repo</span><span class="p">,</span> <span class="s-Atom">and</span> <span class="s-Atom">you</span> <span class="s-Atom">can</span> <span class="s-Atom">point</span> <span class="s-Atom">whatever</span> <span class="s-Atom">distros</span> <span class="s-Atom">you</span> <span class="s-Atom">want</span> <span class="s-Atom">at</span> <span class="nf">it</span>
+<span class="p">(</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">41</span><span class="s-Atom">:</span><span class="mi">02</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nn">twb</span><span class="p">:</span> <span class="s-Atom">it</span> <span class="s-Atom">looks</span> <span class="s-Atom">like</span> <span class="s-Atom">what</span> <span class="nv">I</span><span class="s-Atom">&#39;m after. One drawback of having the same package name for two distro is upgrade. The following use case is broken : a) install wheezy + xivo, b) upgrade to unstable =&gt; xivo does not get upgraded. Although the source packages are the same, the resulting .deb are different because the context is different. The ideal situation would be to be able to create .deb with a name that contains the distro in such a way that it upgrades.</span>
+<span class="s-Atom">(10:41:54 AM) ***OdyX does -1 upload to Debian, then -1~n0 to natty, -1~m0 to maverick -1~l0 to lucid.</span>
+<span class="s-Atom">(10:44:39 AM) loicd: OdyX: smart :-)</span>
+<span class="s-Atom">(10:45:24 AM) OdyX: loicd: more or less ~. It means you have to rebuild+upload each time (only source if you upload to PPAs)</span>
+<span class="s-Atom">(10:46:55 AM) loicd: twb: I actually have the same problem with squeeze + wheezy. </span>
+<span class="s-Atom">(10:47:09 AM) twb: loicd: squeeze is BPO&#39;s</span> <span class="s-Atom">problem</span><span class="p">,</span> <span class="o">not</span> <span class="s-Atom">yours</span> <span class="s-Atom">:</span><span class="nv">P</span>
+<span class="p">(</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">47</span><span class="s-Atom">:</span><span class="mi">20</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="s-Atom">~s0</span> <span class="o">=</span> <span class="s-Atom">squeeze</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="s-Atom">~</span><span class="nf">w0</span> 
+<span class="p">(</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">47</span><span class="s-Atom">:</span><span class="mi">24</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="s-Atom">that</span> <span class="s-Atom">works</span> <span class="nf">too</span>
+<span class="p">(</span><span class="mi">11</span><span class="s-Atom">:</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">37</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nn">twb</span><span class="p">:</span> <span class="s-Atom">actually</span><span class="p">,</span> <span class="s-Atom">it</span> <span class="o">is</span><span class="p">.</span> <span class="nv">The</span> <span class="s-Atom">vendor</span> <span class="s-Atom">of</span> <span class="s-Atom">the</span> <span class="s-Atom">software</span> <span class="s-Atom">needs</span> <span class="s-Atom">to</span> <span class="s-Atom">provide</span> <span class="s-Atom">squeeze</span> <span class="s-Atom">backports</span> <span class="s-Atom">to</span> <span class="s-Atom">its</span> <span class="s-Atom">clients</span><span class="p">.</span> <span class="nv">This</span> <span class="s-Atom">happens</span> <span class="s-Atom">usually</span> <span class="s-Atom">in</span> <span class="s-Atom">a</span> <span class="s-Atom">rush</span> <span class="s-Atom">and</span> <span class="s-Atom">before</span> <span class="s-Atom">it</span> <span class="s-Atom">becomes</span> <span class="s-Atom">available</span> <span class="s-Atom">to</span> <span class="s-Atom">bpo</span><span class="p">.</span> <span class="nv">It</span> <span class="s-Atom">actually</span> <span class="o">is</span> <span class="s-Atom">a</span> <span class="s-Atom">concern</span> <span class="s-Atom">shared</span> <span class="s-Atom">by</span> <span class="s-Atom">most</span> <span class="s-Atom">software</span> <span class="s-Atom">vendors</span> <span class="s-Atom">:</span> <span class="s-Atom">the</span> <span class="s-Atom">delays</span> <span class="s-Atom">between</span> <span class="s-Atom">meeting</span> <span class="s-Atom">the</span> <span class="s-Atom">client</span> <span class="s-Atom">request</span> <span class="s-Atom">and</span> <span class="s-Atom">meeting</span> <span class="s-Atom">the</span> <span class="s-Atom">debian</span> <span class="s-Atom">requirements</span> <span class="s-Atom">do</span> <span class="o">not</span> <span class="s-Atom">always</span> <span class="s-Atom">match</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">11</span><span class="s-Atom">:</span><span class="mi">41</span><span class="s-Atom">:</span><span class="mi">55</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nv">I</span> <span class="s-Atom">think</span> <span class="nv">I</span> <span class="s-Atom">will</span> <span class="s-Atom">go</span> <span class="s-Atom">for</span> <span class="s-Atom">names</span> <span class="s-Atom">that</span> <span class="s-Atom">use</span> <span class="s-Atom">the</span> <span class="s-Atom">version</span> <span class="s-Atom">number</span> <span class="s-Atom">to</span> <span class="s-Atom">ensure</span> <span class="s-Atom">it</span> <span class="s-Atom">compares</span> <span class="s-Atom">as</span> <span class="s-Atom">expected</span> <span class="s-Atom">foo</span><span class="o">-</span><span class="mf">1.2</span><span class="o">-</span><span class="mi">1</span> <span class="s-Atom">=&gt;</span> <span class="s-Atom">foo</span><span class="o">-</span><span class="mf">1.2</span><span class="o">-</span><span class="mi">1</span><span class="s-Atom">~</span><span class="mf">7.0</span><span class="nf">wheezy</span> <span class="p">(</span> <span class="s-Atom">wheezy</span> <span class="o">=</span> <span class="s-Atom">~</span><span class="mf">7.0</span><span class="s-Atom">wheezy</span><span class="p">,</span> <span class="s-Atom">squeeze</span> <span class="o">=</span> <span class="s-Atom">~</span><span class="mf">6.0</span><span class="s-Atom">squeeze</span><span class="p">,</span> <span class="s-Atom">lenny</span> <span class="o">=</span> <span class="s-Atom">~</span><span class="mf">5.0</span><span class="s-Atom">lenny</span> <span class="s-Atom">etc</span><span class="p">.).</span> <span class="nv">What</span> <span class="s-Atom">do</span> <span class="s-Atom">you</span> <span class="s-Atom">think</span> <span class="s-Atom">?</span> 
+<span class="p">(</span><span class="mi">11</span><span class="s-Atom">:</span><span class="mi">42</span><span class="s-Atom">:</span><span class="mi">31</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">daemonkeeper</span><span class="p">:</span> <span class="s-Atom">why</span> <span class="s-Atom">use</span> <span class="s-Atom">the</span> <span class="s-Atom">codename</span> <span class="s-Atom">at</span> <span class="s-Atom">all</span> <span class="s-Atom">then?</span>
+<span class="p">(</span><span class="mi">11</span><span class="s-Atom">:</span><span class="mi">43</span><span class="s-Atom">:</span><span class="mi">45</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">twb</span><span class="p">:</span> <span class="nv">If</span> <span class="s-Atom">the</span> <span class="s-Atom">backport</span> <span class="s-Atom">doesn&#39;t involve a source package change, I don&#39;t</span> <span class="s-Atom">really</span> <span class="s-Atom">see</span> <span class="s-Atom">why</span> <span class="s-Atom">it&#39;s necessary to fuck about at all</span>
+<span class="s-Atom">(11:45:14 AM) pabs: loicd: don&#39;t</span> <span class="s-Atom">you</span> <span class="s-Atom">want</span> <span class="s-Atom">dch</span> <span class="s-Atom">--bpo?</span>
+<span class="p">(</span><span class="mi">11</span><span class="s-Atom">:</span><span class="mi">45</span><span class="s-Atom">:</span><span class="mi">53</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nn">daemonkeeper</span><span class="p">:</span> <span class="s-Atom">for</span> <span class="s-Atom">readability</span><span class="p">.</span> <span class="nv">I</span> <span class="s-Atom">agree</span> <span class="s-Atom">it&#39;s redundant.</span>
+<span class="s-Atom">(11:46:06 AM) loicd: but it will help the customer support, I suppose</span>
+<span class="s-Atom">(11:48:37 AM) loicd: twb: because the dependencies change and the binary packages being built are actually different. I agree that it would be completly pointless if they were python sources for instance. But in the case of compiled binaries, if the distribution is being upgraded the binary package must also be upgraded. If it had the same name it would not upgrade and be broken.</span>
+<span class="s-Atom">(11:49:05 AM) twb: loicd: ah right</span>
+<span class="s-Atom">(12:07:54 PM) loicd: pabs: thanks for pointing out bpo. I will follow the bpo naming scheme so that it&#39;s</span> <span class="s-Atom">compatible</span> <span class="s-Atom">with</span> <span class="s-Atom">bpo</span><span class="p">.</span> <span class="nv">And</span> <span class="s-Atom">it</span><span class="err">&#39;</span><span class="s-Atom">s</span> <span class="s-Atom">a</span> <span class="s-Atom">lot</span> <span class="s-Atom">better</span> <span class="s-Atom">to</span> <span class="s-Atom">adopt</span> <span class="s-Atom">an</span> <span class="s-Atom">existing</span> <span class="s-Atom">convention</span> <span class="p">;</span><span class="s-Atom">-</span><span class="p">)</span> <span class="nn">http</span><span class="p">:</span><span class="o">//</span><span class="s-Atom">backports</span><span class="p">.</span><span class="s-Atom">debian</span><span class="p">.</span><span class="s-Atom">org</span><span class="o">/</span><span class="nv">Contribute</span><span class="s-Atom">/#</span><span class="nf">index5h3</span> <span class="o">:-</span><span class="p">)</span>
+</pre></div>
+
+
+<h4>natty support and documentation</h4>
+<p>Support for <a href="https://wiki.ubuntu.com/NattyNarwhal">natty</a> was added by
+creating a virtual machine using <a href="http://mirrors.ircam.fr/pub/ubuntu/releases//natty/ubuntu-11.04-server-amd64.iso">the server
+distribution</a>
+and creating i386 and x86_64 chroots with:</p>
+<div class="highlight"><pre>pbuilder --create --architecture i386 --basetgz /var/cache/pbuilder/natty-i386.tgz
+pbuilder --create --architecture amd64 --basetgz /var/cache/pbuilder/natty-amd64.tgz
+</pre></div>
+
+
+<p>and untaring them into the packaging-farm <a href="http://packaging-farm.dachary.org/chroot/">rsync
+repository</a> for
+<a href="http://packaging-farm.dachary.org/chroot/debian/i386/natty/">i386</a> and
+<a href="http://packaging-farm.dachary.org/chroot/debian/x86_64/natty/">x86_64</a>.The
+content of the <em>packaging-farm.conf</em> was documented as a manual page:</p>
+<div class="highlight"><pre>NAME
+       packaging-farm.conf - define the default environment to build a package
+
+
+DESCRIPTION
+       The  packaging-farm command uses makefiles to run. Each package defines
+       variables to influence the way it is built, as described in the packag-
+       ing-farm(1)  manual  page.  The  packaging-farm.conf  file  is included
+       before the package specific makefile and can be used  to  define  vari-
+       ables common to all packages. The packaging-farm.conf is a makefile and
+       its syntax depends on GNU make
+
+       There are no default values. If a variable is commented out, it will be
+       set to a value that triggers an error.  The default packaging-farm.conf
+       file distributed contains sensible defaults, there is no fallback.   If
+       they are removed, it is presumably because of a typo or an error and it
+       needs to trigger an error instead of silently falling back on an  unex-
+       pected default.
+
+
+VARIABLES
+       For  each variable listed below, the values that can be used are listed
+       in the comments of the  distributed  packaging-farm.conf  file.  It  is
+       important  to  check that a variable does not contain a trailing space.
+       Otherwise it will be used and lead to unexpected results.
+
+
+       DISTRIBUTIONS
+          is the white space separated list of distributions for  which  a
+          package must be built.
+
+
+       ARCHITECTURES
+          is  the  white space separated list of architectures for which a
+          package must be built.  For each DISTRIBUTION, the package  will
+          be  built  for  all ARCHITECTURES. For instance if DISTRIBUTIONS
+          contains squeeze and maverick and  ARCHITECTURES  contains  i386
+          and   x86_64,  the  package  will  be  built  for  squeeze+i386,
+          squeeze+x86_64, maverick+i386 and maverick+x86_64.  There is  no
+          way  to  ask that only i386 is built for squeeze and only x86_64
+          is built for maverick.
+
+
+       PACKAGES
+          The list of the packages for which dependencies must  be  calcu-
+          lated with
+
+          packaging-farm depends
+
+          so  that  package1  is  always built before package2 if package2
+          depends on package1. It is recommended to not manually set  this
+          variable.   Instead,  the  <span class="cp">${</span><span class="n">CACHEDIR</span><span class="cp">}</span>/build  (which  is usually
+          /var/cache/packaging-farm/build ) should only  contain  directo-
+          ries  matching  the  names  of  the packages to work on. And the
+          variable can be set with:
+
+          PACKAGES=$(shell ls <span class="cp">${</span><span class="n">CACHEDIR</span><span class="cp">}</span>/build)
+
+
+       AUFS   The AUFS File System (http://aufs.sourceforge.net/) is  used  by
+          the  packaging  farm  to  create a local copy of a chroot with a
+          minimum overhead. If not available (value set  to  no)  a  rsync
+          based  copy  will  be  used  instead.  This uses a lot more disk
+          space.  On  Debian  GNU/Linux,  aufs  is  usually  available  by
+          default and can be loaded with modprobe aufs
+
+
+       CHROOT_WANTED
+          The  list  of  chroot  that must be loaded in order to build the
+          packages.   They   are   retrieved    from    rsync://packaging-
+          farm.dachary.org/packaging-farm via the command:
+
+          packaging-farm chroot-master-sync
+
+          For instance
+
+          CHROOT_WANTED=debian/i386/squeeze debian/x86_64/squeeze
+
+          will retrieve squeeze for the i386 and x86_64 architectures. The
+          chroot repository can be browsed via the web  at  http://packag-
+          ing-farm.dachary.org/chroot/.   The  available chroot must cover
+          all combinations of the DISTRIBUTIONS  and  ARCHITECTURES  vari-
+          ables,  both in the packaging-farm.conf file and in the invivid-
+          ual makefiles of each package. For  instance,  if  a  packaging-
+          farm.conf  has DISTRIBUTIONS=squeeze ARCHITECTURES=i386 only but
+          a package overrides this  with  DISTRIBUTIONS=wheezy  packaging-
+          farm will need debian/i386/wheezy to build it.  If the distribu-
+          tion is omitted, all chroot for a  given  architecture  will  be
+          retrieved.
+
+          packaging-farm CHROOT_WANTED=debian/i386 chroot-master-sync
+
+          A  cron  job will synchronize on a daily basis. There is no need
+          to manually run the synchronization, unless a specific update is
+          needed immediately.  After being copied, the chroot will get the
+          /etc/resolv.conf file from the host.
+
+
+       CHROOT_ROOT
+          Directory in which copies of the CHROOT_WANTED are kept.  As  of
+          May, 2011, if CHROOT_WANTED=debian it will use 5GB.
+
+
+       SUBMIT The suffix of the submit script that will be used when running:
+
+          packaging-farm submit
+
+          The  action  is  carried out by as script named after this vari-
+          able.
+
+          /var/lib/packaging-farm/submit/submit-<span class="cp">${</span><span class="n">SUBMIT</span><span class="cp">}</span>.sh
+
+
+TROUBLESHOOTING
+       check for trailing spaces in variable values
+          DISTRIBUTIONS=A B with a trailing space is different  from  DIS-
+          TRIBUTIONS=A  B  withing a trailing space and will lead to unex-
+          pected behavior.
+
+
+SEE ALSO
+       submit-xivo.sh(1), packaging-farm(1)
+
+
+AUTHORS
+       Loic Dachary <span class="nt">&lt;loic</span><span class="err">@dachary.org</span><span class="nt">&gt;</span>
+
+
+
+                     local      packaging-farm.conf(5)
+</pre></div>
+
+
+<p>The default <em>packaging-farm.conf</em> file was self documented and set with
+defaultvalues so that the user only need to copy/paste from it without a
+need to actuallyunderstand the details.</p>
+<div class="highlight"><pre>########################################################################
+#
+# White space separated list of the distributions for which the packages
+# must be built.
+# There must be NO SPACE at the end of the line
+#
+# DISTRIBUTIONS=lenny squeeze wheezy unstable maverick natty
+#
+DISTRIBUTIONS=unstable
+#
+########################################################################
+#
+# White space separated list of the distributions for which the packages
+# must be built. 
+# There must be NO SPACE at the end of the line
+#
+# ARCHITECTURES=i386 x86_64
+# 
+ARCHITECTURES=x86_64
+#
+########################################################################
+#
+# The list of the packages for which dependencies must be calculated
+# with
+#
+# packaging-farm depends
+#
+# so that package1 is always built before package2 if package2 depends
+# on package1. It is recommended to not manually set this variable.
+# Instead, the <span class="cp">${</span><span class="n">CACHEDIR</span><span class="cp">}</span>/build (which is usually 
+# /var/cache/packaging-farm/build ) should only contain directories
+# matching the names of the packages to work on.
+# There must be NO SPACE at the end of the line
+#
+# PACKAGES=package1 package2
+#
+PACKAGES=$(shell ls <span class="cp">${</span><span class="n">CACHEDIR</span><span class="cp">}</span>/build)
+#
+########################################################################
+#
+# The AUFS File System (http://aufs.sourceforge.net/) is used by the
+# packaging farm to create a local copy of a chroot with a minimum
+# overhead. If not available (value set to no) a rsync based copy will
+# be used instead. This uses a lot more disk space.
+# On Debian GNU/Linux, aufs is usually available by default and
+# can be loaded with modprobe aufs
+#
+#AUFS=yes
+AUFS=no
+#
+########################################################################
+#
+# The list of chroot that must be loaded in order to build the
+# packages. They are retrieved from rsync://packaging-farm.dachary.org/packaging-farm
+# For instance:
+# CHROOT_WANTED=debian/i386/squeeze debian/x86_64/squeeze 
+# will retrieve squeeze for the i386 and x86_64 architectures.
+#
+# The values are:
+#
+# debian/i386/lenny
+# debian/i386/maverick
+# debian/i386/natty
+# debian/i386/squeeze
+# debian/i386/unstable
+# debian/i386/wheezy
+# debian/x86_64/lenny
+# debian/x86_64/maverick
+# debian/x86_64/natty
+# debian/x86_64/squeeze
+# debian/x86_64/unstable
+# debian/x86_64/wheezy
+#
+# There must be NO SPACE at the end of the line
+#
+# Retreive all of debian
+# CHROOT_WANTED=debian
+# Retreive all of i386 debian
+# CHROOT_WANTED=debian/i386
+# Retreive all of x86_64 debian
+# CHROOT_WANTED=debian/x86_64
+#
+CHROOT_WANTED=debian/x86_64/unstable
+#
+########################################################################
+#
+# Directory in which copies of the CHROOT_WANTED 
+# are kept.
+#
+CHROOT_ROOT=/chroot
+#
+########################################################################
+#
+# The suffix of the submit script that will be used
+# when running:
+#
+# packaging-farm submit
+#
+######
+# Read man submit-xivo.sh(1) for more information
+# SUBMIT=xivo
+#####
+# Not yet documented.
+# SUBMIT=pokersource
+#
+SUBMIT=none
+#
+########################################################################
+#
+# If set, the debsign(1) command will be called to
+# sign the package, if it is built successfully.
+#
+# debsign <span class="cp">${</span><span class="n">SIGN_debian</span><span class="cp">}</span> *.changes
+#
+# It should specify the key with which the package should be
+# signed. The meta-packages will use SIGN_WITH to sign
+# the packages.
+#
+#SIGN_debian=-kABCDEFGH
+SIGN_debian=
+#
+########################################################################
+#
+# Sign the packages of the repository created for a meta-package
+# See reprepro(1) for more information.
+#
+#SIGN_WITH=SignWith: yes
+SIGN_WITH=
+#
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">An alternate XiVO gallifrey repository (part 2/2)</a></h2>
+    <p>
+      Posted on Wed 27 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>composing gallifrey</h4>
+<p>The gallifrey repository is made of packages built from the GIT
+repositories, some extracted from the official repository because they
+are not under GIT and others built for the occasion (kernel-modules and
+meta-packages). The source of each package is documented in
+<strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> which is the
+meta-package that depends on all the others:</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> for dir in asterisk dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca \</span>
+<span class="err">#</span><span class="x">       prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw \</span>
+<span class="err">#</span><span class="x">       lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not yet in the GIT repositories</span>
+<span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
+<span class="err">#</span><span class="x"> for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user \</span>
+<span class="err">#</span><span class="x">                sangoma-wanpipe spandsp pf-xivo pf-xivo-backup  ; \</span>
+<span class="err">#</span><span class="x">                do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Hand made packages</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> gallifrey</span>
+<span class="err">#</span><span class="x"> dahdi-linux-modules</span>
+<span class="err">#</span><span class="x"> sangoma-wanpipe-modules</span>
+<span class="err">#</span><span class="x"> misdn-kernel-modules</span>
+<span class="err">#</span><span class="x"></span>
+</pre></div>
+
+
+<p>The hand made packages (i.e. Makefiles) can be retrieved from their
+respective repositories:</p>
+<ul>
+<li>http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile</li>
+<li>http://gallifrey.dachary.org/packaging-farm/dahdi-linux-modules/Makefile</li>
+<li>http://gallifrey.dachary.org/packaging-farm/misdn-kernel-modules/Makefile</li>
+<li>http://gallifrey.dachary.org/packaging-farm/sangoma-wanpipe-modules/Makefile</li>
+</ul>
+<p>Mirroring the http://gallifrey.dachary.org/packaging-farm/ directory is
+enough to get all the information required to re-install a
+packaging-farm from scratch.</p>
+<h4>comparing repositories</h4>
+<p>In order to make sure that the new <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">gallifrey
+repository</a>
+does not deviate from the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">existing
+dak</a>,
+the packages it contains were extracted from sources and compared.</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
+<span class="x">dak:</span>
+<span class="x">        mkdir -p dak</span>
+<span class="x">        apt-get update</span>
+<span class="x">        cd dak ; awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | \</span>
+<span class="x">        while read package ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+
+<span class="x">farm:</span>
+<span class="x">        rm -fr farm ; mkdir -p farm</span>
+<span class="x">        cd farm ; for package in `ls /var/lib/packaging-farm` ; do \</span>
+<span class="x">                if [ -f &quot;`echo /var/lib/packaging-farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/gnulinux/debian/i386/lenny/src/*.dsc`&quot; ] ; then \</span>
+<span class="x">                        ( \</span>
+<span class="x">                                mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; \</span>
+<span class="x">                                dpkg-source -x /var/lib/packaging-farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/gnulinux/debian/i386/lenny/src/*.dsc ; \</span>
+<span class="x">                        ) \</span>
+<span class="x">                fi ; \</span>
+<span class="x">        done</span>
+
+<span class="x">diff:</span>
+<span class="x">        cd farm ; for package in * ; do \</span>
+<span class="x">                if [ -d ../dak/</span><span class="p">$$</span><span class="nv">package</span><span class="x"> ] ; then \</span>
+<span class="x">                        farm_dir=`find </span><span class="p">$$</span><span class="nv">package</span><span class="x">/* -maxdepth 0 -type d` ; \</span>
+<span class="x">                        dak_dir=`find ../dak/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/* -maxdepth 0 -type d` ; \</span>
+<span class="x">                        diff -ur </span><span class="p">$$</span><span class="nv">dak_dir</span><span class="x"> </span><span class="p">$$</span><span class="nv">farm_dir</span><span class="x"> ; \</span>
+<span class="x">                else \</span>
+<span class="x">                        echo </span><span class="p">$$</span><span class="nv">package</span><span class="x"> not in dak ; \</span>
+<span class="x">                fi ; \</span>
+<span class="x">        done &gt; /var/www/diff/diff-`date +%Y-%m-%d`.txt</span>
+<span class="x">        cd dak ; for package in * ; do \</span>
+<span class="x">                if [ ! -d ../farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x"> ] ; then \</span>
+<span class="x">                        echo </span><span class="p">$$</span><span class="nv">package</span><span class="x"> not in farm ; \</span>
+<span class="x">                fi ; \</span>
+<span class="x">        done &gt;&gt; /var/www/diff/diff-`date +%Y-%m-%d`.txt</span>
+
+<span class="x">.PHONY: dak farm</span>
+</pre></div>
+
+
+<p>The result is <a href="http://gallifrey.dachary.org/diff/">archived with a
+timestamp</a>.According to Nicolas
+Hicher, the numerous SVN tag substitutions that are missing because of
+the migration to GIT will be harmless:</p>
+<div class="highlight"><pre><span class="x">pf_magic_pickupmark</span>
+<span class="x">-       </span><span class="p">$</span><span class="nv">Revision</span><span class="x">: 10011 </span><span class="p">$</span><span class="x"></span>
+<span class="x">-       </span><span class="p">$</span><span class="nv">Date</span><span class="x">: 2011-01-21 17:22:28 +0100 (Fri, 21 Jan 2011) </span><span class="p">$</span><span class="x"></span>
+<span class="x">+       </span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x"></span>
+<span class="x">+       </span><span class="p">$</span><span class="nv">Date</span><span class="p">$</span><span class="x"></span>
+</pre></div>
+
+
+<h4>packaging-farm release 1.2.39</h4>
+<p>A few <a href="http://packaging-farm.dachary.org/#Issue">issues</a> were reported
+against the latest packaging-farm, but they were not fixed because they
+are not blocking. Other problems required immediate attention and they
+were fixed in the <a href="http://packaging-farm.dachary.org/download/">1.2.39</a>
+release</p>
+<div class="highlight"><pre>* home/www/packaging-farm/packaging-farm/lib/Makefile:
+        kill all processes left over in a chroot before trying to umount
+        [dd63f7ecef41] 
+
+        * home/www/packaging-farm/packaging-farm/debian/changelog, home/www
+        /packaging-farm/packaging-farm/debian/control, home/www/packaging-
+        farm/packaging-farm/lib/Makefile, home/www/packaging-farm/packaging-
+        farm/lib/debian/official-op.sh, home/www/packaging-farm/packaging-
+        farm/lib/debian/submit.sh, home/www/packaging-farm/packaging-
+        farm/lib/kernel-module/depends.sh:
+        add support for wheezy
+        [8f9a40627f0b]
+
+        * home/www/packaging-farm/packaging-farm/lib/report.sh:
+        add support for debian src format 3.0 by recognizing the
+        .debian.tar.gz
+        [36b30f22e4d8]
+
+        * home/www/packaging-farm/packaging-farm/etc/packaging-farm.conf:
+        change the semantic and example of SIGN_debian
+        [d3215a3a920f]
+
+        * home/www/packaging-farm/packaging-farm/submit/submit-xivo.sh:
+        preserve epoch from version, if any
+        [6deaae005d9a]
+
+        * home/www/packaging-farm/packaging-farm/bin/packaging-farm.1:
+        document the updating of the chroots and add a section on
+        troubleshooting
+        [2af56b21eb6a]
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">An alternate XiVO gallifrey repository (part 1/2)</a></h2>
+    <p>
+      Posted on Mon 18 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Kernel module dependencies</h4>
+<p>When binary kernel modules need to be rebuilt, a Makefile containing
+<em>ROLE = kernel-module</em> is created for the packaging-farm to work with,
+as explained in the manual page. It depends on the source package
+providing the <em>MODULE = module-source</em> package. A script was added to
+the global dependency computation facility of packaging-farm</p>
+<div class="highlight"><pre>packaging-farm depends
+</pre></div>
+
+
+<p>to figure out if the source package is known. If it is a dependency, it
+is added to the <em>/var/cache/packaing-farm/depends.mk</em> file so that it is
+rebuilt before the binary kernel modules.</p>
+<h4>Gallifrey dedicated farm.</h4>
+<p>A <a href="http://gallifrey.dachary.org/packaging-farm/">dedicated virtual
+machine</a> was created to
+host the making of gallifrey packages and the resulting repository. It
+has been installed from scratch, using the latest
+<a href="http://packaging-farm.dachary.org/download/">packaging-farm</a> package.It
+turned out that the submission form of <em>submit-xivo.sh(1)</em> relies on
+being able to find some dependencies of the source package being
+submitted, such as <em>cdbs</em> or <em>quilt</em>. Although the <em>dpkg-buildpackage
+-d</em> command is used (which is supposed to be insensitive to the lack of
+source dependencies), it could not work unless it is able to interpret
+the <em>debian/rules</em> file. The <em>cdbs</em> and <em>quilt</em> dependencies were added
+to the packaging-farm package and all general purpose dependencies
+should be as well.</p>
+<h4>Patching debian configuration</h4>
+<p>When something is not right with the debian package, it can be patched
+directly on the farm instead of going thru the repository. It may be
+useful as a temporary measure when the correct patch is still unclear.</p>
+<div class="highlight"><pre>cd /var/cache/packaging-farm/sources/PACKAGE
+# fix something in PACKAGE/debian/rules
+dpkg-source -b PACKAGE
+</pre></div>
+
+
+<p>Note that once the fix is correct, it must be saved because the sources
+will be overriden when</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=PACKAGE submit
+</pre></div>
+
+
+<p>is run.This method was used to produce patches for
+<a href="https://projects.proformatique.com/issues/2194">asterisk</a>,
+<a href="https://projects.proformatique.com/issues/2195">dahdi-linux</a> and
+<a href="https://projects.proformatique.com/issues/2196">dahdi-tools</a>.</p>
+<h4>Configuring packaging-farm</h4>
+<p>In order for the packages to be signed, a GPG key is generated, without
+a password and added tothe <em>packaging-farm.conf</em> file (see below
+SIGN_debian=-kD08ED067 )</p>
+<div class="highlight"><pre>gpg --gen-key
+</pre></div>
+
+
+<p>The <em>/etc/packaging-farm/packaging-farm.conf</em> was modified for
+<em>gallifrey</em> as follows:</p>
+<div class="highlight"><pre>#
+# Exclusively built for lenny
+#
+DISTRIBUTIONS=lenny
+#
+# Exclusively built for i386
+#
+ARCHITECTURES=i386
+#
+# Source submission porcess configuration
+#
+SUBMIT=xivo
+#
+# gallifrey only ships for lenny
+#
+export SUITE=lenny
+export XIVO=gallifrey
+#
+# List of subdirectories of CHROOT_SOURCE that are cached
+# localy in CHROOT_ROOT on a daily basis with
+# packaging-farm chroot-master-sync
+#
+CHROOT_WANTED=debian/i386/lenny
+#
+# Signing related options for Debian GNU/Linux
+# See dpkg-buildpackage(1) for more information
+#
+SIGN_debian=-kD08ED067
+#
+# Signing related options for Debian GNU/Linux
+# See reprepro(1) for more information
+#
+SIGN_WITH=SignWith: yes
+</pre></div>
+
+
+<h4>Collecting gallifrey modules.</h4>
+<p>The <em>gallifrey</em> sources and debian packages are to be found in the
+following repositories:</p>
+<div class="highlight"><pre>http://git.xivo.fr/xivo-gallifrey.git/ sources
+http://git.xivo.fr/debian/lenny-xivo-gallifrey.git/ debian packages
+</pre></div>
+
+
+<p>And the following were submitted :</p>
+<div class="highlight"><pre><span class="x">for dir in dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+</pre></div>
+
+
+<p>However, some of them were rebuilt manually:</p>
+<div class="highlight"><pre>dahdi-linux-modules libasterisk-perl libpri misdn-kernel misdn-kernel-modules pf-asterisk-prompt-fr-xivo pf-xivo pf-xivo-backup sangoma-wanpipe sangoma-wanpipe-modules spandsp
+</pre></div>
+
+
+<p>and must be retrieved from the development repository:</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>using the method laid out in the <a href="http://blog.xivo.fr/index.php?post/2011/02/21/Creating-an-independant-XiVO-Debian-GNU/Linux-repository-from-scratch-%28part-3%29">Creating an independant XiVO Debian
+GNU/Linux repository from
+scratch</a>
+series.At the moment the development repository is incomplete. But it is
+being worked on and the making of the repository will resume when it is
+back online.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index28.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index26.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/connecting-a-telephony-chip.html#connecting-a-telephony-chip">Connecting a telephony chip</a></h2>
+    <p>
+      Posted on Tue 27 April 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <hr />
+<p><a href="English%20version" title="English version">English version</a></p>
+<p>Several interfaces and connections exist in order to connect an
+end-device to a PSTN. Mostly used in Europe: analog, digital
+(<a href="http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network" title="Integrated Services Digital Network (Wikipedia entry)">ISDN</a>)
+for 2 communications
+(<a href="http://en.wikipedia.org/wiki/Basic_rate_interface" title="Basic Rate Interface (Wikipedia entry)">T0</a>),
+digital for 30 communications
+(<a href="http://en.wikipedia.org/wiki/Primary_Rate_Interface" title="Primary Rate Interface (Wikipedia entry)">E1</a>).
+The XiVO IPBX OpenHardware will provide 4 ISDN T0 interfaces (for a
+total of 8 simultaneous communications), 1 analog interface for a PSTN
+phone or a fax and 1 analog PSTN interface to connect to PSTN carriers.</p>
+<p>Some chips are dedicated to such telephony interfaces^[<span
+id="rev-pnote-18-1"><a href="#pnote-18-1">1</a></span>]^, and connect to other
+chips of the PCB through:</p>
+<ul>
+<li>A processor interface bus,^[<span
+    id="rev-pnote-18-2"><a href="#pnote-18-2">2</a></span>]^ for instance an
+    <a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus" title="Serial Peripheral Interface (Wikipedia entry)">SPI</a>
+    bus, or a variant of a parallel local bus (LEB for Intel CPUs, HPI
+    for TI DSPs, Local Bus for Freescale MPC8555);</li>
+<li>A
+    <a href="http://en.wikipedia.org/wiki/Time-division_multiplexing" title="Time-division multiplexing (Wikipedia entry)">TDM</a>
+    bus, also named
+    <a href="http://en.wikipedia.org/wiki/Pulse-code_modulation" title="Pulse-code modulation (Wikipedia entry)">PCM</a>
+    bus;</li>
+<li>And one trace for the
+    <a href="http://en.wikipedia.org/wiki/Interrupt" title="Interrupt (Wikipedia entry)">interrupt</a> signal.</li>
+</ul>
+<p>The SPI bus is used to configure the chips, request the state of the
+line, handle the rings/hang-up/pick-up.^[<span
+id="rev-pnote-18-3"><a href="#pnote-18-3">3</a></span>]^ The SPI bus is used to
+send a command to the chip, then wait for a reply. The command/reply
+data are transmitted with a binary stream described in each's chip
+manual. The SPI bus doesn't allow a spontaneous communication from the
+chip handling the line: it can only transmit a reply to a request -
+however the interrupt mechanism makes that this is not a problem. If a
+variant of parallel local bus is used instead of the SPI bus, it ensures
+the very same functions (only the way the messages are exchanged
+changes, but the messages themselves do not).</p>
+<p>The TDM bus transmits a continuous stream of digital voice data on each
+channel, in both direction.^[<span
+id="rev-pnote-18-4"><a href="#pnote-18-4">4</a></span>]^ There are also other
+channels for technical data and sometimes signaling data. Independently
+from the number of active calls, there is a bidirectionnal transmission
+on a predefined number of channels.</p>
+<p>Example of a 32 time-slots TDM bus configuration for a 4xT0 interfaces
+chip:</p>
+<ul>
+<li>First T0: channel 0 and 1 carry the sound of the 2 communications,
+    channel 2 for the call signaling, channel 3 for the technical data</li>
+<li>Second T0: channel 4 and 5 carry the sound of the 2 communications,
+    channel 6 for the call signaling and channel 7 for the technical
+    data</li>
+</ul>
+<p>and so on the Third and Fourth T0.</p>
+<p>when there is no call on the first T0, the channels 0 and 1 remain
+available but silent. The first call on the first T0 will reserve one of
+the channel, the second call arriving will book the second channel.</p>
+<p>An interrupt signal is sent from the chip to the CPU when an event
+occurs. Then, the CPU temporarily interrupts its current task in order
+to execute, as soon as possible, a dedicated routine (an interrupt
+handler). This routine requests the chip (via the SPI bus) for the
+reason of the interrupt sent. As described, all communications on the
+SPI bus start from the CPU to the telephony chip
+(Master-to-Slave).^[<span
+id="rev-pnote-18-5"><a href="#pnote-18-5">5</a></span>]^ So the interrupt
+mechanism is used when the slave chip requires some cares.</p>
+<hr />
+<p><a href="French%20version" title="French version">French version</a></p>
+<p>Différentes liaisons permettent de se brancher au réseau téléphonique
+classique. Les plus courantes en Europe sont : analogiques, numériques
+(<a href="http://fr.wikipedia.org/wiki/RNIS" title="Réseau numérique à intégration de services">RNIS</a>)
+pour deux communications
+(<a href="http://fr.wikipedia.org/wiki/Basic_Rate_Interface" title="Basic Rate Interface (page Wikipédia)">T0</a>),
+numériques pour 30 communications
+(<a href="http://fr.wikipedia.org/wiki/Primary_Rate_Interface" title="Primary Rate Interface (page Wikipédia)">E1</a>).
+L'IPBX XiVO OpenHardware disposera de 4 prises RNIS T0 (total : 8
+communications simultanées), 1 prise analogique pour y brancher un
+téléphone classique ou un fax, et 1 prise pour se brancher sur une ligne
+téléphonique analogique.</p>
+<p>Les puces dédiées à la réalisation de telles interfaces téléphoniques
+dans un équipement numérique peuvent typiquement être connectées aux
+autres puces^[<span id="rev-pnote-18-6"><a href="#pnote-18-6">6</a></span>]^ via
+:</p>
+<ul>
+<li>un bus^[<span id="rev-pnote-18-7"><a href="#pnote-18-7">7</a></span>]^
+    d'interface processeur, par exemple un bus
+    <a href="http://fr.wikipedia.org/wiki/Serial_Peripheral_Interface" title="Serial Peripheral Interface (page Wikipédia)">SPI</a>,
+    ou une variante de bus local parallèle (LEB sur Intel EP80579, HPI
+    sur DSP TI, Local Bus sur Freescale MPC8555) ;</li>
+<li>un bus
+    <a href="http://en.wikipedia.org/wiki/Time-division_multiplexing" title="Time-division multiplexing (page Wikipédia)">TDM</a>,
+    aussi nommé bus
+    <a href="http://fr.wikipedia.org/wiki/Modulation_d%27impulsion_cod%C3%A9e" title="Pulse-code modulation (page Wikipédia)">PCM</a>
+    ;</li>
+<li>et une piste pour un signal
+    d'<a href="http://fr.wikipedia.org/wiki/Interruption_%28informatique%29" title="Interruption (page Wikipédia)">interruption</a>.</li>
+</ul>
+<p>Le bus SPI est utilisé pour configurer la puce, l'interroger sur l'état
+de la ligne, gérer les décrochages/raccrochages/sonneries.^[<span
+id="rev-pnote-18-8"><a href="#pnote-18-8">8</a></span>]^ Le bus SPI fonctionne par
+l'envoi d'une commande vers la puce, à laquelle elle peut répondre. Les
+commandes et leurs réponses sont transmises sous forme d'une suite de 0
+et de 1, organisés selon une convention propre à chaque puce et décrite
+dans son manuel. Le bus SPI ne permet pas une communication spontanée
+depuis la puce gérant la ligne : elle ne communique dans cette direction
+que suite à réception d'une commande - mais le signal d'interruption
+fait que cela n'est pas problématique.Si une variante de bus local
+parallèle est utilisée à la place du bus SPI, elle assurera exactement
+les mêmes fonctions (seule la manière de transmettre les commandes et
+réponses change, mais pas ces dernières).</p>
+<p>Le bus TDM transmet continuellement le son passant sur chaque canal,
+dans les deux sens.^[<span
+id="rev-pnote-18-9"><a href="#pnote-18-9">9</a></span>]^ Il y a de plus
+éventuellement des canaux pour des données techniques et dans certains
+cas de la signalisation d'appel. Indépendamment du nombre d'appels en
+cours, il y a une transmission bidirectionnelle sur un nombre fixé de
+canaux transmis par ce bus. Exemple de mise en oeuvre d'une puce gérant
+quatre ports T0 avec un bus TDM transportant 32 canaux :</p>
+<ul>
+<li>pour la première T0 ; les canaux 0 et 1 font passer le son des deux
+    communications, le canal 2 la signalisation d'appel, le canal 3 est
+    un canal technique</li>
+<li>pour la deuxième T0 ; les canaux 4 et 5 font passer le son des deux
+    communications, le canal 6 la signalisation d'appel, le canal 7 est
+    un canal technique</li>
+<li>et ainsi de suite pour les troisième et quatrième T0.</li>
+</ul>
+<p>Lorsqu'il n'y a pas d'appel sur la première T0, les canaux 0 et 1
+restent présents mais transmettent du silence. Le premier appel sur la
+première T0 réservera un des deux canaux, et un second appel réservera
+l'autre.</p>
+<p>Un signal d'interruption est envoyé de la puce au processeur quand un
+événement s'est produit. Le processeur interrompt alors temporairement
+sa tâche en cours pour exécuter au plus tôt une routine dédiée (un
+gestionnaire d'interruption). Cette routine interroge la puce (via le
+bus SPI) pour savoir ce qui s'est passé. Comme expliqué avant, tous les
+dialogues sur le bus SPI débutent dans le sens processeur vers puce
+téléphonique.^[<span id="rev-pnote-18-10"><a href="#pnote-18-10">10</a></span>]^
+Le mécanisme des interruptions est donc utilisé lorsque la puce a
+quelque chose à dire "spontanément" au processeur.</p>
+<hr />
+<div class="footnotes">
+
+#### Notes
+
+\[<span id="pnote-18-1">[1](#rev-pnote-18-1)</span>\] Even to connect a
+*digital* appliance to a *digital* network, the chips implementing the
+needed interface are specific, because digital signals can greatly vary
+in form.
+
+\[<span id="pnote-18-2">[2](#rev-pnote-18-2)</span>\] A bus is a group
+of PCB traces connecting several chips in order for them to communicate,
+the role of each trace and the characteristics of the signals should be
+well defined.
+
+\[<span id="pnote-18-3">[3](#rev-pnote-18-3)</span>\] The handling of
+the rings/hang-up/pick-up is done through the SPI for analog line and in
+some case also for digital line and numbering also in this case (the
+analog numbering is done through DTMF with frequencies which are simple
+sound transmitted like the voice frequencies).
+
+\[<span id="pnote-18-4">[4](#rev-pnote-18-4)</span>\] Technically the
+TDM bus is composed of: a clock signal orchestrates the uninterrupted
+transmission, which is done through a dedicated signal sent on the
+reception side (RX) and one serial signal dedicated to the transmission
+side (TX). If ones observes the clock and data sent in each direction,
+it will be a continous binary stream. The fourth line, called Frame
+Synchronisation (FS), is pulsed at 8kHz (phase locked on the clock
+signal). The data between a current Frame Synchronisation and the
+following are a constant number of bits, for instance 256. This frame
+splits into n-bits consecutive blocks per channel (n=8 for the telephony
+system). The majority of chips for telephony applications hold a TDM
+bus, and this bus can also be found on certain embedded CPU or DSP chip.
+Apart from the telephony world, this kind of bus is also used for some
+other types of digital audio transmissions.
+
+\[<span id="pnote-18-5">[5](#rev-pnote-18-5)</span>\] The CPU is Master
+on the SPI bus, the telephony chip is in Slave mode on the SPI bus.
+
+\[<span id="pnote-18-6">[6](#rev-pnote-18-6)</span>\] Lorsqu'un
+équipement *numérique* dispose, comme pour l'IPBX XiVO OpenHardware,
+d'interfaces *numériques*, ces dernières restent pilotées par des puces
+dédiées au type d'interface. En effet les signaux transportant
+l'information numérique peuvent être de nature très variée et on ne peut
+pas connecter n'importe quelle puce numérique à n'importe quel signal
+numérique.
+
+\[<span id="pnote-18-7">[7](#rev-pnote-18-7)</span>\] Un bus est un
+ensemble de pistes reliant plusieurs puces pour leur permettre de
+communiquer, les rôles de chaque piste et les caractéristiques des
+signaux étant bien définis.
+
+\[<span id="pnote-18-8">[8](#rev-pnote-18-8)</span>\] La gestion des
+décrochages/raccrochages/sonneries se fait par le SPI pour l'analogique,
+et dans certains cas aussi pour le numérique, avec la numérotation en
+plus dans ce cas (la numérotation en analogique se fait avec des
+tonalités, qui ne sont rien de plus qu'un son transmis exactement comme
+la voix).
+
+\[<span id="pnote-18-9">[9](#rev-pnote-18-9)</span>\] Techniquement pour
+le bus TDM : un signal d'horloge cadence de manière ininterrompue la
+transmission, qui se fait via un signal série dédié à la réception et un
+signal série dédié à la transmission. Si l'on ne considère que l'horloge
+et les données dans chaque sens, on ne voit qu'une suite ininterrompue
+de bits. Une quatrième ligne, dite de synchronisation trame, pulse à
+8kHZ (en phase avec l'horloge). Les données entre une synchro-trame et
+la suivante contiennent un nombre constant de bits, par exemple 256. On
+découpe cette trame en blocs de n bits consécutifs par canal (n=8 pour
+de la téléphonie). La majorité des puces téléphoniques dispose d'un bus
+TDM, bus qu'on retrouve sur certains processeurs embarqués et de
+traitement du signal. Hors téléphonie, ce bus est aussi utilisé dans
+d'autres contextes audio numérique.
+
+\[<span id="pnote-18-10">[10](#rev-pnote-18-10)</span>\] Le processeur
+est maître du bus SPI, la puce téléphonique esclave.
+
+</div>
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html#xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010">XiVO OpenHardware presentation at SolutionsLinux 2010 and upcoming AstriEurope 2010</a></h2>
+    <p>
+      Posted on Wed 07 April 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="AstriEurope" src="/public/.AstriEurope_Logo_s.jpg" title="AstriEurope, avr. 2010" /></p>
+<p>Following the presentation we did at SolutionsLinux 2010 in Paris (<strong>the
+presentation we made is now available at (1)</strong> and had been made in
+french as the crowd was mainly french-speakers).</p>
+<p><strong>We will be presenting the XiVO IPBX OpenHardware project at the
+AstriEurope Conference in Paris</strong> (2) next week on the first day and the
+detailled program of the conferences is available here (3). The
+conference will aim at giving the latest details on the hardware choices
+and features.</p>
+<p>The AstriEurope will be the occasion to have different presentations on
+the various asterisk-oriented projects (software and hardware oriented)
+currently available out-there with the presence of several people from
+Digium supporting the event.</p>
+<p>(1) :
+http://carcelle.fu8.com/Presentation_Projet_Appliance_XiVO_SolutionsLinux_2010.pdf<br />
+(2) : http://www.astrieurop.com/<br />
+(3) : http://carcelle.fu8.com/AstriEuropConferencesProgram.pdf</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html#the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki">The OHANDA Trademark/Licence for the XiVO IPBX [1] : Meeting in Helsinki</a></h2>
+    <p>
+      Posted on Tue 30 March 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="Helsinki Harbour in
+March" src="/public/.Helsinki_Harbour_28032010_m.jpg" title="Helsinki Harbour in March, mar. 2010" /></p>
+<p><strong>I just got back from the Pixelache Festival in Helsinki</strong> (1) where we
+had a OHANDA (2) meeting with the founding members of the OHANDA
+initiative (Juergen Neumann from Freifunk in Berlin and Tuomo Tammenpää
+from Yatta in Helskinki) in order to discuss the next steps for the
+usage of the <strong>OHANDA licence/trademark</strong> with OpenHardware projects.</p>
+<p>The OHANDA licence/trademark is definitely the most advanced initiative
+so far after the work we had done on the OpenHardwareInitiative and
+presented at the OpenTechSummit 2008 (3) in Taiwan with different
+hardware projects (OpenMoko, OpenPattern, ...) looking for an umbrella
+for their licence adapting the GPL licences used for FOSS projects.</p>
+<p>A first presentation of the OHANDA licence/trademark had been done at
+GOSH and PIKSEL (4) with the organization of the trademark and the
+relations between hardware designer and users/clients as described below
+:</p>
+<p><img alt="OHANDA Step
+5" src="/public/.OHANDA_Trademark_Step5_m.jpg" title="OHANDA Step 5, mar. 2010" /></p>
+<p>This is a great opportunity for the <strong>XiVO IPBX OpenHardware project to
+apply this up-coming licence/trademark</strong> to the future product (product
+registered with a <strong>unique OHANDA #ID</strong>) and garantee a common
+umbrellas for multiple OpenHardware projects.</p>
+<p>We will documente the next steps in the OHANDA licence/trademark
+setting-up for the XiVO IPBX OpenHardware project in order to make
+available the different files of the project and the registration #ID
+to follow the updates from the OHANDA trademark.</p>
+<p>(1) :
+http://www.pixelache.ac/helsinki/festival-2010/programme/open-source-hardware/<br />
+(2) : http://www.ohanda.org<br />
+(3) : http://www.sebruiz.net/326<br />
+(4) : http://www.gosh2009.ca/wiki/images/Ohanda_piksel.pdf</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html#xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris">XiVO OpenHardware IPBX presented at SolutionsLinux2010, Paris</a></h2>
+    <p>
+      Posted on Mon 22 March 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="SolutionsLinux2010" src="/public/SolutionsLinux2010_logo.jpg" title="SolutionsLinux2010, mar. 2010" /></p>
+<p>It was a great pleasure to present the XiVO IPBX OpenHardware project at
+SolutionsLinux2010 (the largest Linux fair in France yearly) on last
+week and we had several discussions about the architecture choosen for
+the IPBX and the interfaces / functionnalities.</p>
+<p>We had some great feedbacks from different VoIP projects and deployment
+feedbacks that will help us understand the needs from the market.</p>
+<p>The next steps are now for the OpenHardware community, to present our
+prototyping feddbacks and the detailed architecture that we are
+targeting.</p>
+<p>Finally, we will presenting soon the work done on the potential
+OpenHardware licence that we want to use based on a mixed between
+trademarks and CreativeCommons licences.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html#opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2">Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</a></h2>
+    <p>
+      Posted on Thu 25 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>Following the previous posts about the "open" bootloaders available to
+improve and implement advanced features at the boot of your SoC/CPU, we
+are, in this post, considering Barebox (formely known as u-boot v2) as
+another open bootloader. Barebox aims at giving the developer and
+embedded users the best of u-boot (space, easy-to-flash, handy tools)
+and the best of the Linux kernel (Kconfig, Kbuild, standards C API,
+building methods identical to the kernel with ARCH/CROSS primitives...).</p>
+<p>The latest documentation for barebox can be found here <a href="2" title="2">2</a> and
+lists the different key features of barebox that can listed as followed:</p>
+<ul>
+<li><strong>A posix based file API</strong>: inside barebox the usual
+    open/close/read/write/lseek functions are used. This makes it
+    familiar to everyone who has programmed under unix systems.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Usual shell commands</strong> like ls/cd/mkdir/echo/cat,...</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>The environment is a file store</strong>. It has currently some
+    limitations, of course. The environment is not a real read/write
+    filesystem, it is more like a tar archive, or even more like an ar
+    archive, because it cannot handle directories. The saveenv command
+    saves the files under a certain directory (by default /env) in
+    persistent storage (by default /dev/env0). There is a counterpart
+    called loadenv, too.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Real filesystem support</strong>: The loader starts up with mounting a
+    ramdisk on /. Then a devfs is mounted on /dev allowing the user (or
+    shell commands) to access devices. Apart from these two filesystems
+    there is currently one filesystem ported: cramfs. One can mount it
+    with the usual mount command.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Device/driver model</strong>: Devices are no longer described by defines
+    in the config file. Instead there are devices which can be
+    registered in the board .c file or dynamically allocated. Drivers
+    will match upon the devices automatically.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Clocksource support</strong>: Timekeeping has been simplified by the use
+    of the Linux clocksource API. Only one function is needed for a new
+    board, no <a href="gs" title="gs">gs</a>et_timer<a href="masked" title="masked">masked</a>() or
+    reset_timer<a href="masked" title="masked">masked</a>() functions.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Kconfig and Kernel build system</strong>: Only targets which are really
+    needed get recompiled. Parallel builds are no problem anymore. This
+    also removes the need for many many ifdefs in the code.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Simulation target</strong>: barebox can be compiled to run under Linux.
+    While this is rather useless in real world this is a great debugging
+    and development aid. New features can be easily developped and
+    tested on long train journeys and started under gdb. There is a
+    console driver for linux which emulates a serial device and a tap
+    based ethernet driver. Linux files can be mapped to devices under
+    barebox to emulate storage devices.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Device parameter support</strong>: Each device can have a unlimited
+    number of parameters. They can be accessed on the command line with
+    &lt;devid&gt;.&lt;param&gt;="...", for example 'eth0.ip=192.168.0.7'
+    or 'echo \$eth0.ip'</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Initcalls</strong>: Hooks in the startup process can be archieved
+    with *_initcall() directives in each file.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Getopt</strong>: There is a small getopt implementation. Some commands
+    got really complicated (both in code and in usage) due to the fact
+    that U-Boot only allowed positional parameters.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Editor: Scripts can be edited with a small editor.</li>
+</ul>
+<p>Barebox is under GPLv2 licence.</p>
+<p><a href="1" title="1">1</a> : http://barebox.org/<a href="2" title="2">2</a> :
+http://barebox.org/documentation/barebox-2010.03.0/</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index39.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index37.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

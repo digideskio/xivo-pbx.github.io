@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="pcadotte" />
+<meta name="description" content="In recent months we have been working on the new XiVO client which included amajor rework of the directory services in XiVO. A new daemon is born from thiswork, xivo-dird. One of the challenge of the new directory service is to allowusers to have access to their favorites and personal ..." />
+<meta name="keywords" content="XiVO, authentification, HTTP, consul, directory">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Authentication in XiVO"/>
+<meta property="og:description" content="In recent months we have been working on the new XiVO client which included amajor rework of the directory services in XiVO. A new daemon is born from thiswork, xivo-dird. One of the challenge of the new directory service is to allowusers to have access to their favorites and personal ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/authentication-in-xivo.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-05-25 15:34:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/pcadotte.html">
+<meta property="article:section" content="Software"/>
+<meta property="article:tag" content="XiVO"/>
+<meta property="article:tag" content="authentification"/>
+<meta property="article:tag" content="HTTP"/>
+<meta property="article:tag" content="consul"/>
+<meta property="article:tag" content="directory"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Authentication in XiVO</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="authentication-in-xivo">Authentication in XiVO</h1>
+    <p>Posted on Mon 25 May 2015 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>In recent months we have been working on the new XiVO client which
+included amajor rework of the directory services in XiVO. A new daemon
+is born from thiswork, xivo-dird. One of the challenge of the new
+directory service is to allowusers to have access to their favorites and
+personal contacts from any device- the current implementation of
+personal contacts are stored locally and arelost in a context where
+users change seats.</p>
+<p>Bringing the personal information to xivo-dird means that some form
+ofauthentication is now required. The first step is to be able to use
+user'sCTI login and password and to evolve from there to add more
+flexibility.</p>
+<h3>Meet xivo-auth</h3>
+<p>xivo-auth is a new service that is going to be used as the single entry
+pointfor authentication in XiVO. The first step being the authentication
+in xivo-dird.Some of the requirements for xivo-auth is to be able to
+implement other forms ofauthentication. The plugin architecture used,
+similar to xivo-dird, will makethe development of new authentication
+source fast and easy. This mean that LDAPserver, CSV file, Facebook or
+Twitter authentication should and will be possibleto implement without
+having to modify xivo-auth.</p>
+<h3>The internals of xivo-auth</h3>
+<p>xivo-auth is a simple HTTP server that checks a username and
+passwordcombination (though other forms of authentication might appear)
+and delivers a tokenthat can be forwarded to other services that require
+authentication. Otherservices can validate that token and also forward
+it to other services on behalfof the user. Tokens and ACLs are generated
+and managed by <a href="https://consul.io" title="Consul">consul</a> which is alsoused
+for personal data storage.</p>
+<p>The following sequence diagram show the interaction when a user
+connectsto its XiVO client.</p>
+<p><img alt="login.png" src="/public/architecture/login_cti_via_xivo_auth.png" title="login.png, mai 2015" /></p>
+<p>After this step, xivo-ctid has a token with a limited lifetime for this
+user.</p>
+<p>When a logged-in user performs a lookup in its XiVO client, the user's
+token isforwarded to xivo-dird which can return the appropriate results
+for this user.</p>
+<p><img alt="lookup.png" src="/public/architecture/lookup_cti_via_dird_xivo_auth.png" title="lookup.png, mai 2015" /></p>
+<p>Stay tuned for more information as we implement xivo-auth and the
+firstauthentication plugins.</p>
+<p><em>* Images created with
+<a href="https://github.com/violetumleditor/violetumleditor" title="Violet">Violet</a></em></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>
+      <a href="http://blog.xivo.io/tag/authentification.html">authentification</a>
+      <a href="http://blog.xivo.io/tag/http.html">HTTP</a>
+      <a href="http://blog.xivo.io/tag/consul.html">consul</a>
+      <a href="http://blog.xivo.io/tag/directory.html">directory</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Authentication in XiVO",
+  "headline": "Authentication in XiVO",
+  "datePublished": "2015-05-25 15:34:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "pcadotte",
+    "url": "http://blog.xivo.io/author/pcadotte.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/authentication-in-xivo.html",
+  "description": "In recent months we have been working on the new XiVO client which included amajor rework of the directory services in XiVO. A new daemon is born from thiswork, xivo-dird. One of the challenge of the new directory service is to allowusers to have access to their favorites and personal ..."
+}
+</script></body>
+</html>

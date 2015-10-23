@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/signing-and-naming-xivo-packages.html#signing-and-naming-xivo-packages">Signing and naming XiVO packages</a></h2>
+    <p>
+      Posted on Mon 11 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>signing packages</h4>
+<p>A GPG
+<a href="http://packaging-farm.dachary.org/download/packaging-farm.gpg">key</a> was
+created for <a href="http://packaging-farm.dachary.org">packaging-farm</a> and used
+to sign the <a href="http://packaging-farm.dachary.org/downloads/">1.2.37</a>
+release. It can be imported using:</p>
+<div class="highlight"><pre>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
+</pre></div>
+
+
+<p>Two variables were added to the packaging-farm configuration file to
+instruct dpkg-buildpackage and repreprothat they must sign the packages
+and repositories.If the GPG private key for the packager (as listed in
+the debian/changelogfor instance) is found (in the home of the user
+building the package)and that SIGN_debian is provided the packages will
+be signed with it.The relevant packaging-farm.conf(5) lines are:</p>
+<div class="highlight"><pre>#
+# Signing related options for Debian GNU/Linux
+# See dpkg-buildpackage(1) for more information
+#
+SIGN_debian=-k840233
+</pre></div>
+
+
+<p>If the GPG private key for the packager (as listed in the
+debian/changelogfor instance) is found (in the home of the user building
+the packages)and that SIGN_WITH is set the packages and the content of
+the repository will be signed with it.The relevant
+packaging-farm.conf(5) lines are:</p>
+<div class="highlight"><pre>#
+# Signing related options for Debian GNU/Linux
+# See reprepro(1) for more information
+#
+#SIGN_WITH=SignWith: yes
+SIGN_WITH=
+</pre></div>
+
+
+<h4>packages versioning</h4>
+<p>The package version policy as found in the proformatique internal wiki
+is:</p>
+<h3>Packages Externes</h3>
+<p>La source pourra être Debian ou n'importe quel autre source fiable de
+ports et backports.Le nom du package devra rester identique à la version
+originelle.Nos uploads seront considérés comme des NMU, et le sufixe
+utilisé pour la version du package sera selon les cas :</p>
+<ul>
+<li>+pf.&lt;n&gt; : packages généraux ne faisant partie d'aucun projet
+    (&lt;n&gt; étant la révision Proformatique pour la même
+    version Debian)</li>
+<li>+pf.&lt;project&gt;.&lt;ver&gt; : packages contenant des correctifs
+    ou améliorations <em>'spécifiques</em>' à un projet, comme xivo / eyefar
+    / ... (&lt;project&gt; étant le nom du projet commercial et
+    &lt;ver&gt; la version du projet (et pas du composant en question))</li>
+</ul>
+<p>Dans d'un sufixe contenant une version qui n'est pas finale, il faut
+rajouter l'information de révision (SVN par exemple) de cette façon
+:.&lt;project&gt;.&lt;ver&gt;\~&lt;rev&gt; (avec &lt;ver&gt; la version
+de la dernière release / branche stable, et &lt;rev&gt; du style "svn42"
+/ "baz42" / "rc3" / ...)Examples :</p>
+<ul>
+<li>1.6.8p12-4 -&gt; 1.6.8p12-4+pf.1, puis 1.6.8p12-4+pf.2, ...</li>
+<li>1.6.8p12-4 -&gt; 1.6.8p12-4+pf.xivo.0.5, puis
+    1.6.8p12-4+pf.xivo.0.5<a></a>svn103</li>
+<li>(cas d'une nouvelle version upstream) 1.6.8p12-4 -&gt;
+    1.6.10-0+pf.1, ...</li>
+</ul>
+<h3>Packages Proformatique</h3>
+<p>Nous n'utiliserons pas de packages natifs, vu que ce ne seront
+généralement pas les même personnes qui feront la dev et le packaging.
+Les données de packaging pourront cependant être mis dans un RCS séparé
+si besoin.Le nom du package suivra la forme : pf-&lt;project/usage&gt;
+(avec &lt;project&gt; le nom du projet éventuellement suivi du
+sous-projet : &lt;project&gt;-&lt;subproject&gt;, ou &lt;usage&gt; pour
+un usage spécifique comme les meta-packages)La version suivra la forme :
+&lt;ver&gt;-&lt;debver&gt; ou &lt;ver&gt;\~&lt;rev&gt;-&lt;debver&gt;
+(avec &lt;ver&gt; et &lt;rev&gt; comme pour les packages externes)Par
+exemple paquet <em>pf-xivo-web-interface</em> version <em>1.2.3\~svn123-1</em> pour du
+developpement ou <em>1.2.3-1</em> pour une release.Le Maintainer du package
+sera : <em>Proformatique Maintainance Team
+&lt;technique@proformatique.com&gt;</em>On ajoutera dans les Uploaders la
+liste de toutes les personnes attachées à son entretient.</p>
+<h3>implementation in submit-xivo.sh</h3>
+<p>After discussions with Nicolas Hicher and Sylvain Boily, the package
+version numbers produced by
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/submit/submit-xivo.sh">submit-xivo.sh</a>
+must start with the upstream version and ends with a version number
+computed from the date and a mercurial hash. It is computed for packages
+for which a *-VERSION file found in the corresponding <a href="http://git.xivo.fr/xivo-skaro.git/">source
+directory</a>.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/introduction-to-the-plugin-model-of-the-new-provisioning-server.html#introduction-to-the-plugin-model-of-the-new-provisioning-server">Introduction to the plugin model of the new provisioning server</a></h2>
+    <p>
+      Posted on Mon 11 April 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/provisioning.html">provisioning</a>    </p>
+  </header>
+  <div>
+      <p>What must be understood is that if you install provd but you do not
+install any plugins, the server won't be able to configure anything.
+This means that without plugins, provd is pretty useless.</p>
+<p>Each plugin can configure devices from configuration specifications.
+Plugins can also offer some additional services, like the downloading of
+external files, like firmware or dictionary files for example. So what
+was done before by xivo_fetchfw is now partially integrated in each and
+every plugin.</p>
+<p>One important particularity of this system is that each plugin is
+isolated from the others. Besides, and unlike the old provisioning
+server, the plugins doesn't share a common directory like /tftpboot.
+This way, there's never a conflict between the files used by the
+different plugins, and this make it easy to have for example a
+xivo-aastra-3.2.0.1011 and a xivo-aastra-2.6.0.2019 plugin on the same
+server.</p>
+<p>This means that with provd, you can have at the same time and on the
+same network, for example, two Aastra 6730i, one using the 2.6.0.2019
+firmware and another using the 3.2.0.1011 firmware, and this using the
+same DHCP server configuration for the two devices. From the point of
+view of both devices, their firmware will be located at
+http://&lt;provd_ip&gt;/6730i.st, but for one, this will be a firmware
+in version 2.6.0.2019, and for the other, a firmware in version
+3.2.0.1011. And if you are curious and point your web browser to this
+URL, you'll get an error 404 !</p>
+<p>We must know that provd, unlike the old provisioning server, doesn't
+depend on an external HTTP/TFTP server to process the requests, since it
+handles these requests by itself. This was becoming necessary with the
+introduction of the plugin system and the 'dynamic' request processing.</p>
+<p>Now, if you are a mentally sane person, you might be asking yourself if
+this whole system is based on sound principles. And I have a good news
+for you; you are not insane, this system is not based on sound
+principles <em>a priori</em>.</p>
+<p>In fact, for this system to becomes reliable, a precondition must be
+true: for each request, it should be possible to unambiguously identify
+which device is behind it. With this unambiguous information available,
+we can then lookup in our device database for the complete information
+we have on this device, and then find which plugin should handle the
+request, and redirect the request to this plugin.</p>
+<p>The good thing about this is that most devices provide this unique
+information. For example, the Aastras send their MAC address in the
+User-Agent header of each HTTP request they make.</p>
+<p>That said, some device doesn't give as much information, like the Cisco
+7900, which can only do TFTP requests. This means that sometimes, and
+only for some requests, the only 'unique' information we can extract
+from a request is the IP address. This does not generally cause problem,
+except if you are constantly changing the IP addresses on your network.
+And if you enable the provd-DHCP server integration, it will make sure
+that the MAC-IP association is always up to date, and this means the
+system will be reliable once again.</p>
+<p>So, part of provd is only about making this system reliable and finely
+tunable if there's any need to fine-tune the behaviour of the system.
+And to make thing a bit more clear, here's a high level view of what
+happens when an HTTP request is made to the provisioning server:</p>
+<p><a href="/public/provd/provd-http-request-flow.png" title="Example HTTP request flow"><img alt="Example HTTP request
+flow" src="/public/provd/.provd-http-request-flow_m.jpg" title="Example HTTP request flow, avr. 2011" /></a></p>
+<ol>
+<li>An Aastra 6730i using firmware 2.6.0.2019, with MAC
+    XX:XX:XX:XX:XX:XX and IP Y.Y.Y.Y, does an HTTP GET request for
+    /aastra.cfg to the provd server</li>
+<li>The HTTP server component in provd receive the request. It then
+    sends it to the 'request processing' component. Note that TFTP
+    requests are also being processed by the request
+    processing component.</li>
+<li>The first step in the request processing is to extract information
+    from the request. The goal is to extract the maximum of information
+    about the device behind the request, like its MAC address, model,
+    vendor, firmware version, serial number, IP address, etc. By
+    default, each plugin can participate in this step. In this case, at
+    the end of this step, we know that the request comes from an Aastra
+    6730i in version 2.6.0.2019, that its MAC address is
+    XX:XX:XX:XX:XX:XX and its IP address is Y.Y.Y.Y.</li>
+<li>The second step in the request processing is to retrieve the device
+    from the device database using the information extracted at 3. In
+    this case, we suppose there was already a device with MAC
+    XX:XX:XX:XX:XX:XX in the device database, so we retrieve it.</li>
+<li>The third step is to update the retrieved device using the
+    extracted information. For example, we can update information we
+    didn't know about the device. We can also do generic operation in
+    this step if we needs to. Anyway, in our case, this step is actually
+    a no-op.</li>
+<li>The last step is to route the request to the HTTP handler that will
+    answer the request. In our case, from the device retrieved at 4, we
+    know that its associated plugin is xivo-aastra-2.6.0.2019, so the
+    request is routed to the HTTP handler of the
+    xivo-aastra-2.6.0.2019 plugin.</li>
+<li>Finaly, the handler chosen at 6 answer the request. In this case,
+    the xivo-aastra-2.6.0.2019 plugin will return the content of its
+    var/tftpboot/aastra.cfg file.</li>
+</ol>
+<p>Now, you might be wondering how this work when an unknown device make a
+request to the provisioning server. By default, at step 4, if no device
+can be found in the database, a new one is added.</p>
+<p>Then, at step 5, if a device has no plugin associated to it, an
+automatic device association process occurs. Also at this step, a device
+with no config associated to it can have a default config associated to
+it. So, at the end of step 5, we then have a device with a default
+config and an associated plugin although the device was not known from
+the provisioning server when the request was received.</p>
+<p>So this is what conclude our brief introduction to the plugin model of
+the new provisioning server. If you are interested into digging into the
+details, you might want to start by looking at the
+provd/devices/ident.py python source file (this make me thing I should
+rename this file) and the various *.py.conf.* configuration file.</p>
+<p>Note that to keep this text at the introduction level, some things
+stated here have been slightly simplified and are not 100% exact.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-12-queues-diversions-.html#xivo-12-queues-diversions-">XiVO 1.2 -*- Queues Diversions -*-</a></h2>
+    <p>
+      Posted on Fri 08 April 2011 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>,      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/queues.html">queues</a>,      <a href="http://blog.xivo.io/tag/diversion.html">diversion</a>    </p>
+  </header>
+  <div>
+      <p><ins>Asterisk queues</ins> have limited possibilities of
+interactions.The only way to know how a call was processed and decide
+what to do next is falling back on <strong>\${QUEUESTATUS}</strong> when the call
+exits the queue.  </p>
+<p>If something goes wrong, \${QUEUESTATUS} is set to one of the following
+values: <em>TIMEOUT</em>, <em>FULL</em>, <em>JOINEMPTY</em>, <em>LEAVEEMPTY</em>, <em>JOINUNAVAIL</em> and
+<em>LEAVEUNAVAIL</em>. <ins>In XiVO, it fits to queues <strong>No answer</strong> tab.</ins></p>
+<h2>Queue diversions</h2>
+<p>But in XiVO 1.2 we add a new functionality called <strong>diversions</strong><br />
+Diversions are preconditions tested <em>before</em> a call enter into the
+queue. If one precondition <strong>matches</strong>, the incoming call is not sent
+into the queue, but rerouted to the destination associated with the
+condition. This allows a finer-grained control on how calls are accepted
+or not into a queue  </p>
+<p>Currently, we have defined 4 preconditions. They are evaluated in order,
+one after another; the first to be validated is triggering call
+rerouting to the associated destination.Here they are:  </p>
+<ol>
+<li><em>CTI status presence</em>.<br />
+calls are diverted if some of queue agents have required statuses.I.e,
+if we have more than 50 agents with *inline* status, new incoming
+calls are transfered to our *indian* call center</li>
+</ol>
+<p><a href="/public/queue-diversions/queue-diversion-cti-presences.png" title="queue-diversion-cti-presences.png"><img alt="queue-diversion-cti-presences.png" src="/public/queue-diversions/.queue-diversion-cti-presences_m.jpg" title="queue-diversion-cti-presences.png, avr. 2011" /></a><br />
+2. <em>CTI status absence</em>.<br />
+On the contrary, we may want to divert calls when no agents have a
+required status.<br />
+I.e, if less than 5 agents with status *ready to hold* are logged in
+the queue, we considered it to be closed, and redirect calls to a
+voicemail</p>
+<p><a href="/public/queue-diversions/queue-diversion-cti-nonpresences.png" title="queue-diversion-cti-nonpresences.png"><img alt="queue-diversion-cti-nonpresences.png" src="/public/queue-diversions/.queue-diversion-cti-nonpresences_m.jpg" title="queue-diversion-cti-nonpresences.png, avr. 2011" /></a><br />
+3. <em>Estimated waiting time</em>.<br />
+When the estimated wait time is exceeding a threshold value, we do not
+want new calls to enter into the queue (callers do not like to wait!),
+It is then possible to redirect them to another destination.<br />
+I.e if the wait time is higher than 5 minutes, redirect incalls to an
+IVR</p>
+<p><a href="/public/queue-diversions/queue-diversion-waittime.png" title="queue-diversion-waittime.png"><img alt="queue-diversion-waittime.png" src="/public/queue-diversions/.queue-diversion-waittime_m.jpg" title="queue-diversion-waittime.png, avr. 2011" /></a><br />
+4. <em>Waiting calls/Available agents</em> ratio.<br />
+If there are more calls waiting in the queue that available agents can
+handle in a relative short delay, new calls will only increase
+congestion. With this diversion, you can reroute incoming calls when
+this situation arises.I.e, if there is less than 1 agent for 2 waiting
+calls, hangup!</p>
+<p><a href="/public/queue-diversions/queue-diversion-ratio.png" title="queue-diversion-ratio.png"><img alt="queue-diversion-ratio.png" src="/public/queue-diversions/.queue-diversion-ratio_m.jpg" title="queue-diversion-ratio.png, avr. 2011" /></a></p>
+<p><strong>NOTE: the ratio is a percent</strong>.</p>
+<ul>
+<li>A value of 100 means there is 1 agent for 1 call</li>
+<li>A value of 50 means a call can be handled by 2 agents</li>
+<li>A value of 200 means there is 1 agent for 2 calls</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">packaging infrastructure for XiVO</a></h2>
+    <p>
+      Posted on Mon 04 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Trying out packaging-farm</h4>
+<p>Nicolas Hicher and Loic Dachary worked together on building the skaro
+repository available at:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>The goal was to demonstrate the use of the packaging-farm and discover
+show stoppers. A few documentation shortcomings led to modifications of
+the manual page for packaging-farm. A problem with the handling of the
+dependencies was identified and fixed. The <a href="http://packaging-farm.dachary.org/downloads/">1.2.36
+release</a> was published
+with the corresponding changes.Nicolas Hicher feels confortable to give
+a try to the packaging-farm. That will help uncover real world usage
+issues.</p>
+<h4>VM host installation</h4>
+<p>A hardware (500GB disk, 8GB RAM, Intel(R) Xeon(R) CPU X3430 @ 2.40GHz)
+was installed at 66.254.41.119 to be dedicated to XiVO packaging. It was
+configured to host kvm based virtual machines using
+<a href="http://code.google.com/p/ganeti/">ganeti</a>.To better track the changes,
+a git repository was created in /etc and used to archive the
+configuration changes described below.</p>
+<h3>LVM and DRBD</h3>
+<p>In squeeze all the software required to run ganeti2 are standard. A year
+ago it was significantly more difficult as it required the compilation
+of the DRBD from sources, among other things.The second partition of the
+disk was set for LVM:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# pvs
+  PV         VG   Fmt  Attr PSize   PFree
+  /dev/sda2  all  lvm2 a-   442.38g 332.38g
+</pre></div>
+
+
+<p>and that was bound to the all volume group:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# vgs
+  VG   #PV #LV #SN Attr   VSize   VFree
+  all    1   3   0 wz--n- 442.38g 332.38g
+</pre></div>
+
+
+<p>The default DRBD configuration was removed so that ganeti can handle it
+on its own. It is not used at the moment but will come handy when
+another hardware is added.</p>
+<div class="highlight"><pre>mv /etc/drbd.conf /etc/drbd.conf.old
+touch /etc/drbd.conf
+/etc/init.d/drbd reload
+</pre></div>
+
+
+<h3>Network</h3>
+<p>A bridge and a fake lo:1 local interface were created in
+/etc/network/interfaces:</p>
+<div class="highlight"><pre>auto lo:1
+iface lo:1 inet static
+    address 10.10.0.10
+    netmask 255.255.255.255
+    up ip route add blackhole 10.0.0.0/8
+
+auto br0
+iface br0 inet static
+        address 10.10.0.254
+        netmask 255.255.255.255
+        bridge_ports none
+        bridge_stp off
+    bridge_maxwait 5
+        up ip route add 10.10.0.254 dev br0
+        up ip route add 10.10.60.0/24 dev br0
+</pre></div>
+
+
+<h3>BIND and DHCP</h3>
+<p>Ganeti hosts and virtual machines names are DNS entries. It would be
+possible to use a publicDNS to create them. A local DNS configuration is
+created locally instead, toreduce the propagation delays, ensure it can
+always be reached and isolate the maintainanceof the name space into a
+private network. The top level domain farm was createdand divided into
+host??.farm ( bound to 10.10.59.0/24 ) for all the ganeti hostsand
+vm.farm ( bound to 10.10.60.0/24 ) for all the virtual machines.</p>
+<p><strong>/etc/bind/named.conf.options</strong></p>
+<p>Do not listen or answer on public IPs.</p>
+<div class="highlight"><pre>allow-recursion { 127.0.0.1; 10.0.0.0/8; };
+listen-on { 127.0.0.1; 10.10.0.254; };
+</pre></div>
+
+
+<p><strong>/etc/bind/named.conf.local</strong></p>
+<div class="highlight"><pre>zone &quot;10.10.in-addr.arpa&quot; {
+    type master;
+    file &quot;/etc/bind/db.10.10&quot;;
+};
+
+zone &quot;farm&quot; {
+        type master;
+        file &quot;/etc/bind/db.farm&quot;;
+};
+</pre></div>
+
+
+<p><strong>/etc/bind/db.10.10</strong></p>
+<div class="highlight"><pre><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span> <span class="nt">mode</span><span class="o">:</span> <span class="nt">zone</span><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span>
+<span class="o">;</span>
+<span class="o">;</span> <span class="nt">BIND</span> <span class="nt">reverse</span> <span class="nt">data</span> <span class="nt">file</span> <span class="nt">for</span> <span class="nt">broadcast</span> <span class="nt">zone</span>
+<span class="o">;</span>
+<span class="o">$</span><span class="nt">TTL</span>    <span class="nt">604800</span>
+<span class="o">@</span>       <span class="nt">IN</span>      <span class="nt">SOA</span>     <span class="nt">localhost</span><span class="o">.</span> <span class="nt">root</span><span class="nc">.localhost</span><span class="o">.</span> <span class="o">(</span>
+        <span class="nt">2011031200</span>      <span class="o">;</span> <span class="nt">serial</span>
+                         <span class="nt">604800</span>         <span class="o">;</span> <span class="nt">Refresh</span>
+                          <span class="nt">86400</span>         <span class="o">;</span> <span class="nt">Retry</span>
+                        <span class="nt">2419200</span>         <span class="o">;</span> <span class="nt">Expire</span>
+                         <span class="nt">604800</span> <span class="o">)</span>       <span class="o">;</span> <span class="nt">Negative</span> <span class="nt">Cache</span> <span class="nt">TTL</span>
+<span class="o">@</span>       <span class="nt">IN</span>      <span class="nt">NS</span>      <span class="nt">localhost</span><span class="o">.</span>
+
+<span class="o">;;</span>
+<span class="o">;;</span> <span class="nt">perl</span> <span class="nt">-n</span> <span class="nt">-e</span> <span class="s1">&#39;print if(s/(\S+)\s+IN\s+A\s+10\.10\.(\d+)\.(\d+)/\3.\2\tIN\tPTR\t\1.farm./)&#39;</span> <span class="o">&lt;</span> <span class="nt">db</span><span class="nc">.farm</span>
+<span class="o">;;</span>
+<span class="nt">1</span><span class="nc">.60</span>    <span class="nt">IN</span>      <span class="nt">PTR</span>     <span class="nt">dev</span><span class="nc">.dachary.vm.farm</span><span class="o">.</span>
+<span class="nt">2</span><span class="nc">.60</span>    <span class="nt">IN</span>      <span class="nt">PTR</span>     <span class="nt">skaro</span><span class="nc">.xivo.vm.farm</span><span class="o">.</span>
+</pre></div>
+
+
+<p><strong>/etc/bind/db.farm</strong></p>
+<div class="highlight"><pre><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span> <span class="nt">mode</span><span class="o">:</span> <span class="nt">zone</span><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span>
+<span class="o">;</span>
+<span class="o">$</span><span class="nt">TTL</span> <span class="nt">1h</span> <span class="o">;</span> <span class="nt">default</span> <span class="nt">Time-to-Live</span><span class="o">.</span> <span class="nt">defines</span> <span class="nt">the</span> <span class="nt">duration</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">record</span> <span class="nt">may</span> <span class="nt">be</span> <span class="nt">cached</span> <span class="o">(</span><span class="nt">24h</span><span class="o">)</span>
+
+<span class="o">$</span><span class="nt">ORIGIN</span> <span class="nt">farm</span><span class="o">.</span>
+<span class="o">@</span>                       <span class="nt">IN</span>      <span class="nt">SOA</span>             <span class="nt">ns</span> <span class="nt">hostmaster</span> <span class="o">(</span>
+                        <span class="nt">2011031200</span>      <span class="o">;</span> <span class="nt">serial</span>
+                                <span class="nt">1h</span>              <span class="o">;</span> <span class="nt">refresh</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">slave</span> <span class="nt">will</span> <span class="nt">try</span> <span class="nt">to</span> <span class="nt">refresh</span> <span class="nt">the</span> <span class="nt">zone</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">master</span> <span class="o">(</span><span class="nt">8h</span><span class="o">)</span>
+                                <span class="nt">30m</span>             <span class="o">;</span> <span class="nt">update</span> <span class="nt">retry</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">between</span> <span class="nt">retries</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">slave</span> <span class="o">(</span><span class="nt">secondary</span><span class="o">)</span> <span class="o">(</span><span class="nt">2h</span><span class="o">)</span>
+                                                <span class="o">;</span> <span class="nt">fails</span> <span class="nt">to</span> <span class="nt">contact</span> <span class="nt">the</span> <span class="nt">master</span> <span class="nt">when</span> <span class="nt">refresh</span> <span class="o">(</span><span class="nt">above</span><span class="o">)</span> <span class="nt">has</span> <span class="nt">expired</span><span class="o">.</span>
+                                <span class="nt">2w</span>              <span class="o">;</span> <span class="nt">expiry</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">slave</span> <span class="nt">will</span> <span class="nt">continue</span> <span class="nt">to</span> <span class="nt">supply</span> <span class="nt">authoritative</span> <span class="nt">data</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">zone</span> <span class="o">(</span><span class="nt">1w</span><span class="o">)</span>
+                                                <span class="o">;</span> <span class="nt">after</span> <span class="nt">the</span> <span class="nt">master</span> <span class="nt">died</span>
+                                <span class="nt">30m</span><span class="o">)</span>            <span class="o">;</span> <span class="nt">minimum</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">a</span> <span class="nt">NAME</span> <span class="nt">ERROR</span> <span class="o">=</span> <span class="nt">NXDOMAIN</span> <span class="nt">record</span> <span class="nt">is</span> <span class="nt">cached</span> <span class="o">(</span><span class="nt">24h</span><span class="o">)</span>
+
+                <span class="nt">IN</span>      <span class="nt">NS</span>      <span class="nt">ns</span>
+
+<span class="nt">ns</span>              <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.0.254</span>
+
+<span class="nt">gnt-cluster</span>     <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.59.1</span>
+<span class="nt">host01</span>          <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.59.10</span>
+
+<span class="nt">dev</span><span class="nc">.dachary.vm</span>  <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.60.1</span>
+<span class="nt">skaro</span><span class="nc">.xivo.vm</span>   <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.60.2</span>
+</pre></div>
+
+
+<p>A DHCP server is setup for each VM to use.</p>
+<p><strong>/etc/default/isc-dhcp-server</strong></p>
+<div class="highlight"><pre>INTERFACES=&quot;br0&quot;
+</pre></div>
+
+
+<p><strong>/etc/dhcp/dhcpd.conf</strong></p>
+<p>A MAC address is generated with the following oneliner:</p>
+<div class="highlight"><pre><span class="err">#</span> <span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
+</pre></div>
+
+
+<p>and used to define the entries</p>
+<div class="highlight"><pre><span class="nt">group</span> <span class="p">{</span>
+  <span class="n">option</span> <span class="n">domain</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;farm&quot;</span><span class="p">;</span>
+  <span class="n">option</span> <span class="n">routers</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">254</span><span class="p">;</span>
+  <span class="n">option</span> <span class="n">domain</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">servers</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">254</span><span class="p">;</span>
+  <span class="n">subnet</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span> <span class="n">netmask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span> <span class="err">{</span>
+    <span class="n">host</span> <span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span> <span class="err">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="n">bf</span><span class="o">:</span><span class="m">3</span><span class="n">d</span><span class="o">:</span><span class="n">d4</span><span class="o">:</span><span class="n">ef</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">host</span> <span class="nt">skaro</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="n">fb</span><span class="o">:</span><span class="m">77</span><span class="o">:</span><span class="m">1</span><span class="n">e</span><span class="o">:</span><span class="m">82</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">skaro</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h3>Cluster and instance creation</h3>
+<p>The hostname of the machine is host01.farm. When creating a cluster, the
+hostname is used to create the first node of the cluster and make it the
+master. Its IP set in /etc/hosts to 10.10.59.10. It is permanently set
+on eth0 in the /etc/network/interface as follows:</p>
+<div class="highlight"><pre>up ip addr add 10.10.59.10/32 broadcast 10.10.59.255 dev eth0
+</pre></div>
+
+
+<p>The prerequisite to run gnt-cluster init were met:</p>
+<ul>
+<li>host01.farm is not 127.0.0.1</li>
+<li>gnt-cluster.host.farm IP is not bound to any interface</li>
+</ul>
+<p>The cluster was created with:</p>
+<div class="highlight"><pre>gnt-cluster init --no-etc-hosts --enabled-hypervisors=kvm --nic-parameters link=br0 --master-netdev br0 --vg-name all gnt-cluster.farm
+</pre></div>
+
+
+<p>After downloading the installation CD of Debian GNU/Linux squeeze, the
+skaro.xivo.vm.farm instance was created:</p>
+<div class="highlight"><pre>gnt-instance add -d -t plain -s 30G -B memory=512M,vcpus=1 -H kvm:boot_order=cdrom,cdrom_image_path=/srv/ganeti/debian-6.0.1a-amd64-CD-1.iso,vnc_bind_address=0.0.0.0 -n host01.farm -o debootstrap+default --net 0:mac=52:54:fb:77:1e:82 skaro.xivo.vm.farm
+</pre></div>
+
+
+<h3>Copying the development VM</h3>
+<p>Instead of proceeding with a regular installation, a copy of the VM at
+http://xivo.dachary.org/ was made. It was stored in a 13GB bzip2 file:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# ls -lh
+-rw-r--r-- 1 root root  13G Mar 31 15:39 xivo.dachary.vm.gnt.bz2
+</pre></div>
+
+
+<p>The newly created instance was shutdown</p>
+<div class="highlight"><pre>gnt-instance shutdown --timeout=1 skaro.xivo.vm.farm
+</pre></div>
+
+
+<p>The location of its disk retrieved:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# gnt-instance info skaro.xivo.vm.farm | grep /dev/all
+      on primary:  /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 (254:2)
+</pre></div>
+
+
+<p>and the backup unpacked into it:</p>
+<div class="highlight"><pre>bunzip2 &lt; xivo.dachary.vm.gnt.bz2 &gt; /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0
+</pre></div>
+
+
+<p>It ended with an error:</p>
+<div class="highlight"><pre><span class="n">bunzip2</span><span class="o">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">or</span> <span class="n">other</span> <span class="n">error</span><span class="o">,</span> <span class="n">bailing</span> <span class="n">out</span><span class="o">.</span>  <span class="n">Possible</span> <span class="n">reason</span> <span class="n">follows</span><span class="o">.</span>
+<span class="n">bunzip2</span><span class="o">:</span> <span class="n">No</span> <span class="n">space</span> <span class="n">left</span> <span class="n">on</span> <span class="n">device</span>
+        <span class="n">Input</span> <span class="n">file</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdin</span><span class="o">),</span> <span class="n">output</span> <span class="n">file</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdout</span><span class="o">)</span>
+</pre></div>
+
+
+<p>which was ignored. To make sure the restoration was sane, the partition
+was checked:</p>
+<div class="highlight"><pre>root@montreal:/srv/ganeti# kpartx -av /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0
+add map all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1 (254:3): 0 61865984 linear /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 2048
+add map all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p2 (254:4): 0 1046528 linear /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 61868032
+root@montreal:/srv/ganeti# fsck -f /dev/mapper/all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1
+fsck from util-linux-ng 2.17.2
+e2fsck 1.41.12 (17-May-2010)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/mapper/all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1: 260424/1925760 files (3.8% non-contiguous), 4826992/7733248 blocks
+</pre></div>
+
+
+<h4>firewall</h4>
+<p>A <a href="http://shorewall.net/">shorewall</a> based firewall was configured based
+on the two interface example found at
+<strong>/usr/share/doc/shorewall/examples/two-interfaces/</strong> and replacing the
+eth1 interface with br0. The idea is that the bridge contains virtual
+machines that are treated as if they were machines in the LAN for which
+this example was designed.</p>
+<h4>reverse proxy</h4>
+<p>A <a href="http://nginx.org/">nginx</a> based reverse proxy was installed on the to
+demultiplex the incoming http connections. The first configuration was
+added in /etc/nginx/sites-available/skaro.dachary.org to get to the
+virtual machine that will eventually replace http://xivo.dachary.org/</p>
+<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">skaro</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">skaro</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span>   <span class="n">http</span><span class="o">://</span><span class="n">skaro</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>and the HTTP port was accepted in the firewall in /etc/shorewall/rules</p>
+<div class="highlight"><pre><span class="x">DNAT           net             loc:</span><span class="p">$</span><span class="nv">VM_SKARO_XIVO</span><span class="x">:22 tcp             22002           -       </span><span class="p">$</span><span class="nv">IP_FAILOVER</span><span class="x"></span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html#sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey">Sourcing the components and scripting the components parts e-shops (digikey, ...)</a></h2>
+    <p>
+      Posted on Wed 30 March 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>As I am constantly searching for informations on the different parts
+(i.e. components on the PCB), <strong>i have scripted www.digikey.com</strong> (the
+HTML form is quite stable) in python in order to automatize the search
+on the website.</p>
+<p>The script can be found here :
+<a href="http://carcelle.fu8.com/digikey.py" title="digikey.py">digikey.py</a></p>
+<p>This script can be used like : python digikey.py BC847BVNDITR-ND
+(BC847BVNDITR-ND is a part reference on the digikey website).</p>
+<p>I am looking for similar that can be used/optimized for the other e-shop
+such as Farnell, Mouser, Radiospares in order to have a common script
+tool able to search all these e-shops in one and give a report on the
+availability for parts in a db run daily or weekly.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index29.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index27.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

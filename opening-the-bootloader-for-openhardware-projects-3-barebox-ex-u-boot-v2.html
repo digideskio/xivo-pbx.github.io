@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="Following the previous posts about the "open" bootloaders available to improve and implement advanced features at the boot of your SoC/CPU, we are, in this post, considering Barebox (formely known as u-boot v2) as another open bootloader. Barebox aims at giving the developer and embedded users the best of ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)"/>
+<meta property="og:description" content="Following the previous posts about the "open" bootloaders available to improve and implement advanced features at the boot of your SoC/CPU, we are, in this post, considering Barebox (formely known as u-boot v2) as another open bootloader. Barebox aims at giving the developer and embedded users the best of ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2010-02-25 11:13:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2">Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</h1>
+    <p>Posted on Thu 25 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p>Following the previous posts about the "open" bootloaders available to
+improve and implement advanced features at the boot of your SoC/CPU, we
+are, in this post, considering Barebox (formely known as u-boot v2) as
+another open bootloader. Barebox aims at giving the developer and
+embedded users the best of u-boot (space, easy-to-flash, handy tools)
+and the best of the Linux kernel (Kconfig, Kbuild, standards C API,
+building methods identical to the kernel with ARCH/CROSS primitives...).</p>
+<p>The latest documentation for barebox can be found here <a href="2" title="2">2</a> and
+lists the different key features of barebox that can listed as followed:</p>
+<ul>
+<li><strong>A posix based file API</strong>: inside barebox the usual
+    open/close/read/write/lseek functions are used. This makes it
+    familiar to everyone who has programmed under unix systems.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Usual shell commands</strong> like ls/cd/mkdir/echo/cat,...</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>The environment is a file store</strong>. It has currently some
+    limitations, of course. The environment is not a real read/write
+    filesystem, it is more like a tar archive, or even more like an ar
+    archive, because it cannot handle directories. The saveenv command
+    saves the files under a certain directory (by default /env) in
+    persistent storage (by default /dev/env0). There is a counterpart
+    called loadenv, too.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Real filesystem support</strong>: The loader starts up with mounting a
+    ramdisk on /. Then a devfs is mounted on /dev allowing the user (or
+    shell commands) to access devices. Apart from these two filesystems
+    there is currently one filesystem ported: cramfs. One can mount it
+    with the usual mount command.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Device/driver model</strong>: Devices are no longer described by defines
+    in the config file. Instead there are devices which can be
+    registered in the board .c file or dynamically allocated. Drivers
+    will match upon the devices automatically.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Clocksource support</strong>: Timekeeping has been simplified by the use
+    of the Linux clocksource API. Only one function is needed for a new
+    board, no <a href="gs" title="gs">gs</a>et_timer<a href="masked" title="masked">masked</a>() or
+    reset_timer<a href="masked" title="masked">masked</a>() functions.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Kconfig and Kernel build system</strong>: Only targets which are really
+    needed get recompiled. Parallel builds are no problem anymore. This
+    also removes the need for many many ifdefs in the code.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Simulation target</strong>: barebox can be compiled to run under Linux.
+    While this is rather useless in real world this is a great debugging
+    and development aid. New features can be easily developped and
+    tested on long train journeys and started under gdb. There is a
+    console driver for linux which emulates a serial device and a tap
+    based ethernet driver. Linux files can be mapped to devices under
+    barebox to emulate storage devices.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Device parameter support</strong>: Each device can have a unlimited
+    number of parameters. They can be accessed on the command line with
+    &lt;devid&gt;.&lt;param&gt;="...", for example 'eth0.ip=192.168.0.7'
+    or 'echo \$eth0.ip'</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Initcalls</strong>: Hooks in the startup process can be archieved
+    with *_initcall() directives in each file.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Getopt</strong>: There is a small getopt implementation. Some commands
+    got really complicated (both in code and in usage) due to the fact
+    that U-Boot only allowed positional parameters.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Editor: Scripts can be edited with a small editor.</li>
+</ul>
+<p>Barebox is under GPLv2 licence.</p>
+<p><a href="1" title="1">1</a> : http://barebox.org/<a href="2" title="2">2</a> :
+http://barebox.org/documentation/barebox-2010.03.0/</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)",
+  "headline": "Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)",
+  "datePublished": "2010-02-25 11:13:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html",
+  "description": "Following the previous posts about the "open" bootloaders available to improve and implement advanced features at the boot of your SoC/CPU, we are, in this post, considering Barebox (formely known as u-boot v2) as another open bootloader. Barebox aims at giving the developer and embedded users the best of ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="cedric" />
+<meta name="description" content="In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade. This new script must be usedto make sure that upgrades are completed properly. The objective is to minimize differences between machinesand to control the environment in case of problems. We had many problems to work around: questions ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Upgrading XiVO with \"xivo-upgrade\""/>
+<meta property="og:description" content="In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade. This new script must be usedto make sure that upgrades are completed properly. The objective is to minimize differences between machinesand to control the environment in case of problems. We had many problems to work around: questions ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/upgrading-xivo-with-xivo-upgrade.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-03-29 15:28:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/cedric.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Upgrading XiVO with \"xivo-upgrade\"</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="upgrading-xivo-with-xivo-upgrade">Upgrading XiVO with \"xivo-upgrade\"</h1>
+    <p>Posted on Thu 29 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade.
+This new script must be usedto make sure that upgrades are completed
+properly. The objective is to minimize differences between machinesand
+to control the environment in case of problems.</p>
+<p>We had many problems to work around:</p>
+<ul>
+<li>questions to answer about replacing packaged files that have been
+    modified</li>
+<li>reload services when libraries are modified</li>
+<li>modify the database schema when needed</li>
+<li>showing the current and new version when upgrading</li>
+</ul>
+<p>We decided to put this system in place to keep upgrades simples and
+transparent to the end ~~user~~ admin.The goal being to stay as SIMPLE
+as possible!</p>
+<p>Too many people are stressed by their IPBX upgrades!<img alt="Stress
+Man" src="/public/human_pro/.file0001382919230_s.jpg" title="Stress Man, mar. 2012" /></p>
+<p>But not with
+XiVO!<img alt="Congratulation" src="/public/human_pro/.file6741271974648_s.jpg" title="Congratulation, mar. 2012" /></p>
+<p>No one should be afraid of the side effects of an upgrade!</p>
+<h2>Technical informations</h2>
+<p>This package allows the administrator to upgrade his XiVO securely and
+in a way validated by the dev team.The script executes many steps:</p>
+<ol>
+<li>xivo-upgrade upgrade, to get the latest modifications to the upgrade
+    process</li>
+<li>
+<p>Upgrade confirmation if upgrades are available:</p>
+<ul>
+<li>If the answer is NO, the upgrade is aborted</li>
+<li>If the answer is YES, the script continues to the next step</li>
+</ul>
+</li>
+<li>
+<p>Pre-upgrade scripts are run.</p>
+</li>
+<li>XiVO is upgraded</li>
+<li>Post-upgrade scripts are executed.</li>
+<li>All XiVO services are restarted in the right order.</li>
+</ol>
+<p>Package architecture:</p>
+<p>Binaries:</p>
+<ul>
+<li>xivo-upgrade (Update xivo-upgrade package and
+    execute real-xivo-upgrade)</li>
+<li>real-xivo-upgrade (Execute upgrade of XiVO and restart services)</li>
+</ul>
+<p>Libraries path: /usr/share/xivo-upgrade/</p>
+<p>Directories:</p>
+<ul>
+<li>pre-upgrade.d (All files in this directory will be executed before
+    upgrading XiVO)</li>
+<li>post-upgrade.d (All files in this directory will be executed after
+    XiVO upgrade)</li>
+</ul>
+<p>Current post-install scripts:</p>
+<ul>
+<li>Update template for device configuration.</li>
+<li>Update all device configurations to integrate the backup_proxy_ip
+    from the HA configuration.</li>
+<li>Set default web-interface language to english.</li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Upgrading XiVO with \"xivo-upgrade\"",
+  "headline": "Upgrading XiVO with \"xivo-upgrade\"",
+  "datePublished": "2012-03-29 15:28:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "cedric",
+    "url": "http://blog.xivo.io/author/cedric.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/upgrading-xivo-with-xivo-upgrade.html",
+  "description": "In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade. This new script must be usedto make sure that upgrades are completed properly. The objective is to minimize differences between machinesand to control the environment in case of problems. We had many problems to work around: questions ..."
+}
+</script></body>
+</html>

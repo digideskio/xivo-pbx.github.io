@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-community.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-07-29T18:50:00-04:00</updated><entry><title>All you wanted to know about XiVO</title><link href="http://blog.xivo.io/all-you-wanted-to-know-about-xivo.html" rel="alternate"></link><updated>2015-07-29T18:50:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-29:all-you-wanted-to-know-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;em&gt;XiVO in &lt;a href="https://fr.wikipedia.org/wiki/XiVO"&gt;french&lt;/a&gt; and in
+&lt;a href="https://es.wikipedia.org/wiki/XiVO"&gt;spanish&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DEFINITION: XIVO, A FREE IPBX&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XiVO is an unified communications software system licensed under the
+    GPLv3,&lt;a href="https://en.wikipedia.org/wiki/GNU_General_Public_License%20v3"&gt;GNU General Public
+    License&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The graphical user interface (GUI) provides an interface for
+    configuring, controlling, and managing the &lt;a href="https://en.wikipedia.org/wiki/IP_PBX"&gt;IP
+    PBX&lt;/a&gt; software. The XiVO Distro
+    includes packages that offer these features:&lt;a href="https://en.wikipedia.org/wiki/Voice_over_IP"&gt;Voice over
+    IP&lt;/a&gt;, PBX, Fax, voice
+    mail and unified messaging. XiVO is based on the free software
+    &lt;a href="https://fr.wikipedia.org/wiki/Asterisk_%28logiciel%29"&gt;Asterisk&lt;/a&gt;
+    and the XiVO Linux distribution is based on &lt;a href="https://www.debian.org/releases/wheezy/index.fr.html"&gt;Debian
+    Wheezy&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XiVO-G_.png" src="/public/XiVO-G_.png" title="XiVO-G_.png, juil. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HISTORY ABOUT XIVO AND AVENCALL&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XiVO was created in 2005 as an open-source, collaborative project
+    from
+    &lt;a href="http://www.quebecentreprises.com/proformatique-inc-u2py"&gt;Proformatique&lt;/a&gt;,
+    a company in France.&lt;/li&gt;
+&lt;li&gt;In 2010, &lt;a href="http://www.avencall.com/en/"&gt;Avencall&lt;/a&gt;, a French leader in
+    the publishing and integration of open unified communications
+    solutions, merged with Proformatique (XiVO). Avencall wanted to
+    pursue a vision that would reinforce XiVO's strong points :
+    technical development, commercial features, IT solutions. Avencall
+    became the first provider of free VoIP solutions in France, with
+    thousands of users deployed and 350 customers such as LDC, Groupama,
+    la Poste, l'Olympique Lyonnais.&lt;/li&gt;
+&lt;li&gt;Avencall is also specialized in contact center solutions with its
+    XiVO-CC open source software suite.&lt;/li&gt;
+&lt;li&gt;Avencall, based in France, has offices in Lyon (HQ), Paris,
+    Toulouse, Rennes, Aix-en-Provence and Strasbourg. Most of its
+    research and development is in Quebec-city, Canada.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;INSTALL AND TRY XIVO&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The XiVO ISO and XiVO client can be downloaded from this main page
+    &lt;a href="community%20website"&gt;http://xivo.io&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XIVO-DOWNLOAD.png" src="/public/XIVO-DOWNLOAD.png" title="XIVO-DOWNLOAD.png, juil. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TUTORIALS FROM THE COMMUNITY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated tutorials from the community are available on the &lt;a href="http://xivo.readthedocs.org/en/latest/community/community.html"&gt;community
+    documentation
+    page&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=leMZi6cU8iM"&gt;Video&lt;/a&gt; on the history
+    of XiVO, the community and how to try XiVO
+    &lt;a href="https://www.youtube.com/watch?v=leMZi6cU8iM"&gt;here&lt;/a&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XIVO-VIDEO-ENG-2015.png" src="/public/XIVO-VIDEO-ENG-2015.png" title="XIVO-VIDEO-ENG-2015.png, juil. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FEATURES&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XiVO provides online repositories that contain software packages.
+    The latest release is documented and updated every 3 weeks. Access
+    to the &lt;a href="http://xivo.readthedocs.org/en/stable"&gt;documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Notable changes in the last release include : bookmarks for
+    contacts, synchronisation between servers, management of function
+    keys via REST API, new authentification and encryption framework,
+    upgrade to &lt;a href="/index.php?post/2015/07/20/XiVO-and-Asterisk-13"&gt;Asterisk
+    13&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XiVO_accueil.png" src="/public/XiVO_accueil.png" title="XiVO_accueil.png, juil. 2015" /&gt;&lt;img alt="bluemind.avencall.com03.jpeg" src="/public/bluemind.avencall.com03.jpeg" title="bluemind.avencall.com03.jpeg, juil. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EVENTS AND AWARDS&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open Source events:&lt;ul&gt;
+&lt;li&gt;2010, 2012, 2013 and 2014 &lt;a href="https://fr.wikipedia.org/wiki/Solutions_Linux"&gt;Solutions
+    Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2009 and 2011 &lt;a href="https://en.wikipedia.org/wiki/Libre_Software_Meeting"&gt;Libre Software
+    Meeting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2011 &lt;a href="https://en.wikipedia.org/wiki/FOSDEM"&gt;FOSDEM&lt;/a&gt;, Free and
+    Open Source Software Developers' European Meeting, 2011 &lt;a href="http://2014.oshwa.org"&gt;Open
+    Hardware Summit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2012 &lt;a href="http://congres.adullact.org"&gt;Adullact&lt;/a&gt;, &lt;a href="http://www.linuxtag.org"&gt;Linux
+    Tag&lt;/a&gt;, &lt;a href="http://openworldforum2012.sched.org/"&gt;Open World
+    Forum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2012 and 2014
+    &lt;a href="https://wiki.asterisk.org/wiki/display/AST/AstriCon+2012+Presentations"&gt;Astricon&lt;/a&gt;,
+    2012 and 2014 &lt;a href="http://www.hackfest.ca/en"&gt;Hackfest Quebec&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;2013 &lt;a href="http://www.rrll.fr"&gt;RRLL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2015 &lt;a href="https://en.wikipedia.org/wiki/BarCamp"&gt;Barcamp&lt;/a&gt; about
+    &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;VoIP open
+    source&lt;/a&gt;
+    and
+    &lt;a href="https://en.wikipedia.org/wiki/Mumble_%28software%29"&gt;Mumble&lt;/a&gt;,
+    &lt;a href="http://www.opensourcesummit.paris"&gt;POSS&lt;/a&gt; Paris Open Source
+    Summit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Awards and publication:&lt;ul&gt;
+&lt;li&gt;2010 &lt;a href="http://blog.xivo.io/index.php?post/2010/10/04/XiVO-IPBX-OpenHardware-selected-for-the-innovation-trophy"&gt;Innovation
+    Trophy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2011 &lt;a href="http://www.agence-c3m.com/communique/avencall-et-sa-solution-xivo-primes-aux-trophees-de-la-convergence"&gt;IP convergence
+    Trophy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2015, &lt;a href="http://www.distributique.com/actualites/lire-trophees-de-la-distribution-2015-decouvrez-les-noms-des-gagnants-22825-page-9.html"&gt;Distribution
+    Trophy&lt;/a&gt;,
+    "&lt;a href="http://www.agence-c3m.com/communique/un-trophee-pour-avencall-au-printemps-des-entrepreneurs"&gt;Printemps des
+    entrepreneurs&lt;/a&gt;"
+    Trophy,
+    "&lt;a href="http://www.grandlyon.com/fileadmin/user_upload/media/pdf/espace-presse/cp/20150630_cp_dispositif-pepites-3-entreprises-labellisees.pdf"&gt;Pepites&lt;/a&gt;"
+    award and label, annoucemement in the special july-august &lt;a href="http://boutique.ed-diamond.com/home/872-linux-pratique-90.htm"&gt;Linux
+    Pratique
+    magazine&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>1st video about XiVO</title><link href="http://blog.xivo.io/1st-video-about-xivo.html" rel="alternate"></link><updated>2015-07-28T20:08:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-28:1st-video-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;We are glad to share this FIRST video about XIVO:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Watch the video
+    &lt;a href="http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre"&gt;http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;It is a 4mn video to present all about XiVO. 3 topics in the video:
+    to introduce about Asterisk and XiVO, to know better and to thank
+    all the contributors, how to try XiVO!&lt;/li&gt;
+&lt;li&gt;This video is in english and under creative commons licence (cc by
+    sa 4.0). We used Kdenlive, a free software.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XIVO-VIDEO-ENG-2015.png" src="/public/XIVO-VIDEO-ENG-2015.png" title="XIVO-VIDEO-ENG-2015.png, juil. 2015" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The video from the "Blog des Telecoms" website&lt;/strong&gt; here:
+    &lt;a href="http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre"&gt;http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt; : &lt;a href="https://www.youtube.com/watch?v=leMZi6cU8iM"&gt;https://www.youtube.com/watch?v=leMZi6cU8iM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Our video playlist&lt;/strong&gt; to know us better:
+    &lt;a href="https://www.youtube.com/playlist?list=PLRYrJgPhLiqTjmzjW23vqk5psnfzs-Ay0"&gt;https://www.youtube.com/playlist?list=PLRYrJgPhLiqTjmzjW23vqk5psnfzs-Ay0&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;Enjoy!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/p&gt;</summary></entry><entry><title>June 2015, XiVO 15.11 release</title><link href="http://blog.xivo.io/june-2015-xivo-1511-release.html" rel="alternate"></link><updated>2015-06-25T15:54:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-25:june-2015-xivo-1511-release.html</id><summary type="html">&lt;p&gt;June 2015: sprint review 15.11&lt;/p&gt;
+&lt;p&gt;This sprint we have worked on various subjects regarding REST APIs. REST
+APIs enable a more customizable and flexible management of XiVO server.
+They also enable the development of third-party features.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In this article: New in this sprint, more technical information
+    (Asterisk and DAHDI) and work done in this sprint, but not
+    yet ready.&lt;/li&gt;
+&lt;li&gt;Read the full article here.
+    &lt;a href="/index.php?post/2015/06/12/Sprint-review-15.11"&gt;http://blog.xivo.io/index.php?post/2015/06/12/Sprint-review-15.11&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="JUNE2015-XIVO-RELEASED.png" src="/public/JUNE2015-XIVO-RELEASED.png" title="JUNE2015-XIVO-RELEASED.png, juin 2015" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Summary about the VoIP meeting with Mumble, about telephony system and Free Software</title><link href="http://blog.xivo.io/summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html" rel="alternate"></link><updated>2015-06-18T15:50:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-18:summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" src="/public/June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" title="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png, juin 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;The BarCamp summary about VoIP meeting, organised with Mumble, is &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;on
+line&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;web site, logos and
+    schedule&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Download &lt;a href="/public/BarCampIRC-3-Meeting-VoIP-Mumble-Libre-2015-CRv01.pdf"&gt;the
+    summary&lt;/a&gt;
+    We shared news, tips and our favorite documentations &lt;em&gt;(in french)&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;The audio meeting in .ogg (soon)&lt;/li&gt;
+&lt;li&gt;To organise your own meeting, you can read our feedback during the
+    last events and in
+    &lt;a href="/public/BarCampIRC-3-Meeting-VoIP-Mumble-Libre-2015-CRv01.pdf"&gt;here&lt;/a&gt;
+    &lt;em&gt;(in french)&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Last events - BarCamp #1 et #2
+    &lt;a href="http://barcamp.org/w/page/94666184/BarCampIRC-Qu%C3%A9bec"&gt;websites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;News about BarCamp #3 on
+    &lt;a href="/index.php?post/2015/06/04/A-BarCamp-about-VoIP%2C-with-Mumble"&gt;blog.xivo.fr&lt;/a&gt;
+    and on
+    &lt;a href="https://twitter.com/v_dagrain/status/607894402632171520"&gt;twitter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thank you to &lt;a href="http://revenudebase.info/"&gt;MFRB&lt;/a&gt; and
+&lt;a href="https://www.april.org/"&gt;April&lt;/a&gt;, &lt;a href="http://www.asterisk-france.org/"&gt;Asterisk
+France&lt;/a&gt; and the other communities in
+Free software.&lt;/p&gt;
+&lt;/p&gt;</summary><category term="barcamp"></category><category term="free software"></category><category term="mumble"></category><category term="voip"></category></entry><entry><title>Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</title><link href="http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html" rel="alternate"></link><updated>2015-06-12T18:40:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-12:raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html</id><summary type="html">&lt;p&gt;(L'article au complet en français, juste après)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source
+telephone system&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In 2012 a first attempt was made at integrating a raspberry-pi and
+    XiVO, a telephone system based on Asterisk and licensed under GPLv3.
+    More info at
+    &lt;a href="http://www.raspberry-xivo.org/"&gt;http://www.raspberry-xivo.org&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Furthermore, the arrival of the raspberry pi version 2 has opened up
+    new technical avenues. That's why in may 2015, Jof launched the
+    project Raspivo, Raspberry Ri 2 + XiVO = Raspivo. Blog and more info
+    at &lt;a href="http://raspivo.io"&gt;http://raspivo.io&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The beggining of the adventure with raspberry pi 2, XiVO and
+Raspbian&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iris-Network (http://www.iris-network.fr), a telecommunications
+    company based in France, decided to launch a new project combining
+    XiVO and Raspberry-pi 2, a low-cost embedded platform.&lt;/li&gt;
+&lt;li&gt;This article summarizes the installation of Raspbian, the
+    recompilation of XiVO packages for the ARM platform, and testing
+    that was done on incoming and outgoing calls in order to validate
+    the quality and the stability of the architecture.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;During the tests, 12 simultaneous calls were successfully handled in
+    optimal conditions.&lt;/li&gt;
+&lt;li&gt;In order to test the project in real world conditions, the team at
+    Iris-Network replaced their internal telephone system, along with
+    the hotline platform, with a RPi2 server. So far, everything remains
+    stable and running ! Currently, testing is progressing with the help
+    of beta-testing customers. In the spirit of sharing and respect for
+    the open source philosophy, work on the project has been made
+    available to the public by publishing debian packages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Installation using the debian repository and raspbian IMG&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;4 main steps to installing raspivo (RPi2 + XiVO): 1. Install
+    Raspbian (Debian for Raspberry Pi); 2. Install any other packages
+    you typically need for administering a server; 3. Add the raspivo
+    respository; 4. Install raspivo. More information available here (in
+    french): &lt;a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html"&gt;http:
+    //www.raspivo.io/installation-depuis-nos-depots.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;From a disk image (IMG): To make installation easier, a complete
+    disk image can be downloaded, taking less than 5 minutes to install.
+    In the same way as you would install Raspbian, you can also install
+    Raspivo thanks to 'dd': dd if=Raspivo-15.10.img of=/dev/sdX
+    (replacing sdX with the partition of your sdcard).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The changelog for XiVO is available here
+    http://projects.xivo.io/versions/223 and you can find more news on
+    raspivo here http://www.raspivo.io/version-1510.html.&lt;/li&gt;
+&lt;li&gt;The project would be grateful to hear from anyone who would be
+    interested in testing or any other feedback.&lt;/li&gt;
+&lt;li&gt;"These tutorials will help me during my presentation on raspberry pi
+    2 with XiVO for workshops for a local fablab in Quebec" wanda,
+    member of http://espace-lab.org; "&lt;a href="Raspivo" title="Raspivo"&gt;Raspivo&lt;/a&gt; is a
+    new initiative from the community ! Have fun ! I'm very happy with
+    xivo on raspberry pi. " quintana, &lt;a href="http://www.raspberry-xivo.org/"&gt;http://www.raspberry-xivo.org/&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Feel free to share and have fun with this open source project and
+    the logo &lt;a href="raspivo.io"&gt;raspivo.io&lt;/a&gt; ! :)&lt;/li&gt;
+&lt;li&gt;Jof and wanda. Licence CC by sa 4.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Raspivo, s'amuser avec raspberry pi 2 et XiVO système en téléphonie
+open source&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;En 2012, des ateliers ont commencé sur raspberry-pi et XiVO (système
+    de téléphonie, basé sur Asterisk et sous licence GPLv3).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Toutes les étapes ici:
+&lt;a href="http://www.raspberry-xivo.org"&gt;www.raspberry-xivo.org&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Avec l'arrivée de la version 2 de raspebrry pi, de nouvelles
+    possibilités sont maintenant offertes : en mai 2015 Jof lance
+    "raspberry pi 2 + XiVO = raspivo"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Retrouvez les tests et tutoriaux sur mon/notre blog &lt;a href="http://raspivo.io"&gt;http://raspivo.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Le début de l'aventure raspberry pi 2, XiVO et Raspbian&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iris-Network (http://www.iris-network.fr), entreprise experte en
+    télécommunications, a lancé l'expérience XiVO sur Raspberry-pi 2,
+    plate-forme compacte à moindre frais.&lt;/li&gt;
+&lt;li&gt;Cet article présente l'installation de Raspbian, la compilation des
+    paquets XiVO compatible pour plateformes ARM, des tests sur les
+    appels entrants et sortants pour valider la qualité et la stabilité
+    de cette architecture.&lt;/li&gt;
+&lt;li&gt;Lors des tests, 12 appels simultanés ont été effectués dans des
+    conditions optimales. Pour passer en conditions réelles, l'équipe
+    d'Iris-Network à basculé son système de téléphonie interne ainsi que
+    sa plateforme de hotline sur ce RPi2. Tout est fonctionnel et fiable
+    ! Actuellement, ces tests continuent avec l'aide de
+    clients beta-testeurs.&lt;/li&gt;
+&lt;li&gt;Dans un soucis de partage et de respect de la philosophie
+    OpenSource, ce travail est mis à la disposition de la communauté,
+    sous forme de paquets Debian.&lt;/li&gt;
+&lt;li&gt;En savoir plus: http://www.raspivo.io/raspivo.html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;ins&gt;
+    Installation depuis les dépôts et depuis une image disque
+    &lt;/ins&gt;
+    (IMG)&lt;/li&gt;
+&lt;li&gt;Depuis les dépôts, l'installation de raspivo (RPi2 + XiVO) se
+    déroule en 4 étapes: 1. Installation de raspbian (Debian pour
+    Raspberry Pi) ; 2. Installation de logiciels typiques pour
+    l'administration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3. Ajout du dépot raspivo ; 4. Installation de raspivo.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;En savoir plus:
+    &lt;a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html"&gt;www.raspivo.io/installation-depuis-nos-depots.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;ins&gt;
+    Depuis une image disque (IMG):
+    &lt;/ins&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;dl&gt;
+&lt;dt&gt;Pour faciliter le déploiement, une image complete est mise à disposition&lt;/dt&gt;
+&lt;dd&gt;l'installation prend moins de 5 minutes.De même que pour une
+installation de Raspbian classique, vous pouvez également installer
+Raspivo grace à 'dd' :dd if=Raspivo-15.10.img of=/dev/sdX et en adaptant
+bien sur sdX par votre SdCard.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;La version 15.10 de XiVO packagée pour votre Raspberry 2&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Voici le changelog http://projects.xivo.io/versions/223 et les
+    nouveautés http://www.raspivo.io/version-1510.html&lt;/li&gt;
+&lt;li&gt;Merci de nous envoyer vos témoignages ou vos tests. "Ces tutoriaux
+    vont m'aider a présenter raspberry pi 2 avec XiVO, pour des ateliers
+    dans un fablab local à Québec" wanda, membre de l'Espace Lab et
+    community manager XiVO ; au sujet de Raspivo, "c'est une nouvelle
+    initiative de la communauté ! Amusez-vous bien, avec XiVO et le
+    raspberry pi. " quintana,
+    &lt;a href="http://www.raspberry-xivo.org/"&gt;www.raspberry-xivo.org&lt;/a&gt;. Merci de
+    partager la doc. de ce projet open source et le logo
+    &lt;a href="raspivo.io"&gt;raspivo.io&lt;/a&gt; ! :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jof et wanda. Article en CC by sa 4.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>2nd BarCamp about VoIP and open source telephony system</title><link href="http://blog.xivo.io/2nd-barcamp-about-voip-and-open-source-telephony-system.html" rel="alternate"></link><updated>2015-04-20T20:37:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-20:2nd-barcamp-about-voip-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;To better know each other skills and projects, we organised a &lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;survey
+about XiVO
+contributors&lt;/a&gt;
+(in french) and a meeting with the &lt;a href="/index.php?post/2015/04/16/1st-BarCampIRC-about-Asterisk-and-open-source-telephony-system"&gt;1st BarCampIRC about VoIP open
+source&lt;/a&gt;
+on the BarCamp wiki website,
+&lt;a href="http://barcamp.org/w/page/94666184/BarCampIRC-Québec"&gt;here&lt;/a&gt;. During
+this meetings, some contributors send their opinions about "&lt;a href="/index.php?post/2015/04/13/Pourquoi-j-ai-choisi-XiVO"&gt;Why they
+chose XiVO&lt;/a&gt;".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="VoIP-OpenSource-Session2-Open4All.png" src="/public/VoIP-OpenSource-Session2-Open4All.png" title="VoIP-OpenSource-Session2-Open4All.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;The news: a &lt;a href="http://barcamp.org/w/page/95337185/BarCampIRC-VoIP-opensource"&gt;2nd BarCampIRC about VoIP and open source telephony
+system&lt;/a&gt;
+with some Linux User Group.An other event will welcome ideas from
+students in Télécommunication schools, in automn.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;The questions and topics&lt;/strong&gt;News about webRTC ; What's the XiVO business
+model (how does it ranks compared to a conventional PABX?) ; The use of
+VoIP in the podcasting / radio broadcast ; How to manage payments and
+voip ? Pay per minute , paypal, bitcoins , etc. ; What's the news about
+Voice Recognition? ; What about a good VoIP instead of H323 and Skype? ;
+Which solutions to speak with lot of people, as in Mumble? ; What about
+Atlassian, like Jira, Confluence and HipChat? and BlueJimp (Jitsi) Your
+advices about a cartoon with XiVO 1,2,3... go!&lt;/p&gt;
+&lt;p&gt;Reading &lt;a href="/public/BarCampIRC-2ndMeeting-VoIP-OpenSource-2015-CRv01.pdf"&gt;the report about the 2nd
+BarCampIRC&lt;/a&gt;
+about VoIP and open source telephony system.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>1st BarCampIRC about Asterisk and open source telephony system</title><link href="http://blog.xivo.io/1st-barcampirc-about-asterisk-and-open-source-telephony-system.html" rel="alternate"></link><updated>2015-04-16T20:01:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-16:1st-barcampirc-about-asterisk-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIP.png" src="/public/BarCampVoIP.png" title="BarCampVoIP.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DOWNLOAD THE REPORT about this #1 meeting:&lt;/li&gt;
+&lt;li&gt;&lt;a href="/public/BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf"&gt;BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;About&lt;/strong&gt;: A BarCamp is an ad-hoc unconference born from the desire for
+people to share and learn in an open environment. It is an intense event
+with discussions, demos and interaction from attendees. All your
+questions and topics here:
+&lt;a href="http://barcamp.org/w/page/94666184/BarCampIRC-Qu%C3%A9bec" title="http://barcamp.org/w/page/94666184/BarCampIRC-Qu%C3%A9bec"&gt;http://barcamp.org/w/page/94666184/...&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When&lt;/strong&gt; Wednesday, April 15 2015: 15.04.2015 10:00 Quebec and 16:00
+France - 1H to 2H&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Localisation&lt;/strong&gt;: This meeting will be on IRC, channel #xivo. This
+channel is open everyday.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt;: This meeting welcomes open source contributors about VoIP open
+source. The topic is about Asterisk and open source telephony system.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Development&lt;/strong&gt;: A Barcamp is a "network of user-generated conferences
+primarily focused around technology and the web. They are open,
+participatory workshop-events, the content of which is provided by
+participants. The first BarCamps focused on early-stage web
+applications, and were related to open source technologies, social
+software, and open data formats. The format has also been used for a
+variety of other topics" as PythonCamp, DrupalCamp or this one about
+VoIP. You can register and edit the page yourself to add your ideas.This
+meeting will be on IRC chat to welcoming some open source communities
+and different skills.The stake is to speak about the differents topics
+coming from participants, to present your skills or your needs, to share
+documents or news.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2015-Flyer-BarCampIRC-Telephony-OpenSource.png" src="/public/2015-Flyer-BarCampIRC-Telephony-OpenSource.png" title="2015-Flyer-BarCampIRC-Telephony-OpenSource.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="Asterisk"></category><category term="open source"></category><category term="telephony"></category></entry><entry><title>Les contributeurs de la communauté XiVO</title><link href="http://blog.xivo.io/les-contributeurs-de-la-communaute-xivo.html" rel="alternate"></link><updated>2015-04-07T17:23:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-07:les-contributeurs-de-la-communaute-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RÉSULTAT DU SONDAGE: les réponses des contributeurs de XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Le statut, le genre et l'âge des répondants, contributeurs sur XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parmi les 20 répondants&lt;/strong&gt;, 19 sont des hommes et 60% des répondants
+ont entre 31 et 40 ans. 25% se définissent passionnés de
+télécommunications et 10% sont membres d'un groupe utilisateur Linux ou
+open source.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L'activité des répondants est :&lt;/strong&gt;1 dirigeant d'une société en
+informatique et télécommunications, 3 directeurs informatique, 1
+administrateur réseau/téléphonie, 2 employés dans un centre d’appel, 2
+développeurs informatique, 4 employés en informatique ou télécom, 2
+administrateur système, 2 Technico-commercial, 2 techniciens en
+informatique et réseau, 1 responsable informatique. Parmi eux 25% sont
+des clients.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L'objectif de cette section est :&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;d'avoir un portrait des répondants qui se sont mobilisés par ce
+    sondage;&lt;/li&gt;
+&lt;li&gt;de situer les profils professionnels et la diversité métiers
+    des répondants. En identifiant les profils absents pour accueillir
+    d'autres contributeurs on évite de renforcer la communication
+    seulement sur les profils identifiés.&lt;/li&gt;
+&lt;li&gt;d'identifier les ressources dont les contributeurs auront besoin
+    selon leurs métiers et les prochaines réponses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Q.1 Avant de connaître XiVO, quelles solutions avez-vous envisagé ?
+Qu'est ce qui vous a fait garder XiVO ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les 20 répondants citent les solutions qu'ils ont testé avant de
+connaître le système XiVO et le support d'Avencall. Ils partagent plus
+de 23 argumentations pour avoir gardé XiVO. Des arguments :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;la possibilité de nouvelles fonctionnalités et l'absence de
+    contraintes évolutives;&lt;/li&gt;
+&lt;li&gt;de s'affranchir des licences propriétaires;&lt;/li&gt;
+&lt;li&gt;de connaître la communauté Asterisk et des solutions Libres;&lt;/li&gt;
+&lt;li&gt;soit le système XiVO était déjà en place dans l'entreprise et vous
+    avez découvert XiVO durant votre prise de poste soit à l'occasion
+    d'un remplacement des postes, votre entreprise a installé des
+    systèmes XiVO;&lt;/li&gt;
+&lt;li&gt;l'importance de la relation de proximité, le support et la qualité
+    des livrables;&lt;/li&gt;
+&lt;li&gt;l'accès à la documentation et votre auto-formation pour tester;&lt;/li&gt;
+&lt;li&gt;qu'il s'agit d'un produit complet et souple.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Q.2 Comment avez-vous connu XiVO ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les 20 répondants ont présenté 4 sources où ils ont découvert XiVO:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;par l'entreprise ou des collègues, donc dans un contexte
+    professionnel;&lt;/li&gt;
+&lt;li&gt;par des activités de veille technologique et des recherches
+    professionnelles;&lt;/li&gt;
+&lt;li&gt;par le réseau de connaissance, de confiance et de proximité;&lt;/li&gt;
+&lt;li&gt;par l'accès à des ressources documentaires.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Comment_Avez_vous_connu_XiVO-Mars2015.png" src="/public/Comment_Avez_vous_connu_XiVO-Mars2015.png" title="Comment_Avez_vous_connu_XiVO-Mars2015.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q.3 Pourquoi avez-vous installé XiVO et quand l'avez-vous testé pour
+la première fois ? Quels téléphones utilisez-vous ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les 20 répondants citent 30 exemples qui révèlent ces raisons pour
+installer XiVO:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pour tester et renouveler le parc téléphonique;&lt;/li&gt;
+&lt;li&gt;comme une alternative, un choix et une adaptation.&lt;/li&gt;
+&lt;li&gt;2 témoignages d'usages professionnels et sur le potentiel de XiVO.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Les 20 répondants citent 14 produits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Les plus citées sont Aastra et Gigaset puis Snom, Cisco et Polycom
+    suivis de Yealink et Jitsi pour finir par Thomson, Grandstream,
+    Autocom Xorcom, Mitel, Siemens, Spectra Link et Tiptel.&lt;/li&gt;
+&lt;li&gt;Les répondants témoignent utiliser depuis peu ou déployer
+    prochainement des produits comme : Yealink, Spectra Link, Jitsi
+    et Mitel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Q.4 Quels sont les supports ou tutoriels que vous utilisez le plus ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les 20 répondants présentent 48 sources de supports d'informations. Ces
+réponses révèlent 4 groupes :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ceux qui se dirigent sur les ressources documentaires, tutoriels,
+    IRC, forums, code source et fiches produits de XiVO (51%);&lt;/li&gt;
+&lt;li&gt;ceux qui vont sur l'IRC, code source et forum d'Asterisk (25%);&lt;/li&gt;
+&lt;li&gt;ceux qui vont chercher ou échanger sur les forums communautaires
+    (14%);&lt;/li&gt;
+&lt;li&gt;ceux qui développent des solutions eux-même : autodidacte ou en
+    interne de leur entreprise et qui proposent de les mettre à
+    disposition (10%).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Les_supports_les_plus_utilisees_XiVO-Mars2015.png" src="/public/Les_supports_les_plus_utilisees_XiVO-Mars2015.png" title="Les_supports_les_plus_utilisees_XiVO-Mars2015.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q.5 Quels bénéfices vous a apporté XiVO ? Vous recommanderiez XiVO à
+qui et pourquoi ?&lt;/strong&gt;Les 20 répondants présentent :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;34 argumentations sur les bénéfices de XiVO tels que :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;la simplicité d'installation, de prise en main, de déploiement, de mise
+à jour et un support efficace; des avantages sur les coûts; la
+possibilité de modifier, la flexibilité de choix de modèles de
+terminaux, des solutions adaptées; un produit open source;
+l'indépendance face à des solutions propriétaires; une stabilité et
+fiabilité; des évolutions régulières; adapté aux entreprises; s'appuyant
+sur Asterisk; XiVO apporte de la communication unifiée; la présence
+d'une communauté francophone.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3 argumentations sur les manques de XiVO tels que :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;l'absence de support sur tous les modèles; la demande d'une
+documentation complète en français.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;12 avis pour recommander XiVO et Avencall :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;car c'est un produit phare; pour réduire les coûts et s'affranchir de
+solutions propriétaires; cela convient aux collectivités territoriales,
+aux services publics (ex : les commissions scolaires), TPE et PME; à des
+amis en télécommunications; Avencall pour l'installation et la
+maintenance; pour ceux qui connaissent Linux et Debian; à tous le monde.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q.6 Vous avez un projet d'étude&lt;/strong&gt;60% des répondants ont témoigné avoir
+des projets personnels qu'ils cherchent à développer. Parmi ces
+répondants :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;4 témoignages portent sur leurs activités actuelles;&lt;/li&gt;
+&lt;li&gt;11 témoignages sur ce que les répondants aimeraient voir de
+    développé avec XiVO;&lt;/li&gt;
+&lt;li&gt;5 expriment des attentes sur les évolutions pour « demain ».&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Comme: « le Web RTC », « l'intégration d’Open VPN », « l'intégration de
+XiVO avec Outlook 2013 », « la fin des REST API à développer », « la
+création d’un softphone XiVO».&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q.7 Ce que vous aimeriez faire avec la communauté XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les répondants ont témoigné avoir des compétences qu'ils souhaitent
+partager sur des projets communs : tutoriels, développement internes
+puis mise à disposition (GNU GPL), traduction, se tenir informer ou
+donner des avis sur des fonctionnalités.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3 témoignages sur les activités actuelles des contributeurs :
+    publications de tutoriels, échanger sur le forum Asterisk.&lt;/li&gt;
+&lt;li&gt;7 témoignages sur vos actions à venir qui vous motivent :
+    publications, mise en licence GNU GPL, modifier des configurations,
+    rester informer sur l'évolution de XiVO.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Les remerciements envoyés par les contributeurs de XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;C.L témoigne  « Je pense avoir effectué une bonne partie des
+    premières installation XiVO depuis ses débuts, avec M. Boily ;-) »&lt;/li&gt;
+&lt;li&gt;Y.G témoigne : « Je tiens à remercier tous les gens qui nous ont
+    aidés sur le chat.  »&lt;/li&gt;
+&lt;li&gt;T.G témoigne  « Merci aux développeurs pour leur travail, merci à
+    leur maison mère de distribuer gratuitement et librement XiVO et
+    nous permettre d'en profiter même lorsque nous ne pouvons pas nous
+    payer de solution de téléphonie hors de prix, merci à Valérie pour
+    tout ce qu'elle a fait pour NyXD. Et merci à tous pour cette
+    sympathie, cette ambiance, cette proximité (bien que virtuelle,
+    distance oblige), ce logiciel bien sûr, cette ouverture d'esprit,
+    l'aide que vous nous apportez au fil des jours, les connaissances et
+    compétences que vous nous aidez à acquérir, et le plaisir que vous
+    nous offrez en nous permettant d'opérer notre propre serveur de
+    téléphonie. »&lt;/li&gt;
+&lt;li&gt;M.F témoigne  « Nous avons eu d'excellents contacts avec l'agence
+    Avencall de Rennes nous sommes heureux d'avoir fait ce choix ...
+    merci ! »&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;« Les utilisateurs ont une réaction très positive par rapport au client
+CTI »&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Y.C témoigne  « À la question si je conseillerai XiVO, je vous
+    répondrai que je serai même prêt à le distribuer ! il correspond à
+    tous mes besoins. »&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;« Je suis tombé récemment sur le blog XiVO pour les nul que j'ai trouver
+très intéressant, j'aurai aimé l'avoir à mes débuts, le blogueur a
+l'aire sympas et motivé. »« Longue vie à XiVO et à sa communauté !  »&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G.R témoigne  « Déploiement plus rapide des postes. Recommandé sans
+    soucis, simple, efficace. »&lt;/li&gt;
+&lt;li&gt;A. témoigne : « Ce logiciel est parfait =) .»&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Avec les remerciements de Valérie, C.M de XIVO :)&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Indonesian and French meeting in Paris about XiVO</title><link href="http://blog.xivo.io/indonesian-and-french-meeting-in-paris-about-xivo.html" rel="alternate"></link><updated>2015-03-16T19:09:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-03-16:indonesian-and-french-meeting-in-paris-about-xivo.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Can you present us your company and in what industry you work
+    within Indonesia ?&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;"KMP is an independent company located in Indonesia offering IT and
+Telecommunication based services and solutions.. We specialize in
+customized business solutions. KMP helps clients plan, build and support
+their IT and Telecomunication infrastructures. KMP combines expertise
+from IT and Telco networking, operating environments, and data storage
+protection technologies.- With our advanced skills in consulting,
+integration and managed services, we offer our customers a unique
+combination of solutions and business strength. We have experience in
+the following sectors: government, office buildings, telecom operators,
+factory and mining industries".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;How did you learn about XiVO and open source telephony systems?&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;"We discovered &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; when we visited an
+exhibition in Hong-Kong and
+&lt;a href="http://www.avencall.com/en/avencall-at-the-communicasia-show-2013-in-singapore"&gt;Singapore&lt;/a&gt;.
+After gathering information about what products XiVO offered, we held
+discussions back in Indonesia that helped analyze the strengths and
+weaknesses of XiVO and the future of open source technologies. After
+contacting their management, we finally got a chance to work with XiVO.
+Today XiVO has a good user base in Indonesia. We have installed XiVO in
+our biggest telecomunication company, in government mining offices, in
+government banking offices and other kinds of office buildings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It was a great experience for us to visit the IT exhibition in Paris,
+we met with &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; personnel. Some XiVO partners
+over there showed us some interesting features such as an integration
+between XiVO and Bluemind. Juned, Wolter and I are tasked with selling
+XiVO solutions and making sure the usage of XiVO grows within Indonesia
+year by year. Wolter and I have are responsible for sales and marketing.
+Juned is more concerned with technical support".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="IndonesianInParis-XiVO-March2015-RS.jpg" src="/public/IndonesianInParis-XiVO-March2015-RS.jpg" title="IndonesianInParis-XiVO-March2015-RS.jpg, march. 2015" /&gt;Picture:
+meeting in Paris - 02.2015&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;How did you become interested in telephony solutions and XiVO?&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;"&lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; is an Open Source product with a very
+good support. They have an R&amp;amp;D team used to further develop features and
+meet customer requirements. They also have success stories in Europe
+with many customers and a good user base.- XiVO provides an
+&lt;a href="http://xivo.readthedocs.org/en/stable/"&gt;up-to-date&lt;/a&gt; system by releasing
+new versions which helps develop more and more features. This is good
+for meeting customer requirements and keeping client satisfaction".&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;According to you, what trends will we see during 2015 in the world
+    of Unified Communication and Open Source?&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;"The need for unified communications will increase year by year
+because it will always be necessary to fulfilling other professional
+needs. BYOD (Bring your own device) will become a trend among
+professionals and U.C can fill this trend.- Open Source technologies is
+one of the best alternatives available to fullfill needs in U.C thanks
+to its flexibility and growing feature set available at a lower cost.-
+We usually visit the asian communication exhibition in Singapore every
+year (usually during June or July) and the &lt;a href="http://www.ictindo.com"&gt;Indonesia call ICT
+exhibition&lt;/a&gt;. It occurs every 2 years and the
+next will be held in Jakarta during 2016.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Currently, we are very interested by the possibilities around instant
+messaging and web collaboration that can be delivered using open source
+solutions, especially with a XiVO server".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Creative Commons Share-Alike (CC-SA) v3.0 - 03.2015&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>A BarCamp about VoIP, with Mumble</title><link href="http://blog.xivo.io/a-barcamp-about-voip-with-mumble.html" rel="alternate"></link><updated>2015-02-16T21:16:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-02-16:a-barcamp-about-voip-with-mumble.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIPopensource-With-Mumble-June2015.png" src="/public/BarCampVoIPopensource-With-Mumble-June2015.png" title="BarCampVoIPopensource-With-Mumble-June2015.png, juin 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A new BarCamp about VoIP:What&lt;/strong&gt; Write directly your questions or
+topics on the &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;wiki
+website&lt;/a&gt;
+or contact us.&lt;strong&gt;When&lt;/strong&gt;: 17th june 2015, 16:00 to 18:00 (France) and
+10:00 to 12:00 (Quebec)&lt;strong&gt;How&lt;/strong&gt;: Tutorial in
+&lt;a href="http://revenudebase.info/mumble/"&gt;French&lt;/a&gt;, in
+&lt;a href="https://www.youtube.com/watch?v=oQSilwOySU8"&gt;english&lt;/a&gt; , in
+&lt;a href="https://www.youtube.com/watch?v=lm61L-n1cIE"&gt;spanish&lt;/a&gt;&lt;strong&gt;Contact&lt;/strong&gt; (to
+try mumble before, for exemple): on IRC server freenode #xivo (french
+and english channel) or join Valérie here
+vdagrain***@***avencall.com&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Last meeting:&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl&gt;
+&lt;dt&gt;SESSION #1 : 15 april 2015 - the website is&lt;/dt&gt;
+&lt;dt&gt;&lt;a href="http://barcamp.org/w/page/94666184/BarCampIRC-Qu%C3%A9bec"&gt;here&lt;/a&gt;. The&lt;/dt&gt;
+&lt;dt&gt;summary about the topics and meeting are&lt;/dt&gt;
+&lt;dt&gt;&lt;a href="/public/BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf"&gt;here&lt;/a&gt;.SESSION #2&lt;/dt&gt;
+&lt;dd&gt;29 april 2015 - the website is
+&lt;a href="http://barcamp.org/w/page/95337185/BarCampIRC-VoIP-opensource"&gt;here&lt;/a&gt;.
+The report is
+&lt;a href="/public/BarCampIRC-2ndMeeting-VoIP-OpenSource-2015-CRv01.pdf"&gt;here&lt;/a&gt;.
+Session with more LUG!!&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Next activities:&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SESSION #3 : 17 june 2015 - the website is
+&lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSourcehere"&gt;here&lt;/a&gt;.
+The report soon here. Coordination on IRC channel #xivoSESSION #4:
+.. october 2015 - the website and report soon here. Session will be
+organised from an hacking camp and with students in
+telecommunication/software engineering!!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;The kind of questions and topics&lt;/strong&gt;News about webRTC ; What's the XiVO
+business model (how does it ranks compared to a conventional PABX?) ;
+The use of VoIP in the podcasting / radio broadcast ; How to manage
+payments and voip ? Pay per minute , paypal, bitcoins , etc. ; What's
+the news about Voice Recognition? ; What about a good VoIP instead of
+H323 and Skype? ; Which solutions to speak with lot of people, as in
+Mumble? ; What about Atlassian, like Jira, Confluence and HipChat? and
+BlueJimp (Jitsi) Your advices about a cartoon with XiVO 1,2,3...
+go!Reading &lt;a href="/public/BarCampIRC-2ndMeeting-VoIP-OpenSource-2015-CRv01.pdf"&gt;the report (FR) about the 2nd
+BarCampIRC&lt;/a&gt;
+about VoIP and open source telephony system.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 4</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html" rel="alternate"></link><updated>2015-01-26T16:44:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+autumn 2014, in the district of Sainte-Foy, Quebec, Canada.This week,
+workshops are about: Open-Data, Printer 3D, plants walls and
+intelligents plants, 3D modeling with the software Blender, arduino,
+solar drone, open-source software in telephony, Information about
+Hacking Club of Laval University, live action role-playing game and
+cyberpunk hacking stuffs.&lt;/p&gt;
+&lt;p&gt;L’EspaceLab, un espace de création numérique communautaire, a ouvert ses
+portes en automne 2014, dans le quartier de Sainte-Foy à Québec, au
+Canada.&lt;em&gt;Reportage par valerie-dagrain.org cc-by-sa 3.0 EspaceLab
+Janvier.2015&lt;/em&gt;Article
+&lt;a href="/index.php?post/2014/12/01/Espace-Lab%2C-espace-numerique-communautaire-%C3%A0-Quebec%3B-des-ateliers-en-logiciel-libre-et-domotique"&gt;1&lt;/a&gt;,
+&lt;a href="/index.php?post/2014/12/15/L-EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2"&gt;2&lt;/a&gt;
+et
+&lt;a href="blog.xivo.io/index.php?post/2015/01/26/L%E2%80%99EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Qu%C3%A9bec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3"&gt;3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Témoignages des activités ouvertes et participatives de ce samedi
+24.janv 2015:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Open-Data&lt;/strong&gt;: Mireille lance un sujet sur l'ouverture des données
+    publiques et l'implication de la ville de Québec: "il y a le site de
+    &lt;a href="http://www.donnees.gouv.qc.ca/?node=/accueil"&gt;Québec sur les données
+    ouvertes&lt;/a&gt;, pour ce qui
+    concerne la capitale mais il y aussi &lt;a href="http://donnees.ville.montreal.qc.ca/"&gt;Montréal
+    ouvert&lt;/a&gt;." Valérie cite des
+    exemples de participations citoyennes comme
+    &lt;a href="https://libertic.wordpress.com"&gt;Libertic&lt;/a&gt;,
+    &lt;a href="http://www.regardscitoyens.org/"&gt;regards-citoyens&lt;/a&gt; (et
+    &lt;a href="http://valerie.dagrain.numerimoire.net/?p=1055"&gt;ici&lt;/a&gt;), des projets
+    de villes "2.0" où se partagent des pratiques d'économie solidaire
+    et sociale afin d'améliorer ou créer un nouvel habitat, re-inventer
+    des modes de vie et prendre en considération l'environnement:
+    &lt;a href="http://imaginationforpeople.org/en/projects/"&gt;Imagination4People&lt;/a&gt;.
+    Discuter sur l'accès aux informations publiques c'est aussi aborder
+    le sujet de la protection des données personnelles, la
+    re-appropriation des lieux de conception avec les fablabs, les
+    hackerspaces et artisans afin de sensibiliser tous les publics aux
+    ateliers, des fortes demandes d'animation pédagogiques (arduino,
+    raspberry-pi, des systèmes libres). Un autre sujet est lancé avec
+    l'accès à Internet en Wi-Fi proposé par
+    &lt;a href="http://www.zapquebec.org/"&gt;ZAP&lt;/a&gt;, un service de Zone d'Accès Public,
+    à Québec.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Imprimante 3D&lt;/strong&gt;: Après le cube qui "tourne avec des rouages",
+    Isabelle a lancé une nouvelle création faite avec l'imprimante 3D:
+    c'est un coeur qui s'articule en "un tour". Il existe un modèle dont
+    il faut faire "5 tours" pour revenir à sa forme initiale. Les pièces
+    internes pour maintenir l'ensemble s'impriment aussi. De nouvelles
+    créations voient le jour et les maquettes sont disponibles sur les
+    sites de maker bot ou un exemple
+    &lt;a href="http://dailygeekshow.com/2014/01/01/mechaneu-une-sphere-dengrenages-stupefiante-qui-explore-les-limites-de-limpression-3d/"&gt;ici&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;L'atelier sur la "plante intelligente"&lt;/strong&gt; s’agrandit: le groupe de
+    travail présente des ressources bibliographiques sur les murs
+    végétaux, souhaiter inviter d'autres personnes intéressés par la
+    bio-informatique et "comment présenter ce projet" à l'écran pour une
+    prochaine session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Un groupe améliore l'imprimante 3D&lt;/strong&gt;: L'animateur de la semaine
+    passé (lire
+    &lt;a href="/index.php?post/2015/01/26/L%E2%80%99EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Qu%C3%A9bec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3"&gt;ici&lt;/a&gt;)
+    avait présenté le fonctionnement de son imprimante 3D car la demande
+    d'apprentissage est forte. Durant cet atelier, il a lancé
+    l'impression d'une tuyère, pour refroidir le système de la machine
+    elle-même et l'améliorer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="www.blender.org"&gt;Blender&lt;/a&gt; le logiciel de modélisation 3D&lt;/strong&gt;: un
+    groupe de travail présente sur l'écran, des plans de pièces. Le
+    fichier peut-être lu et exporté sur l'imprimante 3D.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Un atelier arduino et "makey makey"&lt;/strong&gt;: un jeune animateur a initié
+    un atelier arduino et des démonstrations. Isabelle a présenté des
+    logiciels de musique ou jeux pour connecter via des éléments
+    conducteurs sur "makey makey". Je lui demande comment on peut
+    étendre à plusieurs octaves suite à une démonstration sur le piano.
+    &lt;a href="https://www.youtube.com/watch?v=rfQqh7iCcOU"&gt;Makey Makey,&lt;/a&gt; permet
+    des usages immédiats mais aussi d’être programmé pour des
+    usages étendus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;L'atelier de drone solaire&lt;/strong&gt;. Mickaël: Il présente ses maquettes
+    et durant cette seconde session il a pu bien avancer les tests de
+    voltage et de recharge sur les membranes solaires. "Aujourd'hui je
+    veux vérifier que le système allait fonctionner. Pour cela on va
+    faire un test de charge". Je me suis joins à cet atelier pour
+    initier un atelier "tournage en milieu non urbain" avec un drone,
+    fin février.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Étudiants en télécommunication et téléphonie Libre&lt;/strong&gt;: Je développe
+    une présentation sur &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt;, en téléphonie
+    libre pour voir comment présenter ce qu'il y a d'amusant avec les
+    messages et un réseau téléphonique ouvert.
+    &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; est basé sur
+    &lt;a href="http://www.asterisk-france.org"&gt;Asterisk&lt;/a&gt; et je souhaite monter un
+    atelier en télécommunication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Club de hacking à l'Université Laval&lt;/strong&gt;: Je relaye qu'il y a une
+    journée porte-ouverte le 7 février 2015, à l'Université Laval et
+    dont le club de &lt;a href="http://hacking.fsg.ulaval.ca/"&gt;hacking&lt;/a&gt;
+    sera présent. Je souhaite monter un petit groupe sur les
+    télécommunications pour une mise en réseau avec des étudiants
+    en Bretagne.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maquettes&lt;/strong&gt; : avec Mickaël, Michel et Isabelle, nous élargissons
+    le sujet sur la modélisation. Mickaël avait préparé une maquettes
+    pour son drone et d'autres conceptions en argile.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="EspaceLab-Quebec-24012015-RS.png" src="/public/EspaceLab-Quebec-24012015-RS.png" title="EspaceLab-Quebec-24012015-RS.png, janv. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ateliers de jeux de rôle grandeurs nature et ateliers bidouillage&lt;/strong&gt;
+:Durant les ateliers, nous avions parlé de modélisation, maquettes et
+bidouillage dont voici quelques liens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Depuis 1997, dans les scénarios médiévaux&lt;/strong&gt;, je fabrique des épées
+    en mousse (fibre carbone, mousse, latex, acrylique). J'ai également
+    crée un portail circulaire avec des runes luminescentes (démontable
+    et portable), un cristal géant, des maquettes en argile.
+    L’électronique nous sert ici pour déclencher des effets spéciaux.
+    Mais j'ai également vu un groupe de joueur (Elfes noirs) créer des
+    barrières lumineuses pour simuler des champs de force ou intégrer de
+    la fibre optique dans leurs costumes pour simuler des
+    armures magiques.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;En 2010, j'ai initié un croisement entre "jeux de simulation et
+    hackerspace"&lt;/strong&gt; car pour les époques "steampunk" nous avions besoin
+    d'animer des objets avec des rouages et des leds. La communauté de
+    jeu de rôle avait les idées mais pas de locaux et pas toutes les
+    compétences techniques.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;En 2011-2012, robotique et steampunk&lt;/strong&gt;: c'est un étudiant en
+    robotique qui avait fait un stage sur les marionnettes, avec qui
+    j'ai pu développer des idées: voici une de ces
+    &lt;a href="http://guildebzh.fr/?p=1290"&gt;créations&lt;/a&gt;. Ensuite j'ai crée un
+    &lt;a href="http://valerie.dagrain.numerimoire.net/?p=2384"&gt;scénario cyberpunk&lt;/a&gt;
+    adapté pour une soirée enquête: mon objectif était de faire se
+    rencontrer des scénaristes et les bidouilleurs du hackerspace. Voici
+    le &lt;a href="http://valerie.dagrain.numerimoire.net/?p=2384"&gt;compte-rendu&lt;/a&gt; de
+    ces 2 soirée-enquêtes et photos. En 2012, j'ai rencontré des
+    professionnels du
+    &lt;a href="https://picasaweb.google.com/114321407839074124021/EHSM2012PhotosByEwelinaValerie#5836922808455226162"&gt;steampunk&lt;/a&gt;
+    à Berlin lors de la conférence de Hacking
+    &lt;a href="http://ehsm.eu/2012/"&gt;EHSM&lt;/a&gt; où j'étais co-organisatrice. Les
+    concepteurs recréent des ambiances 19ème siècle, avec des
+    technologies du jour. Cela donne un ordinateur victorien, des livres
+    mécaniques, des lampes dans lesquelles poussent des plantes ou une
+    main qui écrit toute seule. Un moyen de comprendre comment l'arrivée
+    de l’électricité à développer les imaginations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2012, des scénarios futuristes.&lt;/strong&gt; Suite à mon expérience sur la
+    soirée-enquête cyperpunk (Blade Runner, MegaIII JDR, Ghost in the
+    Shell), j'avais étendu ces rencontres bidouillage avec une
+    association de paintball avec scénario. Certains ont crée un portail
+    "Stargate", des timer "pour couper le cable et sauver le monde",
+    d'autres veulent développer et explorer l'histoire avec des
+    scénarios techno-futuriste, comme dans les romans de Tom Clancy.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Historique de me activités&lt;/em&gt;: &lt;a href="http://valerie.dagrain.numerimoire.net/?page_id=61"&gt;mes pratiques de jeux de
+    simulation&lt;/a&gt;,
+    &lt;a href="http://valerie.dagrain.numerimoire.net/?page_id=88"&gt;conseil
+    d'administration&lt;/a&gt;,
+    &lt;a href="http://valerie.dagrain.numerimoire.net/?page_id=1749"&gt;organisation ou
+    participation&lt;/a&gt;,
+    une section sur sur &lt;a href="http://valerie.dagrain.numerimoire.net/?p=2213"&gt;les imaginaires
+    socio-techniques&lt;/a&gt;.''&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;"Le monde de la réalité a ses limites ; le monde de l'imagination est
+sans frontières." Rousseau&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;L'EspaceLab de Québec: &lt;a href="https://espacelab2014.wordpress.co"&gt;https://espacelab2014.wordpress.co&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Data: Libertic &lt;a href="https://libertic.wordpress.com"&gt;https://libertic.wordpress.com&lt;/a&gt;, &lt;a href="http://www.regardscitoyens.org/"&gt;regards
+    citoyens&lt;/a&gt;, Imagination4People
+    &lt;a href="http://imaginationforpeople.org/en/projects"&gt;http://imaginationforpeople.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Data: Quebec &lt;a href="http://www.donnees.gouv.qc.ca"&gt;http://www.donnees.gouv.qc.ca&lt;/a&gt;, Montréal
+    &lt;a href="http://donnees.ville.montreal.qc.ca"&gt;http://donnees.ville.montreal.qc.ca&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Zone d'Accès Public pour le wifi: ZAP
+    h&lt;a href="http://www.zapquebec.org"&gt;ttp://www.zapquebec.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Blender: &lt;a href="www.blender.org"&gt;www.blender.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Arduino: &lt;a href="http://www.arduino.cc"&gt;http://www.arduino.cc/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XiVO, système de téléphonie open source: &lt;a href="http://www.xivo.io"&gt;http://www.xivo.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Asterisk, PABX libre de VoIP: &lt;a href="http://www.asterisk-france.org"&gt;http://www.asterisk-france.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Des ateliers dans un
+    Hackerspace:&lt;a href="www.hacknowledge.org"&gt;www.hacknowledge.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Le Labfab de Rennes: &lt;a href="www.labfab.fr"&gt;www.labfab.fr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hacking Club de l'Université Laval:
+    &lt;a href="http://hacking.fsg.ulaval.ca"&gt;http://hacking.fsg.ulaval.ca/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LinuQ, Groupe utilisateur de Linux à Québec:
+    &lt;a href="www.linuq.org/"&gt;www.linuq.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sur Flicker, photos de &lt;a href="https://www.flickr.com/photos/129970080@N03/sets/72157647473984013/"&gt;bidouillage
+    hacking&lt;/a&gt;
+    et des créations &lt;a href="https://www.flickr.com/photos/129970080@N03/sets/72157649499560797/"&gt;pour jeux de role grandeur
+    nature&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 3</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html" rel="alternate"></link><updated>2015-01-26T14:32:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+autumn 2014, in the district of Sainte-Foy, Quebec, Canada.This week,
+workshops are about: Printer 3D, Linux and hackable devices magazines,
+solar drone, open-source software in telephony, Information about LinuQ
+(Linux User Group in Quebec) and the Hacking Club of Laval University.&lt;/p&gt;
+&lt;p&gt;L’EspaceLab, un espace de création numérique communautaire, a ouvert ses
+portes en automne 2014, dans le quartier de Sainte-Foy à Québec, au
+Canada.&lt;em&gt;Reportage par valerie-dagrain.org cc-by-sa 3.0 EspaceLab
+Janvier.2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Retrouvez ici le fonctionnement de l'EspaceLab et les témoignages sur
+des ateliers :
+&lt;a href="http://blog.xivo.io/index.php?post/2014/12/01/Espace-Lab%2C-espace-numerique-communautaire-%C3%A0-Quebec%3B-des-ateliers-en-logiciel-libre-et-domotique"&gt;1&lt;/a&gt;
+et
+&lt;a href="http://blog.xivo.io/index.php?post/2014/12/15/L-EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2"&gt;2&lt;/a&gt;
+sur le blog de XiVO, &lt;a href="http://www.a-brest.net/article16948.html"&gt;ici&lt;/a&gt; sur
+le site a-brest.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Témoignages des activités ouvertes et participatives de ce samedi
+17.janv 2015:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Imprimante 3D&lt;/strong&gt;: ce samedi matin est dédié à une
+    &lt;a href="www.youmagine.com"&gt;présentation&lt;/a&gt; sur le fonctionnement d'une
+    imprimante 3D. Près de 35 personnes étaient présentes pour
+    s'informer et poser des questions sur: les coûts des imprimantes 3D
+    et des logiciels ressources comme &lt;a href="www.sketchup.com/fr"&gt;sketchup&lt;/a&gt;,
+    un logiciel d'architecture 3D ou le site de bidouillage
+    &lt;a href="www.thingiverse.com"&gt;thinkgiverse&lt;/a&gt;. Cette session permettait de
+    comprendre le fonctionnement de l'interface logicielle de
+    l'imprimante mais aussi des astuces liées à la nature du matériau,
+    la zone d'impression, la température et l'entretien.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Les magazines de bidouillage&lt;/strong&gt;: Petit coup de coeur sur un article
+    qui explique "comment savoir que l'on a reçu du courrier dans sa
+    boite au lettre physique" en plaçant un capteur de lumière et
+    recevoir l'information sur Twitter. La plupart des magazines sont de
+    &lt;a href="http://boutique.ed-diamond.com/module/dmdsubscription/family?id_family=22"&gt;LinuxMag&lt;/a&gt;
+    et titres sur la révolution des ateliers
+    &lt;a href="www.raspberrypi.org"&gt;Raspberry-Pi&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mickaël modifie son drone pour installer des cellules solaires
+    afin d’accroître son autonomie de vol&lt;/strong&gt;. Professionnel dans
+    l’aérospatiale, il souhaite également modifier l'ergonomie du drone.
+    Inquiet sur la disparition prochaine du kérozène, il s’intéresse aux
+    montgolfières et autres développements civils avec les drones comme
+    mode de déplacement. Valérie va se joindre à cet atelier et apporter
+    un drone avec camera.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Valérie présente &lt;a href="http://www.xivo.io"&gt;XiVO&lt;/a&gt;, système de téléphonie
+    open source&lt;/strong&gt; et fait un don de matériel à l'EspaceLab, de la part
+    des développeurs de XiVO. Investit auprès des commissions scolaires.
+    Alain présent aux ateliers, témoigne de son intérêt pour
+    &lt;a href="http://www.asterisk-france.org"&gt;Asterisk&lt;/a&gt;. et il a déjà essayé
+    FreePBX puis XiVO. Il témoigne qu'il faut un juste quelques
+    connaissances en programmation. D'un autre côté, il constate une
+    faible implication des instances gouvernementales Québécoises pour
+    les logiciels libres notamment dans le secteur éducatif.
+    Présentation de photos d'ateliers : dans des
+    &lt;a href="www.hacknowledge.org"&gt;hackerspaces&lt;/a&gt; et partage des bonnes idées du
+    &lt;a href="www.labfab.fr"&gt;LabFab&lt;/a&gt; de Rennes, dont des éléments produits
+    principalement par John Lejeune pour animer des
+    sessions pédagogiques.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mise en réseau&lt;/strong&gt;: Benoît, animateur à l'EspaceLab constate que
+    pour cette rentrée 2015 est l’effervescente! Les adhésions affluent,
+    les personnes viennent avec leurs questions ou leur matériel et des
+    démarches se mettent en place progressivement avec &lt;a href="http://atelierlapatente.org/"&gt;la
+    Patente&lt;/a&gt;, le hackerspace &lt;a href="http://www.chambreblanche.qc.ca/en/"&gt;la chambre
+    blanche&lt;/a&gt; et
+    &lt;a href="www.linuq.org/"&gt;LinuQ&lt;/a&gt; (2015-2016). Mr Merhi, enseignant en
+    informatique à l'Université Laval m'informe d'un &lt;a href="http://hacking.fsg.ulaval.ca/"&gt;club de
+    Hacking&lt;/a&gt; à 500m de l'EspaceLab! De
+    nouveaux échanges en perspective.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="EspaceLab-Quebec-17012015-RS.png" src="/public/EspaceLab-Quebec-17012015-RS.png" title="EspaceLab-Quebec-17012015-RS.png, janv. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;L'EspaceLab, le site du fablab de Québec&lt;/strong&gt;:
+    &lt;a href="https://espacelab2014.wordpress.com/"&gt;espacelab2014.wordpress.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;L'animateur sur l'imprimante 3D:
+    &lt;a href="www.youmagine.com"&gt;www.youmagine.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Un logiciel de modelisation
+    3D:&lt;a href="www.sketchup.com/fr"&gt;www.sketchup.com/fr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Un site ressource pour l'impression de pieces:
+    &lt;a href="www.thingiverse.com"&gt;www.thingiverse.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LinuxMag:
+    &lt;a href="http://boutique.ed-diamond.com/module/dmdsubscription/family?id_family=22"&gt;http://boutique.ed-diamond.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Encourager l'apprentissage de la programmation avec le
+    mini-ordinateur Raspberry-Pi:
+    &lt;a href="www.raspberrypi.org"&gt;www.raspberrypi.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XiVO, système de téléphonie open source: &lt;a href="http://www.xivo.io"&gt;http://www.xivo.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Asterisk, PABX libre de VoIP: &lt;a href="http://www.asterisk-france.org"&gt;http://www.asterisk-france.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Des ateliers dans un
+    Hackerspace:&lt;a href="www.hacknowledge.org"&gt;www.hacknowledge.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Le Labfab de Rennes: &lt;a href="www.labfab.fr"&gt;www.labfab.fr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hacking Club de l'Université Laval: &lt;a href="http://hacking.fsg.ulaval.ca/"&gt;http://hacking.fsg.ulaval.ca/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hackerspace de Québec, la chambre blanche:
+    &lt;a href="http://www.chambreblanche.qc.ca"&gt;http://www.chambreblanche.qc.ca/en/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LinuQ, Groupe utilisateur de Linux à Québec:
+    &lt;a href="www.linuq.org"&gt;www.linuq.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Atelier coopératif la Patente:
+    &lt;a href="http://atelierlapatente.org"&gt;http://atelierlapatente.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>XiVO: Logiciel Libre et bidouillage en réseau - Network hack</title><link href="http://blog.xivo.io/xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html" rel="alternate"></link><updated>2014-12-17T21:41:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-17:xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html</id><summary type="html">&lt;p&gt;&lt;em&gt;licence cc by sa 3.0 0.2015 par valérie dagrain&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L'équipe qui développe XiVO soutient la communauté du Libre en:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;contribuant à Asterisk, PABX open-source et propriétaire ;&lt;/li&gt;
+&lt;li&gt;animant des ateliers lors d'événements tels que les Rencontres
+    Mondiales du Logiciel Libre
+    (&lt;a href="https://www.youtube.com/watch?v=tK-xIU-lsS0&amp;amp;index=1&amp;amp;list=PLRYrJgPhLiqTjmzjW23vqk5psnfzs-Ay0"&gt;Video&lt;/a&gt;);&lt;/li&gt;
+&lt;li&gt;proposant des présentations dans des Groupes utilisateurs
+    Linux (GUL) ou associations faisant la promotion du Libre
+    (&lt;a href="http://www.april.org/"&gt;April&lt;/a&gt;, &lt;a href="http://facil.qc.ca/"&gt;Facil&lt;/a&gt;);&lt;/li&gt;
+&lt;li&gt;participant à des rencontres sur les T.I et Logiciels Libres pour
+    dynamiser l'économie locale (&lt;a href="https://www.youtube.com/playlist?list=PLRYrJgPhLiqTjmzjW23vqk5psnfzs-Ay0"&gt;Solutions
+    Linux&lt;/a&gt;)
+    ;&lt;/li&gt;
+&lt;li&gt;encourageant les contributeurs qui diffusent des &lt;a href="https://fr.wikipedia.org/wiki/XiVO"&gt;tutoriaux sur
+    XIVO&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Depuis cet automne 2014, l'effervescence autour de l'ouverture de
+    l"Espace Lab" (&lt;a href="https://fr.wikipedia.org/wiki/Fab_lab"&gt;FabLab&lt;/a&gt;) a
+    généré beaucoup d'échanges entre les associations locales.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;L'équipe de développeur XiVO siège essentiellement à Québec et présente
+ces structures ressources:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LINUQ LL&lt;/strong&gt;: Groupes Utilisateurs Linux de Québec,
+&lt;a href="www.linuq.org"&gt;LinuQ&lt;/a&gt;&lt;strong&gt;ESPACELAB&lt;/strong&gt;: Espace communautaire pour présenter
+son projet ou rejoindre une équipe. On cherche à monter un atelier
+télécommunication. Articles
+&lt;a href="/index.php?post/2014/12/01/Espace-Lab%2C-espace-numerique-communautaire-%C3%A0-Quebec%3B-des-ateliers-en-logiciel-libre-et-domotique"&gt;1&lt;/a&gt;,
+&lt;a href="/index.php?post/2014/12/15/L-EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2"&gt;2&lt;/a&gt;,
+&lt;a href="/index.php?post/2015/01/26/L%E2%80%99EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Qu%C3%A9bec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3"&gt;3&lt;/a&gt;,
+&lt;a href="/index.php?post/2015/01/26/L%E2%80%99EspaceLab%2C-un-nouvel-espace-num%C3%A9rique-communautaire-%C3%A0-Qu%C3%A9bec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4"&gt;4&lt;/a&gt;.&lt;strong&gt;HACKSPACE&lt;/strong&gt;:
+&lt;a href="http://www.chambreblanche.qc.ca/"&gt;La Chambre Blanche&lt;/a&gt;, avec des
+activités en art visuel.&lt;strong&gt;LA PATENTE&lt;/strong&gt;: Coopérative qui accueille et
+propose de fabriquer ou restaurer. Atelier &lt;a href="http://atelierlapatente.org/"&gt;La
+patente&lt;/a&gt;.&lt;strong&gt;CLUB HACKNG&lt;/strong&gt;: Groupe
+d'étudiants en informatique et télécommunication à l'Université
+Laval.&lt;strong&gt;ÉCOLES EN TÉLÉCOMMUNICATION&lt;/strong&gt;groupe d'étudiants en
+télécommunication. &lt;a href="http://www.telecom-bretagne.eu/"&gt;Telecom Bretagne&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A bientôt pour de nouvelles activités!&lt;/p&gt;
+&lt;/p&gt;</summary><category term="fablab"></category><category term="hackspace"></category><category term="telecommunication"></category><category term="EspaceLab"></category><category term="hackerspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Quebec avec des ateliers en logiciel libre et domotique - article 2</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html" rel="alternate"></link><updated>2014-12-15T15:31:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-15:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+autumn 2014, in the district of Sainte-Foy, Quebec, Canada. This week,
+workshops are about: Printer 3D, programming, astronomy software,
+Arduino ou Raspberry Pi, sparki robot.&lt;/p&gt;
+&lt;p&gt;Reportage par
+&lt;a href="valerie-dagrain.org" title="valerie-dagrain.org"&gt;valerie-dagrain.org&lt;/a&gt;
+cc-by-sa EspaceLab Déc. 2014 (english following soon)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Présentation de l'EspaceLab:&lt;/strong&gt;L'EspaceLab, un espace de création
+numérique communautaire, a ouvert ses portes cet automne 2014, dans le
+quartier de Sainte-Foy à Québec au Canada. Situé dans la Bibliothèque
+Monique Corriveau nouvellement aménagée, au cœur du quartier, à 10mn de
+l'Université de Laval et juste à côté des locaux R&amp;amp;D de XiVO (système de
+téléphonie Libre), des animateurs-trices bénévoles de l'Espace-lab
+accueillent vos idées d'ateliers. En savoir plus sur l'historique des
+Fablabs au Québec.En savoir plus sur les animateurs-trices, la salle et
+le matériel, les projets : &lt;a href="https://espacelab2014.wordpress.com/"&gt;Espace
+Lab&lt;/a&gt; et &lt;a href="/index.php?post/2014/12/01/Espace-Lab%2C-espace-numerique-communautaire-%C3%A0-Quebec%3B-des-ateliers-en-logiciel-libre-et-domotique"&gt;article
+1&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Isabelle est ingénieur en physique et anime régulièrement des sessions
+avec l'imprimante 3D et sur de la programmation&lt;/strong&gt;. En collaboration avec
+d'autres animateurs tel que Rémi, ils avaient imprimé (imprimante 3D) un
+sifflet et des sapins de Noël miniatures pouvant accueillir des DELs à
+l'intérieur pour illuminer les sapins composés de différentes couleurs.
+Isabelle apprécie d'animer des ateliers scientifiques pour les enfants
+et se définit avec entrain comme une exploratrice !&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;D'ailleurs, ses fils Laurent et Guillaume (7 et 9 ans) m'ont expliqué
+le logiciel Scratch junior pour faire de la programmation&lt;/strong&gt;, sur leur
+tablette.
+&lt;a href="http://macquebec.com/aides-en-francais-lutilisation-scratch-junior-ipad"&gt;Scratch&lt;/a&gt;
+« permet d’initier de jeunes enfants (5-7 ans) au codage et à la
+programmation Web en leur permettant de créer leurs propres histoires et
+des jeux interactifs. »Laurent et Guillaume expliquent que l'on peut
+prendre des personnages et des décors, créer un programme et lancer des
+séquences pour faire des animations. Scratch, comme outil d'initiation à
+la programmation, existe pour les enfants mais aussi pour les
+adolescents et les adultes.&lt;/p&gt;
+&lt;p&gt;Isabelle me présente comment elle a créé des jeux avec Scratch et des
+images de héros de dessins animés… ou en utilisant &lt;a href="https://www.youtube.com/watch?v=rfQqh7iCcOU"&gt;Makey
+Makey&lt;/a&gt; qui transforme tout
+objet en clavier, en périphériques !!! Isabelle anime aussi des ateliers
+à l’école Fernand Seguin, sur la conception de petits robots insectes
+qu'elle a appelé: le Scarabot ! Venez les rencontrer pour découvrir tout
+cela :D&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Valérie préparera un atelier astronomie avec
+&lt;a href="http://www.stellarium.org/"&gt;Stellarium&lt;/a&gt; et une présentation sur &lt;a href="http://www.xivo.io/"&gt;XiVO
+en téléphonie Libre&lt;/a&gt;&lt;/strong&gt; (un kit est en train de se
+créer) pour janvier 2015.Valérie informe d'une pluie d'étoiles filantes
+entre le 13 et 14 décembre : les
+&lt;a href="http://fr.wikipedia.org/wiki/G%C3%A9minides"&gt;géminides&lt;/a&gt;. Provoquée par
+l'astéroïde (3200) Phaéton qui passe près du Soleil tous les 1,4 an, il
+y a 140 étoiles filantes par heure en moyenne!&lt;/p&gt;
+&lt;p&gt;Benoit informe que pour ces ateliers, il y a la possibilité de louer un
+télescope environ 40\$ pour 4 jours et qu'il y un observatoire au sud de
+Québec; celui du &lt;a href="http://montcosmos.com"&gt;Mont Cosmos&lt;/a&gt;.Cet observatoire
+est un ancien silo à grain, dans une ferme au cœur des Appalaches. Les
+lieux peuvent accueillir les familles et des sessions sont organisés
+pour initier à l'astronomie.Cet observatoire est sous la responsabilité
+de l'Université Laval où l'on y trouve le &lt;a href="http://www2.ulaval.ca/fileadmin/ulaval_ca/Images/recherche/bd/projet/fiche/90177.html"&gt;Centre de recherche en
+Astrophysique du
+Québec&lt;/a&gt;
+(CRAQ).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="EspaceLab-02-Quebec-13122014-Texte.png" src="/public/EspaceLab-02-Quebec-13122014-Texte.png" title="EspaceLab-02-Quebec-13122014-Texte.png, déc. 2014" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Daniel nous parle du « board arduino » pour faire un modulateur vocal.
+Sur le projet de plante intelligente&lt;/strong&gt;, Josée était très concentrée avec
+Dominique et Mireille pour préparer le système d'irrigation automatique.
+Nous en saurons plus dans le prochain article!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nicolas et Hari, passionnés d’électronique, ont rejoint Frédéric (15
+ans) et Félix (13 ans) qui paramétraient les capteurs d'un robot basé
+sur Arduino ou Raspberry Pi:
+&lt;a href="http://arcbotics.com/products/sparki"&gt;Sparki&lt;/a&gt;.&lt;/strong&gt;Ce support est très
+utile pour des ateliers pédagogiques. En effet tous deux témoignent «
+qu'une fois Sparki connecté à l'ordinateur on peut le programmer ». Une
+fois déconnecté de l'ordinateur, une télécommande permet de commander le
+robot : il peut attraper des objets, dessiner, définir la distance entre
+lui et un objet, communiquer en Wi-Fi avec d'autres robots Sparki,
+sortir d'un labyrinthe....&lt;/p&gt;
+&lt;p&gt;Il existe une application Android pour contrôler Sparki en Bluetooth et
+de nombreux capteurs. Le robot est open source mais il n'y a pas de
+versions pour l'utiliser sous Linux… pour l'instant :D Frédéric
+travaille aussi sur le projet de fusée à eau. Il témoigne que ses amis
+sont intéressés pour venir prochainement et qu'un autre de leurs amis
+utilise l'imprimante 3D.&lt;/p&gt;
+&lt;p&gt;L'EspaceLab, c'est tous les samedi matin \\o/&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources :&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;L'EspaceLab qui accueille les ateliers
+    &lt;a href="https://espacelab2014.wordpress.com"&gt;https://espacelab2014.wordpress.com&lt;/a&gt; et &lt;a href="/index.php?post/2014/12/01/Espace-Lab%2C-espace-numerique-communautaire-%C3%A0-Quebec%3B-des-ateliers-en-logiciel-libre-et-domotique"&gt;article 1 sur les
+    activités&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Astronomie: &lt;a href="http://montcosmos.com"&gt;http://montcosmos.com&lt;/a&gt;; Astrophysique à L'université
+    Laval
+    &lt;a href="http://www2.ulaval.ca/fileadmin/ulaval_ca/Images/recherche/bd/projet/fiche/90177.html"&gt;http://www2.ulaval.ca&lt;/a&gt;,
+    membres de la Fédération des Astronomes Amateurs du Québec (FAAQ) et
+    Regroupement des Clubs d’Astronomie de la grande région de Québec.&lt;/li&gt;
+&lt;li&gt;Robot Sparki:
+    &lt;a href="http://arcbotics.com/products/sparki/"&gt;http://arcbotics.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Programmation avec Scratch:
+    &lt;a href="http://macquebec.com/aides-en-francais-lutilisation-scratch-junior-ipad"&gt;http://macquebec.com&lt;/a&gt; (fr)
+    et &lt;a href="http://wiki.scratch.mit.edu/wiki/ScratchJr"&gt;http://wiki.scratch.mit.edu/wiki/ScratchJr&lt;/a&gt; (le wiki en anglais)&lt;/li&gt;
+&lt;li&gt;Ateliers sur la plante et la fusée:
+    &lt;a href="https://espacelab2014.wordpress.com/projets/"&gt;https://espacelab2014.wordpress.com/projets/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="domotique ateliers téléphonie logiciel libre Do-it-yourself"></category><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html" rel="alternate"></link><updated>2014-12-01T14:44:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-01:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html</id><summary type="html">&lt;p&gt;Reportage par
+&lt;a href="valerie-dagrain.org" title="valerie-dagrain.org"&gt;valerie-dagrain.org&lt;/a&gt;
+cc-by-sa c EspaceLab Nov.2014 (english following soon)&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Présentation de l'EspaceLab:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://espacelab2014.wordpress.com"&gt;L'EspaceLab&lt;/a&gt;, un espace de
+création numérique communautaire, a ouvert ses portes cet automne 2014,
+dans le quartier de Sainte-Foy à Québec au Canada.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Situé dans la Bibliothèque Monique Corriveau&lt;/strong&gt; nouvellement aménagée
+(photo 1), au cœur du quartier, à 10mn de l'Université de Laval et juste
+à côté des locaux R&amp;amp;D de &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; (système de
+téléphonie Libre), des animateurs-trices bénévoles de l'Espace-lab
+accueillent vos idées d'ateliers.En savoir plus sur l'historique des
+&lt;a href="http://fablabs-quebec.org"&gt;Fablabs au Québec&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L'équipe de l'EspaceLab couvre tous les milieux professionnels&lt;/strong&gt;: ce
+sont des chercheurs, des enseignants, des scientifiques, des
+administrateurs et des gens d’affaires.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;La salle&lt;/strong&gt;, qui accueille des ateliers tous les samedi matin, permet
+d'organiser plusieurs groupes de travail. Le matériel de la bibliothèque
+disponible sur place se compose de plusieurs tables, chaises, de 4
+grands écrans TV pour utiliser et montrer en temps réel l'utilisation de
+logiciels ou montrer des vidéos. La bibliothèque fournit un accès
+internet en WiFi et filaire.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Le matériel&lt;/strong&gt; apporté par les bénévoles comprend actuellement de
+l'équipement en électronique (Arduino avec 16 projets pour les débutants
+et des capteurs arduino, oscilloscope électronique et multimètre) en
+robotique, &lt;a href="http://www.freecadweb.org/"&gt;Freecad&lt;/a&gt; en CAO (Conception
+Assistée par Ordinateur), en informatique (Logiciel Libre
+&lt;a href="http://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt;,
+&lt;a href="https://fr.wikipedia.org/wiki/Linux"&gt;Linux&lt;/a&gt;,
+&lt;a href="http://www.blender.org"&gt;Blender&lt;/a&gt;, &lt;a href="https://www.python.org/"&gt;Python&lt;/a&gt; et
+du matériel pour exécuter de l'impression 3D et Scanneur 3D.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Les 4 projets actuels&lt;/strong&gt;, où tout le monde peut participer, sont:
+d'établir un record d'altitude avec une fusée à eau (projet 624), de
+créer une plante intelligente qui s'arrose et publie sur un blog (projet
+agro-urbano), de participer au projet d'un étudiant sur un synthétiseur
+modulaire, de fabriquer un mini-maker pour le printemps 2015 (événement
+&lt;a href="http://www.makerfairemontreal.ca/?lang=fr"&gt;mini-maker faire de
+Montreal&lt;/a&gt;).Sources :
+&lt;a href="https://espacelab2014.wordpress.com"&gt;espacelab2014.wordpress.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="EspaceLab-Quebec-29112014rs500.png" src="/public/EspaceLab-Quebec-29112014rs500.png" title="EspaceLab-Quebec-29112014rs500.png, déc. 2014" /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Témoignages des activités ouverts et participatifs de ce samedi 29.nov 2014:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Josée a présenté le projet de plante intelligente&lt;/strong&gt;« qui s'arrose
+    seule et publie sur le blog » (photo 2 et 7) . Elle travaillait avec
+    une autre dame jusqu'à ce qu'une personne rejoigne l'équipe pour
+    présenter une modélisation 3D de fleurs. J'ai présenté le logiciel
+    Libre &lt;a href="http://www.bioclipse.net/"&gt;bioclipse&lt;/a&gt; pour modéliser en 3D en
+    prenant compte différentes sciences. Les idées s'enrichissent de
+    l'expérience de chacun. Sur Paris, j'avais découvert le projet de
+    géo-pollution (au &lt;a href="http://www.tmplab.org/"&gt;/tmp/lab&lt;/a&gt; par P.Langlois)
+    où chacun pouvait faire analyser la composition d'une plante
+    (hackerspace /tmp/lab). Peut-être qu'ici je pourrai réaliser mon
+    projet de plante qui montre le fonctionnement de la photosynthèse.
+    J'avais initié ce projet pour le musée des sciences de Rennes, dans
+    notre hackerspace &lt;a href="http://www.hacknowledge.org"&gt;hacknowledge&lt;/a&gt;
+    en France. Comme les fiches sont partagées, c'est une occasion pour
+    moi de continuer !&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Avec les passionnés de domotique comme Daniel et Hari&lt;/strong&gt;. on
+    discute d’actualités comme la &lt;a href="http://ici.radio-canada.ca/nouvelles/science/2014/11/25/001-cuillere-parkinson-google.shtml"&gt;cuillère
+    Google&lt;/a&gt;,
+    l'objet connecté
+    &lt;a href="http://rue89.nouvelobs.com/2014/11/09/echo-est-devenu-membre-famille-produit-flippant-damazon-255946"&gt;Echo&lt;/a&gt;
+    qui répond aux questions et s'installe dans l'espace domestique, des
+    &lt;a href="http://rue89.nouvelobs.com/2014/11/27/securite-cinq-innovations-censees-proteger-256262"&gt;limites de la
+    sécurité&lt;/a&gt; etc.
+    Nous étions 2 pour présenter &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; qui permet
+    de monter un système téléphonique libre basé sur
+    &lt;a href="http://www.asterisk.org/"&gt;Asterisk&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Jean-Paul, enseignant en science,&lt;/strong&gt; présente &lt;a href="http://www.youtube.com/watch?v=_qNAJGqRBFE"&gt;les fondements du
+    moteur électrique&lt;/a&gt; sur
+    un écran. Pour cela, il a entièrement modélisé en 3D le
+    fonctionnement en utilisant le logiciel Libre
+    &lt;a href="http://www.blender.org/"&gt;Blender&lt;/a&gt; (photo 6). La vidéo est
+    accessible &lt;a href="http://www.youtube.com/watch?v=_qNAJGqRBFE"&gt;ici&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CAO&lt;/strong&gt;: D'autres personnes sont ensuite arrivé pour faire une
+    animation sur &lt;a href="http://www.freecadweb.org/index-fr.html"&gt;FreeCAD&lt;/a&gt; qui
+    est l'alternative libre du logiciel AutoCAD, pour faire de la
+    modélisation 3D pour la
+    &lt;a href="https://fr.wikipedia.org/wiki/Conception_assist%C3%A9e_par_ordinateur"&gt;CAO&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;L'imprimante 3D&lt;/strong&gt; : toute une équipe était très motivée pour la
+    paramétrer et faire des essais sur la préparation : température
+    et calibrage. (photos 3 et 5). À l'approche des fêtes, le modèle de
+    sapin à imprimer s'affine !&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Arduino&lt;/strong&gt; : Un autre groupe animait un atelier avec suivi de
+    tutoriaux sur l’écran (photo 4) et travaux pratiques.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Benoît présente des actualités et le partenariat à venir&lt;/strong&gt; comme
+    favoriser des activités avec &lt;a href="http://www.linuq.org/"&gt;LinuQ&lt;/a&gt;, le
+    groupe utilisateur Linux sur Québec, nous échangeons également sur
+    les
+    &lt;a href="http://fr.wikipedia.org/wiki/Formation_en_ligne_ouverte_%C3%A0_tous"&gt;MOOCs&lt;/a&gt;,
+    c'est à dire la formation en ligne ouverte à tous. Je présente
+    &lt;a href="http://tetaneutral.net"&gt;Tetaneutral&lt;/a&gt;, un collectif à
+    Toulouse (France) qui développe de l'accès internet communautaire en
+    forte demande comme &lt;a href="https://www.koumbit.org/"&gt;Koumbit&lt;/a&gt; qui rayonne
+    depuis Montréal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Je suis très motivée pour revenir animer&lt;/strong&gt; &lt;a href="http://www.a-brest.net/article3864.html"&gt;un
+    atelier&lt;/a&gt; sur
+    &lt;a href="http://www.stellarium.org/fr/"&gt;Stellarium&lt;/a&gt;, un planétarium Libre.
+    J'ai déjà animé des ateliers durant la &lt;a href="http://www.fetedelascience.fr/"&gt;Fête des
+    Sciences&lt;/a&gt; en France et &lt;a href="http://www.a-brest.net/article3864.html"&gt;initié ce
+    cours&lt;/a&gt; auprès de jeunes
+    élèves en Corse.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ressources&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Le site du fablab de Québec&lt;/strong&gt;:
+    l'&lt;a href="espacelab2014.wordpress.com"&gt;EspaceLab&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;La bibliothèque Monique Corriveau&lt;/strong&gt; qui accueille l'EspaceLab:
+    &lt;a href="http://www.bibliothequesdequebec.qc.ca/bibliotheques/saintefoysillerycaprouge/monique_corriveau.aspx"&gt;www.bibliothequesdequebec.qc.ca&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Espace-lab et fablabs&lt;/strong&gt;:
+    &lt;a href="https://espacelab2014.wordpress.com"&gt;espacelab2014.wordpress.com&lt;/a&gt; ;
+    la charte des fablabs du MIT
+    &lt;a href="http://fab.cba.mit.edu/about/charter"&gt;http://fab.cba.mit.edu&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Le hackerspace&lt;/strong&gt; : salle Blanche et arts visuels sur Québec
+    &lt;a href="http://www.chambreblanche.qc.ca/EN/content.asp?page=ChambreBlanche_History"&gt;www.chambreblanche.qc.ca&lt;/a&gt;
+    ; le /tmp/lab sur Paris &lt;a href="http://www.tmplab.org/"&gt;www.tmplab.org&lt;/a&gt;,
+    Hacknowledge &lt;a href="http://www.hacknowledge.org"&gt;www.hacknowledge.org&lt;/a&gt; sur
+    Rennes, Koumbit &lt;a href="https://www.koumbit.org/"&gt;www.koumbit.org&lt;/a&gt; sur
+    Montréal et Tetaneutral &lt;a href="http://tetaneutral.net"&gt;tetaneutral.net&lt;/a&gt;
+    sur Toulouse (FR), GUL LinuQ à Québec
+    &lt;a href="http://www.linuq.org/"&gt;www.linuq.org&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Des logiciels libres&lt;/strong&gt;; XiVO &lt;a href="http://www.xivo.io/"&gt;www.xivo.io&lt;/a&gt; et
+    &lt;a href="https://fr.wikipedia.org/wiki/XiVO"&gt;XiVO sur wikipedia&lt;/a&gt;, Asterisk
+    &lt;a href="http://www.asterisk.org"&gt;www.asterisk.org&lt;/a&gt;, Blender
+    &lt;a href="http://www.blender.org"&gt;www.blender.org&lt;/a&gt;, FreeCAD
+    &lt;a href="http://www.freecadweb.org"&gt;www.freecadweb.org&lt;/a&gt;, Python
+    &lt;a href="https://www.python.org"&gt;www.python.org&lt;/a&gt;, Bioclipse
+    &lt;a href="http://www.bioclipse.net/"&gt;www.bioclipse.net&lt;/a&gt;, Stellarium
+    &lt;a href="http://www.stellarium.org/"&gt;www.stellarium.org&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Des fêtes de sciences, du Libre et des savoirs&lt;/strong&gt;: maker faire à
+    Montréal
+    &lt;a href="http://www.makerfairemontreal.ca/?lang=fr"&gt;www.makerfairemontreal.ca&lt;/a&gt;,
+    fêtes de la Science (Fr)
+    &lt;a href="http://www.fetedelascience.fr"&gt;www.fetedelascience.fr&lt;/a&gt;, La SQIL
+    semaine québécoise informatique Libre
+    &lt;a href="http://2014.sqil.info/"&gt;2014.sqil.info/&lt;/a&gt;, les MOOCs
+    &lt;a href="http://fr.wikipedia.org/wiki/Formation_en_ligne_ouverte_%C3%A0_tous"&gt;http://fr.wikipedia.org/wiki/Formation_en_ligne_ouverte&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="communautaire"></category><category term="domotique"></category><category term="fablab"></category><category term="hackerspace"></category><category term="logiciel libre"></category><category term="numerique"></category><category term="telephonie"></category><category term="xivo"></category><category term="EspaceLab"></category><category term="hackspace"></category></entry></feed>

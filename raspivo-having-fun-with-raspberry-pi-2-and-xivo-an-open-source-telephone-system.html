@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="vdagrain" />
+<meta name="description" content="(L'article au complet en français, juste après) Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system In 2012 a first attempt was made at integrating a raspberry-pi and XiVO, a telephone system based on Asterisk and licensed under GPLv3. More info at http://www ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system"/>
+<meta property="og:description" content="(L'article au complet en français, juste après) Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system In 2012 a first attempt was made at integrating a raspberry-pi and XiVO, a telephone system based on Asterisk and licensed under GPLv3. More info at http://www ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-06-12 18:40:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/vdagrain.html">
+<meta property="article:section" content="XiVO Community"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system">Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</h1>
+    <p>Posted on Fri 12 June 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a></p>
+  </header>
+  <div>
+    <p>(L'article au complet en français, juste après)</p>
+<p><strong>Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source
+telephone system</strong></p>
+<ul>
+<li>In 2012 a first attempt was made at integrating a raspberry-pi and
+    XiVO, a telephone system based on Asterisk and licensed under GPLv3.
+    More info at
+    <a href="http://www.raspberry-xivo.org/">http://www.raspberry-xivo.org</a>.</li>
+<li>Furthermore, the arrival of the raspberry pi version 2 has opened up
+    new technical avenues. That's why in may 2015, Jof launched the
+    project Raspivo, Raspberry Ri 2 + XiVO = Raspivo. Blog and more info
+    at <a href="http://raspivo.io">http://raspivo.io</a></li>
+</ul>
+<p><strong>The beggining of the adventure with raspberry pi 2, XiVO and
+Raspbian</strong></p>
+<ul>
+<li>Iris-Network (http://www.iris-network.fr), a telecommunications
+    company based in France, decided to launch a new project combining
+    XiVO and Raspberry-pi 2, a low-cost embedded platform.</li>
+<li>This article summarizes the installation of Raspbian, the
+    recompilation of XiVO packages for the ARM platform, and testing
+    that was done on incoming and outgoing calls in order to validate
+    the quality and the stability of the architecture.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>During the tests, 12 simultaneous calls were successfully handled in
+    optimal conditions.</li>
+<li>In order to test the project in real world conditions, the team at
+    Iris-Network replaced their internal telephone system, along with
+    the hotline platform, with a RPi2 server. So far, everything remains
+    stable and running ! Currently, testing is progressing with the help
+    of beta-testing customers. In the spirit of sharing and respect for
+    the open source philosophy, work on the project has been made
+    available to the public by publishing debian packages.</li>
+</ul>
+<p><strong>Installation using the debian repository and raspbian IMG</strong></p>
+<ul>
+<li>4 main steps to installing raspivo (RPi2 + XiVO): 1. Install
+    Raspbian (Debian for Raspberry Pi); 2. Install any other packages
+    you typically need for administering a server; 3. Add the raspivo
+    respository; 4. Install raspivo. More information available here (in
+    french): <a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html">http:
+    //www.raspivo.io/installation-depuis-nos-depots.html</a></li>
+</ul>
+<!-- -->
+
+<ul>
+<li>From a disk image (IMG): To make installation easier, a complete
+    disk image can be downloaded, taking less than 5 minutes to install.
+    In the same way as you would install Raspbian, you can also install
+    Raspivo thanks to 'dd': dd if=Raspivo-15.10.img of=/dev/sdX
+    (replacing sdX with the partition of your sdcard).</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>The changelog for XiVO is available here
+    http://projects.xivo.io/versions/223 and you can find more news on
+    raspivo here http://www.raspivo.io/version-1510.html.</li>
+<li>The project would be grateful to hear from anyone who would be
+    interested in testing or any other feedback.</li>
+<li>"These tutorials will help me during my presentation on raspberry pi
+    2 with XiVO for workshops for a local fablab in Quebec" wanda,
+    member of http://espace-lab.org; "<a href="Raspivo" title="Raspivo">Raspivo</a> is a
+    new initiative from the community ! Have fun ! I'm very happy with
+    xivo on raspberry pi. " quintana, <a href="http://www.raspberry-xivo.org/">http://www.raspberry-xivo.org/</a>.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Feel free to share and have fun with this open source project and
+    the logo <a href="raspivo.io">raspivo.io</a> ! :)</li>
+<li>Jof and wanda. Licence CC by sa 4.0</li>
+</ul>
+<hr />
+<p><strong>Raspivo, s'amuser avec raspberry pi 2 et XiVO système en téléphonie
+open source</strong></p>
+<ul>
+<li>En 2012, des ateliers ont commencé sur raspberry-pi et XiVO (système
+    de téléphonie, basé sur Asterisk et sous licence GPLv3).</li>
+</ul>
+<p>Toutes les étapes ici:
+<a href="http://www.raspberry-xivo.org">www.raspberry-xivo.org</a></p>
+<ul>
+<li>Avec l'arrivée de la version 2 de raspebrry pi, de nouvelles
+    possibilités sont maintenant offertes : en mai 2015 Jof lance
+    "raspberry pi 2 + XiVO = raspivo"</li>
+</ul>
+<p>Retrouvez les tests et tutoriaux sur mon/notre blog <a href="http://raspivo.io">http://raspivo.io</a></p>
+<p><strong>Le début de l'aventure raspberry pi 2, XiVO et Raspbian</strong></p>
+<ul>
+<li>Iris-Network (http://www.iris-network.fr), entreprise experte en
+    télécommunications, a lancé l'expérience XiVO sur Raspberry-pi 2,
+    plate-forme compacte à moindre frais.</li>
+<li>Cet article présente l'installation de Raspbian, la compilation des
+    paquets XiVO compatible pour plateformes ARM, des tests sur les
+    appels entrants et sortants pour valider la qualité et la stabilité
+    de cette architecture.</li>
+<li>Lors des tests, 12 appels simultanés ont été effectués dans des
+    conditions optimales. Pour passer en conditions réelles, l'équipe
+    d'Iris-Network à basculé son système de téléphonie interne ainsi que
+    sa plateforme de hotline sur ce RPi2. Tout est fonctionnel et fiable
+    ! Actuellement, ces tests continuent avec l'aide de
+    clients beta-testeurs.</li>
+<li>Dans un soucis de partage et de respect de la philosophie
+    OpenSource, ce travail est mis à la disposition de la communauté,
+    sous forme de paquets Debian.</li>
+<li>En savoir plus: http://www.raspivo.io/raspivo.html</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><ins>
+    Installation depuis les dépôts et depuis une image disque
+    </ins>
+    (IMG)</li>
+<li>Depuis les dépôts, l'installation de raspivo (RPi2 + XiVO) se
+    déroule en 4 étapes: 1. Installation de raspbian (Debian pour
+    Raspberry Pi) ; 2. Installation de logiciels typiques pour
+    l'administration</li>
+</ul>
+<p>3. Ajout du dépot raspivo ; 4. Installation de raspivo.</p>
+<ul>
+<li>En savoir plus:
+    <a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html">www.raspivo.io/installation-depuis-nos-depots.html</a></li>
+</ul>
+<!-- -->
+
+<ul>
+<li><ins>
+    Depuis une image disque (IMG):
+    </ins></li>
+</ul>
+<dl>
+<dt>Pour faciliter le déploiement, une image complete est mise à disposition</dt>
+<dd>l'installation prend moins de 5 minutes.De même que pour une
+installation de Raspbian classique, vous pouvez également installer
+Raspivo grace à 'dd' :dd if=Raspivo-15.10.img of=/dev/sdX et en adaptant
+bien sur sdX par votre SdCard.</dd>
+</dl>
+<p><strong>La version 15.10 de XiVO packagée pour votre Raspberry 2</strong></p>
+<ul>
+<li>Voici le changelog http://projects.xivo.io/versions/223 et les
+    nouveautés http://www.raspivo.io/version-1510.html</li>
+<li>Merci de nous envoyer vos témoignages ou vos tests. "Ces tutoriaux
+    vont m'aider a présenter raspberry pi 2 avec XiVO, pour des ateliers
+    dans un fablab local à Québec" wanda, membre de l'Espace Lab et
+    community manager XiVO ; au sujet de Raspivo, "c'est une nouvelle
+    initiative de la communauté ! Amusez-vous bien, avec XiVO et le
+    raspberry pi. " quintana,
+    <a href="http://www.raspberry-xivo.org/">www.raspberry-xivo.org</a>. Merci de
+    partager la doc. de ce projet open source et le logo
+    <a href="raspivo.io">raspivo.io</a> ! :)</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Jof et wanda. Article en CC by sa 4.0</li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system",
+  "headline": "Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system",
+  "datePublished": "2015-06-12 18:40:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "vdagrain",
+    "url": "http://blog.xivo.io/author/vdagrain.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html",
+  "description": "(L'article au complet en français, juste après) Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system In 2012 a first attempt was made at integrating a raspberry-pi and XiVO, a telephone system based on Asterisk and licensed under GPLv3. More info at http://www ..."
+}
+</script></body>
+</html>

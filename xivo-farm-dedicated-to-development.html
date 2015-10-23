@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="XiVO submission with git version The submit-xivo.sh script uses whatever GIT version it finds to be the default. The behavior was changed to allow an optional specification of the GIT revision, as documented in the submit-xivo.sh(1) manual page. GIT_REVISION=master The gitrevision(7) from which both source ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO farm dedicated to development"/>
+<meta property="og:description" content="XiVO submission with git version The submit-xivo.sh script uses whatever GIT version it finds to be the default. The behavior was changed to allow an optional specification of the GIT revision, as documented in the submit-xivo.sh(1) manual page. GIT_REVISION=master The gitrevision(7) from which both source ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-farm-dedicated-to-development.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-07-25 09:56:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO farm dedicated to development</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-farm-dedicated-to-development">XiVO farm dedicated to development</h1>
+    <p>Posted on Mon 25 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>XiVO submission with git version</h4>
+<p>The
+<a href="http://packaging-farm.dachary.org/trac/browser/submit/submit-xivo.sh?rev=934db22f985be6f102a327222a54c833380f3b13">submit-xivo.sh</a>
+script uses whatever GIT version it finds to be the default. The
+behavior was
+<a href="http://packaging-farm.dachary.org/trac/changeset/866f47eb8cd8b43f6956fe0d326d9e77cc212a9b/">changed</a>
+to allow an optional specification of the GIT revision, as documented in
+the <strong>submit-xivo.sh(1)</strong> manual page.</p>
+<div class="highlight"><pre>GIT_REVISION=master
+              The gitrevision(7) from which both source and debian git will be
+              checked out. If the value of this  variable  is  different  from
+              what  it was the last time packaging-farm(1) was run, the depen-
+              dency graph is cleared and all packages will be rebuild  regard-
+              less.
+</pre></div>
+
+
+<p>The version <a href="http://packaging-farm.dachary.org/download/">2.0.7</a> has
+been published with this modification.</p>
+<h4>separated repository versus dedicated farm</h4>
+<p>The pro and cons of were discussed with Nicolas Hicher on IRC.It was
+decided that creating a dedicated farm virtual machine was the best
+option.</p>
+<h3>separated repositories</h3>
+<p>A packaging-farm meta package would be created under the name
+gallifrey-dev with a configuration <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">similar to
+gallifrey</a>.
+The developer would use <strong>packaging-farm gallifrey-dev</strong> and the
+packager would use <strong>packaging-farm gallifrey</strong></p>
+<h3>pro</h3>
+<ul>
+<li>some packages that are not active are shared and do not need to be
+    rebuilt twice</li>
+<li>less hardware resources used (spare 1GB RAM and 30GB disk)</li>
+<li>no need to maintain two machines / operating systems</li>
+</ul>
+<h3>cons</h3>
+<ul>
+<li>if a developer works on a package (say asterisk), the package would
+    be rebuild three times if the following sequence of commands occur :
+    packaging-farm gallifrey-dev ; packaging-farm gallifrey ;
+    packaging-farm gallifrey-dev</li>
+<li>the implementation of the package submission that allows to chose
+    which GIT branch the packages are extracted from in the
+    packaging-farm needs to be fine grained to avoid submitting a
+    package just because the chosen branch changes</li>
+<li>if the production repository is being prepared, the added delay
+    involved when a developer and the release manager alternatively
+    update the repository may be an annoying drawback</li>
+<li>a given package is going to be build a number of times with the
+    exact same version. This will create checksum errors in the
+    mirroring of the repositories. It would require a modification of
+    the submission script to always increment the debian version number.</li>
+</ul>
+<h3>dedicated farm</h3>
+<p>A duplicate of the gallifrey VM is created. The release manager uses a
+machine when stabilizing a XiVO version and always builds from a given
+GIT version. The developers use another machine which is always built
+from the master branch.</p>
+<h3>pro</h3>
+<ul>
+<li>the implementation of the package submission that allows to chose
+    which GIT branch the packages are extracted from in the
+    packaging-farm can resubmit everything when the GIT version changes
+    because this is a rare event. It is a simpler implementation.</li>
+<li>there is no overhead because of duplicate builds and therefore no
+    checksum errors when mirroring the repository</li>
+</ul>
+<h3>cons</h3>
+<ul>
+<li>more hardware resources required (1GB RAM + 30GB disk)</li>
+<li>more machines to maintain : /etc/packaging-farm/packaging-farm.conf
+    and /var/cache/packaging-farm/build/gallifrey/Makefile must be
+    manually updated to be kept in sync</li>
+<li>more machine names to remember for the release manager. The
+    developers still only know one machine and need not be aware of the
+    machine dedicated to the building of the release.</li>
+</ul>
+<h4>cloning the gallifrey VM</h4>
+<ul>
+<li>create a snapshot of the LVM volume containing the gallifrey VM disk</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvcreate --snapshot --size 1G --name tmp /dev/all/f3e8d23f-21c0-417d-9b5e-91bb4da9b926.disk0
+</pre></div>
+
+
+<ul>
+<li>create a LVM volume of the same size as the gallifrey VM disk</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvcreate --size 30G --name dev all
+</pre></div>
+
+
+<ul>
+<li>copy the snapshot to the new disk with low priority I/O</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>ionice -c3 dd if=/dev/all/tmp of=/dev/all/dev bs=1024k
+</pre></div>
+
+
+<ul>
+<li>remove the snapshot</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvremove /dev/all/tmp
+</pre></div>
+
+
+<ul>
+<li>assign an IP to the gallifrey-dev future VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>root@host01:~# grep y-dev /etc/bind/db.farm
+gallifrey-dev.xivo.vm   IN  A   10.10.60.6
+</pre></div>
+
+
+<ul>
+<li>create a random MAC for the gallifrey-dev future VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
+</pre></div>
+
+
+<ul>
+<li>add a DHCP entry binding the MAC to the IP in
+    <strong>/etc/dhcp/dhcpd.conf</strong></li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">host</span> <span class="nt">gallifrey-dev</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="m">86</span><span class="o">:</span><span class="n">b3</span><span class="o">:</span><span class="m">3</span><span class="n">f</span><span class="o">:</span><span class="m">10</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>reload bind and dhcp</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>/etc/init.d/bind9 reload
+/etc/init.d/isc-dhcp-server restart
+</pre></div>
+
+
+<ul>
+<li>create the gallifrey-dev VM by adopting the dev LVM volume</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>gnt-instance add -n host01.farm -B memory=4G -o debootstrap+default -t plain --disk 0:adopt=dev --no-install --net 0:mac=52:54:86:b3:3f:10 gallifrey-dev.xivo.vm.farm
+</pre></div>
+
+
+<ul>
+<li>bind the SSH port of the new VM to 22006</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="x">in /etc/shorewall/rules</span>
+<span class="x">DNAT           net             loc:</span><span class="p">$</span><span class="nv">VM_GALLIFREY_DEV_XIVO</span><span class="x">:22 tcp     22006           -       </span><span class="p">$</span><span class="nv">IP_FAILOVER</span><span class="x"></span>
+<span class="x">in /etc/shorewall/params</span>
+<span class="x">VM_GALLIFREY_DEV_XIVO=10.10.60.6</span>
+</pre></div>
+
+
+<ul>
+<li>reload shorewall</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>shorewall restart ; sleep 30 &amp;&amp; shorewall clear
+</pre></div>
+
+
+<ul>
+<li>start the gallifrey-dev VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>gnt-instance start gallifrey-dev.xivo.vm.farm
+</pre></div>
+
+
+<ul>
+<li>balloon down the gallifrey-dev VM memory to 1G</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>echo balloon 1024 | socat - unix:/var/run/ganeti/kvm-hypervisor/ctrl/gallifrey-dev.xivo.vm.farm.monitor
+</pre></div>
+
+
+<ul>
+<li>add nginx reverse proxy in
+    /etc/nginx/sites-available/gallifrey-dev.dachary.org</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span>   <span class="n">http</span><span class="o">://</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<ul>
+<li>reload nginx</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>/etc/init.d/nginx reload
+</pre></div>
+
+
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO farm dedicated to development",
+  "headline": "XiVO farm dedicated to development",
+  "datePublished": "2011-07-25 09:56:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-farm-dedicated-to-development.html",
+  "description": "XiVO submission with git version The submit-xivo.sh script uses whatever GIT version it finds to be the default. The behavior was changed to allow an optional specification of the GIT revision, as documented in the submit-xivo.sh(1) manual page. GIT_REVISION=master The gitrevision(7) from which both source ..."
+}
+</script></body>
+</html>

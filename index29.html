@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/building-xivo-skaro-from-sources.html#building-xivo-skaro-from-sources">building XiVO skaro from sources</a></h2>
+    <p>
+      Posted on Tue 29 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>packaging-farm documentation</h4>
+<p>The XiVO package submission <a href="http://blog.xivo.fr/index.php?post/2011/03/22/XiVO-sources-conventions-implemented-and-documented">was
+documented</a>
+but the packaging-farm command line that is used to build the submitted
+packages was not. An extensive manual page was written, focusing on the
+developer and the packager point of view. It does not go into the
+details of the packaging-farm implementation but should be enough for
+most purposes.</p>
+<div class="highlight"><pre><span class="err">packaging-farm(1)</span>                        <span class="err">packaging-farm(1)</span>
+
+
+
+<span class="err">NAME</span>
+       <span class="err">packaging-farm</span> <span class="err">-</span> <span class="err">build</span> <span class="err">package</span> <span class="err">from</span> <span class="err">sources</span> <span class="err">for</span> <span class="err">multiple</span> <span class="err">distributions</span>
+
+
+<span class="err">SYNOPSIS</span>
+       <span class="err">packaging-farm</span> <span class="err">SUBMIT=xivo</span> <span class="err">[OPTIONS]</span> <span class="err">submit</span>
+
+       <span class="err">packaging-farm</span> <span class="err">SUBMIT=pokersource</span> <span class="err">[OPTIONS]</span> <span class="err">submit</span>
+
+       <span class="err">packaging-farm</span> <span class="err">generate</span>
+
+       <span class="err">packaging-farm</span> <span class="err">[OPTIONS]</span> <span class="err">package_name</span>
+
+
+<span class="err">DESCRIPTION</span>
+       <span class="err">The</span>  <span class="err">first</span>  <span class="err">forms</span>  <span class="err">packaging-farm</span> <span class="err">SUBMIT=...</span> <span class="err">submit</span> <span class="err">creates</span> <span class="err">job</span> <span class="err">request</span>
+       <span class="err">for</span> <span class="err">packaging-farm</span> <span class="err">and</span> <span class="err">stores</span> <span class="err">it</span> <span class="err">in</span> <span class="err">/var/cache/packaging-farm/sources</span>
+
+       <span class="err">For</span> <span class="err">instance</span>
+
+          <span class="err">packaging-farm</span> <span class="err">SUBMIT=xivo</span> <span class="err">DIRECTORY=asterisk</span> <span class="err">submit</span>
+
+       <span class="err">will</span>    <span class="err">create</span>    <span class="err">a</span>    <span class="err">source</span>    <span class="err">package</span>    <span class="err">in</span>    <span class="err">/var/cache/packaging-</span>
+       <span class="err">farm/sources/asterisk</span>
+
+       <span class="err">The</span>   <span class="err">last</span>   <span class="err">form</span>   <span class="err">builds</span>   <span class="err">the</span>   <span class="err">package_name</span>  <span class="err">package</span>  <span class="err">as</span>  <span class="err">found</span>  <span class="err">in</span>
+       <span class="err">/var/cache/packaging-farm/sources</span>   <span class="err">and</span>   <span class="err">stores</span>    <span class="err">the</span>    <span class="err">result</span>    <span class="err">in</span>
+       <span class="err">/var/lib/packaging-farm</span>  <span class="err">as</span>  <span class="err">repositories</span> <span class="err">specific</span> <span class="err">to</span> <span class="err">each</span> <span class="err">distribution</span>
+       <span class="err">that</span> <span class="err">can</span> <span class="err">be</span> <span class="err">browsed</span> <span class="err">at</span> <span class="err">http://localhost/packaging-farm/</span>
+
+       <span class="err">For</span> <span class="err">instance</span> <span class="err">packaging-farm</span> <span class="err">asterisk</span> <span class="err">would</span>  <span class="err">create</span>  <span class="err">a</span>  <span class="err">i386</span>  <span class="err">repository</span>
+       <span class="err">that</span> <span class="err">can</span> <span class="err">be</span> <span class="err">added</span> <span class="err">to</span> <span class="err">the</span> <span class="err">/etc/apt/sources.list</span> <span class="err">file</span> <span class="err">as:</span>
+
+          <span class="err">deb</span> <span class="err">http://localhost/packaging-farm/asterisk/gnulinux/debian/i386/squeeze/src</span> <span class="err">./</span>
+          <span class="err">deb-src</span> <span class="err">http://localhost/packaging-farm/asterisk/gnulinux/debian/i386/squeeze/src</span> <span class="err">./</span>
+
+       <span class="err">The</span> <span class="err">form</span> <span class="err">before</span> <span class="err">last</span>
+
+          <span class="err">packaging-farm</span> <span class="err">SUBMIT=xivo</span> <span class="err">DIRECTORY=asterisk</span> <span class="err">submit</span>
+
+       <span class="err">recomputes</span> <span class="err">the</span> <span class="err">dependency</span> <span class="err">graph</span> <span class="err">at</span> <span class="err">/var/cache/packaging-farm/depends.mk</span>
+       <span class="err">by</span> <span class="err">scanning</span> <span class="err">/var/cache/packaging-farm/sources</span> <span class="err">and</span> <span class="err">creates</span>  <span class="err">the</span>  <span class="err">default</span>
+       <span class="err">Makefiles</span> <span class="err">if</span> <span class="err">needed</span> <span class="err">in</span> <span class="err">/var/cache/packaging-farm/build</span>
+
+
+<span class="err">BUILD</span> <span class="err">FILES</span>
+       <span class="err">The</span>  <span class="err">packaging</span>  <span class="err">farm</span> <span class="err">jobs</span> <span class="err">are</span> <span class="err">described</span> <span class="err">in</span> <span class="err">files</span> <span class="err">found</span> <span class="err">in</span> <span class="err">the</span> <span class="err">directory</span>
+       <span class="err">/var/cache/packaging-farm/build</span> <span class="err">under</span> <span class="err">a</span> <span class="err">directory</span> <span class="err">named</span> <span class="err">after</span> <span class="err">the</span> <span class="err">pack-</span>
+       <span class="err">age.</span>  <span class="err">It</span>  <span class="err">contains</span> <span class="err">a</span> <span class="err">Makefile</span> <span class="err">which</span> <span class="err">instructs</span> <span class="err">packaging-farm</span> <span class="err">about</span> <span class="err">what</span>
+       <span class="err">needs</span> <span class="err">to</span> <span class="err">be</span> <span class="err">done.</span> <span class="err">When</span> <span class="err">a</span> <span class="err">new</span> <span class="err">source</span> <span class="err">is</span> <span class="err">submitted</span> <span class="err">to</span> <span class="err">the</span> <span class="err">farm</span> <span class="err">with</span> <span class="err">pack-</span>
+       <span class="err">aging-farm</span>  <span class="err">submit</span>  <span class="err">a</span>  <span class="err">default</span> <span class="err">Makefile</span> <span class="err">is</span> <span class="err">created</span> <span class="err">if</span> <span class="err">it</span> <span class="err">does</span> <span class="err">not</span> <span class="err">exist</span>
+       <span class="err">yet.</span>
+
+       <span class="err">For</span>  <span class="err">example,</span>  <span class="err">/var/cache/packaging-farm/build/asterisk/Makefile</span>   <span class="err">con-</span>
+       <span class="err">tains:</span>
+          <span class="err">PACKAGE=asterisk</span>
+          <span class="err">LIBDIR</span> <span class="err">?=</span> <span class="err">/usr/lib/packaging-farm</span>
+          <span class="err">include</span> <span class="err">/usr/lib/packaging-farm/Makefile</span>
+
+       <span class="err">The</span>  <span class="err">following</span> <span class="err">variables</span> <span class="err">can</span> <span class="err">be</span> <span class="err">set</span> <span class="err">in</span> <span class="err">the</span> <span class="err">Makefile.</span> <span class="err">They</span> <span class="err">are</span> <span class="err">common</span> <span class="err">to</span>
+       <span class="err">all</span> <span class="err">packages.</span>
+
+
+       <span class="err">ROLE</span>   <span class="err">the</span> <span class="err">default</span> <span class="err">value</span> <span class="err">is</span> <span class="err">package</span> <span class="err">and</span> <span class="err">it</span> <span class="err">can</span> <span class="err">be</span> <span class="err">set</span>  <span class="err">to</span>  <span class="err">meta-package</span>
+          <span class="err">(see</span>  <span class="err">the</span> <span class="err">META</span> <span class="err">PACKAGES</span> <span class="err">section</span> <span class="err">for</span> <span class="err">more</span> <span class="err">information)</span> <span class="err">or</span> <span class="err">kernel-</span>
+          <span class="err">module</span> <span class="err">(see</span> <span class="err">the</span> <span class="err">KERNEL</span> <span class="err">MODULE</span> <span class="err">section</span> <span class="err">for</span> <span class="err">more</span> <span class="err">information).</span>
+
+
+       <span class="err">PACKAGE</span>
+          <span class="err">is</span> <span class="err">the</span> <span class="err">name</span> <span class="err">of</span> <span class="err">the</span> <span class="err">meta</span> <span class="err">package</span> <span class="err">and</span> <span class="err">it</span> <span class="err">must</span> <span class="err">match</span>  <span class="err">the</span>  <span class="err">name</span>  <span class="err">of</span>
+          <span class="err">the</span> <span class="err">directory</span> <span class="err">in</span> <span class="err">which</span> <span class="err">the</span> <span class="err">Makefile</span> <span class="err">is</span> <span class="err">found.</span>
+
+
+       <span class="err">DISTRIBUTIONS</span>
+          <span class="err">is</span>  <span class="err">the</span>  <span class="err">white</span> <span class="err">space</span> <span class="err">separated</span> <span class="err">list</span> <span class="err">of</span> <span class="err">distributions</span> <span class="err">for</span> <span class="err">which</span> <span class="err">a</span>
+          <span class="err">package</span> <span class="err">must</span> <span class="err">be</span> <span class="err">built.</span>  <span class="err">The</span> <span class="err">default</span> <span class="err">value</span> <span class="err">can</span> <span class="err">be</span> <span class="err">displayed</span>  <span class="err">with</span>
+          <span class="err">packaging-farm</span>  <span class="err">--var</span>  <span class="err">DISTRIBUTIONS</span>  <span class="err">and</span>  <span class="err">the</span> <span class="err">list</span> <span class="err">of</span> <span class="err">supported</span>
+          <span class="err">distributions</span> <span class="err">can</span> <span class="err">be</span> <span class="err">displayed</span> <span class="err">with</span>  <span class="err">packaging-farm</span>  <span class="err">--var</span>  <span class="err">SUP-</span>
+          <span class="err">PORTED_DISTRIBUTIONS</span>
+
+
+       <span class="err">ARCHITECTURES</span>
+          <span class="err">is</span>  <span class="err">the</span>  <span class="err">white</span> <span class="err">space</span> <span class="err">separated</span> <span class="err">list</span> <span class="err">of</span> <span class="err">architectures</span> <span class="err">for</span> <span class="err">which</span> <span class="err">a</span>
+          <span class="err">package</span> <span class="err">must</span> <span class="err">be</span> <span class="err">built.</span>  <span class="err">The</span> <span class="err">default</span> <span class="err">value</span> <span class="err">can</span> <span class="err">be</span> <span class="err">displayed</span>  <span class="err">with</span>
+          <span class="err">packaging-farm</span>  <span class="err">--var</span>  <span class="err">ARCHITECTURES</span>  <span class="err">and</span>  <span class="err">the</span> <span class="err">list</span> <span class="err">of</span> <span class="err">supported</span>
+          <span class="err">architectures</span> <span class="err">can</span> <span class="err">be</span> <span class="err">displayed</span> <span class="err">with</span>  <span class="err">packaging-farm</span>  <span class="err">--var</span>  <span class="err">SUP-</span>
+          <span class="err">PORTED_ARCHITECTURES</span>
+
+
+<span class="err">META</span> <span class="err">PACKAGES</span>
+       <span class="err">A</span>  <span class="err">meta</span>  <span class="err">package</span>  <span class="err">is</span> <span class="err">the</span> <span class="err">aggregation</span> <span class="err">of</span> <span class="err">packages</span> <span class="err">into</span> <span class="err">a</span> <span class="err">repository</span> <span class="err">that</span>
+       <span class="err">has</span> <span class="err">the</span> <span class="err">same</span> <span class="err">format</span> <span class="err">as</span> <span class="err">the</span> <span class="err">official</span> <span class="err">repositories.</span> <span class="err">The</span> <span class="err">definition</span> <span class="err">of</span> <span class="err">the</span>
+       <span class="err">meta</span> <span class="err">package</span> <span class="err">is</span> <span class="err">found</span> <span class="err">in</span> <span class="err">the</span> <span class="err">/var/cache/packaging-farm/build</span>
+
+       <span class="err">For</span>  <span class="err">instance,</span>  <span class="err">the</span>  <span class="err">skaro</span>  <span class="err">meta</span> <span class="err">package</span> <span class="err">can</span> <span class="err">be</span> <span class="err">defined</span> <span class="err">by</span> <span class="err">creating</span> <span class="err">the</span>
+       <span class="err">/var/cache/packaging-farm/build/skaro/Makefile</span> <span class="err">with</span> <span class="err">the</span> <span class="err">following</span>  <span class="err">con-</span>
+       <span class="err">tent:</span>
+
+          <span class="err">PACKAGE=skaro</span>
+          <span class="err">DISTRIBUTIONS=squeeze</span>
+          <span class="err">COMPONENT=main</span>
+          <span class="err">ARCHITECTURES=i386</span> <span class="err">x86_64</span>
+          <span class="err">CHILD_PACKAGES</span> <span class="err">=</span> <span class="err">asterisk</span> <span class="err">dahdi-linux</span>
+
+          <span class="err">ROLE</span> <span class="err">=</span> <span class="err">meta-package</span>
+
+          <span class="err">LIBDIR</span> <span class="err">?=</span> <span class="err">/usr/lib/packaging-farm</span>
+          <span class="err">include</span> <span class="err">${LIBDIR}/Makefile</span>
+
+       <span class="err">and</span>  <span class="err">the</span>  <span class="err">resulting</span>  <span class="err">repository</span>  <span class="err">can</span>  <span class="err">be</span> <span class="err">added</span> <span class="err">to</span> <span class="err">/etc/apt/sources.list</span>
+       <span class="err">with:</span>
+
+          <span class="err">deb</span> <span class="err">http://localhost/packaging-farm/asterisk/gnulinux/debian</span> <span class="err">skaro-squeeze</span> <span class="err">main</span>
+          <span class="err">deb-src</span> <span class="err">http://localhost/packaging-farm/asterisk/gnulinux/debian</span> <span class="err">skaro-squeeze</span> <span class="err">main</span>
+
+
+       <span class="err">CHILD_PACKAGES</span>
+          <span class="err">the</span> <span class="err">white</span> <span class="err">space</span> <span class="err">separated</span> <span class="err">list</span> <span class="err">of</span> <span class="err">packages</span> <span class="err">to</span> <span class="err">be</span> <span class="err">aggregated</span> <span class="err">into</span>
+          <span class="err">the</span>  <span class="err">meta-package.</span>  <span class="err">The</span>  <span class="err">list</span> <span class="err">of</span> <span class="err">known</span> <span class="err">packages</span> <span class="err">can</span> <span class="err">be</span> <span class="err">displayed</span>
+          <span class="err">with</span> <span class="err">packaging-farm</span> <span class="err">--var</span> <span class="err">PACKAGES</span>
+
+
+       <span class="err">COMPONENT</span>
+          <span class="err">is</span> <span class="err">the</span> <span class="err">component,</span> <span class="err">in</span> <span class="err">the</span> <span class="err">Debian</span> <span class="err">GNU/Linux</span> <span class="err">sense,</span> <span class="err">provided</span> <span class="err">by</span> <span class="err">the</span>
+          <span class="err">meta</span> <span class="err">package.</span> <span class="err">It</span> <span class="err">must</span> <span class="err">be</span> <span class="err">a</span> <span class="err">single</span> <span class="err">string.</span>
+
+
+<span class="err">KERNEL</span> <span class="err">MODULES</span>
+       <span class="err">Binary</span>  <span class="err">kernel</span>  <span class="err">modules</span>  <span class="err">are</span>  <span class="err">built</span>  <span class="err">from</span> <span class="err">kernel</span> <span class="err">module</span> <span class="err">source</span> <span class="err">packages</span>
+       <span class="err">using</span> <span class="err">module-assistant(1).</span>
+
+       <span class="err">For</span> <span class="err">instance</span>  <span class="err">/var/cache/packaging-farm/build/dahdi-linux-modules/Make-</span>
+       <span class="err">file</span> <span class="err">contains:</span>
+
+          <span class="err">ROLE=kernel-module</span>
+          <span class="err">PACKAGE=dahdi-linux-modules</span>
+          <span class="err">MODULE=dahdi-linux-source</span>
+          <span class="err">DISTRIBUTIONS=squeeze</span>
+          <span class="err">ARCHITECTURES=i386</span> <span class="err">x86_64</span>
+          <span class="err">LIBDIR</span> <span class="err">?=</span> <span class="err">/usr/lib/packaging-farm</span>
+          <span class="err">include</span> <span class="err">${LIBDIR}/Makefile</span>
+
+
+       <span class="err">MODULE</span> <span class="err">the</span>  <span class="err">package</span> <span class="err">that</span> <span class="err">will</span> <span class="err">be</span> <span class="err">given</span> <span class="err">to</span> <span class="err">module-assistant(1)</span> <span class="err">to</span> <span class="err">create</span>
+          <span class="err">binary</span> <span class="err">kernel</span> <span class="err">module</span> <span class="err">packages.</span>
+
+
+<span class="err">DEPENDENCIES</span>
+       <span class="err">packaging-farm</span> <span class="err">needs</span> <span class="err">a</span> <span class="err">dependency</span> <span class="err">graph</span> <span class="err">to</span>  <span class="err">figure</span>  <span class="err">out</span>  <span class="err">which</span>  <span class="err">package</span>
+       <span class="err">needs</span> <span class="err">to</span> <span class="err">be</span> <span class="err">built</span> <span class="err">in</span> <span class="err">order</span> <span class="err">for</span> <span class="err">the</span> <span class="err">others</span> <span class="err">to</span> <span class="err">succeed.</span> <span class="err">This</span> <span class="err">is</span> <span class="err">done</span> <span class="err">with</span>
+
+          <span class="err">packaging-farm</span> <span class="err">depends</span>
+
+       <span class="err">and</span>  <span class="err">must</span>  <span class="err">be</span>  <span class="err">run</span> <span class="err">manually</span> <span class="err">when</span> <span class="err">modifying</span> <span class="err">a</span> <span class="err">meta</span> <span class="err">package</span> <span class="err">(see</span> <span class="err">the</span> <span class="err">META</span>
+       <span class="err">PACKAGES</span> <span class="err">section).</span> <span class="err">It</span> <span class="err">is</span> <span class="err">run</span> <span class="err">as</span> <span class="err">part</span> <span class="err">of</span>
+
+          <span class="err">packaging-farm</span> <span class="err">submit</span>
+
+       <span class="err">The</span> <span class="err">dependency</span> <span class="err">graph</span> <span class="err">is</span> <span class="err">output</span> <span class="err">in</span>  <span class="err">/var/cache/packaging-farm/depends.mk</span>
+       <span class="err">and</span>  <span class="err">the</span>  <span class="err">dependency</span>  <span class="err">timestamps</span> <span class="err">that</span> <span class="err">remember</span> <span class="err">what</span> <span class="err">was</span> <span class="err">built</span> <span class="err">is</span> <span class="err">in</span> <span class="err">the</span>
+       <span class="err">directory</span>  <span class="err">/var/cache/packaging-farm/depends</span>  <span class="err">For</span>   <span class="err">instance</span>   <span class="err">a</span>   <span class="err">file</span>
+       <span class="err">/var/cache/packaging-farm/depends/asterisk</span> <span class="err">dated</span> <span class="err">march</span> <span class="err">28th,</span> <span class="err">2011</span> <span class="err">means</span>
+       <span class="err">that</span> <span class="err">asterisk</span> <span class="err">was</span> <span class="err">successfully</span> <span class="err">built</span> <span class="err">on</span> <span class="err">that</span> <span class="err">date.</span>
+
+
+<span class="err">DEBUGGING</span>
+       <span class="err">The</span> <span class="err">output</span> <span class="err">is</span> <span class="err">extremely</span> <span class="err">verbose.</span> <span class="err">If</span> <span class="err">the</span> <span class="err">build</span> <span class="err">of</span> <span class="err">a</span> <span class="err">package</span> <span class="err">(say</span>  <span class="err">aster-</span>
+       <span class="err">isk)</span> <span class="err">fails</span> <span class="err">for</span> <span class="err">a</span> <span class="err">given</span> <span class="err">distribution</span> <span class="err">(say</span> <span class="err">squeeze)</span> <span class="err">for</span> <span class="err">a</span> <span class="err">given</span> <span class="err">architec-</span>
+       <span class="err">ture</span> <span class="err">(say</span> <span class="err">i386),</span> <span class="err">it</span> <span class="err">is</span> <span class="err">archived</span> <span class="err">at</span> <span class="err">/var/cache/packaging-farm/build/ask-</span>
+       <span class="err">terisk/build/squeeze-i386.out</span>
+
+       <span class="err">When</span> <span class="err">run</span> <span class="err">from</span> <span class="err">the</span> <span class="err">command</span> <span class="err">line,</span> <span class="err">the</span> <span class="err">output</span> <span class="err">from</span> <span class="err">&#39;BUILD</span> <span class="err">START&#39;</span> <span class="err">to</span> <span class="err">&#39;BUILD</span>
+       <span class="err">END&#39;</span> <span class="err">is</span> <span class="err">displayed</span> <span class="err">in</span> <span class="err">case</span> <span class="err">of</span> <span class="err">a</span> <span class="err">failure</span>  <span class="err">and</span>  <span class="err">the</span>  <span class="err">relevant</span>  <span class="err">message</span>  <span class="err">is</span>
+       <span class="err">likely</span>  <span class="err">to</span> <span class="err">be</span> <span class="err">in</span> <span class="err">the</span> <span class="err">last</span> <span class="err">few</span> <span class="err">lines.</span> <span class="err">The</span> <span class="err">error</span> <span class="err">handling</span> <span class="err">policy</span> <span class="err">through-</span>
+       <span class="err">out</span> <span class="err">packaging-farm</span> <span class="err">is</span> <span class="err">to</span> <span class="err">abort</span> <span class="err">as</span> <span class="err">soon</span> <span class="err">as</span> <span class="err">a</span> <span class="err">failure</span> <span class="err">occurs.</span>
+
+       <span class="err">The</span> <span class="err">chroot</span> <span class="err">used</span> <span class="err">to</span> <span class="err">build</span> <span class="err">the</span> <span class="err">package</span> <span class="err">can</span> <span class="err">be</span> <span class="err">entered</span> <span class="err">for</span> <span class="err">further</span>  <span class="err">inves-</span>
+       <span class="err">tigation</span> <span class="err">with</span> <span class="err">the</span> <span class="err">command:</span>
+
+          <span class="err">packaging-farm</span> <span class="err">--cd</span> <span class="err">asterisk</span> <span class="err">DISTRIBUTION=squeeze</span> <span class="err">ARCHITECTURE=x86_64</span> <span class="err">chroot-login</span>
+
+       <span class="err">Note</span> <span class="err">that</span> <span class="err">the</span> <span class="err">content</span> <span class="err">of</span> <span class="err">the</span> <span class="err">chroot</span> <span class="err">will</span> <span class="err">be</span> <span class="err">reset</span> <span class="err">to</span> <span class="err">a</span> <span class="err">virgin</span> <span class="err">installa-</span>
+       <span class="err">tion</span> <span class="err">when</span> <span class="err">the</span> <span class="err">next</span> <span class="err">build</span> <span class="err">of</span> <span class="err">the</span> <span class="err">packag</span> <span class="err">is</span> <span class="err">run</span> <span class="err">with</span>
+
+          <span class="err">packaging-farm</span> <span class="err">asterisk</span>
+
+       <span class="err">Note</span> <span class="err">that</span> <span class="err">the</span> <span class="err">chroot</span> <span class="err">must</span> <span class="err">be</span> <span class="err">exited</span> <span class="err">before</span>  <span class="err">running</span>  <span class="err">a</span>  <span class="err">new</span>  <span class="err">build.</span>  <span class="err">If</span>
+       <span class="err">still</span> <span class="err">in</span> <span class="err">the</span> <span class="err">chroot,</span> <span class="err">the</span> <span class="err">build</span> <span class="err">will</span> <span class="err">fail.</span>
+
+
+<span class="err">USE</span> <span class="err">CASE</span> <span class="err">:</span> <span class="err">IMPORT</span> <span class="err">PACKAGE</span>
+       <span class="err">Paul</span>  <span class="err">wants</span>  <span class="err">to</span>  <span class="err">build</span> <span class="err">the</span> <span class="err">package</span> <span class="err">libpri</span> <span class="err">found</span> <span class="err">at</span> <span class="err">http://dak.proforma-</span>
+       <span class="err">tique.com/debian</span>
+
+       <span class="err">He</span> <span class="err">add</span> <span class="err">the</span>
+          <span class="err">deb-src</span> <span class="err">http://dak.proformatique.com/debian</span> <span class="err">squeeze-xivo-skaro-dev</span> <span class="err">main</span>
+       <span class="err">line</span> <span class="err">in</span> <span class="err">/etc/apt/sources.list.</span>
+
+       <span class="err">He</span> <span class="err">downloads</span> <span class="err">it</span> <span class="err">into</span> <span class="err">the</span> <span class="err">sources</span> <span class="err">directory</span> <span class="err">of</span> <span class="err">packaging-farm:</span>
+          <span class="err">apt-get</span> <span class="err">update</span>
+          <span class="err">mkdir</span> <span class="err">/var/cache/packaging-farm/sources/libpri</span>
+          <span class="err">cd</span> <span class="err">/var/cache/packaging-farm/sources/libpri</span>
+          <span class="err">apt-get</span> <span class="err">source</span> <span class="err">libpri</span>
+          <span class="err">packaging-farm</span> <span class="err">generate</span>
+
+       <span class="err">He</span> <span class="err">builds</span> <span class="err">the</span> <span class="err">package</span> <span class="err">for</span> <span class="err">the</span> <span class="err">default</span> <span class="err">distributions</span> <span class="err">and</span> <span class="err">architectures:</span>
+          <span class="err">packaging-farm</span> <span class="err">libpri</span>
+
+
+<span class="err">SEE</span> <span class="err">ALSO</span>
+       <span class="err">submit-xivo.sh(1)</span>
+
+
+<span class="err">AUTHORS</span>
+       <span class="err">Loic</span> <span class="err">Dachary</span> <span class="err">&lt;loic@gnu.org&gt;</span>
+
+
+
+                     <span class="err">local</span>           <span class="err">packaging-farm(1)</span>
+</pre></div>
+
+
+<h4>packaging-farm 1.2.35</h4>
+<p>A new release was
+<a href="http://packaging-farm.dachary.org/download">published</a> with the manual
+page displayed above and the following bug fixes and improvements.The
+BUILD START and BUILD END markers are added to the output so that it is
+easier for the developer to figure out the relevant errors. It is also
+used by the showerrors target. The showerrors target is run after
+building a package so that the command line user does not need to dig in
+the verbose output to find the source of the problem. The showerrors
+target was added to display the build log of a given package for a given
+architecture and a given distribution, if and only if it failed to
+build. The ARCHITECTURES variable is exported so that packging-farm -
+-var ARCHITECTURES can be used to display the default value.
+submit-xivo.sh creates a new entry in the debian/changelog when
+processing a package. If this entry is not committed because
+GIT_DRY_RUN=true was set, it will prevent a git pull. The command git
+reset --hard HEAD is run to get rid of such pending modifications. The
+.orig.tar.gz created contained a spurious directory named after the
+package : it was removed and its content moved back to the root. A third
+party package is detected when a *-VERSION file is found in the sources
+directory instead of SOURCE- VERSION which is more restrictive</p>
+<h4>XiVO bug fixes and versions</h4>
+<p>While attempting to recompile the XiVO packages, the following bugs were
+filled together with the patches fixing them.</p>
+<ul>
+<li><a href="https://projects.proformatique.com/issues/2125">freeswitch patch : cdbs dependency + version insensitive
+    package</a></li>
+<li><a href="https://projects.proformatique.com/issues/2120">dahdi-linux patch : version insensitive
+    packaging</a></li>
+<li><a href="https://projects.proformatique.com/issues/2129">asterisk patch : misdn depencencies in
+    skaro-squeeze</a></li>
+<li><a href="https://projects.proformatique.com/issues/2121">dahdi-tools patch : version insensitive
+    packaging</a></li>
+</ul>
+<p>Discussing with Nicolas Hicher on irc.freenode.net#xivo about these
+patches led to a debate about the versions of the packages which was
+brought to <a href="">the development mailing list</a>The
+<a href="http://downloads.asterisk.org/pub/telephony/libpri/">libpri</a> library is
+not yet available in the xivo skaro source repositories and it was
+imported as described in the corresponding use case in the
+packaging-farm manual page.</p>
+<h4>Architecture</h4>
+<p>A draft workflow description for packaging-farm was drawn. However, it
+turns out to be at a level of detail that most packaging-farm users
+would find useless. It would belong to an implementor guide.</p>
+<div class="highlight"><pre><span class="err">==============</span> <span class="err">net</span> <span class="err">=============</span>
+
+       <span class="err">+---------------+</span>        <span class="err">+-----------------+</span>
+       <span class="err">|</span>  <span class="err">Debian</span> <span class="err">GIT</span>   <span class="err">|</span>        <span class="err">|</span>   <span class="err">Sources</span> <span class="err">GIT</span>   <span class="err">|</span>
+       <span class="err">+------+--------+</span>        <span class="err">+--------+--------+</span>
+              <span class="err">|</span>                          <span class="err">|</span>
+              <span class="err">v</span>                          <span class="err">v</span>            <span class="err">===</span> <span class="err">/var/cache/packaging-farm</span> <span class="err">==</span>
+       <span class="err">+---------------+</span>        <span class="err">+------------------+</span>
+       <span class="err">|</span>  <span class="err">VCS/debian</span>   <span class="err">|</span>        <span class="err">|</span>  <span class="err">VCS/sources</span>     <span class="err">|</span>
+       <span class="err">+-------------+-+</span>        <span class="err">+--+---------------+</span>
+                     <span class="err">|</span>             <span class="err">|</span>
+                     <span class="err">v</span>             <span class="err">v</span>
+                    <span class="err">+----------------+</span>
+                    <span class="err">(</span> <span class="err">submit-xivo.sh</span> <span class="err">)</span>
+                    <span class="err">+--+-------------+</span>
+                       <span class="err">|</span>            <span class="err">v</span>
+                       <span class="err">|</span>           <span class="err">+------------------+</span>
+                       <span class="err">v</span>           <span class="err">|</span>  <span class="err">sources/skaro</span>   <span class="err">+------&gt;-------&gt;----------------+</span>
+                       <span class="err">|</span>           <span class="err">+------------------+</span>                               <span class="err">|</span>
+       <span class="err">+--------------------+</span>                                                         <span class="err">|</span>
+       <span class="err">|</span> <span class="err">sources/asterisk</span>   <span class="err">+--------------------------------&gt;-------&gt;----------------+</span>
+       <span class="err">+--------------------+</span>                                                         <span class="err">|</span>
+                                                                                      <span class="err">|</span>
+       <span class="err">+--------------------+</span>                           <span class="err">+-------------------------+</span>   <span class="err">|</span>
+       <span class="err">|</span> <span class="err">depends.mk</span>         <span class="err">+-------------&lt;-------------(</span>  <span class="err">packaging-farm</span> <span class="err">depends</span> <span class="err">)-&lt;-+</span>
+       <span class="err">+--+-----------------+</span>                           <span class="err">+-------------------------+</span>   <span class="err">|</span>
+          <span class="err">|</span>                                                                           <span class="err">|</span>
+          <span class="err">|</span>                                             <span class="err">+-------------------------+</span>   <span class="err">|</span>
+          <span class="err">|</span>              <span class="err">+---------------------------+--(</span> <span class="err">packaging-farm</span> <span class="err">generate</span> <span class="err">)-&lt;-+</span>
+          <span class="err">|</span>              <span class="err">|</span>                           <span class="err">|</span>  <span class="err">+-------------------------+</span>
+          <span class="err">|</span>              <span class="err">v</span>                           <span class="err">v</span>
+          <span class="err">|</span>              <span class="err">|</span>                           <span class="err">|</span>
+          <span class="err">v</span>     <span class="err">+--------+-----------+</span>     <span class="err">+---------+---------+</span>
+          <span class="err">|</span>     <span class="err">|</span> <span class="err">build/asterisk</span>     <span class="err">|</span>     <span class="err">|</span>  <span class="err">build/skaro</span>      <span class="err">|</span>
+          <span class="err">|</span>     <span class="err">+--------+-----------+</span>     <span class="err">+-------+-----------+</span>
+          <span class="err">|</span>              <span class="err">v</span>                         <span class="err">v</span>
+          <span class="err">|</span>              <span class="err">|</span>                         <span class="err">|</span>             <span class="err">+----------------------+</span>
+          <span class="err">+--------------&gt;-----------&gt;-------------+-------------(</span> <span class="err">packaging-farm</span> <span class="err">skaro</span> <span class="err">)</span>
+                                                                 <span class="err">+-+--------+-----------+</span>
+         <span class="err">===</span> <span class="err">/var/cache/packaging-farm/build/{asterisk,skaro}</span> <span class="err">==</span>   <span class="err">|</span>        <span class="err">|</span>
+                                                                   <span class="err">|</span>        <span class="err">|</span>
+         <span class="err">+---------------------------------------+</span>        <span class="err">+--------v--------v-----------+</span>
+         <span class="err">|</span>    <span class="err">build/debian/i386/squeeze</span>          <span class="err">&lt;--------(</span> <span class="err">packaging-farm</span> <span class="err">chroot-login</span> <span class="err">)</span>
+         <span class="err">+---------------------------------------+</span>        <span class="err">+-----------------------------+</span>
+         <span class="err">+---------------------------------------+</span>        <span class="err">+-----------------------------+</span>
+         <span class="err">|</span> <span class="err">build/debian/i386/squeeze/usr/src</span>     <span class="err">&lt;--------(</span> <span class="err">packaging-farm</span> <span class="err">all</span>          <span class="err">)</span>
+         <span class="err">+---------------------------------------+</span>        <span class="err">+-----------------------------+</span>
+                                                               <span class="err">|</span>        <span class="err">|</span>
+         <span class="err">===</span> <span class="err">/var/cache/packaging-farm/build/asterisk</span> <span class="err">==</span>       <span class="err">|</span>        <span class="err">|</span>
+           <span class="err">etc...</span>                                              <span class="err">|</span>        <span class="err">|</span>
+         <span class="err">=====</span> <span class="err">/var/lib/packaging-farm</span> <span class="err">=================</span>       <span class="err">|</span>        <span class="err">|</span>
+                                                               <span class="err">v</span>        <span class="err">v</span>
+          <span class="err">+------------------+</span>                                 <span class="err">|</span>        <span class="err">|</span>
+          <span class="err">|</span>  <span class="err">asterisk</span>        <span class="err">+------------------&lt;--------------+</span>        <span class="err">|</span>
+          <span class="err">+------------------+</span>                                          <span class="err">|</span>
+          <span class="err">+------------------+</span>                                          <span class="err">|</span>
+          <span class="err">|</span>  <span class="err">skaro</span>           <span class="err">+------------------&lt;-----------------------+</span>
+          <span class="err">+------------------+</span>
+
+
+         <span class="err">=====</span> <span class="err">target</span> <span class="err">system</span> <span class="err">===========================</span>
+
+         <span class="err">deb</span> <span class="err">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="err">skaro-squeeze</span> <span class="err">main</span>
+         <span class="err">deb-src</span> <span class="err">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="err">skaro-squeeze</span> <span class="err">main</span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/new-schedule-jquery-widget-for-upcoming-xivo.html#new-schedule-jquery-widget-for-upcoming-xivo">New schedule jquery widget for upcoming XiVO</a></h2>
+    <p>
+      Posted on Fri 25 March 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>,      <a href="http://blog.xivo.io/tag/schedule.html">schedule</a>,      <a href="http://blog.xivo.io/tag/javascript.html">javascript</a>,      <a href="http://blog.xivo.io/tag/jquery.html">jquery</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>    </p>
+  </header>
+  <div>
+      <p><span class="Apple-style-span"
+style="font-size: 15px; font-weight: bold; ">How to use it</span></p>
+<p>Click once on the field with calendar icon to show the widget. Click
+again to hide it (or on the cross at title bar right's).Once visible,
+you can define your intervals:</p>
+<ol>
+<li>
+<p>for months and days</p>
+<ul>
+<li>select each month/day individually (a selected one move from
+    gray to yellow background)</li>
+<li>all/none button allow toggling all values at once</li>
+</ul>
+</li>
+<li>
+<p>for the time interval</p>
+<ul>
+<li>click down start or end toggle, then slide to adjust the value</li>
+<li>for a fine adjustment, use mouse wheel or up/down keyboard keys</li>
+</ul>
+</li>
+</ol>
+<p>NOTE: <strong>A datetime is considered in the schedule if it match all
+intervals (months, month days, week days and hours)</strong>.</p>
+<p>Lets see with a quick example:  </p>
+<p><a href="/public/xivo-schedule/example.png" title="example.png"><img alt="example.png" src="/public/xivo-schedule/.example_s.jpg" title="example.png, mar. 2011" /></a></p>
+<p>We have selected workdays from January to April, 8AM to 7PM.</p>
+<ul>
+<li>all datetimes with time lower than 8AM or higher than 7PM are out of
+    the schedule</li>
+<li>2011, march 25 9.30AM is in schedule, while 2012, march 25 9:30AM is
+    out (first is a friday, while last is a sunday)</li>
+</ul>
+<h3>Developpers: Including xivo-schedule in you pages</h3>
+<p>While developped for xivo, it can easily be integrated in other
+projects. xivo-schedule support jquery-ui themes and is multilingual
+(only french and english available at the moment).  </p>
+<p>xivo-schedule widget require jquery (&gt;= 1.5), jquery-ui (&gt;=1.8)
+and optionally jquery.mousewheel
+(<a href="http://brandonaaron.net/code/mousewheel/docs">http://brandonaaron.net/code/mousewheel/docs</a>).</p>
+<p>``` {style="font-size:small;"}
+<link rel="stylesheet"   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/ui-lightness/jquery-ui.css"   type="text/css" media="all" /><script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script><script src="jquery.mousewheel.min.js"></script></p>
+<div class="highlight"><pre>Then include xivo-schedule javascript and css files. Note that you can
+also include langpack(s) you want to use.
+
+``` {style=&quot;font-size:small;&quot;}
+<span class="nt">&lt;link</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;xivo.schedule.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule.js&quot;</span><span class="nt">&gt;&lt;/script&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule-fr.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>xivo-schedule required a text input to be attached to. If you want to
+get schedule intervals back, you also need 4 others text fields (one for
+months, monthdays, weekdays and time intervals), which will be filled
+with intervals raw value when the user will manipulate schedule widget.</p>
+<p>``` {style="font-size:small;"}
+    <form>
+      <div style="float:left">
+        <input id="schedule" type="text" /><br/>
+      </div></p>
+<p><div style="float:left; margin-left: 100px;">
+        <label for="sched-months">months :</label><input id="sched-months"    type="text" disabled /><br/>
+        <label for="sched-monthdays">month days :</label><input id="sched-monthdays" type="text" disabled /><br/>
+        <label for="sched-weekdays">week days :</label><input id="sched-weekdays"  type="text" disabled /><br/>
+        <label for="sched-hours">hours :</label><input id="sched-hours"     type="text" disabled />
+      </div>
+    </form></p>
+<div class="highlight"><pre>Finally, you initialize your schedule widget:
+
+``` {style=&quot;font-size:small;&quot;}
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>  $(function(){    $(&#39;#schedule&#39;).schedule({      &#39;language&#39;: &#39;fr&#39;,      &#39;inputs&#39;: {          &#39;months&#39;   : $(&#39;#sched-months&#39;),          &#39;monthdays&#39;: $(&#39;#sched-monthdays&#39;),          &#39;weekdays&#39; : $(&#39;#sched-weekdays&#39;),          &#39;hours&#39;    : $(&#39;#sched-hours&#39;)      },      &#39;defaults&#39;: {          &#39;months&#39;   : &#39;1,3-6,11,12&#39;,          &#39;monthdays&#39;: &#39;1,3,5,8,10,12-13,15,17,20,22,24-25,27,29&#39;,          &#39;weekdays&#39; : &#39;1,4-6&#39;,          &#39;hours&#39;    : &#39;08:35-17:30&#39;      }    });  });<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>and voila! see attached file for the complete sample.</p>
+<p><strong>xivo-schedule can be downloaded from <a href="git://git.xivo.fr/xivo-dalek.git">our git
+repository</a> or <a href="https://github.com/gbour/xivo-schedule">on
+github</a></strong></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html#xivo-sources-conventions-implemented-and-documented">XiVO sources conventions implemented and documented</a></h2>
+    <p>
+      Posted on Mon 21 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>The <a href="http://git.xivo.fr/debian">debian GNU/Linux packages repository</a>
+was made public a few days ago. The
+<a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh</a> shell script
+based on the internal SVN repository has been updated to use the public
+GIT repository instead.</p>
+<p>In order to make it more convenient for the developer to submit a job to
+<a href="http://packaging-farm.dachary.org/">packaging-farm</a> the workflow was
+modified. It previously provided a single submission script that was
+independent from the building of the package. A new target, <code>submit</code> has
+been introduced together with a global SUBMIT configuration variable. If
+SUBMIT=xivo, the submit target will call the
+/usr/lib/packaging-farm/submit/submit-xivo.sh script and expect it to do
+something useful based on the environment variables it finds.</p>
+<p>During the installation of the Debian GNU/Linux packaging-farm-client
+package, the former rsync limit and origin of the chroot used to build
+the packages were deprecated in favor of the value of the SUBMIT
+configuration variable. It has two choices : the existing
+<a href="http://pokersource.info/">pokersource</a> convention and the XiVO
+convention.</p>
+<p>A <a href="">new release (1.2.34)</a> of packaging-farm has been published with
+this integration.</p>
+<div class="highlight"><pre>submit-xivo(1)                          submit-xivo(1)
+
+NAME
+       submit-xivo.sh - create a source package from XiVO repositories
+
+SYNOPSIS
+       [DIRECTORY=] submit-xivo.sh
+
+       [VERBOSE=false] [GIT_DRY_RUN=false] \
+     [VCS_DIR=/var/cache/packaging-farm/VCS] \
+     [PACKAGES_DIR=/var/cache/packaging-farm/sources] \
+     [XIVO=skaro] \
+     [SUITE=squeeze] \
+     [SOURCE_GIT=git://git.xivo.fr] \
+     [DEBIAN_GIT=git://git.xivo.fr/debian] \
+     [DEBEMAIL=technique@proformatique.com] \
+     [DEBFULLNAME=&quot;Proformatique Maintainance Team&quot;] \
+     [DIRECTORY=] \
+     submit-xivo.sh [TEST]
+
+DESCRIPTION
+       When  run  as DIRECTORY=asterisk submit.xivo.sh will merge the asterisk
+       sources with the corresponding Debian  GNU/Linux  package  instructions
+       and build a source package.
+
+
+       step 1 - update the git repositories
+          the  SOURCE_GIT  and  DEBIAN_GIT  repositories are pulled in the
+          VCS_DIR directory.
+
+       step 2 - merge sources and Debian GNU/Linux package
+          the source  and  Debian  package  information  are  copied  from
+          VCS_DIR and merged into PACKAGES_DIR
+
+       step 3 - build source package
+          without  any attempt at resolving dependencies, a source package
+          is built using dpkg-buildpackage
+
+          When invoked without the  DIRECTORY  environment  variable  set,
+          submit-xivo.sh will display a usage and sample commands that can
+          be copy/pasted to the command line.  It is designed as a  helper
+          to the packaging-farm(1) command the sample commands make use of
+          it.
+
+DEFINITIONS
+       SUITE  is the name of a Debian GNU/Linux distribution, such as  squeeze
+          or lenny.
+
+
+       XIVO   is the name of a XiVO release such as skaro or gallifrey.
+
+
+       component
+          is  the name of a repository containing a set of packages, as in
+          the reprepro(1) configuration files. A component is of the  form
+          SUITE-xivo-XIVO  For instance, lenny-xivo-dalek, lenny-xivo-gal-
+          lifrey and  squeeze-xivo-skaro.
+
+VERSIONS
+       The XiVO source  packages  have  no  version  information.  The  Debian
+       GNU/Linux  package  version  numbers are generated based on the date of
+       the last commit and its short hash.  YYYYMMDD.HHMMSS.HASH will  be  the
+       version  number  of  a package where the last commit in the sources was
+       made on YYYYMMDD.HHMMSS. This last commit hash is appended to the  ver-
+       sion number.  Example: asterisk-20110312.102015.8ff428-1
+
+       When  merging  a source with its matching Debian GNU/Linux package, the
+       first line of the debian/changelog file must contain the computed  ver-
+       sion  number.  If  it  does not, a new changelog entry is used with the
+       following template:
+          echo &quot;<span class="nv">$package</span> (<span class="cp">${</span><span class="n">version</span><span class="cp">}${</span><span class="n">debian_version</span><span class="cp">}</span>) <span class="nv">$component</span>; urgency=low&quot;
+          echo
+          echo &quot;  * upstream update&quot;
+          echo
+          echo -n &quot; -- <span class="nv">$DEBFULLNAME</span> <span class="err">&lt;</span><span class="nv">$DEBEMAIL</span>&gt;  &quot;
+          date &#39;+%a, %d %b %Y %R:%S %z&#39;
+          echo
+
+TARBALL CONSISTENCY
+       If a source tarball already exists for a given version, it will be left
+       untouched.   Although  the  contents would be the same if re-generated,
+       the checksum will be different when it is  compressed.  Such  a  change
+       introduce  an unnecessary and confusing variance when issuing more than
+       one Debian GNU/Linux package for a given source.
+
+NAMESPACES
+       git://git.xivo.fr source tree
+          contains one repository for each component
+          http://git.xivo.fr/xivo-dalek.git
+          http://git.xivo.fr/xivo-gallifrey.git
+          http://git.xivo.fr/xivo-skaro.git Within  each  repository,  the
+          directories  containing a Makefile.pkg file contain sources that
+          are candidates for packaging.
+
+
+       git://git.xivo.fr/debian package tree
+          contains one repository for each component
+          http://git.xivo.fr/debian/lenny-xivo-dalek.git
+          http://git.xivo.fr/debian/lenny-xivo-gallifrey.git
+          http://git.xivo.fr/debian/squeeze-xivo-skaro.git   Within   each
+          repository, each directory contains a trunk/debian sub-directory
+          matching the corresponding DEB_PKG in the source directory.
+
+
+       VCS_DIR tree
+          contains a debian sub-directory where  all  debian  repositories
+          are  cloned and a sources sub-directory where all source reposi-
+          tories are cloned
+
+
+       PACKAGES_DIR tree
+          for each package found  in  the  VCS_DIR/debian  subdirectories,
+          there  exists a corresponding directory in PACKAGES_DIR with the
+          dsc of the package and a subdirectory with the same name as  the
+          package containing the actual sources.
+
+ENVIRONMENT
+       Each  environment  variable  is shown with its default value. It can be
+       overriden if set before the  submit-xivo.sh  is  called.  For  instance
+       PACKAGES_DIR=/tmp DIRECTORY=asterisk
+
+
+       XIVO=skaro
+          The  name  of  the skaro distribution. Can be one of skaro, gal-
+          lifrey.
+
+
+       SUITE=squeeze
+          A Debian GNU/Linux suite. Can be one of squeeze, lenny.
+
+
+       VCS_DIR=/var/cache/packaging-farm/VCS
+          The directory in which the source and debian  repositories  will
+          be cloned.
+
+
+       PACKAGES_DIR=/var/cache/packaging-farm/sources
+          The  directory  in  which  the resulting source packages will be
+          stored.
+
+
+       SOURCE_GIT=git://git.xivo.fr
+          The directory containing the source code repositories  for  each
+          XiVO suite.
+
+
+       DEBIAN_GIT=git://git.xivo.fr/debian
+          The  directory  containing the Debian GNU/Linux repositories for
+          each XiVO suite.
+
+
+       GIT_DRY_RUN=false
+          If set to true, no changes  will  be  committed  to  the  Debian
+          GNU/Linux repository if a debian/changelog entry is added.
+
+
+       DEBEMAIL=technique@proformatique.com
+          The mail used when generating a debian/changelog entry.
+
+
+       DEBFULLNAME=&quot;Proformatique Maintainance Team&quot;
+          The user name used when generating a debian/changelog entry.
+
+TESTING
+       When  run  as  VERBOSE=true submit-xivo.sh TEST a test suite embeded in
+       the shell script is run. It uses files created in /tmp exclusively  and
+       will not modify anything outside it. All features and bug fixes have an
+       associated test case.
+
+AUTHORS
+       Loic Dachary <span class="nt">&lt;loic</span><span class="err">@dachary.org</span><span class="nt">&gt;</span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
+    <p>
+      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pf-release.sh</h4>
+<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
+merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
+containing the sources and the SVN repository containing the debian
+packages into a well formed Debian GNU/Linux source package. For
+instance</p>
+<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+</pre></div>
+
+
+<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
+<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the private SVN
+repostory</a>
+concluded that it will be bound to a public GIT repository shortly. When
+it is ready, the pf-release.sh script will be updated accordingly.In
+order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
+argument:</p>
+<div class="highlight"><pre>pf-release.sh TEST
+</pre></div>
+
+
+<p>This will simulate border cases using a temporary direcotry to check
+that it behaves as expected. Reading the tests (which are embeded in the
+script) is currently the only documentation.</p>
+<h4>packaging-farm submission</h4>
+<p>The output of <em>pf-release.sh</em> is stored in a directory that uses the
+same conventions as packaging-farm. Because of that, submitting the
+package to the host running the packaging farm can be done by copying
+the directory as follows:</p>
+<div class="highlight"><pre>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
+</pre></div>
+
+
+<h4>dependency generation</h4>
+<p>A recent addition to the packaging-farm was the automatic generation of
+dependencies. It calculates which source package depends on other
+packages built by the packaging-farm. Support for meta packages was
+added to the dependency generation. In the packaging-farm vocabulary, a
+meta package is a package that aggregates others but has no sources of
+its own. For instance, the meta package <em>skaro</em> was created to produce
+the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
+repository</a>.
+When running the depencency generations as follows:</p>
+<div class="highlight"><pre>packaging-farm depends
+</pre></div>
+
+
+<p>it includes the meta packages in the graph so that skaro can be built
+with:</p>
+<div class="highlight"><pre>packaging-farm skaro
+</pre></div>
+
+
+<p>If, for instance, <em>pf-xivo-lib-js</em> has been updated as shown with the
+<em>rsync</em> command above it will be rebuilt because the skaro meta package
+depends on it.</p>
+<h4>makefile generation</h4>
+<p>Each package entering the packaging-farm must have a <em>Makefile</em>
+associated with it. Setting the variables in this <em>Makefile</em> allows the
+administrator to tune the behaviour on a per package basis. When a
+package is simple enough, its <em>Makefile</em> can be automatically generated
+as follows:</p>
+<div class="highlight"><pre>packaging-farm makefiles
+</pre></div>
+
+
+<h4>packaging-farm sensible defaults</h4>
+<p>The <a href="http://packaging-farm.dachary.org/download/">version 1.2.33</a> of
+packaging-farm includes the modifications above to help reduce the
+number of steps required to rebuild a suite or a specific package.
+Submitting a package requires four steps:</p>
+<ul>
+<li>pf-release.sh</li>
+<li>rsync</li>
+<li>packaging-farm generate which calls depends and makefiles</li>
+<li>packaging-farm the_package</li>
+</ul>
+<p>This completes the making of the building blocks enabling the creation
+and maintainance of packages based on the XiVO development repository.
+The next step will be to document and simplify the usage, reducing the
+learning curve to a minimum.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html#the-road-to-the-final-pcb-layout-routing-of-the-cpu-board">The road to the final PCB layout routing of the CPU board</a></h2>
+    <p>
+      Posted on Fri 11 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>We are now entering the road to the final PCB layout routing of the CPU
+board of our XiVO IPBX OpenHardware with the gathering of our schematic
+design on the CPU board of our IPBX. The current step is to place the
+component, check the package of each component in the library (Lbr in
+Eagle), double-check the schematics associated to the layout and prepare
+the final routing of the netwire optimized for our 10-layers design. We
+will document the BoM step with different posts coming up and namely the
+optimization of the components sourcing.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index30.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index28.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

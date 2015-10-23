@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="quintana" />
+<meta name="description" content="As we enter 2012, we continue our development to better meet market expectations allowing XiVO to be deployed in more companies. XiVO is a real open and free alternative for your business phone system and it will allow you to go even further. It is with great pleasure that I ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO 1.2"/>
+<meta property="og:description" content="As we enter 2012, we continue our development to better meet market expectations allowing XiVO to be deployed in more companies. XiVO is a real open and free alternative for your business phone system and it will allow you to go even further. It is with great pleasure that I ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-12.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-02-14 19:35:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/quintana.html">
+<meta property="article:section" content="articles"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO 1.2</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-12">XiVO 1.2</h1>
+    <p>Posted on Tue 14 February 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a></p>
+  </header>
+  <div>
+    <p>As we enter 2012, we continue our development to better meet market
+expectations allowing XiVO to be deployed in more companies. XiVO is a
+real open and free alternative for your business phone system and it
+will allow you to go even further. It is with great pleasure that I
+announce the arrival of this new major release of XiVO which is also our
+last considering that our development model is replaced by the agile
+methodology (SCRUM).</p>
+<p>Why do we change ?</p>
+<p>Just because we want to be closer to your requests, be able to stand
+out, constantly innovate and for this we need a new vision of
+development. It's been several months since we changed our habits, our
+ways of building software, our vision of what a software is and we will
+continue in that direction. We still have a long way to go but it only
+makes XiVO better for everyone.</p>
+<p><img alt="xivo-web-1-2.png" src="/public/.xivo-web-1-2_m.jpg" title="xivo-web-1-2.png, fév. 2012" /></p>
+<p>In this new release we have upgraded the operating system from Lenny to
+Squeeze, updated Asterisk by installing and using the last “Long Term
+Supported” 1.8 version. These major changes are not only naturally
+bringing us a bunch of new native functionalities but also better
+performance and stability.</p>
+<p>Regarding XiVO, we reviewed our provisioning server which was designed
+at the beginning of XiVO and was not suited any more to the big
+architectures we are targeting.</p>
+<p>We have refreshed the web interface in terms of functionality and
+ergonomics to meet the new functionalities provided by Asterisk. We also
+changed the way configuration is done by using a new server dedicated to
+configuration management.</p>
+<p>The news also made us realize that we were not sure where we go with
+mysql and we chose to use Postgres as a basis to save our
+configurations.TDM card drivers are also updated when this new release
+is installed.</p>
+<p>CTI server and XiVO client were also mainly rewritten and refactored.</p>
+<p>With this new release we also started to work on refactoring some
+features which are not delivered now any more. At first, high
+availability and contact center are our current priorities and will be
+offered in the next coming releases.Our development method is based on
+short iterations of 2 weeks, which will produce a finished and working
+product. So every 2 weeks a new release is produced and you will be able
+to upgrade and enjoy bug fixes and new features. Do not hesitate to
+follow http://projects.xivo.fr and http://documentation.xivo.fr/ to get
+a better view.</p>
+<p>We will go through our process in more details in a later post to
+describe what we have set up in term of tests, documentation, bug
+tracking etc ....</p>
+<p>Below what's new in this release at a glance :</p>
+<ul>
+<li>Asterisk 1.8 (New options, SSL authentication, etc ...)</li>
+<li>Web interface<ul>
+<li>New way of defining schedules<ul>
+<li>Time zones</li>
+<li>More than one time slice per schedule</li>
+<li>More than one action when on closed</li>
+<li>Same schedule can be applied to more than one target
+    (incoming calls / internal)</li>
+</ul>
+</li>
+<li>Call pickups groups are more flexible, can include not only
+    group of users but also queues and users.</li>
+<li>SSL certificates management<ul>
+<li>Can be created, updated and deleted using the interface. Can
+    also be associated to different objects ( SIP accounts, CTI
+    server ....)</li>
+</ul>
+</li>
+<li>Ergonomics improvements<ul>
+<li>On session expiration, last page is displayed on reconnect.</li>
+<li>Sort per columns</li>
+<li>Automatic id and password generation for user accounts</li>
+<li>Edited object reference appears on all tabs</li>
+<li>Dynamic search on all objects lists (i.e. group
+    members selected)</li>
+<li>Error report on CSV import</li>
+<li>Displays free extensions (add/edit users, groups ...)</li>
+<li>Remembers last search and sort order, per object.</li>
+<li>links <em>create</em> open in a new tab</li>
+<li>Stay on current tab on page reload</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sip Accounts (lines) are now separated from users</li>
+<li>Provisioning is completely redesigned to incorporate new server.<ul>
+<li>New provisioning server integration</li>
+</ul>
+</li>
+<li>Queue penalty</li>
+<li>MWI remote subscribing</li>
+<li>Outbound calls redesigned</li>
+<li>Paging</li>
+<li>Queue logger daemon removed.</li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO 1.2",
+  "headline": "XiVO 1.2",
+  "datePublished": "2012-02-14 19:35:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "quintana",
+    "url": "http://blog.xivo.io/author/quintana.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-12.html",
+  "description": "As we enter 2012, we continue our development to better meet market expectations allowing XiVO to be deployed in more companies. XiVO is a real open and free alternative for your business phone system and it will allow you to go even further. It is with great pleasure that I ..."
+}
+</script></body>
+</html>

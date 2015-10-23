@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="gbour" />
+<meta name="description" content="Asterisk queues have limited possibilities of interactions.The only way to know how a call was processed and decide what to do next is falling back on \${QUEUESTATUS} when the call exits the queue. If something goes wrong, \${QUEUESTATUS} is set to one of the following values: TIMEOUT, FULL, JOINEMPTY ..." />
+<meta name="keywords" content="xivo 1.2, web-interface, skaro, queues, diversion">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO 1.2 -*- Queues Diversions -*-"/>
+<meta property="og:description" content="Asterisk queues have limited possibilities of interactions.The only way to know how a call was processed and decide what to do next is falling back on \${QUEUESTATUS} when the call exits the queue. If something goes wrong, \${QUEUESTATUS} is set to one of the following values: TIMEOUT, FULL, JOINEMPTY ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-12-queues-diversions-.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-04-08 09:08:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/gbour.html">
+<meta property="article:section" content="articles"/>
+<meta property="article:tag" content="xivo 1.2"/>
+<meta property="article:tag" content="web-interface"/>
+<meta property="article:tag" content="skaro"/>
+<meta property="article:tag" content="queues"/>
+<meta property="article:tag" content="diversion"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO 1.2 -*- Queues Diversions -*-</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-12-queues-diversions-">XiVO 1.2 -*- Queues Diversions -*-</h1>
+    <p>Posted on Fri 08 April 2011 in <a href="http://blog.xivo.io/category/articles.html">articles</a></p>
+  </header>
+  <div>
+    <p><ins>Asterisk queues</ins> have limited possibilities of
+interactions.The only way to know how a call was processed and decide
+what to do next is falling back on <strong>\${QUEUESTATUS}</strong> when the call
+exits the queue.  </p>
+<p>If something goes wrong, \${QUEUESTATUS} is set to one of the following
+values: <em>TIMEOUT</em>, <em>FULL</em>, <em>JOINEMPTY</em>, <em>LEAVEEMPTY</em>, <em>JOINUNAVAIL</em> and
+<em>LEAVEUNAVAIL</em>. <ins>In XiVO, it fits to queues <strong>No answer</strong> tab.</ins></p>
+<h2>Queue diversions</h2>
+<p>But in XiVO 1.2 we add a new functionality called <strong>diversions</strong><br />
+Diversions are preconditions tested <em>before</em> a call enter into the
+queue. If one precondition <strong>matches</strong>, the incoming call is not sent
+into the queue, but rerouted to the destination associated with the
+condition. This allows a finer-grained control on how calls are accepted
+or not into a queue  </p>
+<p>Currently, we have defined 4 preconditions. They are evaluated in order,
+one after another; the first to be validated is triggering call
+rerouting to the associated destination.Here they are:  </p>
+<ol>
+<li><em>CTI status presence</em>.<br />
+calls are diverted if some of queue agents have required statuses.I.e,
+if we have more than 50 agents with *inline* status, new incoming
+calls are transfered to our *indian* call center</li>
+</ol>
+<p><a href="/public/queue-diversions/queue-diversion-cti-presences.png" title="queue-diversion-cti-presences.png"><img alt="queue-diversion-cti-presences.png" src="/public/queue-diversions/.queue-diversion-cti-presences_m.jpg" title="queue-diversion-cti-presences.png, avr. 2011" /></a><br />
+2. <em>CTI status absence</em>.<br />
+On the contrary, we may want to divert calls when no agents have a
+required status.<br />
+I.e, if less than 5 agents with status *ready to hold* are logged in
+the queue, we considered it to be closed, and redirect calls to a
+voicemail</p>
+<p><a href="/public/queue-diversions/queue-diversion-cti-nonpresences.png" title="queue-diversion-cti-nonpresences.png"><img alt="queue-diversion-cti-nonpresences.png" src="/public/queue-diversions/.queue-diversion-cti-nonpresences_m.jpg" title="queue-diversion-cti-nonpresences.png, avr. 2011" /></a><br />
+3. <em>Estimated waiting time</em>.<br />
+When the estimated wait time is exceeding a threshold value, we do not
+want new calls to enter into the queue (callers do not like to wait!),
+It is then possible to redirect them to another destination.<br />
+I.e if the wait time is higher than 5 minutes, redirect incalls to an
+IVR</p>
+<p><a href="/public/queue-diversions/queue-diversion-waittime.png" title="queue-diversion-waittime.png"><img alt="queue-diversion-waittime.png" src="/public/queue-diversions/.queue-diversion-waittime_m.jpg" title="queue-diversion-waittime.png, avr. 2011" /></a><br />
+4. <em>Waiting calls/Available agents</em> ratio.<br />
+If there are more calls waiting in the queue that available agents can
+handle in a relative short delay, new calls will only increase
+congestion. With this diversion, you can reroute incoming calls when
+this situation arises.I.e, if there is less than 1 agent for 2 waiting
+calls, hangup!</p>
+<p><a href="/public/queue-diversions/queue-diversion-ratio.png" title="queue-diversion-ratio.png"><img alt="queue-diversion-ratio.png" src="/public/queue-diversions/.queue-diversion-ratio_m.jpg" title="queue-diversion-ratio.png, avr. 2011" /></a></p>
+<p><strong>NOTE: the ratio is a percent</strong>.</p>
+<ul>
+<li>A value of 100 means there is 1 agent for 1 call</li>
+<li>A value of 50 means a call can be handled by 2 agents</li>
+<li>A value of 200 means there is 1 agent for 2 calls</li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>
+      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>
+      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>
+      <a href="http://blog.xivo.io/tag/queues.html">queues</a>
+      <a href="http://blog.xivo.io/tag/diversion.html">diversion</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO 1.2 -*- Queues Diversions -*-",
+  "headline": "XiVO 1.2 -*- Queues Diversions -*-",
+  "datePublished": "2011-04-08 09:08:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "gbour",
+    "url": "http://blog.xivo.io/author/gbour.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-12-queues-diversions-.html",
+  "description": "Asterisk queues have limited possibilities of interactions.The only way to know how a call was processed and decide what to do next is falling back on \${QUEUESTATUS} when the call exits the queue. If something goes wrong, \${QUEUESTATUS} is set to one of the following values: TIMEOUT, FULL, JOINEMPTY ..."
+}
+</script></body>
+</html>

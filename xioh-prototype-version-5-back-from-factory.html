@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="Feedback of the factory In order to load the factory's pick-and-place machines (2 distinct ones were used to assemble bottom, then top, then throug-hole components), we needed an efficient way of sorting the components. Therefore, we created a database of the correspondence between our BOM and the stickers used ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XIOH prototype version 5: back from factory"/>
+<meta property="og:description" content="Feedback of the factory In order to load the factory's pick-and-place machines (2 distinct ones were used to assemble bottom, then top, then throug-hole components), we needed an efficient way of sorting the components. Therefore, we created a database of the correspondence between our BOM and the stickers used ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-08-22 10:43:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XIOH prototype version 5: back from factory</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xioh-prototype-version-5-back-from-factory">XIOH prototype version 5: back from factory</h1>
+    <p>Posted on Wed 22 August 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <h2>Feedback of the factory</h2>
+<p>In order to load the factory's pick-and-place machines (2 distinct ones
+were used to assemble bottom, then top, then throug-hole components), we
+needed an efficient way of sorting the components. Therefore, we created
+a database of the correspondence between our BOM and the stickers used
+by the factory to load the feeders. See below for an example of one
+sticker for one reference used on the top layer.</p>
+<p><img alt="XIOHV5_PCB_STICK_EX" src="/public/XIOHv5/.P1050993_m.jpg" title="XIOHV5_PCB_STICK_EX, août 2012" /></p>
+<p>Once all the components were ready and sorted out, they were ready to be
+carried at the factory for loading and assembling.</p>
+<p><img alt="XIOHV5_COMPONANTS_READY" src="/public/XIOHv5/.20120723_001_m.jpg" title="XIOHV5_COMPONANTS_READY, août 2012" /></p>
+<p>As an automatic machine geek, the best part was the loading and
+pick-and-place of the several ICs on the board. This part is quite
+impressive because of the efficiency of the placing. Afterwards, the PCB
+goes through an oven for 10minutes for the final soldering, then cools
+down prior to the manual assembly of the through-holes components.</p>
+<p>Below is a picture with the various IC packages we are using (CPU, ISDN,
+FXO/FXS, micro-controllers...)</p>
+<p><img alt="XIOHV5_LOADING_ICS" src="/public/XIOHv5/.20120725_005_m.jpg" title="XIOHV5_LOADING_ICS, août 2012" /></p>
+<p>We then prepared the through-holes to be manually assembled by the
+factory operators, with a schematic of each component in the best order
+to respect the mechanical constraints.</p>
+<p><img alt="XIOHV5_THROUGH_HOLES" src="/public/XIOHv5/.20120725_013_m.jpg" title="XIOHV5_THROUGH_HOLES, août 2012" /></p>
+<p>The assembling of those throug-holes components can take up to 30minutes
+for complex boards. It has to be checked when there are a lot of
+connectors (for instance) on a board. The ready-to-test boards were then
+placed on shelves for us to start our debugging.</p>
+<p><img alt="XIOHV5_MOUNTING_THOLES" src="/public/XIOHv5/.20120725_012_m.jpg" title="XIOHV5_MOUNTING_THOLES, août 2012" /></p>
+<p>The first batch of tests was done with 5 of the 50 PCBs in order for us
+to start the debugging in our lab.</p>
+<h2>Debugging the PCBs</h2>
+<p>Back to our lab, we were able to start the testing our boards. We did
+the following steps in-order:</p>
+<ul>
+<li>smoke test: testing the power-supply using current-limited power
+    supplies for each voltage level, on a special board without the CPU
+    assembled (in order to save one in case of short-circuit on
+    the board.)</li>
+<li>flashing the board with our firmwares (programming the
+    power-sequence in an MSP430 and a BIOS in an SPI flash.) This
+    validates the flashing method and flashing tools/cables.</li>
+<li>booting-up the CPU and testing the serial console</li>
+<li>RAM testing: this validates the calibration and initialization of
+    the DDR2 controller by our custom firmware.</li>
+<li>SATA testing: to be able to start the hard drive and the kernel
+    image after the complete BIOS boot sequence</li>
+<li>testing the telco interfaces and phone call features.</li>
+</ul>
+<p><img alt="XIOHV5_DEBUG_BOARD" src="/public/XIOHv5/.P1050995_m.jpg" title="XIOHV5_DEBUG_BOARD, août 2012" /></p>
+<p>Above is our main whiteboard listing the issues we have on each PCB, and
+how to fix those. This is the most exciting (though stressful) part of
+hardware development, as we were able to make progress and get results
+in a very short time. We were extastic when we got the first board fully
+working with the XiVO software running on it!</p>
+<h2>Final tests</h2>
+<p>The rest is mainly software: we got XiVO running with our kernel drivers
+and plan to do some stress testing to see how well our boards fare with
+time and use.</p>
+<p><img alt="XIOHV5_FULL_RUNNING" src="/public/XIOHv5/.20120802_001_m.jpg" title="XIOHV5_FULL_RUNNING, août 2012" /></p>
+<h2>Next steps</h2>
+<p>The next steps:</p>
+<ul>
+<li>finishing the production of the the first 50 PCB batch and start a
+    full 4-weeks time period of stress testing on our board to identify
+    potential hardware/software bugs,</li>
+<li>validating the hardware and software,</li>
+<li>optimizing the production process for the next batches</li>
+</ul>
+<p>To be continued soon...</p>
+<p>The XiVO Open Hardware team.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XIOH prototype version 5: back from factory",
+  "headline": "XIOH prototype version 5: back from factory",
+  "datePublished": "2012-08-22 10:43:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html",
+  "description": "Feedback of the factory In order to load the factory's pick-and-place machines (2 distinct ones were used to assemble bottom, then top, then throug-hole components), we needed an efficient way of sorting the components. Therefore, we created a database of the correspondence between our BOM and the stickers used ..."
+}
+</script></body>
+</html>

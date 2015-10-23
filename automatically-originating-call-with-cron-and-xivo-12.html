@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="hexanol" />
+<meta name="description" content="This bit of dialplan simply set the name part of the caller ID and then call our phone, which in our example is SIP/abcdef. Note that we dial the phone directly instead of jumping into the standard XiVO dialplan, because we don't want the voicemail of the user ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Automatically originating call with cron and XiVO 1.2"/>
+<meta property="og:description" content="This bit of dialplan simply set the name part of the caller ID and then call our phone, which in our example is SIP/abcdef. Note that we dial the phone directly instead of jumping into the standard XiVO dialplan, because we don't want the voicemail of the user ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-12-14 19:02:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/hexanol.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Automatically originating call with cron and XiVO 1.2</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="automatically-originating-call-with-cron-and-xivo-12">Automatically originating call with cron and XiVO 1.2</h1>
+    <p>Posted on Wed 14 December 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>This bit of dialplan simply set the name part of the caller ID and then
+call our phone, which in our example is SIP/abcdef. Note that we dial
+the phone directly instead of jumping into the standard XiVO dialplan,
+because we don't want the voicemail of the user to answer the call if it
+isn't answered in time.</p>
+<p>Now that this is done, we load the dialplan we just added previously
+with the following command:</p>
+<div class="highlight"><pre>asterisk -rx &quot;dialplan reload&quot;
+</pre></div>
+
+
+<p>Next step before writing our cron job is to test out the command that
+will make our automatic call origination works. This use the "channel
+originate" command available from the asterisk 1.8 CLI. Let's try it
+out:</p>
+<div class="highlight"><pre>asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
+</pre></div>
+
+
+<p>This makes our SIP/abcdef phone ring, showing that "Daily Scrum" is
+calling us, and once we answer the call, we are bridged into our
+conference room at extension 1051.</p>
+<p>So we reach the last step on our journey; writing our cron job. Let's
+create a file at <em>/etc/cron.d/daily-scrum</em> and write the following line:</p>
+<div class="highlight"><pre>0 9 * * 1-5 root   /usr/sbin/asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
+</pre></div>
+
+
+<p>This cron job will launch our asterisk command every day of the week at
+9:00 AM.</p>
+<p>So that's it. Starting from this setup, it's possible to do other
+things. For example, paging and autoanswering a group of phones and then
+playing a sound file is just a bit of custom dialplan away.</p>
+<p>Note that to make this work in XiVO 1.1, the dialplan shown here need to
+be modified (the "same" syntax is not supported in asterisk 1.4) and the
+"channel originate" command be replaced by "originate".</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Automatically originating call with cron and XiVO 1.2",
+  "headline": "Automatically originating call with cron and XiVO 1.2",
+  "datePublished": "2011-12-14 19:02:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "hexanol",
+    "url": "http://blog.xivo.io/author/hexanol.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html",
+  "description": "This bit of dialplan simply set the name part of the caller ID and then call our phone, which in our example is SIP/abcdef. Note that we dial the phone directly instead of jumping into the standard XiVO dialplan, because we don't want the voicemail of the user ..."
+}
+</script></body>
+</html>

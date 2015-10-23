@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="This sprint we have worked on various subjects regarding REST APIs. REST APIs enable a more customizable and flexible management of XiVO server. They also enable the development of third-party features. For example, you could create a new management interface that would replace the current web interface; or you could ..." />
+<meta name="keywords" content="XiVO, authentification, consul, development, software, téléphonie, web-interface, xivo">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint review 15.11"/>
+<meta property="og:description" content="This sprint we have worked on various subjects regarding REST APIs. REST APIs enable a more customizable and flexible management of XiVO server. They also enable the development of third-party features. For example, you could create a new management interface that would replace the current web interface; or you could ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sprint-review-1511.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-06-12 14:25:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="XiVO"/>
+<meta property="article:tag" content="authentification"/>
+<meta property="article:tag" content="consul"/>
+<meta property="article:tag" content="development"/>
+<meta property="article:tag" content="software"/>
+<meta property="article:tag" content="téléphonie"/>
+<meta property="article:tag" content="web-interface"/>
+<meta property="article:tag" content="xivo"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint review 15.11</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1511">Sprint review 15.11</h1>
+    <p>Posted on Fri 12 June 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>This sprint we have worked on various subjects regarding REST APIs. REST
+APIs enable a more customizable and flexible management of XiVO server.
+They also enable the development of third-party features. For example,
+you could create a new management interface that would replace the
+current web interface; or you could prepare a mass-update of all the
+users on the server.</p>
+<h3>New in this sprint:</h3>
+<ul>
+<li>The fax xlet indicates whether the fax has been successfully sent
+    or not. This means that when sending a fax, you see a waiting
+    indicator, and after a few seconds, the fax xlet shows a
+    confirmation or an error message.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>The switchboard newly supports Polycom VVX400 and VVX410. The
+    switchboard is now compatible with <a href="http://documentation.xivo.io/en/latest/administration/switchboard/switchboard.html#supported-devices" title="8 phone models">8 phone
+    models</a>
+    from Aastra, Polycom, Snom and Yealink.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Old call records and statistics will be automatically removed
+    (default: older than 1 year). Depending on your country, legislation
+    may restrict the period of personal data storage. Also, accumulating
+    call records and statistics is often useless and
+    degrades performances. You have the possibility of developing
+    scripts to archive call records and statistics before XiVO
+    deletes them.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Documentation for REST APIs are available at <a href="http://api.xivo.io">http://api.xivo.io</a>.
+    The documentation was built with
+    <a href="http://petstore.swagger.io/" title="Swagger">Swagger</a>. Swagger is a web
+    framework specifically aimed at documenting REST APIs. It also
+    allows direct interaction with the APIs via the website.</li>
+</ul>
+<h3>Also in this sprint, but more technical:</h3>
+<ul>
+<li>Asterisk updated from 11.17.0 to 11.17.1</li>
+<li>DAHDI updated from 2.10.0 to 2.10.1</li>
+</ul>
+<h3>Work done in this sprint, but not yet ready:</h3>
+<ul>
+<li>Function keys will be manageable via a REST API. This will allow
+    administrators to manage function keys more easily (creation and
+    update), by applying templates of function keys to a set of users.
+    In a more distant future, this will also allow users to manage their
+    own function keys.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Contacts can be bookmarked and users will be able to list their
+    bookmarked contacts. This also opens the way for personal contacts
+    to be accessible for each user from anywhere.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Users will be able log in their XiVO Clients using
+    LDAP authentication. This will remove the constraint for users to
+    remember one more password. It will also reduce the amount of
+    configuration needed for each user by the administrator.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>REST APIs will be usable from anywhere, but only by
+    authorized people/services. Currently most REST APIs are only usable
+    from the XiVO server and exposing them to the outside is a bad idea.
+    So we are adding an authentication system to these APIs to protect
+    them, so that they can be exposed.</li>
+</ul>
+<p>See you for the next sprint review.</p>
+<p>Source:</p>
+<p><a href="http://projects.xivo.io/versions/227" title="15.11 Roadmap">15.11 Roadmap</a></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>
+      <a href="http://blog.xivo.io/tag/authentification.html">authentification</a>
+      <a href="http://blog.xivo.io/tag/consul.html">consul</a>
+      <a href="http://blog.xivo.io/tag/development.html">development</a>
+      <a href="http://blog.xivo.io/tag/software.html">software</a>
+      <a href="http://blog.xivo.io/tag/telephonie.html">téléphonie</a>
+      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>
+      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint review 15.11",
+  "headline": "Sprint review 15.11",
+  "datePublished": "2015-06-12 14:25:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sprint-review-1511.html",
+  "description": "This sprint we have worked on various subjects regarding REST APIs. REST APIs enable a more customizable and flexible management of XiVO server. They also enable the development of third-party features. For example, you could create a new management interface that would replace the current web interface; or you could ..."
+}
+</script></body>
+</html>

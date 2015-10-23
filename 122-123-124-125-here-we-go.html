@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="jylebleu" />
+<meta name="description" content="Last September we started to change our development methodology to use SCRUM. The main objective was to be able to deliver very quickly new XiVO versions.Our sprints are two weeks long, and at the end of a sprint we deliver a new release of XiVO that you can use ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="1.2.2 1.2.3 1.2.4 1.2.5 here we go"/>
+<meta property="og:description" content="Last September we started to change our development methodology to use SCRUM. The main objective was to be able to deliver very quickly new XiVO versions.Our sprints are two weeks long, and at the end of a sprint we deliver a new release of XiVO that you can use ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/122-123-124-125-here-we-go.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-04-13 00:17:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/jylebleu.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; 1.2.2 1.2.3 1.2.4 1.2.5 here we go</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="122-123-124-125-here-we-go">1.2.2 1.2.3 1.2.4 1.2.5 here we go</h1>
+    <p>Posted on Fri 13 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>Last September we started to change our development methodology to use
+SCRUM.</p>
+<p>The main objective was to be able to deliver very quickly new XiVO
+versions.Our sprints are two weeks long, and at the end of a sprint we
+deliver a new release of XiVO that you can use by using the new
+<em>xivo-upgrade</em> tool.Every two weeks on Monday we start with the planning
+meeting, where we define what will be done during the sprint. Each bug
+or task is written on a post it and put on our white board.</p>
+<p>Every day, at 09h00 we do our daily Scrum, small stand up meeting where
+all the team members answer the three scum traditional questions:</p>
+<ul>
+<li>What did I do since yesterday?</li>
+<li>What am I planning to do today?</li>
+<li>Anything blocks me ?</li>
+</ul>
+<p>Optionally at the end of the stand up meeting, we can start a small
+technical session about software architecture, code review and now that
+we moved to a bigger office, we can draw on the walls and do design
+review.</p>
+<p>At the middle of the second week, on Wednesday we stop our development,
+finish our commits, and build the release. At this time starts the
+functional testing period. Today we run more than 350 functional tests
+which are described in our test manager
+<a href="http://testlink.xivo.fr" title="testlink">testlink</a>. These tests are partly
+automated, and one of our goal is to be able to automate more and more
+tests. Furthermore, every day some of our functional tests are run
+automatically using our continuous integration server
+<a href="http://jenkins.xivo.fr/" title="jenkins"></a> in addition to the unit tests
+covering part of XiVO software.Once the tests are ok, the delivery check
+list helps us to not forget anything to be sure you will be able to
+xivo-upgrade your installation without any pain.</p>
+<p>Last but not least, we do our sprint retrospective to be able to find
+ways to improve our process. At the end, it's time for beer !</p>
+<p>Today the main point is to be able to improve XiVO strength, and to
+correct and deliver very quickly any problems you may have. New features
+will come the second part of 2012 once this objective will be achieved.</p>
+<p>It is very encouraging to see that in 2009 it took us on average <strong>315</strong>
+days to close an issue, in 2010, 295 days, in 2011, 127 days, and <strong>this
+year it takes only 28 days</strong> in average to close an open issue. This is
+not finish we still have a long road, but thanks to the great team
+working on XiVO, things improve every day.</p>
+<p>So stay tune, every two weeks you will get a new flavor of XiVO, more
+and more reliable and with hopefully more and more features.</p>
+<p>If you'd like to participate in this adventure do not hesitate to
+contact us,<a href="http://www.avencall.com/index.php?option=com_neorecruit&amp;Itemid=15&amp;lang=en">we are looking for passionate
+people</a>.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "1.2.2 1.2.3 1.2.4 1.2.5 here we go",
+  "headline": "1.2.2 1.2.3 1.2.4 1.2.5 here we go",
+  "datePublished": "2012-04-13 00:17:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "jylebleu",
+    "url": "http://blog.xivo.io/author/jylebleu.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/122-123-124-125-here-we-go.html",
+  "description": "Last September we started to change our development methodology to use SCRUM. The main objective was to be able to deliver very quickly new XiVO versions.Our sprints are two weeks long, and at the end of a sprint we deliver a new release of XiVO that you can use ..."
+}
+</script></body>
+</html>

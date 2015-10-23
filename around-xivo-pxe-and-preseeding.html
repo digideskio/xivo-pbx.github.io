@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="atarakt" />
+<meta name="description" content="Now that we have a functional PXE installation, we want to fully automatise the installation process. Debian have a useful solution called 'preseeding'. Preseeding provides a way to set answers to questions asked during the installation process. You can find Debian documentation about preseeding on Debian wiki : http://wiki.debian ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Around XiVO - pxe and preseeding"/>
+<meta property="og:description" content="Now that we have a functional PXE installation, we want to fully automatise the installation process. Debian have a useful solution called 'preseeding'. Preseeding provides a way to set answers to questions asked during the installation process. You can find Debian documentation about preseeding on Debian wiki : http://wiki.debian ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-05-30 19:47:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/atarakt.html">
+<meta property="article:section" content="articles"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Around XiVO - pxe and preseeding</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="around-xivo-pxe-and-preseeding">Around XiVO - pxe and preseeding</h1>
+    <p>Posted on Wed 30 May 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a></p>
+  </header>
+  <div>
+    <p>Now that we have a functional PXE installation, we want to fully
+automatise the installation process. Debian have a useful solution
+called 'preseeding'. Preseeding provides a way to set answers to
+questions asked during the installation process.</p>
+<p>You can find Debian documentation about preseeding on Debian wiki :
+http://wiki.debian.org/DebianInstaller/Preseed</p>
+<p>We are going to be using the default Debian preseed file. We are going
+to configure an HTTP server to serve this file to the Debian installer
+using nginx.</p>
+<div class="highlight"><pre><span class="nv">$ </span>apt-get install nginx
+
+<span class="nv">$ </span>cat /etc/nginx/sites-enabled/myhost
+    server <span class="o">{</span>
+      listen 80<span class="p">;</span>
+      server_tokens off<span class="p">;</span>
+      server_name myhost.mydomain.com<span class="p">;</span>
+      root /data<span class="p">;</span>
+
+      location / <span class="o">{</span>
+        autoindex on<span class="p">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>and restart the server.</p>
+<p>First, we need to create /data directory and get the preseed file from
+this directory.</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
+<span class="nv">$ </span>wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
+</pre></div>
+
+
+<p>We only do some small changes in the default file to perform a fully
+auto installation :</p>
+<div class="highlight"><pre>* do not create a user account
+
+    d-i passwd/make-user boolean false
+
+* add the root password (will be changed after the install process
+
+    d-i passwd/root-password password r00tme
+    d-i passwd/root-password-again password r00tme
+
+* change the disk path for using in a virtual machine
+
+    d-i partman-auto/disk string /dev/vda
+
+* install a minimal system (without X)
+
+    tasksel tasksel/first multiselect standard
+</pre></div>
+
+
+<p>So, we have to modify
+/usr/lib/debian-installer/images/i386/text/boot-screens/menu.cfg to
+specify to the installer that it must use a preseed file.</p>
+<div class="highlight"><pre>label squeeze-i386
+    menu label squeeze i386
+    kernel linux
+    append vga=normal initrd=initrd.gz
+</pre></div>
+
+
+<p>must be</p>
+<div class="highlight"><pre>label debian-squeeze                                                                                                                                                                           
+    menu label Install Auto Debian Squeeze                                                                                                                                                     
+    kernel linux                                                                                                                                                                               
+    append initrd=initrd.gz rw auto=true priority=critical url=myhost.mydomain.com/./preseed.cfg locale=en_US.UTF-8 interface=auto hostname=squeeze --
+</pre></div>
+
+
+<p>You can find some explanations about the different parameters on
+http://hands.com/d-i/</p>
+<p>You have to use a specific url in this case (the "/./" is very
+important).</p>
+<p>Or if you want to install a XiVO system, you can use this line to use
+our preseed</p>
+<div class="highlight"><pre>label XiVO
+       menu label XiVO
+       kernel linux
+       append initrd=initrd.gz rw auto=true priority=critical url=http://mirror.xivo.fr classes=skaro locale=en_US.UTF-8 interface=auto hostname=xivo --
+</pre></div>
+
+
+<p>Here, we only have an url. It's because we use a specific structure in
+our /data directory (and an entry d-i in our nginx configuration) :</p>
+<div class="highlight"><pre>/data
+├── d-i
+│   ├── lenny
+│   │   ├── classes
+│   │   └── lib
+│   └── squeeze
+│       ├── classes
+│       ├── docs
+│       └── lib
+</pre></div>
+
+
+<p>You can find our preseed repository on
+git://git.xivo.fr/official/debian-installer.git</p>
+<p>In a next post, I will explain how we use the class to customize our
+installation.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Around XiVO - pxe and preseeding",
+  "headline": "Around XiVO - pxe and preseeding",
+  "datePublished": "2012-05-30 19:47:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "atarakt",
+    "url": "http://blog.xivo.io/author/atarakt.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/around-xivo-pxe-and-preseeding.html",
+  "description": "Now that we have a functional PXE installation, we want to fully automatise the installation process. Debian have a useful solution called 'preseeding'. Preseeding provides a way to set answers to questions asked during the installation process. You can find Debian documentation about preseeding on Debian wiki : http://wiki.debian ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="In the process of developing an OpenHardware project, the prototyping process is quite important and namely the validation of the data buses exchanging telecommunications data (synchronization, reset, interrupts, tx/rx data, signaling...) between the different interfaces and chips on the hardware product. At this step of, once the analog SP ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface"/>
+<meta property="og:description" content="In the process of developing an OpenHardware project, the prototyping process is quite important and namely the validation of the data buses exchanging telecommunications data (synchronization, reset, interrupts, tx/rx data, signaling...) between the different interfaces and chips on the hardware product. At this step of, once the analog SP ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2010-06-22 14:19:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface">Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</h1>
+    <p>Posted on Tue 22 June 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p>In the process of developing an OpenHardware project, the prototyping
+process is quite important and namely the validation of the data buses
+exchanging telecommunications data (synchronization, reset, interrupts,
+tx/rx data, signaling...) between the different interfaces and chips on
+the hardware product.</p>
+<p>At this step of, once the analog SP (Signal Processing) is validated,
+one can test the data-buses using the so-called "LogicAnalyzer" that
+will put the signal on the bus into readable binary data (from the TTL
+levels triggered on edges or any other events on the trigger line
+chosen).LogicAnalyzer can be quite expensive appliance (such as digital
+scope or frequency analyzer) but nowadays affordable device exist also
+allowing the hardware designer / tester to monitor the data on one bus.
+Such kind of LogicAnalyzer are usually based on 3 parts:</p>
+<ul>
+<li>EZ-Hook type of connectors to probe the pins/headers on the
+    prototype card or PCB (i.e. TP - TestPoint)</li>
+<li>TTL-to-USB chip to transform the analog signal probed into binary
+    signals</li>
+<li>USB interface to connect the host-PC with the right analyzer
+    software (usually unfortunately running for MS)</li>
+</ul>
+<p>Please find a list of USB Logic Analyzer available (some supported with
+sigrok ^[<span id="rev-pnote-24-1"><a href="#pnote-24-1">1</a></span>]^</p>
+<ul>
+<li>USBee SX Test Pod Logic Analyzer ^[<span
+    id="rev-pnote-24-2"><a href="#pnote-24-2">2</a></span>]^ (a HUGE sample buffer
+    PC and USB based multifunction logic analyzer)</li>
+<li>EE Electronics XLA ESLA100 (a cheap 8-channel logic analyzer)</li>
+<li>ASIX Sigma (a 6 channel logic analyzer with sample rate support up
+    to 200 MHz and with 256 Mbit on-board memory)</li>
+<li>Openbench Logic Sniffer (a FPGA-based logic analyzer, supporting 32
+    probes for probing up to 100MHz signals)</li>
+<li>Braintechnology USB-LPS (a Cypress FX2 based logic analyzer and
+    signal generator with up to 16 channels)</li>
+<li>Buspirate ^[<span id="rev-pnote-24-3"><a href="#pnote-24-3">3</a></span>]^</li>
+<li>Intronix Logicport LA1034 (a FPGA-based logic analyzer, capable of
+    sampling data on 34 channels at up to 500MHz) ^[<span
+    id="rev-pnote-24-4"><a href="#pnote-24-4">4</a></span>]^</li>
+</ul>
+<p>The one we are using for the prototyping of the XiVO OpenHardware IPBX
+is a Saleae Logic Analyzer with the 1.0.21 software ^[<span
+id="rev-pnote-24-5"><a href="#pnote-24-5">5</a></span>]^</p>
+<p>Below are 2 snapshots of signals probed on the Local Expansion Bus
+connecting the CPU with the ISDN chip:</p>
+<ul>
+<li>/CS: Chip Select signal (to indicate which chip on the LEB should
+    be driven)</li>
+<li>/RD: ReaD signal (from the CPU indicating that the data will be read
+    from the ISDN chip registers)</li>
+<li>/WR: WRite signal (from the CPU indicating that the data will be
+    written into the ISDN chip registers)</li>
+<li>ALE: Address LatchE to indicate which Address of Data to retrieve</li>
+<li>D0: Bit 0 from the LEB data bus</li>
+<li>D1: Bit 1 from the LEB data bus</li>
+<li>D2: Bit 2 from the LEB data bus</li>
+<li>A8: Address 8 (EX_ADDR<a href="8" title="8">8</a>) line on the CPU used to trigger
+    the scope or the logic analyzer</li>
+</ul>
+<p>As one can see in the screenshot below, the A8 line is set on "0" + "1"
+which means the triggering is done on upper edge from this signal.</p>
+<p><img alt="LEB CPU ISDN LogicAnalyzer
+traces" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot1_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces, juin 2010" /></p>
+<p>The view below is a zoomed view of the above screenshot with a focus on
+the triggering on A8 line</p>
+<p><img alt="LEB CPU ISDN LogicAnalyzer traces
+zoom" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot2_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces zoom, juin 2010" /></p>
+<div class="footnotes">
+
+#### Notes
+
+\[<span id="pnote-24-1">[1](#rev-pnote-24-1)</span>\]
+http://sigrok.org/wiki/Main\_Page
+
+\[<span id="pnote-24-2">[2](#rev-pnote-24-2)</span>\] http://usbee.com
+
+\[<span id="pnote-24-3">[3](#rev-pnote-24-3)</span>\]
+http://dangerousprototypes.com/2009/11/03/bus-pirate-logic-analyzer-mode/
+
+\[<span id="pnote-24-4">[4](#rev-pnote-24-4)</span>\]
+http://www.pctestinstruments.com/
+
+\[<span id="pnote-24-5">[5](#rev-pnote-24-5)</span>\]
+http://www.saleae.com
+
+</div>
+
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface",
+  "headline": "Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface",
+  "datePublished": "2010-06-22 14:19:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html",
+  "description": "In the process of developing an OpenHardware project, the prototyping process is quite important and namely the validation of the data buses exchanging telecommunications data (synchronization, reset, interrupts, tx/rx data, signaling...) between the different interfaces and chips on the hardware product. At this step of, once the analog SP ..."
+}
+</script></body>
+</html>

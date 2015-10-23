@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="nothing needs to be done The rules that decide when packaging-farm should work on a package are explained in the manual pages. However, they have changed a lot while packaging-farm matured in the past months and they deserve a short summary.The first step is to submit work to the ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="resolving XiVO submissions confusion"/>
+<meta property="og:description" content="nothing needs to be done The rules that decide when packaging-farm should work on a package are explained in the manual pages. However, they have changed a lot while packaging-farm matured in the past months and they deserve a short summary.The first step is to submit work to the ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/resolving-xivo-submissions-confusion.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-09-19 07:15:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; resolving XiVO submissions confusion</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="resolving-xivo-submissions-confusion">resolving XiVO submissions confusion</h1>
+    <p>Posted on Mon 19 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>nothing needs to be done</h4>
+<p>The rules that decide when packaging-farm should work on a package are
+explained in the manual pages. However, they have changed a lot while
+packaging-farm matured in the past months and they deserve a short
+summary.The first step is to submit work to the packaging-farm and this
+is done by the submit-xivo.sh script as follows:</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=asterisk submit
+</pre></div>
+
+
+<p>which is run as a side effect of the command</p>
+<div class="highlight"><pre>rebuild
+</pre></div>
+
+
+<p>which is an alias for running the <strong>rebuild</strong> target of the
+<strong>/etc/packaging-farm/gallifrey.mk</strong> Makefile.What it really does is to
+use the content of the XiVO git repository to create a Debian GNU/Linux
+source package. It uses the debian packaging instructions found in the
+git repository and follow them : it does not create rules automatically,
+it fully relies on what has been done manually. It does, however,
+creates the package version according to a complex set of rules,
+explained in the VERSIONS section of the submit-xivo.sh.The asterisk
+source package will not be generated each time the</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=asterisk submit
+</pre></div>
+
+
+<p>is run for two reasons:</p>
+<ul>
+<li>To save time. It currently takes less than 30 seconds for
+    packaging-farm to update the <strong>skaro</strong> build machine when nothing
+    needs to be done. If the source packages were always rebuilt it
+    would take at least 15 minutes.</li>
+<li>To avoid checksum errors when reprepro mirrors the packages built
+    by packaging-farm. When a <strong>.orig.tar.gz</strong> is built for a given
+    version of a package, it is preserved. Even when the content of two
+    <strong>.tar.gz</strong> are strictly identical, the file itself has a different
+    md5sum signature because of the compression.</li>
+</ul>
+<p>The submit-xivo.sh script decides if a source package should be rebuilt
+using a simple comparison : if the existing <strong>.dsc</strong> file has the same
+path as the one that would be created, it declares there is no need to
+re-create it. In other words, the decision to rebuild a source package
+solely depends on the version number of the package.Note that when
+submit-xivo.sh decides that nothing needs to be done, it does not rely
+on the log history of the git repository. It only relies on the version
+number. However, when <strong>VERSION_COMPUTE=true</strong> (which is the default)
+the date and time of the last commit from the git repository is used to
+create the version number. Therefore there is a relationship between the
+history of the git repository and the decision to recreate the source
+package because each new commit will create a new version.This
+relationship no longer exists when <strong>VERSION_COMPUTE=false</strong> and
+commits to the git repository will not have any consequence on the
+decision to rebuild a source package.</p>
+<h4>manually submitted packages</h4>
+<p>Some packages are not yet in the git repositories and they are completly
+outside the control of submit-xivo.sh. As a consequence they must be
+submitted manually to packaging farm. The</p>
+<div class="highlight"><pre>rebuild
+</pre></div>
+
+
+<p>command will not submit these packages because:</p>
+<ul>
+<li>it would create checksum errors when the same package version is
+    submitted twice</li>
+<li>it would uselessly slow down the command when nothing needs update</li>
+</ul>
+<p>The list of packages that need manual care is found in the
+<strong>/etc/packaging-farm/gallifrey.mk</strong> or <strong>/etc/packaging-farm/skaro.mk</strong>
+files:</p>
+<div class="highlight"><pre><span class="x">cd /var/cache/packaging-farm/sources</span>
+<span class="x">for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp</span>
+<span class="x">do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> </span>
+<span class="x">      rm -f /var/cache/packaging-farm/depends/</span><span class="p">$</span><span class="nv">package</span><span class="x"> )</span>
+<span class="x">done ; packaging-farm generate</span>
+</pre></div>
+
+
+<p>Note however that this is merely a reminder and running it without
+evaluating the consequences may lead to checksum errors. The following
+should be checked:</p>
+<ul>
+<li>from which source will the package be retrieved ?</li>
+<li>which package version will be retrieved ?</li>
+<li>is the package retrieved compatible with the other package in the
+    build farm ?</li>
+<li>is there already a package with the same version in the
+    /var/cache/packaging-farm/source/package directory ?</li>
+</ul>
+<h4>checksum errors</h4>
+<p>The gallifrey and skaro build machines output is a repository created
+with reprepro. It is then mirrored, using reprepro, to mirror.xivo.fr.If
+the build machines were lost and had to be reinstalled manually, all
+packages would be rebuilt. As a consequence, trying to update the mirror
+on mirror.xivo.fr would lead to checksum errors because both the sources
+and binary files would have the same name and different checksum,
+because of the same content has a different checksum after compression,
+either in a <strong>.tar.gz</strong> or in a <strong>.deb</strong> . The only way to recover from
+such a situation would be to :</p>
+<ul>
+<li>identify all packages that are to be rebuilt by the farm</li>
+<li>dget from mirror.xivo.fr each of them in
+    /var/lib/packaging-farm/package</li>
+<li>rebuild the gallifrey / skaro meta package</li>
+</ul>
+<p>Doing so is, in a nutshell, re-importing the packages saved on
+mirror.xivo.fr back to the build machine, as if it was the result
+created with it. The actual restoration of such a catastrophic event is
+likely to be more complicated in reality. But the general idea is simple
+enough.A more common problem comes from the fact that mirror.xivo.fr is
+a single reprepro repository that is used to merge unrelated
+repositories. For instance gallifrey, gallifrey-dev, skaro, skaro-dev
+and so on. Because reprepro has a single package pool shared between all
+distributions, if package P-1.1.1-1 has been built on gallifrey and
+gallifrey-dev, it will be imported twice with the same version but
+different checksum and lead to a checksum error. There are two ways to
+avoid this problem:</p>
+<ul>
+<li>manually ensure that such a case never happens (for instance by
+    setting the VERSION_FLAVOR veriable of submit-xivo.sh to add a
+    distinctive string unique to the distribution in the name of
+    each package).</li>
+<li>create a separate reprepro repository for each distribution</li>
+</ul>
+<h4>misleading error message</h4>
+<p>When nothing needs to be done according to submit-xivo.sh, it shows</p>
+<div class="highlight"><pre>package <span class="cp">${</span><span class="n">package</span><span class="cp">}</span> was not modified in git since the last package generation
+</pre></div>
+
+
+<p><a href="http://packaging-farm.dachary.org/trac/ticket/22">although it is unrelated to
+git</a> when
+VERSION_COMPUTE=false.The message explaining that no update is needed
+is <a href="http://packaging-farm.dachary.org/trac/changeset/d6c8676bd54b95b76ce475d7fe7dbe0d2592aafa">moved to the need_update
+function</a>
+and displays the exact reason, path included, why no update is required.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "resolving XiVO submissions confusion",
+  "headline": "resolving XiVO submissions confusion",
+  "datePublished": "2011-09-19 07:15:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/resolving-xivo-submissions-confusion.html",
+  "description": "nothing needs to be done The rules that decide when packaging-farm should work on a package are explained in the manual pages. However, they have changed a lot while packaging-farm matured in the past months and they deserve a short summary.The first step is to submit work to the ..."
+}
+</script></body>
+</html>

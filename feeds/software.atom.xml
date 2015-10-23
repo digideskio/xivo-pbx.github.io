@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/software.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-05-25T15:34:00-04:00</updated><entry><title>Authentication in XiVO</title><link href="http://blog.xivo.io/authentication-in-xivo.html" rel="alternate"></link><updated>2015-05-25T15:34:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2015-05-25:authentication-in-xivo.html</id><summary type="html">&lt;p&gt;In recent months we have been working on the new XiVO client which
+included amajor rework of the directory services in XiVO. A new daemon
+is born from thiswork, xivo-dird. One of the challenge of the new
+directory service is to allowusers to have access to their favorites and
+personal contacts from any device- the current implementation of
+personal contacts are stored locally and arelost in a context where
+users change seats.&lt;/p&gt;
+&lt;p&gt;Bringing the personal information to xivo-dird means that some form
+ofauthentication is now required. The first step is to be able to use
+user'sCTI login and password and to evolve from there to add more
+flexibility.&lt;/p&gt;
+&lt;h3&gt;Meet xivo-auth&lt;/h3&gt;
+&lt;p&gt;xivo-auth is a new service that is going to be used as the single entry
+pointfor authentication in XiVO. The first step being the authentication
+in xivo-dird.Some of the requirements for xivo-auth is to be able to
+implement other forms ofauthentication. The plugin architecture used,
+similar to xivo-dird, will makethe development of new authentication
+source fast and easy. This mean that LDAPserver, CSV file, Facebook or
+Twitter authentication should and will be possibleto implement without
+having to modify xivo-auth.&lt;/p&gt;
+&lt;h3&gt;The internals of xivo-auth&lt;/h3&gt;
+&lt;p&gt;xivo-auth is a simple HTTP server that checks a username and
+passwordcombination (though other forms of authentication might appear)
+and delivers a tokenthat can be forwarded to other services that require
+authentication. Otherservices can validate that token and also forward
+it to other services on behalfof the user. Tokens and ACLs are generated
+and managed by &lt;a href="https://consul.io" title="Consul"&gt;consul&lt;/a&gt; which is alsoused
+for personal data storage.&lt;/p&gt;
+&lt;p&gt;The following sequence diagram show the interaction when a user
+connectsto its XiVO client.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="login.png" src="/public/architecture/login_cti_via_xivo_auth.png" title="login.png, mai 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;After this step, xivo-ctid has a token with a limited lifetime for this
+user.&lt;/p&gt;
+&lt;p&gt;When a logged-in user performs a lookup in its XiVO client, the user's
+token isforwarded to xivo-dird which can return the appropriate results
+for this user.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lookup.png" src="/public/architecture/lookup_cti_via_dird_xivo_auth.png" title="lookup.png, mai 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;Stay tuned for more information as we implement xivo-auth and the
+firstauthentication plugins.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;* Images created with
+&lt;a href="https://github.com/violetumleditor/violetumleditor" title="Violet"&gt;Violet&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="XiVO"></category><category term="authentification"></category><category term="HTTP"></category><category term="consul"></category><category term="directory"></category></entry><entry><title>ElasticSearch in the XiVO ecosystem</title><link href="http://blog.xivo.io/elasticsearch-in-the-xivo-ecosystem.html" rel="alternate"></link><updated>2015-02-19T15:35:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-02-19:elasticsearch-in-the-xivo-ecosystem.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;What is ElasticSearch&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ElasticSearch is a real-time search and analytics engine with a
+    RESTful API. It's a part of the ELK Stack, which is composed of a
+    search engine (ElasticSearch), a logging tool (Logstash) and a
+    visualization tool (Kibana). ElasticSearch is a distributed system,
+    schema-less and provides a powerful query DSL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="elasticsearch.png" src="/public/elasticsearch.png" title="elasticsearch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Our use cases&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We are using ElasticSearch and Kibana together with XiVO in call
+    centers as a real-time information board, usually on a call
+    center dashboard. It can be also used by supervisors for fast and
+    easy analysis of trends and statistics history.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Kibana call
+center" src="/public/xuc/KibanaCC.png" title="Kibana call center, fév. 2015" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We are also integrating ElasticSeach and Kibana for use by our
+    support team. They will use it for analyzing the recurrence of
+    issues, common problems and other trends.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Data structure&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ElasticSearch is schema free. Data must be organized differently
+    than in a traditional relational database. The basic ElasticSearch
+    data unit is a document with multiple fields.&lt;/li&gt;
+&lt;li&gt;The organization of our data is heavily influenced by the way the
+    Kibana engine works. Kibana provides a time oriented graphical or
+    textual representation of search results. Kibana dashboards are
+    composed of widgets, each one showing a selection of a search
+    request configured for the dashboard.&lt;/li&gt;
+&lt;li&gt;Data stored in ElasticSearch are usually structured as
+    timestamped events. A parent-child relation between documents
+    enables drill-down analysis. For example: A parent document can
+    store data on a call and its child documents can will represent
+    events associated with the call.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Technical background&lt;/strong&gt;When we started with Elastic, the river-jdbc
+&lt;a href="2" title="2"&gt;2&lt;/a&gt; plugin was not production ready. Therefore we developed a
+small utility we called qlogtransfer. It is a basic synchronisation tool
+written in Scala. It uses the jdbc Java driver to retrieve the data from
+XiVO's postgresql database and inserts it into ElasticSearch using the
+elastic4s scala client. The only data transformation done is through a
+SQL request with JOIN clauses. The river-jdbc plugin seems to be stable
+nowadays, so we are integrating it with our support team's use case.&lt;br /&gt;
+We are also using another plugin: Head. It provides an easy but powerful
+web interface to ElasticSearch with data browsing features. Plugin
+installation is really very easy, the Head plugin installation can be
+accomplished with one command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, ElasticSearch doesn't include any access right management, a
+commercial extension called Shield must be used for this purpose.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kibana features&lt;/strong&gt;Kibana is a powerful web based visualization tool.
+Multiple dashboards can be configured, each dashboard contains widgets
+organized in rows as can be seen on the picture of our use case.
+Dashboards are saved in ElasticSearch, inside a specific index. They can
+be exported and you can also use advanced features like templated or
+scripted dashboards. Kibana runs completely inside the web browser and
+gets data from ElasticSearch through its REST API. Therefore, it's quite
+CPU intensive, can consume a lot of bandwidth and needs to be able to
+communicate directly with the ElasticSearch server. It seems to be a
+good idea to protect the server behind a proxy, eventually with some
+form of authorization if you don't have the Shield plugin (which is our
+case).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;ElasticSearch is a powerful tool. Combined with Kibana you
+can create nice monitoring interface. You can use nice features like the
+time to live parameter for each document inserted, automatic data
+distribution between nodes and a powerful search API. However, it's a
+pity that the Shield plugin isn't open sourced.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ressources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; ElasticSearch: &lt;a href="http://www.elasticsearch.org"&gt;http://www.elasticsearch.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="2" title="2"&gt;2&lt;/a&gt; River-jdbc:
+    &lt;a href="https://github.com/jprante/elasticsearch-river-jdbc"&gt;https://github.com/jprante/elasticsearch-river-jdbc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Community: &lt;a href="http://www.elasticsearch.com/community/"&gt;http://www.elasticsearch.com/community/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>Agile Tour Québec 2014</title><link href="http://blog.xivo.io/agile-tour-quebec-2014.html" rel="alternate"></link><updated>2014-11-25T18:24:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2014-11-25:agile-tour-quebec-2014.html</id><summary type="html">&lt;p&gt;On november 5th 2014 some members of the XiVO dev team were at the
+Centre des congrès de Québec for the Agile Tour 2014. The attendance was
+around 800 people, with a fair share of managers and developers. The
+XiVO dev team having an agile process for the last couple of years was
+interested in the new good practices and an opportunity to exchange
+experiences with other people.&lt;/p&gt;
+&lt;h3&gt;First keynote by Michael Feathers (author of Working Effectively with Legacy Code)&lt;/h3&gt;
+&lt;p&gt;The main idea we got from this keynote is the importance of metrics. I'd
+like to compare this with code optimization: if you only read the code
+and try to optimize everything that you find by only reading, you will
+probably waste your time because you won't be optimizing in the right
+spot. The first thing to do in order to optimize code is profiling: you
+run the code and measure which portion of the code uses the most
+resource (CPU, memory, etc.). Only then can you know where you should
+put your efforts to get the best amelioration. In the same way, about
+code quality, you may find some spots where the quality is pretty bad,
+but you may miss the most important spot. The right metrics can give you
+that: where you should put your efforts to get the best amelioration of
+code quality and reduction of maintenance. Here are two examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;for a given period, list the count of commits per file: it gives you
+    the files that need the most maintenance, which are probably where
+    you should improve code quality. Usually, 20% of the files get 80%
+    of the commits.&lt;/li&gt;
+&lt;li&gt;evolution of the average length of source files: it gives you an
+    idea of the "aging" of your code base. Usually, the average will
+    tend to grow fast after some time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One of the danger with metrics it to use them as goal instead of using
+them as an indicator of success. For example, aiming for 100% unit-test
+coverage or for a high number of new tests may result in better numbers
+on paper, but the result in the code quality and maintainability could
+be disastrous.Incomplete or badly designed tests adds complexity to the
+software without adding value. In these situation, adding tests may only
+increase the technical debt.&lt;/p&gt;
+&lt;h3&gt;Félix Antoine Bourbonnais – Agile coach&lt;/h3&gt;
+&lt;p&gt;The introduction to this presentation was formulated around the
+following question: "What is going to be the next big challenge that
+your software will have to address in the next 5 or 10 years?"&lt;/p&gt;
+&lt;p&gt;The right answer is : "We don't care". This answer lead us to some best
+practices to keep software maintainable and to be able to adapt to
+changes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interfaces&lt;/li&gt;
+&lt;li&gt;Interfaces&lt;/li&gt;
+&lt;li&gt;Polymorphism&lt;/li&gt;
+&lt;li&gt;Interfaces&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Second keynote by Jurgen Appelo - author of Management 3.0&lt;/h3&gt;
+&lt;p&gt;Most questions that M. Appelo receives from participants in his workshop
+are about changing other people:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How can I make my team do...&lt;/li&gt;
+&lt;li&gt;How can we make the upper management understand that...&lt;/li&gt;
+&lt;li&gt;How can I change this person's ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The answer to these questions in most cases is: don't. A keep to success
+is to improve yourself, not others. Try and keep challenging your
+techniques, behavior and see if you can do better.&lt;/p&gt;
+&lt;p&gt;His book is available for free on &lt;a href="http://m30.me"&gt;http://m30.me&lt;/a&gt; and contains a long
+list of interesting ideas to get people to know their co-workers better
+and share good experiences.&lt;/p&gt;
+&lt;h3&gt;Michael Ouellet - agile team leader&lt;/h3&gt;
+&lt;p&gt;The main idea of this talk was: don't waste your precious brain time and
+move forward, think constructive. To do that, you must be able to
+identify what wastes your time. Based on the book Positive Intelligence
+from Shirzad Chamine, M. Ouellet gives us a list of "saboteurs" which
+represent types of behaviour that lead to a waste of time, such as the
+Judge, the Victim, the Avoider or the Hyper-Achiever. We all have all
+these saboteurs, and they all express to some degree. Identifying which
+saboteur caused you to think this negative thought or do that
+non-constructive action is the first step for blocking the saboteurs. M.
+Ouellet insisted on two points: the worst saboteur is the Judge, it is
+always there and the best course of action to reduce the effects of
+saboteurs in a team is to show the example, not try to impose your
+vision, joining the recommandation of J. Appelo.&lt;/p&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://positiveintelligence.com/overview/power-potential/" title="http://positiveintelligence.com/overview/power-potential/"&gt;http://positiveintelligence.com/ove...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=-zdJ1ubvoXs" title="https://www.youtube.com/watch?v=-zdJ1ubvoXs"&gt;https://www.youtube.com/watch?v=-zd...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Hugo Emond&lt;/h3&gt;
+&lt;p&gt;Hugo Emond presented the feedback from a SCRUM project with a team
+distributed over two continents in different timezones. The presentation
+was about the techniques that worked best to obtain good results. Some
+best practices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A first meeting between the members of the team&lt;/li&gt;
+&lt;li&gt;High quality tools for the meetings, webcam and microphones, the
+    later being very important&lt;/li&gt;
+&lt;li&gt;100% presence on meetings, no cellphones, no mail, etc&lt;/li&gt;
+&lt;li&gt;Keep an informal communication channel open at all time to share non
+    professional communication such as jokes and personal news&lt;/li&gt;
+&lt;li&gt;Respect and be aware of cultural differences&lt;/li&gt;
+&lt;li&gt;Keep the timezone in mind when asking for the awareness of team
+    members&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The missing point from this experience that could have benefited our
+team is a way to do a good sprint review with many participants,
+technical or not, from many locations. At the moment, we do conference
+calls with a blog post to share screenshots and links. We are still
+missing a good way to do our demos.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO's new directory server</title><link href="http://blog.xivo.io/xivos-new-directory-server.html" rel="alternate"></link><updated>2014-09-26T15:14:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2014-09-26:xivos-new-directory-server.html</id><summary type="html">&lt;p&gt;Some of you may know that a new version of the &lt;a href="/public/xivo-client/Contacts.jpg" title="XiVO client"&gt;XiVO
+client&lt;/a&gt; is being worked
+on at the moment. The newlook and feel require some work behind the
+scenes to merge all kindof contacts a XiVO user might have into a single
+source of information.&lt;/p&gt;
+&lt;p&gt;What does all this mean ? A personal contact, an entry from an LDAP
+server or another XiVO usershould all be available to the user as one
+single list of contacts, even if some operations are not available on
+all kinds of entries.&lt;/p&gt;
+&lt;p&gt;We already had a directory xlet that merged XiVO users and remote
+directoryentries into a single list. This xlet is used by the
+switchboard profile.The directory xlet does most of the heavy lifting of
+merging the different contactlists on the client side. This solution is
+not ideal for the future of XiVO as we wouldlike to be able to develop a
+mobile or web-based version of the client without theburden of rewriting
+the same logic.&lt;/p&gt;
+&lt;p&gt;The first step of our work on this new client is to move this directory
+logicback on the server side. To do so, we are creating a new directory
+service, namedxivo-dird, that will be responsible of handling all
+queries made to all configured directory sources ona XiVO.&lt;/p&gt;
+&lt;p&gt;This new service will offer a public REST interface. This means that
+custom client-side applicationswill be able to integrate the services
+provided by xivo-dird easily. We are also making this newservice
+runnable without a complete XiVO ecosystem. It will be possible to
+installxivo-dird on a dedicated server or in a container. The nature of
+the work doneon xivo-dird will also make it easy to run the service in a
+distributed manner. Withsome configuration, an administrator will be
+able to have many xivo-dird servers running behinda load balancer so
+that it may be used by many XiVOs simultaneously. For example:Avencall
+has one xivo per office but could use the same xivo-dird proxy for all
+offices.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="archi-xivo-dird.svg" src="/public/architecture/archi-xivo-dird.svg" title="archi-xivo-dird.svg, sept. 2014" /&gt;&lt;/p&gt;
+&lt;h3&gt;Architecture&lt;/h3&gt;
+&lt;p&gt;We are also designing xivo-dird for extensibility and we are trying to
+makeplugins as easy as possible to create, making it easier for the
+community to contribute.&lt;/p&gt;
+&lt;h4&gt;Plugins&lt;/h4&gt;
+&lt;p&gt;Currently planned extension points include:&lt;/p&gt;
+&lt;h5&gt;Backends&lt;/h5&gt;
+&lt;p&gt;Backends are plugins that are used to query directory sources. This is
+where we find the logicfor retrieving data from a specific kind of
+technology. Backends include, but arenot limited to, ldap, csv,
+xivo-directory (the internal directory of a
+XiVO),xivo-personal-directory (user's personal contact).&lt;/p&gt;
+&lt;h5&gt;HTTP views&lt;/h5&gt;
+&lt;p&gt;HTTP views are different URLs that are exposed by the xivo-dird server.
+At themoment we know that we will have a json view that will be used by
+other XiVOservices to retrieve lookup results. Other views will be added
+to support otherneeds. Phones are a good example of consumers that
+require a customized view.Adding support for a new brand of phone to
+xivo-dird will be a matter of addingthe HTTP view plugin that formats
+the lookup results in a way that the phoneunderstands.&lt;/p&gt;
+&lt;h4&gt;Core&lt;/h4&gt;
+&lt;p&gt;The core of the application is responsible for loading all of the
+plugins.We will probably use a third party library for this job. We have
+a proof ofconcept using
+&lt;a href="http://stevedore.readthedocs.org/en/latest/" title="stevedore"&gt;stevedore&lt;/a&gt;at
+the moment. Concurrency is also managed by the core.&lt;/p&gt;
+&lt;p&gt;This kind of architecture will become the reference for other XiVO
+services. Having modular servicesthat can be executed independently from
+each other will allow us scale therequired parts of XiVO when needed.&lt;/p&gt;
+&lt;p&gt;You can look at the &lt;a href="https://github.com/xivo-pbx/xivo-dird" title="github repository"&gt;github
+repository&lt;/a&gt;to
+view the source code and follow our work. Note that the master branch
+does not include thiswork yet. The code in other branches are proof of
+concepts used to confirm that our architecturecould handle the kind of
+load we were aiming for and that our modular architecture could
+beachieved but this code is not meant for production and will be
+replaced once we write theproduction version.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>A Switchboard for XiVO</title><link href="http://blog.xivo.io/a-switchboard-for-xivo.html" rel="alternate"></link><updated>2012-12-14T18:44:00-05:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-12-14:a-switchboard-for-xivo.html</id><summary type="html">&lt;p&gt;One of the long time missing feature of XiVO is a good switchboard
+interface. We havebeen working on a new switchboard profile for the XiVO
+client and this post isan overview of what you might expect in the next
+few releases.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="switchboard.png" src="/public/.switchboard_m.jpg" title="switchboard.png, déc. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;As we've said before, we are now releasing a new version every two weeks
+andeach release must succeed our test suite before being sent into
+production.That means that we will have to ship the new switchboard one
+piece at a time. Thefirst three user stories of the switchboard will be
+available in the nextrelease (12.24). In fact, one of these story was
+already implemented in 12.23but we did not send this release into
+production since we are replacingchan_agent with xivo-agent, but that's
+another story.&lt;/p&gt;
+&lt;p&gt;The first user story is to be able to answer an incoming call with a
+click ora key press. To accomplish this goal, we created a new xlet
+called switchboard,not to be confused with the switchboard profile. The
+switchboard xlet issplitted in three sections, incoming calls on the
+left, calls on hold on the right andthe current call on the top spanning
+from left to right. When a call reachesthe switchboard, it is shown in
+the list on the left of the switchboard. Theoperator can then press
+enter or click the call to answer it.&lt;/p&gt;
+&lt;p&gt;The call flow leads us to the next user story, which is to show the
+currentcall at the top of the switchboard xlet. The caller id name and
+number areavailable and buttons are available for each actions that can
+be done on thatcall. Each button also has a key binding to allow fast
+call distribution.Actions will be added to this frame until each desired
+action is present.At the end of the current sprint, only hangup and hold
+will be available.&lt;/p&gt;
+&lt;p&gt;The third story that we are addressing is the holded call list that is
+on theright side of the xlet. These are the calls that have been
+answered by theoperator a first time but that have not been distributed
+yet (excluding thecurrent call).&lt;/p&gt;
+&lt;p&gt;All of these new functinnality are planned for version 12.24 that will
+bereleased on december 19th.&lt;/p&gt;
+&lt;p&gt;What are the next steps&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Call transfers (the contact xlet can already be used to transfer to
+    other users)&lt;/li&gt;
+&lt;li&gt;Call tracking (to know what happenned to previously
+    distributed calls)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See the documentation for all the details to enable your new XiVO
+switchboard.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html"&gt;http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Astricon 2012</title><link href="http://blog.xivo.io/astricon-2012.html" rel="alternate"></link><updated>2012-11-05T20:02:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-11-05:astricon-2012.html</id><summary type="html">&lt;p&gt;&lt;a href="/public/Astricon2012/astricon.JPG" title="astricon.JPG"&gt;&lt;img alt="astricon.JPG" src="/public/Astricon2012/.astricon_m.jpg" title="astricon.JPG, nov. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For a second year, Avencall was present on the biggest Asterisk
+conference in the world: Astricon.This year, the conference was held in
+Georgia, Atlanta.&lt;/p&gt;
+&lt;p&gt;Like every year, the Monday is the AstriDevCon, a small conference for
+developers by the developers to discuss the future and how to improve
+Asterisk. It's a very nice place to get to know the other people that
+are coding inside Asterisk and also to coordinate with others about what
+has to be done.&lt;/p&gt;
+&lt;p&gt;You can find a nice resume of the whole day of discussion here:
+&lt;a href="https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012"&gt;https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, this year we also had a booth (#28). It was a great
+experience to expose ourself at Astricon because there is a huge flow of
+people interested and interesting. It was a lot of fun to talk about the
+XiVO project and the XiVO Open Hardware. All the gizmos we had on our
+table really attracted may people, especially the raspberry pi that was
+running XiVO.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/Astricon2012/conf-xav.jpg" title="conf-xav.jpg"&gt;&lt;img alt="conf-xav.jpg" src="/public/Astricon2012/.conf-xav_s.jpg" title="conf-xav.jpg, nov. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To communicate further about us, we also gave a conference to present
+Avencall and the XiVO telephony system.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Hello XiVO, Add Your Web Page to XiVO Web Interface</title><link href="http://blog.xivo.io/hello-xivo-add-your-web-page-to-xivo-web-interface.html" rel="alternate"></link><updated>2012-10-29T08:33:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2012-10-29:hello-xivo-add-your-web-page-to-xivo-web-interface.html</id><summary type="html">&lt;p&gt;XiVO can be managed using a web interface. This interface is developed
+in PHP language using a XiVO specific framework.&lt;/p&gt;
+&lt;p&gt;The idea of this post is to begin to demystify XiVO web interface
+development.&lt;/p&gt;
+&lt;h4&gt;Setting The Development Environment&lt;/h4&gt;
+&lt;p&gt;First of all, we are going to set up of development environment. The
+best is to enable nfs mount on your development workstation and to mount
+the web interface development directory onto your XiVO virtual
+machine.If your development projects is located in /projects/xivo-skaro,
+the mount command can be :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now each time you will modify a file within the web-interface directory,
+you can check your update by refreshing your browser.&lt;/p&gt;
+&lt;h4&gt;XiVO Hello World Page&lt;/h4&gt;
+&lt;p&gt;So let's start by writing a simple web page to display "Hello XiVO
+world", doesn't remind you something ?&lt;/p&gt;
+&lt;h4&gt;XiVO Actions, Applications and Objects.&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="webi_src.png" src="/public/xivosoft/webi_src.png" title="webi_src.png, oct. 2012" /&gt;XiVO
+web interface is mainly composed of three types of elements :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;actions, this is kind of controller, and will route the action to be
+    done (list, create, edit) to the proper application&lt;/li&gt;
+&lt;li&gt;applications, to be considered as the business layer, contains the
+    algorithm to be applied&lt;/li&gt;
+&lt;li&gt;objects, mainly where the persistence takes place.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many other components, but let's start first be this simple
+view.&lt;/p&gt;
+&lt;p&gt;So if we need to display something, we have to follow these necessary
+steps :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Write a simple PHP page as an action&lt;/li&gt;
+&lt;li&gt;Add this action in the authorized control list&lt;/li&gt;
+&lt;li&gt;Add it to the proper menu&lt;/li&gt;
+&lt;li&gt;Link the menu generated URL to the proper URL&lt;/li&gt;
+&lt;li&gt;Add necessary translations to XiVO translation files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Writing The Page&lt;/h3&gt;
+&lt;p&gt;Let's start with a simple page that we want to be displayed in the menu
+"services -&amp;gt; IPBX -&amp;gt; Call management", edit a file
+xivo-skaro/web-interface/src/action/www/service/ipbx/asterisk/call_management/hellowivo.php&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+    &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello XiVO world !&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;XiVO Authorization Framework&lt;/h3&gt;
+&lt;p&gt;You cannot still browse this new page because this page is not declared
+within XiVO authorization framework. The list of available pages is
+located in the file
+xivo-skaro/web-interface/src/object/objectconf/acl/user.inc.Edit this
+file and add this new action.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;....&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;pickup&amp;#39;] = true;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;schedule&amp;#39;] = true;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;cel&amp;#39;] = true;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;helloxivo&amp;#39;] = true;&lt;/span&gt;
+&lt;span class="x"&gt;.....&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you can browse the page https://&amp;lt;your xivo
+host&amp;gt;/service/ipbx/index.php/call_management/helloxivo.&lt;/p&gt;
+&lt;p&gt;Create a XiVO user (menu Configuration-&amp;gt; Management -&amp;gt; Users) and
+check the authorizations for this user (click on the small key icon next
+to the user) and you will see that a new item appears under call
+management.&lt;img alt="webi_acl.png" src="/public/xivosoft/.webi_acl_m.jpg" title="webi_acl.png, oct. 2012" /&gt;&lt;/p&gt;
+&lt;h3&gt;Translation&lt;/h3&gt;
+&lt;p&gt;You can also note that an error message 'missing translation' is
+displayed. This is a special marker to be sure that nobody forget to
+write the translation strings. These translations are located in
+directory src/i18n were a directory per language can be find.&lt;/p&gt;
+&lt;p&gt;Edit the file en_US/conf/acl.i18n and add the translation
+service-ipbx-call_management-helloxivo and to not forget to add the
+french translation, as in XiVO we always complete the french and english
+translation.&lt;/p&gt;
+&lt;p&gt;Now we can display the new page, and can authorize a user to use this
+new page, still to do is to be able to use this new page using XiVO
+menu.&lt;/p&gt;
+&lt;h3&gt;XiVO Menu Entries&lt;/h3&gt;
+&lt;p&gt;Edit
+xivo-skaro/web-interface/src/tpl/www/bloc/menu/left/service/ipbx/asterisk.php,
+add the menu entry :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;........
+        if(xivo_user::chk_acl(&amp;#39;call_management&amp;#39;,&amp;#39;cel&amp;#39;) === true):
+            echo    &amp;#39;&lt;span class="nt"&gt;&amp;lt;dd&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mn-call_management--cel&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&amp;#39;,
+                $url-&amp;gt;href_html($this-&amp;gt;bbf(&amp;#39;mn_left_callmanagement-cel&amp;#39;),
+                        &amp;#39;service/ipbx/call_management/cel&amp;#39;),
+                &amp;#39;&lt;span class="nt"&gt;&amp;lt;/dd&amp;gt;&lt;/span&gt;&amp;#39;;
+        endif;
+        if(xivo_user::chk_acl(&amp;#39;call_management&amp;#39;,&amp;#39;helloxivo&amp;#39;) === true):
+            echo    &amp;#39;&lt;span class="nt"&gt;&amp;lt;dd&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mn-call_management--helloxivo&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&amp;#39;,
+                $url-&amp;gt;href_html($this-&amp;gt;bbf(&amp;#39;mn_left_callmanagement-helloxivo&amp;#39;),
+                        &amp;#39;service/ipbx/call_management/helloxivo&amp;#39;),
+                &amp;#39;&lt;span class="nt"&gt;&amp;lt;/dd&amp;gt;&lt;/span&gt;&amp;#39;;
+        endif;
+        echo    &amp;#39;&lt;span class="nt"&gt;&amp;lt;/dl&amp;gt;&lt;/span&gt;&amp;#39;;
+    endif;
+
+........
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Fix the translation by adding in
+xivo-skaro/web-interface/src/i18n/en_US/tpl/www/bloc/menu/left/service/ipbx/asterisk.i18n
+the translation to mn_left_callmanagement-helloxivo&lt;/p&gt;
+&lt;p&gt;The menu is now correctly displayed, but you still cannot click on it to
+display your new page. We must now register the menu URL within the XiVO
+framework.&lt;/p&gt;
+&lt;h3&gt;XiVO URL Routing&lt;/h3&gt;
+&lt;p&gt;Edit xivo-skaro/web-interface/src/object/objectconf/url.inc and add the
+URL translation&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;.......&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/schedule&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/schedule/&amp;#39;;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/voicemenu&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/voicemenu/&amp;#39;;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/cel&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/cel/&amp;#39;;&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/helloxivo&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/helloxivo/&amp;#39;;&lt;/span&gt;
+
+&lt;span class="x"&gt;.......&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you may click on the new menu entry and display the Hello XiVO world
+page&lt;/p&gt;
+&lt;p&gt;&lt;img alt="webi_hello_menu.png" src="/public/xivosoft/webi_hello_menu.png" title="webi_hello_menu.png, oct. 2012" /&gt;As
+you may notice this page is not displayed using XiVO look and feel, but
+that's another story.&lt;/p&gt;
+&lt;/p&gt;</summary><category term="development"></category><category term="i18n"></category><category term="web-interface"></category></entry><entry><title>Visualizing asterisk deadlocks</title><link href="http://blog.xivo.io/visualizing-asterisk-deadlocks.html" rel="alternate"></link><updated>2012-10-24T13:56:00-04:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2012-10-24:visualizing-asterisk-deadlocks.html</id><summary type="html">&lt;p&gt;It has recently come to our attention that a freeze would sometimes
+occur in the asterisk application shipped with XiVO.&lt;/p&gt;
+&lt;p&gt;When the freeze happened, no new calls would be accepted and most of the
+current calls would freeze. A manual restart of the asterisk process
+would then be required for the situation to get back to normal.&lt;/p&gt;
+&lt;p&gt;As you can understand, that's quite an unpleasant situation for a
+telephony system like XiVO.&lt;/p&gt;
+&lt;p&gt;So we began investigating on what was causing the freeze, knowing it was
+probably some deadlocks occuring in the asterisk process.Fortunately for
+us, asterisk provides some compile time flags that help with debugging
+such conditions. This is documented &lt;a href="https://wiki.asterisk.org/wiki/display/AST/Getting+a+Backtrace"&gt;on the asterisk
+wiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After recompiling the XiVO version of asterisk with the DEBUG_THREADS
+and DONT_OPTIMIZE flags, and with the help of some other people, we
+were able to reproduce the freeze and get some information about the
+various locks held by the various threads of the frozen asterisk process
+via the "coreshow locks" command.&lt;/p&gt;
+&lt;p&gt;The output of the "core show locks" command looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gh"&gt;=======================================================================&lt;/span&gt;
+&lt;span class="gh"&gt;=== Currently Held Locks ==============================================&lt;/span&gt;
+&lt;span class="gh"&gt;=======================================================================&lt;/span&gt;
+===
+=== &amp;lt;pending&amp;gt; &amp;lt;lock#&amp;gt; (&amp;lt;file&amp;gt;): &amp;lt;lock type&amp;gt; &amp;lt;line num&amp;gt; &amp;lt;function&amp;gt; &amp;lt;lock name&amp;gt; &amp;lt;lock addr&amp;gt; (times locked)
+=== Thread ID: 0xb71ffb70 (tps_processing_function started at [  457] taskprocessor.c ast_taskprocessor_get())
+=== ---&amp;gt; Lock #0 (event.c): RDLOCK 1488 handle_event &amp;amp;(&amp;amp;ast_event_subs[event_types[i]])-&amp;gt;lock 0x822aa78 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_rwlock_rdlock+0xae) [0x8125263]
+    /usr/sbin/asterisk() [0x80ef7a5]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&amp;gt; Lock #1 (chan_agent.c): MUTEX 421 device_state_cb &amp;amp;(&amp;amp;agents)-&amp;gt;lock 0xb64fab48 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_trylock+0xae) [0x8123886]
+    /usr/lib/asterisk/modules/chan_agent.so(+0x2f8b) [0xb64e7f8b]
+    /usr/sbin/asterisk() [0x80ef81d]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&amp;gt; Waiting for Lock #2 (chan_agent.c): MUTEX 430 device_state_cb &amp;amp;p-&amp;gt;lock 0x96a1a60 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/lib/asterisk/modules/chan_agent.so(+0x2fea) [0xb64e7fea]
+    /usr/sbin/asterisk() [0x80ef81d]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== --- ---&amp;gt; Locked Here: chan_agent.c line 516 (agent_lock_owner)
+&lt;span class="gh"&gt;=== -------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="gh"&gt;===&lt;/span&gt;
+=== Thread ID: 0xb6cffb70 (do_devstate_changes  started at [  726] devicestate.c ast_device_state_engine_init())
+=== ---&amp;gt; Lock #0 (astobj2.c): MUTEX 661 internal_ao2_callback c 0x9551498 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/sbin/asterisk(__ao2_lock+0x48) [0x8087fe4]
+    /usr/sbin/asterisk() [0x8088b19]
+    /usr/sbin/asterisk(__ao2_callback+0x56) [0x8088fa4]
+    /usr/sbin/asterisk(__ao2_find+0x29) [0x80890c0]
+    /usr/sbin/asterisk() [0x80afe6c]
+    /usr/sbin/asterisk(ast_channel_get_by_name_prefix+0x28) [0x80aff2c]
+    /usr/sbin/asterisk(ast_parse_device_state+0x43) [0x80dfc3e]
+    /usr/sbin/asterisk() [0x80dff2d]
+    /usr/sbin/asterisk() [0x80e03ac]
+    /usr/sbin/asterisk() [0x80e0702]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&amp;gt; Waiting for Lock #1 (channel.c): MUTEX 1703 ast_channel_cmp_cb chan 0xae044858 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/sbin/asterisk(__ao2_lock+0x48) [0x8087fe4]
+    /usr/sbin/asterisk() [0x80afa11]
+    /usr/sbin/asterisk() [0x8088bdf]
+    /usr/sbin/asterisk(__ao2_callback+0x56) [0x8088fa4]
+    /usr/sbin/asterisk(__ao2_find+0x29) [0x80890c0]
+    /usr/sbin/asterisk() [0x80afe6c]
+    /usr/sbin/asterisk(ast_channel_get_by_name_prefix+0x28) [0x80aff2c]
+    /usr/sbin/asterisk(ast_parse_device_state+0x43) [0x80dfc3e]
+    /usr/sbin/asterisk() [0x80dff2d]
+    /usr/sbin/asterisk() [0x80e03ac]
+    /usr/sbin/asterisk() [0x80e0702]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== --- ---&amp;gt; Locked Here: channel.c line 3767 (__ast_read)
+=== --- ---&amp;gt; Locked Here: chan_agent.c line 515 (agent_lock_owner)
+&lt;span class="gh"&gt;=== -------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="gh"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and it continues this way for a total of 363 lines.&lt;/p&gt;
+&lt;p&gt;The big advantage of this representation is that you have a lot of info
+to help with precise diagnostics and debugging. But there is a downside
+to this:it is quite hard to quickly get the "big picture" of which
+thread is waiting for which other thread, etc.&lt;/p&gt;
+&lt;p&gt;Since it seemed like there were no tools to help us with getting the big
+picture, we wrote a really simple python script that takes the output of
+the "core show locks" command and outputs a directed graph in &lt;a href="http://www.graphviz.org/content/dot-language"&gt;DOT
+language&lt;/a&gt; of the relations
+between the threads. The generated graph is then fed to
+&lt;a href="http://www.graphviz.org/Home.php"&gt;graphviz&lt;/a&gt; to generate an image like
+this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/graph-locks.png" title="Asterisk Deadlock"&gt;&lt;img alt="Asterisk
+Deadlock" src="/public/.graph-locks_m.jpg" title="Asterisk Deadlock, oct. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Each node represents a thread, labeled with its thread ID, and edges
+represent a "is waiting for" relation.&lt;/p&gt;
+&lt;p&gt;From the above image, we clearly see that there's a deadlock between
+thread 0xaeb2db70 and thread 0xb6cffb70 since both are waiting for each
+other. We also see a bunch of other threads waiting directly or
+indirectly on the deadlocked threads, showing the generalized freeze of
+the asterisk process.&lt;/p&gt;
+&lt;p&gt;The script, which is named graph_ast_locks.py, can be found in &lt;a href="https://gitorious.org/xivo/xivo-tools/trees/master/scripts"&gt;the
+xivo-tools
+repository&lt;/a&gt;.
+Given you have the output of a "core show locks" invocation, and that
+you have graphviz installed, you can then run the following command to
+generate a graph in svg format:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/p&gt;</summary></entry><entry><title>Let us cross rivers or how the dev team learns to bring about major changes to XiVO's architecture, the agile way.</title><link href="http://blog.xivo.io/let-us-cross-rivers-or-how-the-dev-team-learns-to-bring-about-major-changes-to-xivos-architecture-the-agile-way.html" rel="alternate"></link><updated>2012-09-17T19:24:00-04:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2012-09-17:let-us-cross-rivers-or-how-the-dev-team-learns-to-bring-about-major-changes-to-xivos-architecture-the-agile-way.html</id><summary type="html">&lt;p&gt;XiVO has been around for over five years now and its use has greatly
+evolved since then. From small installations of a few users, XiVO
+evolved to support installations of hundreds of users and more recently
+major contact centers. We now see XiVO installations with a few
+thousands of users, multiple agents, queues and contexts and call
+volumes ever increasing. This growth has brought the XiVO dev team new
+challenges concerning the architecture of XiVO as not all parts of XiVO
+were ready for this kind of sollicitation. We knew it. We knew there
+were some bottlenecks we would need to adress.&lt;/p&gt;
+&lt;p&gt;We are agile and this means, among other things, that we do not build
+bridges before we need to cross rivers. Now we're there. We need a
+bridge! The XiVO dev team has been working hard in the last months to
+overcome some of the major challenges of XiVO.&lt;/p&gt;
+&lt;p&gt;One of these challenges is linked with the decentralized/multi-component
+nature of XiVO. Indeed as you can read in an &lt;a href="/index.php?post/2012/06/11/XiVO-Architecture"&gt;older
+post&lt;/a&gt;, XiVO is a rich
+multi-component ecosystem with way too many inter-relations. This has
+been a work in progress for a while now were the mission is to reduce
+the number of inter-relations as much as possible by better defining
+each component's jurisdiction.&lt;/p&gt;
+&lt;p&gt;We recently had to tackle a very specific challenge where XiVO's use of
+Asterisk's AMI could disrupt basic telephony (A calls B). For people who
+don't know, AMI stands for Asterisk Manager Interface and is an Asterisk
+component allowing custom clients to connect and interact with Asterisk
+via a socket. In the XiVO ecosystem, the CTI daemon (CTId) is the major
+consumer of Asterisk's AMI. The CTId is a monothreaded python daemon
+responsible of handling XiVO client connections. The more users on a
+given XiVO installation, the more XiVO clients can potentially connect
+to the CTId and thus, the more traffic the CTId exchanges with the AMI.
+This traffic can be quite impressive when considering a XiVO
+installation under heavy telephony load. The CTId's event loop is a
+synchronous blocking loop and while in this loop, the CTId cannot handle
+any other jobs. This weakness would not be so terrible if the CTId
+wasn't doing anything else than handling XiVO clients connections as it
+would only impact those connections and nothing else. This specific
+issue is still a major one and we'll adress how we handled it in a later
+post.&lt;/p&gt;
+&lt;p&gt;Now if you remember the &lt;a href="/public/xivosoft/xivo_architecture.png"&gt;schema of XiVO's
+architecture&lt;/a&gt; in our &lt;a href="/index.php?post/2012/06/11/XiVO-Architecture"&gt;previously
+cited post&lt;/a&gt;, you can see
+an interconnection between the CTId and the AGI. This relation handled
+mainly the reverse directory lookups, used to display a callerID of
+incoming call matching a number in a directory. Now this was a major
+issue as it meant that any calls passed while the CTId was 'blocked' at
+handling AMI traffic would not go through: A cannot call B anymore!&lt;/p&gt;
+&lt;p&gt;This was not much of an issue when a typical XiVO installation was
+populated with a few users as it almost never happened that calls would
+be blocked because of reverse directory lookups (or happened not often
+enough for users to even notice and signal the issue). With growing XiVO
+installations, it became obviously disruptive.&lt;/p&gt;
+&lt;p&gt;The solution was to remove anything from the CTId that could impact
+telephony. From this perspective, any calls to the AGI in the CTId where
+moved to nothing else than the AGId, the daemon responsible for handling
+communications with Asterisk's AGI. It seems quite obvious when you
+think of it and one might ask Why oh why was it not already that way? An
+ever evolving XiVO dev team with five years at developping XiVO,
+learning a whole lot along the way has to be the only responsible
+answer.&lt;/p&gt;
+&lt;p&gt;XiVO is becoming more mature every day and so is its development team,
+producing a software ecosystem always stronger, more mature and more
+robust. We love building bridges, bring in the rivers!&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO Call Center Reporting Revamp</title><link href="http://blog.xivo.io/xivo-call-center-reporting-revamp.html" rel="alternate"></link><updated>2012-08-02T15:17:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-08-02:xivo-call-center-reporting-revamp.html</id><summary type="html">&lt;p&gt;One of the main feature of XiVO 1.2 is the call center reporting.&lt;/p&gt;
+&lt;p&gt;Motivation&lt;/p&gt;
+&lt;p&gt;The first draft of this new feature proved to be hard to maintain and
+slow to generate statistics. Furthermore, the format of the cache (files
+containing one month of statistics in JSON format) was not easy to
+exploit and required more work while viewing daily statistics that would
+use raw data instead of the pre generated cache for speed reasons.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="statistic_queue.png" src="/public/.statistic_queue_m.jpg" title="statistic_queue.png, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;To fix the problems we had with this first version, we decided to
+rewrite the cache generation that is not dependent on statistic
+configuration, avoiding the need to regenerate the cache every time a
+configuration is changed.&lt;/p&gt;
+&lt;p&gt;The new cache format uses tables in the asterisk database to store
+pre-analyzed data. These tables contains call related information (table
+stat_call_on_queue) and statistic for each hours of statistic
+(stat_queue_periodic).&lt;/p&gt;
+&lt;p&gt;This new format make it a lot faster to generate the cache and easier to
+generate tables and graphics in the web interface. Using an hour as the
+base time for an entry also fix the problem of overlapping time range
+that we had to solve with month based cache, where a week could start in
+month n and end in month n + 1.&lt;/p&gt;
+&lt;p&gt;Difference from the first version for the user&lt;/p&gt;
+&lt;p&gt;The cache is only generated for complete hours. This means that if you
+generate the cache at 12h15 the cache will end at 11h59 and the next
+time the cache is generated, it will start at 12h00. The cache is also
+continuously generated (once a day) and since the cache is independent
+of the configuration, it does not have to be generated each time a
+change is made to the configuration.&lt;/p&gt;
+&lt;p&gt;The way to generate the cache manually at this moment is to run
+xivo-stat fill_db from the command line on the XiVO. The generate cache
+option of the web interface will run this action when the old cache
+won't be required anymore.&lt;/p&gt;
+&lt;p&gt;What is done&lt;/p&gt;
+&lt;p&gt;Currently (version 12.14) all queue counters are now computed using the
+new cache. Some errors are still shown on some page that we could not
+port to the new system in time but most should be fixed in the next
+version.&lt;/p&gt;
+&lt;p&gt;We are also working on the first agent counter that should be available
+in version (12.15) and all other agents counters should be added in the
+next 2 versions.&lt;/p&gt;
+&lt;p&gt;Some changes to the configuration are to expected when our work will be
+done with the counters to reflect the new cache generation, but these
+changes should be minor and all migration will be handled automatically
+as usual.&lt;/p&gt;
+&lt;p&gt;Work methodology&lt;/p&gt;
+&lt;p&gt;A second aspect of this second version that was not present in the first
+one is that we are also developing tools to generate calls and check the
+generated statistics to avoid any regressions in future versions. This
+process has been more time consuming than developing the counters
+themselves but is a step to better test automation for XiVO.&lt;/p&gt;
+&lt;p&gt;Documentation&lt;/p&gt;
+&lt;p&gt;The documentation for call center statistics is
+available&lt;a href="http://documentation.xivo.fr/dev/contact_center/statistics/statistics.html" title="Call center statistics"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The code&lt;/p&gt;
+&lt;p&gt;xivo-stat is available at git://git.xivo.fr/official/xivo-stat.git&lt;/p&gt;
+&lt;p&gt;xivo-callgen is available at git://git.xivo.fr/official/xivo-callgen.git&lt;/p&gt;
+&lt;/p&gt;</summary><category term="xivo 1.2"></category><category term="xivo"></category><category term="software"></category><category term="reporting"></category></entry><entry><title>Using Reverse Look-ups to Replace Caller IDs</title><link href="http://blog.xivo.io/using-reverse-look-ups-to-replace-caller-ids.html" rel="alternate"></link><updated>2012-06-11T11:04:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-06-11:using-reverse-look-ups-to-replace-caller-ids.html</id><summary type="html">&lt;p&gt;XiVO directories are a way to store contact information to be able to do
+directory look-ups from the XiVO client and from supported phones.
+Another useful feature of directories, is the ability to set a reverse
+directory and replace incoming caller IDs with information from the
+directory.&lt;/p&gt;
+&lt;p&gt;This article will show you how to setup reverse look-up on your XiVO. It
+is assumed that you already have a working directory setup on your XiVO.&lt;/p&gt;
+&lt;p&gt;The first step is to set the reverse match fields in your directory
+configuration. These fields are the one that will be used to search
+against the incoming number. Interesting fields for reverse look-up are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;phonebooknumber.home.number&lt;/li&gt;
+&lt;li&gt;phonebooknumber.mobile.number&lt;/li&gt;
+&lt;li&gt;phonebooknumber.office.number&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="reverse_1.png" src="/public/.reverse_1_m.jpg" title="reverse_1.png, juin 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;The second step is to setup the field that will be shown in response to
+a reverse look-up. This field is configured in the Mapped fields list.
+All you have to do is add a field with the name &lt;strong&gt;reverse&lt;/strong&gt; and the
+value will be used as the caller ID name of incoming calls.&lt;/p&gt;
+&lt;p&gt;The last step is to add the configured directory to the list of reverse
+directories available for look up. Under reverse directories, in the
+related directories section add each directory you want to be able to
+access using reverse look-ups. It is usually not interesting to include
+internal directory in reverse look-ups since internal users already have
+a caller ID.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="reverse_2.png" src="/public/.reverse_2_m.jpg" title="reverse_2.png, juin 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that reverse look-up will work as described in version 1.2.10 and
+later, another good reason to do a xivo-upgrade.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>How is the XiVO-SCCP development going ?</title><link href="http://blog.xivo.io/how-is-the-xivo-sccp-development-going.html" rel="alternate"></link><updated>2012-05-01T15:07:00-04:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-05-01:how-is-the-xivo-sccp-development-going.html</id><summary type="html">&lt;p&gt;From XiVO 1.2.5 we started to integrate the SCCP management directly
+into the web interface.It means that now, people installing a XiVO
+server can natively use the SCCP technologywhen creating new lines,
+without the need to manually install the sccp channel driver andediting
+the configuration file. As the sccp library evolve, the options
+available throughthe web interface will also be expanded.&lt;/p&gt;
+&lt;p&gt;Lately we've been working on the multi-instance per line, which will be
+released with XiVO 1.2.7 this week.Basically the multi-instance per line
+is the ability to receive or make many calls at the same time.While only
+one call can be active at a time, it is possible to keep the other call
+alive but on hold.You can then toggle between the calls to pickup any of
+them. Which will put the current active call on hold,and will set the
+selected call as active.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/libsccp/IMG_20120501_092831.jpg" title="7960-multi-instance1"&gt;&lt;img alt="7960-multi-instance1" src="/public/libsccp/.IMG_20120501_092831_s.jpg" title="7960-multi-instance1, mai 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We still have a long list of features we want to write and make
+available directly through XiVO.Even though we are still in early
+development, I encourage everyone that have CISCO phones to installand
+try the SCCP library. Either via XiVO or by manually installing the sccp
+channel driver.&lt;/p&gt;
+&lt;p&gt;For those having CISCO phones that use the SCCP technology, we've put
+online a tutorial to help you get this done:
+&lt;a href="http://documentation.xivo.fr/dev/administration/sccp/sccp.html"&gt;http://documentation.xivo.fr/dev/administration/sccp/sccp.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;At the bottom of the tutorial, you will also find the list of feature
+and telephone type that we actually support.We hope to extend this list
+as time goes, but we need your help !&lt;/p&gt;
+&lt;p&gt;At this point of development, we need more people that use the SCCP
+library. As the number of people using itwill increase, the number of
+bugs reported will increase and hence the number of fix and enhancement.
+At the end, everbody win.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>1.2.2 1.2.3 1.2.4 1.2.5 here we go</title><link href="http://blog.xivo.io/122-123-124-125-here-we-go.html" rel="alternate"></link><updated>2012-04-13T00:17:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2012-04-13:122-123-124-125-here-we-go.html</id><summary type="html">&lt;p&gt;Last September we started to change our development methodology to use
+SCRUM.&lt;/p&gt;
+&lt;p&gt;The main objective was to be able to deliver very quickly new XiVO
+versions.Our sprints are two weeks long, and at the end of a sprint we
+deliver a new release of XiVO that you can use by using the new
+&lt;em&gt;xivo-upgrade&lt;/em&gt; tool.Every two weeks on Monday we start with the planning
+meeting, where we define what will be done during the sprint. Each bug
+or task is written on a post it and put on our white board.&lt;/p&gt;
+&lt;p&gt;Every day, at 09h00 we do our daily Scrum, small stand up meeting where
+all the team members answer the three scum traditional questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What did I do since yesterday?&lt;/li&gt;
+&lt;li&gt;What am I planning to do today?&lt;/li&gt;
+&lt;li&gt;Anything blocks me ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Optionally at the end of the stand up meeting, we can start a small
+technical session about software architecture, code review and now that
+we moved to a bigger office, we can draw on the walls and do design
+review.&lt;/p&gt;
+&lt;p&gt;At the middle of the second week, on Wednesday we stop our development,
+finish our commits, and build the release. At this time starts the
+functional testing period. Today we run more than 350 functional tests
+which are described in our test manager
+&lt;a href="http://testlink.xivo.fr" title="testlink"&gt;testlink&lt;/a&gt;. These tests are partly
+automated, and one of our goal is to be able to automate more and more
+tests. Furthermore, every day some of our functional tests are run
+automatically using our continuous integration server
+&lt;a href="http://jenkins.xivo.fr/" title="jenkins"&gt;&lt;/a&gt; in addition to the unit tests
+covering part of XiVO software.Once the tests are ok, the delivery check
+list helps us to not forget anything to be sure you will be able to
+xivo-upgrade your installation without any pain.&lt;/p&gt;
+&lt;p&gt;Last but not least, we do our sprint retrospective to be able to find
+ways to improve our process. At the end, it's time for beer !&lt;/p&gt;
+&lt;p&gt;Today the main point is to be able to improve XiVO strength, and to
+correct and deliver very quickly any problems you may have. New features
+will come the second part of 2012 once this objective will be achieved.&lt;/p&gt;
+&lt;p&gt;It is very encouraging to see that in 2009 it took us on average &lt;strong&gt;315&lt;/strong&gt;
+days to close an issue, in 2010, 295 days, in 2011, 127 days, and &lt;strong&gt;this
+year it takes only 28 days&lt;/strong&gt; in average to close an open issue. This is
+not finish we still have a long road, but thanks to the great team
+working on XiVO, things improve every day.&lt;/p&gt;
+&lt;p&gt;So stay tune, every two weeks you will get a new flavor of XiVO, more
+and more reliable and with hopefully more and more features.&lt;/p&gt;
+&lt;p&gt;If you'd like to participate in this adventure do not hesitate to
+contact us,&lt;a href="http://www.avencall.com/index.php?option=com_neorecruit&amp;amp;Itemid=15&amp;amp;lang=en"&gt;we are looking for passionate
+people&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>HTTP/TFTP requests processing in provd - part 2</title><link href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-2.html" rel="alternate"></link><updated>2012-04-12T12:40:00-04:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2012-04-12:httptftp-requests-processing-in-provd-part-2.html</id><summary type="html">&lt;p&gt;Let's take the same example as we did last time, i.e. let's say we have
+a xivo-aastra plugin installed.&lt;/p&gt;
+&lt;p&gt;So we plug a brand new Aastra 6731i on our network. The phone then does
+the following HTTP request:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;GET&lt;/span&gt; &lt;span class="nn"&gt;/Aastra/aastra.cfg&lt;/span&gt; &lt;span class="kr"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;1.1&lt;/span&gt;
+&lt;span class="na"&gt;User-Agent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="l"&gt;Aastra6731i MAC:00-11-22-33-44-55 V:3.2.2.1136-SIP&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The "device info extraction" step is then able to extract the following
+information:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{&amp;#39;vendor&amp;#39;: &amp;#39;Aastra&amp;#39;, &amp;#39;model&amp;#39;: &amp;#39;6731i&amp;#39;, &amp;#39;version&amp;#39;: &amp;#39;3.2.2.1136&amp;#39;,
+ &amp;#39;mac&amp;#39;: &amp;#39;00:11:22:33:44:55&amp;#39;, &amp;#39;ip&amp;#39;: &amp;#39;192.168.1.100&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This information is then passed to a "device retriever" object. Here's a
+pseudo code version of what it looks like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;def process_request(request):
+    device_info = device_info_extractor.extract(request)
+    device = device_retriever.retrieve(device_info)
+    ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A device object can be seen as a superset of a device info object. Both
+are dictionaries, but the device object can contain keys that the device
+infoobject never will, like an "id", a "plugin" and a "config" key.&lt;/p&gt;
+&lt;p&gt;Let's see in more details what happens in this "device retriever"
+object:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/provd/device-retriever.png" title="Device retriever"&gt;&lt;img alt="Device
+retriever" src="/public/provd/.device-retriever_m.jpg" title="Device retriever, avr. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The device retriever will ask one at a time the different other device
+retrievers until one returns something. In our example, since the provd
+serverdoesn't know yet about our Aastra, the "mac device retriever" will
+returns nothing because there is no device with the MAC address
+00:11:22:33:44:55 in the device database, then the "SN (serial number)
+device retriever" will returns nothing because no SN is used with
+Aastra, then the "ip device retriever" will also returns nothing, and
+finally, the "add device retriever" will add the new device to the
+database and return it.&lt;/p&gt;
+&lt;p&gt;On the next requests of our Aastra, the "mac device retriever" will
+search for a device with the given MAC and will then return the device
+object that was added previously.&lt;/p&gt;
+&lt;p&gt;From what we just learned, we can see that it's at this step that
+devices are automatically added to provd. That said, the automatic
+plugin association and automatic config association (taken from a
+"template" config) is not done at this step but later on, which is
+something we'll see in more details in my next blog post.&lt;/p&gt;
+&lt;p&gt;If provd had to support only Aastra phones, only the "mac device
+retriever" and the "add device retriever" would be needed (and some part
+of provd would be a whole lot simpler also). That said, the reality is
+more complex. Some phones are only doing TFTP requests, which means no
+User-Agent header and little information to extract for some requests,
+sometimes only the IP address. This is where the "ip device retriever"
+comes in handy. It's usually able to find the right device by only using
+the IP address. This is possible because provd always try to maintain
+the most up to date info about IP address used by devices.&lt;/p&gt;
+&lt;p&gt;That said, for some devices, there is some scenarios where the system
+just isn't powerful enough:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you power on a new Linksys/Cisco SPA3102, which is given the
+    192.168.1.101 IP address by the DHCP server&lt;/li&gt;
+&lt;li&gt;the phone then ask the /spa3102.cfg file via TFTP&lt;/li&gt;
+&lt;li&gt;provd knows the request came from a Linksys SPA3102 with the
+    192.168.1.101 IP address, but doesn't know the MAC address. No
+    worry, it still adds it to the device database.&lt;/li&gt;
+&lt;li&gt;the phone then ask the /001122334477.xml file, still via TFTP.&lt;/li&gt;
+&lt;li&gt;provd is able to retrieve the device by using the IP address, and
+    now knows that the device behind the request has the MAC
+    00:11:22:33:44:77&lt;/li&gt;
+&lt;li&gt;the phone is unplugged from the network&lt;/li&gt;
+&lt;li&gt;a couple of days later, the phone is power on again. This time, the
+    DHCP server gives it the 192.168.1.102 IP address&lt;/li&gt;
+&lt;li&gt;the phone then ask the /spa3102.cfg file via TFTP&lt;/li&gt;
+&lt;li&gt;the only information that can used to retrieve the device is the
+    IP address. That said, no device in the device database use this
+    IP address. provd will then create a new device, believing its a
+    new device.&lt;/li&gt;
+&lt;li&gt;the phone then ask the /001122334477.xml file&lt;/li&gt;
+&lt;li&gt;provd is then able to retrieve the first device by using the
+    MAC address. It then updates the IP address information of
+    this device. Unfortunately, the previous step created a device in
+    the database for nothing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The system still works in these cases. The only problem is that you get
+junk devices in provd device's database, and these can only be removed
+manually. They are not causing any real harm except then adding some
+confusion as to why theses devices are in the database.&lt;/p&gt;
+&lt;p&gt;There is a way to get by this problem, and it's called "dhcp
+integration". Yes. Just believe me.&lt;/p&gt;
+&lt;p&gt;So that's all folks. Next time, if your brain still hasn't suffered from
+an epileptic seizure, get ready because we'll be talking about the
+"device updating" step.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Two new platforms for the XiVO Client</title><link href="http://blog.xivo.io/two-new-platforms-for-the-xivo-client.html" rel="alternate"></link><updated>2012-04-04T17:10:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2012-04-04:two-new-platforms-for-the-xivo-client.html</id><summary type="html">&lt;p&gt;Until now, the XiVO Client was released for only two different
+platforms : Windows, Debian GNU/Linux and Ubuntu. Yes, that makes three,
+but Ubuntu is based upon Debian, and the two versions do not differ.&lt;/p&gt;
+&lt;p&gt;However, the Qt framework that is used by the XiVO Client allows
+applications to be also built for Mac OS. Furthermore, back in the 1.1
+version, the XiVO Client was supported on Mac OS. We then reused the old
+building script that were rotting in our Git repository and cleaned them
+up to allow us to build a new Mac version of the XiVO Client.&lt;/p&gt;
+&lt;p&gt;Here's what it looks like :&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/xivosoft/xivoclient-macos.png" title="XiVO Client Mac OS"&gt;&lt;img alt="XiVO Client Mac
+OS" src="/public/xivosoft/.xivoclient-macos_m.jpg" title="XiVO Client Mac OS, avr. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The stable version will be released at the same time as other platforms,
+by the end of the week, with the XiVO 1.2.5 release.&lt;/p&gt;
+&lt;p&gt;For hackers who would want to play around with the XiVO Client's source
+code on Mac OS (or other platforms), the instructions for building and
+coding can be found here :
+http://documentation.xivo.fr/dev/developers/xivo_client/xivo_client.html&lt;/p&gt;
+&lt;p&gt;Another big news, even though Archers are (unfortunately ;) ) a bit
+fewer than Mac users, the XiVO Client package for Archlinux on the AUR
+is also being restored, and will soon be available in the AUR. The two
+packages already here have not been updated since last year.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Upgrading XiVO with \"xivo-upgrade\"</title><link href="http://blog.xivo.io/upgrading-xivo-with-xivo-upgrade.html" rel="alternate"></link><updated>2012-03-29T15:28:00-04:00</updated><author><name>cedric</name></author><id>tag:blog.xivo.io,2012-03-29:upgrading-xivo-with-xivo-upgrade.html</id><summary type="html">&lt;p&gt;In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade.
+This new script must be usedto make sure that upgrades are completed
+properly. The objective is to minimize differences between machinesand
+to control the environment in case of problems.&lt;/p&gt;
+&lt;p&gt;We had many problems to work around:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;questions to answer about replacing packaged files that have been
+    modified&lt;/li&gt;
+&lt;li&gt;reload services when libraries are modified&lt;/li&gt;
+&lt;li&gt;modify the database schema when needed&lt;/li&gt;
+&lt;li&gt;showing the current and new version when upgrading&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We decided to put this system in place to keep upgrades simples and
+transparent to the end ~~user~~ admin.The goal being to stay as SIMPLE
+as possible!&lt;/p&gt;
+&lt;p&gt;Too many people are stressed by their IPBX upgrades!&lt;img alt="Stress
+Man" src="/public/human_pro/.file0001382919230_s.jpg" title="Stress Man, mar. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;But not with
+XiVO!&lt;img alt="Congratulation" src="/public/human_pro/.file6741271974648_s.jpg" title="Congratulation, mar. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;No one should be afraid of the side effects of an upgrade!&lt;/p&gt;
+&lt;h2&gt;Technical informations&lt;/h2&gt;
+&lt;p&gt;This package allows the administrator to upgrade his XiVO securely and
+in a way validated by the dev team.The script executes many steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;xivo-upgrade upgrade, to get the latest modifications to the upgrade
+    process&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upgrade confirmation if upgrades are available:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the answer is NO, the upgrade is aborted&lt;/li&gt;
+&lt;li&gt;If the answer is YES, the script continues to the next step&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-upgrade scripts are run.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;XiVO is upgraded&lt;/li&gt;
+&lt;li&gt;Post-upgrade scripts are executed.&lt;/li&gt;
+&lt;li&gt;All XiVO services are restarted in the right order.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Package architecture:&lt;/p&gt;
+&lt;p&gt;Binaries:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;xivo-upgrade (Update xivo-upgrade package and
+    execute real-xivo-upgrade)&lt;/li&gt;
+&lt;li&gt;real-xivo-upgrade (Execute upgrade of XiVO and restart services)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Libraries path: /usr/share/xivo-upgrade/&lt;/p&gt;
+&lt;p&gt;Directories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pre-upgrade.d (All files in this directory will be executed before
+    upgrading XiVO)&lt;/li&gt;
+&lt;li&gt;post-upgrade.d (All files in this directory will be executed after
+    XiVO upgrade)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Current post-install scripts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update template for device configuration.&lt;/li&gt;
+&lt;li&gt;Update all device configurations to integrate the backup_proxy_ip
+    from the HA configuration.&lt;/li&gt;
+&lt;li&gt;Set default web-interface language to english.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>Around XiVO - pxe server setup</title><link href="http://blog.xivo.io/around-xivo-pxe-server-setup.html" rel="alternate"></link><updated>2012-03-01T20:07:00-05:00</updated><author><name>atarakt</name></author><id>tag:blog.xivo.io,2012-03-01:around-xivo-pxe-server-setup.html</id><summary type="html">&lt;p&gt;This is the second part of the description of the XiVO installation
+process.&lt;/p&gt;
+&lt;p&gt;I'm going to describe how to setup a simple pxe server.&lt;/p&gt;
+&lt;p&gt;You need to have 2 services enabled on your server, dhcp and tftp.&lt;/p&gt;
+&lt;p&gt;Dhcp is used to give ip parameters to join the tftp server from the
+client,the tftp server serves the files needed to install a debian
+system.&lt;/p&gt;
+&lt;p&gt;On debian system, you have to install isc-dhcp-server, here is a
+minimaldhcp configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;#/etc/dhcp/dhcpd.conf
+ddns-update-style none;
+option domain-name &amp;quot;mydomain.com&amp;quot;;
+option domain-name-servers 10.10.32.1;
+default-lease-time 600;
+max-lease-time 7200;
+log-facility local7;
+subnet 10.10.32.0 netmask 255.255.255.0 {
+    range 10.10.32.10 10.10.32.20;
+    option routers 10.10.32.1;
+    next-server 10.10.32.1;
+    option tftp-server-name &amp;quot;10.10.32.1&amp;quot;;
+    filename &amp;quot;pxelinux.0&amp;quot;;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can test your dhcp configuration by booting a machine on pxe to
+ensurethat the dhcp configuration is functionnal :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPREQUEST for 10.10.32.10 (10.10.32.1) from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPACK on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we have to install and configure a tftp server, we're going to
+installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
+too. Thispackage provide all the files used to install a fresh debian
+system by pxe.&lt;/p&gt;
+&lt;p&gt;You have to modify tftp_directory on /etc/default/tftpd-hpa:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;TFTP_DIRECTORY=&amp;quot;/usr/lib/debian-installer/images/i386/text&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and restart the tftp server to apply your modification.&lt;/p&gt;
+&lt;p&gt;You have to edit 2 files to finish your configuration: menu.cfg and
+syslinux.cfg&lt;/p&gt;
+&lt;p&gt;You have to modify include and default path in boot-screens/syslinux.cfg&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# D-I config version 2.0
+   include boot-screens/menu.cfg
+   default boot-screens/vesamenu.c32
+   prompt 0
+   timeout 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You have to add to boot-screens/menu.cfg&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;label squeeze-i386
+       menu label squeeze i386
+       kernel linux
+       append vga=normal initrd=initrd.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can now test your modification by booting a computer on your subnet,
+herethe screen that you should view if your configuration is ok&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;In the next post, I will explain an advanced pxe configuration and how
+to usepreseeding to execute an automatic installation.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>SCCPp and continuous integration</title><link href="http://blog.xivo.io/sccpp-and-continuous-integration.html" rel="alternate"></link><updated>2012-02-20T14:17:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-02-20:sccpp-and-continuous-integration.html</id><summary type="html">&lt;p&gt;SCCPp is a small tool that we developed in parallel of our Asterisk sccp
+channel. Its main purpose is to imitate a real cisco phone in a pure
+virtual way. One of the main goal behind it is to be able to do
+continuous integration. By coupling SCCPp with Asterisk testsuite and
+Jenkins we are able to automate tests that we would normally do
+manually. This way, when a commit is pushed, it trigger a task that
+launch the script responsible to update and compile the source, to pass
+every test in the list and to report if something went wrong.&lt;/p&gt;
+&lt;p&gt;Only basic test are implemented via SCCPp at the present moment. We can
+simulate the full protocol exchange involved when a phone connect and
+authenticate itself to the server. Another supported option is the
+stress test of a configured device. In this mode, SCCPp start two
+threads and dial the device at random interval. The goal here is to pass
+through as much code as possible and to make sure there is no regression
+in the code under known scenarios.&lt;/p&gt;
+&lt;p&gt;SCCPp doesn't support the RTP protocol (Real-Time Transport Protocol) at
+the present moment. What it mean is that we can't simulate the
+transportation of the voice from a device to another. The development of
+SCCPp is still at an early stage, and many more features will be added
+in the future.&lt;/p&gt;
+&lt;p&gt;As the complexity of the libsccp increase, we need more tests to ensure
+that a change in the code, such a bug fix, do not introduce new faults.
+Functional testing is only one part of the solution, even if it's a
+powerful one to ensure that specific cases work well, it says nothing
+about the internal. The other half of the solution is to unit test the
+code. This is a method by which individual units of source code are
+tested to ensure they perform properly. Fortunately, Asterisk has its
+own framework that allow us to easily write unit test and to trigger
+them to see if they pass correctly. In another post, we will present
+what can be done with this Asterisk unit test framework and how it can
+help to do TDD (Test Driven Development).&lt;/p&gt;
+&lt;p&gt;If you are interested to play with SCCPp, you can get the source code at
+this address:
+&lt;a href="http://git.proformatique.com/?p=official/sccpp.git;a=summary" title="http://git.proformatique.com/?p=official/sccpp.git;a=summary"&gt;http://git.proformatique.com/?p=off...&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>HTTP/TFTP requests processing in provd - part 1</title><link href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-1.html" rel="alternate"></link><updated>2012-02-09T18:35:00-05:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2012-02-09:httptftp-requests-processing-in-provd-part-1.html</id><summary type="html">&lt;p&gt;Well. Yes. provd ask a "device info extractor" object to extract
+information from the HTTP request, and that object returns the
+information we were expecting. But what is really happening inside that
+"device info extractor" ? Let's see:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/provd/provd-dev-info-extraction-details.png" title="Device info extraction details"&gt;&lt;img alt="Device info extraction
+details" src="/public/provd/.provd-dev-info-extraction-details_m.jpg" title="Device info extraction details, fév. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The device info extractor object is in fact only merging results from
+two others device info extractor.&lt;/p&gt;
+&lt;p&gt;The "all plugins device info extractor" ask for each installed plugin to
+extract info from the request. In this case, thexivo-aastra plugin is of
+course able to extract a lot of information by looking at the User-Agent
+header, but the xivo-cisco-sccp plugin is of no help. The results are
+then merged and returned.&lt;/p&gt;
+&lt;p&gt;The "standard device info extractor" extract the IP address. It's role
+is to only extract trivial information from requests.&lt;/p&gt;
+&lt;p&gt;From what we learned, we can deduce some properties of device
+information extraction in provd.&lt;/p&gt;
+&lt;p&gt;First, if no plugins are installed, only IP addresses will ever be
+extracted.&lt;/p&gt;
+&lt;p&gt;Next, we can ask ourselves what happens when two plugins returns
+different information. Well, the "all plugins device info extractor" is
+capable of applying different merge strategies. I won't go into more
+details for now.&lt;/p&gt;
+&lt;p&gt;The last thing we can see is that a bad plugin could make the system
+unreliable. You do not want to be in the situation were wrong
+information is extracted by a plugin. That is why it's always safer to
+only install the plugins you need, and no more.&lt;/p&gt;
+&lt;p&gt;Now that we know all that, let's see what happens for a request coming
+from a Cisco 7940. One of the first request it does is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;TFTP RRQ SEP554433221100.cnf.xml
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;TFTP requests are really simple, especially if you compare them to HTTP
+requests. The only interesting information an RRQ (read request) can
+have is the filename. But a filename can contains a lot of information.&lt;/p&gt;
+&lt;p&gt;TFTP requests take a similar flow as HTTP requests in provd. In our
+example, the xivo-aastra plugin will return no information from it, but
+the xivo-cisco-sccp plugin will be able to extract both the vendor and
+the MAC address. For this request, it's not possible to determine the
+model nor the firmware version.&lt;/p&gt;
+&lt;p&gt;So provd knows the request came from a Cisco, and that its MAC address
+is 55:44:33:22:11:00. That's not much, but it's better than nothing.&lt;/p&gt;
+&lt;p&gt;That said, there is a special trick for extracting information about the
+model on Cisco 7900 phones. I won't tell you what it is because I'm
+getting tired of writing this article, but all I can say is that it's
+pretty neat, and it's also useful in some other situation. Well okay,
+I'll just say the name: DHCP integration.&lt;/p&gt;
+&lt;p&gt;That's all folks. We have both seen the best (Aastra 6731i) and the
+worst (Cisco 7940) case concerning device info extraction in provd. That
+said, even the worst case doesn't pose a real problem. Next time, if I
+don't get too many death threat following this article, I'll talk about
+the next step of request processing in provd, device retrieving, which
+is quite simpler by the way.&lt;/p&gt;
+&lt;/p&gt;</summary><category term="xivo 1.2"></category><category term="provisioning"></category></entry><entry><title>XiVO Documentation Project</title><link href="http://blog.xivo.io/xivo-documentation-project.html" rel="alternate"></link><updated>2012-02-01T01:24:00-05:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2012-02-01:xivo-documentation-project.html</id><summary type="html">&lt;p&gt;Documentation is often a touchy subject on many projects, and for XiVO
+in this respect, it is also an important matter.&lt;/p&gt;
+&lt;p&gt;Retrospective, over retrospective, documentation organization and tools
+comes often to the surface. Maybe some of you already noticed that XiVO
+development cycle has changed and that we are now producing a release
+every two weeks. In fact we started to use SCRUM six months ago, and in
+this respect, we do not forget to do our 'inspect and adapt' meeting,
+not so many often as we should but this is an other story !&lt;/p&gt;
+&lt;p&gt;Anyway, XiVO documentation is currently done using a
+&lt;a href="http://wiki.xivo.fr" title="wiki"&gt;wiki&lt;/a&gt;, but this wiki is hard to maintain
+and to structure, information is also difficult to find. We tried also
+to use other type of wikis, but nothing was very satisfying.&lt;/p&gt;
+&lt;p&gt;We looked over some other projects, to check how the documentation was
+done, and it comes to us that some of them are using
+&lt;a href="http://sphinx.pocoo.org/" title="sphinx"&gt;sphinx&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“a tool that makes it easy to create intelligent and beautiful
+documentation, written by Georg Brandl and licensed under the BSD
+license”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;One of the item of our &lt;em&gt;Definition of Done&lt;/em&gt; is documentation, it has to
+be done by the development team. It is so natural to us to edit
+restructured text, using GIT to push modification to a repository that
+all the team was enthusiast to use these tools for improving XiVO
+documentation. It was also an opportunity for us to try to use an
+external Git repository, we chose
+&lt;a href="https://gitorious.org/xivo-doc" title="Gitorious"&gt;Gitorious&lt;/a&gt; to start with
+XiVO documentation project. This is also a way to open it to a larger
+community.&lt;/p&gt;
+&lt;p&gt;Do not hesitate to clone the project and submit documentation patches
+!!!&lt;/p&gt;
+&lt;p&gt;Last but not least, documentation production is now integrated in our
+tool chain, using &lt;a href="http://jenkins.xivo.fr" title="jenkins"&gt;jenkins&lt;/a&gt; as
+integration server, files are pulled from Gitorious automatically to
+produce the &lt;a href="http://documentation.xivo.fr" title="XiVO documentation site"&gt;XiVO documentation
+site&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You will find how to contribute
+&lt;a href="http://documentation.xivo.fr/developers/contributes/index.html" title="here"&gt;here&lt;/a&gt;
+Have fun !!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO documentation tool
+chain" src="/public/xivosoft/.doc_process_m.jpg" title="XiVO documentation tool chain, fév. 2012" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Automatic tests now extend to XiVO Client</title><link href="http://blog.xivo.io/automatic-tests-now-extend-to-xivo-client.html" rel="alternate"></link><updated>2012-01-19T16:00:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2012-01-19:automatic-tests-now-extend-to-xivo-client.html</id><summary type="html">&lt;p&gt;For months now, we have had our continuous integration tool
+&lt;a href="http://jenkins.xivo.fr/" title="Jenkins"&gt;Jenkins&lt;/a&gt; running automatic tests to
+detect regression bugs on the XiVO web interface. But the web interface
+is not the only interface XiVO offers ; there is a XiVO Client, running
+as a stand-alone Qt application on other machines.&lt;/p&gt;
+&lt;p&gt;Until now, we were running tests on the XiVO Client by hand at the end
+of each development iteration. Well, we will still run some of them by
+hand for a time, but we now can make most of them run automatically. We
+just have to code the tests :-)&lt;/p&gt;
+&lt;p&gt;Here's what a Lettuce test look like :  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Scenario&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enable&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;
+       &lt;span class="n"&gt;Given&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;am&lt;/span&gt; &lt;span class="n"&gt;logged&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+       &lt;span class="n"&gt;Given&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Magne&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;edit&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Magne&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;uncheck&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Enable XiVO Client&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;submit&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;
+       &lt;span class="n"&gt;Then&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;charles&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pass&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;magne&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;edit&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Magne&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Enable XiVO Client&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Login&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Password&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;submit&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Login&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;charles&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="kd"&gt;set&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Password&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;magne&amp;quot;&lt;/span&gt;
+       &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;submit&lt;/span&gt;
+       &lt;span class="n"&gt;Then&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;charles&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pass&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;magne&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's get a bit more technical to explain how this works.The main
+problem was to make our
+&lt;a href="http://lettuce.it/" title="Lettuce/Selenium"&gt;Lettuce/Selenium&lt;/a&gt; automatic
+tests in Python communicate with a running instance of the XiVO Client
+in C++.&lt;/p&gt;
+&lt;p&gt;Our first attempt got us to embed the XiVO Client in a C++ library, to
+wrap this library into a Python module with
+&lt;a href="SWIG" title="http://www.swig.org/"&gt;SWIG&lt;/a&gt;, load this module when running
+automatic tests and call some module functions to make the XiVO Client
+do what we wanted, for example click on this button or fill that text
+field. Of course, &lt;a href="http://en.wikipedia.org/wiki/Friend_class" title="C++ classes friendship"&gt;C++ classes
+friendship&lt;/a&gt;
+was mandarory to avoid coding getters and setters everywhere. We got the
+XiVO Client running within a Python module, but it was blocking the
+execution of automatic tests. We then tried to make the XiVO Client run
+in its own thread, while automatic tests were running in another.
+Unfortunately, the Qt library we use to develop the XiVO Client does not
+support running in a secondary thread as far as GUI is involved (and the
+XiVO Client is almost only about GUI).&lt;/p&gt;
+&lt;p&gt;Our second attempt was greatly inspired from the first one, but we tried
+to run the XiVO Client in its own process. We replaced calls to the
+Python module by an IPC protocol through local domain UNIX sockets.
+Basically, the Lettuce process sends the name of the function it is
+executing along with its arguments and the XiVO Client reads them,
+execute the given function and returns whether the function failed or
+succeeded.&lt;/p&gt;
+&lt;p&gt;This is no more no less than the behavior of a remote control for the
+XiVO Client. It does not have many buttons for now, but they are
+functional and their number is growing.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/xivosoft/xivoclient-remotecontrol.png" title="XiVO Client remote control"&gt;&lt;img alt="XiVO Client remote
+control" src="/public/xivosoft/.xivoclient-remotecontrol_m.jpg" title="XiVO Client remote control, janv. 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Of course this remote control "feature" is not released with official
+XiVO Client versions. It is only activated when the XiVO Client is
+compiled specifically for automatic tests.&lt;/p&gt;
+&lt;p&gt;For now, we only test the GNU/Linux version of the XiVO Client, even
+though it is not the most used version. Ideally, we shoud test all
+platform versions. But unless we stumble upon major differences between
+different platform versions, we can rely on the &lt;a href="http://qt.nokia.com/" title="Qt framework"&gt;Qt
+framework&lt;/a&gt; quality and its platform
+abstraction features.&lt;/p&gt;
+&lt;p&gt;There is a &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Tester" title="documentation page"&gt;documentation
+page&lt;/a&gt;
+that explains how to use the remote control feature.&lt;/p&gt;
+&lt;p&gt;Links :&lt;br /&gt;
+&lt;a href="https://git.proformatique.com/?p=official/xivo-acceptance.git;a=tree;f=web-interface/features;h=239ee123d5bfabb313efd1f787bb5a7638217396;hb=HEAD" title="Our Lettuce tests"&gt;Our Lettuce
+tests&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="the XiVO Client git repository"&gt;the XiVO Client git
+repository&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="xivo 1.2"></category><category term="xivo"></category><category term="software"></category><category term="skaro"></category><category term="client"></category></entry><entry><title>The creation of a new xlet for the XiVO client</title><link href="http://blog.xivo.io/the-creation-of-a-new-xlet-for-the-xivo-client.html" rel="alternate"></link><updated>2011-12-30T13:09:00-05:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2011-12-30:the-creation-of-a-new-xlet-for-the-xivo-client.html</id><summary type="html">&lt;p&gt;The XiVO client has been designed to be expendable. The plug-in
+architecture allows a user to create his own xlet to fulfill his needs.
+This short tutorial will guide you through the creation of a simple xlet
+and the required configuration to test it.&lt;/p&gt;
+&lt;h2&gt;Getting the sources&lt;/h2&gt;
+&lt;p&gt;The first step to creating your own xlet is to get the XiVO client
+sources. The sources can be retrieved with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone git://git.xivo.fr/official/xivo-client-qt.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The available xlets are in the directory xivoclient/src/xlets you could
+create your xlet from scratch but we will use the xletnull as a scaffold
+for our new xlet.&lt;/p&gt;
+&lt;h2&gt;Transforming xletnull into something new&lt;/h2&gt;
+&lt;p&gt;For this example, we will create a simple xlet that displays channel
+information for debugging purposes.&lt;/p&gt;
+&lt;p&gt;Copy the xletnull directory and give your new directory a significant
+name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd xivoclient/src/xlets
+cp -R xletnull channellist
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Rename files in the channellist directory to reflect your new xlet name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;rename &amp;#39;s/xletnull/channellist/&amp;#39; *
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Fix .cpp and .h files by renaming xletnull to your new name. In .h
+files, change the include gards to reflect the new file name and rename
+the classes. In .cpp files, change the include "xletnull.h" and the
+classname&lt;/p&gt;
+&lt;p&gt;Fix the .pro file, the TARGET line should point to your new xlet&lt;/p&gt;
+&lt;p&gt;Remove the Makefiles if they are present "rm Makefile*" in the xlet's
+directory&lt;/p&gt;
+&lt;p&gt;Add your new xlet to the xivoclient/xlets.pro file. Edit the file
+xivoclient/xlets.pro. Add src/xlets/channellist to the SUBDIRS array.&lt;/p&gt;
+&lt;h2&gt;Check if it still compiles&lt;/h2&gt;
+&lt;p&gt;Test your changes. From the root of the xivo-client-qt directory run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;make clean
+make
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You should now have a channellist.o and a channellistplugin.o file
+xivoclient/obj/ directory.&lt;/p&gt;
+&lt;h2&gt;Tell xivo-ctid about your new xlet&lt;/h2&gt;
+&lt;p&gt;On your XiVO, edit /etc/pf-xivo/xivo-ctid/allowedxlets.json.Add a line
+for your new xlet&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;quot;channellist&amp;quot; : []
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add the new xlet to your CTI profileIn the web-interface services -&amp;gt;
+CTI server -&amp;gt; profilesEdit your profile, select the xlets tab and
+click the add buttonSelect your new xlet (you will see a missing
+translation error instead of your xlet name but you can still select
+it).&lt;/p&gt;
+&lt;p&gt;Restart xivo-ctid&lt;/p&gt;
+&lt;h2&gt;Try your boilerplate code&lt;/h2&gt;
+&lt;p&gt;When you log in the cti client you should now have an xlet with "sample"
+caption and a label displaying "Hello world!"&lt;/p&gt;
+&lt;p&gt;Now that the boiler plate code is in place, the real work begins. We
+will use the client internal API to get warned of new channel events and
+display a list of active channels on our XiVO.&lt;/p&gt;
+&lt;h2&gt;Get the work done&lt;/h2&gt;
+&lt;p&gt;The implementation of our Xlet will be in the channellist.h and
+channellist.cpp files.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change the title of your xlet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the constructor of your xlet change the string sent to setTitle to
+your desired title.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;`setTitle(&amp;quot;Channel List&amp;quot;);`
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Remove unused widget&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For this example we won't need the m_label member. It can be remove
+from the .h and it's initialization from the .cpp.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Listening to interesting events&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Baseengine of the XiVO client broadcast many events using Qt
+signals, these signals can be catched by any xlets. We connect to 3
+signals from the base engine in our constructor, channels and phones
+status updates. Both signals are received by the updateChannelList slot.
+The string parameter is not used in this example but the same signature
+is required to connect a signal to a slot.&lt;/p&gt;
+&lt;p&gt;To access signals or any other methods of the base engine, we need to
+include &amp;lt;baseengine.h&amp;gt; in our xlet. We can then acces the base
+engine instance with the b_engine pointer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Retrieving internal data structures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The current implementation of the XiVO client keeps a hash map of each
+interesting object. Updates are received by the CTI server and stored by
+the base engine. Available objects are available in
+baselib/src/*info.h.In our example, we use b_engine-&amp;gt;channels() to
+retrieve the list of channels that are in memory whenever we receive a
+status update from the CTI server. The old list is then destroyed and a
+new one is created from scratch.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Channel List
+xlet" src="/public/new_xlet/.channellist_small_m.jpg" title="Channel List xlet, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;The channellist.cpp and channellist.h files are available as attachment&lt;/p&gt;
+&lt;/p&gt;</summary><category term="xlet"></category><category term="xivo 1.2"></category><category term="xivo"></category><category term="software"></category><category term="client"></category></entry><entry><title>libsccp, a XiVO SCCP implementation for Asterisk</title><link href="http://blog.xivo.io/libsccp-a-xivo-sccp-implementation-for-asterisk.html" rel="alternate"></link><updated>2011-12-22T15:01:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2011-12-22:libsccp-a-xivo-sccp-implementation-for-asterisk.html</id><summary type="html">&lt;p&gt;Have you ever heard of SCCP ? It stands for Skinny Call Control Protocol
+and it's used to interact with Cisco IP Phones. Asterisk has its own
+basic support called chan_skinny and is one of the first open source
+implementation available. There is also a more featured implementation
+called chan_sccp-B, which is a fork of chan_skinny.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="agile-dashboard.jpg" src="/public/libsccp/.agile-dashboard_s.jpg" title="agile-dashboard.jpg, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;Then, why writing another one ? Well, simply because chan_skinny is
+too... skinny! and that chan_sccp-B is full of bugs, have no clear
+roadmap and is not backed by professional developers. Don't worry too
+much, we are not rewriting everything from scratch, all the protocol
+knowledge is based on chan_skinny.&lt;/p&gt;
+&lt;p&gt;In the long run, our goal is to produce a stable, full featured and well
+tested code base. To keep our goal in focus, we aim to commit early and
+often. In that, you're encouraged to actively participate by playing
+with the code, reporting errors and sharing your ideas and needs with
+us.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="sccpp.jpg" src="/public/libsccp/.sccpp_s.jpg" title="sccpp.jpg, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;In parallel of the libsccp development, we're building an automated test
+environment. Asterisk has a built-in unit-test framework that allow us
+to stress the bits and bytes of every line of codes in a non-functional
+way. Another tool made by Digium is the Asterisk TestSuite framework.
+This powerfull tool allow us to write specific case scenario and replay
+it as we like. Furthermore, we wrote a traffic generator for the SCCP
+protocol, called SCCPp, that can act as a scriptable softphone. To
+orchestrate and automate all this, we are using Jenkins as a continuous
+integration tool. In short, &lt;a href="http://jenkins.xivo.fr/"&gt;Jenkins&lt;/a&gt; is able
+to replay all the different level of test automatically everytime
+something is modified in the code. All of this is still at an early
+stage, and is evolving everyday.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="phone-tested.jpg" src="/public/libsccp/.phone-tested_s.jpg" title="phone-tested.jpg, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;For those eager to dig into the code and start using it, you can find
+here how to get started and more:&lt;a href="https://wiki.xivo.fr/index.php/Sccp"&gt;https://wiki.xivo.fr/index.php/Sccp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you are less comfortable with the 'Do It Yourself', libsccp is also
+getting integrated into XiVO Skaro and will be available in the next
+week or so.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Some more internationalization in XiVO (part 1)</title><link href="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html" rel="alternate"></link><updated>2011-12-09T16:34:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2011-12-09:some-more-internationalization-in-xivo-part-1.html</id><summary type="html">&lt;p&gt;We recently had a few bugs in XiVO about non-ASCII characters, mainly
+accented character, as we love them in French. We fixed the bugs, but
+there will certainly be more. We then decided to push the test a little
+further and try to flood a few data pipes with non-european Unicode
+characters, to see if potentially anything could flow in those pipes.&lt;/p&gt;
+&lt;p&gt;Here's the result :&lt;img alt="Japanese XiVO
+Client" src="/public/xivosoft/xivoclient-japanese.png" title="Japanese XiVO Client, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;We translated a few text fields in Japanese, even though it's probably
+not perfect Japanese, it's a little better than plain stupid automatic
+translation, thanks to one of our team members who knows a bit about
+Japanese. Japanese Caller ID are also displayed fine in softphones, we
+did not try real phones (yet).&lt;/p&gt;
+&lt;p&gt;This exercise had multiple benefits :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;it allowed us to test the &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer#Add_a_translation_for_the_XiVO_Client"&gt;XiVO Client internationalization
+    procedure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;we know Unicode is accepted in the main modules of XiVO&lt;/li&gt;
+&lt;li&gt;we have the beginning of a Japanese translation for the XiVO Client&lt;/li&gt;
+&lt;li&gt;it was not very long, 3 hours tops&lt;/li&gt;
+&lt;li&gt;it was fun !&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="xivo 1.2"></category><category term="xivo"></category><category term="software"></category><category term="skaro"></category><category term="i18n"></category></entry><entry><title>XiVO 1.2 and Asterisk Dialplan</title><link href="http://blog.xivo.io/xivo-12-and-asterisk-dialplan.html" rel="alternate"></link><updated>2011-12-06T02:06:00-05:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2011-12-06:xivo-12-and-asterisk-dialplan.html</id><summary type="html">&lt;p&gt;&lt;img alt="xivodialplan.jpg" src="/public/xivosoft/xivodialplan.jpg" title="xivodialplan.jpg, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;To route a call from origin to destination,
+&lt;a href="http://www.asterisk.org/"&gt;Asterisk&lt;/a&gt; relies on a so called dialplan. In
+XiVO, it is generated using 3 different components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XiVO confgen, takes info from the configuration database and
+    generate a directory linked to the base config dialplan&lt;/li&gt;
+&lt;li&gt;Base Config dialplan, the dialplan itself&lt;/li&gt;
+&lt;li&gt;Agid, dynamically update the dialplan as setting variables (XIVO_),
+    or compute recording file names.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You'll find this 3 components here :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git://git.xivo.fr/official/xivo-confgen.git for confgen&lt;/li&gt;
+&lt;li&gt;git://git.xivo.fr/official/xivo-skaro.git directory base-config for
+    the static part&lt;/li&gt;
+&lt;li&gt;git://git.xivo.fr/official/xivo-skaro.git directory agid for the
+    dynamic part&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You may also have a look at our CI server
+&lt;a href="http://jenkins.xivo.fr/"&gt;jenkins&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO wiki news</title><link href="http://blog.xivo.io/xivo-wiki-news.html" rel="alternate"></link><updated>2011-10-25T00:36:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2011-10-25:xivo-wiki-news.html</id><summary type="html">&lt;p&gt;As you may already know, all the documentation of the XiVO project is on
+the &lt;a href="http://wiki.xivo.fr/" title="XiVO wiki"&gt;XiVo wiki&lt;/a&gt; let's summarize what
+has been edited or added recently.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="xivowiki" src="/public/xivosoft/xivo_wiki.png" title="xivowiki, oct. 2011" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New links has been added to the main page, direct access to &lt;a href="https://wiki.xivo.fr/index.php/Special:RecentChanges" title="recent changes"&gt;recent
+    changes&lt;/a&gt;
+    and
+    &lt;a href="https://wiki.xivo.fr/index.php/Special:Categories" title="categories"&gt;categories&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Documentation on &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI/xlets/queue_list" title="Xlet queue list"&gt;xlet queue
+    list&lt;/a&gt;
+    useful if you are using XiVO to power your contact center.&lt;/li&gt;
+&lt;li&gt;Check also the updated &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.1-Gallifrey/Workarounds" title="Gallifrey workaround"&gt;Gallifrey workaround
+    page&lt;/a&gt;
+    about upgrade procedure.&lt;/li&gt;
+&lt;li&gt;Do you need to know how to &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/Debug_Daemon"&gt;debug XiVO
+    daemons&lt;/a&gt; ?&lt;/li&gt;
+&lt;li&gt;Try to &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/Install_XiVO_From_Scratch"&gt;install the XiVO
+    Skaro&lt;/a&gt;
+    development in progress release.&lt;/li&gt;
+&lt;li&gt;You need to &lt;a href="https://wiki.xivo.fr/index.php/VM-dev"&gt;setup a virtual
+    machine&lt;/a&gt; to contribute to
+    XiVO development ?&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/Campagnes_d%27enregistrements" title="recording campaign"&gt;setup a recording
+    campaign&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer" title="xivo client trics and tips"&gt;Tric an tips to
+    develop&lt;/a&gt;
+    the XiVO QT Client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Many other pages have also been updated, new categories added to be able
+to find needed information quickly.&lt;/p&gt;
+&lt;p&gt;We are currently working to improve XiVO documentation. We would like to
+reorganize it, and why not using another tool. Do not hesitate to share
+your ideas by posting a comment.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO Client architecture</title><link href="http://blog.xivo.io/xivo-client-architecture.html" rel="alternate"></link><updated>2011-09-30T21:14:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2011-09-30:xivo-client-architecture.html</id><summary type="html">&lt;p&gt;This blog post extends the diagram presented earlier explaining the
+&lt;a href="/index.php?post/2011/05/13/CTI-external-architecture-in-XiVO-1.1-and-1.2" title="CTI global architecture diagram"&gt;global architecture of
+CTI&lt;/a&gt;
+in XiVO.&lt;/p&gt;
+&lt;p&gt;Here is what the XiVO Client looks like from a developer point of
+view:&lt;img alt="XiVO Client
+architecture" src="/public/.xivoclient_m.jpg" title="XiVO Client architecture, sept. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;This is the new architecture that will be included in our new
+development iteration beginning on Monday, 3rd October.The main change
+is the "creation" of the XLetlib, that was previously into the Baselib.
+The Baselib will be progressively stripped of everything not necessary:
+the goal is to make it a reusable component, which will only manage the
+connection with the CTI server.&lt;/p&gt;
+&lt;p&gt;Everything in the XiVO Client is written in C++ and Qt.&lt;/p&gt;
+&lt;p&gt;Let's explicit the spaghetti plate above a little :XLets, for XiVO
+applets, are plugins to the XiVO Client. Almost every function of the
+XiVO Client is pluggable/unpluggable, depending on the server
+configuration to allow some XLet to be activated. You can see what XLets
+look like in the &lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.0-Dalek/Documentation_XiVO_Client" title="XiVO Client user manual"&gt;XiVO
+wiki&lt;/a&gt;
+(each tab is an XLet).&lt;/p&gt;
+&lt;p&gt;Each XLet can use the tools available in the XLetlib, that are mainly
+GUI elements used to display information in a consistent way within all
+XLets. They are also given access to the Baselib "API" (it is an API,
+but scarcely documented for the time being), that receives or sends CTI
+events and informations to the CTI server, such as "a new phone has
+registered to Asterisk", "you have a new telephone message", "I want to
+call this number", etc.&lt;/p&gt;
+&lt;p&gt;Of course, there are some options available to control how the XiVO
+Client behaves ; about half of them control GUI aspects and the other
+half control how the connection is established to the server. The GUI
+related options are some of the things we still have to migrate out of
+the Baselib, because someone wanting to connect to the CTI server
+through our Baselib does not care that the XiVO Client presence
+indicator is 5 pixels wide...&lt;/p&gt;
+&lt;p&gt;About the communication protocol between the XiVO Client and the CTI
+server, everything is JSON encoded. For now, there is no compatibility
+between protocol versions, but we're thinking about it. The goal is to
+be able to release XiVO Client upgrades without having to wait for the
+XiVO distribution to be released, especially if the new version
+introduces mainly GUI improvements. But this can't happen if an "old"
+server can not talk with a more recent client.&lt;/p&gt;
+&lt;p&gt;One could think that working on the XiVO Client may be boring, as it's
+only easy GUI stuff, placing a button here, making it violet with green
+dots for obscure marketing reasons. There's a part of GUI stuff, of
+course, but I find the plugins-only, freely movable (in dock mode)
+interface concept very interesting, it makes the XiVO Client a potential
+swiss-army knife, to which anyone can choose exactly the tools he needs,
+no more, no less.&lt;/p&gt;
+&lt;p&gt;Some links :&lt;br /&gt;
+&lt;a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="XiVO Client git repository"&gt;The XiVO Client git
+repository&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer" title="XiVO Client developer documentation"&gt;Developer oriented
+documentation&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://wiki.xivo.fr/index.php/Support_Community#IRC" title="IRC channel infos"&gt;IRC
+channel&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Introduction to the plugin model of the new provisioning server</title><link href="http://blog.xivo.io/introduction-to-the-plugin-model-of-the-new-provisioning-server.html" rel="alternate"></link><updated>2011-04-11T15:30:00-04:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2011-04-11:introduction-to-the-plugin-model-of-the-new-provisioning-server.html</id><summary type="html">&lt;p&gt;What must be understood is that if you install provd but you do not
+install any plugins, the server won't be able to configure anything.
+This means that without plugins, provd is pretty useless.&lt;/p&gt;
+&lt;p&gt;Each plugin can configure devices from configuration specifications.
+Plugins can also offer some additional services, like the downloading of
+external files, like firmware or dictionary files for example. So what
+was done before by xivo_fetchfw is now partially integrated in each and
+every plugin.&lt;/p&gt;
+&lt;p&gt;One important particularity of this system is that each plugin is
+isolated from the others. Besides, and unlike the old provisioning
+server, the plugins doesn't share a common directory like /tftpboot.
+This way, there's never a conflict between the files used by the
+different plugins, and this make it easy to have for example a
+xivo-aastra-3.2.0.1011 and a xivo-aastra-2.6.0.2019 plugin on the same
+server.&lt;/p&gt;
+&lt;p&gt;This means that with provd, you can have at the same time and on the
+same network, for example, two Aastra 6730i, one using the 2.6.0.2019
+firmware and another using the 3.2.0.1011 firmware, and this using the
+same DHCP server configuration for the two devices. From the point of
+view of both devices, their firmware will be located at
+http://&amp;lt;provd_ip&amp;gt;/6730i.st, but for one, this will be a firmware
+in version 2.6.0.2019, and for the other, a firmware in version
+3.2.0.1011. And if you are curious and point your web browser to this
+URL, you'll get an error 404 !&lt;/p&gt;
+&lt;p&gt;We must know that provd, unlike the old provisioning server, doesn't
+depend on an external HTTP/TFTP server to process the requests, since it
+handles these requests by itself. This was becoming necessary with the
+introduction of the plugin system and the 'dynamic' request processing.&lt;/p&gt;
+&lt;p&gt;Now, if you are a mentally sane person, you might be asking yourself if
+this whole system is based on sound principles. And I have a good news
+for you; you are not insane, this system is not based on sound
+principles &lt;em&gt;a priori&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In fact, for this system to becomes reliable, a precondition must be
+true: for each request, it should be possible to unambiguously identify
+which device is behind it. With this unambiguous information available,
+we can then lookup in our device database for the complete information
+we have on this device, and then find which plugin should handle the
+request, and redirect the request to this plugin.&lt;/p&gt;
+&lt;p&gt;The good thing about this is that most devices provide this unique
+information. For example, the Aastras send their MAC address in the
+User-Agent header of each HTTP request they make.&lt;/p&gt;
+&lt;p&gt;That said, some device doesn't give as much information, like the Cisco
+7900, which can only do TFTP requests. This means that sometimes, and
+only for some requests, the only 'unique' information we can extract
+from a request is the IP address. This does not generally cause problem,
+except if you are constantly changing the IP addresses on your network.
+And if you enable the provd-DHCP server integration, it will make sure
+that the MAC-IP association is always up to date, and this means the
+system will be reliable once again.&lt;/p&gt;
+&lt;p&gt;So, part of provd is only about making this system reliable and finely
+tunable if there's any need to fine-tune the behaviour of the system.
+And to make thing a bit more clear, here's a high level view of what
+happens when an HTTP request is made to the provisioning server:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/provd/provd-http-request-flow.png" title="Example HTTP request flow"&gt;&lt;img alt="Example HTTP request
+flow" src="/public/provd/.provd-http-request-flow_m.jpg" title="Example HTTP request flow, avr. 2011" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;An Aastra 6730i using firmware 2.6.0.2019, with MAC
+    XX:XX:XX:XX:XX:XX and IP Y.Y.Y.Y, does an HTTP GET request for
+    /aastra.cfg to the provd server&lt;/li&gt;
+&lt;li&gt;The HTTP server component in provd receive the request. It then
+    sends it to the 'request processing' component. Note that TFTP
+    requests are also being processed by the request
+    processing component.&lt;/li&gt;
+&lt;li&gt;The first step in the request processing is to extract information
+    from the request. The goal is to extract the maximum of information
+    about the device behind the request, like its MAC address, model,
+    vendor, firmware version, serial number, IP address, etc. By
+    default, each plugin can participate in this step. In this case, at
+    the end of this step, we know that the request comes from an Aastra
+    6730i in version 2.6.0.2019, that its MAC address is
+    XX:XX:XX:XX:XX:XX and its IP address is Y.Y.Y.Y.&lt;/li&gt;
+&lt;li&gt;The second step in the request processing is to retrieve the device
+    from the device database using the information extracted at 3. In
+    this case, we suppose there was already a device with MAC
+    XX:XX:XX:XX:XX:XX in the device database, so we retrieve it.&lt;/li&gt;
+&lt;li&gt;The third step is to update the retrieved device using the
+    extracted information. For example, we can update information we
+    didn't know about the device. We can also do generic operation in
+    this step if we needs to. Anyway, in our case, this step is actually
+    a no-op.&lt;/li&gt;
+&lt;li&gt;The last step is to route the request to the HTTP handler that will
+    answer the request. In our case, from the device retrieved at 4, we
+    know that its associated plugin is xivo-aastra-2.6.0.2019, so the
+    request is routed to the HTTP handler of the
+    xivo-aastra-2.6.0.2019 plugin.&lt;/li&gt;
+&lt;li&gt;Finaly, the handler chosen at 6 answer the request. In this case,
+    the xivo-aastra-2.6.0.2019 plugin will return the content of its
+    var/tftpboot/aastra.cfg file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, you might be wondering how this work when an unknown device make a
+request to the provisioning server. By default, at step 4, if no device
+can be found in the database, a new one is added.&lt;/p&gt;
+&lt;p&gt;Then, at step 5, if a device has no plugin associated to it, an
+automatic device association process occurs. Also at this step, a device
+with no config associated to it can have a default config associated to
+it. So, at the end of step 5, we then have a device with a default
+config and an associated plugin although the device was not known from
+the provisioning server when the request was received.&lt;/p&gt;
+&lt;p&gt;So this is what conclude our brief introduction to the plugin model of
+the new provisioning server. If you are interested into digging into the
+details, you might want to start by looking at the
+provd/devices/ident.py python source file (this make me thing I should
+rename this file) and the various *.py.conf.* configuration file.&lt;/p&gt;
+&lt;p&gt;Note that to keep this text at the introduction level, some things
+stated here have been slightly simplified and are not 100% exact.&lt;/p&gt;
+&lt;/p&gt;</summary><category term="xivo 1.2"></category><category term="provisioning"></category></entry><entry><title>New schedule jquery widget for upcoming XiVO</title><link href="http://blog.xivo.io/new-schedule-jquery-widget-for-upcoming-xivo.html" rel="alternate"></link><updated>2011-03-25T09:26:00-04:00</updated><author><name>gbour</name></author><id>tag:blog.xivo.io,2011-03-25:new-schedule-jquery-widget-for-upcoming-xivo.html</id><summary type="html">&lt;p&gt;&lt;span class="Apple-style-span"
+style="font-size: 15px; font-weight: bold; "&gt;How to use it&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Click once on the field with calendar icon to show the widget. Click
+again to hide it (or on the cross at title bar right's).Once visible,
+you can define your intervals:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;for months and days&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;select each month/day individually (a selected one move from
+    gray to yellow background)&lt;/li&gt;
+&lt;li&gt;all/none button allow toggling all values at once&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;for the time interval&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;click down start or end toggle, then slide to adjust the value&lt;/li&gt;
+&lt;li&gt;for a fine adjustment, use mouse wheel or up/down keyboard keys&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;NOTE: &lt;strong&gt;A datetime is considered in the schedule if it match all
+intervals (months, month days, week days and hours)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Lets see with a quick example:  &lt;/p&gt;
+&lt;p&gt;&lt;a href="/public/xivo-schedule/example.png" title="example.png"&gt;&lt;img alt="example.png" src="/public/xivo-schedule/.example_s.jpg" title="example.png, mar. 2011" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We have selected workdays from January to April, 8AM to 7PM.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;all datetimes with time lower than 8AM or higher than 7PM are out of
+    the schedule&lt;/li&gt;
+&lt;li&gt;2011, march 25 9.30AM is in schedule, while 2012, march 25 9:30AM is
+    out (first is a friday, while last is a sunday)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Developpers: Including xivo-schedule in you pages&lt;/h3&gt;
+&lt;p&gt;While developped for xivo, it can easily be integrated in other
+projects. xivo-schedule support jquery-ui themes and is multilingual
+(only french and english available at the moment).  &lt;/p&gt;
+&lt;p&gt;xivo-schedule widget require jquery (&amp;gt;= 1.5), jquery-ui (&amp;gt;=1.8)
+and optionally jquery.mousewheel
+(&lt;a href="http://brandonaaron.net/code/mousewheel/docs"&gt;http://brandonaaron.net/code/mousewheel/docs&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;``` {style="font-size:small;"}
+&lt;link rel="stylesheet"   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/ui-lightness/jquery-ui.css"   type="text/css" media="all" /&gt;&lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"&gt;&lt;/script&gt;&lt;script src="jquery.mousewheel.min.js"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Then include xivo-schedule javascript and css files. Note that you can
+also include langpack(s) you want to use.
+
+``` {style=&amp;quot;font-size:small;&amp;quot;}
+&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;xivo.schedule.css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;../src/xivo.schedule.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;../src/xivo.schedule-fr.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;xivo-schedule required a text input to be attached to. If you want to
+get schedule intervals back, you also need 4 others text fields (one for
+months, monthdays, weekdays and time intervals), which will be filled
+with intervals raw value when the user will manipulate schedule widget.&lt;/p&gt;
+&lt;p&gt;``` {style="font-size:small;"}
+    &lt;form&gt;
+      &lt;div style="float:left"&gt;
+        &lt;input id="schedule" type="text" /&gt;&lt;br/&gt;
+      &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div style="float:left; margin-left: 100px;"&gt;
+        &lt;label for="sched-months"&gt;months :&lt;/label&gt;&lt;input id="sched-months"    type="text" disabled /&gt;&lt;br/&gt;
+        &lt;label for="sched-monthdays"&gt;month days :&lt;/label&gt;&lt;input id="sched-monthdays" type="text" disabled /&gt;&lt;br/&gt;
+        &lt;label for="sched-weekdays"&gt;week days :&lt;/label&gt;&lt;input id="sched-weekdays"  type="text" disabled /&gt;&lt;br/&gt;
+        &lt;label for="sched-hours"&gt;hours :&lt;/label&gt;&lt;input id="sched-hours"     type="text" disabled /&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Finally, you initialize your schedule widget:
+
+``` {style=&amp;quot;font-size:small;&amp;quot;}
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;  $(function(){    $(&amp;#39;#schedule&amp;#39;).schedule({      &amp;#39;language&amp;#39;: &amp;#39;fr&amp;#39;,      &amp;#39;inputs&amp;#39;: {          &amp;#39;months&amp;#39;   : $(&amp;#39;#sched-months&amp;#39;),          &amp;#39;monthdays&amp;#39;: $(&amp;#39;#sched-monthdays&amp;#39;),          &amp;#39;weekdays&amp;#39; : $(&amp;#39;#sched-weekdays&amp;#39;),          &amp;#39;hours&amp;#39;    : $(&amp;#39;#sched-hours&amp;#39;)      },      &amp;#39;defaults&amp;#39;: {          &amp;#39;months&amp;#39;   : &amp;#39;1,3-6,11,12&amp;#39;,          &amp;#39;monthdays&amp;#39;: &amp;#39;1,3,5,8,10,12-13,15,17,20,22,24-25,27,29&amp;#39;,          &amp;#39;weekdays&amp;#39; : &amp;#39;1,4-6&amp;#39;,          &amp;#39;hours&amp;#39;    : &amp;#39;08:35-17:30&amp;#39;      }    });  });&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and voila! see attached file for the complete sample.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;xivo-schedule can be downloaded from &lt;a href="git://git.xivo.fr/xivo-dalek.git"&gt;our git
+repository&lt;/a&gt; or &lt;a href="https://github.com/gbour/xivo-schedule"&gt;on
+github&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="skaro"></category><category term="web-interface"></category><category term="schedule"></category><category term="javascript"></category><category term="jquery"></category><category term="software"></category></entry><entry><title>New statistic XiVO modules</title><link href="http://blog.xivo.io/new-statistic-xivo-modules.html" rel="alternate"></link><updated>2011-02-11T01:49:00-05:00</updated><author><name>quintana</name></author><id>tag:blog.xivo.io,2011-02-11:new-statistic-xivo-modules.html</id><summary type="html">&lt;p&gt;I'm very proud to announce our &lt;strong&gt;new statistics module for XiVO&lt;/strong&gt;.
+Please see a first screenshot of this module below :&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stats.png" src="/public/.stats_m.jpg" title="stats.png, fév. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, we have integrated a full statistic module for our next
+major version, Skaro. All existing statistics queues in Asterisk (GPLv3)
+are not really usable and not suitable for a call center. Our previous
+version is using Asternic with a lack of performances in the free
+software version and namely in terms if counters from our customers
+point of view.&lt;/p&gt;
+&lt;p&gt;We are implementing a cache system to have real-time results and stats.
+The Asterisk queue CSV files can be importable within this module. In
+order to produce graphics, we are using the jqplot library that gives us
+very decent results.&lt;/p&gt;
+&lt;/p&gt;</summary></entry></feed>

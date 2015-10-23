@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">XiVO submission configuration</a></h2>
+    <p>
+      Posted on Mon 12 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>clearing the generated sources</h4>
+<p>When some environment variables used by submit-xivo.sh change value, the
+whole source directory <a href="http://packaging-farm.dachary.org/trac/ticket/21">must be
+regenerated</a>. For
+instance, the VERSION_FLAVOR variable change the name of each source
+package. If the maintainer forgets to remove
+/var/cache/packaging-farm/sources, a mix of packages using different
+naming conventions is used and creates a very confusing situation.</p>
+<p>Although it would be possible and safe to wipe out the cache (i.e.
+/var/cache/packaging-farm/sources) each time the environment changes,
+that would be overkill. For instance if setting VERBOSE=true has this
+effect, it would be inconvenient. Instead, a set of <a href="http://packaging-farm.dachary.org/trac/changeset/5a601108bb90a2bbf2dfbdd2a330700d980c2e23">variables is chosen
+and their content written into a file after each
+run</a>
+of submit-xivo.sh. When submit-xivo.sh is run, the content of the file
+from the previous run is matched against the values of the variables in
+the environment. If it turns out that they are not the same, the
+directory /var/cache/packaging-farm/sources is removed and will be fully
+repopuplated.</p>
+<h4>example file</h4>
+<p>Although each environment variable for the submit-xivo.sh script is
+documented in the submit-xivo.sh manual page, it is much more convenient
+to change values from a commented configuration file that shows all the
+expected default values. The <strong>/etc/packaging-farm/submit-xivo.conf</strong>
+file was created for this purpose.</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The submit-xivo.sh(1) configuration file. </span>
+<span class="err">#</span><span class="x"> In the following each line starting with </span><span class="cp">#</span><span class="nf">export</span><span class="x"> shows the default</span>
+<span class="err">#</span><span class="x"> value of the corresponding environment variable. For instance</span>
+<span class="err">#</span><span class="x"> export XIVO=skaro shows that the default value of the &quot;XIVO&quot; variable</span>
+<span class="err">#</span><span class="x"> is the string &quot;skaro&quot;. </span>
+<span class="err">#</span><span class="x"> The line can be uncommented and the value changed. The change will take</span>
+<span class="err">#</span><span class="x"> effect which the next packaging-farm(1) command is run.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The name of the skaro distribution. Can be one of skaro, gallifrey.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> XIVO=skaro</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> A Debian GNU/Linux suite. Can be one of squeeze, lenny.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> SUITE=squeeze</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The directory in which the source and debian repositories will be</span>
+<span class="err">#</span><span class="x"> cloned.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> VCS_DIR=/var/cache/packaging-farm/VCS</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The directory in which the resulting source packages will be stored.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> PACKAGES_DIR=/var/cache/packaging-farm/sources</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The content of this variable is appended to the value found in the</span>
+<span class="err">#</span><span class="x"> VERSION file and may be used to distinguish from a development</span>
+<span class="err">#</span><span class="x"> version and a production version for instance.  VERSION_FLAVOR=-dev</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> VERSION_FLAVOR=</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> By default each source version number is created by computing the</span>
+<span class="err">#</span><span class="x"> current time and extracting the last commit hash from the source</span>
+<span class="err">#</span><span class="x"> repository (see the VERSION section above.  If VERSION_COMPUTE is</span>
+<span class="err">#</span><span class="x"> set to false then the current time and last commit hash are not used</span>
+<span class="err">#</span><span class="x"> when generating the version number.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> VERSION_COMPUTE=true</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The gitrevision(7) from which both source and debian git will be</span>
+<span class="err">#</span><span class="x"> checked out. If the GIT_REVISION designates a branch, the latest</span>
+<span class="err">#</span><span class="x"> changes will be pulled from it.  If  GIT_REVISION  designates  a</span>
+<span class="err">#</span><span class="x"> tag, it will be checked out.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_REVISION=master</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The SOURCE_GIT and DEBIAN_GIT repositories will be pulled only if</span>
+<span class="err">#</span><span class="x"> the last pull occured more than GIT_CACHE_MINUTES minutes ago.  By</span>
+<span class="err">#</span><span class="x"> default it is pull every time (i.e. if the last pull occured more</span>
+<span class="err">#</span><span class="x"> than zero minutes ago). It can be used to reduce the number of pull</span>
+<span class="err">#</span><span class="x"> occuring when running many submit-xivo in sequence.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_CACHE_MINUTES=0</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The directory containing the source code repositories for each XiVO</span>
+<span class="err">#</span><span class="x"> suite.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> SOURCE_GIT=git://git.proformatique.com/official</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> the directory name within the SOURCE_GIT repository where the</span>
+<span class="err">#</span><span class="x"> sources can be found.  The package name will be infered from the</span>
+<span class="err">#</span><span class="x"> content of the Makefile.pkg file within this directory. For instance</span>
+<span class="err">#</span><span class="x"> DIRECTORY=web-interface submit-xivo.sh will submit the package</span>
+<span class="err">#</span><span class="x"> pf-xivo-web-interface</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> DIRECTORY=</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The directory containing the Debian GNU/Linux repositories for each</span>
+<span class="err">#</span><span class="x"> XiVO suite.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBIAN_GIT=git://git.proformatique.com/official</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> the directory name within the DEBIAN_GIT repository where the</span>
+<span class="err">#</span><span class="x"> package can be found.  The submit-xivo.sh command will not attempt</span>
+<span class="err">#</span><span class="x"> to locate a source in the SOURCE_GIT repository. It will submit a</span>
+<span class="err">#</span><span class="x"> package that has the same name as the content of the NOSOURCE=</span>
+<span class="err">#</span><span class="x"> variable. For instance NOSOURCE=pf-xivo will submit the pf-xivo</span>
+<span class="err">#</span><span class="x"> package. The version number of the package is either the one found</span>
+<span class="err">#</span><span class="x"> in the debian/changelog, if it contains the con- tent of the VERSION</span>
+<span class="err">#</span><span class="x"> file found in the SOURCE_GIT repository. For instance if the first</span>
+<span class="err">#</span><span class="x"> line of the debian/changelog contains 8:1.1.16~5 and the VERSION</span>
+<span class="err">#</span><span class="x"> file contains 1.1.16 it won&#39;t be mod- ified. However, if VERSION</span>
+<span class="err">#</span><span class="x"> contains 1.1.17 a debian/changelog line will be added, preserving</span>
+<span class="err">#</span><span class="x"> the epoch and will contain 8:1.1.17.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> NOSOURCE=</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> If set to true, no changes will be committed to the Debian GNU/Linux</span>
+<span class="err">#</span><span class="x"> repository if a debian/changelog entry is added.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_DRY_RUN=false</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The mail used when generating a debian/changelog entry.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBEMAIL=technique@proformatique.com</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> The user name used when generating a debian/changelog entry.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBFULLNAME=&quot;Proformatique Maintainance Team&quot;</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Before the debian directory is assembled with the source directory,</span>
+<span class="err">#</span><span class="x"> a copy is made using rsync(1).  The content of the RSYNC_OPTIONS</span>
+<span class="err">#</span><span class="x"> variable is given in argument to the rsync command. For instance it</span>
+<span class="err">#</span><span class="x"> may be used to collect the actual content of symbolic links pointing</span>
+<span class="err">#</span><span class="x"> outside of the source directory.</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ;</span>
+<span class="err">#</span><span class="x">  do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
+<span class="err">#</span><span class="x"> done</span>
+<span class="err">#</span><span class="x"></span>
+<span class="cp">#</span><span class="nf">export</span><span class="x"> RSYNC_OPTIONS=</span>
+</pre></div>
+
+
+<p>The inclusion of the configuration file is documented in the
+submit-xivo.sh manual page:</p>
+<div class="highlight"><pre>When this script is called as a side effect of packaging-farm(1) it can
+       be   configured   system  wide  using  the  /etc/packaging-farm/submit-
+       xivo.conf example configuration file, which can then be included in the
+       global packaging-farm.conf(5) file located in /etc/packaging-farm/pack-
+       aging-farm.conf For instance, the line
+
+              export VERSION_COMPUTE=false
+
+       can be added to override the default.
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</a></h2>
+    <p>
+      Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>rebuilding gallifrey</h4>
+<p>The /var/cache/packaging-farm/sources directory was removed and</p>
+<div class="highlight"><pre>export VERSION_COMPUTE=false
+</pre></div>
+
+
+<p>set in /etc/packaging-farm/packaging-farm.conf and
+<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
+from scratch. It took 42 minutes total. The purpose of this complete
+rebuild was to get rid of the timestamp and hash that were previously
+part of the version number.</p>
+<h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
+<p>The build of the gallifrey development packages was blocked because of a
+compilation error.</p>
+<div class="highlight"><pre><span class="p">...</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+
+<span class="o">---------------------------------------------</span>
+
+<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
+<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+</pre></div>
+
+
+<p>To debug the problem, the following command was used to go in the chroot
+where it can be reproduced:</p>
+<div class="highlight"><pre>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
+</pre></div>
+
+
+<p>The compilation error:</p>
+<div class="highlight"><pre>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
+</pre></div>
+
+
+<p>is in <code>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c</code></p>
+<div class="highlight"><pre>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
+        .name = &quot;WANPIPE_HWEC&quot;,
+        .echocan_free = wp_tdmv_hwec_free,
+};
+</pre></div>
+
+
+<p>and comes from the fact that <code>/usr/include/dahdi/kernel.h</code> which is part
+of</p>
+<div class="highlight"><pre>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
+</pre></div>
+
+
+<p>contains</p>
+<div class="highlight"><pre>struct dahdi_echocan_ops {
+
+        /*! \brief Free an echocan state structure.                                                                                                             
+         * \param[in,out] ec Pointer to the state structure to free.                                                                                            
+         *                                                                                                                                                      
+         * \
+eturn Nothing.                                                                                                                                     
+         */
+        void (*echocan_free)(struct dahdi_chan *chan, struct dahdi_echocan_state *ec);
+...
+</pre></div>
+
+
+<p>and does not contain the <code>name</code> field which means that
+<code>sangoma-wanpipe-3.5.20</code> is not compatible with
+<code>dahdi-linux-dev 1:2.5.0</code></p>
+<h4>kernel-module dependencies</h4>
+<p>Nicolas Hicher faced a problem because <a href="http://packaging-farm.dachary.org/trac/ticket/19">kernel-modules dependencies did
+not work</a>. The
+dependency graph generated is wrong: it mentions the stamp files but do
+not assemble them properly. As a result the kernel-module is not rebuilt
+when the module is rebuilt. The make_graph and make_build functions
+<a href="are%20assembled%20into%20a%20single%20functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60" title="are assembled into a single functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60">are assembled into a single
+functio...</a>|
+so that the rule generated lists the timestamp files of the
+dependencies.</p>
+<h4>Makefiles moved to /etc/packaging-farm</h4>
+<p>The fact that Makefiles describing how a given package must be built are
+expected to be in /var/cache/packaging-farm <a href="http://packaging-farm.dachary.org/trac/ticket/20">is
+confusing</a>. In
+addition, they are copied in /var/lib/packaging-farm after the package
+is successfully built. As a result the system administrator is led to
+think that /var/lib/packaging-farm/package/Makefile is the file to be
+edited although it will be overridden the next time a package is
+built.The makefiles <a href="http://packaging-farm.dachary.org/trac/changeset/6450d8785be6406a5e1d1d205df23be04279f736">are moved from
+/var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk</a>.
+To ensure the compatibility with the existing scripts, a symbolic link
+is created from /var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk by the makefiles.sh script.The manual
+page is updated to remove references to the former build directory. The
+additional benefit of having the .mk files in /etc/packaging-farm is
+that they can be saved by etckeeper and backed up with /etc.The build
+machines for gallifrey, gallifrey-dev and skaro were migrated to the new
+convention.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">XiVO package versioning</a></h2>
+    <p>
+      Posted on Mon 29 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>production version conventions</h4>
+<p>XiVO package release numbers <a href="http://packaging-farm.dachary.org/trac/ticket/16">must not contain the timestamp +
+hash</a>. When upgrading
+from a development machine to a production machine, the package numbers
+for production are lexicographically lower than the package numbers for
+development. For instance 1.1.15<a></a> in a special way as documented
+in the dpkg-version manual page:</p>
+<div class="highlight"><pre>The lexical compar‐
+ ison is a comparison of ASCII values modified so that all the letters sort earlier than all the non-letters and so
+ that a tilde sorts before anything, even the end of a part.  For example, the following parts are in sorted order:
+ &#39;~~&#39;, &#39;~~a&#39;, &#39;~&#39;, the empty part, &#39;a&#39;.
+</pre></div>
+
+
+<p>This created somme confusion as demonstrated in the chat log below</p>
+<div class="highlight"><pre><span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">15</span><span class="s-Atom">:</span><span class="mi">22</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">pourquoi</span> <span class="s-Atom">on</span> <span class="s-Atom">conserve</span> <span class="s-Atom">la</span> <span class="s-Atom">date</span><span class="o">/</span><span class="s-Atom">le</span> <span class="s-Atom">n°</span> <span class="s-Atom">de</span> <span class="s-Atom">commit</span> <span class="s-Atom">dans</span> <span class="s-Atom">les</span> <span class="s-Atom">paquets</span> <span class="s-Atom">de</span> <span class="s-Atom">prod</span> <span class="s-Atom">?</span>
+<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">42</span><span class="s-Atom">:</span><span class="mi">23</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">la</span> <span class="s-Atom">date</span> <span class="s-Atom">c&#39;est pour avoir une numérotation chronologique. Le numéro de hash c&#39;est</span> <span class="s-Atom">pour</span> <span class="s-Atom">avoir</span> <span class="s-Atom">une</span> <span class="s-Atom">façon</span> <span class="s-Atom">de</span> <span class="s-Atom">trouver</span> <span class="s-Atom">a</span> <span class="s-Atom">quel</span> <span class="s-Atom">commit</span> <span class="s-Atom">ça</span> <span class="s-Atom">correspond</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">git</span><span class="p">.</span> 
+<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">52</span><span class="s-Atom">:</span><span class="mi">32</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">oui</span><span class="p">,</span> <span class="s-Atom">mais</span> <span class="s-Atom">pour</span> <span class="s-Atom">les</span> <span class="nf">releases</span> <span class="p">(</span><span class="s-Atom">du</span> <span class="s-Atom">temps</span> <span class="s-Atom">de</span> <span class="s-Atom">git</span><span class="o">/</span><span class="s-Atom">nono</span><span class="p">),</span> <span class="s-Atom">on</span> <span class="s-Atom">virait</span> <span class="s-Atom">le</span> <span class="s-Atom">numéro</span> <span class="s-Atom">de</span> <span class="s-Atom">commit</span> <span class="s-Atom">dans</span> <span class="s-Atom">la</span> <span class="s-Atom">version</span> <span class="s-Atom">du</span> <span class="nf">paquet</span>
+<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">54</span><span class="s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">pourrais</span> <span class="s-Atom">rajouter</span> <span class="s-Atom">cette</span> <span class="s-Atom">fonctionalité</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">script</span> <span class="s-Atom">de</span> <span class="s-Atom">soumission</span><span class="p">.</span> <span class="nv">Je</span> <span class="s-Atom">n&#39;avais pas réalisé qu&#39;elle</span> <span class="s-Atom">existait</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">55</span><span class="s-Atom">:</span><span class="mi">01</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">parce</span> <span class="s-Atom">qu&#39;il semble que là ça pose un pb pour les migrations (le script ne doit pas correctement gérer le &#39;~...&#39;)</span>
+<span class="s-Atom">(05:55:58 PM) dachary: guillaumeb: c&#39;est</span> <span class="s-Atom">clair</span> <span class="s-Atom">que</span> <span class="s-Atom">toute</span> <span class="s-Atom">déviation</span> <span class="s-Atom">du</span> <span class="s-Atom">modèle</span> <span class="s-Atom">établit</span> <span class="s-Atom">est</span> <span class="s-Atom">une</span> <span class="s-Atom">menace</span> <span class="s-Atom">de</span> <span class="s-Atom">péter</span> <span class="s-Atom">la</span> <span class="s-Atom">compatibilité</span><span class="p">.</span> 
+<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">56</span><span class="s-Atom">:</span><span class="mi">28</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">tu</span> <span class="s-Atom">peux</span> <span class="s-Atom">me</span> <span class="s-Atom">décrire</span> <span class="s-Atom">l&#39;algo de nono pour la gestion de la numérotation pour la release ? </span>
+<span class="s-Atom">(05:57:31 PM) dachary: foo-1.1.1~svn283-1 puis foo-1.1.1-1 ca marcherait pas donc ca doit etre autre chose</span>
+<span class="s-Atom">(06:04:19 PM) guillaumeb: dachary: je ne connais pas l&#39;algo</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="nf">détail</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">04</span><span class="s-Atom">:</span><span class="mi">51</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">mais</span> <span class="s-Atom">par</span> <span class="s-Atom">exemple</span><span class="p">,</span> <span class="s-Atom">en</span> <span class="mf">1.1.14</span><span class="p">,</span> <span class="s-Atom">la</span> <span class="s-Atom">version</span> <span class="s-Atom">de</span> <span class="s-Atom">pf</span><span class="o">-</span><span class="s-Atom">xivo</span><span class="o">-</span><span class="s-Atom">web</span><span class="o">-</span><span class="s-Atom">interface</span> <span class="s-Atom">était</span> <span class="mi">7</span><span class="s-Atom">:</span><span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">47</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">vois</span> <span class="s-Atom">pas</span> <span class="s-Atom">comment</span> <span class="s-Atom">faire</span> <span class="s-Atom">pour</span> <span class="s-Atom">avoir</span> <span class="s-Atom">une</span> <span class="s-Atom">version</span> <span class="s-Atom">inferieure</span> <span class="s-Atom">a</span> <span class="mf">1.1.14</span> <span class="s-Atom">en</span> <span class="s-Atom">ajoutant</span> <span class="s-Atom">qqc</span> <span class="s-Atom">a</span> <span class="s-Atom">la</span> <span class="nf">fin</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">53</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">pour</span> <span class="s-Atom">moi</span> <span class="s-Atom">ca</span> <span class="s-Atom">va</span> <span class="s-Atom">toujours</span> <span class="s-Atom">etre</span> <span class="nf">superieur</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">doit</span> <span class="s-Atom">y</span> <span class="s-Atom">avoir</span> <span class="s-Atom">un</span> <span class="nf">truc</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">38</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">le</span> <span class="o">-</span><span class="mi">1</span> <span class="s-Atom">c&#39;est la revision du package</span>
+<span class="s-Atom">(06:06:43 PM) yoda1410: pas la version du package</span>
+<span class="s-Atom">(06:07:53 PM) dachary: yoda1410: oui. 7:1.1.14-1 c&#39;est</span> <span class="p">[</span><span class="nn">epoch</span><span class="p">:]</span><span class="s-Atom">version</span><span class="p">[</span><span class="o">-</span><span class="s-Atom">debianversion</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">06</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">eh</span> <span class="s-Atom">bien</span> <span class="s-Atom">ou</span> <span class="s-Atom">est</span> <span class="s-Atom">le</span> <span class="s-Atom">soucis</span> <span class="s-Atom">?</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="mf">1.1.13</span><span class="o">-</span><span class="mi">7</span> <span class="s-Atom">seras</span> <span class="s-Atom">toujours</span> <span class="s-Atom">inferieur</span> <span class="s-Atom">a</span> <span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">17</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">si</span> <span class="s-Atom">tu</span> <span class="s-Atom">as</span> <span class="mi">7</span><span class="s-Atom">:</span><span class="mf">1.1.14</span><span class="s-Atom">~svn200</span><span class="o">-</span><span class="mi">1</span> <span class="s-Atom">pendant</span> <span class="s-Atom">le</span> <span class="nf">dev</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">30</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">oui</span><span class="p">,</span> <span class="s-Atom">mais</span> <span class="s-Atom">ça</span> <span class="s-Atom">fait</span> <span class="s-Atom">partie</span> <span class="s-Atom">du</span> <span class="s-Atom">numéro</span> <span class="s-Atom">de</span> <span class="s-Atom">version</span> <span class="s-Atom">du</span> <span class="nf">paquet</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">37</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">ah</span> <span class="p">!</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">50</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">c&#39;est pas bete ce que tu dis :-)</span>
+<span class="s-Atom">(06:09:05 PM) dachary: la version release est *inferieure* a la version de dev</span>
+<span class="s-Atom">(06:09:12 PM) dachary: mais superieure a la precedente release</span>
+<span class="s-Atom">(06:09:26 PM) dachary: donc qqn qui aurait une version de dev serait dans la mouise</span>
+<span class="s-Atom">(06:09:39 PM) dachary: mais qqn qui aurait une version stable a upgrade serait bon</span>
+<span class="s-Atom">(06:10:04 PM) dachary: dans la mouise =&gt; a devoir downgrader (du point de vue de dpkg --compare-version )</span>
+<span class="s-Atom">(06:10:13 PM) yoda1410: un repository de dev, un repository stable</span>
+<span class="s-Atom">(06:10:26 PM) yoda1410: potentiellement, tu passes pas vraiment de l&#39;un</span> <span class="s-Atom">a</span> <span class="s-Atom">l</span><span class="err">&#39;</span><span class="s-Atom">autre</span> <span class="s-Atom">et</span> <span class="s-Atom">vice</span> <span class="nf">versa</span>
+<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">57</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">si</span> <span class="s-Atom">cette</span> <span class="s-Atom">incohérence</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">numérotage</span> <span class="s-Atom">des</span> <span class="s-Atom">version</span> <span class="s-Atom">est</span> <span class="s-Atom">admise</span> <span class="s-Atom">et</span> <span class="s-Atom">habituelle</span><span class="p">,</span> <span class="s-Atom">alors</span> <span class="s-Atom">pourquoi</span> <span class="s-Atom">pas</span>
+<span class="mi">09</span><span class="s-Atom">:</span><span class="mi">07</span><span class="s-Atom">:</span><span class="mi">20</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">comme</span> <span class="s-Atom">disait</span> <span class="s-Atom">yoda1410</span> <span class="s-Atom">hier</span><span class="p">,</span> <span class="s-Atom">on</span> <span class="s-Atom">ne</span> <span class="s-Atom">mélange</span> <span class="s-Atom">pas</span> <span class="s-Atom">les</span> <span class="mi">2</span> <span class="p">(</span><span class="s-Atom">soit</span> <span class="s-Atom">on</span> <span class="s-Atom">installe</span> <span class="s-Atom">une</span> <span class="s-Atom">stable</span><span class="p">,</span> <span class="s-Atom">soit</span> <span class="s-Atom">une</span> <span class="s-Atom">dev</span><span class="p">),</span> <span class="s-Atom">donc</span> <span class="s-Atom">ça</span> <span class="s-Atom">ne</span> <span class="s-Atom">pose</span> <span class="s-Atom">pas</span> <span class="s-Atom">vraiment</span> <span class="s-Atom">de</span> <span class="nf">pb</span>
+<span class="p">(</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">45</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">ok</span><span class="p">,</span> <span class="s-Atom">donc</span> <span class="s-Atom">je</span> <span class="s-Atom">vais</span> <span class="s-Atom">implémenter</span> <span class="s-Atom">un</span> <span class="s-Atom">truc</span> <span class="s-Atom">qui</span> <span class="s-Atom">permet</span> <span class="s-Atom">de</span> <span class="s-Atom">supprimer</span> <span class="s-Atom">la</span> <span class="s-Atom">génération</span> <span class="s-Atom">de</span> <span class="s-Atom">timestamp</span> <span class="o">+</span> <span class="s-Atom">hash</span> <span class="s-Atom">après</span> <span class="s-Atom">~</span> <span class="s-Atom">et</span> <span class="s-Atom">ce</span> <span class="s-Atom">flag</span> <span class="s-Atom">pourra</span> <span class="s-Atom">etre</span> <span class="s-Atom">mis</span> <span class="s-Atom">sur</span> <span class="s-Atom">la</span> <span class="s-Atom">machine</span> <span class="s-Atom">de</span> <span class="s-Atom">build</span> <span class="s-Atom">qui</span> <span class="s-Atom">se</span> <span class="s-Atom">charge</span> <span class="s-Atom">des</span> <span class="s-Atom">release</span><span class="p">.</span> <span class="nv">Ca</span> <span class="s-Atom">ira</span> <span class="s-Atom">comme</span> <span class="s-Atom">ça</span> <span class="s-Atom">tu</span> <span class="s-Atom">penses</span> <span class="s-Atom">?</span> 
+<span class="p">(</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">15</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">peux</span> <span class="s-Atom">faire</span> <span class="s-Atom">ça</span> <span class="s-Atom">lundi</span><span class="p">.</span>
+</pre></div>
+
+
+<p><a href="http://packaging-farm.dachary.org/trac/changeset/da84c60ee1a61fdf728720ba71fb99cdb8e9897f">VERSION_COMPUTE is
+implemented</a>
+to disable the use of a timestamp and short hash when generating the
+source version number in submit-xivo.sh. The goal of this variable is to
+shorten the XiVO version numbers for production packages, meaning the
+development packages will have a lower version number than the
+development packages.The manual page was updated with the new option:</p>
+<div class="highlight"><pre>VERSION_COMPUTE=true
+              By default each source version number is  created  by  computing
+              the  current  time  and extracting the last commit hash from the
+              source repository  (see  the  VERSION  section  above.  If  VER-
+              SION_COMPUTE is set to false then the current time and last com-
+              mit hash are not used when generating the version number.
+</pre></div>
+
+
+<h4>epoch change</h4>
+<p>The version 2.0.12 of packaging-farm was installed on the gallifrey
+virtual machine instead of the previous 2.0.10 that did not contain the
+package version safeguards. When running</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey update
+</pre></div>
+
+
+<p>The following errors are reported :</p>
+<div class="highlight"><pre><span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-chan-sccp</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-chan-sccp (3:0~prerelease+svn2187+pf.xivo.1.1.16~svn11148-6) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:0</span><span class="o">~</span><span class="nt">prerelease</span><span class="o">+</span><span class="nt">svn2187</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn11148-6</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:0</span><span class="o">~</span><span class="nt">prerelease</span><span class="o">+</span><span class="nt">svn2187</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20110628</span><span class="nc">.185034.ab4fbbe-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">dahdi-tools</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;dahdi-tools (12:2.4.1+pf.xivo.1.1.16~svn10418-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">12</span><span class="nd">:2</span><span class="nc">.4.1</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn10418-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">12</span><span class="nd">:2</span><span class="nc">.4.1</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20110323</span><span class="nc">.135020.382fcea-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-sounds-gsm-de-de</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-sounds-gsm-de-de (1.0+pf.xivo.1.1.16~svn8396-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.0</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn8396-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.0</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20100617</span><span class="nc">.101945.9e0ba42-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-sounds-wav-en-us</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-sounds-wav-en-us (1:1.4.19+pf.xivo.1.1.16~svn8366-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn8366-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20100615</span><span class="nc">.100833.e35f5bc-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-sounds-wav-es-es</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-sounds-wav-es-es (1.4.19+pf.xivo.1.1.16~svn8369-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn8369-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20100615</span><span class="nc">.123951.a72913e-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-sounds-wav-fr-ca</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-sounds-wav-fr-ca (1.4.19+pf.xivo.1.1.16~svn8373-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn8373-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.4.19</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20100615</span><span class="nc">.131728.8e37c34-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-asterisk-prompts-xivo</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-asterisk-prompts-xivo (1.1.16~svn10712-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10712-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110505</span><span class="nc">.071312.f112dde-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-asterisk-prompts</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-asterisk-prompts (2:1.1.16~svn10715-2) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">2</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10715-2</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">2</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110505</span><span class="nc">.073011.01bf04f-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-asternic-stats</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-asternic-stats (3:1.1.16~svn9393-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn9393-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20101008</span><span class="nc">.160607.3537a3d-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-agid</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-agid (6:1.1.16~svn11175-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">6</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn11175-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">6</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110701</span><span class="nc">.092341.397e495-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-base-config</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-base-config (10:1.1.16~svn11120-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">10</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn11120-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">10</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110802</span><span class="nc">.135651.7f1de42-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-cti-server</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-cti-server (26:1.1.16~svn10937-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">26</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10937-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">26</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110727</span><span class="nc">.102922.01b04e7-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-cti-webclient</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-cti-webclient (1:1.1.16~svn9668-1) etch-xivo-dalek-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn9668-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20101130</span><span class="nc">.153620.4f95789-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-extra</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-extra (1.1.16~svn9928-1) lenny-xivo-gallifrey; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn9928-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110112</span><span class="nc">.094154.13f90a7-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-fetchfw</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-fetchfw (3:1.1.16~svn11130-1) etch-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn11130-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110627</span><span class="nc">.175022.83cded2-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-lib-python</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-lib-python (19:1.1.16~svn10798-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">19</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10798-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">19</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110512</span><span class="nc">.142430.c2d6027-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-provisioning</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-provisioning (4:1.1.16~svn10454-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">4</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10454-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">4</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110331</span><span class="nc">.175748.85fafed-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-queues-logger</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-queues-logger (1:1.1.16~svn9930-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn9930-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110112</span><span class="nc">.114348.7d798fa-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-sysconfd</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-sysconfd (1:1.1.16~svn10321-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10321-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">1</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110304</span><span class="nc">.195243.b9a73dd-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-utils</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-utils (3:1.1.16~svn10962-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn10962-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">3</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110804</span><span class="nc">.084947.d48eca0-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">pf-xivo-web-interface</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;pf-xivo-web-interface (7:1.1.16~svn11177-1) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">7</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">svn11177-1</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">7</span><span class="nd">:1</span><span class="nc">.1.16</span><span class="o">~</span><span class="nt">20110802</span><span class="nc">.135651.7f1de42-1</span><span class="o">)</span>
+<span class="nt">The</span> <span class="nt">first</span> <span class="nt">line</span> <span class="nt">of</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">cache</span><span class="o">/</span><span class="nt">packaging-farm</span><span class="o">/</span><span class="nt">VCS</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">lenny-xivo-gallifrey</span><span class="o">/</span><span class="nt">asterisk-addons</span><span class="o">/</span><span class="nt">trunk</span><span class="o">/</span><span class="nt">debian</span><span class="o">/</span><span class="nt">changelog</span> <span class="nt">is</span> <span class="s1">&#39;asterisk-addons (42:1.4.13+pf.xivo.1.1.16~svn10199-6) lenny-xivo-gallifrey-dev; urgency=low&#39;</span> <span class="nt">and</span> <span class="nt">contains</span> <span class="nt">a</span> <span class="nt">version</span> <span class="o">(</span><span class="nt">42</span><span class="nd">:1</span><span class="nc">.4.13</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">svn10199-6</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">greater</span> <span class="nt">or</span> <span class="nt">equal</span> <span class="o">(</span><span class="nt">according</span> <span class="nt">to</span> <span class="nt">dpkg</span> <span class="nt">--compare-versions</span><span class="o">)</span> <span class="nt">than</span> <span class="nt">the</span> <span class="nt">version</span> <span class="nt">computed</span> <span class="nt">by</span> <span class="nt">submit-xivo</span><span class="nc">.sh</span> <span class="o">(</span><span class="nt">42</span><span class="nd">:1</span><span class="nc">.4.13</span><span class="o">+</span><span class="nt">pf</span><span class="nc">.xivo.1.1.16</span><span class="o">~</span><span class="nt">20110215</span><span class="nc">.130731.9460139-1</span><span class="o">)</span>
+</pre></div>
+
+
+<p>The same upgrade was done on the gallifrey development build machine.
+The command</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey update
+</pre></div>
+
+
+<p>did not issue any error message and found a number of updates. However,
+when running</p>
+<div class="highlight"><pre>packaging-farm gallifrey
+</pre></div>
+
+
+<p>it failed on sangoma-wanpipe with the following error:</p>
+<div class="highlight"><pre><span class="p">...</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+
+<span class="o">---------------------------------------------</span>
+
+<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
+<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+</pre></div>
+
+
+<p>It turns out that the source package for sangoma-wanpipe could only be
+found in the existing repositories (it does not have a corresponding git
+directory in the repository) and is probably outdated. On the gallifrey
+development machine it shows:</p>
+<div class="highlight"><pre>/var/cache/packaging-farm/sources/sangoma-wanpipe:
+  total used in directory 13708 available 12287544
+  drwxr-xr-x  3 root     root     4096 May 16 05:41 .
+  drwxr-xr-x 48 www-data root    12288 Aug 29 05:16 ..
+  drwxr-xr-x 19 root     root     4096 May 16 05:41 sangoma-wanpipe-3.5.17.dfsg.1
+  -rw-r--r--  1 root     root    15904 May 13 09:07 sangoma-wanpipe_3.5.17.dfsg.1-1+pf.lenny.xivo.gallifrey.dev.27.diff.gz
+  -rw-r--r--  1 root     root     1555 May 13 09:07 sangoma-wanpipe_3.5.17.dfsg.1-1+pf.lenny.xivo.gallifrey.dev.27.dsc
+  -rw-r--r--  1 root     root 13971782 Nov 25  2010 sangoma-wanpipe_3.5.17.dfsg.1.orig.tar.gz
+</pre></div>
+
+
+<p>where on the gallifrey machine it shows:</p>
+<div class="highlight"><pre>/var/cache/packaging-farm/sources/sangoma-wanpipe:
+  total used in directory 14172 available 6490308
+  drwxr-xr-x  3 root     root     4096 Jul 28 10:48 .
+  drwxr-xr-x 48 www-data root    12288 Aug 29 04:43 ..
+  drwxr-xr-x 19 root     root     4096 Jun 27 05:06 sangoma-wanpipe-3.5.20.dfsg.1
+  -rw-r--r--  1 root     root     1266 Jun 27 05:16 sangoma-wanpipe_3.5.20.dfsg.1-1+pf.lenny.xivo.gallifrey.dev.27.dsc
+  -rw-r--r--  1 root     root 14465725 Jun 27 05:16 sangoma-wanpipe_3.5.20.dfsg.1-1+pf.lenny.xivo.gallifrey.dev.27.tar.gz
+</pre></div>
+
+
+<p>suggesting that a more recent version is available.</p>
+<h4>disk usage optimization</h4>
+<p>packaging-farm keeps the complete build environment at all times in the
+build directory of a package. When disk space must be saved, there
+<a href="http://packaging-farm.dachary.org/trac/ticket/17">should be an option to get rid of
+it</a>, at the expense of
+slowing the build.The <a href="http://packaging-farm.dachary.org/trac/changeset/f4a5c380a14996e105f10201e3f5a01784ab1225">SAVE_DISK variable is
+implemented</a>
+to agressively save space (i.e. the apt archives directory is no longer
+saved). The chroot used to build a given distribution for a given
+architecture is always umounted and removed.The packaging-farm.conf
+manual page was updated:</p>
+<div class="highlight"><pre>SAVE_DISK
+              After a package is successfully built, remove all the intermedi-
+              ary files if SAVE_DISK=yes.  If SAVE_DISK=no or is missing, more
+              disk  space  will be used because a number of intermediary files
+              are not removed. For  instance  the  packages  loaded  from  the
+              Internet  for  a  Debian GNU/Linux package are kept so that they
+              can be reused by another build without the need to download them
+              again.
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/bug-fixing-xivo-package-generation.html#bug-fixing-xivo-package-generation">Bug fixing XiVO package generation</a></h2>
+    <p>
+      Posted on Mon 22 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>kernel-module ignores SOURCE_MODULE</h4>
+<p>When the ROLE=kernel-module is set, the binary packages are built from
+an existing package containing the sources of a kernel module in a
+fashion that is suitable for module-assistant to work on. The kernel
+module to be built is set in the MODULE= variable. If the name of the
+module and the name of the package containing the sources from which it
+must be built are the same, module-assistant will guess and retrieve the
+package from the repository. If the package name is different, it must
+be set in the SOURCE_MODULE= variable.When MODULE is different from
+SOURCE_MODULE, the dependency graph generated by
+lib/kernel-module/depends.sh will fail to create the dependency to the
+SOURCE_MODULE package</p>
+<p>The dependency was changed from depending on the rule that is used to
+build the package to the timestamp generated by the build of the
+package. Using the rule would always recompile the package. Using the
+timestamp only recompiles of one timestamp is more recent.The regular
+expression looking for the MODULE in the Makefile is changed to also
+look for the SOURCE_MODULE variable. When both are found, their content
+is used to lookup a source package. If it turns out that both MODULE and
+SOURCE_MODULE are present and MODULE is the name of a source package,
+their will be one undesired dependency. However, this is harmless
+because the worst that can happen is that the kernel modules are rebuilt
+although they don't need to.</p>
+<p><a href="http://packaging-farm.dachary.org/trac/changeset/3c7465772c1bcb81fd508bd060cf980a7806d490">changeset</a></p>
+<h4>submit-xivo.sh must reuse tarbal</h4>
+<p>When the Debian GNU/Linux package of a XiVO software is improved, the
+source tarbal must not be rebuilt. Rebuilding the .orig.tar.gz for the
+exact same directory tree will lead to a different md5sum signature,
+because of the compression. This is problematic when software building
+Debian GNU/Linux repositories such as reprepro refuse a submission
+because they already know of a previous tarbal of the same name but with
+a different version number.</p>
+<p>XiVO formerly had native Debian GNU/Linux packages (i.e. packages where
+there is no separate source tarbal). It was later decided to not create
+native Debian GNU/Linux packages but the code that prevented the
+re-generation of the tarbal was not modified accordingly.A native
+package, in the XiVO sense, has no third party code. There is a source
+tree separate from the debian tree, but both are dedicated to XiVO. In
+order to simplify the submission script, it was decided to avoid
+handling Debian GNU/Linux native packages. Even when the source tree is
+empty, the resulting package is treated as if there was a source
+tree.The code is slightly different with regard to the generation of the
+tarbal because the XiVO native package has a source tree including the
+name of the software at the root. The third party source tree does not
+contain this additional hierarchy level.</p>
+<p><a href="http://packaging-farm.dachary.org/trac/changeset/034e2d1a16a2b4b80d22463be300f4bacbaba458">changeset</a></p>
+<h4>reduce the number of hg pull</h4>
+<p>When running packaging-farm DIRECTORY=a submit ; packaging-farm
+DIRECTORY=b submit, it does a git fetch twice on the source and debian
+repositories although one would be enough. When this operations is
+repeated 30 times only to find that one package must be rebuild, it can
+take up to 2 minutes.</p>
+<p>A timestamp is set after pulling the debian and source repositories.
+Before pulling, the modification time of the timestamp is checked and if
+it is found to be more recent than X minutes ago ( GIT_CACHE_MINUTES
+), the pull is not done. By default the value of GIT_CACHE_MINUTES is
+set to zero to preserve the current behavior (i.e. the pull occurs every
+time).</p>
+<p><a href="http://packaging-farm.dachary.org/trac/changeset/504cd6a6f8b3ad1b1d256fb88adf029861469632">changeset</a></p>
+<h4>epoch always triggers submission</h4>
+<p>The epoch ( number: prepended to package version as explained in
+deb-version ) does not show in the .dsc file created by
+dpkg-buildpackage -SWhen submit/submit-xivo.sh looks for the .dsc file
+matching the package version extracted from the debian changelog, it
+does not remove the epoch. As a consequence, the package is never found
+to match and is always submitted.</p>
+<p>The epoch is stripped from the version before checking it against an
+existing .dsc file.</p>
+<p><a href="http://packaging-farm.dachary.org/trac/changeset/6c1ef0ea8cc190da44157af9abfb1e6db0fa6109">changeset</a></p>
+<h4>wanpipe</h4>
+<p>The <strong>wanpipe</strong> directory is mentionned in the
+<strong>/var/cache/packaging-farm/skaro/Makefile</strong> line that checks for
+submissions. It is not listed as a package to be build. In order to
+avoid submitting it to the farm each time a rebuild is required, it was
+commented out.</p>
+<h4>epoch change</h4>
+<p>The migration from svn to git imposed a change in the version numbers.
+It must be taken into account by incrementing the epochin the package
+version, otherwise the versions will go back in time which is not good
+for upgrading. The safeguards introduced insubmit-xivo.sh issue an error
+for each package that has a version going back in time:</p>
+<blockquote>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-agid/trunk/debian/changelog
+is 'pf-xivo-agid (6:1.2<a></a>svn10175-2) that is greater or equal
+(according to dpkg --compare-versions) than the version computed by
+submit-xivo.sh (6:1.2\~20110819.160331.530a224-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/libpri/trunk/debian/changelog
+is 'libpri (28:1.4.12+pf.xivo.1.2<a></a>20110805.172915.12438dd-1)
+that is greater or equal (according to dpkg --compare-versions) than
+the version computed by submit-xivo.sh
+(28:1.4.12+pf.xivo.1.2\~20110707.095210.a65f898-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-base-config/trunk/debian/changelog
+is 'pf-xivo-base-config (10:1.2<a></a>svn10395-3) that is greater or
+equal (according to dpkg --compare-versions) than the version computed
+by submit-xivo.sh (10:1.2\~20110817.155800.06ea074-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-cti-server/trunk/debian/changelog
+is 'pf-xivo-cti-server (26:1.2<a></a>svn11342-3) that is greater or
+equal (according to dpkg --compare-versions) than the version computed
+by submit-xivo.sh (26:1.2\~20110819.160331.530a224-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/freeswitch/trunk/debian/changelog
+is 'freeswitch (1.0.6+pf.xivo.1.2.0<a></a>svn9780-0) that is greater
+or equal (according to dpkg --compare-versions) than the version
+computed by submit-xivo.sh
+(1.0.6+pf.xivo.1.2\~20110308.141044.93b0896-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-lib-js/trunk/debian/changelog
+is 'pf-xivo-lib-js (1:1.2<a></a>svn10977) that is greater or equal
+(according to dpkg --compare-versions) than the version computed by
+submit-xivo.sh (1:1.2\~20110729.174030.0a57146-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-sysconfd/trunk/debian/changelog
+is 'pf-xivo-sysconfd (1.2<a></a>svn10913-0) that is greater or equal
+(according to dpkg --compare-versions) than the version computed by
+submit-xivo.sh (1.2\~20110818.192128.9f3d578-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-web-interface/trunk/debian/changelog
+is 'pf-xivo-web-interface (7:1.2<a></a>svn10978-0) that is greater or
+equal (according to dpkg --compare-versions) than the version computed
+by submit-xivo.sh (7:1.2\~20110819.134415.57c6e08-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-ha/trunk/debian/changelog
+is 'pf-xivo-ha (1.2<a></a>svn10449-2) that is greater or equal
+(according to dpkg --compare-versions) than the version computed by
+submit-xivo.sh (1.2\~20110816.090747.baf278f-1)</p>
+<p>The first line of
+/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-fetchfw/trunk/debian/changelog
+is 'pf-xivo-fetchfw (3:1.2<a></a>svn11102-0) that is greater or equal
+(according to dpkg --compare-versions) than the version computed by
+submit-xivo.sh (3:1.2\~20110704.194720.51b210e-1)</p>
+</blockquote>
+<p>hexanol updated the changelog entry for each software above to reflect
+the change in the convention, adding to epoch as necessary.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-packaging-verbosity-and-safeguards.html#xivo-packaging-verbosity-and-safeguards">XiVO packaging verbosity and safeguards</a></h2>
+    <p>
+      Posted on Mon 15 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>package versions</h4>
+<p>The XiVO package versions are automatically generated in part and follow
+the debian conventions as documented in the deb-version(1) manual page.
+The automatic numbering occurs in the submit-xivo.sh script as described
+below:</p>
+<div class="highlight"><pre>VERSIONS
+       The  XiVO source packages have no version information. The Debian GNU/Linux package version numbers are generated based on the date
+       of the last commit in the source directory (not the debian directory), the version of the third party source if any, the content of
+       the  VERSION  file  from  the  source  directory,  followed  by  the  value  of  the  VERSION_FLAVOR  variable  and its short hash.
+       V.V.V+X.X.X~YYYYMMDD.HHMMSS.HASH will be the version number of a package built from the third party source version  V.V.V  for  the
+       benefit  of  XiVO version X.X.X where the last commit in the sources was made on YYYYMMDD.HHMMSS. This last commit hash is appended
+       to the version number.  Example: asterisk-1.4.42+1.1.15~20110312.102015.8ff428-1
+
+       When merging a source with its matching Debian GNU/Linux package, the first line of the debian/changelog file must contain the com‐
+       puted version number. If it does not, a new changelog entry is used with the following template:
+              echo &quot;<span class="nv">$package</span> (<span class="cp">${</span><span class="n">version</span><span class="cp">}${</span><span class="n">debian_version</span><span class="cp">}</span>) <span class="nv">$component</span>; urgency=low&quot;
+              echo
+              echo &quot;  * upstream update&quot;
+              echo
+              echo -n &quot; -- <span class="nv">$DEBFULLNAME</span> <span class="err">&lt;</span><span class="nv">$DEBEMAIL</span>&gt;  &quot;
+              date &#39;+%a, %d %b %Y %R:%S %z&#39;
+              echo
+
+       The  handling  of  the versions for the packages that have no corresponding source such as pf-xivo or pf-xivo-backup is simpler and
+       relies on the version found in the VERSION file of the source directory only.
+</pre></div>
+
+
+<p>The XiVO developers were used to a tool that also incremented the Debian
+GNU/Linux version. It is no longer the case and instead of having a -0
+version number the developer is required to take care of the increment
+as any Debian GNU/Linux package would.This created a confusion that led
+to inconsistencies in the sequence of the package versions. Because the
+submit-xivo.sh script was unable to detect and properly report these
+inconsistencies, it created a situation that was very confusing.To avoid
+such troubles, a number of safeguards <a href="http://packaging-farm.dachary.org/trac/changeset/bd8626b5f1d43677f9d3ce5990fb4a545a1982e6">were
+implemented</a>
+to properly document the following mistakes:</p>
+<ul>
+<li>a changelog with a mismatched package name</li>
+<li>a missing version</li>
+<li>a native package (submit-xivo.sh requires non native packages)</li>
+<li>a package version that goes back in time</li>
+</ul>
+<h4>verbosity</h4>
+<p>The packaging-farm script is based on make(1) which is very verbose by
+default. The amount of information produced is useful for debugging but
+confusing to the developer. The default was <a href="http://packaging-farm.dachary.org/trac/changeset/5c7ce86716fc16c5ad58910f4c973b081b4a6280">set to
+quiet</a>
+and can be reverted to verbose as follows:</p>
+<div class="highlight"><pre>QUIET=&#39;&#39; packaging-farm target
+</pre></div>
+
+
+<p>This was not documented as it is only useful to debug packaging-farm
+itself.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index24.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index22.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

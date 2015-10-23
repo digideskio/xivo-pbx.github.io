@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="upgrading packaging-farm After the upgrade of packaging-farm to version 1.2.42, the gallifrey Makefile was updated to add a update target that updates the git repositories and schedules for build the packages that have been changed since the last build. update: # # Submitted from the GIT repositories # for dir in ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="A gallifrey repository for 1.1.16"/>
+<meta property="og:description" content="upgrading packaging-farm After the upgrade of packaging-farm to version 1.2.42, the gallifrey Makefile was updated to add a update target that updates the git repositories and schedules for build the packages that have been changed since the last build. update: # # Submitted from the GIT repositories # for dir in ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/a-gallifrey-repository-for-1116.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-06-13 08:40:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; A gallifrey repository for 1.1.16</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="a-gallifrey-repository-for-1116">A gallifrey repository for 1.1.16</h1>
+    <p>Posted on Mon 13 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>upgrading packaging-farm</h4>
+<p>After the upgrade of packaging-farm to version 1.2.42, the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">gallifrey
+Makefile</a>
+was updated to add a <em>update</em> target that updates the git repositories
+and schedules for build the packages that have been changed since the
+last build.</p>
+<div class="highlight"><pre><span class="x">update:</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        for dir in chan_sccp asterisk dahdi-linux dahdi-tools asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        </span><span class="err">#</span><span class="x"> When symbolic links needs to be resolved before building the source package</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not in the GIT repositories</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> virtual packages : pf-xivo pf-xivo-backup</span>
+<span class="x">        </span><span class="cp">#</span><span class="nf">cd</span><span class="x"> /var/cache/packaging-farm/sources ; for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp pf-xivo pf-xivo-backup  ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done ; packaging-farm generate</span>
+</pre></div>
+
+
+<p>Updating the repository can be done with</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<h4>building gallifrey 1.1.16</h4>
+<p>It failed to build <em>asterisk-chan-sccp</em></p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<p>after building successfully the following</p>
+<div class="highlight"><pre><span class="mi">1115</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span> <span class="n">all</span>
+   <span class="mi">3867</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">cti</span><span class="o">-</span><span class="n">server</span> <span class="n">all</span>
+   <span class="mi">6655</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">utils</span> <span class="n">all</span>
+   <span class="mi">9311</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="kd">interface</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>The log of the error is:</p>
+<div class="highlight"><pre>Applying patch fix_hidden_callplane_on_transfer
+patching file src/sccp_channel.c
+Hunk #1 FAILED at 1556.
+1 out of 1 hunk FAILED -- rejects in file src/sccp_channel.c
+patching file src/sccp_indicate.c
+Hunk #1 FAILED at 146.
+1 out of 1 hunk FAILED -- rejects in file src/sccp_indicate.c
+Patch fix_hidden_callplane_on_transfer does not apply (enforce with -f)
+make[3]: *** [debian/stamp-patched] Error 1
+make[3]: Leaving directory `/usr/src/asterisk-chan-sccp-0~prerelease+svn2187+pf.xivo.1.1.16~20110\
+608.195041.34405d1&#39;
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+</pre></div>
+
+
+<p>and a bug report was filled by Nicolas Hicher so that the developers are
+aware of the issue.As an interim solution, he removed the faulty patch
+from the git repository and the submission was run again:</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<p>and resumed where it left. The ntp package was installed to ensure the
+date on the VM is correct. It was 13 minutes ahead in the future and it
+created some confusion when synchronizing with the external repositories
+was required and did not produce the intended effects.Since each package
+name contains the XiVO version, if it changes ( in
+<em>/var/cache/packaging-farm/VCS/sources/xivo-gallifrey/VERSION</em> ) all
+packages must be rebuilt, regardless of the fact that their content
+changed. The <a href="http://hg.packaging-farm.dachary.org/rev/97cac490cb5d">packaging-farm
+2.0.0</a> version
+contains a patch that implements this behavior.</p>
+<h4>packaging-farm 2.0.0</h4>
+<p>This version marks the completion of the groundwork that was necessary
+to ensure that the software provides the minimal set of functionalities
+required to build the XiVO repositories. All the files were reviewed as
+well as the packaging instructions.</p>
+<p>The HTML / PHP reporting was removed and packaging-farm is now command
+line oriented only and has no web interface. A web interface could be
+added in the form of a webservice supported by a javascript based
+client. But it would not be an evolution of the interface that was
+removed.</p>
+<p>The license was upgraded from GPLv2+ (i.e. GPLv2 that can be upgraded to
+any later version at the user option) to AGPLv3+ (web service oriented
+license that ensure the propagation of the modifications when the
+service is deployed).</p>
+<p>The package was converted to
+<a href="http://en.wikipedia.org/wiki/Debhelper#Overview">dh7</a> and
+<a href="http://wiki.debian.org/Projects/DebSrc3.0">DebSrc3.0</a>. All lintian
+warnings were fixed. An <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=630358">Intent To
+Package</a> was
+sent to schedule the inclusion in Debian GNU/Linux.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "A gallifrey repository for 1.1.16",
+  "headline": "A gallifrey repository for 1.1.16",
+  "datePublished": "2011-06-13 08:40:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/a-gallifrey-repository-for-1116.html",
+  "description": "upgrading packaging-farm After the upgrade of packaging-farm to version 1.2.42, the gallifrey Makefile was updated to add a update target that updates the git repositories and schedules for build the packages that have been changed since the last build. update: # # Submitted from the GIT repositories # for dir in ..."
+}
+</script></body>
+</html>

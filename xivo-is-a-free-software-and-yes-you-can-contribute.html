@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="quintana" />
+<meta name="description" content="One of our customers Medes has contributed an external script for XiVO. They have enhanced the features (eg. do not disturb, call forward ...) by creating a new python script. They released the script under the GPLv3 license. The result of this script is : To activate this new function, simply change ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO is a free software and YES you can contribute !"/>
+<meta property="og:description" content="One of our customers Medes has contributed an external script for XiVO. They have enhanced the features (eg. do not disturb, call forward ...) by creating a new python script. They released the script under the GPLv3 license. The result of this script is : To activate this new function, simply change ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-is-a-free-software-and-yes-you-can-contribute.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-06-04 12:31:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/quintana.html">
+<meta property="article:section" content="General"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO is a free software and YES you can contribute !</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-is-a-free-software-and-yes-you-can-contribute">XiVO is a free software and YES you can contribute !</h1>
+    <p>Posted on Mon 04 June 2012 in <a href="http://blog.xivo.io/category/general.html">General</a></p>
+  </header>
+  <div>
+    <p>One of our customers Medes has contributed an external script for XiVO.
+They have enhanced the features (eg. do not disturb, call forward ...)
+by creating a new python script. They released the script under the
+GPLv3 license. The result of this script is :</p>
+<p><img alt="aastra_resultat.jpg" src="/public/.aastra_resultat_m.jpg" title="aastra_resultat.jpg, juin 2012" /></p>
+<p>To activate this new function, simply change the aastra template in your
+provisioning server.</p>
+<div class="highlight"><pre><span class="x">xml status scroll delay: 2</span>
+<span class="x">action uri registered: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri onhook: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri poll: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri poll interval: 60</span>
+</pre></div>
+
+
+<p>For more information about the template go to : <a href="http://documentation.xivo.fr/production/administration/provisioning/adv_configuration.html#creating-custom-templates">creating custom
+templates</a></p>
+<p>The code is available on
+<a href="https://gitorious.org/xivo/xivo-experimental/trees/master/xivoaastrafrommedes">gitorious</a>
+in our xivo-experimental repository.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO is a free software and YES you can contribute !",
+  "headline": "XiVO is a free software and YES you can contribute !",
+  "datePublished": "2012-06-04 12:31:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "quintana",
+    "url": "http://blog.xivo.io/author/quintana.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-is-a-free-software-and-yes-you-can-contribute.html",
+  "description": "One of our customers Medes has contributed an external script for XiVO. They have enhanced the features (eg. do not disturb, call forward ...) by creating a new python script. They released the script under the GPLv3 license. The result of this script is : To activate this new function, simply change ..."
+}
+</script></body>
+</html>

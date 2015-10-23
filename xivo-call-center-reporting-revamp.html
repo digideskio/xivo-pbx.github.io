@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="pcadotte" />
+<meta name="description" content="One of the main feature of XiVO 1.2 is the call center reporting. Motivation The first draft of this new feature proved to be hard to maintain and slow to generate statistics. Furthermore, the format of the cache (files containing one month of statistics in JSON format) was not ..." />
+<meta name="keywords" content="xivo 1.2, xivo, software, reporting">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO Call Center Reporting Revamp"/>
+<meta property="og:description" content="One of the main feature of XiVO 1.2 is the call center reporting. Motivation The first draft of this new feature proved to be hard to maintain and slow to generate statistics. Furthermore, the format of the cache (files containing one month of statistics in JSON format) was not ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-call-center-reporting-revamp.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-08-02 15:17:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/pcadotte.html">
+<meta property="article:section" content="Software"/>
+<meta property="article:tag" content="xivo 1.2"/>
+<meta property="article:tag" content="xivo"/>
+<meta property="article:tag" content="software"/>
+<meta property="article:tag" content="reporting"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO Call Center Reporting Revamp</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-call-center-reporting-revamp">XiVO Call Center Reporting Revamp</h1>
+    <p>Posted on Thu 02 August 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>One of the main feature of XiVO 1.2 is the call center reporting.</p>
+<p>Motivation</p>
+<p>The first draft of this new feature proved to be hard to maintain and
+slow to generate statistics. Furthermore, the format of the cache (files
+containing one month of statistics in JSON format) was not easy to
+exploit and required more work while viewing daily statistics that would
+use raw data instead of the pre generated cache for speed reasons.</p>
+<p><img alt="statistic_queue.png" src="/public/.statistic_queue_m.jpg" title="statistic_queue.png, août 2012" /></p>
+<p>To fix the problems we had with this first version, we decided to
+rewrite the cache generation that is not dependent on statistic
+configuration, avoiding the need to regenerate the cache every time a
+configuration is changed.</p>
+<p>The new cache format uses tables in the asterisk database to store
+pre-analyzed data. These tables contains call related information (table
+stat_call_on_queue) and statistic for each hours of statistic
+(stat_queue_periodic).</p>
+<p>This new format make it a lot faster to generate the cache and easier to
+generate tables and graphics in the web interface. Using an hour as the
+base time for an entry also fix the problem of overlapping time range
+that we had to solve with month based cache, where a week could start in
+month n and end in month n + 1.</p>
+<p>Difference from the first version for the user</p>
+<p>The cache is only generated for complete hours. This means that if you
+generate the cache at 12h15 the cache will end at 11h59 and the next
+time the cache is generated, it will start at 12h00. The cache is also
+continuously generated (once a day) and since the cache is independent
+of the configuration, it does not have to be generated each time a
+change is made to the configuration.</p>
+<p>The way to generate the cache manually at this moment is to run
+xivo-stat fill_db from the command line on the XiVO. The generate cache
+option of the web interface will run this action when the old cache
+won't be required anymore.</p>
+<p>What is done</p>
+<p>Currently (version 12.14) all queue counters are now computed using the
+new cache. Some errors are still shown on some page that we could not
+port to the new system in time but most should be fixed in the next
+version.</p>
+<p>We are also working on the first agent counter that should be available
+in version (12.15) and all other agents counters should be added in the
+next 2 versions.</p>
+<p>Some changes to the configuration are to expected when our work will be
+done with the counters to reflect the new cache generation, but these
+changes should be minor and all migration will be handled automatically
+as usual.</p>
+<p>Work methodology</p>
+<p>A second aspect of this second version that was not present in the first
+one is that we are also developing tools to generate calls and check the
+generated statistics to avoid any regressions in future versions. This
+process has been more time consuming than developing the counters
+themselves but is a step to better test automation for XiVO.</p>
+<p>Documentation</p>
+<p>The documentation for call center statistics is
+available<a href="http://documentation.xivo.fr/dev/contact_center/statistics/statistics.html" title="Call center statistics">here</a>.</p>
+<p>The code</p>
+<p>xivo-stat is available at git://git.xivo.fr/official/xivo-stat.git</p>
+<p>xivo-callgen is available at git://git.xivo.fr/official/xivo-callgen.git</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>
+      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>
+      <a href="http://blog.xivo.io/tag/software.html">software</a>
+      <a href="http://blog.xivo.io/tag/reporting.html">reporting</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO Call Center Reporting Revamp",
+  "headline": "XiVO Call Center Reporting Revamp",
+  "datePublished": "2012-08-02 15:17:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "pcadotte",
+    "url": "http://blog.xivo.io/author/pcadotte.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-call-center-reporting-revamp.html",
+  "description": "One of the main feature of XiVO 1.2 is the call center reporting. Motivation The first draft of this new feature proved to be hard to maintain and slow to generate statistics. Furthermore, the format of the cache (files containing one month of statistics in JSON format) was not ..."
+}
+</script></body>
+</html>

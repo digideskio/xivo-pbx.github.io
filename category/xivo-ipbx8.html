@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog &ndash; Category: XiVO IPBX</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html#glimpse-of-cti-architecture-in-xivo-11-and-12">Glimpse of CTI architecture in XiVO 1.1 and 1.2</a></h2>
+    <p>
+      Posted on Fri 13 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>As a reminder, this is what the CTI world looks like in XiVO 1.1 :</p>
+<p><a href="/public/external_cti_architecture_xivo_1.1.png" title="cti1.1"><img alt="cti1.1" src="/public/.external_cti_architecture_xivo_1.1_m.jpg" title="cti1.1, mai 2011" /></a></p>
+<p>The XiVO 1.2 part will be more like :</p>
+<p><a href="/public/external_cti_architecture_xivo_1.2.png" title="cti1.2"><img alt="cti1.2" src="/public/.external_cti_architecture_xivo_1.2_m.jpg" title="cti1.2, mai 2011" /></a></p>
+<p>namely :</p>
+<ul>
+<li>the queue-logger daemon does not exist any more, and the CTI server
+    fills the queue-logger database itself</li>
+<li>the services/features of user lines will be ...</li></ul>
+      <a class="btn" href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html#glimpse-of-cti-architecture-in-xivo-11-and-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Testing a XiVO gallifrey repository (1/2)</a></h2>
+    <p>
+      Posted on Mon 09 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Methodology</h4>
+<p>Assuming a host running <a href="http://www.debian.org/releases/squeeze/">Debian GNU/Linux
+Squeeze</a>, the general idea is
+to boot a virtual machine thatwill auto-install using
+<a href="http://www.debian.org/devel/debian-installer/">debian-installer</a> so
+that it uses <a href="http://git.proformatique.com/?p=official/debian-installer.git;a=tree;f=squeeze/classes/skaro-farm;h=155b14e82c906b968d6d42a7b8e20faf0209d687;hb=692498d23dcd2daa173e2ed152010b6c22dd7fda">a specific
+class</a>
+that will pull packages from <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">the
+gallifrey</a>
+repository <a href="http://blog.xivo.fr/index.php?post/2011/04/27/An-alternate-XiVO-gallifrey-repository-%28part-2/2%29">created with
+packaging-farm</a>.</p>
+<h4>Virtual machine</h4>
+<p>The <a href="http://libvirt.org/">libvirt</a> virtual machine is given 512MB RAM ...</p>
+      <a class="btn" href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-packages-versions.html#xivo-packages-versions">XiVO packages versions</a></h2>
+    <p>
+      Posted on Mon 02 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>package names and multiple distributions</h4>
+<p>As it is, packaging-farm will create packages with names that are not
+dependent on the distribution. It creates a problem that is immediately
+visible when trying to build a repository that includes all the
+packages: the pool can only accomodate for a single package with ...</p>
+      <a class="btn" href="http://blog.xivo.io/xivo-packages-versions.html#xivo-packages-versions">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">An alternate XiVO gallifrey repository (part 2/2)</a></h2>
+    <p>
+      Posted on Wed 27 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>composing gallifrey</h4>
+<p>The gallifrey repository is made of packages built from the GIT
+repositories, some extracted from the official repository because they
+are not under GIT and others built for the occasion (kernel-modules and
+meta-packages). The source of each package is documented in
+<strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> which ...</p>
+      <a class="btn" href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">An alternate XiVO gallifrey repository (part 1/2)</a></h2>
+    <p>
+      Posted on Mon 18 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Kernel module dependencies</h4>
+<p>When binary kernel modules need to be rebuilt, a Makefile containing
+<em>ROLE = kernel-module</em> is created for the packaging-farm to work with,
+as explained in the manual page. It depends on the source package
+providing the <em>MODULE = module-source</em> package. A script was added to
+the global dependency computation ...</p>
+      <a class="btn" href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/category/xivo-ipbx9.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/category/xivo-ipbx7.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

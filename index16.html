@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/using-reverse-look-ups-to-replace-caller-ids.html#using-reverse-look-ups-to-replace-caller-ids">Using Reverse Look-ups to Replace Caller IDs</a></h2>
+    <p>
+      Posted on Mon 11 June 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>XiVO directories are a way to store contact information to be able to do
+directory look-ups from the XiVO client and from supported phones.
+Another useful feature of directories, is the ability to set a reverse
+directory and replace incoming caller IDs with information from the
+directory.</p>
+<p>This article will show you how to setup reverse look-up on your XiVO. It
+is assumed that you already have a working directory setup on your XiVO.</p>
+<p>The first step is to set the reverse match fields in your directory
+configuration. These fields are the one that will be used to search
+against the incoming number. Interesting fields for reverse look-up are:</p>
+<ul>
+<li>phonebooknumber.home.number</li>
+<li>phonebooknumber.mobile.number</li>
+<li>phonebooknumber.office.number</li>
+</ul>
+<p><img alt="reverse_1.png" src="/public/.reverse_1_m.jpg" title="reverse_1.png, juin 2012" /></p>
+<p>The second step is to setup the field that will be shown in response to
+a reverse look-up. This field is configured in the Mapped fields list.
+All you have to do is add a field with the name <strong>reverse</strong> and the
+value will be used as the caller ID name of incoming calls.</p>
+<p>The last step is to add the configured directory to the list of reverse
+directories available for look up. Under reverse directories, in the
+related directories section add each directory you want to be able to
+access using reverse look-ups. It is usually not interesting to include
+internal directory in reverse look-ups since internal users already have
+a caller ID.</p>
+<p><img alt="reverse_2.png" src="/public/.reverse_2_m.jpg" title="reverse_2.png, juin 2012" /></p>
+<p>Note that reverse look-up will work as described in version 1.2.10 and
+later, another good reason to do a xivo-upgrade.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-is-a-free-software-and-yes-you-can-contribute.html#xivo-is-a-free-software-and-yes-you-can-contribute">XiVO is a free software and YES you can contribute !</a></h2>
+    <p>
+      Posted on Mon 04 June 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>One of our customers Medes has contributed an external script for XiVO.
+They have enhanced the features (eg. do not disturb, call forward ...)
+by creating a new python script. They released the script under the
+GPLv3 license. The result of this script is :</p>
+<p><img alt="aastra_resultat.jpg" src="/public/.aastra_resultat_m.jpg" title="aastra_resultat.jpg, juin 2012" /></p>
+<p>To activate this new function, simply change the aastra template in your
+provisioning server.</p>
+<div class="highlight"><pre><span class="x">xml status scroll delay: 2</span>
+<span class="x">action uri registered: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri onhook: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri poll: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
+<span class="x">action uri poll interval: 60</span>
+</pre></div>
+
+
+<p>For more information about the template go to : <a href="http://documentation.xivo.fr/production/administration/provisioning/adv_configuration.html#creating-custom-templates">creating custom
+templates</a></p>
+<p>The code is available on
+<a href="https://gitorious.org/xivo/xivo-experimental/trees/master/xivoaastrafrommedes">gitorious</a>
+in our xivo-experimental repository.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html#around-xivo-pxe-and-preseeding">Around XiVO - pxe and preseeding</a></h2>
+    <p>
+      Posted on Wed 30 May 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>Now that we have a functional PXE installation, we want to fully
+automatise the installation process. Debian have a useful solution
+called 'preseeding'. Preseeding provides a way to set answers to
+questions asked during the installation process.</p>
+<p>You can find Debian documentation about preseeding on Debian wiki :
+http://wiki.debian.org/DebianInstaller/Preseed</p>
+<p>We are going to be using the default Debian preseed file. We are going
+to configure an HTTP server to serve this file to the Debian installer
+using nginx.</p>
+<div class="highlight"><pre><span class="nv">$ </span>apt-get install nginx
+
+<span class="nv">$ </span>cat /etc/nginx/sites-enabled/myhost
+    server <span class="o">{</span>
+      listen 80<span class="p">;</span>
+      server_tokens off<span class="p">;</span>
+      server_name myhost.mydomain.com<span class="p">;</span>
+      root /data<span class="p">;</span>
+
+      location / <span class="o">{</span>
+        autoindex on<span class="p">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>and restart the server.</p>
+<p>First, we need to create /data directory and get the preseed file from
+this directory.</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
+<span class="nv">$ </span>wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
+</pre></div>
+
+
+<p>We only do some small changes in the default file to perform a fully
+auto installation :</p>
+<div class="highlight"><pre>* do not create a user account
+
+    d-i passwd/make-user boolean false
+
+* add the root password (will be changed after the install process
+
+    d-i passwd/root-password password r00tme
+    d-i passwd/root-password-again password r00tme
+
+* change the disk path for using in a virtual machine
+
+    d-i partman-auto/disk string /dev/vda
+
+* install a minimal system (without X)
+
+    tasksel tasksel/first multiselect standard
+</pre></div>
+
+
+<p>So, we have to modify
+/usr/lib/debian-installer/images/i386/text/boot-screens/menu.cfg to
+specify to the installer that it must use a preseed file.</p>
+<div class="highlight"><pre>label squeeze-i386
+    menu label squeeze i386
+    kernel linux
+    append vga=normal initrd=initrd.gz
+</pre></div>
+
+
+<p>must be</p>
+<div class="highlight"><pre>label debian-squeeze                                                                                                                                                                           
+    menu label Install Auto Debian Squeeze                                                                                                                                                     
+    kernel linux                                                                                                                                                                               
+    append initrd=initrd.gz rw auto=true priority=critical url=myhost.mydomain.com/./preseed.cfg locale=en_US.UTF-8 interface=auto hostname=squeeze --
+</pre></div>
+
+
+<p>You can find some explanations about the different parameters on
+http://hands.com/d-i/</p>
+<p>You have to use a specific url in this case (the "/./" is very
+important).</p>
+<p>Or if you want to install a XiVO system, you can use this line to use
+our preseed</p>
+<div class="highlight"><pre>label XiVO
+       menu label XiVO
+       kernel linux
+       append initrd=initrd.gz rw auto=true priority=critical url=http://mirror.xivo.fr classes=skaro locale=en_US.UTF-8 interface=auto hostname=xivo --
+</pre></div>
+
+
+<p>Here, we only have an url. It's because we use a specific structure in
+our /data directory (and an entry d-i in our nginx configuration) :</p>
+<div class="highlight"><pre>/data
+├── d-i
+│   ├── lenny
+│   │   ├── classes
+│   │   └── lib
+│   └── squeeze
+│       ├── classes
+│       ├── docs
+│       └── lib
+</pre></div>
+
+
+<p>You can find our preseed repository on
+git://git.xivo.fr/official/debian-installer.git</p>
+<p>In a next post, I will explain how we use the class to customize our
+installation.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-all-over-the-world.html#xivo-all-over-the-world">XiVO all over the world</a></h2>
+    <p>
+      Posted on Fri 25 May 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>From ISO download statistics, you may see that XiVO is used in a lot of
+countries over the world :</p>
+<p><img alt="xivoworld.png" src="/public/xivoworld.png" title="xivoworld.png, mai 2012" /></p>
+<p>France, Algeria, Argentina, Austria, Belgium, Brazil, Canada, Colombia,
+Croatia, Czech Republic, Finland, Germany, Great Britain,
+Greece,Hungary, Iceland, Indonesia, Israel, Italy, Lithuania,
+Luxembourg, Montenegro, Netherlands, New Caledonia (French), Poland,
+PortugalRussian Federation, Slovak Republic, South Africa, Spain,
+Switzerland, United Kingdom, United States, Vietnam</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/how-is-the-xivo-sccp-development-going.html#how-is-the-xivo-sccp-development-going">How is the XiVO-SCCP development going ?</a></h2>
+    <p>
+      Posted on Tue 01 May 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>From XiVO 1.2.5 we started to integrate the SCCP management directly
+into the web interface.It means that now, people installing a XiVO
+server can natively use the SCCP technologywhen creating new lines,
+without the need to manually install the sccp channel driver andediting
+the configuration file. As the sccp library evolve, the options
+available throughthe web interface will also be expanded.</p>
+<p>Lately we've been working on the multi-instance per line, which will be
+released with XiVO 1.2.7 this week.Basically the multi-instance per line
+is the ability to receive or make many calls at the same time.While only
+one call can be active at a time, it is possible to keep the other call
+alive but on hold.You can then toggle between the calls to pickup any of
+them. Which will put the current active call on hold,and will set the
+selected call as active.</p>
+<p><a href="/public/libsccp/IMG_20120501_092831.jpg" title="7960-multi-instance1"><img alt="7960-multi-instance1" src="/public/libsccp/.IMG_20120501_092831_s.jpg" title="7960-multi-instance1, mai 2012" /></a></p>
+<p>We still have a long list of features we want to write and make
+available directly through XiVO.Even though we are still in early
+development, I encourage everyone that have CISCO phones to installand
+try the SCCP library. Either via XiVO or by manually installing the sccp
+channel driver.</p>
+<p>For those having CISCO phones that use the SCCP technology, we've put
+online a tutorial to help you get this done:
+<a href="http://documentation.xivo.fr/dev/administration/sccp/sccp.html">http://documentation.xivo.fr/dev/administration/sccp/sccp.html</a></p>
+<p>At the bottom of the tutorial, you will also find the list of feature
+and telephone type that we actually support.We hope to extend this list
+as time goes, but we need your help !</p>
+<p>At this point of development, we need more people that use the SCCP
+library. As the number of people using itwill increase, the number of
+bugs reported will increase and hence the number of fix and enhancement.
+At the end, everbody win.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index17.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index15.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

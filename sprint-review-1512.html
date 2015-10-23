@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="New in this sprint XiVO Client: The people xlet allows you to bookmark your contacts and list them. This also opens the way for personal contacts to be available from anywhere. High Availability: The High Availability system now synchronizes important files between servers. For example, IVR, custom sound files and ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint Review 15.12"/>
+<meta property="og:description" content="New in this sprint XiVO Client: The people xlet allows you to bookmark your contacts and list them. This also opens the way for personal contacts to be available from anywhere. High Availability: The High Availability system now synchronizes important files between servers. For example, IVR, custom sound files and ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sprint-review-1512.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-07-03 14:04:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint Review 15.12</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1512">Sprint Review 15.12</h1>
+    <p>Posted on Fri 03 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h3>New in this sprint</h3>
+<ul>
+<li><strong>XiVO Client</strong>: The people xlet allows you to bookmark your
+    contacts and list them. This also opens the way for personal
+    contacts to be available from anywhere.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>High Availability</strong>: The High Availability system now synchronizes
+    important files between servers. For example, IVR, custom sound
+    files and favorite contacts are preserved. During a failure,
+    telephony will be less affected while the main server is
+    being repaired.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Function keys</strong>: Function keys are manageable via a <a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html" title="REST API">REST
+    API</a>.
+    This allows administrators to manage function keys more easily by
+    applying templates of function keys to a set of users. In the
+    future, this will also allow users to manage their own
+    function keys.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>REST API</strong>: We currently have REST APIs for 5 components of XiVO,
+    and now 2 of them (xivo-auth and xivo-dird) are protected with
+    encryption and authentication. They can be used directly without
+    requiring configuration. The other 3 are not exposed to the
+    outside world.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>XiVO Client</strong>: We also made small improvements to the XiVO Client:<ul>
+<li>The systray icon changed from the four letters (XiVO) to a
+    single X</li>
+<li>The list in the People xlet can be sorted by agent status</li>
+<li>New language available: Spanish (Chile)</li>
+</ul>
+</li>
+</ul>
+<h3>Work done in this sprint, but not yet ready</h3>
+<ul>
+<li><strong>Asterisk upgrade</strong>: Upgrade from Asterisk 11 to <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="Asterisk 13">Asterisk
+    13</a>.
+    In the long run, this will allow us to benefit from new features and
+    other improvements, e.g. better performance, more control over
+    queues and switchboards, correct undesirable behavior, create more
+    meaningful call logs, make Asterisk more scalable (multiple Asterisk
+    servers sharing the load of phone calls). The
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="ARI">ARI</a>
+    is a very interesting feature of Asterisk 13 which gives us a lot
+    more flexibility and allows us to add new features easily.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>CTI authentication</strong>: We mentioned in the previous sprint review
+    users being able to log in their XiVO Clients using
+    LDAP authentication. We are not there yet, but the bookmarked
+    contacts feature validated our authentication mechanism and it is a
+    step in the right direction.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>64-bit</strong>: XiVO is currently only supported on 32-bit architectures
+    (AKA i386 or x86), but we are working on supporting 64-bit
+    architectures (AKA amd64 or x86_64). An ISO for 64-bit in beta
+    version is <a href="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso" title="available for testing">available for
+    testing</a>.</li>
+</ul>
+<p>See you for the next sprint review.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/228" title="15.12 Roadmap">15.12
+Roadmap</a></p>
+<p>Links:</p>
+<ul>
+<li>Function keys REST API:
+    <a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html" title="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html">http://documentation.xivo.io/en/lat...</a></li>
+<li>Asterisk 13 changelog:
+    <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="https://wiki.asterisk.org/wiki/display/AST/New+in+13">https://wiki.asterisk.org/wiki/disp...</a></li>
+<li>ARI:
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">https://wiki.asterisk.org/wiki/page...</a></li>
+<li>64-bit ISO download:
+    <a href="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso" title="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso">http://mirror.xivo.io/iso/xivo-late...</a></li>
+</ul>
+<p><img alt="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" src="/public/2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" title="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png, juil. 2015" /></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint Review 15.12",
+  "headline": "Sprint Review 15.12",
+  "datePublished": "2015-07-03 14:04:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sprint-review-1512.html",
+  "description": "New in this sprint XiVO Client: The people xlet allows you to bookmark your contacts and list them. This also opens the way for personal contacts to be available from anywhere. High Availability: The High Availability system now synchronizes important files between servers. For example, IVR, custom sound files and ..."
+}
+</script></body>
+</html>

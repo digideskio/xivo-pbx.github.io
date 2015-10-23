@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-bluemind-integration.html#xivo-bluemind-integration">XiVO + Bluemind Integration</a></h2>
+    <p>
+      Posted on Wed 30 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Telephone systems are nice, but it gets even better when they meld into
+the computer interfaces that we use to communicate daily. After all, a
+big part of our daily lives revolves around email, contacts and agendas.
+That is why we are excited to introduce you to Bluemind. BlueMind is a
+free-software messaging application that can take care of your emails,
+webmail, agendas, contacts, instant messaging, etc.</p>
+<p>We are very happy to announce that BlueMind and XiVO can be
+interconnected, so that your phone gets easier to use. What happens when
+BlueMind is talking to XiVO? You get more features! You may:</p>
+<ul>
+<li>receive your voicemail messages in your mailbox</li>
+<li>display your availability and your current phone status</li>
+<li>see the availability and phone status of your co-workers</li>
+<li>enable call forwarding by changing your availability status</li>
+<li>have your availability change automatically, according to your
+    agenda</li>
+<li>make calls from the BlueMind web interface</li>
+<li>have a unified contacts list</li>
+</ul>
+<p>You can read more about these features in the <a href="https://forge.blue-mind.net/confluence/display/LATEST/La+telephonie">BlueMind
+documentation</a></p>
+<p>If you want to configure your instance of BlueMind, <a href="https://forge.blue-mind.net/confluence/display/LATEST/Configuration+du+plugin+Xivo+Avencall">click this
+link</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1516.html#sprint-review-1516">Sprint Review 15.16</a></h2>
+    <p>
+      Posted on Mon 28 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Hello,</p>
+<h3>New features in this sprint:</h3>
+<p><strong>High Availablity</strong>: Phones can be rebooted and will still be
+functional when using a fallback server. The next step will be to
+replicate the phone's configuration on to the fallback server, so that
+an administrator may still be able to modify the phone's options.</p>
+<p><strong>XiVO Client</strong>: Blind transfers and attended transfers have been added
+to the people xlet. The transfer destination may be either a contact's
+main phone, or his mobile phone. This feature is one more step towards
+replacing the contacts xlet and finishing the unificiation of contacts
+in the xivo client</p>
+<p><strong>Voicemails</strong>: We have removed some limitations about the management of
+voicemails that were introduced in the last version. The voicemail
+system is now fully integrated with the REST API.</p>
+<h3>Ongoing features:</h3>
+<p><strong>Directories</strong>: we continue working on a new service that will
+integrate the new directory infrastructure with phones. The goal is to
+make contacts exposed via XiVO's directory attainable via a user's
+phone. This means that a user's personal contacts will also be avaible.</p>
+<p><strong>Security</strong>: we have started working on an permission system for our
+REST APIs. This will allow a finer grained access to the REST APIs and
+reduce the chances of accidentally breaking the rest of the system. For
+example, users will be able to modify their function keys, without
+having access to the function keys of other users.</p>
+<p><strong>SIP Lines</strong>: We are revamping the extra parameters for sip accounts in
+the same way as what has been done for voicemails. This will make it
+easier for users to configure advanced features in asterisk.</p>
+<p>See you for the next sprint review.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/232" title="XiVO 15.16 Roadmap">XiVO 15.16
+Roadmap</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html#we-are-6-and-yes-we-have-more-than-150-phones">We are 6 and yes we have more than 150 phones :)</a></h2>
+    <p>
+      Posted on Wed 09 September 2015 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>Hey XiVO community,</p>
+<p>Yes we work on telecomunications/telecoms, we would like to share with
+you some photos from our office at Quebec city ! Thanks to Etienne to
+have counted the phones.</p>
+<p><img alt="IMG_20150909_124822.jpg" src="/public/office/IMG_20150909_124822.jpg" title="IMG_20150909_124822.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124838.jpg" src="/public/office/IMG_20150909_124838.jpg" title="IMG_20150909_124838.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124855.jpg" src="/public/office/IMG_20150909_124855.jpg" title="IMG_20150909_124855.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124914.jpg" src="/public/office/IMG_20150909_124914.jpg" title="IMG_20150909_124914.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124919.jpg" src="/public/office/IMG_20150909_124919.jpg" title="IMG_20150909_124919.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124927.jpg" src="/public/office/IMG_20150909_124927.jpg" title="IMG_20150909_124927.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124936.jpg" src="/public/office/IMG_20150909_124936.jpg" title="IMG_20150909_124936.jpg, sept. 2015" /></p>
+<p><img alt="IMG_20150909_124943.jpg" src="/public/office/IMG_20150909_124943.jpg" title="IMG_20150909_124943.jpg, sept. 2015" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1515.html#sprint-review-1515">Sprint review 15.15</a></h2>
+    <p>
+      Posted on Wed 09 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Fellow Xivoists, the time has come for the release of 15.15. During
+thissprint we have fixed many bugs and continued working on
+featuressurrounding directories and contacts.</p>
+<h3>New features in this sprint</h3>
+<p><strong>Voicemail:</strong> The voicemail configuration page has been revamped.
+Youcan now configure as many extra parameters as you want in
+the"advanced" tab. These parameters will be included along side therest
+of the voicemail configuration in asterisk. This new free-formversion of
+the voicemail page offers more flexibility to advanced usersof asterisk,
+while still keeping it simple enough for regular users.</p>
+<p><strong>People Xlet:</strong> The new People Xlet is now fully integrated into
+xivo.We have talked about this xlet in previous sprints, however it
+could notbe used without some manual configuration on the server. With
+thisrelease, the xlet will work out-of-the-box once it has been added to
+aprofile. The People Xlet replaces the old remote directory, which
+hasbeen removed.</p>
+<h3>Ongoing features</h3>
+<p><strong>Directories:</strong> we have started working on a new service that
+willintegrate the new directory infrastructure with phones. The goal is
+tomake contacts exposed via xivo's directory usable from a user's
+phone.This means that bookmarked contacts and a user's personal contacts
+willalso be available.</p>
+<p><strong>SIP Lines:</strong> We will be revamping extra parameters for
+sipconfiguration in the same way as what has been done for voicemails.
+Thiswill make it easier for users to configure advanced features
+inasterisk.</p>
+<h3>Technical features</h3>
+<ul>
+<li><strong>Provd:</strong> new plugin for the 6800 series of Mitel phones
+    (formerly Aastra)</li>
+<li><strong>Directories:</strong> The configuration system for directories
+    has changed. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
+    notes</a>.</li>
+<li><strong>XiVO Client:</strong> The XiVO Client has been upgraded to Qt 5.5</li>
+<li>Certain restrictions regarding voicemails for a user have
+    been loosened. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
+    notes</a>.</li>
+</ul>
+<p>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a
+happyand invigorating farewell. I wish you shall remain in high spirits
+untilour next fateful encounter, 3 weeks from now. May the freedom of
+XiVObless your communications across the vast VoIP expanse.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/231" title="XiVO 15.15 Roadmap">XiVO 15.15
+Roadmap</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1514.html#sprint-review-1514">Sprint review 15.14</a></h2>
+    <p>
+      Posted on Fri 14 August 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Hello everyone,</p>
+<p>With the end of this sprint, most of the work on our new personal
+contacts system has been completed. We have also continued working on
+features already in progress in order to improve and solidify XiVO as a
+whole.</p>
+<h3>New features in this sprint</h3>
+<ul>
+<li>XiVO Client: Work on personal contacts has continued, brining us
+    closer to our goal of merging contact-related features into one
+    simple and feature-complete Xlet. New features this sprint include
+    editing, importing and exporting personal contacts. They can be
+    easily imported/exported with CSV files. Contacts stored in the old
+    Personal Directoy Xlet will be automatically migrated to the new
+    People Xlet after the upgrade. You can also mass delete all your
+    contacts in case of a problem during an importation.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Yealink: The firmware for Yealink phones has been upgraded to v80.
+    Upgrading the firmware allows us to support the latest models, fix
+    bugs and offer new features. These upgrades also add small
+    improvements, such as a better display for long names and support
+    for searching the XiVO directoy on T4X models.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Codecs: Opus and text codecs are now supported in XiVO. Adding
+    codecs enhances the interoperability of VoIP technologies, increases
+    the quality of audio, and helps in using less bandwidth. You can
+    configure the use of these codecs through the web interface.</li>
+</ul>
+<h3>Ongoing features</h3>
+<ul>
+<li>Directories: In the last sprint review, we mentioned our ongoing
+    work on unifiying directories. We now want to work on making the new
+    contact infrastructure usable by phones. This means that contacts
+    coming from different sources, such as an LDAP server, your personal
+    contacts, or other people on the same XiVO server, can be
+    transparently accessed and used from a phone.</li>
+</ul>
+<h3>Technical features</h3>
+<ul>
+<li>Asterisk: Minor upgrade from Asterisk 13.4 to 13.5. This upgrade
+    fixes the latest bugs and improves overall stability.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>The default password on polycom phones has been changed to 9486,
+    which represents 'XIVO' in numeric form. Users are strongly
+    encouraged to change this after an installation in order to prevent
+    security exploits.</li>
+</ul>
+<p><em>My fellow xivoists, as the Lord of XiVO allow me to bid you a happy and
+invigorating reading. I wish you shall remain in high spirits until our
+next fateful encounter, 3 weeks from now. May the freedom of xivo bless
+your communications, where ever they may be.</em></p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index2.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

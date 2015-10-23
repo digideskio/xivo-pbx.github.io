@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="The current version of prototype is named XIOHv5 (XiVO IPBX OpenHardware version5) and is still developed using 10-layers BRD file and 30+ pages of SCH (schematics) to handle the different blocks of the design and assemble them in one PCB. We have been doing several optimizations and features adding :-removing ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Preparing the production of our newer prototype (XIOHv5)"/>
+<meta property="og:description" content="The current version of prototype is named XIOHv5 (XiVO IPBX OpenHardware version5) and is still developed using 10-layers BRD file and 30+ pages of SCH (schematics) to handle the different blocks of the design and assemble them in one PCB. We have been doing several optimizations and features adding :-removing ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-07-11 10:16:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Preparing the production of our newer prototype (XIOHv5)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="preparing-the-production-of-our-newer-prototype-xiohv5">Preparing the production of our newer prototype (XIOHv5)</h1>
+    <p>Posted on Wed 11 July 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p><strong>The current version of prototype is named XIOHv5</strong> (XiVO IPBX
+OpenHardware version5) and is still developed using 10-layers BRD file
+and 30+ pages of SCH (schematics) to handle the different blocks of the
+design and assemble them in one PCB. <strong>We have been doing several
+optimizations and features adding :</strong>-removing one DIMM of DDR2-using a
+MSP430 micro-controller to handle the power-sequence (critical feature
+for the boot of the CPU EP80579)-space optimization for the power supply
+and connectors-changing the format of certain connectors (i.e. UART
+RS232 to an RJ45 connector)</p>
+<p>Please find below a screenshot of our BRD file (board file in Eagle 6.2)
+showing the PCB and displaying the polygons for certain layers</p>
+<p><img alt="XIOHv5-BRD-Polygons" src="/public/XIOHv5/.XIOHv5_PCB_m.jpg" title="XIOHv5-BRD-Polygons, juil. 2012" /></p>
+<p>Polygons are signal, power and ground wires that assemble zone of wire
+to simplify the design and have wires to handle some currents needs on
+some power rails that we have. The power rails are numerous on the board
+and they should respect the current level needed by each block diagram
+(we will make an up-coming on the power rail organization) and namely
+the SoC that carries different functionnal block such as MAC, USB, RAM,
+UART, and TDM controller.</p>
+<p>The design of these polygons take some times and should checked to be
+sure that we don't multiply signals by making polygons of the same
+signal with different names. For instance, all GND (ground) polygons
+should be connected and named the same.</p>
+<p>Once the board and schematics had been finalized and checked (and
+double-checked), we did process FAB files for the PCB manufacturing and
+below you can see the picture of our PCB on top of a stack of PCBs ready
+to be assembled with the 1000+ components and 150+ different references
+of parts.</p>
+<p><img alt="XIOHv5-PCB-Stickers" src="/public/XIOHv5/.P1050963_m.jpg" title="XIOHv5-PCB-Stickers, juil. 2012" /></p>
+<p>Prior to do the assembling in factory, we need check the package for
+each of our references and do a BoM (Bill of Materials) optimization to
+handle nicely our stock.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Preparing the production of our newer prototype (XIOHv5)",
+  "headline": "Preparing the production of our newer prototype (XIOHv5)",
+  "datePublished": "2012-07-11 10:16:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html",
+  "description": "The current version of prototype is named XIOHv5 (XiVO IPBX OpenHardware version5) and is still developed using 10-layers BRD file and 30+ pages of SCH (schematics) to handle the different blocks of the design and assemble them in one PCB. We have been doing several optimizations and features adding :-removing ..."
+}
+</script></body>
+</html>

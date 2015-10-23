@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="jylebleu" />
+<meta name="description" content="Documentation is often a touchy subject on many projects, and for XiVO in this respect, it is also an important matter. Retrospective, over retrospective, documentation organization and tools comes often to the surface. Maybe some of you already noticed that XiVO development cycle has changed and that we are now ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO Documentation Project"/>
+<meta property="og:description" content="Documentation is often a touchy subject on many projects, and for XiVO in this respect, it is also an important matter. Retrospective, over retrospective, documentation organization and tools comes often to the surface. Maybe some of you already noticed that XiVO development cycle has changed and that we are now ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-documentation-project.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-02-01 01:24:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/jylebleu.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO Documentation Project</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-documentation-project">XiVO Documentation Project</h1>
+    <p>Posted on Wed 01 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>Documentation is often a touchy subject on many projects, and for XiVO
+in this respect, it is also an important matter.</p>
+<p>Retrospective, over retrospective, documentation organization and tools
+comes often to the surface. Maybe some of you already noticed that XiVO
+development cycle has changed and that we are now producing a release
+every two weeks. In fact we started to use SCRUM six months ago, and in
+this respect, we do not forget to do our 'inspect and adapt' meeting,
+not so many often as we should but this is an other story !</p>
+<p>Anyway, XiVO documentation is currently done using a
+<a href="http://wiki.xivo.fr" title="wiki">wiki</a>, but this wiki is hard to maintain
+and to structure, information is also difficult to find. We tried also
+to use other type of wikis, but nothing was very satisfying.</p>
+<p>We looked over some other projects, to check how the documentation was
+done, and it comes to us that some of them are using
+<a href="http://sphinx.pocoo.org/" title="sphinx">sphinx</a></p>
+<blockquote>
+<p>“a tool that makes it easy to create intelligent and beautiful
+documentation, written by Georg Brandl and licensed under the BSD
+license”</p>
+</blockquote>
+<p>One of the item of our <em>Definition of Done</em> is documentation, it has to
+be done by the development team. It is so natural to us to edit
+restructured text, using GIT to push modification to a repository that
+all the team was enthusiast to use these tools for improving XiVO
+documentation. It was also an opportunity for us to try to use an
+external Git repository, we chose
+<a href="https://gitorious.org/xivo-doc" title="Gitorious">Gitorious</a> to start with
+XiVO documentation project. This is also a way to open it to a larger
+community.</p>
+<p>Do not hesitate to clone the project and submit documentation patches
+!!!</p>
+<p>Last but not least, documentation production is now integrated in our
+tool chain, using <a href="http://jenkins.xivo.fr" title="jenkins">jenkins</a> as
+integration server, files are pulled from Gitorious automatically to
+produce the <a href="http://documentation.xivo.fr" title="XiVO documentation site">XiVO documentation
+site</a></p>
+<p>You will find how to contribute
+<a href="http://documentation.xivo.fr/developers/contributes/index.html" title="here">here</a>
+Have fun !!</p>
+<p><img alt="XiVO documentation tool
+chain" src="/public/xivosoft/.doc_process_m.jpg" title="XiVO documentation tool chain, fév. 2012" /></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO Documentation Project",
+  "headline": "XiVO Documentation Project",
+  "datePublished": "2012-02-01 01:24:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "jylebleu",
+    "url": "http://blog.xivo.io/author/jylebleu.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-documentation-project.html",
+  "description": "Documentation is often a touchy subject on many projects, and for XiVO in this respect, it is also an important matter. Retrospective, over retrospective, documentation organization and tools comes often to the surface. Maybe some of you already noticed that XiVO development cycle has changed and that we are now ..."
+}
+</script></body>
+</html>

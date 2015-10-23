@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/services.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2011-06-07T12:39:00-04:00</updated><entry><title>Caluire Town Hall Installation</title><link href="http://blog.xivo.io/caluire-town-hall-installation.html" rel="alternate"></link><updated>2011-06-07T12:39:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2011-06-07:caluire-town-hall-installation.html</id><summary type="html">&lt;p&gt;&lt;img alt="installcaluire" src="/public/.IMAG0870_m.jpg" title="installcaluire, juin 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;I had the chance to participate to
+&lt;a href="http://www.ville-caluire.fr/"&gt;Caluire&lt;/a&gt; town hall installation a couple
+of weeks ago, where we deployed almost 150 phone sets in the building.&lt;/p&gt;
+&lt;p&gt;Two corporate &lt;a href="https://wiki.xivo.fr/index.php/Accueil"&gt;XIVO&lt;/a&gt; servers
+were inserted between the legacy PBX (Matra) and the PSTN network, we
+spent a lot of time to try to figure out how many channels were
+available as nobody did know it and the information was lost ! ;). Once
+the proper dahdi configuration was found everything started to work well
+and we began to replace little by little all the phone sets.&lt;/p&gt;
+&lt;p&gt;Highlights :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;150 phone sets&lt;/li&gt;
+&lt;li&gt;DECT&lt;/li&gt;
+&lt;li&gt;Mobile gateways to optimize mobile calls cost&lt;/li&gt;
+&lt;li&gt;Polycom sound stations for audio conferences&lt;/li&gt;
+&lt;li&gt;Fax gateway, mono and multi ports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As new phone sets were setup beside the old phone sets and old numbers
+were forwarded to the new installed ones, users were able to gradually
+become used to the new way of calling.&lt;/p&gt;
+&lt;p&gt;Thanks to Fred for this funny photo from the “installation war room”&lt;/p&gt;
+&lt;/p&gt;</summary></entry></feed>

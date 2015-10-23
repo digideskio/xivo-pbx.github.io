@@ -1,0 +1,1868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/hardware.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2013-03-14T11:04:00-04:00</updated><entry><title>Understanding the XIOH label on our product</title><link href="http://blog.xivo.io/understanding-the-xioh-label-on-our-product.html" rel="alternate"></link><updated>2013-03-14T11:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-14:understanding-the-xioh-label-on-our-product.html</id><summary type="html">&lt;p&gt;Dear XIOH followers,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;As we have passed the CE marking certification, we have finalized the
+label that we will have on our product with the revelant informations
+necessary to identify the product once on the market :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOH_Label" src="/public/XIOHv5/.P1070110_m.jpg" title="XIOH_Label, mar. 2013" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;"XIOH - version 5"&lt;/strong&gt; : the name of the product and the hardware
+    version&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"S/N : XIOH-5-1236-29"&lt;/strong&gt; ; the serial number including the
+    hardware version (5), the production batch (1236) and the number in
+    this batch (29)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"AC input: 100-240V\~, 4-2A, 60-50Hz"&lt;/strong&gt; : indication on the power
+    requirements used by our ATX 180W power supply&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"Manufacturer :Avencall"&lt;/strong&gt; : the name of the manufacturer (that
+    could be different is different production project)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"Sources : http://0001-0001.okey.ohanda.org"&lt;/strong&gt; : the OHANDA
+    trademark is our legal umbrella for this OpenHardware
+    project/product and a direct link to the GIT repository of our
+    hardware and software files is indicated on the label. This will
+    help the customers and users getting information on the hardware,
+    contacting us and sharing information&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"Made in France"&lt;/strong&gt; : we are currently producing in France (i.e.
+    locally as we are based here) but we would rather talk about local
+    production to track down the carbone footprint of our product from
+    components sourcing to cabling and packaging&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Differents logos&lt;/strong&gt; including the "CE" (1) and RoHS process of
+    production as well as the OHANDA logo.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(1) : http://en.wikipedia.org/wiki/CE_marking&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Passing the CE marking certification for EU market</title><link href="http://blog.xivo.io/passing-the-ce-marking-certification-for-eu-market.html" rel="alternate"></link><updated>2013-03-11T11:17:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-11:passing-the-ce-marking-certification-for-eu-market.html</id><summary type="html">&lt;div&gt;
+
+![Measurement of radiated
+disturbances](/public/XIOHv5/.MeasurementRadiatedDisturbances_m.jpg "Measurement of radiated disturbances, mar. 2013")
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+**  
+**
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+**The measurements of radiated disturbances had been done using the
+following equipments :**
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+-   Semi anechoic chamber (11,8x8,1x9,5m) SIEPEL C01
+-   Bilog antenna SHWARZBECK VULB9160
+-   EMI receiver RHODE&amp;SCHWARZ ESI40
+-   Pré-amplifier BONN 3018-8F30S
+-   Horn antenna ETS 3115
+
+&lt;/div&gt;
+
+&lt;p&gt;This tests had been done for the B-class which stands for domestic and
+professional markets which means we can now sell in all EU countries.&lt;/p&gt;
+&lt;p&gt;Xavier Carcelle.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Starting beta-test period for XIOH power-users and developers</title><link href="http://blog.xivo.io/starting-beta-test-period-for-xioh-power-users-and-developers.html" rel="alternate"></link><updated>2013-01-10T10:22:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-01-10:starting-beta-test-period-for-xioh-power-users-and-developers.html</id><summary type="html">&lt;p&gt;Dear XIOH followers and developers,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We are now entering our beta-test period with our first batch of XIOH
+appliances&lt;/strong&gt; available for shipping for developers and power-users that
+could be interested in testing and giving feedback on our product. The
+appliances are currently shipped in a metallic 1U-rackable case for up
+to 50 users and 10 simultaneous calls. It ships with &lt;a href="http://mirror.xivo.fr/iso/" title="XiVO 12.24"&gt;XiVO
+12.24&lt;/a&gt;. We're using free
+&lt;a href="http://git.xivo.fr/?p=official/xioh/firmware.git;a=summary"&gt;MSP430
+firmware&lt;/a&gt;
+running the power sequence of voltage levels for the different
+functional blocks, and a &lt;a href="http://git.xivo.fr/?p=official/xioh/coreboot.git;a=summary"&gt;free CPU boot
+firmware&lt;/a&gt;
+based on &lt;a href="http://coreboot.org"&gt;Coreboot&lt;/a&gt;. Each ROM contains MAC
+addresses with our OUI prefix, and a serial number. &lt;a href="http://git.xivo.fr/?p=official/xioh/hardware.git;a=summary"&gt;Public design
+source
+files&lt;/a&gt; are
+also available.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here is a glimpse on the look-and-feel of the appliance:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHv5 prototype
+casing" src="/public/XIOHv5/.XIOHv5_Prototype_StockPile_m.jpg" title="XIOHv5 prototype casing, janv. 2013" /&gt;&lt;/p&gt;
+&lt;p&gt;If anyone is interested, please contact us at
+xcarcelle_at_avencall_dot_com for availability and potential
+shipping.&lt;/p&gt;
+&lt;p&gt;The feedback of our first appliances running in production in 5
+different locations are good and we are able to confirm that we can
+handle up to 1000 calls a day on a single XiVO IOH.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HaPPy 2013 OpenHardware to yall.&lt;/strong&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Test vectors for SMBus Packet Error Checking (PEC) CRC-8</title><link href="http://blog.xivo.io/test-vectors-for-smbus-packet-error-checking-pec-crc-8.html" rel="alternate"></link><updated>2012-10-09T17:26:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-10-09:test-vectors-for-smbus-packet-error-checking-pec-crc-8.html</id><summary type="html">&lt;p&gt;While implementing the SMBus on the MSP430 (see also the post "&lt;a href="index.php?post/2012/09/29/An-engineering-story"&gt;An
+engineering story&lt;/a&gt;"), I
+have been looking for SMBus
+&lt;a href="http://en.wikipedia.org/wiki/System_Management_Bus#Packet_Error_Checking" title="PEC"&gt;&lt;abbrev title="Packet Error Checking"&gt;PEC&lt;/abbrev&gt;&lt;/a&gt;
+CRC-8 test vectors but could not find any.&lt;/p&gt;
+&lt;p&gt;A CRC is a &lt;a href="http://en.wikipedia.org/wiki/Cyclic_redundancy_check"&gt;Cyclic Redundancy
+Check&lt;/a&gt;. It is a
+little piece of data typically added at the end of a packet and used to
+check with an high reliability that no unintended error occurred during
+transmission (or storage). The math to do the computation and the check
+of a CRC is not very complicated and can be explained to anybody who
+knows how to do a &lt;a href="http://en.wikipedia.org/wiki/Long_division"&gt;long
+division&lt;/a&gt;. The polynomial
+for the SMBus PEC CRC-8 is x**8+x**2+x**1+1 -- this is a
+polynomial in GF(2), but you don't really have to understand that part
+to be able to use CRCs in practice. It corresponds to the binary number
+100000111, to be used in a particular way. The following text explains
+it better than I could:
+&lt;a href="http://www.ross.net/crc/download/crc_v3.txt" title="http://www.ross.net/crc/download/crc_v3.txt"&gt;http://www.ross.net/crc/download/cr...&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I made my own SMBus PEC CRC-8 test vectors (attached to this post). The
+format is one test vector per line, like:&lt;/p&gt;
+&lt;p&gt;TV(616263, 5F)&lt;/p&gt;
+&lt;p&gt;616263 is the 3-byte message in hexadecimal ("abc" in ASCII). The
+resulting one byte CRC-8 in hex is 5F.&lt;/p&gt;
+&lt;p&gt;The test vectors are checked with an official &lt;a href="http://smbus.org/faq/crc8Applet.htm"&gt;Java applet from
+smbus.org&lt;/a&gt;. They include at the
+beginning the result for each one byte packet, which is also the table
+for the fast byte based implementation: CRC = table[CRC \^ byte]
+(because the initial value to use for CRC is zero), On the MSP430, this
+implementation should run in something like 9 cycles per byte when
+dropped in the right place. (xor CRC, Rm /* 3 cycles */; mov
+table[Rm], CRC; /* 6 cycles */)&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>An engineering story</title><link href="http://blog.xivo.io/an-engineering-story.html" rel="alternate"></link><updated>2012-09-29T16:12:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-09-29:an-engineering-story.html</id><summary type="html">&lt;p&gt;To be able to track interesting quality metrics of our upcoming XiVO
+Office product (XiVO IPBX Open Hardware project), we have decided to add
+temperature sensors to our current XIOH pcb.&lt;/p&gt;
+&lt;p&gt;In computers, the typical way to report the temperature to the main
+operating system is through SMBus. This is suitable in our case: we
+already have an MSP430 microcontroller that handles the power sequence
+and is connected to the SMBus of the board. We will connect some diodes
+to the MSP430 to measure the temperature. So the time has come to make
+use of the SMBus between the MSP and the EP80579 (our main System On
+Chip), for temperature measurements and also other purposes.&lt;/p&gt;
+&lt;p&gt;The MSP430 does not have a full featured SMBus controller, only a
+generic I2C one. SMBus is a variant of I2C, with additional electrical
+and timing constraints in the physical layer and definition of the
+messages at the network layer level.&lt;/p&gt;
+&lt;p&gt;Although formatting and parsing SMBus messages is easy, properly using
+the I2C controller of the MSP430 in a multi-master environment is not
+without pitfalls, even if we did not care about the SMBus timing
+constraints. To do it with the needed reliability, it is necessary to
+have a detailed knowledge of the whole system and to take into
+consideration all kind of interactions on the bus and in the chips. In
+our business, the reliability wanted by the customers is typically high
+enough that it makes sense to build robust systems instead of rushing a
+collapsing sandcastle to market. Plus, in that particular case, we are
+dealing with the subsystem that brings and keeps the whole board
+running, and for which the cost to debug in the field is absurdly high.&lt;/p&gt;
+&lt;p&gt;All complex chips come with various design errors, and the MSP430 is no
+exception. On the exact version that we use, there are 6 documented
+errors affecting the I2C controller, of which 4 clearly apply to our
+board, 1 clearly does not apply, and one required careful system
+analysis to determine that the preconditions to this erroneous behavior
+could not happen in our system.&lt;/p&gt;
+&lt;p&gt;On top of the 4 errata applying to the I2C controller, we have to deal
+with errata for other parts of the MSP430, plus some detailled aspects
+that are not errata but are also limiting the way we can make a reliable
+use of the chip for the tasks we want.Failure to properly take all those
+details into consideration would lead to eventual faults of various
+natures, probably including MSP430 crashes impossible to diagnose and
+leading to spurious shutdowns, systems stuck in the powered state, or
+any random behavior and degradation of system functions.&lt;/p&gt;
+&lt;p&gt;The impact could be full-scale, with potential consequences on:
+availability, maintainability, safety, security, and reliability!&lt;/p&gt;
+&lt;p&gt;It is worthwhile to note that one of the errata that could have the
+biggest consequences can only be handled by using one specific software
+architecture to drive the I2C controller, and that specific software
+architecture is not the first thing that comes to mind in our
+preexisting firmware. This is a case where iteration on the design of
+the I2C code would have meant its complete rewrite.&lt;/p&gt;
+&lt;p&gt;Complex systems, even moderately so, need a careful design, especially
+on components that are critical for business or technical reasons.
+Wishful thinking never produces high reliability and neither does
+excessive reliance on luck. Modeling, even informally, sometimes pays.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Showing off XIOHv5 prototype PCB in its laser cut acrylic case</title><link href="http://blog.xivo.io/showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html" rel="alternate"></link><updated>2012-09-03T20:39:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-09-03:showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Please dear XIOH followers, as we approach the production of our final
+PCB, we have tried the PCB in an orange laser cut acrylic case.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Below you can discover the front view of the casing with our famous
+analog vintage Socotel S63 phone&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHv5 orange case
+front" src="/public/XIOHv5/.20120903_194503_m.jpg" title="XIOHv5 orange case front, sept. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;You can discover also the back view with all the interfaces of our
+appliance (2 usb, 3 GbE, 4 ISDN T0, FXS, FXO) :&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHv5_orange_case_back" src="/public/XIOHv5/.20120903_194314_m.jpg" title="XIOHv5_orange_case_back, sept. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For those who are willing to discover our latest prototype during
+live-demos, we will be at :&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Astricon2012 (Atlanta - 23-25/10/2012) : presenting XiVO Software
+    and hosting a booth&lt;/li&gt;
+&lt;li&gt;Hackfest 2012 (http://www.hackfest.ca/) : we will be using our XiVO
+    IPBX OpenHardware during some hacking contest related to VoIP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>XIOH prototype version 5: back from factory</title><link href="http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html" rel="alternate"></link><updated>2012-08-22T10:43:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-08-22:xioh-prototype-version-5-back-from-factory.html</id><summary type="html">&lt;h2&gt;Feedback of the factory&lt;/h2&gt;
+&lt;p&gt;In order to load the factory's pick-and-place machines (2 distinct ones
+were used to assemble bottom, then top, then throug-hole components), we
+needed an efficient way of sorting the components. Therefore, we created
+a database of the correspondence between our BOM and the stickers used
+by the factory to load the feeders. See below for an example of one
+sticker for one reference used on the top layer.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_PCB_STICK_EX" src="/public/XIOHv5/.P1050993_m.jpg" title="XIOHV5_PCB_STICK_EX, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;Once all the components were ready and sorted out, they were ready to be
+carried at the factory for loading and assembling.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_COMPONANTS_READY" src="/public/XIOHv5/.20120723_001_m.jpg" title="XIOHV5_COMPONANTS_READY, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;As an automatic machine geek, the best part was the loading and
+pick-and-place of the several ICs on the board. This part is quite
+impressive because of the efficiency of the placing. Afterwards, the PCB
+goes through an oven for 10minutes for the final soldering, then cools
+down prior to the manual assembly of the through-holes components.&lt;/p&gt;
+&lt;p&gt;Below is a picture with the various IC packages we are using (CPU, ISDN,
+FXO/FXS, micro-controllers...)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_LOADING_ICS" src="/public/XIOHv5/.20120725_005_m.jpg" title="XIOHV5_LOADING_ICS, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;We then prepared the through-holes to be manually assembled by the
+factory operators, with a schematic of each component in the best order
+to respect the mechanical constraints.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_THROUGH_HOLES" src="/public/XIOHv5/.20120725_013_m.jpg" title="XIOHV5_THROUGH_HOLES, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;The assembling of those throug-holes components can take up to 30minutes
+for complex boards. It has to be checked when there are a lot of
+connectors (for instance) on a board. The ready-to-test boards were then
+placed on shelves for us to start our debugging.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_MOUNTING_THOLES" src="/public/XIOHv5/.20120725_012_m.jpg" title="XIOHV5_MOUNTING_THOLES, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;The first batch of tests was done with 5 of the 50 PCBs in order for us
+to start the debugging in our lab.&lt;/p&gt;
+&lt;h2&gt;Debugging the PCBs&lt;/h2&gt;
+&lt;p&gt;Back to our lab, we were able to start the testing our boards. We did
+the following steps in-order:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;smoke test: testing the power-supply using current-limited power
+    supplies for each voltage level, on a special board without the CPU
+    assembled (in order to save one in case of short-circuit on
+    the board.)&lt;/li&gt;
+&lt;li&gt;flashing the board with our firmwares (programming the
+    power-sequence in an MSP430 and a BIOS in an SPI flash.) This
+    validates the flashing method and flashing tools/cables.&lt;/li&gt;
+&lt;li&gt;booting-up the CPU and testing the serial console&lt;/li&gt;
+&lt;li&gt;RAM testing: this validates the calibration and initialization of
+    the DDR2 controller by our custom firmware.&lt;/li&gt;
+&lt;li&gt;SATA testing: to be able to start the hard drive and the kernel
+    image after the complete BIOS boot sequence&lt;/li&gt;
+&lt;li&gt;testing the telco interfaces and phone call features.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_DEBUG_BOARD" src="/public/XIOHv5/.P1050995_m.jpg" title="XIOHV5_DEBUG_BOARD, août 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;Above is our main whiteboard listing the issues we have on each PCB, and
+how to fix those. This is the most exciting (though stressful) part of
+hardware development, as we were able to make progress and get results
+in a very short time. We were extastic when we got the first board fully
+working with the XiVO software running on it!&lt;/p&gt;
+&lt;h2&gt;Final tests&lt;/h2&gt;
+&lt;p&gt;The rest is mainly software: we got XiVO running with our kernel drivers
+and plan to do some stress testing to see how well our boards fare with
+time and use.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHV5_FULL_RUNNING" src="/public/XIOHv5/.20120802_001_m.jpg" title="XIOHV5_FULL_RUNNING, août 2012" /&gt;&lt;/p&gt;
+&lt;h2&gt;Next steps&lt;/h2&gt;
+&lt;p&gt;The next steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;finishing the production of the the first 50 PCB batch and start a
+    full 4-weeks time period of stress testing on our board to identify
+    potential hardware/software bugs,&lt;/li&gt;
+&lt;li&gt;validating the hardware and software,&lt;/li&gt;
+&lt;li&gt;optimizing the production process for the next batches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To be continued soon...&lt;/p&gt;
+&lt;p&gt;The XiVO Open Hardware team.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Preparing the production of our newer prototype (XIOHv5)</title><link href="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html" rel="alternate"></link><updated>2012-07-11T10:16:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:preparing-the-production-of-our-newer-prototype-xiohv5.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The current version of prototype is named XIOHv5&lt;/strong&gt; (XiVO IPBX
+OpenHardware version5) and is still developed using 10-layers BRD file
+and 30+ pages of SCH (schematics) to handle the different blocks of the
+design and assemble them in one PCB. &lt;strong&gt;We have been doing several
+optimizations and features adding :&lt;/strong&gt;-removing one DIMM of DDR2-using a
+MSP430 micro-controller to handle the power-sequence (critical feature
+for the boot of the CPU EP80579)-space optimization for the power supply
+and connectors-changing the format of certain connectors (i.e. UART
+RS232 to an RJ45 connector)&lt;/p&gt;
+&lt;p&gt;Please find below a screenshot of our BRD file (board file in Eagle 6.2)
+showing the PCB and displaying the polygons for certain layers&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHv5-BRD-Polygons" src="/public/XIOHv5/.XIOHv5_PCB_m.jpg" title="XIOHv5-BRD-Polygons, juil. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;Polygons are signal, power and ground wires that assemble zone of wire
+to simplify the design and have wires to handle some currents needs on
+some power rails that we have. The power rails are numerous on the board
+and they should respect the current level needed by each block diagram
+(we will make an up-coming on the power rail organization) and namely
+the SoC that carries different functionnal block such as MAC, USB, RAM,
+UART, and TDM controller.&lt;/p&gt;
+&lt;p&gt;The design of these polygons take some times and should checked to be
+sure that we don't multiply signals by making polygons of the same
+signal with different names. For instance, all GND (ground) polygons
+should be connected and named the same.&lt;/p&gt;
+&lt;p&gt;Once the board and schematics had been finalized and checked (and
+double-checked), we did process FAB files for the PCB manufacturing and
+below you can see the picture of our PCB on top of a stack of PCBs ready
+to be assembled with the 1000+ components and 150+ different references
+of parts.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOHv5-PCB-Stickers" src="/public/XIOHv5/.P1050963_m.jpg" title="XIOHv5-PCB-Stickers, juil. 2012" /&gt;&lt;/p&gt;
+&lt;p&gt;Prior to do the assembling in factory, we need check the package for
+each of our references and do a BoM (Bill of Materials) optimization to
+handle nicely our stock.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Speaking about OpenHardware at SolutionsLinux2012</title><link href="http://blog.xivo.io/speaking-about-openhardware-at-solutionslinux2012.html" rel="alternate"></link><updated>2012-07-11T09:41:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:speaking-about-openhardware-at-solutionslinux2012.html</id><summary type="html">&lt;p&gt;The last &lt;strong&gt;"SolutionsLinux2012"&lt;/strong&gt; fair in Paris was the occasion once
+again (as we keep the tradition to have a booth there) to present our
+latest developments for XiVO and the current deployments we have in
+France and elsewhere. This year, &lt;strong&gt;the local web TV&lt;/strong&gt; was giving many
+interesting interviews of OpenSource people (you can follow the Flo2sTV
+channel &lt;a href="http://www.youtube.com/user/Flo2sTV" title="here"&gt;here&lt;/a&gt; and the
+twitter of Philippe Scoffoni
+&lt;a href="https://twitter.com/pscoffoni" title="Philippe Scoffoni twitter"&gt;there&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;We had the opportunity to give an &lt;strong&gt;interview about the OpenHardware
+movement current status&lt;/strong&gt; (sorry the interview is in french) and some
+insights of the projects and products that are available out-there, as
+well as the description of an OpenHardware.&lt;/p&gt;
+&lt;div class="external-media"
+style="margin: 1em auto; text-align: center;"&gt;
+
+&lt;iframe width="640" height="360" src="http://www.youtube.com/embed/QyiHHfr_1zQ?fs=1&amp;amp;feature=oembed" frameborder="0" allowfullscreen&gt;
+&lt;/iframe&gt;
+
+[Ou en est-on sur
+l'OpenHardware](http://www.youtube.com/watch?v=QyiHHfr_1zQ&amp;list=UUwuwOISdsHyANAgCcykw4UA&amp;index=1&amp;feature=plcp)
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>Multicloning with Clonezilla - part 1</title><link href="http://blog.xivo.io/multicloning-with-clonezilla-part-1.html" rel="alternate"></link><updated>2012-06-29T12:12:00-04:00</updated><author><name>bligneul</name></author><id>tag:blog.xivo.io,2012-06-29:multicloning-with-clonezilla-part-1.html</id><summary type="html">&lt;p&gt;First step, you need to boot on Clonezilla from the usb drive.Choose
+"Default settings: 800x600", use English language, and select "don't
+touch keymap".  &lt;/p&gt;
+&lt;p&gt;Then, « Start Clonezilla »&lt;br /&gt;
+Select the first option « work with disks or partitions using images »
+and « local_dev : use local device »&lt;br /&gt;
+Enter  &lt;/p&gt;
+&lt;p&gt;Choose the right external hard disk drive in the list (size of HDD can
+help you).&lt;br /&gt;
+Select « Beginner » mode (you can choose expert mode if want more
+options).&lt;br /&gt;
+Select « 1-2-mdisks » to restore the XiVO iso file.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Clonezilla-mode-select" src="/public/.clonezilla-select-mode_m.jpg" title="Clonezilla-mode-select, juin 2012" /&gt;&lt;br /&gt;
+Use the image to restore and select drives that you want to clone.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="clonezilla-add-hdd" src="/public/.clonezilla-add-hdd_m.jpg" title="clonezilla-add-hdd, juil. 2012" /&gt;&lt;br /&gt;
+To finish : y (for yes) and y (yes)  &lt;/p&gt;
+&lt;p&gt;After waiting, (5-20min) it's finished : drives are cloned.&lt;br /&gt;
+You can « Poweroff » your computer and use your new hdds with XiVO.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO IOH first CPU prototype board fully working - part1</title><link href="http://blog.xivo.io/xivo-ioh-first-cpu-prototype-board-fully-working-part1.html" rel="alternate"></link><updated>2011-12-16T10:06:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-12-16:xivo-ioh-first-cpu-prototype-board-fully-working-part1.html</id><summary type="html">&lt;p&gt;Dear followers of our &lt;strong&gt;XiVO IPBX OpenHardware project&lt;/strong&gt;, we are happy
+to announce that our &lt;strong&gt;first version of our prototype for the CPU
+board&lt;/strong&gt; (PCB prototyping the CPU and the different interfaces connected
+to the CPU) is now fully working and we have a full GNU/Linux system
+running on it to start stress-testing our platform (tests of currents
+and temperature in a full stress mode). We are now getting closer and
+closer to publish a fully-open design of an IPBX running
+GNU/Linux/Asterisk/XiVO in OpenHardware.&lt;/p&gt;
+&lt;p&gt;First we had our &lt;strong&gt;PCB pick-and-placed in our PCB factory&lt;/strong&gt; (mainly on a
+Fuji machine) and you can see below a screenshot from the precision
+placement camera on the machine&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOH_CPU_Factory_Cabling_Screenshot" src="/public/.20111006_014_m.jpg" title="XIOH_CPU_Factory_Cabling_Screenshot, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;The main concerns of a PCB design when one wants to first test the just
+"pick-and-placed" board is to follow different steps to prevent
+undetection of hardware errors of design. These steps are usually (at
+least, the ones we followed) the following :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Smoketest&lt;/strong&gt; : of the powersupply block doing the different
+    voltages level of the board (crucial for a SoC like the one we
+    are using) by using different DC external powersuplies for the
+    different ATX voltage levels (+12V, -12V, +5V, +5VSBY, +3V3) and
+    limiting the current following the Intel EP80579 datasheet. This
+    test was positive on each of the voltage level and confirming that
+    our power-supply is functionnal in terms of voltage level and
+    current limitations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bringup&lt;/strong&gt; : booting the board with a correct DDR2 DIMM (1Go) and
+    flashing our version of coreboot build on our 2Mo SPI-flash using a
+    dediprog SF100 SPI programer&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connecting the SATA HDD w/ a fully configured Linux kernel&lt;/strong&gt; and
+    trying to jump from the functionnal coreboot to grub then Linux
+    decompression of the image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please find below, a picture of the lab deployment of the board powered
+by external power-supplies and connected to a bus-pirate for the
+flashing of our bootloader through SPI connexions.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOH_CPU_P4_test_1" src="/public/.20111118_001_m.jpg" title="XIOH_CPU_P4_test_1, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;Once this smoke-test and bring-up test were fully positive and allowing
+us to move to next step with some stress-tests :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Temperature#&lt;/strong&gt;1 : Running a memtest86+ on the DDR2 and testing
+    the temperature of the CPU package w/ a temperature sensor&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temperateur#2&lt;/strong&gt; : Running an Intel utility for our SoC (pushing
+    the CPU usage to 100% and memory to 50%) and measuring the
+    temperature&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temperature#3&lt;/strong&gt; : Putting one of our board into a test metallic
+    case and connecting the board w/ 3 parallel GbE interfaces fully
+    loaded w/ iperf at 1Gbps and measuring the temperature in the case
+    after several hours&lt;/li&gt;
+&lt;li&gt;Bitrate : Iperf'ing the 3xGbE interfaces and measuring the load of
+    the CPU and the transfer bitrates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please find below, a picture of our lab w/ 2 XIOH CPU boards running our
+test-program and 3xGbE interfaces connected together one-by-one&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOH_CPU_P4_test_2" src="/public/.20111125_002_m.jpg" title="XIOH_CPU_P4_test_2, déc. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;We will update our different tests on the CPU boards and keep you update
+on the follow-ups of our design steps.&lt;/p&gt;
+&lt;p&gt;Xavier Carcelle.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>OpenHardware landscape Q4 2011</title><link href="http://blog.xivo.io/openhardware-landscape-q4-2011.html" rel="alternate"></link><updated>2011-11-01T19:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-11-01:openhardware-landscape-q4-2011.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The OpenHardware community is expanding more and more these past
+months and here a short landscape view of the community nowadays :&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenHardware large board projects&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PandaBoard :
+&lt;a href="http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip"&gt;http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip&lt;/a&gt;&lt;br /&gt;
+Chumby :
+&lt;a href="http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip"&gt;http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip&lt;/a&gt;&lt;br /&gt;
+MilkyMist :
+&lt;a href="http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification"&gt;http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification&lt;/a&gt;&lt;br /&gt;
+Tormenta v2 PCI card :
+&lt;a href="http://www.zapatatelephony.org/t2/T2B2Gerber.zip"&gt;http://www.zapatatelephony.org/t2/T2B2Gerber.zip&lt;/a&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OpenHardware smaller board projects&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DIY boards : &lt;a href="http://tuxgraphics.org/electronics/"&gt;http://tuxgraphics.org/electronics/&lt;/a&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Open "specifications" Hardware products&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Elphel camera :
+&lt;a href="http://www.elphel.com/importwiki?title=353_in_a_nutshell"&gt;http://www.elphel.com/importwiki?title=353_in_a_nutshell&lt;/a&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Blogs/Events/Journals&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OpenHardwareJournal :
+&lt;a href="http://openhardware.org/journal/2011/11/index.html"&gt;http://openhardware.org/journal/2011/11/index.html&lt;/a&gt;&lt;br /&gt;
+Hack-a-day : &lt;a href="http://hackaday.com"&gt;http://hackaday.com&lt;/a&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Events/Conferences/Workshops&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OpenHardwareSummit : &lt;a href="http://www.openhardwaresummit.org/"&gt;http://www.openhardwaresummit.org/&lt;/a&gt;&lt;br /&gt;
+OpenHardwareWorkshop :
+&lt;a href="http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop"&gt;http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop&lt;/a&gt;&lt;br /&gt;
+OpenSourceHardware2011 (Madrid) : &lt;a href="http://oshwcon.org/"&gt;http://oshwcon.org/&lt;/a&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Licences&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OHANDA : &lt;a href="http://ohanda.org"&gt;http://ohanda.org&lt;/a&gt;&lt;br /&gt;
+CERN : &lt;a href="http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects"&gt;http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects&lt;/a&gt;&lt;br /&gt;
+OpenSourceHardwareDefintion : &lt;a href="http://freedomdefined.org/OSHW"&gt;http://freedomdefined.org/OSHW&lt;/a&gt;  &lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>PCB prototypes and flash SPI testing</title><link href="http://blog.xivo.io/pcb-prototypes-and-flash-spi-testing.html" rel="alternate"></link><updated>2011-10-04T16:10:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2011-10-04:pcb-prototypes-and-flash-spi-testing.html</id><summary type="html">&lt;p&gt;On the XiVO Open Hardware side, we have been very busy lately writing
+various bits of low level software, preparing the production of the
+first prototypes, validating some hardware subsystems and doing all sort
+of hardware + low level software debugging.&lt;/p&gt;
+&lt;p&gt;We are starting again to have things interesting to show, with some cute
+photos.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PCB prototypes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We recently received our first PCB prototypes for our motherboard:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XIOH motherboard
+prototype" src="/public/.xioh_motherboard_proto_m.jpg" title="XIOH motherboard prototype, oct. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;To prepare for testing the first assembled prototypes, we wanted to
+somehow test the communication between the EP80579 and the SPI flash.
+For now we have a 74LVC125A buffer between the two chips in order to
+isolate the flash from the SoC, and we wanted to validate this design.&lt;/p&gt;
+&lt;p&gt;We previously did a small model of the flash subsystem, A few days ago I
+heavily hacked it to make it work. (Well some of the modifications were
+probably not really necessary, but now we have a perfect signal quality
+:)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Heavily hacked flash prototype
+board" src="/public/.heavily_hacked_flash_proto_m.jpg" title="Heavily hacked flash prototype board, oct. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;The next step was to do the same test, this time using one of our spare
+naked PCBs dedicated to that kind of testing.We first soldered the flash
+and the buffer, then we strapped a HE10 ISP header to replace the
+EP80579 SPI drivers by a flash programmer (this is obviously not a
+perfect replacement, but we can't do much better...)&lt;/p&gt;
+&lt;p&gt;Here is a photo of the header being soldered:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Soldering an SPI header at SoC
+position" src="/public/.soldering_an_SPI_header_at_SoC_position_m.jpg" title="Soldering an SPI header at SoC position, oct. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;Here is the soldered result, connected to the programmer:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Testing flash
+communication" src="/public/.testing_flash_communication_m.jpg" title="Testing flash communication, oct. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;And here is the result:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="SPI flash communication test
+results" src="/public/.flash_comm_test_result_m.jpg" title="SPI flash communication test results, oct. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;So we are now hopeful that at least the SPI flash communication will
+work on our assembled board \\o/&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sourcing the components and scripting the components parts e-shops (digikey, ...)</title><link href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html" rel="alternate"></link><updated>2011-03-30T17:19:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-30:sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html</id><summary type="html">&lt;p&gt;As I am constantly searching for informations on the different parts
+(i.e. components on the PCB), &lt;strong&gt;i have scripted www.digikey.com&lt;/strong&gt; (the
+HTML form is quite stable) in python in order to automatize the search
+on the website.&lt;/p&gt;
+&lt;p&gt;The script can be found here :
+&lt;a href="http://carcelle.fu8.com/digikey.py" title="digikey.py"&gt;digikey.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This script can be used like : python digikey.py BC847BVNDITR-ND
+(BC847BVNDITR-ND is a part reference on the digikey website).&lt;/p&gt;
+&lt;p&gt;I am looking for similar that can be used/optimized for the other e-shop
+such as Farnell, Mouser, Radiospares in order to have a common script
+tool able to search all these e-shops in one and give a report on the
+availability for parts in a db run daily or weekly.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Moving forward to the production of the prototypes - FXO/FXS boards</title><link href="http://blog.xivo.io/moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html" rel="alternate"></link><updated>2010-12-20T18:00:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-12-20:moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;As the XiVO IPBX OpenHardware project moves forward to the production
+of our first protoboards&lt;/strong&gt; for our internal tests, we are pleased to
+give a first display of the PCB board file for the FXO/FXS interfaces on
+the IPBX that are routed from the XHFC-4SU controller :  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO IOH FXOFXSv5
+PCB" src="/public/.XiVO_IOH_PCB_FXOFXSv5_Interfaces_m.jpg" title="XiVO IOH FXOFXSv5 PCB, déc. 2010" /&gt;  &lt;/p&gt;
+&lt;p&gt;When one designs a PCB, it's requires to create two files in order to
+reach the final board ready for production (we will give more posts
+about the production files needed for the electronic factories receiving
+them once we reach this level of the project) : &lt;strong&gt;the .SCH (Schematics
+file with all the electrical connexions between the components and the
+chips on-board) and the .BRD (Board file with the actual real-sized PCB
+and the components position with all the net connexions&lt;/strong&gt;). This image
+displays the .BRD file designed for the FXO/FXS interfaces.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Visiting CologneChip AG : The ISDN Chip company !</title><link href="http://blog.xivo.io/visiting-colognechip-ag-the-isdn-chip-company.html" rel="alternate"></link><updated>2010-11-03T11:07:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:visiting-colognechip-ag-the-isdn-chip-company.html</id><summary type="html">&lt;p&gt;We had the pleasure to visit the CologneChip AG engineering team this
+week in Koln, Germany and exchange on the ISDN markets and chips (and
+the different market penetration of ISDN, FTTH, DOCSIS, xDSL in Europe
+countries). ISDN is still strong in Germany w/ 29 Millions subscribers
+(22M analog subscribers and 6M subscribers w/ DOSCIS and xDSL - sources:
+Bundesnetzagentur) and still allow over the 144Kbits/s of net data rate,
+2 bearer channels (B-channels) w/ 64Kbits/s each which is equivalent to
+3.4Khz voice channel at 8 ksamples/second. The XiVO IPBX OpenHardware
+will propose 4 BRI (also called S0 for point-to-multipoint BRI type)
+interfaces to allow these data and voice applications.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Please find below the Koln cathedral that you can find on the
+    XHFC-4SU chip:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Koln Cathedral" src="/public/.P1040583_m.jpg" title="Koln Cathedral, nov. 2010" /&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The entrance of the CologneChip AG offices below:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="cologneChip
+offices" src="/public/.CologneChip_AG_Offices_m.jpg" title="cologneChip offices, nov. 2010" /&gt;  &lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Participation to IPConvergence 2010 - Feedbacks and pictures</title><link href="http://blog.xivo.io/participation-to-ipconvergence-2010-feedbacks-and-pictures.html" rel="alternate"></link><updated>2010-11-03T10:24:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:participation-to-ipconvergence-2010-feedbacks-and-pictures.html</id><summary type="html">&lt;p&gt;It was a great pleasure to be participating to the IPConvergence
+telecommunications fair and present the XiVO IPBX OpenHardware project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Please find below our prototype cased in a 1U rack for
+    demonstrations and presentations of the project:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="XiVO OIH 0.1 cased in 1U
+rack" src="/public/.XiVO_IOH_Casing_rack_1U_m.jpg" title="XiVO OIH 0.1 cased in 1U rack, nov. 2010" /&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Below is a picture of the booth at IPConvergence fair:  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="IPConvergence XiVO
+booth" src="/public/.P1040544_m.jpg" title="IPConvergence XiVO booth, nov. 2010" /&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Finally, for vintage telephony geeks, the famous french Socotel S63
+    in orange (XiVO color):  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="FT Socotel S63 orange
+1983" src="/public/.P1040592_m.jpg" title="FT Socotel S63 orange 1983, nov. 2010" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Participation to the OpenHardwareSummit : OHANDA representation and feedbacks</title><link href="http://blog.xivo.io/participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html" rel="alternate"></link><updated>2010-10-04T09:03:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html</id><summary type="html">&lt;p&gt;It was a great pleasure to participate to the &lt;strong&gt;OpenHardwareSummit2010
+in the New York City Museum of Science&lt;/strong&gt; and representing the OHANDA
+trademark during the LAW panel. Thanks to Alicia and Ayah to have
+organized such an event that gives publicity to the OpenHardware
+movement out-there. I have surely pushed the usage of the world
+&lt;strong&gt;OpenHardware&lt;/strong&gt; (versus the OpenSource-Hardware term that seems to
+close to OpenSource software) for the future as the common term for the
+hardware projects opening their production and design files. The
+audience was 200 people and mainly north-american and that was a great
+pleasure to speak and recall the great previous OpenHardware projects
+launched in Europe since years now (OpenMoko, OpenPCD, Milkymist,
+OpenPattern...).&lt;/p&gt;
+&lt;p&gt;The summit was a one-day long session of presentations and panel
+discussions followed by an exchange about the OpenHardware definition.
+During the LAW panel discussion, I had the opportunity to present the
+OHANDA trademark and&lt;/p&gt;
+&lt;p&gt;Some discussions panels attracted my attention :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;* PRODUCTIZING: Scaling/ Manufacturing/ Moving beyond DIY :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OHS2010 - Production
+panel" src="/public/.P1040509_m.jpg" title="OHS2010 - Production panel, oct. 2010" /&gt;  &lt;/p&gt;
+&lt;p&gt;This talk was a great opportunity to have the feedbacks of a production
+facilities (Clint Cooley from Circuit Co) that supports OpenHardware
+projects in the US and see a great ramp-up of the projects requesting
+small, medium and large fab of the their PCBs. We can see that some
+manufacturers will play a great role in this field and some OpenHardware
+project will be able to mutualize some aspects of the production for
+bigger PCBs (more layers, 200-500-1000 components-BOM...).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;* BUSINESS: Open hardware business models :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OHS2010 - Marketing
+panel" src="/public/.P1040507_m.jpg" title="OHS2010 - Marketing panel, oct. 2010" /&gt;  &lt;/p&gt;
+&lt;p&gt;This talk gives the occasion to hear several business model of
+OpenHardware companies ("yes" there is a business model for OpenHardware
+projects up to several 100k units per product a year) w/ the
+participation of prototyping and products companies such as Chumby
+(represented by Bunny skype-ing from Singapore). Definitely the opening
+of the design and production files is giving business opportunities for
+partners (resellers, hardware-mods, software-hacks, global solutions)
+rather than opening the pandora box of copies for cheaper was the global
+conclusion of this panel discussion.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;* LAW: Open hardware licenses and norms :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OHS LawPanel
+1" src="/public/.OHS_LawPanel_1_m.jpg" title="OHS LawPanel 1, oct. 2010" /&gt;  &lt;/p&gt;
+&lt;p&gt;This panel discussion was the occasion to have around the table several
+legal opinions (with lawyers, Peter Brown from the FSF, a hardware
+hacker) leading to the following topics :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;* What is the interest of opening hardware ?
+* How to protect a licence/trademark-ed OpenHardware project in case of legal violation from a files point of view ?
+* What about the closed documentation of the chips used in an OpenHardware ?
+* What about the firmware used in SoC -based OpenHardware projects ?
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Perter Brown from FSF was applausing the 4 freedoms of the OHANDA
+trademark adapting the ones from the FSF licence.&lt;/p&gt;
+&lt;p&gt;Below I have collected some documentations and informations about the
+OHS2010 :&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.flickr.com/photos/open_hardware_summit/page2/"&gt;Pictures of the OHS
+2010&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Transcripts of the talks during the summit :&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://designmind.frogdesign.com/blog/welcome-from-the-open-hardware-summit.html"&gt;Transcripts of the
+talks&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Audio MP3 archives :&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.isoc-ny.org/p2/?p=1237"&gt;Audio MP3 archives of the OHS&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://punkcast.com/1795/1795-12/1795-12_ohs_law_panel.mp3"&gt;Audio MP3 archives of the LAW
+panel&lt;/a&gt;  &lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO IPBX OpenHardware selected for the innovation trophy</title><link href="http://blog.xivo.io/xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html" rel="alternate"></link><updated>2010-10-04T08:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html</id><summary type="html">&lt;p&gt;&lt;img alt="IPConvergence
+2010" src="/public/.IPConvergence_2010_m.jpg" title="IPConvergence 2010, oct. 2010" /&gt;  &lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;We are very pleased to announce that the **XiVO IPBX OpenHardware&lt;/dt&gt;
+&lt;dt&gt;product has been selected for the Innovation Trophy at the IPConvergence&lt;/dt&gt;
+&lt;dt&gt;technology trade in Paris** (Oct. 19-20-21 2010) in the category "Best&lt;/dt&gt;
+&lt;dt&gt;innovative technology for enterprise unified communications" (in French&lt;/dt&gt;
+&lt;dd&gt;L’innovation technologique de l’année dans les communications
+d’entreprise).  &lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;a href="http://www.ipconvergence.fr/Les+Troph%C3%A9es+de+la+Convergence+%3A+Jury+et+Nomin%C3%A9s_341_1078.html"&gt;IPConvergence Innovation Trophies
+nomination&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We will be presenting the XiVO IPBX OpenHardware during this trade-show
+using our &lt;strong&gt;brand new logo for the project&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logo XiVO IPBX
+OpenHardware" src="/public/.XiVO_IPBX_OpenHardware_Logo_s.jpg" title="Logo XiVO IPBX OpenHardware, sept. 2010" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 2</title><link href="http://blog.xivo.io/kicad-walkthrough-part-2.html" rel="alternate"></link><updated>2010-09-21T12:04:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-09-21:kicad-walkthrough-part-2.html</id><summary type="html">&lt;p&gt;The schematic represents a logical point of view of an electronic
+circuit. Before we can design a
+&lt;a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board"&gt;PCB&lt;/a&gt;
+layout matching this circuit, we must specify how each schematic
+component will be physically implemented. For example, a 20 pin chip can
+come in
+&lt;a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package"&gt;SSOP&lt;/a&gt;
+or
+&lt;a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package"&gt;DIP&lt;/a&gt;,
+and the board won't look exactly the same in each case (the traces won't
+end at the same places).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DIL20 to 50 mils spaced
+traces" src="/public/dil20.png" title="DIL20 to 50 mils spaced traces, sept. 2010" /&gt;
+&lt;img alt="SSOP20 to 50 mils spaced
+traces" src="/public/ssop20.png" title="SSOP20 to 50 mils spaced traces, sept. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The two images above represent 20 traces (50 mils spaced) ending on a
+DIL20 package (left) and on a SSOP20 package (right).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /&gt; In
+&lt;a href="http://www.kicad-eda.org/"&gt;KiCad&lt;/a&gt;, this assignment between schematic
+components and module footprint is done with the program named CVpcb.&lt;/p&gt;
+&lt;p&gt;Before CVpcb can be used, a
+&lt;a href="http://en.wikipedia.org/wiki/Netlist"&gt;netlist&lt;/a&gt; must be generated. A
+netlist is an abstract representation of the electronic circuit, which
+focus on describing which pins of the various components are
+interconnected (in a set that is called a net), disregarding the details
+of how they are connected in the schematic drawing. The schematic
+drawing is an abstract representation, and for example the length and
+the shape of a connection it includes is irrelevant to how this
+connection will eventually be physically implemented on the PCB. So the
+netlist is simply the list of all the components plus a list of nets,
+each one containing a list of interconnected pins of various components.&lt;/p&gt;
+&lt;p&gt;The netlist and which footprint to use for each component will later be
+the input of the PCB design done with PCBnew. To automatically generate
+the netlist with EESchema, click on the generate netlist button
+&lt;img alt="Generate netlist
+button" src="/public/generate_netlist_button.png" title="Generate netlist button, sept. 2010" /&gt;
+in the top toolbar: a "Netlist" window appears, in which you just have
+to click on the button "Netlist" in the tab Pcbnew while the "Default
+format" option is selected. You are then presented with a "Save Netlist
+Files" dialog, in which you just have to confirm the filename -- it
+should already be correctly selected as &amp;lt;project_name&amp;gt;.net in the
+project directory.&lt;/p&gt;
+&lt;p&gt;Now that the netlist is generated, we can use CVpcb. Launch it for
+example by clicking on its icon &lt;img alt="Run CVpcb
+button" src="/public/run_cvpcb_button.png" title="Run CVpcb button, sept. 2010" /&gt;
+also in the top toolbar of EESchema.When no affectation has been done
+before for the current project, CVpcb immediatly warns that a
+&amp;lt;project_name&amp;gt;.cmp file does not exist -- this is not a problem,
+it will be created by CVpcb when you save.&lt;/p&gt;
+&lt;p&gt;Now for each schematic component you can assign a PCB footprint. Select
+the component on the left then double click on the footprint you want to
+use for it on the right. You can press the first letter of what you are
+looking for when one of the two lists is activated.&lt;/p&gt;
+&lt;p&gt;When you save in CVpcb, it shows a "Save Net and Component List" dialog
+defaulting to the same &amp;lt;project_name&amp;gt;.net file that we created
+during netlist generation. This is OK, just overwrite the former: CVpcb
+will maintain the same netlist in the saved file, but the file will now
+also include schematic components to module footprints affectations. A
+&amp;lt;project_name&amp;gt;.cmp file is also created behind the scene, which
+contains just the affectations using a different file format.&lt;/p&gt;
+&lt;p&gt;For our clock buffer, the affectation in CVpcb looks like the following
+screen-shoot.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Clock buffer CVpcb footprint assignment
+screenshoot" src="/public/cvpcb_sshoot.png" title="Clock buffer CVpcb footprint assignment screenshoot, sept. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The corresponding .net and .cmp files are attached to this post.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>IEEE MAC OUI Bloc registration for the XiVO IPBX OpenHardware - [08-D2-9A]</title><link href="http://blog.xivo.io/ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html" rel="alternate"></link><updated>2010-09-08T08:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-09-08:ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html</id><summary type="html">&lt;p&gt;We are very pleased to update our followers with the different steps of
+the process of design of our &lt;strong&gt;XiVO IPBX OpenHarware&lt;/strong&gt;. Most of us work
+since several years in the telecommunication field and have been using
+extensively MAC Ethernet addresses on numerous networks appliances at
+the Layer 2.&lt;/p&gt;
+&lt;p&gt;Since a network appliance has one/several Ethernet interfaces based on a
+MAC (IEEE 802.3 controller) and PHY (Signaling and physical interface to
+the Ethernet connector) interfaces, the unique OUI MAC addresses are
+stored in a non-volatile memory in the Ethernet chip or in a companion
+memory on-board. These unique &lt;strong&gt;IEEE OUI MAC&lt;/strong&gt; addresses are usually
+transparent for the hardware designer as they are registered by the
+MAC/PHY chip manufacturers to IEEE registration office.&lt;/p&gt;
+&lt;p&gt;In our case, we will have a SoC integrating the IEEE 802.3 MAC
+controller and storing the 3 Ethernet MAC addresses in a flash memory.
+Therefore we have been registrating our own IEEE MAC OUI bloc to be used
+in our different network hardware projects. This IEEE OUI bloc will then
+be available publicly with the update of Ethernet sniffer/dissectors
+after August 31st 2010.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This bloc will be 08-D2-9A and the XiVO IPBX OpenHardware will appear
+as 08-D2-9A-XX-XX-XX on the Ethernet networks.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A search on &lt;strong&gt;Proformatique&lt;/strong&gt; on &lt;a href="http://standards.ieee.org/regauth/oui/index.shtml"&gt;the IEEE OUI and Company_id search
+interface&lt;/a&gt; help to
+retrieve the associated informations.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Representing OHANDA at the OpenHardwareSummit (NYC, 23/9/10)</title><link href="http://blog.xivo.io/representing-ohanda-at-the-openhardwaresummit-nyc-23910.html" rel="alternate"></link><updated>2010-08-30T08:40:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-30:representing-ohanda-at-the-openhardwaresummit-nyc-23910.html</id><summary type="html">&lt;p&gt;&lt;img alt="OpenHardwareSummit" src="/public/.OHS_site_logo_m.jpg" title="OpenHardwareSummit, août 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OHANDA Logo" src="/public/.OHANDA_Logo_m.jpg" title="OHANDA Logo, août 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;We are very pleased to announce that we will be participating to the
+&lt;strong&gt;OpenHardwareSummit&lt;/strong&gt; ^[&lt;span
+id="rev-pnote-33-1"&gt;&lt;a href="#pnote-33-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^ in New York (on Sept.
+23rd) representing the OHANDA Trademark during a discussion panel called
+&lt;strong&gt;"LAW: Open hardware licenses and norms"&lt;/strong&gt; .This is a great opportunity
+for us (OHANDA TM, OpenHardwareInitiative, OpenTechSummit organizers) to
+present the work done w/ the OHANDA trademark and exchange about the
+best licenses/trademarks/standards to commonly use during our different
+OpenHardware projects to reach the same credibility to this community as
+for the OpenSource community.&lt;/p&gt;
+&lt;p&gt;The panel will be as followed :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LAW: Open hardware licenses and norms&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;• Moderator: Dave Mellis, Arduino &amp;amp; MIT Media Lab• Windell Oskay, Evil
+Mad Scientist• Wendy Seltzer, Harvard University: Berkman Center for
+Internet &amp;amp; Society• Matt Stack, Liquidware• Michael Weinberg, Public
+Knowledge• Peter Brown, Freedom Software Foundation• Xavier Carcelle,
+OHANDA&lt;/p&gt;
+&lt;p&gt;We will post during the OpenHardwareSummit to blog the outcome of the
+panel and others discussions there.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+
+#### Notes
+
+\[&lt;span id="pnote-33-1"&gt;[1](#rev-pnote-33-1)&lt;/span&gt;\]
+http://www.openhardwaresummit.org/schedule/
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 1</title><link href="http://blog.xivo.io/kicad-walkthrough-part-1.html" rel="alternate"></link><updated>2010-08-23T18:18:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-08-23:kicad-walkthrough-part-1.html</id><summary type="html">&lt;p&gt;For our prototyping/validation tests, we need a particular clock buffer.
+Unfortunately, it only comes in
+&lt;a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package"&gt;SSOP&lt;/a&gt;
+or similar packages and we need to plug it to our
+&lt;a href="http://en.wikipedia.org/wiki/Breadboard"&gt;breadboard&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While we could have used a generic off-the-shelf
+&lt;a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package"&gt;SSOP&lt;/a&gt;
+to
+&lt;a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package"&gt;DIP&lt;/a&gt;
+&lt;a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board"&gt;PCB&lt;/a&gt;,
+we preferred, armed with KiCad, to design a specific one that will
+perfectly fit on our breadboard between our existing connectors,
+minimizing the amount of additional wiring on those sensitive clock
+signals. Also, the small PCB will act as a module by integrating
+terminations, power, and activation tracks without needing to reserve
+horizontal breadboard line for that. As a result it will be easily
+replaceable (or entirely skippable) in virtually no time.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="http://www.kicad-eda.org/"&gt;KiCad suite&lt;/a&gt; is splitted in several
+programs. "kicad" the executable is a small project manager that permits
+to easily launch other programs to edit the right files.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="KiCad project
+manager" src="/public/kicad_project_manager.png" title="KiCad project manager, août 2010" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img alt="EESchema icon" src="/public/eeschema.png" title="EESchema icon, août 2010" /&gt;
+    EESchema is the
+    &lt;a href="http://en.wikipedia.org/wiki/Circuit_diagram"&gt;schematic&lt;/a&gt; editor.&lt;/li&gt;
+&lt;li&gt;&lt;img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /&gt; CVpcb
+    allows to assign module footprint (physical package) to
+    schematic components.&lt;/li&gt;
+&lt;li&gt;&lt;img alt="PCBnew icon" src="/public/pcbnew.png" title="PCBnew icon, août 2010" /&gt; PCBnew
+    is the
+    &lt;a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board"&gt;PCB&lt;/a&gt; editor.&lt;/li&gt;
+&lt;li&gt;&lt;img alt="GerbView icon" src="/public/gerbview.png" title="GerbView icon, août 2010" /&gt;
+    GerbView is a
+    &lt;a href="http://en.wikipedia.org/wiki/Gerber_File"&gt;Gerber&lt;/a&gt; viewer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A typical workflow is to use them right in this order. You can also go
+back to previous steps to correct things; the changes can be correctly
+propagated to the next programs.&lt;/p&gt;
+&lt;p&gt;To start a project from scratch, launch kicad, press Ctrl-N and name
+your project (and select the directory where it will live). Now launch
+EESchema by clicking on its icon. The most important tools to draw a
+schematic are in the bar on your right and in the Place menu. Among
+them, you'll need most:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img alt="Place a component
+    icon" src="/public/place_a_component.png" title="Place a component icon, août 2010" /&gt;
+    Place a component&lt;/li&gt;
+&lt;li&gt;&lt;img alt="Place a wire
+    icon" src="/public/place_a_wire.png" title="Place a wire icon, août 2010" /&gt; Place
+    a wire&lt;/li&gt;
+&lt;li&gt;&lt;img alt="Place no connect flag
+    icon" src="/public/place_no_connect_flag.png" title="Place no connect flag icon, août 2010" /&gt;
+    Place no connect flag&lt;/li&gt;
+&lt;li&gt;&lt;img alt="Place net name
+    icon" src="/public/place_net_name.png" title="Place net name icon, août 2010" /&gt;
+    Place net name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;EESchema takes very little time to get used to. Don't hesitate to
+experiment and try a lot of features of this software. To speed you up,
+here are a few hints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Components are better selected, when you don't know their symbolic
+    name, by using the library browser during insertion: click anywhere
+    in the sheet while using the "Place a component" tool, then click on
+    the "Select by browser" button, find the component that you want and
+    finally click on the &lt;img alt="Insert component in schematic
+    icon" src="/public/insert_component_in_schematic.png" title="Insert component in schematic icon, août 2010" /&gt;
+    "Insert component in schematic" button at top-right.&lt;/li&gt;
+&lt;li&gt;EESchema UI for edition is mostly based on a contextual menu
+    accessible by right clicking;&lt;/li&gt;
+&lt;li&gt;to end a wire "in the air" (for later connection); right click at
+    the wanted position when drawing one and select "Wire end";&lt;/li&gt;
+&lt;li&gt;to drag a wire, right click on it and select "Drag wire";&lt;/li&gt;
+&lt;li&gt;to drag a zone, left click-and-drag to select the zone, then right
+    click and select "Drag zone";&lt;/li&gt;
+&lt;li&gt;dragging don't disconnect/change existing connections, while
+    moving/orienting will disconnect/reconnect things (depending on
+    where the module connectors end up);&lt;/li&gt;
+&lt;li&gt;junctions are added automatically if you start/end a wire in the
+    middle of another;&lt;/li&gt;
+&lt;li&gt;you can edit the title block in the &lt;img alt="Page settings
+    icon" src="/public/page_settings.png" title="Page settings icon, août 2010" /&gt;
+    Page settings;&lt;/li&gt;
+&lt;li&gt;learn shortcut keys and use them to be faster;&lt;/li&gt;
+&lt;li&gt;note that KiCad file formats are plain text based, which is
+    extremely cool because you can write external scripts to automatize
+    certain tasks (moving a lot of references by a given vector comes
+    to mind).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The schematic of our module looks like the following screenshoot.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Clock buffer EESchema schematic
+screenshoot" src="/public/eeschema_sshoot.png" title="Clock buffer EESchema schematic screenshoot, août 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;Here is the corresponding KiCad schematic file:
+&lt;a href="/public/pcb_h100_clk_fs_49fct3805a.sch"&gt;pcb_h100_clk_fs_49fct3805a.sch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href="index.php?post/2010/09/21/KiCad-walkthrough-Part-2"&gt;next article&lt;/a&gt;
+will be about schematic component to module footprint assignment.
+(CVpcb)&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Giving more tools, hints and URLs to the community</title><link href="http://blog.xivo.io/giving-more-tools-hints-and-urls-to-the-community.html" rel="alternate"></link><updated>2010-08-04T08:57:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-04:giving-more-tools-hints-and-urls-to-the-community.html</id><summary type="html">&lt;p&gt;In the world of the OpenHardware projects, we do aim at giving to the
+community more hints about prototyping hardware, understanding (also
+reversing) existing hardware, hacking (in the sense of modifying and
+adding more unexpected features) equipments, reusing "old" hardware and
+sharing production and lab facilities. The last years had seen a number
+of blogs and URLs in this field such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://www.bunniestudios.com/blog/"&gt;Name that ware&lt;/a&gt;&lt;/strong&gt;: The famous
+    blog from BunnyStudios that post regularly a pictures of a PCB where
+    you should discover the name of the original electronic
+    products behind. Bunny is also the hardware developper behind
+    the Chumby.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://www.adafruit.com/"&gt;AdaFruit&lt;/a&gt;&lt;/strong&gt;: A blog/portal dedicated to
+    making some hardware devices (usually micro-controllers) and &lt;a href="http://www.adafruit.com/index.php?main_page=tutorials"&gt;a load
+    of tutorials&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://www.sump.org/projects/"&gt;Sump&lt;/a&gt;&lt;/strong&gt; from Michael Poppitz who
+    developed the hardware for the famous OpenBench LogicSniffer based
+    on a FPGA that allows a very flexible LogicAnalyzer w/ up to
+    32channels (16 on a H10-2.54mm header and 16 on-pcb) and 200MHz
+    frequence sampling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://dangerousprototypes.com/"&gt;DangerousPrototypes&lt;/a&gt;&lt;/strong&gt;: A portal
+    that proposes a new OpenHardware project everymonth and distributes
+    numerous prototyping hardware and tools including some hints to
+    &lt;a href="http://thinkl33t.co.uk/?p=316"&gt;make your own laser-cut case&lt;/a&gt; for
+    your OpenBench logic analyzer or PirateBus analyzer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://hackmii.com/"&gt;Hackmii&lt;/a&gt;&lt;/strong&gt;: A hardware hacking blog
+    dedicated mostly to the Wii hacking but with a lots of tutorials and
+    hardware exploits and a link with forum that somehow more difficult
+    to find.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>[Prototype] Description of the functionnal buses</title><link href="http://blog.xivo.io/prototype-description-of-the-functionnal-buses.html" rel="alternate"></link><updated>2010-08-03T09:50:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-03:prototype-description-of-the-functionnal-buses.html</id><summary type="html">&lt;p&gt;As this OpenHardware project moves forward, we are now approaching a
+&lt;strong&gt;complete prototyping&lt;/strong&gt; of our functionnal blocks and
+telecommunications interfaces control from the Linux kernel. The main
+functionnal blocks to be tested and validated are in our architecture
+based on the following buses:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SPI (Serial Peripheral Interface)&lt;/strong&gt; bus between the CPU and the
+    FXO/FXS chip&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LEB (Local Expansion Bus)&lt;/strong&gt; between the CPU and the ISDN chip&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TDM (Time Division Multiplexing)&lt;/strong&gt; connecting the CPU, ISDN and
+    FXO/FXS chip together to transmit the digial streams of voice
+    channels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPIO (General Purpose Input Output)&lt;/strong&gt; for the RST (Reset) signals
+    and IRQ (Interrupts) signals&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLK (Clock)&lt;/strong&gt; signals architecture to be sent to the different
+    chips&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Below is a picture of our prototype boards&lt;/strong&gt; connected together to
+demonstrate the functionnalities of each blocks for our software
+development on the Linux kernel modules:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO IPBX Prototype
+WishBoard-108" src="/public/.20100802_002_m.jpg" title="XiVO IPBX Prototype WishBoard-108, août 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;We have been using the large prototyping breaboard from Wisher (at
+farnell.com on:
+&lt;a href="http://fr.farnell.com/jsp/search/productdetail.jsp?SKU=1472854"&gt;http://fr.farnell.com/jsp/search/productdetail.jsp?SKU=1472854&lt;/a&gt;) that
+is great to split different wires connectivity on the breadboard.&lt;/p&gt;
+&lt;p&gt;In the next posts, we will describe the results and work done on each
+buses to achieve the first global tests for voice channel routing with
+our XiVO IPBX OpenHardware.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>The first OpenHardwareSummit and more OpenHardware movements</title><link href="http://blog.xivo.io/the-first-openhardwaresummit-and-more-openhardware-movements.html" rel="alternate"></link><updated>2010-07-20T13:52:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-07-20:the-first-openhardwaresummit-and-more-openhardware-movements.html</id><summary type="html">&lt;p&gt;We see currently a great energy and interest for the &lt;strong&gt;OpenHardware
+movement&lt;/strong&gt; with different groups or consortiums aiming at creating a
+common energy in this. The OHANDA Trademark is definitely a great
+baseline for the upcoming OpenHardware project to have a legal umbrella
+and present their project files in a central repository where the
+users/customers of the OHANDA trademark-ed products will be able to find
+the documents/files need to understand/modify/improve within the respect
+of this trademark.&lt;/p&gt;
+&lt;p&gt;This week, 2 more news came out in the OpenHardware movement with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A common definition of the OpenHardware 0.3. ^[&lt;span
+    id="rev-pnote-26-1"&gt;&lt;a href="#pnote-26-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^. The definition is
+    derived from the Open Source Definition, which was created by Bruce
+    Perens and the Debian developers as the Debian Free Software
+    Guidelines&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The announcement of the OpenHardwareSummit ^[&lt;span
+    id="rev-pnote-26-2"&gt;&lt;a href="#pnote-26-2"&gt;2&lt;/a&gt;&lt;/span&gt;]^ to be held the
+    September23rd in NYC, US. This event will be supported by Chris
+    Anderson (Wired), Mako Hill (OLPC, Wikipedia), Becky Stern (Make),
+    Jon Philips (Qi), Shigeru Kobayashi (Gainer), Thinh Nguyen and John
+    Wilbanks (CC) and the sponsor of the event (littleBits, Eyebeam).
+    Also the people from Creative Commons will be there and that is a
+    great news as different people in the OpenHardware community had
+    decided to use the CC licence to release the schematics and gerber
+    files of their PCBs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;During this event, we will do a presentation of the OHANDA Trademark and
+the projects currently under this trademark as we will talk during the
+event.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+
+#### Notes
+
+\[&lt;span id="pnote-26-1"&gt;[1](#rev-pnote-26-1)&lt;/span&gt;\]
+http://freedomdefined.org/OSHW
+
+\[&lt;span id="pnote-26-2"&gt;[2](#rev-pnote-26-2)&lt;/span&gt;\]
+http://www.openhardwaresummit.org
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</title><link href="http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html" rel="alternate"></link><updated>2010-06-22T14:19:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-22:using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html</id><summary type="html">&lt;p&gt;In the process of developing an OpenHardware project, the prototyping
+process is quite important and namely the validation of the data buses
+exchanging telecommunications data (synchronization, reset, interrupts,
+tx/rx data, signaling...) between the different interfaces and chips on
+the hardware product.&lt;/p&gt;
+&lt;p&gt;At this step of, once the analog SP (Signal Processing) is validated,
+one can test the data-buses using the so-called "LogicAnalyzer" that
+will put the signal on the bus into readable binary data (from the TTL
+levels triggered on edges or any other events on the trigger line
+chosen).LogicAnalyzer can be quite expensive appliance (such as digital
+scope or frequency analyzer) but nowadays affordable device exist also
+allowing the hardware designer / tester to monitor the data on one bus.
+Such kind of LogicAnalyzer are usually based on 3 parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EZ-Hook type of connectors to probe the pins/headers on the
+    prototype card or PCB (i.e. TP - TestPoint)&lt;/li&gt;
+&lt;li&gt;TTL-to-USB chip to transform the analog signal probed into binary
+    signals&lt;/li&gt;
+&lt;li&gt;USB interface to connect the host-PC with the right analyzer
+    software (usually unfortunately running for MS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please find a list of USB Logic Analyzer available (some supported with
+sigrok ^[&lt;span id="rev-pnote-24-1"&gt;&lt;a href="#pnote-24-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;USBee SX Test Pod Logic Analyzer ^[&lt;span
+    id="rev-pnote-24-2"&gt;&lt;a href="#pnote-24-2"&gt;2&lt;/a&gt;&lt;/span&gt;]^ (a HUGE sample buffer
+    PC and USB based multifunction logic analyzer)&lt;/li&gt;
+&lt;li&gt;EE Electronics XLA ESLA100 (a cheap 8-channel logic analyzer)&lt;/li&gt;
+&lt;li&gt;ASIX Sigma (a 6 channel logic analyzer with sample rate support up
+    to 200 MHz and with 256 Mbit on-board memory)&lt;/li&gt;
+&lt;li&gt;Openbench Logic Sniffer (a FPGA-based logic analyzer, supporting 32
+    probes for probing up to 100MHz signals)&lt;/li&gt;
+&lt;li&gt;Braintechnology USB-LPS (a Cypress FX2 based logic analyzer and
+    signal generator with up to 16 channels)&lt;/li&gt;
+&lt;li&gt;Buspirate ^[&lt;span id="rev-pnote-24-3"&gt;&lt;a href="#pnote-24-3"&gt;3&lt;/a&gt;&lt;/span&gt;]^&lt;/li&gt;
+&lt;li&gt;Intronix Logicport LA1034 (a FPGA-based logic analyzer, capable of
+    sampling data on 34 channels at up to 500MHz) ^[&lt;span
+    id="rev-pnote-24-4"&gt;&lt;a href="#pnote-24-4"&gt;4&lt;/a&gt;&lt;/span&gt;]^&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The one we are using for the prototyping of the XiVO OpenHardware IPBX
+is a Saleae Logic Analyzer with the 1.0.21 software ^[&lt;span
+id="rev-pnote-24-5"&gt;&lt;a href="#pnote-24-5"&gt;5&lt;/a&gt;&lt;/span&gt;]^&lt;/p&gt;
+&lt;p&gt;Below are 2 snapshots of signals probed on the Local Expansion Bus
+connecting the CPU with the ISDN chip:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/CS: Chip Select signal (to indicate which chip on the LEB should
+    be driven)&lt;/li&gt;
+&lt;li&gt;/RD: ReaD signal (from the CPU indicating that the data will be read
+    from the ISDN chip registers)&lt;/li&gt;
+&lt;li&gt;/WR: WRite signal (from the CPU indicating that the data will be
+    written into the ISDN chip registers)&lt;/li&gt;
+&lt;li&gt;ALE: Address LatchE to indicate which Address of Data to retrieve&lt;/li&gt;
+&lt;li&gt;D0: Bit 0 from the LEB data bus&lt;/li&gt;
+&lt;li&gt;D1: Bit 1 from the LEB data bus&lt;/li&gt;
+&lt;li&gt;D2: Bit 2 from the LEB data bus&lt;/li&gt;
+&lt;li&gt;A8: Address 8 (EX_ADDR&lt;a href="8" title="8"&gt;8&lt;/a&gt;) line on the CPU used to trigger
+    the scope or the logic analyzer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As one can see in the screenshot below, the A8 line is set on "0" + "1"
+which means the triggering is done on upper edge from this signal.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LEB CPU ISDN LogicAnalyzer
+traces" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot1_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces, juin 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The view below is a zoomed view of the above screenshot with a focus on
+the triggering on A8 line&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LEB CPU ISDN LogicAnalyzer traces
+zoom" src="/public/.XiVO_IPBX_LEB_BUS_CPU_ISDN_Snapshot2_m.jpg" title="LEB CPU ISDN LogicAnalyzer traces zoom, juin 2010" /&gt;&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+
+#### Notes
+
+\[&lt;span id="pnote-24-1"&gt;[1](#rev-pnote-24-1)&lt;/span&gt;\]
+http://sigrok.org/wiki/Main\_Page
+
+\[&lt;span id="pnote-24-2"&gt;[2](#rev-pnote-24-2)&lt;/span&gt;\] http://usbee.com
+
+\[&lt;span id="pnote-24-3"&gt;[3](#rev-pnote-24-3)&lt;/span&gt;\]
+http://dangerousprototypes.com/2009/11/03/bus-pirate-logic-analyzer-mode/
+
+\[&lt;span id="pnote-24-4"&gt;[4](#rev-pnote-24-4)&lt;/span&gt;\]
+http://www.pctestinstruments.com/
+
+\[&lt;span id="pnote-24-5"&gt;[5](#rev-pnote-24-5)&lt;/span&gt;\]
+http://www.saleae.com
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>The XiVO IPBX OpenHardware eco-system</title><link href="http://blog.xivo.io/the-xivo-ipbx-openhardware-eco-system.html" rel="alternate"></link><updated>2010-06-17T13:41:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-17:the-xivo-ipbx-openhardware-eco-system.html</id><summary type="html">&lt;p&gt;As we move forward on the validation of the different functionnal block
+of the XiVO IPBX OpenHardware project, we can now describe more
+precisely the different blocks and the eco-system of the project.&lt;/p&gt;
+&lt;p&gt;The functionnal blocks are numbered now as followed for the validation
+and PCB Schematics :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1-CPU
+2-ISDN
+3-FXO-FXS
+4-UART
+5-EEPROM
+6-ETH
+7-SD-USB
+8-SATA
+9-LEDS
+10-DDR2
+11-SPI-FLASH
+12-CPU-JTAG
+13-PWR
+14-CLK
+15-RST
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We will then follow-up on the documentation of the project for the
+validation and PCB Schematics with this numbering allowing
+sub-documentation and discussion for each functionnal block.&lt;/p&gt;
+&lt;p&gt;Concerning the eco-system of the project, the figure below describes the
+different steps to go to the production of the XiVO IPBX OpenHardware
+product.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO IPBX OpenHardware
+EcoSystem" src="/public/.XiVO_IPBX_OpenHardware_EcoSystem_m.jpg" title="XiVO IPBX OpenHardware EcoSystem, juin 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The next posts will describe the validation of the communication between
+the CPU&lt;a href="1" title="1"&gt;1&lt;/a&gt; and the ISDN&lt;a href="2" title="2"&gt;2&lt;/a&gt; and the FXO-FXS&lt;a href="3" title="3"&gt;3&lt;/a&gt;.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Official OHANDA annoucement</title><link href="http://blog.xivo.io/official-ohanda-annoucement.html" rel="alternate"></link><updated>2010-05-24T21:57:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-24:official-ohanda-annoucement.html</id><summary type="html">&lt;p&gt;OHANDA stands for Open Source Hardware and Design Alliance&lt;/p&gt;
+&lt;p&gt;OHANDA is an initiative to foster sustainable sharing of open hardware
+and design. It was first drafted at the GOSH!-Grounding Open Source
+Hardware summit at the Banff Centre in July 2009.&lt;/p&gt;
+&lt;p&gt;One of the first goals of the project is to build a service for sharing
+open hardware designs which includes a certification model and a
+registration. Recently we are working on getting an
+OpenHardware&lt;a href="TM" title="TM"&gt;TM&lt;/a&gt; off the ground.&lt;/p&gt;
+&lt;p&gt;OHANDA is work in process. The process is open ...&lt;/p&gt;
+&lt;p&gt;Please check http://www.ohanda.organd subscribe to our
+mailinglist:https://piksel.no/mailman/listinfo/ohanda&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>KiCAD: The OpenSource EDA tool for designing PCBs</title><link href="http://blog.xivo.io/kicad-the-opensource-eda-tool-for-designing-pcbs.html" rel="alternate"></link><updated>2010-05-20T14:49:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-20:kicad-the-opensource-eda-tool-for-designing-pcbs.html</id><summary type="html">&lt;p&gt;This post aims at presenting KiCAD ^[&lt;span
+id="rev-pnote-21-1"&gt;&lt;a href="#pnote-21-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^, THE OpenSource EDA tool
+for CAD file used to design PCB (Printed Circuit Boards) originally
+designed and written by Jean-Pierre Charras, a researcher at LIS
+(Laboratoire des Images et des Signaux) and a teacher at IUT de Saint
+Martin d'Hères (France), in the field of electrical engineering and
+image processing.KiCAD aims at being a tool equivalent to the
+"closed-non-free" CAD software like Atium Protel, Eagle, Cadence with
+the benefit of a free and open-source with a community of developer and
+early-user implementing KiCAD for industrial hardware design of PCB up
+to 10layers and a growing collection of component footprints and
+reference in the library (the standard footprints like SOTs, QFPs, BGAs
+are crucial to have the maximum support of the ICs, chips of the silicon
+manufacturers)&lt;/p&gt;
+&lt;p&gt;Kicad is a set of four softwares and a project manager:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Eeschema: Schematic entry.&lt;/li&gt;
+&lt;li&gt;Pcbnew:Board editor.&lt;/li&gt;
+&lt;li&gt;Gerbview: GERBER viewer (photoplotter documents).&lt;/li&gt;
+&lt;li&gt;Cvpcb: footprint selector for components used in the circuit design.&lt;/li&gt;
+&lt;li&gt;Kicad: project manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;KiCAD early-users and developers can participate to the project on the
+subversion ^[&lt;span id="rev-pnote-21-2"&gt;&lt;a href="#pnote-21-2"&gt;2&lt;/a&gt;&lt;/span&gt;]^&lt;/p&gt;
+&lt;p&gt;A bug tracker ^[&lt;span id="rev-pnote-21-3"&gt;&lt;a href="#pnote-21-3"&gt;3&lt;/a&gt;&lt;/span&gt;]^ is
+up and running for feedbacks from the users (GUI optimization for GNU
+users and Windows users mainly).&lt;/p&gt;
+&lt;p&gt;From our XiVO IPBX OpenHardware project point of view, we are also using
+KiCAD mainly for small PCB and Schematics of your interfaces between
+each functionnal block. The screen-shot below presents the KiCAD
+Eeschema to implement the TDM connexion between the CPU and the ISDN
+chip:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO ISDN TDM Connexions
+Prototyping" src="/public/.KiCAD_XiVO_PCB_Prototyping_XHFC_4SU_TDM_Bus_m.jpg" title="XiVO ISDN TDM Connexions Prototyping, mai 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The right-side toolbar is for selecting the object to include in the
+schematic (component, power, ground, wires ...), the top part toolbar is
+there for the sheet preferences and settings and for the interaction
+with the PCB editor and gerber exporter and viewer.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+
+#### Notes
+
+\[&lt;span id="pnote-21-1"&gt;[1](#rev-pnote-21-1)&lt;/span&gt;\]
+http://www.lis.inpg.fr/realise\_au\_lis/kicad/
+
+\[&lt;span id="pnote-21-2"&gt;[2](#rev-pnote-21-2)&lt;/span&gt;\]
+http://kicad.svn.sourceforge.net/viewvc/kicad/
+
+\[&lt;span id="pnote-21-3"&gt;[3](#rev-pnote-21-3)&lt;/span&gt;\]
+https://bugs.launchpad.net/kicad
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>The perfect OpenHardware Lab</title><link href="http://blog.xivo.io/the-perfect-openhardware-lab.html" rel="alternate"></link><updated>2010-05-11T12:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-11:the-perfect-openhardware-lab.html</id><summary type="html">&lt;p&gt;In an OpenHardware project, making up a perfect lab is crucial in order
+to prototype, test and solder parts before going to PCB pre-production
+and production.&lt;/p&gt;
+&lt;p&gt;This post aims at presenting the set-up of the XiVO IPBX OpenHardware
+lab at Proformatique.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The main list of hardware equipment we have in our lab is:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Working-table from Langlois - Gradignan, France (typically used for
+    electronic practical session in the secondary schools and
+    engineering schools) with wooden table and neon to have a close-up
+    working light&lt;/li&gt;
+&lt;li&gt;Oscilloscope Tektronix DP2012 with Ethernet interface (web server
+    running on the digital Oscilloscope that can control the settings on
+    the 2 ways)&lt;/li&gt;
+&lt;li&gt;Multimeter ChauvinArnoux - CA703 (CAT IV - 600V with the diode
+    function used to validate continuity of PCB trace when looking for
+    connectivity on a PCB)&lt;/li&gt;
+&lt;li&gt;Weller solder station WD1 with 2.5mm, 1mm and 0.5mm ends&lt;/li&gt;
+&lt;li&gt;2 x PowerSupply PS3003 (24V in order to be able to do 48V with 2
+    power-supplies back-to-back)&lt;/li&gt;
+&lt;li&gt;Zooming lens for close-ups soldering and debugging&lt;/li&gt;
+&lt;li&gt;ATX PowerSupply to power motherboard and ATX-based EvaluationBoards&lt;/li&gt;
+&lt;li&gt;Saleae LogicAnalyzer (USB-based and supported with &lt;strong&gt;sigrok&lt;/strong&gt; with
+    Linux / http://www.sigrok.org/wiki/Main_Page for the list of
+    supported logic analyzers) for data-bus debugging&lt;/li&gt;
+&lt;li&gt;Solderless breadboard SD-24 for wires connexion through the
+    breadboard&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Please find below a picture of our hardware lab with the equipment
+descrived above:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Proformatique - XiVO - Hardware
+Lab" src="/public/.P1030609_m.jpg" title="Proformatique - XiVO - Hardware Lab, mai 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;This is important to get also small tools like cutting tools, small
+wires (like the precious HIRSCHMANN MKL0,64/25-0,25 - reference
+#1011430 at farnell.com
+&lt;a href="http://fr.farnell.com/hirschmann/mkl0-64-25-0-25-red/cordon-de-test-rouge-0-64m/dp/1011430?Ntt=1011430" title="http://fr.farnell.com/hirschmann/mkl0-64-25-0-25-red/cordon-de-test-rouge-0-64m/dp/1011430?Ntt=1011430"&gt;http://fr.farnell.com/hirschmann/mk...&lt;/a&gt;),
+soldering wires (RoHS with 1mm and 0.5mm diameter), screw-drivers, SMT
+and non SMT resistors, capacitors and selfs, labels for different wire
+description.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Prototype PCB for the ISDN and FXO/FXS interfaces</title><link href="http://blog.xivo.io/prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html" rel="alternate"></link><updated>2010-05-04T13:42:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-04:prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html</id><summary type="html">&lt;p&gt;As the XiVO IPBX OpenHardware project moves forward, we are now doing
+the prototyping of the different fonctionnal bloc of the PCB and namely
+the interaction between the CPU and the Telco interfaces (ISDN and
+FXO/FXS).In order to do a clean prototyping, it is usually adviced to
+use the different EVB (EValuationBoards) and SDK (Software Development
+Kits) supplied by the chip manufacturer (CPU, ISDN, FXO/FXS) and try to
+do the "proof-of-concept" of the hardware design connecting the
+different EVBs and use the SDKs provided to run the SPI and TDM buses
+(Master and Slaves) from the CPU.&lt;/p&gt;
+&lt;p&gt;In our case, we made some intermediate PCBs that can make a clean
+connection between the CPU EVB and the ISDN and FXO/FXS interfaces. With
+the great help of Mehdi Khairy (that used to work with me on the
+OpenPattern project) using KiCAD to route the different PCBs (some
+bugfixes sent to the KiCAD bugtracker during the routing at
+https://bugs.launchpad.net/kicad).&lt;/p&gt;
+&lt;p&gt;The ISDN connection from the CPU EVB to the ISDN EVB chip (XHFC-4SU - a
+4 T1 lines ISDN frame buffers on-chip from CologneChip) is done using
+the following PCB (XHFC-4SU-Protoboard) ;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XHFC-4SU-Protoboard" src="/public/.XHFC-4SU_Protoboard_m.jpg" title="XHFC-4SU-Protoboard, mai 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;The FXO/FXS connection from the CPU EVB to the FXO/FXS EVB chip (VE890
+EVB from Zarlink implementing 2 FXS and 1 FXO) is done using the
+following PCB (Zarlink-VE890-Protoboard) ;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zarlink-VE890-Protoboard" src="/public/.Zarlink_VE890_Protoboard_m.jpg" title="Zarlink-VE890-Protoboard, mai 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;Next posts will be presenting the results and the signal obtained on the
+SPI and TDM buses from a Digital Oscilloscope and from a Logic Analyzer
+(like the saleae one),&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Connecting a telephony chip</title><link href="http://blog.xivo.io/connecting-a-telephony-chip.html" rel="alternate"></link><updated>2010-04-27T18:20:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-04-27:connecting-a-telephony-chip.html</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;&lt;a href="English%20version" title="English version"&gt;English version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Several interfaces and connections exist in order to connect an
+end-device to a PSTN. Mostly used in Europe: analog, digital
+(&lt;a href="http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network" title="Integrated Services Digital Network (Wikipedia entry)"&gt;ISDN&lt;/a&gt;)
+for 2 communications
+(&lt;a href="http://en.wikipedia.org/wiki/Basic_rate_interface" title="Basic Rate Interface (Wikipedia entry)"&gt;T0&lt;/a&gt;),
+digital for 30 communications
+(&lt;a href="http://en.wikipedia.org/wiki/Primary_Rate_Interface" title="Primary Rate Interface (Wikipedia entry)"&gt;E1&lt;/a&gt;).
+The XiVO IPBX OpenHardware will provide 4 ISDN T0 interfaces (for a
+total of 8 simultaneous communications), 1 analog interface for a PSTN
+phone or a fax and 1 analog PSTN interface to connect to PSTN carriers.&lt;/p&gt;
+&lt;p&gt;Some chips are dedicated to such telephony interfaces^[&lt;span
+id="rev-pnote-18-1"&gt;&lt;a href="#pnote-18-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^, and connect to other
+chips of the PCB through:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A processor interface bus,^[&lt;span
+    id="rev-pnote-18-2"&gt;&lt;a href="#pnote-18-2"&gt;2&lt;/a&gt;&lt;/span&gt;]^ for instance an
+    &lt;a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus" title="Serial Peripheral Interface (Wikipedia entry)"&gt;SPI&lt;/a&gt;
+    bus, or a variant of a parallel local bus (LEB for Intel CPUs, HPI
+    for TI DSPs, Local Bus for Freescale MPC8555);&lt;/li&gt;
+&lt;li&gt;A
+    &lt;a href="http://en.wikipedia.org/wiki/Time-division_multiplexing" title="Time-division multiplexing (Wikipedia entry)"&gt;TDM&lt;/a&gt;
+    bus, also named
+    &lt;a href="http://en.wikipedia.org/wiki/Pulse-code_modulation" title="Pulse-code modulation (Wikipedia entry)"&gt;PCM&lt;/a&gt;
+    bus;&lt;/li&gt;
+&lt;li&gt;And one trace for the
+    &lt;a href="http://en.wikipedia.org/wiki/Interrupt" title="Interrupt (Wikipedia entry)"&gt;interrupt&lt;/a&gt; signal.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The SPI bus is used to configure the chips, request the state of the
+line, handle the rings/hang-up/pick-up.^[&lt;span
+id="rev-pnote-18-3"&gt;&lt;a href="#pnote-18-3"&gt;3&lt;/a&gt;&lt;/span&gt;]^ The SPI bus is used to
+send a command to the chip, then wait for a reply. The command/reply
+data are transmitted with a binary stream described in each's chip
+manual. The SPI bus doesn't allow a spontaneous communication from the
+chip handling the line: it can only transmit a reply to a request -
+however the interrupt mechanism makes that this is not a problem. If a
+variant of parallel local bus is used instead of the SPI bus, it ensures
+the very same functions (only the way the messages are exchanged
+changes, but the messages themselves do not).&lt;/p&gt;
+&lt;p&gt;The TDM bus transmits a continuous stream of digital voice data on each
+channel, in both direction.^[&lt;span
+id="rev-pnote-18-4"&gt;&lt;a href="#pnote-18-4"&gt;4&lt;/a&gt;&lt;/span&gt;]^ There are also other
+channels for technical data and sometimes signaling data. Independently
+from the number of active calls, there is a bidirectionnal transmission
+on a predefined number of channels.&lt;/p&gt;
+&lt;p&gt;Example of a 32 time-slots TDM bus configuration for a 4xT0 interfaces
+chip:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First T0: channel 0 and 1 carry the sound of the 2 communications,
+    channel 2 for the call signaling, channel 3 for the technical data&lt;/li&gt;
+&lt;li&gt;Second T0: channel 4 and 5 carry the sound of the 2 communications,
+    channel 6 for the call signaling and channel 7 for the technical
+    data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and so on the Third and Fourth T0.&lt;/p&gt;
+&lt;p&gt;when there is no call on the first T0, the channels 0 and 1 remain
+available but silent. The first call on the first T0 will reserve one of
+the channel, the second call arriving will book the second channel.&lt;/p&gt;
+&lt;p&gt;An interrupt signal is sent from the chip to the CPU when an event
+occurs. Then, the CPU temporarily interrupts its current task in order
+to execute, as soon as possible, a dedicated routine (an interrupt
+handler). This routine requests the chip (via the SPI bus) for the
+reason of the interrupt sent. As described, all communications on the
+SPI bus start from the CPU to the telephony chip
+(Master-to-Slave).^[&lt;span
+id="rev-pnote-18-5"&gt;&lt;a href="#pnote-18-5"&gt;5&lt;/a&gt;&lt;/span&gt;]^ So the interrupt
+mechanism is used when the slave chip requires some cares.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href="French%20version" title="French version"&gt;French version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Différentes liaisons permettent de se brancher au réseau téléphonique
+classique. Les plus courantes en Europe sont : analogiques, numériques
+(&lt;a href="http://fr.wikipedia.org/wiki/RNIS" title="Réseau numérique à intégration de services"&gt;RNIS&lt;/a&gt;)
+pour deux communications
+(&lt;a href="http://fr.wikipedia.org/wiki/Basic_Rate_Interface" title="Basic Rate Interface (page Wikipédia)"&gt;T0&lt;/a&gt;),
+numériques pour 30 communications
+(&lt;a href="http://fr.wikipedia.org/wiki/Primary_Rate_Interface" title="Primary Rate Interface (page Wikipédia)"&gt;E1&lt;/a&gt;).
+L'IPBX XiVO OpenHardware disposera de 4 prises RNIS T0 (total : 8
+communications simultanées), 1 prise analogique pour y brancher un
+téléphone classique ou un fax, et 1 prise pour se brancher sur une ligne
+téléphonique analogique.&lt;/p&gt;
+&lt;p&gt;Les puces dédiées à la réalisation de telles interfaces téléphoniques
+dans un équipement numérique peuvent typiquement être connectées aux
+autres puces^[&lt;span id="rev-pnote-18-6"&gt;&lt;a href="#pnote-18-6"&gt;6&lt;/a&gt;&lt;/span&gt;]^ via
+:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;un bus^[&lt;span id="rev-pnote-18-7"&gt;&lt;a href="#pnote-18-7"&gt;7&lt;/a&gt;&lt;/span&gt;]^
+    d'interface processeur, par exemple un bus
+    &lt;a href="http://fr.wikipedia.org/wiki/Serial_Peripheral_Interface" title="Serial Peripheral Interface (page Wikipédia)"&gt;SPI&lt;/a&gt;,
+    ou une variante de bus local parallèle (LEB sur Intel EP80579, HPI
+    sur DSP TI, Local Bus sur Freescale MPC8555) ;&lt;/li&gt;
+&lt;li&gt;un bus
+    &lt;a href="http://en.wikipedia.org/wiki/Time-division_multiplexing" title="Time-division multiplexing (page Wikipédia)"&gt;TDM&lt;/a&gt;,
+    aussi nommé bus
+    &lt;a href="http://fr.wikipedia.org/wiki/Modulation_d%27impulsion_cod%C3%A9e" title="Pulse-code modulation (page Wikipédia)"&gt;PCM&lt;/a&gt;
+    ;&lt;/li&gt;
+&lt;li&gt;et une piste pour un signal
+    d'&lt;a href="http://fr.wikipedia.org/wiki/Interruption_%28informatique%29" title="Interruption (page Wikipédia)"&gt;interruption&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Le bus SPI est utilisé pour configurer la puce, l'interroger sur l'état
+de la ligne, gérer les décrochages/raccrochages/sonneries.^[&lt;span
+id="rev-pnote-18-8"&gt;&lt;a href="#pnote-18-8"&gt;8&lt;/a&gt;&lt;/span&gt;]^ Le bus SPI fonctionne par
+l'envoi d'une commande vers la puce, à laquelle elle peut répondre. Les
+commandes et leurs réponses sont transmises sous forme d'une suite de 0
+et de 1, organisés selon une convention propre à chaque puce et décrite
+dans son manuel. Le bus SPI ne permet pas une communication spontanée
+depuis la puce gérant la ligne : elle ne communique dans cette direction
+que suite à réception d'une commande - mais le signal d'interruption
+fait que cela n'est pas problématique.Si une variante de bus local
+parallèle est utilisée à la place du bus SPI, elle assurera exactement
+les mêmes fonctions (seule la manière de transmettre les commandes et
+réponses change, mais pas ces dernières).&lt;/p&gt;
+&lt;p&gt;Le bus TDM transmet continuellement le son passant sur chaque canal,
+dans les deux sens.^[&lt;span
+id="rev-pnote-18-9"&gt;&lt;a href="#pnote-18-9"&gt;9&lt;/a&gt;&lt;/span&gt;]^ Il y a de plus
+éventuellement des canaux pour des données techniques et dans certains
+cas de la signalisation d'appel. Indépendamment du nombre d'appels en
+cours, il y a une transmission bidirectionnelle sur un nombre fixé de
+canaux transmis par ce bus. Exemple de mise en oeuvre d'une puce gérant
+quatre ports T0 avec un bus TDM transportant 32 canaux :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pour la première T0 ; les canaux 0 et 1 font passer le son des deux
+    communications, le canal 2 la signalisation d'appel, le canal 3 est
+    un canal technique&lt;/li&gt;
+&lt;li&gt;pour la deuxième T0 ; les canaux 4 et 5 font passer le son des deux
+    communications, le canal 6 la signalisation d'appel, le canal 7 est
+    un canal technique&lt;/li&gt;
+&lt;li&gt;et ainsi de suite pour les troisième et quatrième T0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lorsqu'il n'y a pas d'appel sur la première T0, les canaux 0 et 1
+restent présents mais transmettent du silence. Le premier appel sur la
+première T0 réservera un des deux canaux, et un second appel réservera
+l'autre.&lt;/p&gt;
+&lt;p&gt;Un signal d'interruption est envoyé de la puce au processeur quand un
+événement s'est produit. Le processeur interrompt alors temporairement
+sa tâche en cours pour exécuter au plus tôt une routine dédiée (un
+gestionnaire d'interruption). Cette routine interroge la puce (via le
+bus SPI) pour savoir ce qui s'est passé. Comme expliqué avant, tous les
+dialogues sur le bus SPI débutent dans le sens processeur vers puce
+téléphonique.^[&lt;span id="rev-pnote-18-10"&gt;&lt;a href="#pnote-18-10"&gt;10&lt;/a&gt;&lt;/span&gt;]^
+Le mécanisme des interruptions est donc utilisé lorsque la puce a
+quelque chose à dire "spontanément" au processeur.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div class="footnotes"&gt;
+
+#### Notes
+
+\[&lt;span id="pnote-18-1"&gt;[1](#rev-pnote-18-1)&lt;/span&gt;\] Even to connect a
+*digital* appliance to a *digital* network, the chips implementing the
+needed interface are specific, because digital signals can greatly vary
+in form.
+
+\[&lt;span id="pnote-18-2"&gt;[2](#rev-pnote-18-2)&lt;/span&gt;\] A bus is a group
+of PCB traces connecting several chips in order for them to communicate,
+the role of each trace and the characteristics of the signals should be
+well defined.
+
+\[&lt;span id="pnote-18-3"&gt;[3](#rev-pnote-18-3)&lt;/span&gt;\] The handling of
+the rings/hang-up/pick-up is done through the SPI for analog line and in
+some case also for digital line and numbering also in this case (the
+analog numbering is done through DTMF with frequencies which are simple
+sound transmitted like the voice frequencies).
+
+\[&lt;span id="pnote-18-4"&gt;[4](#rev-pnote-18-4)&lt;/span&gt;\] Technically the
+TDM bus is composed of: a clock signal orchestrates the uninterrupted
+transmission, which is done through a dedicated signal sent on the
+reception side (RX) and one serial signal dedicated to the transmission
+side (TX). If ones observes the clock and data sent in each direction,
+it will be a continous binary stream. The fourth line, called Frame
+Synchronisation (FS), is pulsed at 8kHz (phase locked on the clock
+signal). The data between a current Frame Synchronisation and the
+following are a constant number of bits, for instance 256. This frame
+splits into n-bits consecutive blocks per channel (n=8 for the telephony
+system). The majority of chips for telephony applications hold a TDM
+bus, and this bus can also be found on certain embedded CPU or DSP chip.
+Apart from the telephony world, this kind of bus is also used for some
+other types of digital audio transmissions.
+
+\[&lt;span id="pnote-18-5"&gt;[5](#rev-pnote-18-5)&lt;/span&gt;\] The CPU is Master
+on the SPI bus, the telephony chip is in Slave mode on the SPI bus.
+
+\[&lt;span id="pnote-18-6"&gt;[6](#rev-pnote-18-6)&lt;/span&gt;\] Lorsqu'un
+équipement *numérique* dispose, comme pour l'IPBX XiVO OpenHardware,
+d'interfaces *numériques*, ces dernières restent pilotées par des puces
+dédiées au type d'interface. En effet les signaux transportant
+l'information numérique peuvent être de nature très variée et on ne peut
+pas connecter n'importe quelle puce numérique à n'importe quel signal
+numérique.
+
+\[&lt;span id="pnote-18-7"&gt;[7](#rev-pnote-18-7)&lt;/span&gt;\] Un bus est un
+ensemble de pistes reliant plusieurs puces pour leur permettre de
+communiquer, les rôles de chaque piste et les caractéristiques des
+signaux étant bien définis.
+
+\[&lt;span id="pnote-18-8"&gt;[8](#rev-pnote-18-8)&lt;/span&gt;\] La gestion des
+décrochages/raccrochages/sonneries se fait par le SPI pour l'analogique,
+et dans certains cas aussi pour le numérique, avec la numérotation en
+plus dans ce cas (la numérotation en analogique se fait avec des
+tonalités, qui ne sont rien de plus qu'un son transmis exactement comme
+la voix).
+
+\[&lt;span id="pnote-18-9"&gt;[9](#rev-pnote-18-9)&lt;/span&gt;\] Techniquement pour
+le bus TDM : un signal d'horloge cadence de manière ininterrompue la
+transmission, qui se fait via un signal série dédié à la réception et un
+signal série dédié à la transmission. Si l'on ne considère que l'horloge
+et les données dans chaque sens, on ne voit qu'une suite ininterrompue
+de bits. Une quatrième ligne, dite de synchronisation trame, pulse à
+8kHZ (en phase avec l'horloge). Les données entre une synchro-trame et
+la suivante contiennent un nombre constant de bits, par exemple 256. On
+découpe cette trame en blocs de n bits consécutifs par canal (n=8 pour
+de la téléphonie). La majorité des puces téléphoniques dispose d'un bus
+TDM, bus qu'on retrouve sur certains processeurs embarqués et de
+traitement du signal. Hors téléphonie, ce bus est aussi utilisé dans
+d'autres contextes audio numérique.
+
+\[&lt;span id="pnote-18-10"&gt;[10](#rev-pnote-18-10)&lt;/span&gt;\] Le processeur
+est maître du bus SPI, la puce téléphonique esclave.
+
+&lt;/div&gt;
+
+&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware presentation at SolutionsLinux 2010 and upcoming AstriEurope 2010</title><link href="http://blog.xivo.io/xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html" rel="alternate"></link><updated>2010-04-07T09:53:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-04-07:xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html</id><summary type="html">&lt;p&gt;&lt;img alt="AstriEurope" src="/public/.AstriEurope_Logo_s.jpg" title="AstriEurope, avr. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;Following the presentation we did at SolutionsLinux 2010 in Paris (&lt;strong&gt;the
+presentation we made is now available at (1)&lt;/strong&gt; and had been made in
+french as the crowd was mainly french-speakers).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We will be presenting the XiVO IPBX OpenHardware project at the
+AstriEurope Conference in Paris&lt;/strong&gt; (2) next week on the first day and the
+detailled program of the conferences is available here (3). The
+conference will aim at giving the latest details on the hardware choices
+and features.&lt;/p&gt;
+&lt;p&gt;The AstriEurope will be the occasion to have different presentations on
+the various asterisk-oriented projects (software and hardware oriented)
+currently available out-there with the presence of several people from
+Digium supporting the event.&lt;/p&gt;
+&lt;p&gt;(1) :
+http://carcelle.fu8.com/Presentation_Projet_Appliance_XiVO_SolutionsLinux_2010.pdf&lt;br /&gt;
+(2) : http://www.astrieurop.com/&lt;br /&gt;
+(3) : http://carcelle.fu8.com/AstriEuropConferencesProgram.pdf&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>The OHANDA Trademark/Licence for the XiVO IPBX [1] : Meeting in Helsinki</title><link href="http://blog.xivo.io/the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html" rel="alternate"></link><updated>2010-03-30T09:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-30:the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html</id><summary type="html">&lt;p&gt;&lt;img alt="Helsinki Harbour in
+March" src="/public/.Helsinki_Harbour_28032010_m.jpg" title="Helsinki Harbour in March, mar. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I just got back from the Pixelache Festival in Helsinki&lt;/strong&gt; (1) where we
+had a OHANDA (2) meeting with the founding members of the OHANDA
+initiative (Juergen Neumann from Freifunk in Berlin and Tuomo Tammenpää
+from Yatta in Helskinki) in order to discuss the next steps for the
+usage of the &lt;strong&gt;OHANDA licence/trademark&lt;/strong&gt; with OpenHardware projects.&lt;/p&gt;
+&lt;p&gt;The OHANDA licence/trademark is definitely the most advanced initiative
+so far after the work we had done on the OpenHardwareInitiative and
+presented at the OpenTechSummit 2008 (3) in Taiwan with different
+hardware projects (OpenMoko, OpenPattern, ...) looking for an umbrella
+for their licence adapting the GPL licences used for FOSS projects.&lt;/p&gt;
+&lt;p&gt;A first presentation of the OHANDA licence/trademark had been done at
+GOSH and PIKSEL (4) with the organization of the trademark and the
+relations between hardware designer and users/clients as described below
+:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="OHANDA Step
+5" src="/public/.OHANDA_Trademark_Step5_m.jpg" title="OHANDA Step 5, mar. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;This is a great opportunity for the &lt;strong&gt;XiVO IPBX OpenHardware project to
+apply this up-coming licence/trademark&lt;/strong&gt; to the future product (product
+registered with a &lt;strong&gt;unique OHANDA #ID&lt;/strong&gt;) and garantee a common
+umbrellas for multiple OpenHardware projects.&lt;/p&gt;
+&lt;p&gt;We will documente the next steps in the OHANDA licence/trademark
+setting-up for the XiVO IPBX OpenHardware project in order to make
+available the different files of the project and the registration #ID
+to follow the updates from the OHANDA trademark.&lt;/p&gt;
+&lt;p&gt;(1) :
+http://www.pixelache.ac/helsinki/festival-2010/programme/open-source-hardware/&lt;br /&gt;
+(2) : http://www.ohanda.org&lt;br /&gt;
+(3) : http://www.sebruiz.net/326&lt;br /&gt;
+(4) : http://www.gosh2009.ca/wiki/images/Ohanda_piksel.pdf&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware IPBX presented at SolutionsLinux2010, Paris</title><link href="http://blog.xivo.io/xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html" rel="alternate"></link><updated>2010-03-22T11:15:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-22:xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html</id><summary type="html">&lt;p&gt;&lt;img alt="SolutionsLinux2010" src="/public/SolutionsLinux2010_logo.jpg" title="SolutionsLinux2010, mar. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;It was a great pleasure to present the XiVO IPBX OpenHardware project at
+SolutionsLinux2010 (the largest Linux fair in France yearly) on last
+week and we had several discussions about the architecture choosen for
+the IPBX and the interfaces / functionnalities.&lt;/p&gt;
+&lt;p&gt;We had some great feedbacks from different VoIP projects and deployment
+feedbacks that will help us understand the needs from the market.&lt;/p&gt;
+&lt;p&gt;The next steps are now for the OpenHardware community, to present our
+prototyping feddbacks and the detailed architecture that we are
+targeting.&lt;/p&gt;
+&lt;p&gt;Finally, we will presenting soon the work done on the potential
+OpenHardware licence that we want to use based on a mixed between
+trademarks and CreativeCommons licences.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html" rel="alternate"></link><updated>2010-02-25T11:13:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-25:opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html</id><summary type="html">&lt;p&gt;Following the previous posts about the "open" bootloaders available to
+improve and implement advanced features at the boot of your SoC/CPU, we
+are, in this post, considering Barebox (formely known as u-boot v2) as
+another open bootloader. Barebox aims at giving the developer and
+embedded users the best of u-boot (space, easy-to-flash, handy tools)
+and the best of the Linux kernel (Kconfig, Kbuild, standards C API,
+building methods identical to the kernel with ARCH/CROSS primitives...).&lt;/p&gt;
+&lt;p&gt;The latest documentation for barebox can be found here &lt;a href="2" title="2"&gt;2&lt;/a&gt; and
+lists the different key features of barebox that can listed as followed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A posix based file API&lt;/strong&gt;: inside barebox the usual
+    open/close/read/write/lseek functions are used. This makes it
+    familiar to everyone who has programmed under unix systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Usual shell commands&lt;/strong&gt; like ls/cd/mkdir/echo/cat,...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The environment is a file store&lt;/strong&gt;. It has currently some
+    limitations, of course. The environment is not a real read/write
+    filesystem, it is more like a tar archive, or even more like an ar
+    archive, because it cannot handle directories. The saveenv command
+    saves the files under a certain directory (by default /env) in
+    persistent storage (by default /dev/env0). There is a counterpart
+    called loadenv, too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real filesystem support&lt;/strong&gt;: The loader starts up with mounting a
+    ramdisk on /. Then a devfs is mounted on /dev allowing the user (or
+    shell commands) to access devices. Apart from these two filesystems
+    there is currently one filesystem ported: cramfs. One can mount it
+    with the usual mount command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Device/driver model&lt;/strong&gt;: Devices are no longer described by defines
+    in the config file. Instead there are devices which can be
+    registered in the board .c file or dynamically allocated. Drivers
+    will match upon the devices automatically.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clocksource support&lt;/strong&gt;: Timekeeping has been simplified by the use
+    of the Linux clocksource API. Only one function is needed for a new
+    board, no &lt;a href="gs" title="gs"&gt;gs&lt;/a&gt;et_timer&lt;a href="masked" title="masked"&gt;masked&lt;/a&gt;() or
+    reset_timer&lt;a href="masked" title="masked"&gt;masked&lt;/a&gt;() functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Kconfig and Kernel build system&lt;/strong&gt;: Only targets which are really
+    needed get recompiled. Parallel builds are no problem anymore. This
+    also removes the need for many many ifdefs in the code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simulation target&lt;/strong&gt;: barebox can be compiled to run under Linux.
+    While this is rather useless in real world this is a great debugging
+    and development aid. New features can be easily developped and
+    tested on long train journeys and started under gdb. There is a
+    console driver for linux which emulates a serial device and a tap
+    based ethernet driver. Linux files can be mapped to devices under
+    barebox to emulate storage devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Device parameter support&lt;/strong&gt;: Each device can have a unlimited
+    number of parameters. They can be accessed on the command line with
+    &amp;lt;devid&amp;gt;.&amp;lt;param&amp;gt;="...", for example 'eth0.ip=192.168.0.7'
+    or 'echo \$eth0.ip'&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Initcalls&lt;/strong&gt;: Hooks in the startup process can be archieved
+    with *_initcall() directives in each file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Getopt&lt;/strong&gt;: There is a small getopt implementation. Some commands
+    got really complicated (both in code and in usage) due to the fact
+    that U-Boot only allowed positional parameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Editor: Scripts can be edited with a small editor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Barebox is under GPLv2 licence.&lt;/p&gt;
+&lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; : http://barebox.org/&lt;a href="2" title="2"&gt;2&lt;/a&gt; :
+http://barebox.org/documentation/barebox-2010.03.0/&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [2] : U-boot - ''Das Unterseeboot\"</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html" rel="alternate"></link><updated>2010-02-23T09:57:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-23:opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html</id><summary type="html">&lt;p&gt;This series of posts are dedicated to the different opensource
+bootloaders available out-there that are or can be used for OpenHardware
+project such as the XiVO IPBX we are currently developping.&lt;/p&gt;
+&lt;p&gt;This second post on the bootloaders available will present U-boot, one
+the widely used bootloader for embedded systems. &lt;strong&gt;U-boot stands for
+''Das Unterseeboot"&lt;/strong&gt; meaning "the submarine" in German and it's also
+known as "Das U-Boot -- the Universal Boot Loader".&lt;/p&gt;
+&lt;p&gt;U-boot is currently supporting a vast range of architectures such as:
+including PPC, ARM, AVR32, MIPS, x86, 68k, Nios, and MicroBlaze
+(soft-core for Xilinx FPGAs).&lt;/p&gt;
+&lt;p&gt;The main advantages of the different OpenSource bootloader solutions are
+that they allow "userspace" features at the boot such as: interactive
+commands (CLI type usually), environment variables(IP, PATH, R/W
+permissions...), command scripting(typically shell scripts - namely used
+in uboot-v2 a.k.a. barebox and that we will cover in the next post) and
+booting from external media (or network fot TFTP rootfs and images
+updates for example).&lt;/p&gt;
+&lt;p&gt;Einfochips &lt;a href="1" title="1"&gt;1&lt;/a&gt; provides a great documentation guide on how to
+port uboot to a new architecture / platform with a stress on the
+different files provided by u-boot and the cross-compilation issue for
+the targetted platform/board/cpu.&lt;/p&gt;
+&lt;p&gt;Usually u-boot is stored (i.e. resides in the beginning memory area of
+the flash - internal to the CPU or external-flash) in the beginning area
+of the flash. This memory address (sector or block) is defined by by the
+board for the very early stage of the boot (in board/xxx/init.S). The
+start-up code of the processor is then defined (in cpu/arch/start.S -
+like in cpu/bf533/start.S for the Blackfin processor). The boot sequence
+symbols are usually noticeable as they are prefixed like "_start".&lt;/p&gt;
+&lt;p&gt;First stage loader: U-boot initializes the CPU and the different
+peripherals on the board to allows to jump the the memory (DRAM)
+subsystems. The processor core is designed to fetch instructions
+starting from _START_ADDRESS_ . The core then attempts to execute the
+instructions found here. Because this is the top of the memory range,
+the instruction found here must be an unconditional branch instruction.
+This core has to be hard-coded to configure the upper memory region so
+that it is accessible without programming the external bus controller,
+to which Flash memory is usually attached. This forces the requirement
+to branch to a location within this address space because the processor
+is incapable of addressing memory anywhere else until our bootloader
+code initializes additional memory regions.&lt;/p&gt;
+&lt;p&gt;Second stage loader: U-boot loads itself in the RAM (SDRAM, NVRAM in the
+CPU RAM or external RAM) and receives the command to boot the kernel
+image. The kernel image is then uncompressed, u-boot loads it to the
+memory and gives control to the kernel. The kernel will continue the
+execution without u-boot.&lt;/p&gt;
+&lt;p&gt;This post is just a first description of U-boot and we will get more
+details for specific architectures with x86 platform that we are
+targetting for the XiVO IPBX project.&lt;/p&gt;
+&lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; :
+http://www.einfochips.com/designers-corner/U-boot%20Porting%20guide.pdf&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [1] : Coreboot and the BIOS</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html" rel="alternate"></link><updated>2010-02-15T14:44:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-15:opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html</id><summary type="html">&lt;p&gt;The OpenHardware community had been seeking for more and more openess
+lately in the hardware side, as well as in the software side. We see
+more and more steps forward of the software side into the configuration
+of the hardware (i.e. HDL projects for reconfigurable hardware such as
+FPGAs and CPLDs) to reduce the constraints coming from the hardware
+configuration.&lt;/p&gt;
+&lt;p&gt;The hardware part is composed of the schematics, pcb routing files,
+gerber production files to enable the open description and output of the
+features.&lt;/p&gt;
+&lt;p&gt;The software part is roughly composed of the bootloader (allowing the
+CPU/SoC/uController to boot the memory controller and enable the
+peripherals) which will indicate the memory address of the kernel.&lt;/p&gt;
+&lt;p&gt;In-between the hardware and the software part of the device, the
+bootloader is definitely a important "glue" that should be also open to
+allow users to implement their own peripherals initialization and boot
+optimization of the kernel. For CPU architecture and namely x86
+architecture, the booloader also known as the BIOS had been a closed
+industry for quite a long time with companies such as American Trends
+providing the boot sequence we all know on our PC-environment. The only
+options we could have from this BIOS interface are mainly: boot
+sequence, CPU frequency clocking, IRQs configuration and some memory
+mappings. "Open BIOS" are then a dream of x86-based OpenHardware
+projects and coreboot seems now mature enough to make this future true.&lt;/p&gt;
+&lt;p&gt;Previously known as LinuxBIOS, coreboot &lt;a href="1" title="1"&gt;1&lt;/a&gt; is a GPL project
+developing an OpenSource BIOS firmware for a various number of platforms
+and architecture. As we post this message, coreboot is supporting 213
+different mainboards.The different supported mainboards "table of
+hardware" are available
+here:http://www.coreboot.org/Supported_MotherboardsThe different
+chipsets supported are listed in 5 categories: north bridge (fast data
+bridge), south bridge(slow data bridge), super I/Os chipsets, CPUs (x86,
+PowerPC and emulated QEMU CPUs) and SoCs (AMD Elan SC520 and Intel
+Tolapai EP 80579). This list is available
+here:http://www.coreboot.org/Supported_Chipsets_and_DevicesThe
+different payloads (that we could name also as "second stage loader")
+such as the bootloaders and the kernels mainly are listed
+here:http://www.coreboot.org/Payloads&lt;/p&gt;
+&lt;p&gt;Coreboot is now available in version 3 and provide features such as:
+express boot sequence (3s to linux console, advanced network booting,
+peripherals advanced support.&lt;/p&gt;
+&lt;p&gt;We will test Coreboot v3 on the targetted x86-based CPU chosen for the
+XiVO OpenHardware IPBX and give documentation and feedbacks on the usage
+feasability for this appliance in upcoming posts as well as describing
+with more details the battle to open the bootloaders (once you open the
+bootloader you allow the hardware hackers to play with your device
+definitely).&lt;/p&gt;
+&lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; : http://www.coreboot.org&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Understanding the S0/T0/T1/E1 ISDN protocols and lines</title><link href="http://blog.xivo.io/understanding-the-s0t0t1e1-isdn-protocols-and-lines.html" rel="alternate"></link><updated>2010-02-08T18:47:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-08:understanding-the-s0t0t1e1-isdn-protocols-and-lines.html</id><summary type="html">&lt;p&gt;As the XiVO OpenHardware IPBX will be using 4 T0 ISDN lines, it's
+important to present and educate reader on how works ISDN lines for IPBX
+usage. As the telecommunications world (POTS, PSTN, GSM, ISDN, ADSL) and
+the TCP/IP world are now merged into the networks we daily use, we see a
+great difference between the knowledge and education of people on the
+TCP/IP standards (widely used, massively understood and fine-tuned) and
+the telecommunications standards and namely the ISDN (Integrated
+Services Digital Network) interfaces used in PBX, IPBX or GSM networks
+(E1 lines usually as used in OpenBSC project).&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;ISDN line&lt;/strong&gt; is a circuit-switched telephone network system
+implemented on ordinary telephony copper wires on the PSTN/POTS network
+to carry digital data and digital voice. The line interface is a
+four-wire interface and has separated transmitter and receiver with
+configurable behaviour. Every line can be switched either into S/T (four
+wires - double pair) or Up (two wires - single pair) mode separately. R,
+S/T and U(or Up) mode are named like this by the ITU after their current
+order on the ISDN hook-up.&lt;/p&gt;
+&lt;p&gt;The standard ISDN line/hookup architecture looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ISDN Hookup overview
+architecture" src="/public/.ISDN_1_m.jpg" title="ISDN Hookup overview architecture, fév. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;TE: Terminal Equipment&lt;/p&gt;
+&lt;p&gt;TA: Terminal Adapter&lt;/p&gt;
+&lt;p&gt;NT: Network Terminator&lt;/p&gt;
+&lt;p&gt;S/T: Usually using 4-wires (2 pairs)&lt;/p&gt;
+&lt;p&gt;U: Usually using 2-wires (1 pair)&lt;/p&gt;
+&lt;p&gt;This overview architecture represents the standardized view of and ISDN
+architecture. Operators either provide U interfaces (2-wire long
+distance; the variants for interconnection to a public network are
+called U0 and Uk0) or S/T interfaces (this is typically a by-country
+alternative). In the latter case, a Network Termination owned by the
+operator is typically installed in the customer premises because the S/T
+bus is limited to a few hundred meters. If the operator provides U
+interfaces, the customer can still connect its own Network Termination
+and use an S/T interface behind it, or alternatively directly connect an
+equipment that supports U interfaces. For private direct ISDN
+connections up to a few kilometers, the 2 wire Up (Up0/UpN) interface
+also exists.&lt;/p&gt;
+&lt;p&gt;The Universal &lt;strong&gt;ISDN port&lt;/strong&gt; is developed according to the ITU-T.430 and
+ETSI TBR 003 standards. It consists of the receive and transmit data
+pathes with a clock processing unit each, the clock distribution unit.
+The block diagram for a standard ISDN port module looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ISDN Universal ISDN Port
+Module" src="/public/.ISDN_2_m.jpg" title="ISDN Universal ISDN Port Module, fév. 2010" /&gt;&lt;/p&gt;
+&lt;p&gt;TE Mode: Terminal Equipment mode, the TE is always taken as
+synchronisation source for ISDN applications (like the CLK is delivered
+from the Central Office Switch).&lt;/p&gt;
+&lt;p&gt;NT Mode: Network Terminator mode, the NT mode 192kHz bit clock and the
+8kHz frame clock are derived from FSYNC.&lt;/p&gt;
+&lt;p&gt;The ISDN line port is based on 3 layers following different standards:&lt;/p&gt;
+&lt;p&gt;•Layer 1: ITU-T I.430&lt;/p&gt;
+&lt;p&gt;•Layer 2: ITU-T Q.920, ITU-T Q.921&lt;/p&gt;
+&lt;p&gt;•Layer 3: ITU-T Q.930 and ITU-T Q.931&lt;/p&gt;
+&lt;p&gt;At the layer 1, the line is based on the &lt;strong&gt;BRI (Basic Rate Interface)&lt;/strong&gt;
+which delivers 144kbits/s (for S/T mode) broken into two 64kbits/s B
+(Bearer) channel for data and one 16kbits/s D (Delta) channel for
+signaling. The overhead is then added to the 144kbits/s (for a total of
+196kbits/s) due to Frame Synchronization, Echo Channel (echo of the
+D-channel received in NT mode to detect collision on the TX for the
+D-channel when the S/T bus is shared) and Electrical Balancing bits. BRI
+are popular in Europe and Japan. The B-channel uses a standard 64 kbit/s
+datarate voice channel of 8 bits sampled at 8 kHz with G.711 encoding.
+B-Channels can also be used to carry data, since they are nothing more
+than digital channels. T0 (or S0) refers then to a BRI ISDN line
+provided by the carrier to connect the IPBX to the public network.&lt;/p&gt;
+&lt;p&gt;The raw interface available with BRI is called T0 (in Europe). Some ISDN
+carriers provide S0 interface (like the Duo/Itoo service in France for
+several end-devices that can communicate between each other).In France,
+the "Numeris" service provides a TNR (Terminaison Numerique de Reseau
+with device such as the Sagem TNR IPS 4G) end-device that does the
+conversion between the U interface and the T interface. The TNA
+(Terminaison Numerique d'Abonne) does the conversion between the T
+interface and the S interface. In most countries, except North-America,
+the carrier provides the TNR end-device and the TNA device is provided
+by the end-user customer (usually the PBX interface).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PRI (Primary Rate Interface)&lt;/strong&gt; are more popular in North American ISDN
+carriers,&lt;/p&gt;
+&lt;p&gt;In Europe we see PRI E1 lines carrying 30 B-channels and 1 D-channel
+(2048 kbits/s)&lt;/p&gt;
+&lt;p&gt;In North-America, we see PRI T1 lines carrying 23 B-channels and 1
+D-channel (1544 kbits/s).&lt;/p&gt;
+&lt;p&gt;Japan also has PRI J1 lines similar to T1 lines with 23-B+1-D.&lt;/p&gt;
+&lt;p&gt;The ISDN controller chip on the hardware will be connected to the CPU
+through two buses (SPI bus to control the chip and transmit D-channel
+from the CPU and the PCM (also named TDM bus) bus to transmit D-channels
+data with the ISDN lines). The number of simultaneous calls then had to
+be calculated with the choice of the ISDN capability and the codec used
+on those ones.&lt;/p&gt;
+&lt;p&gt;This blog post aims at giving an overview of the ISDN interface used on
+the IPBX and namely in the XiVO Hardware in order to understand the
+hardware project as well as the protocols used into XiVo Hardware.&lt;/p&gt;
+&lt;p&gt;Annexes to the article:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;More acronyms:&lt;/strong&gt;LAP-D: Link Access Procedure on the D-channel&lt;br /&gt;
+HDLC: High-level Data-Link Control&lt;br /&gt;
+TNR (France): Terminaison Numérique de Réseau&lt;br /&gt;
+TNA (france):Terminaison Numérique d'Abonné&lt;br /&gt;
+CSMA-CR: Carrier Sense Multiple Acess-Contention Resolution&lt;br /&gt;
+TEI: Terminal Endpoint Identifier&lt;br /&gt;
+SAPI: Service Access Point Identifier&lt;br /&gt;
+CEPI: Connection EndPoint Identifier  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Multiplexing value of 64kbits/s-channels:&lt;/strong&gt;T0: 2B+1DEurope:
+2048kbits/s (30), 8448kbits/s (120), 34 368kbits/s (480), 139 264kbits/s
+(1960)North-America: 1544kbits/s (24), 6312kbits/s (96), 44 736kbits/s
+(1584)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HDLC Frames Format:&lt;/strong&gt;&lt;br /&gt;
+F (Flag) | Ad (Adresses) | C (Controle) | CALL REQUEST | FCS (Frame
+Controle Sequence) | F(Flag) |&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Choosing the right CPU/SoC for an OpenHardware IPBX</title><link href="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html" rel="alternate"></link><updated>2010-02-01T10:56:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-01:choosing-the-right-cpusoc-for-an-openhardware-ipbx.html</id><summary type="html">&lt;p&gt;Once one starts an OpenHardware project, you should be thinking about
+the core of the device to be designed and namely the CPU/SoC
+(System-on-Chip integrating the CPU and the peripherals controllers
+built-in the chip). The CPU/SoC is the core of the system and will be
+holding the BSP (BoardSupportPackage) with the Linux kernel and the
+different drivers/controllers (kernel modules and drivers) and the IPBX
+software core system (XiVO and Asterisk in this case) communicating with
+the ISDN/FXO/FXS interfaces.&lt;/p&gt;
+&lt;p&gt;Ideally, to integrate the OpenHardware issue to the core of the device,
+the CPU/SoC has to be as open (as in "open specifications", "open
+datasheet" or "open HDL source code") as possible. Then several issues
+has to be clarified such as:&lt;/p&gt;
+&lt;p&gt;-The smooth technical gap for users and developers to integrate, use and
+hack with the OpenHardware IPBX&lt;/p&gt;
+&lt;p&gt;-How open can the CPU/SoC be opened ? The next step will be to use
+"OpenCores" CPU based on FPGA platform (such as the ones used for
+OpenPattern project, the Milkymist Softcore integrating lm32 or the USRP
+platform used to integrate the GnuRadio framework)&lt;/p&gt;
+&lt;p&gt;-What platform is "more" for existing CPU/SoC outhere between
+x86/ARM/MIPS/others?&lt;/p&gt;
+&lt;p&gt;Lots of the current IPBX projects are mainly using the Blackfin DSP
+(i.e. the Astfin project) from AnalogDevices that allows advanced DSP
+(Digital Signal Processing) functions but lacks openess in terms of
+specifications/data-sheets as this point.&lt;/p&gt;
+&lt;p&gt;Our current objectives is to target an x86 platform that smooths downs
+the porting of the existing XiVO framework or the integration of a
+ARM/MIPS CPU/SoC with open specifications.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Hardware specifications 1.0 of the XiVO appliance</title><link href="http://blog.xivo.io/hardware-specifications-10-of-the-xivo-appliance.html" rel="alternate"></link><updated>2010-01-25T11:21:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-25:hardware-specifications-10-of-the-xivo-appliance.html</id><summary type="html">&lt;p&gt;The goal of the XiVO OpenHardware project is to to develop a open-specs,
+open-docs appliance from the design of the hardware project to the CAD
+files and production files underneath the project. The target of this
+appliance is a small IPBX appliance ideal for SOHO requirements in terms
+of IP-phone lines as well as analog connectivity for fax/analog lines.&lt;/p&gt;
+&lt;p&gt;The following bloc diagram expresses the different features targetted on
+the XiVO OpenHardware project to allow the appliance to interact with 4
+PSTN T0 lines, analog FXO and FXS interfaces as well as usual IP
+networks connectivities, storage interfaces and configuration/debugging
+interfaces.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XiVO Hardware
+specificatons" src="/public/.XiVO_Appliance_Hardware_Specifications_m.jpg" title="XiVO Hardware specificatons, janv. 2010" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The CPU is purposely chosen with a x86 architecture to allow a
+    smooth porting from the existing XiVO framework into the hardware.
+    The BSP is a debian-based Linux and will be easily into this
+    CPU architecture. The CPU will probably behaves as a SoC
+    intregrating the different controllers for the peripherals. RAM will
+    be connected&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISDN Lines: 4 T0 lines which allows 8 simultaneous communications.
+    These interfaces will be controlled by a ISDN chip connected to the
+    CPU (SPI/TDM interfaces)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Analog phone lines: The appliance is supposed to interact with
+    existing PABX and to act as a PABX for the local phones on the
+    SOHO network. The FXS (Foreign eXchange Subscriber) interface will
+    allow the IPBX to connect to PSTN lines as a subscriber for
+    analog/fax needs. The FXO (Foreign eXchange Office) interface will
+    allow the IPBX to act as an analog PBX to connect local analog
+    phones to the IPBX and allows a SOHO phone environment mixed between
+    IP-phones and analog phones.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IP Network: The XiVO IPBX will have 2 100baseT Ethernet interfaces
+    for WAN/LAN IP connectivity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Storage: The XiVO IPBX will have external SD, internal HDD storage
+    for the BSP config files as well as for the logs, firewall rules...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debugging/Configuration: The XiVO IPBX will have a USB interface
+    (USB host) allowing the connexion of external devices. Also for
+    debugging and output console, the XiVO IPBX will have a RS232
+    external serial interface as well as on-PCB console ports on
+    the CPU.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Next steps: prototyping of the different bloc diagram connected to the
+EVB (EValuation Board) of the CPU based on the XiVO framework.&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Blog of the OpenHardware XiVO IPBX Project</title><link href="http://blog.xivo.io/blog-of-the-openhardware-xivo-ipbx-project.html" rel="alternate"></link><updated>2010-01-14T15:04:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-14:blog-of-the-openhardware-xivo-ipbx-project.html</id><summary type="html">&lt;p&gt;This blog is dedicated to the XiVO IPBX OpenHardware project and will be
+displaying the different steps of the project as well as the results,
+prototyping and feedbacks from each step.&lt;/p&gt;
+&lt;p&gt;Xavier Carcelle.&lt;/p&gt;
+&lt;/p&gt;</summary></entry></feed>

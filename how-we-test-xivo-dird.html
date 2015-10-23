@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="pcadotte" />
+<meta name="description" content="XiVO dird is a new directory service in XiVO. It will be used as the entry pointfor lookups and reverse lookups in the near future. Dird is the first service inXiVO that is developed with the objective of being runnable on a separate machine.This objective made it essential to ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="How we test xivo-dird"/>
+<meta property="og:description" content="XiVO dird is a new directory service in XiVO. It will be used as the entry pointfor lookups and reverse lookups in the near future. Dird is the first service inXiVO that is developed with the objective of being runnable on a separate machine.This objective made it essential to ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/how-we-test-xivo-dird.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2014-12-03 21:23:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/pcadotte.html">
+<meta property="article:section" content="articles"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; How we test xivo-dird</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="how-we-test-xivo-dird">How we test xivo-dird</h1>
+    <p>Posted on Wed 03 December 2014 in <a href="http://blog.xivo.io/category/articles.html">articles</a></p>
+  </header>
+  <div>
+    <p>XiVO dird is a new directory service in XiVO. It will be used as the
+entry pointfor lookups and reverse lookups in the near future. Dird is
+the first service inXiVO that is developed with the objective of being
+runnable on a separate machine.This objective made it essential to make
+the service configurable so that dirdis not tied to an existing XiVO
+installation.</p>
+<p>Making the borders clear around xivo-dird made it possible to test
+against dird'sinterface more easily than what used to be possible with
+other services in XiVO.</p>
+<p>Like any other service in XiVO, xivo-dird has a unit test suite that we
+strive tomake as complete as possible. We also wrote a suite of
+integration tests that canbe executed from a development machine without
+a full installation of XiVO. Theintegration test suite uses xivo-dird as
+a black box, changing the input only, typicallyconfiguration files,
+files, web services or other resources depending on the testedback-end.
+These tests are higher level than unit tests but not as high as the
+oneswe usually have in xivo-acceptance that requires and sometimes test
+manycomponents at the same time.</p>
+<p>Some of the tools we use for the integration tests include:</p>
+<ul>
+<li>docker to launch and stop xivo-dird quickly with different
+    configuration</li>
+<li>fig to coordinate our launched services, it starts all containers
+    with the proper arguments to allow the whole system to work</li>
+<li>nosetests to run the test suite</li>
+<li>jenkins to execute the tests and report problems</li>
+</ul>
+<p>The way these tests are structured, is quite simple at the moment. At
+the rootof the xivo-dird project, an integration_tests directory can be
+found. In thisdirectory, there is a Makefile, a Dockerfile, an assets
+folder and a suitefolder. Here's a quick description of each of these
+elements.</p>
+<p><strong>Dockerfile</strong></p>
+<p>This is the file to build the test image that is used by the test suite.
+It generatesa runnable docker container using the current branch.</p>
+<p><strong>Makefile</strong></p>
+<p>The Makefile is a helper to build the test image and pull somedocker
+dependencies. make test-image can be used to generate a freshtest image
+ready for testing.</p>
+<p><strong>assets</strong></p>
+<p>This directory contains many set of runnable configuration that areused
+by the test suite. An asset consists of a fig.yml file to describethe
+environment in which we want to run dird as well as allconfiguration
+files that are required for this given test.</p>
+<p>Here is an example of an asset directory:</p>
+<div class="highlight"><pre><span class="c">% tree assets/xivo_users_multiple_xivo </span>
+<span class="n">assets</span><span class="o">/</span><span class="n">xivo_users_multiple_xivo</span>
+├── <span class="n">confd_data</span>
+│   ├── <span class="n">america</span>
+│   │   └── <span class="mf">1.1</span>
+│   │       ├── <span class="n">infos</span>
+│   │       └── <span class="n">users</span>
+│   ├── <span class="n">asia</span>
+│   │   └── <span class="mf">1.1</span>
+│   │       ├── <span class="n">infos</span>
+│   │       └── <span class="n">users</span>
+│   ├── <span class="n">europe</span>
+│   │   └── <span class="mf">1.1</span>
+│   │       ├── <span class="n">infos</span>
+│   │       └── <span class="n">users</span>
+│   └── <span class="n">run_confd</span>
+├── <span class="n">etc</span>
+│   └── <span class="n">xivo</span><span class="o">-</span><span class="n">dird</span>
+│       ├── <span class="n">config</span><span class="p">.</span><span class="n">yml</span>
+│       └── <span class="n">sources</span><span class="p">.</span><span class="n">d</span>
+│           ├── <span class="n">america</span><span class="p">.</span><span class="n">yml</span>
+│           ├── <span class="n">asia</span><span class="p">.</span><span class="n">yml</span>
+│           └── <span class="n">europe</span><span class="p">.</span><span class="n">yml</span>
+└── <span class="n">fig</span><span class="p">.</span><span class="n">yml</span>
+
+<span class="mi">10</span> <span class="n">directories</span><span class="p">,</span> <span class="mi">12</span> <span class="n">files</span>
+</pre></div>
+
+
+<p><strong>suite</strong></p>
+<p>All integration test are in this directory, each TestCase class hasan
+asset field that map the test to an asset. The BaseDirdIntegrationTestis
+responsible of launching and stopping the environment for each testcase.</p>
+<p>Here is an example fig file for the asset shown above:</p>
+<div class="highlight"><pre><span class="c">% cat assets/xivo_users_multiple_xivo/fig.yml</span>
+<span class="n">dird</span><span class="p">:</span>
+  <span class="n">image</span><span class="p">:</span> <span class="n">dird</span><span class="o">-</span><span class="n">test</span>
+  <span class="n">ports</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="mi">9489</span><span class="p">:</span><span class="mi">9489</span>&quot;
+  <span class="n">volumes</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="o">./</span><span class="n">etc</span><span class="o">/</span><span class="n">xivo</span><span class="o">-</span><span class="n">dird</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">xivo</span><span class="o">-</span><span class="n">dird</span>&quot;
+  <span class="n">links</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="n">america</span>&quot;
+    <span class="o">-</span> &quot;<span class="n">asia</span>&quot;
+    <span class="o">-</span> &quot;<span class="n">europe</span>&quot;
+<span class="n">america</span><span class="p">:</span>
+  <span class="n">image</span><span class="p">:</span> <span class="n">python</span><span class="p">:</span><span class="mf">2.7</span>
+  <span class="n">volumes</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="o">./</span><span class="n">confd_data</span><span class="p">:</span><span class="o">/</span><span class="n">tmp</span>&quot;
+  <span class="n">command</span><span class="p">:</span> &quot;<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">run_confd</span> <span class="n">america</span>&quot;
+<span class="n">europe</span><span class="p">:</span>
+  <span class="n">image</span><span class="p">:</span> <span class="n">python</span><span class="p">:</span><span class="mf">2.7</span>
+  <span class="n">volumes</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="o">./</span><span class="n">confd_data</span><span class="p">:</span><span class="o">/</span><span class="n">tmp</span>&quot;
+  <span class="n">command</span><span class="p">:</span> &quot;<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">run_confd</span> <span class="n">europe</span>&quot;
+<span class="n">asia</span><span class="p">:</span>
+  <span class="n">image</span><span class="p">:</span> <span class="n">python</span><span class="p">:</span><span class="mf">2.7</span>
+  <span class="n">volumes</span><span class="p">:</span>
+    <span class="o">-</span> &quot;<span class="o">./</span><span class="n">confd_data</span><span class="p">:</span><span class="o">/</span><span class="n">tmp</span>&quot;
+  <span class="n">command</span><span class="p">:</span> &quot;<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">run_confd</span> <span class="n">asia</span>&quot;
+</pre></div>
+
+
+<p>The resulting architecture used for the test would look like the
+following diagram.</p>
+<p><img alt="architecture.png" src="/public/architecture/architecture.png" title="architecture.png, déc. 2014" /></p>
+<p>Since xivo-confd is not docker ready at the moment, we mocked the confd
+serverwith a python SimpleHTTPServer and some static files. This allowed
+us to havepredictable results for our tests without having to launch and
+configure awhole XiVO server and still be able to test some common
+cases, such as servernot started, 404 errors, etc.</p>
+<p>Once we know that all of our back-end and that the core of dird is
+completelytested, only one acceptance test is required to test the whole
+chain ofinteraction.</p>
+<p>This mode of testing is still new to our team, we will see if the
+theoreticaladvantages that we get from this kind of segmentation is as
+good in practice asit is on paper.</p>
+<p>Detailed instructions are available in xivo-dird's README for those who
+want totry running the test suite.</p>
+<p>References:</p>
+<ul>
+<li><a href="http://xivo.io" title="XiVO">XiVO</a></li>
+<li><a href="http://documentation.xivo.io" title="XiVO documentation">XiVO
+    documentation</a></li>
+<li><a href="http://documentation.xivo.io/dev/system/xivo-dird/xivo-dird.html" title="dird documentation">xivo-dird
+    documentation</a></li>
+<li><a href="http://github.com/xivo-pbx/xivo-dird" title="dird source code">xivo-dird source
+    code</a></li>
+<li><a href="http://www.fig.sh" title="fig">fig</a></li>
+<li><a href="http://docker.com" title="docker">docker</a></li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "How we test xivo-dird",
+  "headline": "How we test xivo-dird",
+  "datePublished": "2014-12-03 21:23:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "pcadotte",
+    "url": "http://blog.xivo.io/author/pcadotte.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/how-we-test-xivo-dird.html",
+  "description": "XiVO dird is a new directory service in XiVO. It will be used as the entry pointfor lookups and reverse lookups in the near future. Dird is the first service inXiVO that is developed with the objective of being runnable on a separate machine.This objective made it essential to ..."
+}
+</script></body>
+</html>

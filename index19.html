@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/automatic-tests-now-extend-to-xivo-client.html#automatic-tests-now-extend-to-xivo-client">Automatic tests now extend to XiVO Client</a></h2>
+    <p>
+      Posted on Thu 19 January 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/client.html">client</a>    </p>
+  </header>
+  <div>
+      <p>For months now, we have had our continuous integration tool
+<a href="http://jenkins.xivo.fr/" title="Jenkins">Jenkins</a> running automatic tests to
+detect regression bugs on the XiVO web interface. But the web interface
+is not the only interface XiVO offers ; there is a XiVO Client, running
+as a stand-alone Qt application on other machines.</p>
+<p>Until now, we were running tests on the XiVO Client by hand at the end
+of each development iteration. Well, we will still run some of them by
+hand for a time, but we now can make most of them run automatically. We
+just have to code the tests :-)</p>
+<p>Here's what a Lettuce test look like :  </p>
+<div class="highlight"><pre><span class="n">Scenario</span><span class="o">:</span> <span class="n">Enable</span> <span class="n">XiVO</span> <span class="n">Client</span>
+       <span class="n">Given</span> <span class="n">I</span> <span class="n">am</span> <span class="n">logged</span> <span class="k">in</span>
+       <span class="n">Given</span> <span class="n">there</span> <span class="k">is</span> <span class="n">a</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">edit</span> <span class="n">the</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">uncheck</span> <span class="n">the</span> <span class="n">option</span> <span class="s2">&quot;Enable XiVO Client&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">start</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span>
+       <span class="n">Then</span> <span class="n">I</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">log</span> <span class="k">in</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span> <span class="k">as</span> <span class="s2">&quot;charles&quot;</span><span class="o">,</span> <span class="n">pass</span> <span class="s2">&quot;magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">edit</span> <span class="n">the</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">check</span> <span class="n">the</span> <span class="n">option</span> <span class="s2">&quot;Enable XiVO Client&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Login&quot;</span> <span class="n">to</span> <span class="s2">&quot;&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Password&quot;</span> <span class="n">to</span> <span class="s2">&quot;&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span> <span class="k">with</span> <span class="n">errors</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Login&quot;</span> <span class="n">to</span> <span class="s2">&quot;charles&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Password&quot;</span> <span class="n">to</span> <span class="s2">&quot;magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span>
+       <span class="n">Then</span> <span class="n">I</span> <span class="n">log</span> <span class="k">in</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span> <span class="k">as</span> <span class="s2">&quot;charles&quot;</span><span class="o">,</span> <span class="n">pass</span> <span class="s2">&quot;magne&quot;</span>
+</pre></div>
+
+
+<p>Let's get a bit more technical to explain how this works.The main
+problem was to make our
+<a href="http://lettuce.it/" title="Lettuce/Selenium">Lettuce/Selenium</a> automatic
+tests in Python communicate with a running instance of the XiVO Client
+in C++.</p>
+<p>Our first attempt got us to embed the XiVO Client in a C++ library, to
+wrap this library into a Python module with
+<a href="SWIG" title="http://www.swig.org/">SWIG</a>, load this module when running
+automatic tests and call some module functions to make the XiVO Client
+do what we wanted, for example click on this button or fill that text
+field. Of course, <a href="http://en.wikipedia.org/wiki/Friend_class" title="C++ classes friendship">C++ classes
+friendship</a>
+was mandarory to avoid coding getters and setters everywhere. We got the
+XiVO Client running within a Python module, but it was blocking the
+execution of automatic tests. We then tried to make the XiVO Client run
+in its own thread, while automatic tests were running in another.
+Unfortunately, the Qt library we use to develop the XiVO Client does not
+support running in a secondary thread as far as GUI is involved (and the
+XiVO Client is almost only about GUI).</p>
+<p>Our second attempt was greatly inspired from the first one, but we tried
+to run the XiVO Client in its own process. We replaced calls to the
+Python module by an IPC protocol through local domain UNIX sockets.
+Basically, the Lettuce process sends the name of the function it is
+executing along with its arguments and the XiVO Client reads them,
+execute the given function and returns whether the function failed or
+succeeded.</p>
+<p>This is no more no less than the behavior of a remote control for the
+XiVO Client. It does not have many buttons for now, but they are
+functional and their number is growing.</p>
+<p><a href="/public/xivosoft/xivoclient-remotecontrol.png" title="XiVO Client remote control"><img alt="XiVO Client remote
+control" src="/public/xivosoft/.xivoclient-remotecontrol_m.jpg" title="XiVO Client remote control, janv. 2012" /></a></p>
+<p>Of course this remote control "feature" is not released with official
+XiVO Client versions. It is only activated when the XiVO Client is
+compiled specifically for automatic tests.</p>
+<p>For now, we only test the GNU/Linux version of the XiVO Client, even
+though it is not the most used version. Ideally, we shoud test all
+platform versions. But unless we stumble upon major differences between
+different platform versions, we can rely on the <a href="http://qt.nokia.com/" title="Qt framework">Qt
+framework</a> quality and its platform
+abstraction features.</p>
+<p>There is a <a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Tester" title="documentation page">documentation
+page</a>
+that explains how to use the remote control feature.</p>
+<p>Links :<br />
+<a href="https://git.proformatique.com/?p=official/xivo-acceptance.git;a=tree;f=web-interface/features;h=239ee123d5bfabb313efd1f787bb5a7638217396;hb=HEAD" title="Our Lettuce tests">Our Lettuce
+tests</a><br />
+<a href="https://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="the XiVO Client git repository">the XiVO Client git
+repository</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-git-architecture-is-evolving.html#xivo-git-architecture-is-evolving">XiVO GIT Architecture is evolving</a></h2>
+    <p>
+      Posted on Tue 17 January 2012 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>    </p>
+  </header>
+  <div>
+      <p>The <a href="https://twitter.com/#!/Xivodevteam" title=" # xivodevteam">#
+xivodevteam</a>
+decided to change the architecture of the git repository of
+<a href="/index.php?tag/XiVO">XiVO</a>.</p>
+<p>Why do we wanted to do this change ?</p>
+<ul>
+<li>It's easier for the community to work on small component rather than
+    on a big git repository</li>
+<li>Each component can be independent</li>
+<li>Allows usage of XiVO components in third-party systems</li>
+<li>Simplify and unify the names of the services</li>
+</ul>
+<p>Diagram of the migration of the git repository:</p>
+<p><a href="/public/git/xivo-git-architecture.png" title="XiVO REPOSITORY GIT ARCHITECTURE"><img alt="XiVO REPOSITORY GIT
+ARCHITECTURE" src="/public/git/.xivo-git-architecture_m.jpg" title="XiVO REPOSITORY GIT ARCHITECTURE, janv. 2012" /></a></p>
+<p>The large circle on the left is our warehouse with all the components
+together.</p>
+<p>Each component will become an independent <a href="http://git.proformatique.com/" title=" git repository ">git
+repository</a>
+http://git.proformatique.com/</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Around  XiVO - describe industrial installation process</a></h2>
+    <p>
+      Posted on Fri 06 January 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>There are four possibilities to install Xivo software :</p>
+<ul>
+<li>By hand ;)</li>
+<li>Using an installation script (only for gallifrey and skaro-dev at
+    the moment)</li>
+<li>Using an installation cd (available on http://mirror.xivo.fr/iso)</li>
+<li>Using pxe</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>
+</pre></div>
+
+
+<p>We use
+<a href="http://en.wikipedia.org/wiki/Preboot_Execution_Environment" title="pxe"></a>pxe
+for our installations.It is easier, we boot our client on pxe, the rest
+of the installation process is automatic</p>
+<p>We have 3 sites, 2 in France and 1 in Canada. The easier way for us is
+to centralize pxe configuration.</p>
+<p>Here is our architecture :</p>
+<p><img alt="xivo_pxe_arch" src="/public/.pxe_arch_s.jpg" title="xivo_pxe_arch, janv. 2012" />.</p>
+<p>You can find debian pxe documentation on
+http://d-i.alioth.debian.org/manual/en.i386/ch04s05.html, however you
+can find a lot of online (possibly outdated) documentation.</p>
+<p>You may find our pxe configuration on our git repositories :</p>
+<ul>
+<li>our pxe configuration on
+    http://git.xivo.fr/?p=official/debian-pxelinux.git;a=summary</li>
+<li>our installation class
+    http://git.xivo.fr/?p=official/debian-installer.git;a=summary</li>
+</ul>
+<p>I will fully explain our configuration in futures posts</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/the-creation-of-a-new-xlet-for-the-xivo-client.html#the-creation-of-a-new-xlet-for-the-xivo-client">The creation of a new xlet for the XiVO client</a></h2>
+    <p>
+      Posted on Fri 30 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xlet.html">xlet</a>,      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/client.html">client</a>    </p>
+  </header>
+  <div>
+      <p>The XiVO client has been designed to be expendable. The plug-in
+architecture allows a user to create his own xlet to fulfill his needs.
+This short tutorial will guide you through the creation of a simple xlet
+and the required configuration to test it.</p>
+<h2>Getting the sources</h2>
+<p>The first step to creating your own xlet is to get the XiVO client
+sources. The sources can be retrieved with the following command:</p>
+<div class="highlight"><pre>git clone git://git.xivo.fr/official/xivo-client-qt.git
+</pre></div>
+
+
+<p>The available xlets are in the directory xivoclient/src/xlets you could
+create your xlet from scratch but we will use the xletnull as a scaffold
+for our new xlet.</p>
+<h2>Transforming xletnull into something new</h2>
+<p>For this example, we will create a simple xlet that displays channel
+information for debugging purposes.</p>
+<p>Copy the xletnull directory and give your new directory a significant
+name.</p>
+<div class="highlight"><pre>cd xivoclient/src/xlets
+cp -R xletnull channellist
+</pre></div>
+
+
+<p>Rename files in the channellist directory to reflect your new xlet name.</p>
+<div class="highlight"><pre>rename &#39;s/xletnull/channellist/&#39; *
+</pre></div>
+
+
+<p>Fix .cpp and .h files by renaming xletnull to your new name. In .h
+files, change the include gards to reflect the new file name and rename
+the classes. In .cpp files, change the include "xletnull.h" and the
+classname</p>
+<p>Fix the .pro file, the TARGET line should point to your new xlet</p>
+<p>Remove the Makefiles if they are present "rm Makefile*" in the xlet's
+directory</p>
+<p>Add your new xlet to the xivoclient/xlets.pro file. Edit the file
+xivoclient/xlets.pro. Add src/xlets/channellist to the SUBDIRS array.</p>
+<h2>Check if it still compiles</h2>
+<p>Test your changes. From the root of the xivo-client-qt directory run:</p>
+<div class="highlight"><pre>make clean
+make
+</pre></div>
+
+
+<p>You should now have a channellist.o and a channellistplugin.o file
+xivoclient/obj/ directory.</p>
+<h2>Tell xivo-ctid about your new xlet</h2>
+<p>On your XiVO, edit /etc/pf-xivo/xivo-ctid/allowedxlets.json.Add a line
+for your new xlet</p>
+<div class="highlight"><pre>&quot;channellist&quot; : []
+</pre></div>
+
+
+<p>Add the new xlet to your CTI profileIn the web-interface services -&gt;
+CTI server -&gt; profilesEdit your profile, select the xlets tab and
+click the add buttonSelect your new xlet (you will see a missing
+translation error instead of your xlet name but you can still select
+it).</p>
+<p>Restart xivo-ctid</p>
+<h2>Try your boilerplate code</h2>
+<p>When you log in the cti client you should now have an xlet with "sample"
+caption and a label displaying "Hello world!"</p>
+<p>Now that the boiler plate code is in place, the real work begins. We
+will use the client internal API to get warned of new channel events and
+display a list of active channels on our XiVO.</p>
+<h2>Get the work done</h2>
+<p>The implementation of our Xlet will be in the channellist.h and
+channellist.cpp files.</p>
+<ul>
+<li>Change the title of your xlet.</li>
+</ul>
+<p>In the constructor of your xlet change the string sent to setTitle to
+your desired title.</p>
+<div class="highlight"><pre>`setTitle(&quot;Channel List&quot;);`
+</pre></div>
+
+
+<ul>
+<li>Remove unused widget</li>
+</ul>
+<p>For this example we won't need the m_label member. It can be remove
+from the .h and it's initialization from the .cpp.</p>
+<ul>
+<li>Listening to interesting events</li>
+</ul>
+<p>The Baseengine of the XiVO client broadcast many events using Qt
+signals, these signals can be catched by any xlets. We connect to 3
+signals from the base engine in our constructor, channels and phones
+status updates. Both signals are received by the updateChannelList slot.
+The string parameter is not used in this example but the same signature
+is required to connect a signal to a slot.</p>
+<p>To access signals or any other methods of the base engine, we need to
+include &lt;baseengine.h&gt; in our xlet. We can then acces the base
+engine instance with the b_engine pointer.</p>
+<ul>
+<li>Retrieving internal data structures</li>
+</ul>
+<p>The current implementation of the XiVO client keeps a hash map of each
+interesting object. Updates are received by the CTI server and stored by
+the base engine. Available objects are available in
+baselib/src/*info.h.In our example, we use b_engine-&gt;channels() to
+retrieve the list of channels that are in memory whenever we receive a
+status update from the CTI server. The old list is then destroyed and a
+new one is created from scratch.</p>
+<p><img alt="Channel List
+xlet" src="/public/new_xlet/.channellist_small_m.jpg" title="Channel List xlet, déc. 2011" /></p>
+<p>The channellist.cpp and channellist.h files are available as attachment</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/libsccp-a-xivo-sccp-implementation-for-asterisk.html#libsccp-a-xivo-sccp-implementation-for-asterisk">libsccp, a XiVO SCCP implementation for Asterisk</a></h2>
+    <p>
+      Posted on Thu 22 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>Have you ever heard of SCCP ? It stands for Skinny Call Control Protocol
+and it's used to interact with Cisco IP Phones. Asterisk has its own
+basic support called chan_skinny and is one of the first open source
+implementation available. There is also a more featured implementation
+called chan_sccp-B, which is a fork of chan_skinny.</p>
+<p><img alt="agile-dashboard.jpg" src="/public/libsccp/.agile-dashboard_s.jpg" title="agile-dashboard.jpg, déc. 2011" /></p>
+<p>Then, why writing another one ? Well, simply because chan_skinny is
+too... skinny! and that chan_sccp-B is full of bugs, have no clear
+roadmap and is not backed by professional developers. Don't worry too
+much, we are not rewriting everything from scratch, all the protocol
+knowledge is based on chan_skinny.</p>
+<p>In the long run, our goal is to produce a stable, full featured and well
+tested code base. To keep our goal in focus, we aim to commit early and
+often. In that, you're encouraged to actively participate by playing
+with the code, reporting errors and sharing your ideas and needs with
+us.</p>
+<p><img alt="sccpp.jpg" src="/public/libsccp/.sccpp_s.jpg" title="sccpp.jpg, déc. 2011" /></p>
+<p>In parallel of the libsccp development, we're building an automated test
+environment. Asterisk has a built-in unit-test framework that allow us
+to stress the bits and bytes of every line of codes in a non-functional
+way. Another tool made by Digium is the Asterisk TestSuite framework.
+This powerfull tool allow us to write specific case scenario and replay
+it as we like. Furthermore, we wrote a traffic generator for the SCCP
+protocol, called SCCPp, that can act as a scriptable softphone. To
+orchestrate and automate all this, we are using Jenkins as a continuous
+integration tool. In short, <a href="http://jenkins.xivo.fr/">Jenkins</a> is able
+to replay all the different level of test automatically everytime
+something is modified in the code. All of this is still at an early
+stage, and is evolving everyday.</p>
+<p><img alt="phone-tested.jpg" src="/public/libsccp/.phone-tested_s.jpg" title="phone-tested.jpg, déc. 2011" /></p>
+<p>For those eager to dig into the code and start using it, you can find
+here how to get started and more:<a href="https://wiki.xivo.fr/index.php/Sccp">https://wiki.xivo.fr/index.php/Sccp</a></p>
+<p>If you are less comfortable with the 'Do It Yourself', libsccp is also
+getting integrated into XiVO Skaro and will be available in the next
+week or so.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index20.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index18.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

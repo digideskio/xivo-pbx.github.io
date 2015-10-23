@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="This blog post extends the diagram presented earlier explaining the global architecture of CTI in XiVO. Here is what the XiVO Client looks like from a developer point of view: This is the new architecture ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO Client architecture"/>
+<meta property="og:description" content="This blog post extends the diagram presented earlier explaining the global architecture of CTI in XiVO. Here is what the XiVO Client looks like from a developer point of view: This is the new architecture ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-client-architecture.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-09-30 21:14:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO Client architecture</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-client-architecture">XiVO Client architecture</h1>
+    <p>Posted on Fri 30 September 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>This blog post extends the diagram presented earlier explaining the
+<a href="/index.php?post/2011/05/13/CTI-external-architecture-in-XiVO-1.1-and-1.2" title="CTI global architecture diagram">global architecture of
+CTI</a>
+in XiVO.</p>
+<p>Here is what the XiVO Client looks like from a developer point of
+view:<img alt="XiVO Client
+architecture" src="/public/.xivoclient_m.jpg" title="XiVO Client architecture, sept. 2011" /></p>
+<p>This is the new architecture that will be included in our new
+development iteration beginning on Monday, 3rd October.The main change
+is the "creation" of the XLetlib, that was previously into the Baselib.
+The Baselib will be progressively stripped of everything not necessary:
+the goal is to make it a reusable component, which will only manage the
+connection with the CTI server.</p>
+<p>Everything in the XiVO Client is written in C++ and Qt.</p>
+<p>Let's explicit the spaghetti plate above a little :XLets, for XiVO
+applets, are plugins to the XiVO Client. Almost every function of the
+XiVO Client is pluggable/unpluggable, depending on the server
+configuration to allow some XLet to be activated. You can see what XLets
+look like in the <a href="https://wiki.xivo.fr/index.php/XiVO_1.0-Dalek/Documentation_XiVO_Client" title="XiVO Client user manual">XiVO
+wiki</a>
+(each tab is an XLet).</p>
+<p>Each XLet can use the tools available in the XLetlib, that are mainly
+GUI elements used to display information in a consistent way within all
+XLets. They are also given access to the Baselib "API" (it is an API,
+but scarcely documented for the time being), that receives or sends CTI
+events and informations to the CTI server, such as "a new phone has
+registered to Asterisk", "you have a new telephone message", "I want to
+call this number", etc.</p>
+<p>Of course, there are some options available to control how the XiVO
+Client behaves ; about half of them control GUI aspects and the other
+half control how the connection is established to the server. The GUI
+related options are some of the things we still have to migrate out of
+the Baselib, because someone wanting to connect to the CTI server
+through our Baselib does not care that the XiVO Client presence
+indicator is 5 pixels wide...</p>
+<p>About the communication protocol between the XiVO Client and the CTI
+server, everything is JSON encoded. For now, there is no compatibility
+between protocol versions, but we're thinking about it. The goal is to
+be able to release XiVO Client upgrades without having to wait for the
+XiVO distribution to be released, especially if the new version
+introduces mainly GUI improvements. But this can't happen if an "old"
+server can not talk with a more recent client.</p>
+<p>One could think that working on the XiVO Client may be boring, as it's
+only easy GUI stuff, placing a button here, making it violet with green
+dots for obscure marketing reasons. There's a part of GUI stuff, of
+course, but I find the plugins-only, freely movable (in dock mode)
+interface concept very interesting, it makes the XiVO Client a potential
+swiss-army knife, to which anyone can choose exactly the tools he needs,
+no more, no less.</p>
+<p>Some links :<br />
+<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="XiVO Client git repository">The XiVO Client git
+repository</a><br />
+<a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer" title="XiVO Client developer documentation">Developer oriented
+documentation</a><br />
+<a href="https://wiki.xivo.fr/index.php/Support_Community#IRC" title="IRC channel infos">IRC
+channel</a></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO Client architecture",
+  "headline": "XiVO Client architecture",
+  "datePublished": "2011-09-30 21:14:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-client-architecture.html",
+  "description": "This blog post extends the diagram presented earlier explaining the global architecture of CTI in XiVO. Here is what the XiVO Client looks like from a developer point of view: This is the new architecture ..."
+}
+</script></body>
+</html>

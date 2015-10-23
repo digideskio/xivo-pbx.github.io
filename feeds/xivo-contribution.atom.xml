@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-contribution.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-04-13T20:36:00-04:00</updated><entry><title>XiVO contributors: Why I chose XiVO?</title><link href="http://blog.xivo.io/xivo-contributors-why-i-chose-xivo.html" rel="alternate"></link><updated>2015-04-13T20:36:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-13:xivo-contributors-why-i-chose-xivo.html</id><summary type="html">&lt;p&gt;--- &lt;em&gt;Summary in english&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To better know each other skills and projects, we organised a survey
+    about XiVO contributors (&lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;in
+    french&lt;/a&gt;)
+    and a meeting with the &lt;a href="barcamp.org/w/page/94666184/BarCampIRC-Québec"&gt;1st BarCampIRC about VoIP open
+    source&lt;/a&gt; with a
+    &lt;a href="/public/BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf"&gt;report&lt;/a&gt;. During
+    this meetings, some contributors send their opinions about "Why I
+    chose XiVO". This is the debriefing from d_raven, a
+    XiVO contributor. This is the summary. The full document following
+    is in french.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1. The company's activities&lt;/li&gt;
+&lt;li&gt;2. The specification and the idea of ​​setting up&lt;/li&gt;
+&lt;li&gt;3. The costs were astronomical&lt;/li&gt;
+&lt;li&gt;4. I looked at free and paid solutions&lt;/li&gt;
+&lt;li&gt;5. After some research, I found XiVO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;--- &lt;em&gt;The full article in french&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Pour mieux connaître les compétences et projets de chacun, nous avons
+organisé &lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;un sondage sur les contributeurs
+XiVO&lt;/a&gt;
+et &lt;a href="barcamp.org/w/page/94666184/BarCampIRC-Québec"&gt;une 1ère rencontre avec un BarCampIRC sur la VoIP open
+source&lt;/a&gt; dont voici le
+&lt;a href="/public/BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf"&gt;compte-rendu&lt;/a&gt;.
+Durant ces rencontres, les contributeurs ont échangé leurs avis, dont
+"Pourquoi j'ai choisi XiVO". Ceci est le témoignage de d-raven, un
+contributeur.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Les activités de l'entreprise&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;"Nous gérons environs 20 points de ventes grand public et points de
+    ventes en France. Orange gère la formation et l'accès à ses propres
+    outils mais notre entreprise est libre pour la mise en place de
+    l'infrastructure informatique, réseau et télécom.&lt;/li&gt;
+&lt;li&gt;Nos points de ventes sont reliés à notre système d'information par
+    des VPNs que nous gérons nous même. Chaque point de vente possède un
+    certain nombre de ligne mais qui sont de simple lignes analogiques
+    (avec un accès ADSL par ligne). Aussi, afin de faire évoluer
+    l'ensemble et permettre une meilleure collaboration de nos équipes
+    de ventes, et surtout d'avoir une meilleure ergonomie dans la
+    gestion des appels téléphonique à nos vendeurs, nous avons décidé de
+    nous équiper d'un IPBX.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Novembre 2013&lt;/em&gt;: Nous avons donc contacté les équipes de ventes de
+    la section entreprise de l'opérateur (OBS), c'est à dire Orange.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. Le cahier des charges était simple&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Le Système permettant de relier plusieurs sites entre eux
+    (environ 25) ; téléphone sur IP uniquement ; possibilité de
+    réutiliser (dans certains cas) les postes DECT installés sur place
+    (en particulier les points de ventes) ; créer des conférences ;
+    créer des groupements de postes ; d’enregistrer à la volée les
+    appels ; avoir des stats détaillées des communications ; connaître
+    l'état d'un poste (en communication ou pas) ; avoir une fonction ACD
+    (si on en a besoin) ; avoir un client sur le poste de l'utilisateur
+    permettant d'afficher les appels reçus ; nombre de poste : 80 de
+    type DECT et 20 type FIXE ; pas de choix défini pour la marque de
+    l'IPBX; possibilité d'avoir un IPBX virtualisable ; mutualiser les
+    appels et faire baisser très nettement les coûts de communication.&lt;/li&gt;
+&lt;li&gt;L'idée de mise en place est simple : Pour chaque ordinateur installé
+    dans les points de ventes , 1 DECT devait être installé. On avait
+    demandé un lien avec Lync (de Microsoft), on pensait pouvoir changer
+    l'état du poste (comme étant occupé sur Lync) si quelqu'un appelait
+    sur le poste DECT.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3. Les coûts étaient astronomiques&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Mai 2013&lt;/em&gt;: Après environ 4 mois d'attente, nous avons eu quelques
+    réponses vagues. Après 6 mois, nous avons eu 2 devis.&lt;/li&gt;
+&lt;li&gt;115 000 euros pour l'un et 111 000 euros pour l'autre.&lt;/li&gt;
+&lt;li&gt;A cela, il fallait en plus: prévoir les postes DECT et fixes (aucun
+    n'est inclus dans les propositions); prévoir les liens
+    d'interconnexion pour acheminer les appels voix (donc le trunk
+    vers l'opérateur) ; le coût des communications, tout était facturé à
+    l'utilisation (temps réel , pas de forfait) ; le prix des serveurs
+    pour une des deux propositions était virtualisé mais auquel je
+    devais fournir le matériel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Je leur ai demandé pourquoi ils n'avaient pas inclus la possibilité
+    d'enregistrer des appels à la volé. Réponse : « on peut le faire,
+    mais c'est une option, il faut rajouter un boîtier sur votre réseau
+    et çà vous coûtera environ 40 000 euros !!! »&lt;/li&gt;
+&lt;li&gt;Après encore plusieurs mois de patience, ils sont revenus pour
+    savoir si on signait. Je leur ai indiqué que çà ne serait pas le cas
+    avec un tel coût. Je leur ai indiqué que je souhaitais vraiment
+    l'option d'enregistrement à la volée, mais pas à ce prix. Réponse :
+    « Monsieur , le plus simple est d'utiliser un enregistreur de type
+    "dictaphone" et de le connecter à votre téléphone s'il possède une
+    prise casque jack 3.5 ! » On a mis de côté leurs offres.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Mai 2014&lt;/em&gt;: Ils sont revenus une nouvelle fois pour relancer
+    le projet. Ils m'ont demandé de revoir mon cahier des charges ... à
+    la baisses certains fonctions étant impossibles à obtenir
+    (l'enregistrement pas exemple) sans y mettre les
+    moyens (financiers). Je n'ai pas donné suite ... et j'ai décidé de
+    chercher une solution plus souple , moins propriétaire et avec
+    laquelle on pourrait faire ce que l'on veut.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;4. Du côté des solutions gratuites et payantes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Solution Asterisk:
+    &lt;ins&gt;
+    Elastix, FreePBX, SwitchVox
+    &lt;/ins&gt;
+    .&lt;/li&gt;
+&lt;li&gt;Solution autre:
+    &lt;ins&gt;
+    FreeSwitch
+    &lt;/ins&gt;
+    (avec interface graphique :
+    &lt;ins&gt;
+    FusionPBX / Bluevox
+    &lt;/ins&gt;
+    ),
+    &lt;ins&gt;
+    3CX
+    &lt;/ins&gt;
+    .&lt;/li&gt;
+&lt;li&gt;Bref, c'était sympa, mais Switchvox n'étant pas disponible
+    directement en France, il fallait passer par un revendeur étranger
+    et nous étions toujours limité pour certains trucs, car le système
+    Asterisk est fermé. 3CX était pas mal, mais bon avoir un IPBX qui
+    tourne sous Windows ... c'est pas génial.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5. Après quelques recherches, j'ai découvert XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;J'ai testé le produit, commencé à l'adapter (car j'ai des besoins
+    spécifiques et j'aime bien toucher un peu à tout et mâitriser le
+    produit que j'utilise).&lt;/li&gt;
+&lt;li&gt;Nous avons alors fait le choix suivant : XiVO comme infrastructure
+    principale et 3 liens Trunks (OVH et OPENIP).&lt;/li&gt;
+&lt;li&gt;Nous allons voir pour y ajouter :
+    &lt;ins&gt;
+    FreeSwitch
+    &lt;/ins&gt;
+    pour le système des réunions (nous souhaitons avoir le double
+    système de code pin : organisateur/utilisateur, car ce dernier est
+    utilisé pour les conférences sur le système de conférence d'Orange)
+    ;
+    &lt;ins&gt;
+    ICTFax
+    &lt;/ins&gt;
+    pour la partie émission / réception fax (qui ne peut se lier qu'à un
+    système FreeSwitch) &amp;lt;- nous souhaitons utiliser la fonction
+    email-to-fax (avec accusé de réception) ;
+    &lt;ins&gt;
+    Kamailio ou repo
+    &lt;/ins&gt;
+    comme serveur proxy , le but étant de permettre à certains
+    utilisateurs de se connecter à notre serveur XiVO depuis Internet ,
+    sans que ce dernier soit directement relié à Internet (en gros avoir
+    un "reverse-proxy" pour la partie SIP de XiVO)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Si nous arrivons à tout intégrer à XiVO (double pin pour les
+    conférences et email-to-fax), nous supprimerons les ajouts
+    (FreeSwitch et ICTFax).&lt;/li&gt;
+&lt;li&gt;Nous avons déjà commencé à déployer XiVO, pour l'instant, il est en
+    local, il n'y a pas encore de poste installé sur les points de vente
+    (je viens juste de finir la QOS sur les routeurs). Les postes
+    installés sur place (pour essai et mise en production dans certains
+    cas): Cisco SPA525G2, Yealink T46G et T48G, Aastra 6867i, Cisco
+    SPA112, Gigaset C530IP, Polycom IP 5000.&lt;/li&gt;
+&lt;li&gt;Je vais aussi tester et connecter un Cisco 9971 et un Cisco 7941, et
+    deux autres modèles, un Cisco SPA3102 et un DECT Aastra histoire de
+    voir ce que çà donne.&lt;/li&gt;
+&lt;li&gt;Tous les postes sont ou seront connectés à XiVO uniquement , aucun
+    poste ne sera utilisé sur FreeSwitch (sauf pour tester). Voilà où
+    j'en suis en &lt;em&gt;avril 2015&lt;/em&gt;."&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;d-raven&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;d-raven&amp;gt; je pense que la meilleur façon de convaincre, c'est de
+montrer que çà fonctionne !!&lt;/em&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>NyXD Systems, des fans de XiVO racontent leurs aventures dans la téléphonie</title><link href="http://blog.xivo.io/nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html" rel="alternate"></link><updated>2015-01-29T13:57:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-29:nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html</id><summary type="html">&lt;p&gt;Summary: NyXD Systems is a team passionated for computer science and
+telecommunication systems, founded in 2006, near Paris (France). This
+interview shows how they made communicate computers, installed a
+network, configured a VPN on their routers, set a hosting services.
+Exploring XiVO software, they contacted the developers. Thanks to this
+meeting, NyXD wrote a tutorial to share their achievements.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Article en cc by sa 3.0 2015 - par Valérie Dagrain&lt;/em&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong&gt;Bonjour NyXD Systems, pouvez-vous présenter comment a débuté votre aventure dans la téléphonie?&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="logo2015_200_100.png" src="/public/logo2015_200_100.png" title="logo2015_200_100.png, janv. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;"Bonjour Valérie, NyXD Systems est un collectif de jeunes passionnés
+d'informatique, télécommunications et T.I, fondé en 2006, près de Paris
+(France).&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;"&lt;strong&gt;Je suis Thomas, l'un des rédacteurs du blog de [NyXD
+Systems&lt;/strong&gt;|http://retroplace.nyxd.org/] depuis 2012 et également l'un
+des deux membres fondateurs. Nous sommes un groupe de 4 amis:Kevin et
+moi avons commencé à bidouiller quand nous étions au lycée vers 2005 et
+découvert qu'il était bien plus amusant de faire communiquer des
+ordinateurs que de les laisser seuls dans leur coin.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kevin, également rédacteur et je suis l'autre membre fondateur de
+&lt;a href="/index.php?tag/NyXD%20Systems"&gt;NyXD Systems&lt;/a&gt;&lt;/strong&gt;. Ma passion pour
+l'informatique m'a rapidement rapproché de Thomas, et nous avons assez
+vite eu l'envie de mettre des ordinateurs sur des réseaux dont nous
+avions la maîtrise, et surtout la fierté d'utiliser nos propres
+solutions... Quand elles marchaient...NyXD Systems est aujourd'hui bien
+plus qu'un petit passe-temps d'adolescent, c'est un projet qui me tient
+énormément à cœur, et qui m'a permis de m'éclater tout en apprenant.Côté
+téléphonie, je suis plus en retrait par rapport à Thomas à vrai dire :
+ce n'est pas moi qui mets en place, mais je suis très fier d'avoir sur
+mon bureau un téléphone qui fonctionne grâce à notre réseau, des
+connexions VPN qui sont configurées sur nos routeurs, et
+&lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; qui tourne sur l'un de nos serveurs. Deux
+autres, Claude et Jean nous ont rejoint en 2014.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Claude, membre récent de l'équipe de NyXD Systems.Actuellement en
+école d'ingénieur par la voie de l'apprentissage&lt;/strong&gt;, j'ai eu l'occasion
+d'étudier la solution de téléphonie &lt;a href="/index.php?tag/Asterisk"&gt;Asterisk&lt;/a&gt;
+(logiciel de référence dans la téléphonie open-source). Par le biais de
+NyXD Systems, j'ai ainsi l’occasion de mettre en application via un
+réseau réel tout ce que j'ai pu apprendre durant mon cursus scolaire.
+Tout comme Kevin, je suis également fier d'avoir un téléphone
+d'entreprise sur mon bureau, que je peux utiliser de la même manière que
+dans le cadre de mon travail d'apprenti chez Orange.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Jean, je suis actuellement lycéen et je m’intéresse très fortement à
+l’informatique et à l’électronique.&lt;/strong&gt; J’ai intégré NyXD Systems en 2014,
+suite à la rencontre de Thomas sur un forum d’utilisateurs de Mac
+(MacBidouille), et je m’occupe actuellement de réaliser des programmes
+et du matériel sur-mesure pour NyXD Systems. Le réseau et la téléphonie
+étant des domaines inconnus pour moi, faire partie de l'équipe me permet
+de toucher à de nombreux domaines auxquels je n’aurai jamais pu voir "
+l’envers du décor".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voilà comment "nous avons progressivement évolué en obtenant des
+serveurs professionnels, ce qui nous a permis d'apprendre, ce que nous
+faisons toujours.Nous touchons un peu à tout, Windows, Mac, Linux, et
+même si nous avons moins de compétences sur Linux, je me suis vite rendu
+compte que XiVO (système de téléphonie open-source) était très
+accessible pour un néophyte en terme d'installation de système IPBX",
+précise Thomas.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2015-XiVO-Remercie-NyXDSystems-01-400.png" src="/public/2015-XiVO-Remercie-NyXDSystems-01-400.png" title="2015-XiVO-Remercie-NyXDSystems-01-400.png, fév. 2015" /&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;strong&gt;Avec quel matériel de téléphonie avez-vous commencé?&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;"J'ai trouvé par hasard, un lot de téléphones
+&lt;a href="/index.php?tag/Cisco"&gt;Cisco&lt;/a&gt; IP Phone 7960 dotés d'un firmware SIP, et
+très bon marché sur Ebay vers la mi-2013 et c'est là que tout à
+commencé. Nous aimons beaucoup ces téléphones notamment car on peut les
+voir dans des films et séries diverses, et je les ai côtoyé à plusieurs
+reprises dans les grandes entreprises dans lesquelles j'ai travaillé. Je
+n'avais jamais touché à la configuration d'un téléphone IP auparavant.
+Je me disais "ça a une prise Ethernet, alors ça doit sûrement marcher
+comme un ordinateur en réseau !". Malheureusement, il s'est très vite
+avéré que non. Mais ces téléphones étant si agréables à utiliser que je
+me suis documenté un peu, ne pouvant rester sur un échec. J'ai donc
+commencé par chercher comment créer un réseau de téléphonie interne.
+J'aurais pu partir d'une solution ex nihilo, mais la téléphonie étant
+vraiment un domaine particulier et alors inconnu pour moi, j'ai préféré
+m'affranchir de tout un tas de difficultés en partant d'une distribution
+packgée, sans pour autant mettre de côté les rouages qui font que ça
+marche, pour me concentrer sur la mise en place. Et c'est là que j'ai
+découvert &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt;,
+&lt;a href="/index.php?tag/Elastix"&gt;Elastix&lt;/a&gt;, &lt;a href="/index.php?tag/FreePBX"&gt;FreePBX&lt;/a&gt;,
+etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="NyXD-400.JPG" src="/public/NyXD-400.JPG" title="NyXD-400.JPG, janv. 2015" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;J'ai commencé avec &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; à la toute fin 2013
+mais certains détails de fonctionnement étaient encore obscurs pour moi
+et rapidement une vidéo sur Elastix m'a permis d'en faire plus. &lt;strong&gt;J'ai
+donc testé un peu Elastix, puis FreePBX mais avec beaucoup de
+difficultés pour finalement revenir sur &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; dont
+la qualité de l'interface de gestion, les fonctionnalités et la
+simplicité d'installation sont très supérieures.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Très rapidement, nous avons mis en place un serveur dédié
+&lt;a href="https://www.kimsufi.com/ca/fr/"&gt;Kimsufi&lt;/a&gt; chez l'hébergeur OVH, nos
+téléphones Cisco chez nous avec un firmware en SIP et derrière des
+routeurs pfSense avec le package additionnel siproxd (un proxy SIP) nous
+permettant d'avoir facilement plusieurs téléphones sur chaque site. La
+configuration de chaque téléphone se faisait totalement à la main ce qui
+prenait du temps et surtout compliquait énormément toute modification
+ultérieure au déploiement puisqu'il fallait obligatoirement se rendre
+sur site.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nous avons utilisé cette solution pendant quelques mois début 2014,
+sans rencontrer particulièrement de problèmes. D'autres téléphones ont
+été ajoutés, pour en avoir une petite douzaine en fonctionnement. Nous
+arrivions aisément à passer des appels internes et externes mais nous
+avions un stock de téléphones Cisco 7941, impossibles à configurer à la
+main tel que nous le faisions. C'est à force de voir ces téléphones
+inexploités que j'ai eu envie que notre serveur gère le provisioning,
+c'est à dire que depuis le serveur on puisse dire "tel utilisateur
+possède telle ligne, il faut l'attribuer à tel ou tel téléphone" et que
+sans aucune intervention physique, le téléphone "reçoive" cette ligne et
+soit opérationnel immédiatement. Ceci s'inscrivait assez facilement dans
+notre changement d'infrastructure. Nos sites étant maintenant raccordés
+par VPN, nous avons pu rapatrier le serveur de téléphonie en local, au
+siège, et provisionner ainsi tous les téléphones du siège, et à travers
+les liaisons VPN, les téléphones d'agences".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong&gt;Dans quel contexte es-tu venu échanger pour la première fois avec les développeurs XIVO?&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;"J'ai eu un problème majeur dans le déploiement de cette nouvelle
+version de notre solution basée sur un &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt;
+auto-hébergé. Au niveau du serveur, nous étions reliés à OVH qui est
+notre fournisseur de ligne SIP. Nous avons donc une ligne qui nous
+permet d'appeler l'extérieur et d'être appelés. Nous interconnectons
+cette ligne avec notre serveur qui contient donc une série de règles qui
+définissent son comportement lors du passage d'un appel dans un sens ou
+dans l'autre. Le problème que j'avais, c'est que j'arrivais à passer des
+appels vers l’extérieur, mais pas dans l'autre direction. J'ai donc
+tenté deux ou trois réglages à partir de recherches faites sur le web,
+sans succès.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;En décembre 2014, je me suis donc rendu sur le canal IRC de
+&lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; et alors que je m'attendais à discuter avec
+des utilisateurs du logiciel, j'ai parlé en réalité avec l'équipe de
+développeurs, sans même le savoir au début. Je n'en espérais pas tant !
+Et ils m'ont effectivement aidé à résoudre mon problème&lt;/strong&gt; alors que je
+n'ai aucun lien avec &lt;a href="/index.php?tag/XiVO"&gt;XiVO&lt;/a&gt; ou
+&lt;a href="/index.php?tag/Avencall"&gt;Avencall&lt;/a&gt;, ni contrat de maintenance, ni
+partenariat. Je suis juste un utilisateur lambda ayant demandé conseil
+aux gens qui développent le logiciel qu'il utilise".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;strong&gt;Comment ça c'est passé quand le système a marché?&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;"J'ai pu appliquer en direct les informations données par les
+développeurs de &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; et lorsque ça a fonctionné,
+j'étais très content. Non seulement j'avais appris quelque chose
+d'intéressant, mais en plus j'ai eu envie d'en rédiger &lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh/"&gt;un tutoriel, un
+guide&lt;/a&gt;,
+car il aurait été dommage de déranger les développeurs à nouveau pour le
+même problème en cas de réinstallation complète du serveur. Une façon de
+remercier l'équipe.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Je ne suis pas franchement ce qu'on peut appeler un libriste (même si
+j'apprécie, respecte et encourage le Libre) mais dans mon esprit c'est
+assez naturel de partager. J'utilise gratuitement un logiciel libre, je
+demande de l'aide que l'on m'apporte, alors je n'ai pas envie de garder
+cette aide pour moi, mais au contraire, en faire profiter le plus grand
+nombre. Ainsi, si quelqu'un d'autre ayant la même difficulté fait une
+recherche, il trouvera sûrement des solutions dans ce &lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh/"&gt;guide
+NyXD&lt;/a&gt;,
+continuera d'utiliser le logiciel, ne dérangera pas l'équipe de
+développement (qui doit répondre souvent aux mêmes questions), laissant
+plus de temps pour se concentrer sur le développement du logiciel
+&lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt;. De plus, rédiger un
+&lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh/"&gt;tutoriel&lt;/a&gt;
+permet in fine d’accroître la quantité et la variété de documentation,
+ce qui est appréciable pour tout le monde". Découvrir &lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh/"&gt;le
+tutoriel&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;img src=&amp;quot;/public/Capture_d_e_cran_2015-01-28_a__09.19.44.png&amp;quot; alt=&amp;quot;Capture_d_e_cran_2015-01-28_a__09.19.44.png&amp;quot; title=&amp;quot;Capture_d_e_cran_2015-01-28_a__09.19.44.png, janv. 2015&amp;quot; /&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;&lt;strong&gt;Que souhaitez-vous continuer de faire avec la téléphonie dans l'avenir, pour 2015?&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;"Je compte déjà peaufiner le fonctionnement de notre solution
+actuelle. Avant toute chose, nous devons finaliser et fiabiliser notre
+nouvelle infrastructure réseau et concomitamment la téléphonie, qui
+exploite ce réseau. Nous avons défini les spécifications d'un kit
+"agence" comprenant les équipements vitaux pour équiper une agence
+nouvellement créée, comme le routeur, l'onduleur, le téléphone, etc.
+Nous travaillons à cela quasiment en permanence car nous utilisons
+quotidiennement cette infrastructure, et nous aurons a terme accès aux
+profils utilisateurs de n'importe qui depuis n'importe où. Ainsi un
+utilisateur d'une agence pourra retrouver son environnement de travail
+depuis n'importe quel autre site.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;De la prise en compte de la téléphonie dans nos déploiements
+découlerait assurément une synergie importante pour nos apprentissages
+futurs et notre capacité à maintenir une infrastructure d'entreprise.".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="2015-XiVO-Remercie-NyXDSystems-02-400.png" src="/public/2015-XiVO-Remercie-NyXDSystems-02-400.png" title="2015-XiVO-Remercie-NyXDSystems-02-400.png, fév. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Toute l'équipe XiVO vous remercie, pour votre tout &lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh"&gt;nouveau tutoriel
+sur
+XiVO&lt;/a&gt;
+ainsi que votre motivation pour cet interview. Vous êtes les premiers à
+inaugurer la rubrique des contributeurs XiVO!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://retroplace.nyxd.org/2015/01/28/xivo-auto-hebergement-telephonie-pfsense-ovh/"&gt;Tutoriel de NyXD Systems sur
+    XiVO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/production/"&gt;Documentation&lt;/a&gt; officielle
+    XiVO&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/projects/xivo/boards"&gt;Forums XiVO&lt;/a&gt; et canal
+    IRC #XiVO, serveur freenode&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://xivopourlesnuls.wordpress.com/"&gt;XiVO pour les nuls&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=PDq1LdXAd14"&gt;Tutorial Elastix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.framboise314.fr/decouvrez-la-framboise314-allo-un-pabx-asterisk-dans-votre-raspberry-pi-partie-2"&gt;PABX Asterisk et
+    raspberry-pi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.voip-info.org/wiki/view/Asterisk+phone+cisco+79xx"&gt;Asterisk et
+    Cisco&lt;/a&gt;
+    et
+    &lt;a href="http://www.voip-info.org/wiki/view/Setup+SiP+on+7940+-+7960"&gt;SIP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cuipph/7960g_7940g/sip/english/user/guide/user/sipuget.html"&gt;Manuel Cisco IP
+    Phone7940/7960&lt;/a&gt;
+    et &lt;a href="http://www.google.ca/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=0CCkQFjAA&amp;amp;url=http%3A%2F%2Fwww.telovations.com%2Fattachments%2Fcategory%2F87%2FCisco7941_61_UserGuide.pdf&amp;amp;ei=9cXHVJSVBoGwUausgsgL&amp;amp;usg=AFQjCNF2N6ogonRuM85XqTHYOtNpkj6w2w&amp;amp;sig2=aYV3mEQ9PXhg_50UQ5RjNw&amp;amp;bvm=bv.84349003,d.d24"&gt;Manuel Cisco IP Phone
+    7941/7961&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Configuration d'un &lt;a href="http://www.tux89.com/telephonie/configuration-d%E2%80%99un-poste-telephonique-cisco-79407960/"&gt;poste
+    cisco&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://forum.ovh.com/"&gt;Forums OVH&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="NyXD Systems"></category></entry></feed>

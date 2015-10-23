@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/back-from-fosdem2011.html#back-from-fosdem2011">Back from FOSDEM2011</a></h2>
+    <p>
+      Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p><strong>My impressions from this devroom :</strong></p>
+<ul>
+<li>60+ people room always packed (with some people constraint to wait
+    for the next talk outside :) )</li>
+<li>3 people from Digium able to interact with the community about the
+    Asterisk project</li>
+<li>No video-streaming available as the smal devrooms were not equiped</li>
+<li>Great presentations of the Kamalilio project that seems to be used
+    in the GSM and VoIP core-network</li>
+<li>People from UK, Spain, US, Germany ...</li>
+<li>Some XiVO community users coming over to exchange about their user
+    experiences</li>
+<li>A link to my <a href="http://carcelle.fu8.com/XiVO_IOH_Presentation_FOSDEM2011_06022011.pdf" title="XiVO IOH FOSDEM2011 Presentation">XiVO IOH FOSDEM2011
+    Presentation</a>
+    (40mns, Latex Beamer style)</li>
+</ul>
+<p><strong>The main feebacks from the room :</strong></p>
+<ul>
+<li>Availabiliy of more interfaces on the XiVO IPBX OpenHardware</li>
+<li>Possible interaction with the development team of XiVO IPBX</li>
+<li>Made-in-europe welcomed by the hardware geeks</li>
+<li>Possible usage of the XiVO IPBX OpenHardware for larger VoIP
+    deployments</li>
+<li>Any future concurrent of CIRPACK in OpenHardware ? :)</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</a></h2>
+    <p>
+      Posted on Mon 21 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Lenny backports</h4>
+<p>Nicolas Hicher published newer versions of the gallifrey packages
+<a href="https://projects.proformatique.com/issues/1942">addressing the dependency
+problems</a> reported last
+week. They can be retrieved from the development repository</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>All source packages were downloaded using:</p>
+<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+</pre></div>
+
+
+<p>the dependencies removed with:</p>
+<div class="highlight"><pre>rm /var/cache/packaging-farm/depends/*
+</pre></div>
+
+
+<p>and the build of all packages relaunched with:</p>
+<div class="highlight"><pre><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
+</pre></div>
+
+
+<p>Thanks to the dependency graph added to packaging-farm each package is
+compiled exactly once. It would be more convenient to be able run
+something like</p>
+<div class="highlight"><pre>packaging-farm all
+</pre></div>
+
+
+<p>but such refinements are better addressed when the larger problems are
+resolved.</p>
+<h4>Proformatique Debian GNU/Linux lenny packages</h4>
+<p>It is worth mentionning the existence of a lenny repository containing
+packages used by the company for various purposes and not specificaly
+for XiVO. It is not needed to properly create the XiVO packages and it
+should never be. It can be used by including the following in the source
+list:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>XiVO Kernel modules</h4>
+<p>A few XiVO packages provide kernel modules :
+<code>misdn-kernel, sangoma-wanpipe, divas4linux-melware</code> and <code>dahdi-linux</code>.
+The general idea is that each of the create a package designed to be
+used by <a href="http://wiki.debian.org/ModuleAssistant">module-assistant</a>. A
+kernel module is designed to be loaded in the kernel running on a
+specific machine and module-assistant will help build the matching
+binary from the kernel module sources. The lenny XiVO repository not
+only provides sources for the module, but also supports a few kernel
+flavors : <code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and
+<code>2.6.26-2-686</code>.Unfortunately packaging-farm does not support building
+binary kernel packages. It needs to be modified to add a new type to
+package and meta-package : kernel-module. Instead of building a source
+package, it would run module-assistant as follows:</p>
+<div class="highlight"><pre><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<span class="n">module-assistant</span> <span class="n">prepare</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<span class="n">KPKG_DEST_DIR</span>=<span class="sr">/tmp/</span><span class="n">a</span> <span class="n">SIGNCHANGES</span>=<span class="mi">0</span> <span class="n">module-assistant</span> <span class="n">build</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+</pre></div>
+
+
+<p>The sangoma-wanpipe package adds another problem : when creating the
+packages, it also tries to build a binary kernel module for the kernel
+on which the packaging process is run. As a consequence, when in a i386
+chroot running on a amd64 host, it cannot find the corresponding kernel
+headers and fails. As it is the sangoma-wanpipe package has no way to
+override the kernel version chosen. A <a href="https://projects.proformatique.com/issues/1977#note-1">patch was
+submitted</a> to
+allows this:</p>
+<div class="highlight"><pre><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
+<span class="gi">+++ rules       2011-02-21 16:18:47.000000000 +0100</span>
+<span class="gu">@@ -13,7 +13,12 @@</span>
+ KPKG_DESTDIR := $(DEB_DESTDIR)
+
+ # fallback for XEN
+<span class="gd">-MA_OPTIONS=</span>
+<span class="gi">+#MA_OPTIONS=</span>
+<span class="gi">+DEB_KVERS=$(shell echo &quot;${DEB_BUILD_OPTIONS}&quot; | perl -ne &#39;print $$1 if(/.*KVERS=(\S*)/)&#39;)</span>
+<span class="gi">+ifneq ($(DEB_KVERS),)</span>
+<span class="gi">+KVERS=${DEB_KVERS}</span>
+<span class="gi">+MA_OPTIONS=--kvers-list ${KVERS}</span>
+<span class="gi">+endif</span>
+ ifeq ($(KVERS),unknown)
+ KVERS=$(shell uname -r)
+ MA_OPTIONS=--kvers-list $(KVERS)
+</pre></div>
+
+
+<p>so that packaging can be done with:</p>
+<div class="highlight"><pre>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
+</pre></div>
+
+
+<p>A better solution would be to propose a patch to the author of the
+package to completly disablethe build of a binary kernel module. It is
+unclear where the original package comes from an amail was sent to Nenad
+Corbic &lt;ncorbic@sangoma.com&gt; reporting the patch and asking for
+information.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</a></h2>
+    <p>
+      Posted on Mon 14 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Source package dependencies</h4>
+<p>The<a href="http://xivo.dachary.org/packaging-farm/misdn-user/gnulinux/debian/i386/lenny/src/">misdn-user</a>package
+depends on
+the<a href="http://xivo.dachary.org/packaging-farm/misdn-kernel/gnulinux/debian/i386/lenny/src/">misdn-kernel</a>package.
+Therefore, when misdn-kernel is updated, it may be necessaryto rebuild
+the misdn-user package. There are no standard DebianGNU/Linux tools to
+compute the dependency graph between two source packages. And it's not
+astrivial as it seems, mainly because a source package creates one or
+more binary packages.For instance misdn-user depends on misdn-headers
+which is created by the misdn-kernel package.A
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">script</a>
+wascreated to compute the source package dependencies. Its input is a
+set of debian/control filesand its output is a set of Makefile rules
+such as:</p>
+<div class="highlight"><pre>misdn-kernel ::
+misdn-user ::  misdn-kernel
+</pre></div>
+
+
+<p>Note the <em>::</em> which allows for additional dependencies to appear later
+in the Makefile. Thisgraph is abstract and would not be of any use
+unless it is associated to actions such as:</p>
+<div class="highlight"><pre>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
+/var/cache/packaging-farm/depends/misdn-kernel :: /var/cache/packaging-farm/sources/misdn-kernel/*/debian/control
+        packaging-farm --cd misdn-kernel all
+        touch $@
+</pre></div>
+
+
+<p>The
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">depend.sh</a>
+script createsthe above snippet for each package. The
+<code>packaging-farm --cd misdn-kernel all</code> command creates all the
+packagesfor misdn-kernel. If it succeeds, the
+<code>/var/cache/packaging-farm/depends/misdn-kernel</code> timestamp is updatedand
+the package is considered up to date. When a newer version of the
+package is uploaded to the
+<code>/var/cache/packaging-farm/sources/misdn-kernel</code>directory, the
+<code>/var/cache/packaging-farm/sources/misdn-kernel/*/debian/control</code> file
+will have a modificationtime more recent than the timestamp, thus
+triggering the rebuild of all depending packages in the graph.</p>
+<p>The last set of lines created by depend.sh are source lists that allow
+each package to gain access to themost recently built version of the
+other packages:</p>
+<div class="highlight"><pre>define debian_SOURCE_LIST_APPEND
+echo &quot;deb http://localhost/packaging-farm/misdn-kernel/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
+echo &quot;deb http://localhost/packaging-farm/misdn-user/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
+: finished
+endef
+</pre></div>
+
+
+<p>It would be tempting to ensure that each package is given the source
+list it needs and nothing more. However, unlessthe number of packages
+handled on a single packaging farm grows over 100, it is probably
+overkill. There are lessthan 50 package currently in XiVO.</p>
+<p>A <a href="http://packaging-farm.dachary.org/download/packaging-farm_1.2.30.dsc">new version of
+packaging-farm</a>
+was published today, including support fordependencies, so that it can
+be used to continue building a standalone XiVO repository.</p>
+<h4>XiVO repository for i386 and x86_64</h4>
+<p>With the newer installation of the packaging-farm including dependency
+handling, another attempt to createa i386 based gallifrey repository for
+lenny was made. For each package a command similar to</p>
+<div class="highlight"><pre>packaging-farm misdn-kernel
+</pre></div>
+
+
+<p>was run. It is using the dependency graph to build the package and all
+the packages it depends on before it.In the end a few packages could not
+be built. Some of them because of trivial dependency problems thatwere
+<a href="https://projects.proformatique.com/issues/1942">reported to Nicolas
+Hicher</a> who agreed to
+fix them momentarily.Another, more serious, is found in the
+sangoma-wanpipe package. It relates to the fact that it pulls
+dependenciesbased on the kernel flavor. The native host is amd64 /
+x86_64 based and it fails when attempting to build in a i386chroot.
+There probably are workarounds already implemented and looking into
+pbuilder is probably the best lead.The <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/">i386 gallifrey
+repository</a>
+nowcontains more packages and there should be no major obstacle to
+complete it once the dependency and architecture problemsare
+resolved.Nicolas Hicher is almost done with porting the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro XiVO
+packages to
+squeeze</a>.
+An attempt was made to buildthem for x86_64. The <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/x86_64/squeeze/src/">result is still
+incomplete</a>
+but it should run when the last dependency problems are resolved.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-is-everywhere-part-3.html#xivo-is-everywhere-part-3">XiVO is everywhere part 3 !</a></h2>
+    <p>
+      Posted on Fri 11 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>Hello, it's cold (-15), it's winter but XiVO is always here !</p>
+<p><img alt="sylvain_xivo.png" src="/public/.sylvain_xivo_m.jpg" title="sylvain_xivo.png, fév. 2011" /></p>
+<p>Special for you Bertrand ;)</p>
+<p><img alt="IMG_20110211_144454.jpg" src="/public/.IMG_20110211_144454_m.jpg" title="IMG_20110211_144454.jpg, fév. 2011" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/new-statistic-xivo-modules.html#new-statistic-xivo-modules">New statistic XiVO modules</a></h2>
+    <p>
+      Posted on Fri 11 February 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>I'm very proud to announce our <strong>new statistics module for XiVO</strong>.
+Please see a first screenshot of this module below :</p>
+<p><img alt="stats.png" src="/public/.stats_m.jpg" title="stats.png, fév. 2011" /></p>
+<p>As you can see, we have integrated a full statistic module for our next
+major version, Skaro. All existing statistics queues in Asterisk (GPLv3)
+are not really usable and not suitable for a call center. Our previous
+version is using Asternic with a lack of performances in the free
+software version and namely in terms if counters from our customers
+point of view.</p>
+<p>We are implementing a cache system to have real-time results and stats.
+The Asterisk queue CSV files can be importable within this module. In
+order to produce graphics, we are using the jqplot library that gives us
+very decent results.</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index32.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index30.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

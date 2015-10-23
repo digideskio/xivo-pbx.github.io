@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog &ndash; Tag: packages</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">XiVO GIT repository re-organisation</a></h2>
+    <p>
+      Posted on Mon 17 October 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>GIT_DIRECTORY specify the repository to use</h4>
+<div class="highlight"><pre>GIT_DIRECTORY=xivo-<span class="cp">${</span><span class="n">XIVO</span><span class="cp">}</span>
+              The subdirectory relative to SOURCE_GIT in which the  repository
+              is to be found.  The actual clone is composed as follows:
+
+              git clone <span class="cp">${</span><span class="n">SOURCE_GIT</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">GIT_DIRECTORY</span><span class="cp">}</span>.git
+
+              as of October 2011, there is a single repository named after the
+              XIVO variable, hence the ...</pre></div>
+      <a class="btn" href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Safeguard against downgrades in XIVO packages</a></h2>
+    <p>
+      Posted on Mon 26 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Safeguard against downgrades in XIVO packages</h4>
+<p>The following use case creates a <a href="http://packaging-farm.dachary.org/trac/ticket/23">confusing
+situation</a>:</p>
+<ul>
+<li>package-1.1-1 is submitted to the farm and successfully built</li>
+<li>package-1.0-1 is submitted to the farm : it is a version lower than
+    the one already built</li>
+<li>packaging-farm creates package-1.1-1+build1 instead of package-1.0-1 ...</li></ul>
+      <a class="btn" href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/resolving-xivo-submissions-confusion.html#resolving-xivo-submissions-confusion">resolving XiVO submissions confusion</a></h2>
+    <p>
+      Posted on Mon 19 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>nothing needs to be done</h4>
+<p>The rules that decide when packaging-farm should work on a package are
+explained in the manual pages. However, they have changed a lot while
+packaging-farm matured in the past months and they deserve a short
+summary.The first step is to submit work to the ...</p>
+      <a class="btn" href="http://blog.xivo.io/resolving-xivo-submissions-confusion.html#resolving-xivo-submissions-confusion">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">XiVO submission configuration</a></h2>
+    <p>
+      Posted on Mon 12 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>clearing the generated sources</h4>
+<p>When some environment variables used by submit-xivo.sh change value, the
+whole source directory <a href="http://packaging-farm.dachary.org/trac/ticket/21">must be
+regenerated</a>. For
+instance, the VERSION_FLAVOR variable change the name of each source
+package. If the maintainer forgets to remove
+/var/cache/packaging-farm/sources, a mix of packages using different
+naming ...</p>
+      <a class="btn" href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</a></h2>
+    <p>
+      Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>rebuilding gallifrey</h4>
+<p>The /var/cache/packaging-farm/sources directory was removed and</p>
+<div class="highlight"><pre>export VERSION_COMPUTE=false
+</pre></div>
+
+
+<p>set in /etc/packaging-farm/packaging-farm.conf and
+<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
+from scratch. It took 42 minutes total. The purpose of this complete
+rebuild was to get rid of the timestamp ...</p>
+      <a class="btn" href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/tag/packages2.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

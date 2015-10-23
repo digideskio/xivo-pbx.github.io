@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog &ndash; Posts by: dachary</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
+    <p>
+      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pf-release.sh</h4>
+<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
+merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
+containing the sources and the SVN repository containing the debian
+packages into a well formed Debian GNU/Linux source package. For
+instance</p>
+<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+</pre></div>
+
+
+<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
+<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the ...</a></p>
+      <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Creating a Debian GNU/Linux source package from the XiVO VCS (1/2)</a></h2>
+    <p>
+      Posted on Mon 07 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Source GIT structure</h4>
+<p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
+extracted as follows:</p>
+<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+</pre></div>
+
+
+<p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
+repository</a>.
+The names of the directories are mapped to the package names as follows:</p>
+<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
+asterisk ...</pre></div>
+      <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html#candidate-xivo-skaro-repository-for-x86_64">Candidate XiVO skaro repository for x86_64</a></h2>
+    <p>
+      Posted on Mon 28 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>XiVO skaro repository for x86_64</h4>
+<p>Last week Nicolas Hicher completed a release candidate for the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">i386
+XiVO skaro
+repository</a>.
+Although the repository claims to support the x86_64/amd64
+architecture, the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/main/binary-amd64/Packages">amd64 packages are
+missing</a>.
+All the source packages were fetched in an attempt to build a x86_64
+repository. The following ...</p>
+      <a class="btn" href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html#candidate-xivo-skaro-repository-for-x86_64">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</a></h2>
+    <p>
+      Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Kernel modules support</h4>
+<p>In Debian GNU/Linux kernel modules are packaged as a <code>modulename-source</code>
+package which contains the source of the kernel module. When someone
+needs a given kernel module, it is customary to invoque the
+<a href="http://wiki.debian.org/ModuleAssistant">module-assistant</a> utility to
+compile the module from sources so that it matches the currently ...</p>
+      <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</a></h2>
+    <p>
+      Posted on Mon 21 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Lenny backports</h4>
+<p>Nicolas Hicher published newer versions of the gallifrey packages
+<a href="https://projects.proformatique.com/issues/1942">addressing the dependency
+problems</a> reported last
+week. They can be retrieved from the development repository</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>All source packages were downloaded using:</p>
+<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
+      <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/author/dachary7.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/author/dachary5.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

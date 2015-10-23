@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="corentin" />
+<meta name="description" content="As a reminder, this is what the CTI world looks like in XiVO 1.1 : The XiVO 1.2 part will be more like : namely : the queue-logger daemon does not exist any more, and the CTI server fills the queue-logger database itself the services/features of user lines will be ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Glimpse of CTI architecture in XiVO 1.1 and 1.2"/>
+<meta property="og:description" content="As a reminder, this is what the CTI world looks like in XiVO 1.1 : The XiVO 1.2 part will be more like : namely : the queue-logger daemon does not exist any more, and the CTI server fills the queue-logger database itself the services/features of user lines will be ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-05-13 11:41:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/corentin.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Glimpse of CTI architecture in XiVO 1.1 and 1.2</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="glimpse-of-cti-architecture-in-xivo-11-and-12">Glimpse of CTI architecture in XiVO 1.1 and 1.2</h1>
+    <p>Posted on Fri 13 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>As a reminder, this is what the CTI world looks like in XiVO 1.1 :</p>
+<p><a href="/public/external_cti_architecture_xivo_1.1.png" title="cti1.1"><img alt="cti1.1" src="/public/.external_cti_architecture_xivo_1.1_m.jpg" title="cti1.1, mai 2011" /></a></p>
+<p>The XiVO 1.2 part will be more like :</p>
+<p><a href="/public/external_cti_architecture_xivo_1.2.png" title="cti1.2"><img alt="cti1.2" src="/public/.external_cti_architecture_xivo_1.2_m.jpg" title="cti1.2, mai 2011" /></a></p>
+<p>namely :</p>
+<ul>
+<li>the queue-logger daemon does not exist any more, and the CTI server
+    fills the queue-logger database itself</li>
+<li>the services/features of user lines will be accessed through regular
+    XiVO web services instead of direct SQL access</li>
+</ul>
+<p>This is of course only a very global view.</p>
+<p>At the underneath level,</p>
+<ul>
+<li>the AMI commands have changed, since the asterisk version will be
+    1.8 (instead of 1.4)</li>
+<li>the CTI protocol between the server and its clients has evolved,
+    especially in order to be able to get smaller payload packet sizes.</li>
+</ul>
+<p>More details should come in a future blog entry.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Glimpse of CTI architecture in XiVO 1.1 and 1.2",
+  "headline": "Glimpse of CTI architecture in XiVO 1.1 and 1.2",
+  "datePublished": "2011-05-13 11:41:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "corentin",
+    "url": "http://blog.xivo.io/author/corentin.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html",
+  "description": "As a reminder, this is what the CTI world looks like in XiVO 1.1 : The XiVO 1.2 part will be more like : namely : the queue-logger daemon does not exist any more, and the CTI server fills the queue-logger database itself the services/features of user lines will be ..."
+}
+</script></body>
+</html>

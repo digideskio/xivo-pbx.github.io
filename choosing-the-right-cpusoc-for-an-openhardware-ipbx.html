@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="Once one starts an OpenHardware project, you should be thinking about the core of the device to be designed and namely the CPU/SoC (System-on-Chip integrating the CPU and the peripherals controllers built-in the chip). The CPU/SoC is the core of the system and will be holding the BSP ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Choosing the right CPU/SoC for an OpenHardware IPBX"/>
+<meta property="og:description" content="Once one starts an OpenHardware project, you should be thinking about the core of the device to be designed and namely the CPU/SoC (System-on-Chip integrating the CPU and the peripherals controllers built-in the chip). The CPU/SoC is the core of the system and will be holding the BSP ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2010-02-01 10:56:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Choosing the right CPU/SoC for an OpenHardware IPBX</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="choosing-the-right-cpusoc-for-an-openhardware-ipbx">Choosing the right CPU/SoC for an OpenHardware IPBX</h1>
+    <p>Posted on Mon 01 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p>Once one starts an OpenHardware project, you should be thinking about
+the core of the device to be designed and namely the CPU/SoC
+(System-on-Chip integrating the CPU and the peripherals controllers
+built-in the chip). The CPU/SoC is the core of the system and will be
+holding the BSP (BoardSupportPackage) with the Linux kernel and the
+different drivers/controllers (kernel modules and drivers) and the IPBX
+software core system (XiVO and Asterisk in this case) communicating with
+the ISDN/FXO/FXS interfaces.</p>
+<p>Ideally, to integrate the OpenHardware issue to the core of the device,
+the CPU/SoC has to be as open (as in "open specifications", "open
+datasheet" or "open HDL source code") as possible. Then several issues
+has to be clarified such as:</p>
+<p>-The smooth technical gap for users and developers to integrate, use and
+hack with the OpenHardware IPBX</p>
+<p>-How open can the CPU/SoC be opened ? The next step will be to use
+"OpenCores" CPU based on FPGA platform (such as the ones used for
+OpenPattern project, the Milkymist Softcore integrating lm32 or the USRP
+platform used to integrate the GnuRadio framework)</p>
+<p>-What platform is "more" for existing CPU/SoC outhere between
+x86/ARM/MIPS/others?</p>
+<p>Lots of the current IPBX projects are mainly using the Blackfin DSP
+(i.e. the Astfin project) from AnalogDevices that allows advanced DSP
+(Digital Signal Processing) functions but lacks openess in terms of
+specifications/data-sheets as this point.</p>
+<p>Our current objectives is to target an x86 platform that smooths downs
+the porting of the existing XiVO framework or the integration of a
+ARM/MIPS CPU/SoC with open specifications.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Choosing the right CPU/SoC for an OpenHardware IPBX",
+  "headline": "Choosing the right CPU/SoC for an OpenHardware IPBX",
+  "datePublished": "2010-02-01 10:56:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html",
+  "description": "Once one starts an OpenHardware project, you should be thinking about the core of the device to be designed and namely the CPU/SoC (System-on-Chip integrating the CPU and the peripherals controllers built-in the chip). The CPU/SoC is the core of the system and will be holding the BSP ..."
+}
+</script></body>
+</html>

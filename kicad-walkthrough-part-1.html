@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xilun" />
+<meta name="description" content="For our prototyping/validation tests, we need a particular clock buffer. Unfortunately, it only comes in SSOP or similar packages and we need to plug it to our breadboard. While we could have used a generic off-the-shelf SSOP to DIP PCB, we preferred, armed with KiCad, to design a specific ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="KiCad walkthrough - Part 1"/>
+<meta property="og:description" content="For our prototyping/validation tests, we need a particular clock buffer. Unfortunately, it only comes in SSOP or similar packages and we need to plug it to our breadboard. While we could have used a generic off-the-shelf SSOP to DIP PCB, we preferred, armed with KiCad, to design a specific ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/kicad-walkthrough-part-1.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2010-08-23 18:18:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xilun.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; KiCad walkthrough - Part 1</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="kicad-walkthrough-part-1">KiCad walkthrough - Part 1</h1>
+    <p>Posted on Mon 23 August 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p>For our prototyping/validation tests, we need a particular clock buffer.
+Unfortunately, it only comes in
+<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
+or similar packages and we need to plug it to our
+<a href="http://en.wikipedia.org/wiki/Breadboard">breadboard</a>.</p>
+<p>While we could have used a generic off-the-shelf
+<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
+to
+<a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package">DIP</a>
+<a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a>,
+we preferred, armed with KiCad, to design a specific one that will
+perfectly fit on our breadboard between our existing connectors,
+minimizing the amount of additional wiring on those sensitive clock
+signals. Also, the small PCB will act as a module by integrating
+terminations, power, and activation tracks without needing to reserve
+horizontal breadboard line for that. As a result it will be easily
+replaceable (or entirely skippable) in virtually no time.</p>
+<p>The <a href="http://www.kicad-eda.org/">KiCad suite</a> is splitted in several
+programs. "kicad" the executable is a small project manager that permits
+to easily launch other programs to edit the right files.</p>
+<p><img alt="KiCad project
+manager" src="/public/kicad_project_manager.png" title="KiCad project manager, août 2010" /></p>
+<ul>
+<li><img alt="EESchema icon" src="/public/eeschema.png" title="EESchema icon, août 2010" />
+    EESchema is the
+    <a href="http://en.wikipedia.org/wiki/Circuit_diagram">schematic</a> editor.</li>
+<li><img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /> CVpcb
+    allows to assign module footprint (physical package) to
+    schematic components.</li>
+<li><img alt="PCBnew icon" src="/public/pcbnew.png" title="PCBnew icon, août 2010" /> PCBnew
+    is the
+    <a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a> editor.</li>
+<li><img alt="GerbView icon" src="/public/gerbview.png" title="GerbView icon, août 2010" />
+    GerbView is a
+    <a href="http://en.wikipedia.org/wiki/Gerber_File">Gerber</a> viewer.</li>
+</ul>
+<p>A typical workflow is to use them right in this order. You can also go
+back to previous steps to correct things; the changes can be correctly
+propagated to the next programs.</p>
+<p>To start a project from scratch, launch kicad, press Ctrl-N and name
+your project (and select the directory where it will live). Now launch
+EESchema by clicking on its icon. The most important tools to draw a
+schematic are in the bar on your right and in the Place menu. Among
+them, you'll need most:</p>
+<ul>
+<li><img alt="Place a component
+    icon" src="/public/place_a_component.png" title="Place a component icon, août 2010" />
+    Place a component</li>
+<li><img alt="Place a wire
+    icon" src="/public/place_a_wire.png" title="Place a wire icon, août 2010" /> Place
+    a wire</li>
+<li><img alt="Place no connect flag
+    icon" src="/public/place_no_connect_flag.png" title="Place no connect flag icon, août 2010" />
+    Place no connect flag</li>
+<li><img alt="Place net name
+    icon" src="/public/place_net_name.png" title="Place net name icon, août 2010" />
+    Place net name</li>
+</ul>
+<p>EESchema takes very little time to get used to. Don't hesitate to
+experiment and try a lot of features of this software. To speed you up,
+here are a few hints:</p>
+<ul>
+<li>Components are better selected, when you don't know their symbolic
+    name, by using the library browser during insertion: click anywhere
+    in the sheet while using the "Place a component" tool, then click on
+    the "Select by browser" button, find the component that you want and
+    finally click on the <img alt="Insert component in schematic
+    icon" src="/public/insert_component_in_schematic.png" title="Insert component in schematic icon, août 2010" />
+    "Insert component in schematic" button at top-right.</li>
+<li>EESchema UI for edition is mostly based on a contextual menu
+    accessible by right clicking;</li>
+<li>to end a wire "in the air" (for later connection); right click at
+    the wanted position when drawing one and select "Wire end";</li>
+<li>to drag a wire, right click on it and select "Drag wire";</li>
+<li>to drag a zone, left click-and-drag to select the zone, then right
+    click and select "Drag zone";</li>
+<li>dragging don't disconnect/change existing connections, while
+    moving/orienting will disconnect/reconnect things (depending on
+    where the module connectors end up);</li>
+<li>junctions are added automatically if you start/end a wire in the
+    middle of another;</li>
+<li>you can edit the title block in the <img alt="Page settings
+    icon" src="/public/page_settings.png" title="Page settings icon, août 2010" />
+    Page settings;</li>
+<li>learn shortcut keys and use them to be faster;</li>
+<li>note that KiCad file formats are plain text based, which is
+    extremely cool because you can write external scripts to automatize
+    certain tasks (moving a lot of references by a given vector comes
+    to mind).</li>
+</ul>
+<p>The schematic of our module looks like the following screenshoot.</p>
+<p><img alt="Clock buffer EESchema schematic
+screenshoot" src="/public/eeschema_sshoot.png" title="Clock buffer EESchema schematic screenshoot, août 2010" /></p>
+<p>Here is the corresponding KiCad schematic file:
+<a href="/public/pcb_h100_clk_fs_49fct3805a.sch">pcb_h100_clk_fs_49fct3805a.sch</a></p>
+<p>The <a href="index.php?post/2010/09/21/KiCad-walkthrough-Part-2">next article</a>
+will be about schematic component to module footprint assignment.
+(CVpcb)</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "KiCad walkthrough - Part 1",
+  "headline": "KiCad walkthrough - Part 1",
+  "datePublished": "2010-08-23 18:18:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xilun",
+    "url": "http://blog.xivo.io/author/xilun.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/kicad-walkthrough-part-1.html",
+  "description": "For our prototyping/validation tests, we need a particular clock buffer. Unfortunately, it only comes in SSOP or similar packages and we need to plug it to our breadboard. While we could have used a generic off-the-shelf SSOP to DIP PCB, we preferred, armed with KiCad, to design a specific ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/metrics-in-xuc.html#metrics-in-xuc">Metrics in XUC</a></h2>
+    <p>
+      Posted on Tue 11 November 2014 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
+    </p>
+  </header>
+  <div>
+      <p>We use Metrics in two contexts: contact centre statistics management and
+xuc health supervision. We created two independent registries to
+separate statistics data and technical data.</p>
+<p>Metrics integrates the ability to report periodically data to the
+logfile, or on demand via http.</p>
+<h3>JSON representation via HTTP</h3>
+<h4>JVM statistics</h4>
+<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&#39;@@
+{
+  &quot;version&quot; : &quot;3.0.0&quot;,
+  &quot;gauges&quot; : {
+    &quot;blocked.count&quot; : {
+      &quot;value&quot; : 0
+    },
+    &quot;count&quot; : {
+      &quot;value&quot; : 56
+    },
+    &quot;daemon.count&quot; : {
+      &quot;value&quot; : 17
+    },
+    &quot;deadlock.count&quot; : {
+      &quot;value&quot; : 0
+    },
+    &quot;deadlocks&quot; : {
+      &quot;value&quot; : [ ]
+    },
+    &quot;heap.committed&quot; : {
+      &quot;value&quot; : 1020264448
+    },
+    &quot;heap.init&quot; : {
+      &quot;value&quot; : 1073741824
+    },
+    &quot;heap.max&quot; : {
+      &quot;value&quot; : 1020264448
+    },
+    &quot;heap.usage&quot; : {
+      &quot;value&quot; : 0.4769269545301259
+    },
+    &quot;heap.used&quot; : {
+      &quot;value&quot; : 486591616
+    },
+    ...
+</pre></div>
+
+
+<h4>Call-centre statistics</h4>
+<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&#39;
+{
+  &quot;version&quot; : &quot;3.0.0&quot;,
+  &quot;gauges&quot; : {
+    &quot;3000-TotalNumberCallsAbandonned-gauge&quot; : {
+      &quot;value&quot; : 2.0
+    },
+    &quot;3000-TotalNumberCallsAbandonnedAfter15-gauge&quot; : {
+      &quot;value&quot; : 5.0
+    },
+    &quot;3000-TotalNumberCallsAnswered-gauge&quot; : {
+      &quot;value&quot; : 0.0
+    },
+    &quot;3000-TotalNumberCallsAnsweredBefore15-gauge&quot; : {
+      &quot;value&quot; : 0.0
+    },
+    &quot;3000-TotalNumberCallsClosed-gauge&quot; : {
+      &quot;value&quot; : 1.0
+    },
+    &quot;3000-TotalNumberCallsEntered-gauge&quot; : {
+      &quot;value&quot; : 1.0
+    }
+  },
+  &quot;counters&quot; : { },
+  &quot;histograms&quot; : {
+    &quot;3000-PercentageAbandonnedAfter15-window&quot; : {
+      &quot;count&quot; : 1,
+      &quot;max&quot; : 1,
+      &quot;mean&quot; : 1.0,
+      &quot;min&quot; : 1,
+      &quot;p50&quot; : 1.0,
+      &quot;p75&quot; : 1.0,
+      &quot;p95&quot; : 1.0,
+      &quot;p98&quot; : 1.0,
+      &quot;p99&quot; : 1.0,
+      &quot;p999&quot; : 1.0,
+      &quot;stddev&quot; : 0.0
+    },
+    ...
+</pre></div>
+
+
+<h3>Statistics in log file</h3>
+<div class="highlight"><pre>2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-PercentageAnsweredBefore15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonned-gauge, value=1.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonnedAfter15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAnswered-gauge, value=0.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAnsweredBefore15-gauge, value=0.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsClosed-gauge, value=1.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsEntered-gauge, value=1.0
+</pre></div>
+
+
+<h3>Links</h3>
+<ul>
+<li><a href="https://gitlab.com/groups/xuc" title="XUC sources">XUC sources</a></li>
+<li><a href="http://xuc.readthedocs.org/en/latest/" title="XUC documentation">XUC
+    documentation</a></li>
+<li><a href="https://dropwizard.github.io/metrics/3.1.0/" title="Metrics">Metrics</a></li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/managing-agent-using-xuc-ccmanager.html#managing-agent-using-xuc-ccmanager">Managing agent using Xuc CCManager</a></h2>
+    <p>
+      Posted on Mon 10 November 2014 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="Selection_025.png" src="/public/xuc/xucagent.png?200X50" title="Selection_025.png, nov. 2014" /></p>
+<p>You may now user ccmanager to manage your #xivo contact center agents.</p>
+<p>In addition to drag and drop in ccmanager main window, agents can be
+easily added in a queue with a specific penalty, penalty can be changed
+for any queue, and the agent can be removed from a queue.</p>
+<p>Just click on the little pen on the main screen agent box, and the agent
+configuration windows pops up.</p>
+<p>Xuc is available on <a href="https://gitlab.com/groups/xuc" title="gitlab">gitlab</a> doc
+on <a href="http://xuc.readthedocs.org/">read the docs</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/intervention-de-richard-m-stallman-a-luniversite-de-concordia-a-montreal-sur-les-logiciels-libres-et-libertes.html#intervention-de-richard-m-stallman-a-luniversite-de-concordia-a-montreal-sur-les-logiciels-libres-et-libertes">Intervention de Richard M. Stallman à l'Université de Concordia à Montréal sur les Logiciels Libres et Libertés</a></h2>
+    <p>
+      Posted on Wed 29 October 2014 in <a href="http://blog.xivo.io/category/free-software.html">Free software</a>
+    </p>
+  </header>
+  <div>
+      <p><em>English version available towards the end of the article</em></p>
+<p>2 personnes du projet <a href="http://documentation.xivo.io" title="XiVO">XiVO</a>
+(téléphonie libre) témoignent :</p>
+<h3>Partage de Valérie Dagrain</h3>
+<p>Cette conférence de R. M. Stallman intitulée "Logiciel Libre et vos
+libertés" s'est déroulée à l'Université de Concordia. R. M. Stallman qui
+s'est vu remettre un titre honorifique de la part d'un responsable de
+l'Université, pour féliciter ses actions et ses engagements. Plus de 100
+étudiants anglophones des universités sur Montréal telles que Concordia
+et McGill étaient présents ainsi que des enseignants en informatique et
+entrepreneurs du Libre.</p>
+<ul>
+<li>Ayant suivi plusieurs interventions de R. M. Stallman, je découvre
+    que ses interventions débutent désormais par un refus d’apparaître
+    sur les réseaux sociaux fermés tels que Facebook et citait plutôt
+    les licences Creative Commons.</li>
+<li>Un temps est consacré à présenter le Logiciel Libre et les 4
+    libertés, Unix et le système GNU/Linux puis la <em>Free Software
+    Foundation</em>.</li>
+<li>R. M. Stallman soutient la nécessité d'utiliser des logiciels libres
+    comme seule alternative aux logiciels propriétaires qu'il dénonce
+    être des logiciels malveillants (<em>malware</em>). Les utilisateurs
+    doivent contrôler leurs systèmes et aller de plus en plus vers des
+    composants Libres. Le Libre était alors présenté comme la seule
+    solution technique et éthique pour lutter contre les failles de
+    sécurité qu'apportent les logiciels de Micosoft, Apple, Google
+    Play, Amazon... et contrôler son système.</li>
+</ul>
+<p>R. M. S avançait dans ses précédentes présentations que les logiciels
+propriétaires étaient devenus privateurs. Désormais il met en garde de
+leur rôle de "<em>malware</em>", de "<em>spyware</em>" et de menottes numériques (DRM)
+qui verrouillent des accès et nous entraînent dans une société
+orwellienne sous contrôle. Du côté des firmes propriétaires, des accès
+récurrents s'opèrent sur certains de nos appareils (ordinateur,
+téléphone...) sans accord de l'utilisateur et des actions peuvent être
+faites sur nos systèmes. Les risques de censure sont possibles tout
+comme des mauvais usages du fait de notre géolocalisation (GPS).</p>
+<p>Face à cela R. M. S. encourage le partage et met en garde contre le
+discours de propagande visant à associer une personne qui partage avec
+les pirates. Suite à la révélation par E. Snowden en 2013, sur les
+programmes américains de surveillance de masse, R. M. Stallman invite à
+applaudir le courage de cet ancien employé qui était mandaté par la NSA.
+Un ban d'honneur a ainsi été fait en son nom !"Nous devons contrôler nos
+systèmes pour les améliorer. Il faut enseigner le "<em>reverse
+engineering</em>" dans les écoles !" En conclusion R. M. Stallman appuie
+l'usage des logiciels libres, notamment en milieu scolaire. Fabian
+Rodriguez, président de FACIL (Association pour l'appropriation
+collective de l'Informatique Libre) et promoteur du Libre auprès d'une
+commission scolaire à Montréal, a su partager sa motivation et son
+engagement dans ce sens durant les échanges.</p>
+<p>La video sera accessible depuis le site de Concordia et d'autres sites
+partageant les ressources Libres.</p>
+<p>Sources :</p>
+<ul>
+<li><a href="http://blog.xivo.io">http://blog.xivo.io</a></li>
+<li><a href="http://fr.wikipedia.org/wiki/Logiciel_libre">http://fr.wikipedia.org/wiki/Logiciel_libre</a></li>
+<li><a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation">http://fr.wikipedia.org/wiki/Free_Software_Foundation</a></li>
+<li><a href="http://www.programmez.com/actualites/windows-est-un-malware-selon-richard-stallman-21259">http://www.programmez.com/actualites/windows-est-un-malware-selon-richard-stallman-21259</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Digital_rights_management">http://en.wikipedia.org/wiki/Digital_rights_management</a></li>
+<li><a href="http://fabianrodriguez.com/blog/profil">http://fabianrodriguez.com/blog/profil</a></li>
+<li><a href="http://facil.qc.ca">http://facil.qc.ca</a></li>
+</ul>
+<h3>Partage de Gregory Eric Sanderson</h3>
+<p>J'ai rencontré R. M. S. pour la première fois en 2010 lors du "Salon du
+Logiciel Libre du Québec". 4 ans plus tard, malgré le changement du
+discours, le message principal reste le même.</p>
+<p>Pendant la première partie du discours, je me suis rappelé que les
+concepts soutenant le Logiciel Libre sont tout d'abord fondés sur des
+questions morales et éthiques. Les 4 libertés (la liberté d'utiliser,
+étudier, modifier et redistribuer) permettent d'assurer nos droits
+humains fondamentaux dans notre utilisation de logiciels.</p>
+<p>R. M. S. mettait souvent l'emphase sur la différence entre le contrôle
+exercé par un utilisateur sur un logiciel <em>vs.</em> le contrôle du logiciel
+sur un utilisateur. Prenons la liseuse électronique de Amazon, le
+Kindle, en exemple. Puisqu'un utilisateur n'a pas de contrôle sur le
+logiciel utilisé sur un Kindle, Amazon a pu supprimer toutes les copies
+du livre 1984. Ironique, n'est-ce pas ? Un deuxième exemple : Les
+architectures SaaS ("<em>Software as a Service</em>". Autrement dit, du
+logiciel comme service. R. M. S s'est amusé en substituant l'acronyme
+pour "<em>Service as a Software Substitute</em>", ou encore "Le service comme
+un substitut au logiciel") Du SaaS ne peut être catégorisé comme un
+logiciel libre car il n'existe pas de moyen de vérifier ce que le
+service fait avec les données qu'on lui envoie. En d'autres mots, le
+service est capable d'exercer un contrôle sur l'utilisateur.</p>
+<p>La différence entre les logiciels libres et "<em>Open Source</em>" était aussi
+un autre sujet chaud. R. M. S. n'a pas hésité à critiquer les militants
+de l<em>'Open Source</em> comme des gens sans considérations éthiques. Des gens
+qui préfèrent des solutions pragmatiques et faciles. Par exemple, dans
+le noyau Linux nous retrouvons des blocs de "<em>firmware</em>". Ces blocs ne
+contiennent pas de code source et sont distribués avec le noyau, ce qui
+implique qu'ils peuvent intervenir à l'encontre des libertés de
+l'utilisateur, parfois même sans qu'il le sache.</p>
+<p>En conclusion, cette conférence m'a rappelé que même si les programmeurs
+comme moi ont la chance de créer plein de logiciels grâce au logiciel
+libre, les implications morales et éthiques restent encore pertinentes
+aujourd'hui.</p>
+<h3>Gregory Eric Sanderson's Point of View</h3>
+<p>I saw R.M.S for the first time in 2010 for the "Salon du Logiciel Libre
+du Québec". 4 years later, although the words have changed, but the core
+message has stayed the same.</p>
+<p>During the first part, I was reminded that the concepts behind Free
+Software are foremost about moral and ethical considerations. The four
+liberties (i.e. the liberty to use, study, modify and redistribute) help
+in establishing human rights when using software, no matter where.</p>
+<p>R.M.S often emphasised the difference between a user's control over a
+program vs. the control of a program over its user. Let's take Amazon's
+e-reader, the Kindle, as an example: Since a user does not have control
+over the software on the Kindle, Amazon was able to delete everyone's
+copy of 1984, therefore exerting control on what the user was allowed to
+read. Ironic, isn't it? Another example given was Software as a Service.
+(or, as R.M.S put it, Service as a Software Substitute) SaaS cannot be
+considered Free Software because there is no feasible way of
+ascertaining what the service is doing with the data that we send.
+Therefore, it can exert control over the user.</p>
+<p>Another hot topic was the difference between Free Software and Open
+Source. R.M.S did not hestitate to criticize Open Source advocates as
+people who did not care about the ethical implications, who preferred
+pragmatic and easy solutions to problems. An example of this were the
+firmware blobs in the Linux Kernel. Since these blobs do not contain any
+source code and are distributed alongside the kernel, they jeopardize a
+user's freedoms, often without the user even knowing about it.</p>
+<p>Over all, this conference was a reminder that even though programmers
+like myself get to create all sorts of programs thanks to Free Software,
+the moral and ethical considerations behind the movement still remain
+relevant today.</p>
+<h3>Photos</h3>
+<p><img alt="DSCF4499.JPG" src="/public/rms/DSCF4499.JPG" title="DSCF4499.JPG, Oct 2014" /><img alt="DSCF4513.JPG" src="/public/rms/DSCF4513.JPG" title="DSCF4513.JPG, Oct 2014" /><img alt="DSCF4515.JPG" src="/public/rms/DSCF4515.JPG" title="DSCF4515.JPG, Oct 2014" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1420.html#sprint-review-1420">Sprint Review 14.20</a></h2>
+    <p>
+      Posted on Fri 24 October 2014 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Here are a few links explaining what we are going to ship in XiVO 14.20:</p>
+<ul>
+<li><a href="https://projects.xivo.io/versions/211" title="https://projects.xivo.io/versions/211">Roadmap</a></li>
+</ul>
+<p>New features include:</p>
+<ul>
+<li>Support for the SPA122 gateway (available in testing at the moment)</li>
+<li>Asterisk 11.13.1</li>
+</ul>
+<p>We also fixed many bugs in the switchboard:</p>
+<ul>
+<li>a crash</li>
+<li>some ergonomic improvements when handling calls</li>
+<li>some weird caller id behavior when transferring calls from the
+    switchboard</li>
+</ul>
+<p>Work of interest:</p>
+<ul>
+<li>Function key migration towards our new model keeps going forward</li>
+<li>A first working development version of
+    <a href="/index.php?post/2014/09/26/XiVO-s-new-directory-server">xivo-dird</a>
+    has been completed, but is not yet integrated into XiVO.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1419.html#sprint-review-1419">Sprint Review 14.19</a></h2>
+    <p>
+      Posted on Fri 10 October 2014 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Here are a few links explaining what we are going to ship in XiVO 14.19:</p>
+<ul>
+<li><a href="https://projects.xivo.io/versions/210" title="https://projects.xivo.io/versions/210">Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/dev/administration/ivr/ivr.html" title="http://documentation.xivo.io/dev/administration/ivr/ivr.html">IVR
+    documentation</a>
+    to find out how to set up an Interactive voice response with XiVO</li>
+</ul>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index11.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index9.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

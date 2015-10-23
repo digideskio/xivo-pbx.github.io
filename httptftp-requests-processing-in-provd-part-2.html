@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="hexanol" />
+<meta name="description" content="Let's take the same example as we did last time, i.e. let's say we have a xivo-aastra plugin installed. So we plug a brand new Aastra 6731i on our network. The phone then does the following HTTP request: GET /Aastra/aastra.cfg HTTP/1.1 User-Agent: Aastra6731i ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="HTTP/TFTP requests processing in provd - part 2"/>
+<meta property="og:description" content="Let's take the same example as we did last time, i.e. let's say we have a xivo-aastra plugin installed. So we plug a brand new Aastra 6731i on our network. The phone then does the following HTTP request: GET /Aastra/aastra.cfg HTTP/1.1 User-Agent: Aastra6731i ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-2.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-04-12 12:40:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/hexanol.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; HTTP/TFTP requests processing in provd - part 2</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="httptftp-requests-processing-in-provd-part-2">HTTP/TFTP requests processing in provd - part 2</h1>
+    <p>Posted on Thu 12 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>Let's take the same example as we did last time, i.e. let's say we have
+a xivo-aastra plugin installed.</p>
+<p>So we plug a brand new Aastra 6731i on our network. The phone then does
+the following HTTP request:</p>
+<div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/Aastra/aastra.cfg</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Aastra6731i MAC:00-11-22-33-44-55 V:3.2.2.1136-SIP</span>
+</pre></div>
+
+
+<p>The "device info extraction" step is then able to extract the following
+information:</p>
+<div class="highlight"><pre>{&#39;vendor&#39;: &#39;Aastra&#39;, &#39;model&#39;: &#39;6731i&#39;, &#39;version&#39;: &#39;3.2.2.1136&#39;,
+ &#39;mac&#39;: &#39;00:11:22:33:44:55&#39;, &#39;ip&#39;: &#39;192.168.1.100&#39;}
+</pre></div>
+
+
+<p>This information is then passed to a "device retriever" object. Here's a
+pseudo code version of what it looks like:</p>
+<div class="highlight"><pre>def process_request(request):
+    device_info = device_info_extractor.extract(request)
+    device = device_retriever.retrieve(device_info)
+    ...
+</pre></div>
+
+
+<p>A device object can be seen as a superset of a device info object. Both
+are dictionaries, but the device object can contain keys that the device
+infoobject never will, like an "id", a "plugin" and a "config" key.</p>
+<p>Let's see in more details what happens in this "device retriever"
+object:</p>
+<p><a href="/public/provd/device-retriever.png" title="Device retriever"><img alt="Device
+retriever" src="/public/provd/.device-retriever_m.jpg" title="Device retriever, avr. 2012" /></a></p>
+<p>The device retriever will ask one at a time the different other device
+retrievers until one returns something. In our example, since the provd
+serverdoesn't know yet about our Aastra, the "mac device retriever" will
+returns nothing because there is no device with the MAC address
+00:11:22:33:44:55 in the device database, then the "SN (serial number)
+device retriever" will returns nothing because no SN is used with
+Aastra, then the "ip device retriever" will also returns nothing, and
+finally, the "add device retriever" will add the new device to the
+database and return it.</p>
+<p>On the next requests of our Aastra, the "mac device retriever" will
+search for a device with the given MAC and will then return the device
+object that was added previously.</p>
+<p>From what we just learned, we can see that it's at this step that
+devices are automatically added to provd. That said, the automatic
+plugin association and automatic config association (taken from a
+"template" config) is not done at this step but later on, which is
+something we'll see in more details in my next blog post.</p>
+<p>If provd had to support only Aastra phones, only the "mac device
+retriever" and the "add device retriever" would be needed (and some part
+of provd would be a whole lot simpler also). That said, the reality is
+more complex. Some phones are only doing TFTP requests, which means no
+User-Agent header and little information to extract for some requests,
+sometimes only the IP address. This is where the "ip device retriever"
+comes in handy. It's usually able to find the right device by only using
+the IP address. This is possible because provd always try to maintain
+the most up to date info about IP address used by devices.</p>
+<p>That said, for some devices, there is some scenarios where the system
+just isn't powerful enough:</p>
+<ul>
+<li>you power on a new Linksys/Cisco SPA3102, which is given the
+    192.168.1.101 IP address by the DHCP server</li>
+<li>the phone then ask the /spa3102.cfg file via TFTP</li>
+<li>provd knows the request came from a Linksys SPA3102 with the
+    192.168.1.101 IP address, but doesn't know the MAC address. No
+    worry, it still adds it to the device database.</li>
+<li>the phone then ask the /001122334477.xml file, still via TFTP.</li>
+<li>provd is able to retrieve the device by using the IP address, and
+    now knows that the device behind the request has the MAC
+    00:11:22:33:44:77</li>
+<li>the phone is unplugged from the network</li>
+<li>a couple of days later, the phone is power on again. This time, the
+    DHCP server gives it the 192.168.1.102 IP address</li>
+<li>the phone then ask the /spa3102.cfg file via TFTP</li>
+<li>the only information that can used to retrieve the device is the
+    IP address. That said, no device in the device database use this
+    IP address. provd will then create a new device, believing its a
+    new device.</li>
+<li>the phone then ask the /001122334477.xml file</li>
+<li>provd is then able to retrieve the first device by using the
+    MAC address. It then updates the IP address information of
+    this device. Unfortunately, the previous step created a device in
+    the database for nothing.</li>
+</ul>
+<p>The system still works in these cases. The only problem is that you get
+junk devices in provd device's database, and these can only be removed
+manually. They are not causing any real harm except then adding some
+confusion as to why theses devices are in the database.</p>
+<p>There is a way to get by this problem, and it's called "dhcp
+integration". Yes. Just believe me.</p>
+<p>So that's all folks. Next time, if your brain still hasn't suffered from
+an epileptic seizure, get ready because we'll be talking about the
+"device updating" step.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "HTTP/TFTP requests processing in provd - part 2",
+  "headline": "HTTP/TFTP requests processing in provd - part 2",
+  "datePublished": "2012-04-12 12:40:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "hexanol",
+    "url": "http://blog.xivo.io/author/hexanol.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/httptftp-requests-processing-in-provd-part-2.html",
+  "description": "Let's take the same example as we did last time, i.e. let's say we have a xivo-aastra plugin installed. So we plug a brand new Aastra 6731i on our network. The phone then does the following HTTP request: GET /Aastra/aastra.cfg HTTP/1.1 User-Agent: Aastra6731i ..."
+}
+</script></body>
+</html>

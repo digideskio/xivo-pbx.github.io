@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="Hello everyone, During this sprint most of the work was done on pushing Asterisk 13 into XiVO. We added an extra testing day during the sprint in order to help detect differences between Asterisk 11 and 13. New in this sprint Asterisk: Upgrade from Asterisk 11 to Asterisk 13. In ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint review 15.13"/>
+<meta property="og:description" content="Hello everyone, During this sprint most of the work was done on pushing Asterisk 13 into XiVO. We added an extra testing day during the sprint in order to help detect differences between Asterisk 11 and 13. New in this sprint Asterisk: Upgrade from Asterisk 11 to Asterisk 13. In ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sprint-review-1513.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-07-24 14:19:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint review 15.13</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1513">Sprint review 15.13</h1>
+    <p>Posted on Fri 24 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>Hello everyone,</p>
+<p>During this sprint most of the work was done on pushing Asterisk 13 into
+XiVO. We added an extra testing day during the sprint in order to help
+detect differences between Asterisk 11 and 13.</p>
+<h3>New in this sprint</h3>
+<ul>
+<li><strong>Asterisk</strong>: Upgrade from Asterisk 11 to <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="Asterisk 13">Asterisk
+    13</a>.
+    In the long run, this will allow us to work on small and
+    not-so-small improvements to XiVO, such as: benefit from nice
+    performance improvements; add more control over queues and
+    switchboards (allowing us to correct undesirable behavior); generate
+    more meaningful call logs; make the system more easily
+    scalable, (i.e. multiple Asterisks could share the load of
+    phone calls). The
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="ARI">ARI</a>
+    is a very interesting feature of Asterisk 13 which gives us a lot of
+    flexibility and allows us to make new features easily. See also our
+    blog entry about <a href="/index.php?post/2015/07/20/XiVO-and-Asterisk-13" title="Asterisk 13">Asterisk
+    13</a>.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>XiVO Client</strong>: We have started integrating personal contacts into
+    the People Xlet. For now, you can list, create and delete
+    personal contacts. What remains to do is to edit contacts, integrate
+    them into search results, import and export contacts. The goal is to
+    delete the Personal Directory Xlet, and ultimately merge all other
+    contact-related xlets into the People Xlet. Note that these personal
+    contacts are accessible from any client, not just the one where they
+    were created, like before. They are also manageable via a REST API
+    in xivo-dird.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>REST API</strong>: We have continued to improve the management of
+    function keys via a REST API, adding more management features and
+    making it easier to use.</li>
+</ul>
+<h3>Ongoing features</h3>
+<ul>
+<li><strong>Directories</strong>: We are working on unifying directories so that all
+    contacts will be available from anywhere, be it your phone or your
+    CTI client. Also, we want XiVO to be able to get contacts from a
+    variety of third-party products, so we're setting up a plugin
+    mechanism allowing the retrieval of contacts from various sources.
+    For example, you can make XiVO list contacts <a href="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo" title="from your Odoo system">from your Odoo
+    system</a>.
+    Finally, we're working on integrating this plugin mechanism with the
+    current web interface.</li>
+</ul>
+<h3>Want to play with XiVO?</h3>
+<p>There's a new community-driven project called <strong>Raspivo</strong>, to support
+XiVO on Raspberry Pi 2. Take a look at the documentation <a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="on their website">on their
+website</a>.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/229" title="Roadmap 15.13">Roadmap
+15.13</a></p>
+<p>Links:</p>
+<ul>
+<li>Asterisk 13:
+    <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="https://wiki.asterisk.org/wiki/display/AST/New+in+13">https://wiki.asterisk.org/wiki/disp...</a></li>
+<li>ARI:
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">https://wiki.asterisk.org/wiki/page...</a></li>
+<li>Asterisk 13 in XiVO:
+    <a href="http://blog.xivo.io/index.php?post/2015/07/20/XiVO-and-Asterisk-13" title="http://blog.xivo.io/index.php?post/2015/07/20/XiVO-and-Asterisk-13">http://blog.xivo.io/index.php?post/...</a></li>
+<li>Odoo in XiVO:
+    <a href="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo" title="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo">https://github.com/alexis-via/xivo-...</a></li>
+<li>Raspivo:
+    <a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="http://raspivo.io/installation-depuis-nos-depots-en.html">http://raspivo.io/installation-depu...</a></li>
+</ul>
+<p><img alt="XIVO-RELEASE-15.13-July-August2015.png" src="/public/XIVO-RELEASE-15.13-July-August2015.png" title="XIVO-RELEASE-15.13-July-August2015.png, juil. 2015" /></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint review 15.13",
+  "headline": "Sprint review 15.13",
+  "datePublished": "2015-07-24 14:19:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sprint-review-1513.html",
+  "description": "Hello everyone, During this sprint most of the work was done on pushing Asterisk 13 into XiVO. We added an extra testing day during the sprint in order to help detect differences between Asterisk 11 and 13. New in this sprint Asterisk: Upgrade from Asterisk 11 to Asterisk 13. In ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="SVN keyword substitution bug fix In some of the installed software (ctiservers) the SVN keywords are used to extract the software version number: __version__ = "$Revision$" However, since the binaries have been built from a git repository with a different naming scheme, thisno longer works. Corentin Le Gall fixed the problem ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Testing a XiVO gallifrey repository (2/2)"/>
+<meta property="og:description" content="SVN keyword substitution bug fix In some of the installed software (ctiservers) the SVN keywords are used to extract the software version number: __version__ = "$Revision$" However, since the binaries have been built from a git repository with a different naming scheme, thisno longer works. Corentin Le Gall fixed the problem ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-22.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-05-16 13:27:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Testing a XiVO gallifrey repository (2/2)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="testing-a-xivo-gallifrey-repository-22">Testing a XiVO gallifrey repository (2/2)</h1>
+    <p>Posted on Mon 16 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>SVN keyword substitution bug fix</h4>
+<p>In some of the installed software (ctiservers) the SVN keywords are used
+to extract the software version number:</p>
+<div class="highlight"><pre><span class="x">__version__ = &quot;</span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x">&quot;</span>
+</pre></div>
+
+
+<p>However, since the binaries have been built from a git repository with a
+different naming scheme, thisno longer works. Corentin Le Gall fixed the
+problem immediately in the internal SVN repository</p>
+<div class="highlight"><pre>------------------------------------------------------------------------
+r10824 | kaou | 2011-05-16 11:08:49 +0200 (Mon, 16 May 2011) | 1 line
+[bugfix] remove svn-dependent stuff because of git migration
+------------------------------------------------------------------------
+</pre></div>
+
+
+<p>The <a href="http://git.xivo.fr/xivo-gallifrey.git/">git repository</a> was
+supposed to be updated by a cron job, but it crashed May 9th and was
+restarted May 16th by Romain Bignon:</p>
+<div class="highlight"><pre><span class="n">commit</span> <span class="n">a9f7ebff1a4db73184809a1696eb3b03b82b00f5</span>
+<span class="nl">Author</span><span class="p">:</span> <span class="n">Corentin</span> <span class="n">Le</span> <span class="n">Gall</span> <span class="o">&lt;</span><span class="n">clegall</span><span class="p">@</span><span class="n">proformatique</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span>
+<span class="nl">Date</span><span class="p">:</span>   <span class="n">Mon</span> <span class="n">May</span> <span class="mi">16</span> <span class="mi">09</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">47</span> <span class="mi">2011</span> <span class="o">+</span><span class="mo">0000</span>
+
+    <span class="n">remove</span> <span class="n">svn</span><span class="o">-</span><span class="n">dependent</span> <span class="n">stuff</span> <span class="n">because</span> <span class="n">of</span> <span class="n">git</span> <span class="n">migration</span>
+
+    <span class="n">git</span><span class="o">-</span><span class="n">svn</span><span class="o">-</span><span class="kt">id</span><span class="o">:</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//rcs.lan.proformatique.com/svn/xivo/branches/official/1.1-gallifrey@10825 dc85baef-7018-0410-bfbd-8a639da648bb</span>
+</pre></div>
+
+
+<p>After the git pull, the logs showed that some packages were modified.
+They were submitted to the farm:</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=ctiservers submit
+packaging-farm DIRECTORY=asterisk submit
+packaging-farm DIRECTORY=agid submit
+packaging-farm DIRECTORY=lib-python submit
+</pre></div>
+
+
+<p>and a rebuild of gallifrey was requested.</p>
+<div class="highlight"><pre>packaging-farm gallifrey
+</pre></div>
+
+
+<h4>collecting symbolic links</h4>
+<p>A few packages contain symbolic links that point outside of their
+directory:</p>
+<div class="highlight"><pre>gwr.py -&gt; ../tools/gwr.py
+</pre></div>
+
+
+<p>When building the source package by assembling the debian directory and
+the sourcedirectory, the actual file must be put in the archive instead
+of the symbolic link.</p>
+<div class="highlight"><pre><span class="x">for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; </span>
+<span class="x">  do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
+<span class="x">done</span>
+</pre></div>
+
+
+<p>The RSYNC_OPTIONS variable already existed in the <em>submit-xivo.sh</em>
+script but was not documented. A chapterwas added to the manual page:</p>
+<div class="highlight"><pre><span class="x">RSYNC_OPTIONS=</span>
+<span class="x">              Before  the debian directory is assembled with the source direc-</span>
+<span class="x">              tory, a  copy  is  made  using  rsync(1).  The  content  of  the</span>
+<span class="x">              RSYNC_OPTIONS  variable  is  given in argument to the rsync com-</span>
+<span class="x">              mand. For instance it may be used to collect the actual  content</span>
+<span class="x">              of symbolic links pointing outside of the source directory.</span>
+<span class="x">              for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ;</span>
+<span class="x">                do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
+<span class="x">              done</span>
+</pre></div>
+
+
+<p>Before installing <em>pf-xivo</em> it was necessary to install the
+<em>dahdi-linux</em> kernel module.</p>
+<div class="highlight"><pre>apt-get install dahdi-linux-modules-2.6.26-2-686 
+apt-get install pf-xivo
+</pre></div>
+
+
+<p>It was then possible to connect to the XiVO web interface:<img alt="alternate
+XiVO" src="/public/.Screenshot-5_m.jpg" title="alternate XiVO, May 2011" /></p>
+<h4>gallifrey reference</h4>
+<p>ganeti instanceA new host is declared in the local DNS</p>
+<div class="highlight"><pre><span class="x">root@host01:/etc/bind</span><span class="err">#</span><span class="x"> git diff .</span>
+<span class="x">diff --git a/bind/db.10.10 b/bind/db.10.10</span>
+<span class="x">index 684d569..ea30300 100644</span>
+<span class="x">--- a/bind/db.10.10</span>
+<span class="x">+++ b/bind/db.10.10</span>
+<span class="x">@@ -4,7 +4,7 @@</span>
+<span class="x"> ;</span>
+<span class="x"> </span><span class="p">$</span><span class="nv">TTL</span><span class="x">    604800</span>
+<span class="x"> @       IN      SOA     localhost. root.localhost. (</span>
+<span class="x">-        2011041800      ; serial</span>
+<span class="x">+        2011051601      ; serial</span>
+<span class="x">                          604800         ; Refresh</span>
+<span class="x">                           86400         ; Retry</span>
+<span class="x">                         2419200         ; Expire</span>
+<span class="x">@@ -14,6 +14,9 @@ </span><span class="p">$</span><span class="nv">TTL</span><span class="x">    604800</span>
+<span class="x"> ;;</span>
+<span class="x"> ;; perl -n -e &#39;print if(s/(\S+)\s+IN\s+A\s+10\.10\.(\d+)\.(\d+)/\3.\2\tIN\tPTR\t\1.farm./)&#39; &lt; db.farm</span>
+<span class="x"> ;;</span>
+<span class="x"> 1.60   IN      PTR     dev.dachary.vm.farm.</span>
+<span class="x"> 2.60   IN      PTR     skaro.xivo.vm.farm.</span>
+<span class="x"> 3.60   IN      PTR     gallifrey.xivo.vm.farm.</span>
+<span class="x">+4.60   IN      PTR     gallifrey-test1.xivo.vm.farm.</span>
+<span class="x">diff --git a/bind/db.farm b/bind/db.farm</span>
+<span class="x">index 60da05a..2e4c669 100644</span>
+<span class="x">--- a/bind/db.farm</span>
+<span class="x">+++ b/bind/db.farm</span>
+<span class="x">@@ -4,7 +4,7 @@ </span><span class="p">$</span><span class="nv">TTL</span><span class="x"> 1h ; default Time-to-Live. defines the duration that the record may be cach</span>
+
+<span class="x"> </span><span class="p">$</span><span class="nv">ORIGIN</span><span class="x"> farm.</span>
+<span class="x"> @                       IN      SOA             ns hostmaster (</span>
+<span class="x">-                        2011041800      ; serial</span>
+<span class="x">+                        2011051601      ; serial</span>
+<span class="x">                                 1h              ; refresh - time when the slave will try to refresh the zone from the mast</span>
+<span class="x">                                 30m             ; update retry - time between retries if the slave (secondary) (2h)</span>
+<span class="x">                                                 ; fails to contact the master when refresh (above) has expired.</span>
+<span class="x">@@ -22,3 +22,4 @@ host01                IN      A       10.10.59.10</span>
+<span class="x"> dev.dachary.vm         IN      A       10.10.60.1</span>
+<span class="x"> skaro.xivo.vm          IN      A       10.10.60.2</span>
+<span class="x"> gallifrey.xivo.vm      IN      A       10.10.60.3</span>
+<span class="x">+gallifrey-test1.xivo.vm        IN      A       10.10.60.4</span>
+</pre></div>
+
+
+<p>An entry is allocated in the DHCP server, configured with a server to be
+used for network boot.</p>
+<div class="highlight"><pre><span class="gh">diff --git a/bind/db.farm b/bind/db.farm</span>
+<span class="gh">index 60da05a..2e4c669 100644</span>
+<span class="gd">--- a/bind/db.farm</span>
+<span class="gi">+++ b/bind/db.farm</span>
+<span class="gu">@@ -4,7 +4,7 @@ $TTL 1h ; default Time-to-Live. defines the duration that the record may be cach</span>
+
+ $ORIGIN farm.
+ @                       IN      SOA             ns hostmaster (
+<span class="gd">-                        2011041800      ; serial</span>
+<span class="gi">+                        2011051601      ; serial</span>
+                                 1h              ; refresh - time when the slave will try to refresh the zone from the mast
+                                 30m             ; update retry - time between retries if the slave (secondary) (2h)
+                                                 ; fails to contact the master when refresh (above) has expired.
+<span class="gu">@@ -22,3 +22,4 @@ host01                IN      A       10.10.59.10</span>
+ dev.dachary.vm         IN      A       10.10.60.1
+ skaro.xivo.vm          IN      A       10.10.60.2
+ gallifrey.xivo.vm      IN      A       10.10.60.3
+<span class="gi">+gallifrey-test1.xivo.vm        IN      A       10.10.60.4</span>
+</pre></div>
+
+
+<p>A ganeti based virtual machine is created with a VNC port enabled:</p>
+<div class="highlight"><pre>gnt-instance add -d -t plain -s 5G -B memory=512M,vcpus=1 \
+   -H kvm:boot_order=network,vnc_bind_address=0.0.0.0 -n host01.farm \
+   -o debootstrap+default --net 0:mac=52:54:24:1e:63:28 \
+   gallifrey-test1.xivo.vm.farm
+</pre></div>
+
+
+<p>At boot time the menu options <em>Production</em> and <em>Gallifrey</em> are
+selected.The firewall was reconfigured to accept HTTPS connections
+because it is the default when connecting to thevirtual machine with a
+browser (it gets redirected when trying with HTTP):</p>
+<div class="highlight"><pre><span class="gh">diff --git a/shorewall/rules b/shorewall/rules</span>
+<span class="gh">index 3a7ea65..da38d67 100644</span>
+<span class="gd">--- a/shorewall/rules</span>
+<span class="gi">+++ b/shorewall/rules</span>
+<span class="gu">@@ -39,6 +39,7 @@ ACCEPT                $FW             net             icmp</span>
+
+ SSH(ACCEPT)    net             $FW
+ HTTP(ACCEPT)   net             $FW
+<span class="gi">+HTTPS(ACCEPT)  net             $FW</span>
+ # VNC ganeti
+ ACCEPT         net             $FW             tcp     11000:11010
+ # VNC libvirt
+</pre></div>
+
+
+<p>The nginx reverse proxy was configured to proxy SSL requests, after
+generating a certificateaccording to <a href="http://wiki.nginx.org/HttpSslModule">the SSL
+module</a> instructions:</p>
+<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">ssl</span> <span class="n">on</span><span class="p">;</span>
+ <span class="n">listen</span> <span class="m">443</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">test1</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">gallifrey</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+ <span class="n">ssl_certificate</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">crt</span><span class="p">;</span>
+ <span class="n">ssl_certificate_key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">key</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span> <span class="n">https</span><span class="o">://</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">test1</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="o">:</span><span class="m">443</span><span class="p">;</span>
+<span class="err">#</span>  <span class="n">proxy_set_header</span> <span class="n">Host</span> <span class="err">$</span><span class="n">host</span><span class="p">;</span>       
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>And the <a href="https://gallifrey-test1.dachary.org/">XiVO web interface</a> could
+be displayed.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Testing a XiVO gallifrey repository (2/2)",
+  "headline": "Testing a XiVO gallifrey repository (2/2)",
+  "datePublished": "2011-05-16 13:27:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/testing-a-xivo-gallifrey-repository-22.html",
+  "description": "SVN keyword substitution bug fix In some of the installed software (ctiservers) the SVN keywords are used to extract the software version number: __version__ = "$Revision$" However, since the binaries have been built from a git repository with a different naming scheme, thisno longer works. Corentin Le Gall fixed the problem ..."
+}
+</script></body>
+</html>

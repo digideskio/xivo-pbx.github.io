@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/free-software.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-02-09T20:38:00-05:00</updated><entry><title>L'agenda du Libre - Free software schedule</title><link href="http://blog.xivo.io/lagenda-du-libre-free-software-schedule.html" rel="alternate"></link><updated>2015-02-09T20:38:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-02-09:lagenda-du-libre-free-software-schedule.html</id><summary type="html">&lt;p&gt;__Free Software Schedule: In France
+&lt;a href="http:%20//www.agendadulibre.org"&gt;www.agendadulibre.org&lt;/a&gt;, in Belgium
+&lt;a href="http:%20//www.agendadulibre.be"&gt;www.agendadulibre.be&lt;/a&gt;, in Switzerland
+&lt;a href="http:%20//www.agendadulibre.ch"&gt;www.agendadulibre.ch&lt;/a&gt; and in Quebec
+&lt;a href="http://www.agendadulibre.qc.ca/event/2015"&gt;www.agendadulibre.qc.ca/event/2015&lt;/a&gt;
+.Learn more about the activities in Quebec with
+&lt;a href="http:%20//facil.qc.ca"&gt;FACIL&lt;/a&gt; in Montreal, site from &lt;a href="http:%20//robin.millette.info"&gt;Robin
+Millette&lt;/a&gt;, Linux User Group
+&lt;a href="http:%20/%20/www.linuq.org"&gt;LinuQ&lt;/a&gt; in Quebec and the fablab
+&lt;a href="https:%20//espacelab2014.wordpress.com"&gt;EspaceLab&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L'agenda du Libre en version francophone&lt;/strong&gt;: En France
+&lt;a href="http://www.agendadulibre.org"&gt;www.agendadulibre.org&lt;/a&gt;, en Belgique
+&lt;a href="http://www.agendadulibre.be"&gt;www.agendadulibre.be&lt;/a&gt;, en Suisse
+&lt;a href="http://www.agendadulibre.ch"&gt;www.agendadulibre.ch&lt;/a&gt; et au Québec
+&lt;a href="http://www.agendadulibre.qc.ca/event/2015"&gt;www.agendadulibre.qc.ca/event/2015&lt;/a&gt;.En
+savoir plus sur les activités au Québec sur &lt;a href="http://facil.qc.ca"&gt;FACIL&lt;/a&gt;
+à Montréal et le site de &lt;a href="http://robin.millette.info"&gt;Robin Millette&lt;/a&gt;,
+avec &lt;a href="http://www.linuq.org"&gt;LinuQ&lt;/a&gt; à Québecainsi que
+l'&lt;a href="https://espacelab2014.wordpress.com"&gt;EspaceLab&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Des activités passées au Québec à LinuQ et à l'EspaceLab:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Samedi 24 janvier 2015: Quoi faire avec son Raspberry Pi? (Anabel
+    David), Installation et configuration d’un routeur pfSense
+    (Dominique Drolet).&lt;/li&gt;
+&lt;li&gt;Samedi 7 février 2015: &lt;strong&gt;Buzzword Lightyears au pays d’OpenStack
+    (Claude Durocher)&lt;/strong&gt;, EspaceLab, la communauté du matériel libre
+    (Benoit Debaque).&lt;/li&gt;
+&lt;li&gt;Jeudi 12 février 2015: Une présentation LinuQ gratuite chez
+    Savoir-Faire Linux (quartier Saint-Roch, basse-ville) :
+    Cryptographie et communications (Virgil Dupras).&lt;/li&gt;
+&lt;li&gt;Samedi 21 février 2015: Raspberry Pi avec relay gérant des prises
+    électriques (Martin Plante), Programmation Android avec Python
+    (François-Nicolas Demers), Rencontre mensuelle Drupal (Meetup)
+    (Jean-François Bohémier/Evans Bernier).&lt;/li&gt;
+&lt;li&gt;Jeudi 26 février 2015: Rencontre &lt;a href="http://www.osmqc.ca/"&gt;Open Street Map
+    Québec&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="QuebecOpenSource2015.png" src="/public/QuebecOpenSource2015.png" title="QuebecOpenSource2015.png, mar. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Des activités à venir:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mardi 3 mars 2015: encontre EspaceLab et TechDrinks.&lt;/li&gt;
+&lt;li&gt;Samedi 07 mars 2015: En matinée: Débutant Processing Par: Benoit
+    Debaque à l'EspaceLab. Dans l'après-midi: l’accessibilité du libre
+    (Miguel Ross), À la découverte du Web sémantique (François Belleau)
+    à LinuQ.&lt;/li&gt;
+&lt;li&gt;Jeudi 12 mars 2015 dès 19H: Le meilleur poste de travail
+    informatique… est libre! par
+    &lt;a href="http://www.agendadulibre.qc.ca/event/1112/"&gt;Facil&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Samedi 21 mars 2015: Base de données Cassandra – Gramps (logiciel
+    libre de généalogie)&lt;/li&gt;
+&lt;li&gt;Samedi 28 mars 2015: Styles CSS et préprocesseurs – &lt;strong&gt;Docker par
+    &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt; (S.Boily)&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>LinuQ, Groupe Utilisateur Linux de Québec, des ateliers et XiVO</title><link href="http://blog.xivo.io/linuq-groupe-utilisateur-linux-de-quebec-des-ateliers-et-xivo.html" rel="alternate"></link><updated>2015-01-29T19:27:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-29:linuq-groupe-utilisateur-linux-de-quebec-des-ateliers-et-xivo.html</id><summary type="html">&lt;p&gt;This section presents LINUQ, Linux User Group from Quebec. In the
+workshops this week: learning programming with a Raspberry-Pi, about BSD
+licence, Kano, a computer and coding kit for all ages, Ubuntu install
+session and interoperabilty topics.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Article sous cc by sa 3.0 par Valérie Dagrain&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Apprenant-e-s ou animateur-trice-s, &lt;a href="http://www.linuq.org"&gt;le GUL LINUQ de la ville de
+Québec&lt;/a&gt; accueille et présente les activités pour
+2015.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Voici les ateliers du 24 jan.2015:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Atelier Raspberry PI&lt;/strong&gt;: la présence de nombreux participant-e-s
+    confirme le grand engouement des ateliers sur &lt;a href="http://www.raspberrypi.org"&gt;Raspberry
+    Pi&lt;/a&gt;. Durant cette session, plusieurs
+    démonstrations, du code. L'intervenante est invitée à revenir pour
+    proposer des ateliers pour les amateurs et les experts. Durant cet
+    ateliers il y a eu des exemples d'applications, exemple:
+    l'&lt;a href="http://www.solidrnet.fr/v2/wp-content/uploads/2013/10/car-rasp1.jpg"&gt;interface écran d'une
+    voiture&lt;/a&gt;
+    et des idées dans le magazine dédié
+    &lt;a href="http://www.themagpi.com/"&gt;TheMagPI&lt;/a&gt;. Suite à cet atelier,
+    l'intervenante à présenté
+    &lt;a href="https://www.kickstarter.com/projects/alexklein/kano-a-computer-anyone-can-make"&gt;Kano&lt;/a&gt;:
+    un kit ordinateur basé sur Raspberry-Pi pour programmer à tout âge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Présentation du logiciel de programmation
+    &lt;a href="http://scratch.mit.edu/"&gt;Scratch&lt;/a&gt;&lt;/strong&gt;, les fonctionnalités et
+    l'interface graphique.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atelier &lt;a href="/index.php?tag/BSD"&gt;BSD&lt;/a&gt;&lt;/strong&gt;: Un atelier en parallèle se
+    tenait sur &lt;a href="http://fr.wikipedia.org/wiki/Licence_BSD"&gt;BSD&lt;/a&gt;, une
+    licence libre utilisée pour la distribution de logiciels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ubuntu&lt;/strong&gt;: des groupes de personnes venaient pour installer
+    &lt;a href="/index.php?tag/Ubuntu"&gt;Ubuntu&lt;/a&gt; sur leur ordinateur. Je tiens à
+    remercier les discussions avec les femmes de cet atelier! Je suis
+    impatiente de revenir discuter avec elles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Informations matérielles&lt;/strong&gt;: certaines personnes viennent pour
+    avoir des conseils concernant du matériel de son, par exemple, pour
+    connaître leur interopérabilité.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Kano-LINUQ2015.JPG" src="/public/Kano-LINUQ2015.JPG" title="Kano-LINUQ2015.JPG, janv. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;Merci au trésorier pour m'avoir présenter les ateliers. Je rencontre
+enfin G.Cossette dont les publications régulières sur les projets Libres
+au Québec m'avaient permis de garder le contact sur les projets Libres
+au Québec, depuis 2005 ainsi qu'avec &lt;a href="http://facil.qc.ca/"&gt;Facil&lt;/a&gt; sur
+Montréal. Des membres de LinuQ transmettent: &lt;ins&gt;des remerciements à
+G.Sanderson, S.Duthil et S.Boily pour leur intervention l'an dernier,
+sur un atelier &lt;a href="http://www.xivo.io/"&gt;XiVO&lt;/a&gt;, dans la téléphonie Libre,
+basé sur
+&lt;a href="http://www.asterisk.org/"&gt;Asterisk&lt;/a&gt;.&lt;/ins&gt;&lt;img alt="LinuQ.png" src="/public/LinuQ.png" title="LinuQ.png, janv. 2015" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Le programme du site LinuQ annonce à 13h, pour le 7 février:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Buzzword Lightyears au pays d’OpenStack (Claude Durocher)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://espacelab2014.wordpress.co/"&gt;EspaceLab&lt;/a&gt;, la communauté du
+    matériel libre (Benoit Debaque)&lt;/li&gt;
+&lt;li&gt;Une prochaine session après sur Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adresse pour rejoindre LinuQ : 1560, route de l’Église, Québec G1W
+    3P7 (proche du chemin Saint-Louis – Carte)&lt;/li&gt;
+&lt;li&gt;Horaire des activités : 13h à 17h. Les rencontres ont lieu tous les
+    15 jours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.linuq.org"&gt;LinuQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.raspberrypi.org"&gt;Raspberry-Pi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.themagpi.com"&gt;TheMagPI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://scratch.mit.edu"&gt;Kano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://fr.wikipedia.org/wiki/Licence_BSD"&gt;BSD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://facil.qc.ca"&gt;Facil&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.xivo.io"&gt;XiVO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.asterisk.org"&gt;Asterisk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://espacelab2014.wordpress.co"&gt;EspaceLab&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;</summary><category term="raspberry Pi."></category><category term="LinuQ"></category><category term="Raspberry-Pi"></category><category term="Kano"></category><category term="TheMagPI"></category><category term="Scratch"></category><category term="BSD"></category><category term="Facil"></category><category term="XiVO"></category><category term="Asterisk"></category><category term="EspaceLab"></category><category term="Raspberry Pi"></category><category term="Ubuntu"></category></entry><entry><title>Intervention de Richard M. Stallman à l'Université de Concordia à Montréal sur les Logiciels Libres et Libertés</title><link href="http://blog.xivo.io/intervention-de-richard-m-stallman-a-luniversite-de-concordia-a-montreal-sur-les-logiciels-libres-et-libertes.html" rel="alternate"></link><updated>2014-10-29T15:43:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2014-10-29:intervention-de-richard-m-stallman-a-luniversite-de-concordia-a-montreal-sur-les-logiciels-libres-et-libertes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;English version available towards the end of the article&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;2 personnes du projet &lt;a href="http://documentation.xivo.io" title="XiVO"&gt;XiVO&lt;/a&gt;
+(téléphonie libre) témoignent :&lt;/p&gt;
+&lt;h3&gt;Partage de Valérie Dagrain&lt;/h3&gt;
+&lt;p&gt;Cette conférence de R. M. Stallman intitulée "Logiciel Libre et vos
+libertés" s'est déroulée à l'Université de Concordia. R. M. Stallman qui
+s'est vu remettre un titre honorifique de la part d'un responsable de
+l'Université, pour féliciter ses actions et ses engagements. Plus de 100
+étudiants anglophones des universités sur Montréal telles que Concordia
+et McGill étaient présents ainsi que des enseignants en informatique et
+entrepreneurs du Libre.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ayant suivi plusieurs interventions de R. M. Stallman, je découvre
+    que ses interventions débutent désormais par un refus d’apparaître
+    sur les réseaux sociaux fermés tels que Facebook et citait plutôt
+    les licences Creative Commons.&lt;/li&gt;
+&lt;li&gt;Un temps est consacré à présenter le Logiciel Libre et les 4
+    libertés, Unix et le système GNU/Linux puis la &lt;em&gt;Free Software
+    Foundation&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;R. M. Stallman soutient la nécessité d'utiliser des logiciels libres
+    comme seule alternative aux logiciels propriétaires qu'il dénonce
+    être des logiciels malveillants (&lt;em&gt;malware&lt;/em&gt;). Les utilisateurs
+    doivent contrôler leurs systèmes et aller de plus en plus vers des
+    composants Libres. Le Libre était alors présenté comme la seule
+    solution technique et éthique pour lutter contre les failles de
+    sécurité qu'apportent les logiciels de Micosoft, Apple, Google
+    Play, Amazon... et contrôler son système.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;R. M. S avançait dans ses précédentes présentations que les logiciels
+propriétaires étaient devenus privateurs. Désormais il met en garde de
+leur rôle de "&lt;em&gt;malware&lt;/em&gt;", de "&lt;em&gt;spyware&lt;/em&gt;" et de menottes numériques (DRM)
+qui verrouillent des accès et nous entraînent dans une société
+orwellienne sous contrôle. Du côté des firmes propriétaires, des accès
+récurrents s'opèrent sur certains de nos appareils (ordinateur,
+téléphone...) sans accord de l'utilisateur et des actions peuvent être
+faites sur nos systèmes. Les risques de censure sont possibles tout
+comme des mauvais usages du fait de notre géolocalisation (GPS).&lt;/p&gt;
+&lt;p&gt;Face à cela R. M. S. encourage le partage et met en garde contre le
+discours de propagande visant à associer une personne qui partage avec
+les pirates. Suite à la révélation par E. Snowden en 2013, sur les
+programmes américains de surveillance de masse, R. M. Stallman invite à
+applaudir le courage de cet ancien employé qui était mandaté par la NSA.
+Un ban d'honneur a ainsi été fait en son nom !"Nous devons contrôler nos
+systèmes pour les améliorer. Il faut enseigner le "&lt;em&gt;reverse
+engineering&lt;/em&gt;" dans les écoles !" En conclusion R. M. Stallman appuie
+l'usage des logiciels libres, notamment en milieu scolaire. Fabian
+Rodriguez, président de FACIL (Association pour l'appropriation
+collective de l'Informatique Libre) et promoteur du Libre auprès d'une
+commission scolaire à Montréal, a su partager sa motivation et son
+engagement dans ce sens durant les échanges.&lt;/p&gt;
+&lt;p&gt;La video sera accessible depuis le site de Concordia et d'autres sites
+partageant les ressources Libres.&lt;/p&gt;
+&lt;p&gt;Sources :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.xivo.io"&gt;http://blog.xivo.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://fr.wikipedia.org/wiki/Logiciel_libre"&gt;http://fr.wikipedia.org/wiki/Logiciel_libre&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation"&gt;http://fr.wikipedia.org/wiki/Free_Software_Foundation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.programmez.com/actualites/windows-est-un-malware-selon-richard-stallman-21259"&gt;http://www.programmez.com/actualites/windows-est-un-malware-selon-richard-stallman-21259&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Digital_rights_management"&gt;http://en.wikipedia.org/wiki/Digital_rights_management&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://fabianrodriguez.com/blog/profil"&gt;http://fabianrodriguez.com/blog/profil&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://facil.qc.ca"&gt;http://facil.qc.ca&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Partage de Gregory Eric Sanderson&lt;/h3&gt;
+&lt;p&gt;J'ai rencontré R. M. S. pour la première fois en 2010 lors du "Salon du
+Logiciel Libre du Québec". 4 ans plus tard, malgré le changement du
+discours, le message principal reste le même.&lt;/p&gt;
+&lt;p&gt;Pendant la première partie du discours, je me suis rappelé que les
+concepts soutenant le Logiciel Libre sont tout d'abord fondés sur des
+questions morales et éthiques. Les 4 libertés (la liberté d'utiliser,
+étudier, modifier et redistribuer) permettent d'assurer nos droits
+humains fondamentaux dans notre utilisation de logiciels.&lt;/p&gt;
+&lt;p&gt;R. M. S. mettait souvent l'emphase sur la différence entre le contrôle
+exercé par un utilisateur sur un logiciel &lt;em&gt;vs.&lt;/em&gt; le contrôle du logiciel
+sur un utilisateur. Prenons la liseuse électronique de Amazon, le
+Kindle, en exemple. Puisqu'un utilisateur n'a pas de contrôle sur le
+logiciel utilisé sur un Kindle, Amazon a pu supprimer toutes les copies
+du livre 1984. Ironique, n'est-ce pas ? Un deuxième exemple : Les
+architectures SaaS ("&lt;em&gt;Software as a Service&lt;/em&gt;". Autrement dit, du
+logiciel comme service. R. M. S s'est amusé en substituant l'acronyme
+pour "&lt;em&gt;Service as a Software Substitute&lt;/em&gt;", ou encore "Le service comme
+un substitut au logiciel") Du SaaS ne peut être catégorisé comme un
+logiciel libre car il n'existe pas de moyen de vérifier ce que le
+service fait avec les données qu'on lui envoie. En d'autres mots, le
+service est capable d'exercer un contrôle sur l'utilisateur.&lt;/p&gt;
+&lt;p&gt;La différence entre les logiciels libres et "&lt;em&gt;Open Source&lt;/em&gt;" était aussi
+un autre sujet chaud. R. M. S. n'a pas hésité à critiquer les militants
+de l&lt;em&gt;'Open Source&lt;/em&gt; comme des gens sans considérations éthiques. Des gens
+qui préfèrent des solutions pragmatiques et faciles. Par exemple, dans
+le noyau Linux nous retrouvons des blocs de "&lt;em&gt;firmware&lt;/em&gt;". Ces blocs ne
+contiennent pas de code source et sont distribués avec le noyau, ce qui
+implique qu'ils peuvent intervenir à l'encontre des libertés de
+l'utilisateur, parfois même sans qu'il le sache.&lt;/p&gt;
+&lt;p&gt;En conclusion, cette conférence m'a rappelé que même si les programmeurs
+comme moi ont la chance de créer plein de logiciels grâce au logiciel
+libre, les implications morales et éthiques restent encore pertinentes
+aujourd'hui.&lt;/p&gt;
+&lt;h3&gt;Gregory Eric Sanderson's Point of View&lt;/h3&gt;
+&lt;p&gt;I saw R.M.S for the first time in 2010 for the "Salon du Logiciel Libre
+du Québec". 4 years later, although the words have changed, but the core
+message has stayed the same.&lt;/p&gt;
+&lt;p&gt;During the first part, I was reminded that the concepts behind Free
+Software are foremost about moral and ethical considerations. The four
+liberties (i.e. the liberty to use, study, modify and redistribute) help
+in establishing human rights when using software, no matter where.&lt;/p&gt;
+&lt;p&gt;R.M.S often emphasised the difference between a user's control over a
+program vs. the control of a program over its user. Let's take Amazon's
+e-reader, the Kindle, as an example: Since a user does not have control
+over the software on the Kindle, Amazon was able to delete everyone's
+copy of 1984, therefore exerting control on what the user was allowed to
+read. Ironic, isn't it? Another example given was Software as a Service.
+(or, as R.M.S put it, Service as a Software Substitute) SaaS cannot be
+considered Free Software because there is no feasible way of
+ascertaining what the service is doing with the data that we send.
+Therefore, it can exert control over the user.&lt;/p&gt;
+&lt;p&gt;Another hot topic was the difference between Free Software and Open
+Source. R.M.S did not hestitate to criticize Open Source advocates as
+people who did not care about the ethical implications, who preferred
+pragmatic and easy solutions to problems. An example of this were the
+firmware blobs in the Linux Kernel. Since these blobs do not contain any
+source code and are distributed alongside the kernel, they jeopardize a
+user's freedoms, often without the user even knowing about it.&lt;/p&gt;
+&lt;p&gt;Over all, this conference was a reminder that even though programmers
+like myself get to create all sorts of programs thanks to Free Software,
+the moral and ethical considerations behind the movement still remain
+relevant today.&lt;/p&gt;
+&lt;h3&gt;Photos&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="DSCF4499.JPG" src="/public/rms/DSCF4499.JPG" title="DSCF4499.JPG, Oct 2014" /&gt;&lt;img alt="DSCF4513.JPG" src="/public/rms/DSCF4513.JPG" title="DSCF4513.JPG, Oct 2014" /&gt;&lt;img alt="DSCF4515.JPG" src="/public/rms/DSCF4515.JPG" title="DSCF4515.JPG, Oct 2014" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry></feed>

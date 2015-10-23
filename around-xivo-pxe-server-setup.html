@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="atarakt" />
+<meta name="description" content="This is the second part of the description of the XiVO installation process. I'm going to describe how to setup a simple pxe server. You need to have 2 services enabled on your server, dhcp and tftp. Dhcp is used to give ip parameters to join the tftp server ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Around XiVO - pxe server setup"/>
+<meta property="og:description" content="This is the second part of the description of the XiVO installation process. I'm going to describe how to setup a simple pxe server. You need to have 2 services enabled on your server, dhcp and tftp. Dhcp is used to give ip parameters to join the tftp server ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/around-xivo-pxe-server-setup.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-03-01 20:07:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/atarakt.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Around XiVO - pxe server setup</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="around-xivo-pxe-server-setup">Around XiVO - pxe server setup</h1>
+    <p>Posted on Thu 01 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>This is the second part of the description of the XiVO installation
+process.</p>
+<p>I'm going to describe how to setup a simple pxe server.</p>
+<p>You need to have 2 services enabled on your server, dhcp and tftp.</p>
+<p>Dhcp is used to give ip parameters to join the tftp server from the
+client,the tftp server serves the files needed to install a debian
+system.</p>
+<p>On debian system, you have to install isc-dhcp-server, here is a
+minimaldhcp configuration:</p>
+<div class="highlight"><pre>#/etc/dhcp/dhcpd.conf
+ddns-update-style none;
+option domain-name &quot;mydomain.com&quot;;
+option domain-name-servers 10.10.32.1;
+default-lease-time 600;
+max-lease-time 7200;
+log-facility local7;
+subnet 10.10.32.0 netmask 255.255.255.0 {
+    range 10.10.32.10 10.10.32.20;
+    option routers 10.10.32.1;
+    next-server 10.10.32.1;
+    option tftp-server-name &quot;10.10.32.1&quot;;
+    filename &quot;pxelinux.0&quot;;
+}
+</pre></div>
+
+
+<p>You can test your dhcp configuration by booting a machine on pxe to
+ensurethat the dhcp configuration is functionnal :</p>
+<div class="highlight"><pre>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPREQUEST for 10.10.32.10 (10.10.32.1) from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPACK on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+</pre></div>
+
+
+<p>Now we have to install and configure a tftp server, we're going to
+installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
+too. Thispackage provide all the files used to install a fresh debian
+system by pxe.</p>
+<p>You have to modify tftp_directory on /etc/default/tftpd-hpa:</p>
+<div class="highlight"><pre>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
+</pre></div>
+
+
+<p>and restart the tftp server to apply your modification.</p>
+<p>You have to edit 2 files to finish your configuration: menu.cfg and
+syslinux.cfg</p>
+<p>You have to modify include and default path in boot-screens/syslinux.cfg</p>
+<div class="highlight"><pre># D-I config version 2.0
+   include boot-screens/menu.cfg
+   default boot-screens/vesamenu.c32
+   prompt 0
+   timeout 0
+</pre></div>
+
+
+<p>You have to add to boot-screens/menu.cfg</p>
+<div class="highlight"><pre>label squeeze-i386
+       menu label squeeze i386
+       kernel linux
+       append vga=normal initrd=initrd.gz
+</pre></div>
+
+
+<p>You can now test your modification by booting a computer on your subnet,
+herethe screen that you should view if your configuration is ok</p>
+<p><img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /></p>
+<p>In the next post, I will explain an advanced pxe configuration and how
+to usepreseeding to execute an automatic installation.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Around XiVO - pxe server setup",
+  "headline": "Around XiVO - pxe server setup",
+  "datePublished": "2012-03-01 20:07:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "atarakt",
+    "url": "http://blog.xivo.io/author/atarakt.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/around-xivo-pxe-server-setup.html",
+  "description": "This is the second part of the description of the XiVO installation process. I'm going to describe how to setup a simple pxe server. You need to have 2 services enabled on your server, dhcp and tftp. Dhcp is used to give ip parameters to join the tftp server ..."
+}
+</script></body>
+</html>

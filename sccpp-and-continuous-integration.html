@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="nbouliane" />
+<meta name="description" content="SCCPp is a small tool that we developed in parallel of our Asterisk sccp channel. Its main purpose is to imitate a real cisco phone in a pure virtual way. One of the main goal behind it is to be able to do continuous integration. By coupling SCCPp with Asterisk ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="SCCPp and continuous integration"/>
+<meta property="og:description" content="SCCPp is a small tool that we developed in parallel of our Asterisk sccp channel. Its main purpose is to imitate a real cisco phone in a pure virtual way. One of the main goal behind it is to be able to do continuous integration. By coupling SCCPp with Asterisk ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sccpp-and-continuous-integration.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-02-20 14:17:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/nbouliane.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; SCCPp and continuous integration</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sccpp-and-continuous-integration">SCCPp and continuous integration</h1>
+    <p>Posted on Mon 20 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>SCCPp is a small tool that we developed in parallel of our Asterisk sccp
+channel. Its main purpose is to imitate a real cisco phone in a pure
+virtual way. One of the main goal behind it is to be able to do
+continuous integration. By coupling SCCPp with Asterisk testsuite and
+Jenkins we are able to automate tests that we would normally do
+manually. This way, when a commit is pushed, it trigger a task that
+launch the script responsible to update and compile the source, to pass
+every test in the list and to report if something went wrong.</p>
+<p>Only basic test are implemented via SCCPp at the present moment. We can
+simulate the full protocol exchange involved when a phone connect and
+authenticate itself to the server. Another supported option is the
+stress test of a configured device. In this mode, SCCPp start two
+threads and dial the device at random interval. The goal here is to pass
+through as much code as possible and to make sure there is no regression
+in the code under known scenarios.</p>
+<p>SCCPp doesn't support the RTP protocol (Real-Time Transport Protocol) at
+the present moment. What it mean is that we can't simulate the
+transportation of the voice from a device to another. The development of
+SCCPp is still at an early stage, and many more features will be added
+in the future.</p>
+<p>As the complexity of the libsccp increase, we need more tests to ensure
+that a change in the code, such a bug fix, do not introduce new faults.
+Functional testing is only one part of the solution, even if it's a
+powerful one to ensure that specific cases work well, it says nothing
+about the internal. The other half of the solution is to unit test the
+code. This is a method by which individual units of source code are
+tested to ensure they perform properly. Fortunately, Asterisk has its
+own framework that allow us to easily write unit test and to trigger
+them to see if they pass correctly. In another post, we will present
+what can be done with this Asterisk unit test framework and how it can
+help to do TDD (Test Driven Development).</p>
+<p>If you are interested to play with SCCPp, you can get the source code at
+this address:
+<a href="http://git.proformatique.com/?p=official/sccpp.git;a=summary" title="http://git.proformatique.com/?p=official/sccpp.git;a=summary">http://git.proformatique.com/?p=off...</a></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "SCCPp and continuous integration",
+  "headline": "SCCPp and continuous integration",
+  "datePublished": "2012-02-20 14:17:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "nbouliane",
+    "url": "http://blog.xivo.io/author/nbouliane.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sccpp-and-continuous-integration.html",
+  "description": "SCCPp is a small tool that we developed in parallel of our Asterisk sccp channel. Its main purpose is to imitate a real cisco phone in a pure virtual way. One of the main goal behind it is to be able to do continuous integration. By coupling SCCPp with Asterisk ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="pcadotte" />
+<meta name="description" content="Some of you may know that a new version of the XiVO client is being worked on at the moment. The newlook and feel require some work behind the scenes to merge all kindof contacts a XiVO user might have into a single source of information. What does all this ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO's new directory server"/>
+<meta property="og:description" content="Some of you may know that a new version of the XiVO client is being worked on at the moment. The newlook and feel require some work behind the scenes to merge all kindof contacts a XiVO user might have into a single source of information. What does all this ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivos-new-directory-server.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2014-09-26 15:14:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/pcadotte.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO's new directory server</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivos-new-directory-server">XiVO's new directory server</h1>
+    <p>Posted on Fri 26 September 2014 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>Some of you may know that a new version of the <a href="/public/xivo-client/Contacts.jpg" title="XiVO client">XiVO
+client</a> is being worked
+on at the moment. The newlook and feel require some work behind the
+scenes to merge all kindof contacts a XiVO user might have into a single
+source of information.</p>
+<p>What does all this mean ? A personal contact, an entry from an LDAP
+server or another XiVO usershould all be available to the user as one
+single list of contacts, even if some operations are not available on
+all kinds of entries.</p>
+<p>We already had a directory xlet that merged XiVO users and remote
+directoryentries into a single list. This xlet is used by the
+switchboard profile.The directory xlet does most of the heavy lifting of
+merging the different contactlists on the client side. This solution is
+not ideal for the future of XiVO as we wouldlike to be able to develop a
+mobile or web-based version of the client without theburden of rewriting
+the same logic.</p>
+<p>The first step of our work on this new client is to move this directory
+logicback on the server side. To do so, we are creating a new directory
+service, namedxivo-dird, that will be responsible of handling all
+queries made to all configured directory sources ona XiVO.</p>
+<p>This new service will offer a public REST interface. This means that
+custom client-side applicationswill be able to integrate the services
+provided by xivo-dird easily. We are also making this newservice
+runnable without a complete XiVO ecosystem. It will be possible to
+installxivo-dird on a dedicated server or in a container. The nature of
+the work doneon xivo-dird will also make it easy to run the service in a
+distributed manner. Withsome configuration, an administrator will be
+able to have many xivo-dird servers running behinda load balancer so
+that it may be used by many XiVOs simultaneously. For example:Avencall
+has one xivo per office but could use the same xivo-dird proxy for all
+offices.</p>
+<p><img alt="archi-xivo-dird.svg" src="/public/architecture/archi-xivo-dird.svg" title="archi-xivo-dird.svg, sept. 2014" /></p>
+<h3>Architecture</h3>
+<p>We are also designing xivo-dird for extensibility and we are trying to
+makeplugins as easy as possible to create, making it easier for the
+community to contribute.</p>
+<h4>Plugins</h4>
+<p>Currently planned extension points include:</p>
+<h5>Backends</h5>
+<p>Backends are plugins that are used to query directory sources. This is
+where we find the logicfor retrieving data from a specific kind of
+technology. Backends include, but arenot limited to, ldap, csv,
+xivo-directory (the internal directory of a
+XiVO),xivo-personal-directory (user's personal contact).</p>
+<h5>HTTP views</h5>
+<p>HTTP views are different URLs that are exposed by the xivo-dird server.
+At themoment we know that we will have a json view that will be used by
+other XiVOservices to retrieve lookup results. Other views will be added
+to support otherneeds. Phones are a good example of consumers that
+require a customized view.Adding support for a new brand of phone to
+xivo-dird will be a matter of addingthe HTTP view plugin that formats
+the lookup results in a way that the phoneunderstands.</p>
+<h4>Core</h4>
+<p>The core of the application is responsible for loading all of the
+plugins.We will probably use a third party library for this job. We have
+a proof ofconcept using
+<a href="http://stevedore.readthedocs.org/en/latest/" title="stevedore">stevedore</a>at
+the moment. Concurrency is also managed by the core.</p>
+<p>This kind of architecture will become the reference for other XiVO
+services. Having modular servicesthat can be executed independently from
+each other will allow us scale therequired parts of XiVO when needed.</p>
+<p>You can look at the <a href="https://github.com/xivo-pbx/xivo-dird" title="github repository">github
+repository</a>to
+view the source code and follow our work. Note that the master branch
+does not include thiswork yet. The code in other branches are proof of
+concepts used to confirm that our architecturecould handle the kind of
+load we were aiming for and that our modular architecture could
+beachieved but this code is not meant for production and will be
+replaced once we write theproduction version.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO's new directory server",
+  "headline": "XiVO's new directory server",
+  "datePublished": "2014-09-26 15:14:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "pcadotte",
+    "url": "http://blog.xivo.io/author/pcadotte.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivos-new-directory-server.html",
+  "description": "Some of you may know that a new version of the XiVO client is being worked on at the moment. The newlook and feel require some work behind the scenes to merge all kindof contacts a XiVO user might have into a single source of information. What does all this ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="xcarcelle" />
+<meta name="description" content="In an OpenHardware project, making up a perfect lab is crucial in order to prototype, test and solder parts before going to PCB pre-production and production. This post aims at presenting the set-up of the XiVO IPBX OpenHardware lab at Proformatique. The main list of hardware equipment we have in ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="The perfect OpenHardware Lab"/>
+<meta property="og:description" content="In an OpenHardware project, making up a perfect lab is crucial in order to prototype, test and solder parts before going to PCB pre-production and production. This post aims at presenting the set-up of the XiVO IPBX OpenHardware lab at Proformatique. The main list of hardware equipment we have in ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/the-perfect-openhardware-lab.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2010-05-11 12:04:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/xcarcelle.html">
+<meta property="article:section" content="Hardware"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; The perfect OpenHardware Lab</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="the-perfect-openhardware-lab">The perfect OpenHardware Lab</h1>
+    <p>Posted on Tue 11 May 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a></p>
+  </header>
+  <div>
+    <p>In an OpenHardware project, making up a perfect lab is crucial in order
+to prototype, test and solder parts before going to PCB pre-production
+and production.</p>
+<p>This post aims at presenting the set-up of the XiVO IPBX OpenHardware
+lab at Proformatique.</p>
+<p><strong>The main list of hardware equipment we have in our lab is:</strong></p>
+<ul>
+<li>Working-table from Langlois - Gradignan, France (typically used for
+    electronic practical session in the secondary schools and
+    engineering schools) with wooden table and neon to have a close-up
+    working light</li>
+<li>Oscilloscope Tektronix DP2012 with Ethernet interface (web server
+    running on the digital Oscilloscope that can control the settings on
+    the 2 ways)</li>
+<li>Multimeter ChauvinArnoux - CA703 (CAT IV - 600V with the diode
+    function used to validate continuity of PCB trace when looking for
+    connectivity on a PCB)</li>
+<li>Weller solder station WD1 with 2.5mm, 1mm and 0.5mm ends</li>
+<li>2 x PowerSupply PS3003 (24V in order to be able to do 48V with 2
+    power-supplies back-to-back)</li>
+<li>Zooming lens for close-ups soldering and debugging</li>
+<li>ATX PowerSupply to power motherboard and ATX-based EvaluationBoards</li>
+<li>Saleae LogicAnalyzer (USB-based and supported with <strong>sigrok</strong> with
+    Linux / http://www.sigrok.org/wiki/Main_Page for the list of
+    supported logic analyzers) for data-bus debugging</li>
+<li>Solderless breadboard SD-24 for wires connexion through the
+    breadboard</li>
+</ul>
+<p><strong>Please find below a picture of our hardware lab with the equipment
+descrived above:</strong></p>
+<p><img alt="Proformatique - XiVO - Hardware
+Lab" src="/public/.P1030609_m.jpg" title="Proformatique - XiVO - Hardware Lab, mai 2010" /></p>
+<p>This is important to get also small tools like cutting tools, small
+wires (like the precious HIRSCHMANN MKL0,64/25-0,25 - reference
+#1011430 at farnell.com
+<a href="http://fr.farnell.com/hirschmann/mkl0-64-25-0-25-red/cordon-de-test-rouge-0-64m/dp/1011430?Ntt=1011430" title="http://fr.farnell.com/hirschmann/mkl0-64-25-0-25-red/cordon-de-test-rouge-0-64m/dp/1011430?Ntt=1011430">http://fr.farnell.com/hirschmann/mk...</a>),
+soldering wires (RoHS with 1mm and 0.5mm diameter), screw-drivers, SMT
+and non SMT resistors, capacitors and selfs, labels for different wire
+description.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "The perfect OpenHardware Lab",
+  "headline": "The perfect OpenHardware Lab",
+  "datePublished": "2010-05-11 12:04:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "xcarcelle",
+    "url": "http://blog.xivo.io/author/xcarcelle.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/the-perfect-openhardware-lab.html",
+  "description": "In an OpenHardware project, making up a perfect lab is crucial in order to prototype, test and solder parts before going to PCB pre-production and production. This post aims at presenting the set-up of the XiVO IPBX OpenHardware lab at Proformatique. The main list of hardware equipment we have in ..."
+}
+</script></body>
+</html>

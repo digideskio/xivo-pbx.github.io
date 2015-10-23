@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="We recently had a few bugs in XiVO about non-ASCII characters, mainly accented character, as we love them in French. We fixed the bugs, but there will certainly be more. We then decided to push the test a little further and try to flood a few data pipes with non-european ..." />
+<meta name="keywords" content="xivo 1.2, xivo, software, skaro, i18n">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Some more internationalization in XiVO (part 1)"/>
+<meta property="og:description" content="We recently had a few bugs in XiVO about non-ASCII characters, mainly accented character, as we love them in French. We fixed the bugs, but there will certainly be more. We then decided to push the test a little further and try to flood a few data pipes with non-european ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-12-09 16:34:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="Software"/>
+<meta property="article:tag" content="xivo 1.2"/>
+<meta property="article:tag" content="xivo"/>
+<meta property="article:tag" content="software"/>
+<meta property="article:tag" content="skaro"/>
+<meta property="article:tag" content="i18n"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Some more internationalization in XiVO (part 1)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="some-more-internationalization-in-xivo-part-1">Some more internationalization in XiVO (part 1)</h1>
+    <p>Posted on Fri 09 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>We recently had a few bugs in XiVO about non-ASCII characters, mainly
+accented character, as we love them in French. We fixed the bugs, but
+there will certainly be more. We then decided to push the test a little
+further and try to flood a few data pipes with non-european Unicode
+characters, to see if potentially anything could flow in those pipes.</p>
+<p>Here's the result :<img alt="Japanese XiVO
+Client" src="/public/xivosoft/xivoclient-japanese.png" title="Japanese XiVO Client, déc. 2011" /></p>
+<p>We translated a few text fields in Japanese, even though it's probably
+not perfect Japanese, it's a little better than plain stupid automatic
+translation, thanks to one of our team members who knows a bit about
+Japanese. Japanese Caller ID are also displayed fine in softphones, we
+did not try real phones (yet).</p>
+<p>This exercise had multiple benefits :</p>
+<ul>
+<li>it allowed us to test the <a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer#Add_a_translation_for_the_XiVO_Client">XiVO Client internationalization
+    procedure</a></li>
+<li>we know Unicode is accepted in the main modules of XiVO</li>
+<li>we have the beginning of a Japanese translation for the XiVO Client</li>
+<li>it was not very long, 3 hours tops</li>
+<li>it was fun !</li>
+</ul>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>
+      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>
+      <a href="http://blog.xivo.io/tag/software.html">software</a>
+      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>
+      <a href="http://blog.xivo.io/tag/i18n.html">i18n</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Some more internationalization in XiVO (part 1)",
+  "headline": "Some more internationalization in XiVO (part 1)",
+  "datePublished": "2011-12-09 16:34:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html",
+  "description": "We recently had a few bugs in XiVO about non-ASCII characters, mainly accented character, as we love them in French. We fixed the bugs, but there will certainly be more. We then decided to push the test a little further and try to flood a few data pipes with non-european ..."
+}
+</script></body>
+</html>

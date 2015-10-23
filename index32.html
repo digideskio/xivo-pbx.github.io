@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 1/4)</a></h2>
+    <p>
+      Posted on Mon 07 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Extracting XiVO Gallifrey for Debian lenny</h4>
+<p>After creating a virtual machine based on the recently published
+DebianGNU/Linux squeeze, packaging-farm is installed from the
+repository. Anothersource is added to extract the XiVO packages in
+source form. Here we focuson <em>main</em> but the same principle can be done
+for others.</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey</span> <span class="kp">main</span>
+<span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>packaging-farm expects to find package sources in
+/var/cache/packaging-farm/sourceswithin a directory that is named after
+the package. This hierarchy was build withthe following:</p>
+<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey_main_source_Sources | </span>
+<span class="x">while read package </span>
+<span class="x">do </span>
+<span class="x">  ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> )</span>
+<span class="x">done</span>
+</pre></div>
+
+
+<p>In addition, a list of all known packages must be added to
+/etc/packaging-farm/packaging-farm.conf and a variable containing the
+directory where the chroot must be stored. The chroot is preserved if
+the build fail, for debuging purpose. To keep the structure consistent,
+a directory named after the package is created in /usr/src
+(/usr/src/asterisk, /usr/src/dahdi-linux etc.). Each directory must
+contain a Makefile that may contain exceptions or additional build
+instructions for the farm. Since there is no need for such tweaking at
+the moment, the Makefiles are generated:</p>
+<div class="highlight"><pre>for package in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp ; do
+cat &gt; /usr/src/<span class="nv">$package</span>/Makefile <span class="err">&lt;</span><span class="nt">&lt;EOF</span>
+<span class="na">PACKAGE=</span><span class="s">$package</span>
+<span class="na">DISTRIBUTIONS=</span><span class="s">lenny</span>
+<span class="na">ARCHITECTURES=</span><span class="s">i386</span>
+<span class="err">LIBDIR</span> <span class="err">?=</span> <span class="err">/usr/lib/packaging-farm</span>
+<span class="err">include</span> <span class="err">\${LIBDIR}/Makefile</span>
+<span class="err">EOF</span>
+<span class="err">done</span>
+</pre></div>
+
+
+<h4>Source package dependencies</h4>
+<p>The packaging-farm does not know anything about source package
+dependencies. For instance a number of XiVO packages depend on asterisk,
+therefore they need to be rebuilt if a new asterisk package is
+published. In preparation for a patch submission to add support for
+source package dependencies, a set of shell commands have been performed
+to generate a set of dependencies written as Makefile entries:</p>
+<div class="highlight"><pre><span class="err">#</span> <span class="nt">these</span> <span class="nt">lines</span> <span class="nt">are</span> <span class="nt">approximations</span> <span class="nt">that</span> <span class="nt">won</span><span class="s1">&#39;t work out of the box</span>
+<span class="s1"># list all packages for each source package</span>
+<span class="s1">cat  */*/debian/control | perl -ne &#39;</span><span class="nt">print</span> <span class="s2">&quot;$1|&quot;</span> <span class="nt">if</span><span class="o">(</span><span class="nt">s</span><span class="o">/^</span><span class="nt">Package</span><span class="o">:</span><span class="err">\</span><span class="nt">s</span><span class="o">*(.*)</span><span class="err">\</span><span class="nt">s</span><span class="o">*//)</span><span class="s1">&#39;</span>
+<span class="s1"># map package to corresponding source package</span>
+<span class="s1">cat /tmp/list_of_source_packages | while read package ; do cat $package/*/debian/control | perl -ne &#39;</span><span class="nt">s</span><span class="o">/</span><span class="cp">[</span><span class="nx">.</span><span class="o">-</span><span class="cp">]</span><span class="o">/</span><span class="nt">_</span><span class="o">/</span><span class="nt">g</span><span class="o">;</span> <span class="nt">print</span> <span class="s2">&quot;$1=&#39;$package&#39;\</span>
+<span class="s2">&quot;</span> <span class="nt">if</span><span class="o">(</span><span class="nt">s</span><span class="o">/^</span><span class="nt">Package</span><span class="o">:</span><span class="err">\</span><span class="nt">s</span><span class="o">*(.*)</span><span class="err">\</span><span class="nt">s</span><span class="o">*//)</span><span class="s1">&#39; ; done</span>
+<span class="s1"># create the makefile entries</span>
+<span class="s1">for package in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp ; do echo -n &quot;$package :: &quot; ; perl -ne &#39;</span><span class="nt">if</span><span class="o">(/^</span><span class="nt">Build-Depends</span><span class="o">/)</span> <span class="p">{</span> <span class="n">while</span><span class="p">(</span><span class="o">/</span><span class="p">(</span><span class="n">asterisk</span><span class="o">-</span><span class="n">mysql</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">mp3</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">ooh323c</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">conference</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">conference</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">asterisk</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">common</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">sounds</span><span class="o">-</span><span class="n">main</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">vmail</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">config</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">classic</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">classic</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">chan</span><span class="o">-</span><span class="n">capi</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">chan</span><span class="o">-</span><span class="n">capi</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">chan</span><span class="o">-</span><span class="n">sccp</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">chan</span><span class="o">-</span><span class="n">sccp</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">sounds</span><span class="o">-</span><span class="n">gsm</span><span class="o">-</span><span class="n">de</span><span class="o">-</span><span class="n">de</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">sounds</span><span class="o">-</span><span class="n">wav</span><span class="o">-</span><span class="n">en</span><span class="o">-</span><span class="n">us</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">sounds</span><span class="o">-</span><span class="n">wav</span><span class="o">-</span><span class="n">es</span><span class="o">-</span><span class="n">es</span><span class="o">|</span><span class="n">asterisk</span><span class="o">-</span><span class="n">sounds</span><span class="o">-</span><span class="n">wav</span><span class="o">-</span><span class="n">fr</span><span class="o">-</span><span class="n">ca</span><span class="o">|</span><span class="n">bntools</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">res</span><span class="o">-</span><span class="n">bnfos</span><span class="o">|</span><span class="n">dahdi</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">source</span><span class="o">|</span><span class="n">dahdi</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">modules</span><span class="o">-</span><span class="n">common</span><span class="o">|</span><span class="n">dahdi</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">dahdi</span><span class="o">-</span><span class="n">tools</span><span class="o">|</span><span class="n">libtonezone1</span><span class="o">|</span><span class="n">libtonezone</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">libasterisk</span><span class="o">-</span><span class="n">perl</span><span class="o">|</span><span class="n">libpri</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">libpri1</span><span class="o">.</span><span class="m">4</span><span class="o">|</span><span class="n">misdn</span><span class="o">-</span><span class="n">kernel</span><span class="o">-</span><span class="n">source</span><span class="o">|</span><span class="n">misdn</span><span class="o">|</span><span class="n">misdn</span><span class="o">-</span><span class="n">headers</span><span class="o">|</span><span class="n">misdn</span><span class="o">-</span><span class="n">utils</span><span class="o">|</span><span class="n">misdn</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">libmisdn0</span><span class="o">|</span><span class="n">libmisdn</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">libisdnnet0</span><span class="o">|</span><span class="n">libisdnnet</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">ami</span><span class="o">-</span><span class="n">aoriginate</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">fax</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">fax</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">nv</span><span class="o">-</span><span class="n">faxdetect</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">module</span><span class="o">-</span><span class="n">xivo</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">prompt</span><span class="o">-</span><span class="n">fr</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">prompt</span><span class="o">-</span><span class="n">fr</span><span class="o">-</span><span class="n">xivo</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">prompt</span><span class="o">-</span><span class="n">fr</span><span class="o">-</span><span class="n">fr</span><span class="o">-</span><span class="n">xivo</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">prompt</span><span class="o">-</span><span class="n">fr</span><span class="o">-</span><span class="n">ca</span><span class="o">-</span><span class="n">xivo</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">res</span><span class="o">-</span><span class="n">sqlite2</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">res</span><span class="o">-</span><span class="n">sqlite2</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asterisk</span><span class="o">-</span><span class="n">res</span><span class="o">-</span><span class="n">watchdog</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">asternic</span><span class="o">-</span><span class="n">stats</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">-</span><span class="n">ldlc</span><span class="o">-</span><span class="n">xivo</span><span class="m">-1</span><span class="o">.</span><span class="m">1</span><span class="o">-</span><span class="n">gallifrey</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">agid</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">backup</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">cti</span><span class="o">-</span><span class="n">server</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">cti</span><span class="o">-</span><span class="n">webclient</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">extra</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">fetchfw</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">lib</span><span class="o">-</span><span class="n">python</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">tools</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">provisioning</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">queues</span><span class="o">-</span><span class="n">logger</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">sysconfd</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">utils</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span><span class="o">|</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">config</span><span class="o">|</span><span class="n">sangoma</span><span class="o">-</span><span class="n">wanpipe</span><span class="o">-</span><span class="n">tools</span><span class="o">|</span><span class="n">sangoma</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">sangoma</span><span class="o">-</span><span class="n">wanpipe</span><span class="o">-</span><span class="n">source</span><span class="o">|</span><span class="n">libspandsp3</span><span class="o">|</span><span class="n">libspandsp</span><span class="o">-</span><span class="n">dev</span><span class="o">|</span><span class="n">libspandsp3</span><span class="o">-</span><span class="n">dbg</span><span class="o">|</span><span class="n">libspandsp</span><span class="o">-</span><span class="n">doc</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="p">)</span> <span class="err">{</span> <span class="n">print</span> <span class="s2">&quot;$1\</span>
+<span class="s2">&quot;</span><span class="p">;</span> <span class="p">}</span> <span class="err">}</span><span class="s1">&#39; &lt; /var/cache/packaging-farm/sources/$package/*/debian/control | sort -u | while read source ; do echo -n &#39;</span> <span class="s1">&#39; ; eval echo -n \$$(echo $source | sed -e &#39;</span><span class="nt">s</span><span class="o">/</span><span class="cp">[</span><span class="nx">.</span><span class="o">-</span><span class="cp">]</span><span class="o">/</span><span class="nt">_</span><span class="o">/</span><span class="nt">g</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">;</span> <span class="nt">done</span> <span class="o">;</span> <span class="nt">echo</span> <span class="o">;</span> <span class="nt">done</span>
+</pre></div>
+
+
+<p>created:</p>
+<div class="highlight"><pre># level 4
+pf-asterisk-ami-aoriginate ::  asterisk
+pf-asterisk-app-fax ::  asterisk spandsp
+pf-asterisk-app-nv-faxdetect ::  asterisk
+pf-asterisk-module-xivo ::  asterisk
+pf-asterisk-res-sqlite2 ::  asterisk
+pf-asterisk-res-watchdog ::  asterisk
+asterisk-addons ::  asterisk
+asterisk-app-conference ::  asterisk
+asterisk-chan-capi ::  asterisk
+asterisk-chan-sccp ::  asterisk
+bntools ::  asterisk
+# level 3
+asterisk ::  dahdi-linux misdn-user libpri dahdi-tools misdn-kernel
+# level 2
+dahdi-tools ::  dahdi-linux
+sangoma-wanpipe ::  dahdi-linux
+misdn-user ::  misdn-kernel
+# level 1
+asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca dahdi-linux libasterisk-perl libpri misdn-kernel pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface spandsp  ::
+</pre></div>
+
+
+<p>The dependencies were used to figure out the manual order in which the
+packages must be built. After checking that all packages without
+dependencies could be successfully built
+(<a href="http://xivo.dachary.org/packaging-farm/misdn-kernel/gnulinux/debian/i386/lenny/src/">misdn-kernel</a>,
+<a href="http://xivo.dachary.org/packaging-farm/dahdi-linux/gnulinux/debian/i386/lenny/src/">dahdi-linux</a>
+and <a href="http://xivo.dachary.org/packaging-farm/">more</a>), the idea was to
+encode the dependencies in the Makefile for each package.</p>
+<div class="highlight"><pre><span class="x">for i in asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca dahdi-linux libasterisk-perl libpri misdn-kernel pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface spandsp  ; do ( echo --------------------------- ; echo </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; make all ) ; done</span>
+</pre></div>
+
+
+<p>In packaging-farm, when a package is built, a new debian repository is
+created just for this package and only contains its package. In the case
+of misdn-user the repository of misdn-kernel (see above : it depends on
+it) would need to be added to the description of the misdn-user package.
+Although this may be fine for a few packages, four level of dependencies
+makes it tedious and error prone. It would be unwise to try it manually.</p>
+<h4>Aggregation of the results</h4>
+<p>XiVO is made of dozens of packages and it would be most inconvenient to
+add so many lines to a source list. Instead, a <a href="http://xivo.dachary.org/packaging-farm/gallifrey/Makefile">galifrey meta
+package</a> is
+created in the packaging-farm with the sole purpose of copying all
+packages in a <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/">single
+repository</a>.
+The following line could be added to a virgin Debian GNU/linux lenny
+source list and should now be equivalent to its counterpart on
+http://dak.proformatique.com/debian/</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/</span> <span class="kp">./</span>
+<span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/</span> <span class="kp">./</span>
+</pre></div>
+
+
+<h4>Implementing dependency handling in packaging-farm</h4>
+<p>Although an i386 repository is now available for the XiVO packages which
+solely depend on Debian GNU/Linux lenny, it would be tedious to manually
+arrange the packaging-farm to accomodate for the four level of
+dependencies. Instead packaging-farm should be modified to handle
+interdepencies of packages. Although it would be possible to arrange for
+the other operations to be supported by a specific tool (for instance
+importing all the packages from a known repository), such an operation
+is not frequent and the time to properly write such a tool and make sure
+it works as expected probably outweights the benefit.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html#xivo-client-packaging-server-source-policy-and-packaging-farm-updates">XiVO client packaging, server source policy and packaging-farm updates</a></h2>
+    <p>
+      Posted on Mon 31 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>XiVO Qt client packaging</h4>
+<p>The resulting packages are then uploaded to a directory that depends on
+the operating system :</p>
+<ul>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/linux/debian/">Debian GNU/Linux i386 and
+    amd64</a></li>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/win32/">Windows</a></li>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/macos/">MacOsX</a></li>
+</ul>
+<p>The Debian GNU/Linux packages are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer.sh">custom
+script</a>
+that builds the binary .deb file using the binary produced by the
+compilation. There is no corresponding source package. The MacOsX .dmg
+are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/build_config/on-MacOsX-SnowLeopard">custom
+script</a>.</p>
+<p>The Windows .exe are created by a
+<a href="http://en.wikipedia.org/wiki/Nullsoft_Scriptable_Install_System">NSIS</a>
+<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer_config/win32-shared">script</a>.</p>
+<h4>Other XiVO clients</h4>
+<p>The XiVO web interface is made of a JQuery based
+<a href="http://git.proformatique.com/?p=official/xivo-client-web.git">webapp</a>
+relying on web services provided by the XiVO server. It is not packaged
+on its own : when the user connects to the PHP based web interface (as
+found in the web-interface directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
+repository</a>) the browser loads it as
+a side effect.</p>
+<p>The XiVO android client is packaged using the Eclipse based toolkit.</p>
+<h4>XiVO server packaging source policy</h4>
+<p>The <a href="http://git.xivo.fr/">XiVO server sources</a> and the corresponding
+Debian GNU/Linux packaging instructions follow an undocumented policy.
+The SVN respository containing the packaging instructions is not
+published but it can be re-constructed from the Debian GNU/Linux
+directories found in the source packages of the <a href="http://dak.proformatique.com/debian/">XiVO Debian GNU/Linux
+repository</a>.</p>
+<ul>
+<li>All packages authored by Avencall start with the pf- prefix (for
+    instance pf-xivo-fetchfw)</li>
+<li>The Debian GNU/Linux package of third party packages (asterisk
+    for instance) is a fork of the official package that may or may not
+    be synchronized with it. In particular patches applied to the
+    upstream in Debian GNU/Linux may or may not be applied in the
+    XiVO distribution.</li>
+<li>A third party package source tree is made of (take a look at the
+    freeswitch directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
+    repository</a> for an example):<ul>
+<li>tarballs that contains all past and current source archives</li>
+<li>fetch_tarball.sh that will get the latest source archive from
+    the official source and place it in the tarballs directory</li>
+<li>Makefile.pkg that contains the name of the directory in
+    the (unpublished) SVN repository containing the debian package
+    (for freeswitch it is : DEB_PKG = "freeswitch")</li>
+<li>prepare_test_sources.sh is a script that:<ul>
+<li>unpacks the source archive</li>
+<li>apply the patches (which may be in the debian directory or
+    in the source directory) (freeswitch has no patch although
+    it contains a call to quilt)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>An unpublished tool has been used consistently over the years and rely
+on this policy. The purpose of this tool is essentially the same as the
+Debian GNU/Linux
+<a href="http://wiki.debian.org/DebianWannaBuildInfrastructure">WannaBuild</a> or
+<a href="https://launchpad.net/">launchpad</a>.</p>
+<h4>packaging-farm multi architecture support</h4>
+<p>A new release of <a href="http://packaging-farm.dachary.org">packaging-farm</a> was
+published Sunday 30 January, including the following features:</p>
+<ul>
+<li>Basic multi-architecture support : i386 and x86_64 are supported
+    when running the packaging-farm on an x86_64 platform. It should
+    ultimately rely on a slave virtual machine, either running localy or
+    on a remote machine.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Support for the currently active
+    <a href="https://wiki.ubuntu.com/Releases">ubuntu</a> releases.</li>
+</ul>
+<p>It is still unclear how packaging-farm could be used to create
+multi-distribution and multi-architecture packages for XiVO and that
+will be my focus for the following weeks.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html#xivo-server-packaging-in-a-nutshell">XiVO server packaging in a nutshell</a></h2>
+    <p>
+      Posted on Mon 24 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Nicolas Hicher is the XiVO release manager that make it happen. His
+input comes from a number of sources which are gradually migrated toward
+a set of git repositories which will become a central place:</p>
+<ul>
+<li>git://git.xivo.fr/xivo-dalek.git for old stable</li>
+<li>git://git.xivo.fr/xivo-gallifrey.git for stable</li>
+<li>git://git.xivo.fr/xivo-skaro.git for unstable</li>
+<li>http://git.proformatique.com/ debian fai and XiVO Qt, Web, Android
+    clients and more</li>
+</ul>
+<p>About ten developers have write access to commit their work on these
+repositories. In addition to their daily workload, they integrate
+patches andbug fixes contributed to the <a href="https://projects.proformatique.com/projects/xivo/issues">XiVO
+redmine</a>.Nicolas
+maintains packaging tools deployed on a few virtual machines which
+purpose are to produce a <a href="http://dak.proformatique.com/debian/">useable Debian
+repository</a>. Although it is
+currently updated with <a href="http://wiki.debian.org/DakHowTo">dak</a> it is
+complicated to maintain and will be migrated to
+<a href="http://mirrorer.alioth.debian.org/">reprepro</a> which is easier to deploy
+and maintain.</p>
+<p>The general idea is to follow the Debian philosophy with regard to
+maintaining stable distributions :</p>
+<ul>
+<li>the unstable (skaro) distribution roughly matches the Debian testing
+    distribution: it has been tried to be installable and roughly
+    functional, but it contains newly implemented features that may
+    require bug fixing when facing real world usage.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>the stable (Gallifrey) distribution is only updated for security
+    purposes, with the exception of newer asterisk versions.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>the old stable (dalek) distribution is kept for historical purposes</li>
+</ul>
+<p>The Debian unstable equivalent is the playground of the ten developers
+and there is no public URL for it. When one of them wants to update a
+package that is being actively developed, he logs in one of the virtual
+machines maintained by Nicolas, types a few command to create "dev"
+packages. All the developers use deb packaged based operating systems
+(Debian GNU/Linux or Ubuntu) and their source list points to the
+repositories located on the virtual machines where the "dev" packages
+are created. When one of the developers breaks a package, the others are
+quick to pick on it. This is both a curse (when it disrupts their work)
+and a blessing (because there is a continuous check of the distribution
+consistency). In order to help maintain the consistency of the
+distribution, strict version dependency is enforced between packages :
+if version 1.4.6 is required, version 1.4.7 will be rejected although it
+is presumably backward compatible. This policy may be relaxed in the
+future at the cost of extra care to ensure backward compatibility.</p>
+<p>When the developers are satisfied with the state of the XiVO
+distribution, they declare it a release and set a corresponding git
+branch (formerly a SVN tag). Nicolas notifies the production (i.e. the
+people ensuring that all deployed XiVO installation can rely on the
+stability of the existing repositories) that the skaro distribution
+(i.e. http://dak.proformatique.com/debian/dists/lenny-xivo-skaro-dev/)
+will be broken while the development packages are migrated to skaro. He
+then proceeds with the update and tests the resulting repository by
+performing an <a href="https://wiki.xivo.fr/index.php/XiVO_1.1-Gallifrey/Install_XiVO_From_Scratch">installation from
+scratch</a>
+on a virtual machine via PXE. If the virtual machine indeed contains the
+expected packages and that the web interface displays, the production
+team is notified and does additional tests before launching upgrades
+where relevant.</p>
+<p>When a packaging problem is found, either by the production team or by
+the developers, Nicolas is responsible for fixing it. If a new software
+is being deployed, Nicolas is also responsible for creating the
+corresponding package from scratch. More often than not, a problem
+requires an emergency fix by the developers shortly after a new release
+is put in production. In which case the whole process outlined above
+needs to be done again.</p>
+<p>The packaging process is evolving continuously and the following
+improvements are being considered:</p>
+<ul>
+<li>adding RPM based packages</li>
+<li>adding support for x86_64 and leave room for more architectures</li>
+<li>deploy a reprepro repository to replace
+    http://dak.proformatique.com/debian</li>
+<li>publish and document XiVO packaging tools</li>
+<li>Debian GNU/Linux squeeze support</li>
+<li>move as much as possible from the package to the source tree : some
+    packages contain so much knowledge that installing from sources is
+    difficult and is a serious obstacle for people running distributions
+    which are not explicitly supported</li>
+<li>improve and document the creation of CD based distributions and
+    ready to use virtual machines</li>
+<li>if a single machine is used to build packages, allow to build
+    multiple packages in parallel</li>
+</ul>
+<p>With these in mind, the following use case should be available to XiVO
+developers and packagers:</p>
+<ul>
+<li>developer side: I'm working alone on my code, it is perfect, ready
+    for production. I build the package (or the whole
+    corresponding suite) and I publish the package in the corresponding
+    development repository, so that it is available for
+    other developers.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>developer side: I'm not the only one working on the code (or I know
+    my work is not satisfactory) but I want to test a killer feature. I
+    build the package and publish it on my private repository and I can
+    test it without impacting other developers.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>packager side: the developers did a lot of work and there are many
+    bug fixes, asterisk version 3 has been published and chan_sccp
+    is stable. I build a full release ( tag + build + publish on a
+    release candidate repository ). The production team runs tests
+    suites and find bugs that are patched by the developers and propose
+    new packages. When the loop stabilizes, the release candidate
+    replaces the production.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>packager side: a new package is to be built, it must be added on
+    all repositories. The developer responsible for the code provides
+    all the information to:</li>
+</ul>
+<p>** build the package (dependencies, location of all files etc).</p>
+<p>** a HOWTO explaining how to test that the resulting software is
+working. It needs not be 100% tests but should cover the basics. A
+command --version returning the version number is better than nothing.</p>
+<p>The analysis of the existing XiVO release management practices and
+prospects reveal patterns that are common to a number of software
+publishers. At least those who are best served by deploying a dedicated
+distribution (repository, ISO or VM) rather than a single software
+package. They are in many ways identical to wide spread distributions
+such as Ubuntu or Debian GNU/Linux with a fundamental difference: it is
+cross distributions (Fedora, Gentoo, Debian GNU/Linux, Suse ...).</p>
+<p>The <a href="http://packaging-farm.dachary.org/">packaging-farm</a> tool has been
+developed to address this specific issue and will be used as a base to
+help implement the above features. It is based on the following ideas:</p>
+<h4>The input of the farm is a package and its output are repositories for the target distributions.</h4>
+<p>A Debian GNU/Linux package is a well defined format to transport
+software and packaging instructions. Using it to feed the farm saves the
+need to define custom conventions. The same goes for the output of the
+farm : all distributions define a format to store collections of
+packages, in source and binary forms.</p>
+<h4>The environment of a failed package attempt is preserved for debugging.</h4>
+<p>Each package is built in an pristine environment to minimize side
+effects due to previous executions. This environment (chroot or virtual
+machine) is destroyed if the packaging operation is a success. It is
+preserved if the package fail and the maintainer can chroot or ssh into
+it to figure out and fix the problem.</p>
+<h4>A farm can be stacked on top of others.</h4>
+<p>This really is a property of the fact that each farm creates a well
+formed repository for each distribution. A given farm can either build a
+package that has been submitted to it and put the result in its output
+repository. Or it can copy the content of the repository of a child farm
+into its own. For instance, a production farm/repository can be made a
+parent of a release candidate farm/repository. When the release
+candidate repository is declared final, the production farm/repository
+copies the content of the release candidate farm/repository into its
+own.</p>
+<h4>A farm delegates the work to a slave machine.</h4>
+<p>The farm creates environments (aufs based chroots and possibly lxc or
+kvm based virtual machines) and submits a source package for building.
+It does not assume the native operating system is able to build any kind
+of package itself. If a farm runs on a given operating system, it may be
+easier to delegate the actual building of the package to a virtual
+machine running the native operating system for the targeted
+distribution.</p>
+<h4>All package specifications must be maintained manually.</h4>
+<p>It is difficult to create a package from a given distribution
+automatically based on the package specification from another
+distribution. The farm does not support this kind of tool.</p>
+<p>The implementation is heavily based on Makefiles because it mostly
+handles a chain of dependencies for which they are best suited. The
+supporting scripts are shell based because it is the language of choice
+for Makefiles.</p>
+<p>The XiVO client is being packaged by kaou (nick on irc.freenode.net) and
+is not covered here. Nor is the process to create virtual machines or
+ISO based distributions.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/presenting-the-xivo-ipbx-openhardware-at-fosdem2011-opensourcetelephony-devroom.html#presenting-the-xivo-ipbx-openhardware-at-fosdem2011-opensourcetelephony-devroom">Presenting the XiVO IPBX OpenHardware at FOSDEM2011 - OpenSourceTelephony devroom</a></h2>
+    <p>
+      Posted on Fri 14 January 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="FOSDEM2011
+logo" src="/public/.logofosdem2_m.jpg" title="FOSDEM2011 logo, janv. 2011" />  </p>
+<p>This is a great pleasure to announce that we will presenting the XiVO
+IPBX OpenHardware project at <a href="http://fosdem.org/2011/">FOSDEM 2011</a>
+during the OpenSourceTelephony devroom on Sunday February 6th 2011 in
+Brussels.<strong>FOSDEM is definitely the largest OpenSource developers
+conference in Europe</strong> nowadays and a perfect place to present the
+different OpenHardware projects pushing more and more open-ness in the
+telecommunications and hardware field.We will be presenting the talk
+among other topics related to the telephony system during the devroom.  </p>
+<p><img alt="FOSDEM 2011
+brain" src="/public/.FOSDEM-2011_reduced_medium_m.jpg" title="FOSDEM 2011 brain, janv. 2011" />  </p>
+<p>The OpenSource telephony devroom is organized by Russel Bryant from
+Digium. The program is available from <a href="http://www.russellbryant.net/blog/2010/12/22/open-source-telephony-fosdem-2011/">Russel's
+blog</a> :</p>
+<ul>
+<li>Introduction to Asterisk Developement”, Russell Bryant</li>
+<li>Digital PSTN Connectivity with Asterisk”, Jakub Klausa</li>
+<li>Mobicents 2.0, The Open Source Java Communication Platform”, Jean
+    Deruelle</li>
+<li>Scaling location services in large SIP networks with Kamailio”,
+    Henning Westerholt, Marius Zbihlei</li>
+<li>Unifying SIP and Web worlds with Lua (Kamailio)”, Daniel-Constantin
+    Mierla</li>
+<li><strong>XiVO IPBX OpenHardware”, Xavier Carcelle</strong></li>
+<li>Unified Communications - Future (Yate and YateClient)”, Diana
+    Cionoiu</li>
+<li>Asterisk SCF (Scalable Communications Framework)”, Kevin P. Fleming</li>
+<li>Developing rich VoIP applications with SIPSIMPLE SDK”, Saúl Ibarra
+    Corretgé</li>
+<li>SIP Communicator: Building a Multi-Protocol Multi-OS Communications
+    Client”, Emil Ivov</li>
+</ul>
+<p>This talk will be the occassion to present the current status of our
+project (hardware and software files, organization of an OpenHardware
+project, protoyping, ...) and create a community of VoIP geeks that are
+eager to <strong>develop and hack their own IPBX solutions around our XiVO
+IPBX OpenHardware</strong> (interfaces, BSP, SIP-trunk, asterisk hacks...).</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/cabling-the-fxo-fxs-prototype-board.html#cabling-the-fxo-fxs-prototype-board">Cabling the FXO-FXS prototype board</a></h2>
+    <p>
+      Posted on Tue 11 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="Cabling FXv5 prototype PCB
+2" src="/public/.P1040816_m.jpg" title="Cabling FXv5 prototype PCB 2, janv. 2011" /><img alt="Cabling
+FXv5 prototype PCB
+1" src="/public/.P1040817_m.jpg" title="Cabling FXv5 prototype PCB 1, janv. 2011" /></p>
+<p>As we are developing an OpenHardware projects/products, it's important
+to give some feedbacks of our prototyping process.We are now cabling our
+first FXO-FXS prototype boards and moving to test without our own board
+connected to our SoC to validate our design on our prototype
+motherboard. These pictures illustrates our soldering process with the
+1:1 size PCB layout printed-out.</p>
+<p>While one is soldering components (mainly some TQFP package chips and
+CMS) on the *blank* PCB, it's important to have the right tools to put
+the components at the right position, solder them (potentially using
+some flux to fix the pins of a chip before soldering a whole line of
+pins) and verifying the connexion with a loop. Let me give some
+references of tools we are using :</p>
+<ul>
+<li>A set of high-precision tweezers (farnell#3972963) to pick and
+    place the components</li>
+<li>A 10x maginifier (farnell#4681680) to verify the quality of the
+    soldering</li>
+<li>A flux cleaner (farnell#3916613)</li>
+<li>A 15ml flux dispenser pen (farnell#876732)</li>
+</ul>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index33.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index31.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

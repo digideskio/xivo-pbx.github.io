@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="jhlavacek" />
+<meta name="description" content="Our last article on XiVO web interface show how to add a new page and integrate it to one of menus. Let's have a closer look at the page structure in order to get the XiVO look'n'feel. Menus and heading with user login panel can be added ..." />
+<meta name="keywords" content="web-interface, i18n, development">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Hello XiVO, dress-up your page"/>
+<meta property="og:description" content="Our last article on XiVO web interface show how to add a new page and integrate it to one of menus. Let's have a closer look at the page structure in order to get the XiVO look'n'feel. Menus and heading with user login panel can be added ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/drafts/hello-xivo-dress-up-your-page.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-11-05 15:58:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/jhlavacek.html">
+<meta property="article:section" content="Software"/>
+<meta property="article:tag" content="web-interface"/>
+<meta property="article:tag" content="i18n"/>
+<meta property="article:tag" content="development"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Hello XiVO, dress-up your page</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="hello-xivo-dress-up-your-page">Hello XiVO, dress-up your page</h1>
+    <p>Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>Our <a href="/index.php?post/2012/10/29/Hello-XiVO%2C-add-your-own-web-page-to-XiVO-web-interface">last article on XiVO web
+interface</a>
+show how to add a new page and integrate it to one of menus. Let's have
+a closer look at the page structure in order to get the XiVO
+look'n'feel.</p>
+<p>Menus and heading with user login panel can be added simply in a
+following way:</p>
+<div class="highlight"><pre><span class="p">$</span><span class="nv">menu</span><span class="x"> = &amp;</span><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;get_module(&#39;menu&#39;);</span>
+<span class="x"> </span><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_top(&#39;top/user/&#39;.</span><span class="p">$</span><span class="nv">_USR</span><span class="x">-&gt;get_info(&#39;meta&#39;));</span>
+<span class="x"> </span><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_left(&#39;left/service/ipbx/&#39;.</span><span class="p">$</span><span class="nv">ipbx</span><span class="x">-&gt;get_name());</span>
+</pre></div>
+
+
+<p>The <code>$_TPL</code> variable is an instance of the <code>dwho_tpl</code> class used to
+generate the page. Using this variable you can add menus. The heading
+with the current user login panel is added by the <code>set_top</code> method,
+current user is available via the <code>$_USR</code> variable. The last line adds
+the left menu panel. The variable <code>$ipbx</code> hold the name of IPBX used
+(nowadays Asterisk) and it's reserved for interface customization.</p>
+<p>A customized toolbar can be added by the following line:</p>
+<div class="highlight"><pre><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_toolbar(&#39;toolbar/service/ipbx/&#39;.</span><span class="p">$</span><span class="nv">ipbx</span><span class="x">-&gt;get_name().&#39;/call_management/recording&#39;);</span>
+</pre></div>
+
+
+<p>and preparing the “recording.php” file in the
+@@src/tpl/www/bloc/menu/toolbar/service/ipbx/asterisk/call_management/.
+See some other file in the toolbar directory for an example.</p>
+<p>The BODY!!!</p>
+<div class="highlight"><pre>
+</pre></div>
+
+
+<p>The page is generated and displayed using the <code>display()</code> method of the
+<code>dwho_tpl</code> class :</p>
+<div class="highlight"><pre><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;display(&#39;index&#39;);</span>
+</pre></div>
+
+
+<p>The parameter given is the page used to process general tasks like check
+login, load css and js files, variable instantiation etc. This page is
+loaded from <code>src/www/service/ipbx/index.php</code>.Used head and foot are
+defined in the template and inserted automatically based on templates in
+<code>src/tpl/www/bloc/</code>).An example of a complete page in colours of XiVO:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+    <span class="nv">$menu</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$_TPL</span><span class="o">-&gt;</span><span class="na">get_module</span><span class="p">(</span><span class="s1">&#39;menu&#39;</span><span class="p">);</span>
+    <span class="nv">$menu</span><span class="o">-&gt;</span><span class="na">set_top</span><span class="p">(</span><span class="s1">&#39;top/user/&#39;</span><span class="o">.</span><span class="nv">$_USR</span><span class="o">-&gt;</span><span class="na">get_info</span><span class="p">(</span><span class="s1">&#39;meta&#39;</span><span class="p">));</span>
+    <span class="nv">$menu</span><span class="o">-&gt;</span><span class="na">set_left</span><span class="p">(</span><span class="s1">&#39;left/service/ipbx/&#39;</span><span class="o">.</span><span class="nv">$ipbx</span><span class="o">-&gt;</span><span class="na">get_name</span><span class="p">());</span>
+    <span class="c1">//$menu-&gt;set_toolbar(&#39;toolbar/service/ipbx/&#39;.$ipbx-&gt;get_name().&#39;/call_management/recording&#39;);</span>
+
+    <span class="nv">$_TPL</span><span class="o">-&gt;</span><span class="na">display</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">);</span>
+  <span class="cp">?&gt;</span>
+</pre></div>
+
+
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>
+      <a href="http://blog.xivo.io/tag/i18n.html">i18n</a>
+      <a href="http://blog.xivo.io/tag/development.html">development</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Hello XiVO, dress-up your page",
+  "headline": "Hello XiVO, dress-up your page",
+  "datePublished": "2012-11-05 15:58:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "jhlavacek",
+    "url": "http://blog.xivo.io/author/jhlavacek.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/drafts/hello-xivo-dress-up-your-page.html",
+  "description": "Our last article on XiVO web interface show how to add a new page and integrate it to one of menus. Let's have a closer look at the page structure in order to get the XiVO look'n'feel. Menus and heading with user login panel can be added ..."
+}
+</script></body>
+</html>

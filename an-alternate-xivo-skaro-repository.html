@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="composing skaro The gallifrey repository is made of packages built from the GIT repositories, some extracted from the official repository because they are not under GIT and others built for the occasion (kernel-modules and meta-packages). The source of each package is documented in /var/cache/packaging-farm/build/skaro/Makefile which ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="An alternate XiVO skaro repository"/>
+<meta property="og:description" content="composing skaro The gallifrey repository is made of packages built from the GIT repositories, some extracted from the official repository because they are not under GIT and others built for the occasion (kernel-modules and meta-packages). The source of each package is documented in /var/cache/packaging-farm/build/skaro/Makefile which ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/an-alternate-xivo-skaro-repository.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-06-06 11:13:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; An alternate XiVO skaro repository</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="an-alternate-xivo-skaro-repository">An alternate XiVO skaro repository</h1>
+    <p>Posted on Mon 06 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>composing skaro</h4>
+<p>The gallifrey repository is made of packages built from the GIT
+repositories, some extracted from the official repository because they
+are not under GIT and others built for the occasion (kernel-modules and
+meta-packages). The source of each package is documented in
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> which is the
+meta-package that depends on all the others:</p>
+<div class="highlight"><pre><span class="x">PACKAGE=skaro</span>
+<span class="x">DISTRIBUTIONS=squeeze</span>
+<span class="x">COMPONENT=main</span>
+<span class="x">ARCHITECTURES=i386 x86_64</span>
+<span class="err">#</span><span class="x"> bntools  asterisk-chan-sccp                                                                                                                                                   </span>
+<span class="x">CHILD_PACKAGES = asterisk dahdi-linux dahdi-linux-modules dahdi-tools freeswitch libpri pf-xivo-base-config pf-xivo-confgen pf-xivo-cti-server pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-js pf-xivo-lib-python pf-xivo-monitoring pf-xivo-provisioning pf-xivo-sounds pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface pf-asterisk-res-watchdog pf-xivo pf-xivo-backup</span>
+<span class="err">#</span><span class="x">                                                                                                                                                                               </span>
+<span class="err">#</span><span class="x"> Waiting to be completed:                                                                                                                                                      </span>
+<span class="err">#</span><span class="x"> bntools chan_sccp                                                                                                                                                             </span>
+<span class="x">submit:</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories                                                                                                                                   </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        for dir in agid asterisk base-config confgen ctiservers dahdi-linux dahdi-tools extra fetchfw freeswitch lib-javascript lib-python monitoring provisioning sysconfd uti\</span>
+<span class="x">ls wanpipe web-interface xivo_ha xivo-sounds ; do packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> When symbolic links needs to be resolved before building the source package                                                                                           </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        for dir in res_watchdog ; do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not in the GIT repositories                                                                                     </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ squeeze-xivo-skaro-dev main                                                                                              </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> virtual packages : pf-xivo pf-xivo-backup                                                                                                                             </span>
+<span class="x">        for package in libpri pf-xivo pf-xivo-backup  ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+
+<span class="x">ROLE = meta-package</span>
+</pre></div>
+
+
+<p>The hand made packages (i.e. Makefiles) can be retrieved from their
+respective repositories:</p>
+<ul>
+<li>http://skaro.dachary.org/packaging-farm/skaro/Makefile</li>
+<li>http://skaro.dachary.org/packaging-farm/dahdi-linux-modules/Makefile</li>
+</ul>
+<p>The packages are built for two architectures : i386 and x86_64</p>
+<div class="highlight"><pre>ARCHITECTURES=i386 x86_64
+</pre></div>
+
+
+<p>Mirroring the http://skaro.dachary.org/packaging-farm/ directory is
+enough to get all the information required to re-install a
+packaging-farm from scratch.It can be used by adding the following to
+/etc/apt/sources.list</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>troubleshooting</h4>
+<p>The pf-xivo-extra produced an error:</p>
+<div class="highlight"><pre><span class="n">cp</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">stat</span> <span class="err">`</span><span class="n">debian</span><span class="sr">/tmp/</span><span class="n">README</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="n">dh_install</span><span class="o">:</span> <span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="n">debian</span><span class="sr">/tmp/README debian/pf-xivo-extra/usr/share/pf-xivo-extra//</span> <span class="n">returned</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>Nicolas Hicher logged in the machine and went to debug into the chroot
+used to create the package:</p>
+<div class="highlight"><pre>packaging-farm --cd pf-xivo-extra DISTRIBUTION=squeeze ARCHITECTURE=x86_64 chroot-login
+</pre></div>
+
+
+<p>It turns out that the package is not properly built from git. The
+submit-xivo.sh corrupted the source distribution when called twice on
+the same package. The problem was fixed in the new
+<a href="http://packaging-farm.dachary.org/download/">1.2.42</a> packaging-farm
+release.The i386 squeeze chroot had a flaw that forced the installation
+of x11 when installing the devscripts package. The chroot was re-created
+using the following:</p>
+<div class="highlight"><pre>pbuilder --create --architecture i386 --distribution squeeze --basetgz /var/cache/pbuilder/squeeze-i386.tgz
+</pre></div>
+
+
+<p>The only package that could not be rebuilt was pf-asterisk-res-watchdog
+and a bug was reported regarding its <a href="https://projects.xivo.fr/issues/2302">missing build depend to
+python</a>.</p>
+<h4>managing timestamps when submitting a package</h4>
+<p>The oneliner that could be used to rebuild XiVO with all the updates
+from the git repositories is :</p>
+<div class="highlight"><pre>cd /var/cache/packaging-farm/build/skaro ; make submit ; packaging-farm skaro
+</pre></div>
+
+
+<p>It involves calling submit-xivo.sh for all known packages and therefore
+trigger a recompilation of each package, even those that were not
+changed since the last compilation. That can be avoided by selecting the
+relevant packages, using a method similar to the <a href="http://blog.xivo.fr/index.php?post/2011/05/30/Using-and-Updating-a-XiVO-gallifrey-repository">one described in a
+previous
+post</a>.
+To avoid a manual selection, the submit-xivo.sh was modified to do
+nothing if it notices that the git repositories do not contain any
+commit more recent than the timestamp updated when the last compilation
+completed successfully.</p>
+<div class="highlight"><pre>function need_update() {
+    local package=&quot;$1&quot;
+    local dir=&quot;$2&quot;
+    local suite=&quot;$3&quot;
+    local xivo=&quot;$4&quot;
+
+    if [ ! -f <span class="cp">${</span><span class="n">DEPENDS_DIR</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span> ] ; then
+        return 0
+    else
+        modified=$(stat --terse --printf=%Y <span class="cp">${</span><span class="n">DEPENDS_DIR</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span>)
+        (
+            cd <span class="cp">${</span><span class="n">VCS_DIR</span><span class="cp">}</span>/sources/xivo-<span class="cp">${</span><span class="n">xivo</span><span class="cp">}</span>/<span class="cp">${</span><span class="nb">dir</span><span class="cp">}</span>
+            git log -1 --after=<span class="cp">${</span><span class="n">modified</span><span class="cp">}</span> .
+            cd <span class="cp">${</span><span class="n">VCS_DIR</span><span class="cp">}</span>/debian/<span class="cp">${</span><span class="n">suite</span><span class="cp">}</span>-xivo-<span class="cp">${</span><span class="n">xivo</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span>
+            git log -1 --after=<span class="cp">${</span><span class="n">modified</span><span class="cp">}</span> .
+        ) &gt; /tmp/submit$$
+        [ -s /tmp/submit$$ ]
+        result=$?
+        rm /tmp/submit$$
+        return <span class="nv">$result</span>
+    fi
+}
+</pre></div>
+
+
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "An alternate XiVO skaro repository",
+  "headline": "An alternate XiVO skaro repository",
+  "datePublished": "2011-06-06 11:13:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/an-alternate-xivo-skaro-repository.html",
+  "description": "composing skaro The gallifrey repository is made of packages built from the GIT repositories, some extracted from the official repository because they are not under GIT and others built for the occasion (kernel-modules and meta-packages). The source of each package is documented in /var/cache/packaging-farm/build/skaro/Makefile which ..."
+}
+</script></body>
+</html>

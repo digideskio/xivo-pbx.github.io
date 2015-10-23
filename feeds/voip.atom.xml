@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/voip.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2011-03-04T11:08:00-05:00</updated><entry><title>Looking for technical documentation on the Matra RC1173A</title><link href="http://blog.xivo.io/looking-for-technical-documentation-on-the-matra-rc1173a.html" rel="alternate"></link><updated>2011-03-04T11:08:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-04:looking-for-technical-documentation-on-the-matra-rc1173a.html</id><summary type="html">&lt;p&gt;The picture below presents the only connector available on the Matra
+RC1173A  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="RC1173A
+connector" src="/public/.P1050040_m.jpg" title="RC1173A connector, mar. 2011" /&gt;&lt;/p&gt;
+&lt;p&gt;After some studies, it seems that device is a "pupitre" from MATRA that
+sould be connected to a PABX Matracom (45xx series) of CGCT type.The
+device seems to be using a micro-controler Philips/RTC 84C21 and 84C85
+using probably the firmware HX00070xx et HX00072xx&lt;/p&gt;
+&lt;/p&gt;</summary></entry></feed>

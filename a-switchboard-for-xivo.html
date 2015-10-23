@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="pcadotte" />
+<meta name="description" content="One of the long time missing feature of XiVO is a good switchboard interface. We havebeen working on a new switchboard profile for the XiVO client and this post isan overview of what you might expect in the next few releases. As we've said before, we are now releasing ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="A Switchboard for XiVO"/>
+<meta property="og:description" content="One of the long time missing feature of XiVO is a good switchboard interface. We havebeen working on a new switchboard profile for the XiVO client and this post isan overview of what you might expect in the next few releases. As we've said before, we are now releasing ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/a-switchboard-for-xivo.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-12-14 18:44:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/pcadotte.html">
+<meta property="article:section" content="Software"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; A Switchboard for XiVO</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="a-switchboard-for-xivo">A Switchboard for XiVO</h1>
+    <p>Posted on Fri 14 December 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a></p>
+  </header>
+  <div>
+    <p>One of the long time missing feature of XiVO is a good switchboard
+interface. We havebeen working on a new switchboard profile for the XiVO
+client and this post isan overview of what you might expect in the next
+few releases.</p>
+<p><img alt="switchboard.png" src="/public/.switchboard_m.jpg" title="switchboard.png, déc. 2012" /></p>
+<p>As we've said before, we are now releasing a new version every two weeks
+andeach release must succeed our test suite before being sent into
+production.That means that we will have to ship the new switchboard one
+piece at a time. Thefirst three user stories of the switchboard will be
+available in the nextrelease (12.24). In fact, one of these story was
+already implemented in 12.23but we did not send this release into
+production since we are replacingchan_agent with xivo-agent, but that's
+another story.</p>
+<p>The first user story is to be able to answer an incoming call with a
+click ora key press. To accomplish this goal, we created a new xlet
+called switchboard,not to be confused with the switchboard profile. The
+switchboard xlet issplitted in three sections, incoming calls on the
+left, calls on hold on the right andthe current call on the top spanning
+from left to right. When a call reachesthe switchboard, it is shown in
+the list on the left of the switchboard. Theoperator can then press
+enter or click the call to answer it.</p>
+<p>The call flow leads us to the next user story, which is to show the
+currentcall at the top of the switchboard xlet. The caller id name and
+number areavailable and buttons are available for each actions that can
+be done on thatcall. Each button also has a key binding to allow fast
+call distribution.Actions will be added to this frame until each desired
+action is present.At the end of the current sprint, only hangup and hold
+will be available.</p>
+<p>The third story that we are addressing is the holded call list that is
+on theright side of the xlet. These are the calls that have been
+answered by theoperator a first time but that have not been distributed
+yet (excluding thecurrent call).</p>
+<p>All of these new functinnality are planned for version 12.24 that will
+bereleased on december 19th.</p>
+<p>What are the next steps</p>
+<ul>
+<li>Call transfers (the contact xlet can already be used to transfer to
+    other users)</li>
+<li>Call tracking (to know what happenned to previously
+    distributed calls)</li>
+</ul>
+<p>See the documentation for all the details to enable your new XiVO
+switchboard.</p>
+<p><a href="http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html">http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html</a></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "A Switchboard for XiVO",
+  "headline": "A Switchboard for XiVO",
+  "datePublished": "2012-12-14 18:44:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "pcadotte",
+    "url": "http://blog.xivo.io/author/pcadotte.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/a-switchboard-for-xivo.html",
+  "description": "One of the long time missing feature of XiVO is a good switchboard interface. We havebeen working on a new switchboard profile for the XiVO client and this post isan overview of what you might expect in the next few releases. As we've said before, we are now releasing ..."
+}
+</script></body>
+</html>

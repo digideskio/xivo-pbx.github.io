@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="multiuser locking The packaging-farm command does not behave well when two are run simultaneously to build the same package. Nothing bad happens but fixing the result involves umounting a number of aufs corrupted file systems and it is inconvenient. To avoid this, the packaging-farm command was modified to set a ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Multiple users building on the XiVO packaging machine"/>
+<meta property="og:description" content="multiuser locking The packaging-farm command does not behave well when two are run simultaneously to build the same package. Nothing bad happens but fixing the result involves umounting a number of aufs corrupted file systems and it is inconvenient. To avoid this, the packaging-farm command was modified to set a ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-08-09 16:23:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Multiple users building on the XiVO packaging machine</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="multiple-users-building-on-the-xivo-packaging-machine">Multiple users building on the XiVO packaging machine</h1>
+    <p>Posted on Tue 09 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>multiuser locking</h4>
+<p>The packaging-farm command does not behave well when two are run
+simultaneously to build the same package. Nothing bad happens but fixing
+the result involves umounting a number of aufs corrupted file systems
+and it is inconvenient. To avoid this, the packaging-farm command was
+<a href="http://packaging-farm.dachary.org/trac/changeset/8855a9c5fc09b088edaa055a33de1e820f30cc42">modified to set a lock based on the last
+argument</a>.</p>
+<div class="highlight"><pre>When packaging-farm is run, a lock is set on  its  last  argument.  For
+       instance,
+
+              packaging-farm asterisk
+
+       will  set a lock on /var/lock/packaging-farm/asterisk and another invo-
+       cation of the same command while this one is still  running  will  wait
+       for the first command to finish. Unless the command completes on error,
+       the second invocation will just echo that  nothing  needs  to  be  done
+       because the previous command did all the work.
+
+       If the command
+
+              packaging-farm gallifrey
+
+       is  run  and that the gallifrey package depends on the asterisk package
+       and needs to build it, the same mechanism will be used.  For  instance,
+       if  user  A runs packaging-farm gallifrey after user B started to build
+       packaging-farm asterisk, the higher level command gallifrey will  pause
+       until asterisk has finished building and then resume.
+</pre></div>
+
+
+<h4>multiple builds of the same version</h4>
+<p>It was possible to build the same version of a given version of a
+package multiple times. While this comes handy in some cases, it is
+confusing in general. The user has to remember that a --reinstall is
+required to get the latest version. The reprepro(1) tool refuses the new
+package because it has a different checksum than the previous one. A
+<a href="http://packaging-farm.dachary.org/trac/changeset/893a93e8a352b1cf0739d325603dc8d3eef38d13">+build prefix was
+appended</a>
+to avoid this confusion.</p>
+<div class="highlight"><pre>REBUILDING PACKAGES AND PUBLISHING REPOSITORIES
+       packaging-farm  allows  to  rebuild  the same version of a package. For
+       instance, let say foo-1.2 was built and was made available,  either  as
+       part  of  the package specific repository created with dpkg-scanpackage
+       or as part of a meta package repository created with reprepro(1) A user
+       then installs the package using
+
+              apt-get update
+              apt-get install foo
+
+       At  this  point  in  time,  the  developer of foo finds a minor bug and
+       rebuilds the package on packaging-farm  without  changing  the  version
+       number.   packaging-farm  allows  the developer to do that, in the same
+       way pbuilder or sbuild does. However, contrary to these tools,  packag-
+       ing-farm  publishes the packages and provides a safeguard to avoid pub-
+       lishing the same package version multiple times.
+
+       If version 1.0-1 of a package is built and no previous version has been
+       built,  nothing is done. If version 1.0-1 has already been built and is
+       rebuilt because a package it depends on has been  upgraded,  packaging-
+       farm  will add the +build1 suffix to the package version and it will be
+       1.0-1+build1 In all further builds of the same version, the last number
+       will be incremented as in 1.0-1+build2 If a new version of the package,
+       say 1.1-1 is published, it will be compared to the last  built  version
+       using dpkg --compare-version Because it is found to be greater, it will
+       be used as if there was no previous build.
+</pre></div>
+
+
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Multiple users building on the XiVO packaging machine",
+  "headline": "Multiple users building on the XiVO packaging machine",
+  "datePublished": "2011-08-09 16:23:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html",
+  "description": "multiuser locking The packaging-farm command does not behave well when two are run simultaneously to build the same package. Nothing bad happens but fixing the result involves umounting a number of aufs corrupted file systems and it is inconvenient. To avoid this, the packaging-farm command was modified to set a ..."
+}
+</script></body>
+</html>

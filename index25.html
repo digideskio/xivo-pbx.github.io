@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/coming-back-from-communicasia2011.html#coming-back-from-communicasia2011">Coming back from Communicasia2011</a></h2>
+    <p>
+      Posted on Tue 19 July 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>Please find below a picture of the French pavillon :  </p>
+<p><img alt="Communicasia2011
+FrenchPavillon" src="/public/.P1050447_m.jpg" title="Communicasia2011 FrenchPavillon, juil. 2011" /></p>
+<p>We had to pleasure to demonstrate our IPBX solution to the Mr Caron,
+French ambassador in Singapour, on our booth  </p>
+<p><img alt="Communicasia2011 Embassador on
+Booth" src="/public/.P1050441_m.jpg" title="Communicasia2011 Embassador on Booth, juil. 2011" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-packages-with-no-sources.html#xivo-packages-with-no-sources">XiVO packages with no sources</a></h2>
+    <p>
+      Posted on Sun 10 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>XiVO packages with no source</h4>
+<p>The submit-xivo.sh command that is part of packaging-farm was improved
+to support the packages that have no source files such as pf-xivo and
+pf-xivo-backup.The changes were published as part of the
+<a href="http://packaging-farm.dachary.org/download/">2.0.6</a> release of
+packaging-farm.The relevant part of the documentation (man
+submit-xivo.sh) explain how to use it:</p>
+<div class="highlight"><pre>NAME
+       submit-xivo.sh - create a source package from XiVO repositories
+
+
+SYNOPSIS
+       [DIRECTORY=] submit-xivo.sh
+
+       [NOSOURCE=] submit-xivo.sh
+
+...
+NOSOURCE=
+       Some packages, such as pf-xivo or pf-xivo-backup do not have  a  corre-
+       sponding  source.   They  only  exist as a debian package with no file.
+       submit-xivo.sh(1) supports this special case with the NOSOURCE environ-
+       ment  variable.  If  it is set and no DIRECTORY environment variable is
+       set, it will submit a native debian package from the DEBIAN_GIT  direc-
+       tory  matching  the  content  of the NOSOURCE environment variable. For
+       instance:
+
+              NOSOURCE=pf-xivo submit-xivo.sh
+...
+       NOSOURCE=
+              the  directory  name  within the DEBIAN_GIT repository where the
+              package can be  found.   The  submit-xivo.sh  command  will  not
+              attempt to locate a source in the SOURCE_GIT repository. It will
+              submit a package that has the same name as the  content  of  the
+              NOSOURCE=  variable.  For  instance NOSOURCE=pf-xivo will submit
+              the pf-xivo package. The version number of the package is either
+              the  one  found in the debian/changelog, if it contains the con-
+              tent of the VERSION file found in the SOURCE_GIT repository. For
+              instance  if  the  first  line  of the debian/changelog contains
+              8:1.1.16~5 and the VERSION file contains 1.1.16 it won&#39;t be mod-
+              ified.  However,  if  VERSION contains 1.1.17 a debian/changelog
+              line will be  added,  preserving  the  epoch  and  will  contain
+              8:1.1.17.
+</pre></div>
+
+
+<p>The <strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> and
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> were updated to take
+advantage of this new feature as follows:</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT debian repositories                                                                                                                          </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
+<span class="x">        cd .. ; for package in pf-xivo pf-xivo-backup ; do packaging-farm NOSOURCE=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+</pre></div>
+
+
+<h4>bash -e behavior</h4>
+<p>The -e bash option is expected to end the script being run as soon as an
+error occurs. This is a convenient way to throw an exception from a
+nested function being run, should an irrecoverable error occur. However,
+the following code demonstrate that the -e option is sometime disabled:</p>
+<div class="highlight"><pre>set -ex
+
+  PS4=&#39; <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="cp">}</span>: <span class="nv">$LINENO</span>: &#39;
+
+  function f() {
+      set -e
+      false
+      echo $@
+  }
+
+  ! f why does it display ? It should stop because of -e
+  f
+</pre></div>
+
+
+<p>The -e behavior is <a href="http://mywiki.wooledge.org/BashFAQ/105">notoriously
+tricky</a> and packaging-farm was
+written to use it only when it has a is predictable. A question was
+<a href="http://stackoverflow.com/questions/6640120/why-is-bash-e-disabled-within-a-function-run-with-not">posted on
+stackoverflow</a>
+to explain this specific case. The same question asked on
+irc.freenode.net#bash did not bring any answer.</p>
+<h4>skaro and gallifrey build</h4>
+<p>Guillaume asked for a shortcut to rebuild the full distribution after
+updating a given package for skaro. Instead of running:</p>
+<div class="highlight"><pre>packaging-farm DIRECTORY=confgen submit
+packaging-farm ARCHITECTURES=i386 pf-xivo-confgen
+packaging-farm skaro
+</pre></div>
+
+
+<p>the following rule was added to
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong></p>
+<div class="highlight"><pre><span class="n">rebuild</span><span class="o">:</span> <span class="n">update</span> 
+        <span class="n">cd</span> <span class="o">..</span> <span class="o">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">skaro</span>
+</pre></div>
+
+
+<p>so that it is possible to run</p>
+<div class="highlight"><pre>packaging-farm --cd skaro rebuild
+</pre></div>
+
+
+<p>to achieve the same result. There is some additional overhead because
+all newer packages will be rebuilt, not just the one of interest. That
+is, if someone updated asterisk since the last rebuild of skaro, it will
+also be rebuilt. It is believed that such a case is rare enough and does
+not warrant a special case. If it turns out to be wrong, an other, more
+specialized, shortcut can be added.</p>
+<h4>rebuilding packages and publishing repositories</h4>
+<div class="highlight"><pre>packaging-farm  allows  to  rebuild  the same version of a package. For
+       instance, let say foo-1.2 was built and was made available,  either  as
+       part  of  the package specific repository created with dpkg-scanpackage
+       or as part of a meta package repository created with reprepro(1) A user
+       then installs the package using
+
+              apt-get update
+              apt-get install foo
+
+       At  this  point  in  time,  the  developer  of foo find a minor bug and
+       rebuilds the package on packaging-farm  without  changing  the  version
+       number.   packaging-farm  allows  the developer to do that, in the same
+       way pbuilder or sbuild does. But that has an important consequence  for
+       the  user  who installed the foo package. There now is a new version of
+       the foo package that has exactly the same version as the  previous  one
+       but  is  not really the same.  The user needs to re-install the package
+       by explicitly asking for it as follows:
+
+              apt-get update
+              apt-get install --reinstall foo
+
+       Such a behavior is extremely confusing for the casual user. This is why
+       it  is  not recommended to advertise the packaging-farm repositories to
+       the general public. The recommended method is to create a reprepro mir-
+       ror  that  contains  a copy of the packaging-farm repository at a point
+       where all package versions have been updated to reflect the  change  of
+       the  packages.   The reprepro safeguard ( error : is already registered
+       with different checksums! ) provides a simple way to  ensure  that  the
+       repository  targeted for the public never publishes the same version of
+       the package with different content twice.
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html#xivo-packaging-from-the-developer-point-of-view">XiVO packaging from the developer point of view</a></h2>
+    <p>
+      Posted on Mon 04 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pre-requistes</h4>
+<p>The ssh key of the developer must be installed in
+/root/.ssh/authorized_keys on http://skaro.dachary.org/packaging-farm/.</p>
+<h4>workflow</h4>
+<p>The reference for the following can be found in the packaging-farm,
+packaging-farm.conf and submit-xivo.sh manual pages.</p>
+<ul>
+<li>Guillaume gets work done on the <strong>web-interface</strong> directory of the
+    internal SVN</li>
+<li>It is mirrored every 5 minutes to the <a href="http://git.xivo.fr/xivo-skaro.git/">external
+    GIT</a></li>
+<li>Guillaume submits the rebuild of the package to skaro.dachary.org</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">DIRECTORY</span><span class="o">=</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">submit</span> <span class="err">\</span><span class="p">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<ul>
+<li>If the build fails, it has a non zero exit status. Guillaume goes
+    into the chroot that was preserved after the failure to try and fix
+    the issue:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">login</span>
+ <span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+
+
+<ul>
+<li>After fixing the issue and rebuilding successfully, a <a href="http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src/">repository
+    containing the resulting
+    package</a>
+    can be used by adding the following to the /etc/apt/sources.list
+    file:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src</span> <span class="kp">./</span>
+</pre></div>
+
+
+<ul>
+<li>Guillaume conducts a few tests on a virtual machine of his own with
+    the newly built package.</li>
+<li>When satisfied with the result, he decides to update the skaro
+    repository by asking the machine to harvest the results of each
+    individual package into a global repository:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">skaro</span>
+</pre></div>
+
+
+<ul>
+<li>The updated repository can be used by adding the following to the
+    file /etc/apt/sources.list:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>debugging on the farm</h4>
+<p>When in the chroot by running the following command:</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">login</span>
+</pre></div>
+
+
+<p>new software can be installed and one must not fear to destroy anything
+of value. If the chroot becomes messy, it can be re-initialized as
+follows, after exiting it.</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">reinit</span> <span class="n">get</span><span class="o">/</span><span class="n">debian</span>
+</pre></div>
+
+
+<p>The <strong>chroot-reinit</strong> target remove the chroot entirely and replaces it
+with a virgin copy of the corresponding distribution. The get/debian
+target get a clean copy of the sources found in the /usr/src directory.</p>
+<h4>concurrency</h4>
+<p>All packages can be built in parallel. For instance:</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<p>can be run at the same time as</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span>
+</pre></div>
+
+
+<p>and they will not interfere. However, if both commands trigger the build
+of another package because they have it in common in the dependency
+graph, the two build may overlap. A package can be built without any
+regard to the dependency graph as follows:</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>The general principle is that the <strong>--cd</strong> flag goes to the self
+contained directory when the package is being built and ignore the
+dependency graph. Without the <strong>--cd</strong> flag, the command will lookup in
+the dependency graph to find an entry with the argument name and make
+sure all its dependencies are compiled before it.</p>
+<h4>building for a given architecture</h4>
+<p>Guillaume has a i386 virtual machine but the current skaro packages are
+built for x86_64. The following command was used to <a href="http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src/">build the package
+of interest for
+i386</a></p>
+<div class="highlight"><pre><span class="n">rm</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span><span class="o">/</span><span class="n">depends</span><span class="o">/</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+<span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">DIRECTORY</span><span class="o">=</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">submit</span> <span class="err">\</span><span class="p">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">ARCHITECTURES</span><span class="o">=</span><span class="n">i386</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<h4>forcing the build of a package</h4>
+<p>The <strong>--force</strong> option was implemented and documented to bypass the
+dependency graph:</p>
+<div class="highlight"><pre>--force &lt;package-name&gt;
+              disregard the dependency graph and perform the action  &lt;package-
+              name&gt;  without  any  consideration  to the fact that none of its
+              dependencies have changed since the last time it was run.
+</pre></div>
+
+
+<h4>packaging-farm wish-list</h4>
+<ul>
+<li><a href="http://packaging-farm.dachary.org/trac/ticket/6">add a lock per
+    distribution/architecture</a></li>
+<li><a href="http://packaging-farm.dachary.org/trac/ticket/7">end of build email/jabber/chat
+    notification</a></li>
+</ul>
+<h4>listing what can be done</h4>
+<p>The following command can be used to list all the known variables that
+can be used to implement the use case described above:</p>
+<div class="highlight"><pre><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">print</span><span class="o">-</span><span class="n">directory</span> <span class="n">submit</span>
+</pre></div>
+
+
+<p>It will output something that looks like:</p>
+<div class="highlight"><pre><span class="x">Create source packages from XiVO repositories.</span>
+
+<span class="x">The debian directories are cloned from git://git.xivo.fr/debian into /var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro</span>
+<span class="x">The sources are cloned from git://git.xivo.fr into /var/cache/packaging-farm/VCS/sources/xivo-skaro</span>
+<span class="x">The packages are created in /var/cache/packaging-farm/sources</span>
+
+<span class="x">Usage:</span>
+<span class="err">#</span><span class="x"> submit all known sources but do nothing</span>
+<span class="x">for directory in agid asterisk base-config bntools chan_sccp confgen ctiservers dahdi-linux dahdi-tools extra fetchfw freeswitch lib-javascript lib-python libpri monitoring pf-xivo pf-xivo-backup provisioning res_watchdog sysconfd utils wanpipe web-interface xivo-sounds xivo_ha ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">directory</span><span class="x"> submit ; done</span>
+<span class="err">#</span><span class="x"> submit a given source and update the repository</span>
+<span class="x">packaging-farm DIRECTORY=agid PACKAGE=pf-xivo-agid submit</span>
+<span class="x">packaging-farm DIRECTORY=asterisk PACKAGE=asterisk submit</span>
+<span class="x">packaging-farm DIRECTORY=base-config PACKAGE=pf-xivo-base-config submit</span>
+<span class="x">packaging-farm DIRECTORY=bntools PACKAGE=bntools submit</span>
+<span class="x">packaging-farm DIRECTORY=chan_sccp PACKAGE=asterisk-chan-sccp submit</span>
+<span class="x">packaging-farm DIRECTORY=confgen PACKAGE=pf-xivo-confgen submit</span>
+<span class="x">packaging-farm DIRECTORY=ctiservers PACKAGE=pf-xivo-cti-server submit</span>
+<span class="x">packaging-farm DIRECTORY=dahdi-linux PACKAGE=dahdi-linux submit</span>
+<span class="x">packaging-farm DIRECTORY=dahdi-tools PACKAGE=dahdi-tools submit</span>
+<span class="x">packaging-farm DIRECTORY=extra PACKAGE=pf-xivo-extra submit</span>
+<span class="x">packaging-farm DIRECTORY=fetchfw PACKAGE=pf-xivo-fetchfw submit</span>
+<span class="x">packaging-farm DIRECTORY=freeswitch PACKAGE=freeswitch submit</span>
+<span class="x">packaging-farm DIRECTORY=lib-javascript PACKAGE=pf-xivo-lib-js submit</span>
+<span class="x">packaging-farm DIRECTORY=lib-python PACKAGE=pf-xivo-lib-python submit</span>
+<span class="x">packaging-farm DIRECTORY=libpri PACKAGE= submit</span>
+<span class="x">packaging-farm DIRECTORY=monitoring PACKAGE=pf-xivo-monitoring submit</span>
+<span class="x">packaging-farm DIRECTORY=pf-xivo PACKAGE= submit</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/libpri/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/libpri/Makefile.pkg to extract package name</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo/Makefile.pkg to extract package name</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo-backup/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo-backup/Makefile.pkg to extract package name</span>
+<span class="x">packaging-farm DIRECTORY=pf-xivo-backup PACKAGE= submit</span>
+<span class="x">packaging-farm DIRECTORY=provisioning PACKAGE=pf-xivo-provisioning submit</span>
+<span class="x">packaging-farm DIRECTORY=res_watchdog PACKAGE=pf-asterisk-res-watchdog submit</span>
+<span class="x">packaging-farm DIRECTORY=sysconfd PACKAGE=pf-xivo-sysconfd submit</span>
+<span class="x">packaging-farm DIRECTORY=utils PACKAGE=pf-xivo-utils submit</span>
+<span class="x">packaging-farm DIRECTORY=wanpipe PACKAGE=sangoma-wanpipe-source submit</span>
+<span class="x">packaging-farm DIRECTORY=web-interface PACKAGE=pf-xivo-web-interface submit</span>
+<span class="x">packaging-farm DIRECTORY=xivo-sounds PACKAGE=pf-xivo-sounds submit</span>
+<span class="x">packaging-farm DIRECTORY=xivo_ha PACKAGE=pf-xivo-ha submit</span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html#a-gallifrey-repository-for-1116">A gallifrey repository for 1.1.16</a></h2>
+    <p>
+      Posted on Mon 13 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>upgrading packaging-farm</h4>
+<p>After the upgrade of packaging-farm to version 1.2.42, the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">gallifrey
+Makefile</a>
+was updated to add a <em>update</em> target that updates the git repositories
+and schedules for build the packages that have been changed since the
+last build.</p>
+<div class="highlight"><pre><span class="x">update:</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        for dir in chan_sccp asterisk dahdi-linux dahdi-tools asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        </span><span class="err">#</span><span class="x"> When symbolic links needs to be resolved before building the source package</span>
+<span class="x">        </span><span class="err">#</span><span class="x"></span>
+<span class="x">        for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not in the GIT repositories</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
+<span class="x">        </span><span class="err">#</span><span class="x"> virtual packages : pf-xivo pf-xivo-backup</span>
+<span class="x">        </span><span class="cp">#</span><span class="nf">cd</span><span class="x"> /var/cache/packaging-farm/sources ; for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp pf-xivo pf-xivo-backup  ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done ; packaging-farm generate</span>
+</pre></div>
+
+
+<p>Updating the repository can be done with</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<h4>building gallifrey 1.1.16</h4>
+<p>It failed to build <em>asterisk-chan-sccp</em></p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<p>after building successfully the following</p>
+<div class="highlight"><pre><span class="mi">1115</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span> <span class="n">all</span>
+   <span class="mi">3867</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">cti</span><span class="o">-</span><span class="n">server</span> <span class="n">all</span>
+   <span class="mi">6655</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">utils</span> <span class="n">all</span>
+   <span class="mi">9311</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="kd">interface</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>The log of the error is:</p>
+<div class="highlight"><pre>Applying patch fix_hidden_callplane_on_transfer
+patching file src/sccp_channel.c
+Hunk #1 FAILED at 1556.
+1 out of 1 hunk FAILED -- rejects in file src/sccp_channel.c
+patching file src/sccp_indicate.c
+Hunk #1 FAILED at 146.
+1 out of 1 hunk FAILED -- rejects in file src/sccp_indicate.c
+Patch fix_hidden_callplane_on_transfer does not apply (enforce with -f)
+make[3]: *** [debian/stamp-patched] Error 1
+make[3]: Leaving directory `/usr/src/asterisk-chan-sccp-0~prerelease+svn2187+pf.xivo.1.1.16~20110\
+608.195041.34405d1&#39;
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+</pre></div>
+
+
+<p>and a bug report was filled by Nicolas Hicher so that the developers are
+aware of the issue.As an interim solution, he removed the faulty patch
+from the git repository and the submission was run again:</p>
+<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
+</pre></div>
+
+
+<p>and resumed where it left. The ntp package was installed to ensure the
+date on the VM is correct. It was 13 minutes ahead in the future and it
+created some confusion when synchronizing with the external repositories
+was required and did not produce the intended effects.Since each package
+name contains the XiVO version, if it changes ( in
+<em>/var/cache/packaging-farm/VCS/sources/xivo-gallifrey/VERSION</em> ) all
+packages must be rebuilt, regardless of the fact that their content
+changed. The <a href="http://hg.packaging-farm.dachary.org/rev/97cac490cb5d">packaging-farm
+2.0.0</a> version
+contains a patch that implements this behavior.</p>
+<h4>packaging-farm 2.0.0</h4>
+<p>This version marks the completion of the groundwork that was necessary
+to ensure that the software provides the minimal set of functionalities
+required to build the XiVO repositories. All the files were reviewed as
+well as the packaging instructions.</p>
+<p>The HTML / PHP reporting was removed and packaging-farm is now command
+line oriented only and has no web interface. A web interface could be
+added in the form of a webservice supported by a javascript based
+client. But it would not be an evolution of the interface that was
+removed.</p>
+<p>The license was upgraded from GPLv2+ (i.e. GPLv2 that can be upgraded to
+any later version at the user option) to AGPLv3+ (web service oriented
+license that ensure the propagation of the modifications when the
+service is deployed).</p>
+<p>The package was converted to
+<a href="http://en.wikipedia.org/wiki/Debhelper#Overview">dh7</a> and
+<a href="http://wiki.debian.org/Projects/DebSrc3.0">DebSrc3.0</a>. All lintian
+warnings were fixed. An <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=630358">Intent To
+Package</a> was
+sent to schedule the inclusion in Debian GNU/Linux.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/caluire-town-hall-installation.html#caluire-town-hall-installation">Caluire Town Hall Installation</a></h2>
+    <p>
+      Posted on Tue 07 June 2011 in <a href="http://blog.xivo.io/category/services.html">Services</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="installcaluire" src="/public/.IMAG0870_m.jpg" title="installcaluire, juin 2011" /></p>
+<p>I had the chance to participate to
+<a href="http://www.ville-caluire.fr/">Caluire</a> town hall installation a couple
+of weeks ago, where we deployed almost 150 phone sets in the building.</p>
+<p>Two corporate <a href="https://wiki.xivo.fr/index.php/Accueil">XIVO</a> servers
+were inserted between the legacy PBX (Matra) and the PSTN network, we
+spent a lot of time to try to figure out how many channels were
+available as nobody did know it and the information was lost ! ;). Once
+the proper dahdi configuration was found everything started to work well
+and we began to replace little by little all the phone sets.</p>
+<p>Highlights :</p>
+<ul>
+<li>150 phone sets</li>
+<li>DECT</li>
+<li>Mobile gateways to optimize mobile calls cost</li>
+<li>Polycom sound stations for audio conferences</li>
+<li>Fax gateway, mono and multi ports</li>
+</ul>
+<p>As new phone sets were setup beside the old phone sets and old numbers
+were forwarded to the new installed ones, users were able to gradually
+become used to the new way of calling.</p>
+<p>Thanks to Fred for this funny photo from the “installation war room”</p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index26.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index24.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="Nicolas Hicher is the XiVO release manager that make it happen. His input comes from a number of sources which are gradually migrated toward a set of git repositories which will become a central place: git://git.xivo.fr/xivo-dalek.git for old stable git://git.xivo.fr/xivo-gallifrey.git ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="XiVO server packaging in a nutshell"/>
+<meta property="og:description" content="Nicolas Hicher is the XiVO release manager that make it happen. His input comes from a number of sources which are gradually migrated toward a set of git repositories which will become a central place: git://git.xivo.fr/xivo-dalek.git for old stable git://git.xivo.fr/xivo-gallifrey.git ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-01-24 18:41:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; XiVO server packaging in a nutshell</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="xivo-server-packaging-in-a-nutshell">XiVO server packaging in a nutshell</h1>
+    <p>Posted on Mon 24 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>Nicolas Hicher is the XiVO release manager that make it happen. His
+input comes from a number of sources which are gradually migrated toward
+a set of git repositories which will become a central place:</p>
+<ul>
+<li>git://git.xivo.fr/xivo-dalek.git for old stable</li>
+<li>git://git.xivo.fr/xivo-gallifrey.git for stable</li>
+<li>git://git.xivo.fr/xivo-skaro.git for unstable</li>
+<li>http://git.proformatique.com/ debian fai and XiVO Qt, Web, Android
+    clients and more</li>
+</ul>
+<p>About ten developers have write access to commit their work on these
+repositories. In addition to their daily workload, they integrate
+patches andbug fixes contributed to the <a href="https://projects.proformatique.com/projects/xivo/issues">XiVO
+redmine</a>.Nicolas
+maintains packaging tools deployed on a few virtual machines which
+purpose are to produce a <a href="http://dak.proformatique.com/debian/">useable Debian
+repository</a>. Although it is
+currently updated with <a href="http://wiki.debian.org/DakHowTo">dak</a> it is
+complicated to maintain and will be migrated to
+<a href="http://mirrorer.alioth.debian.org/">reprepro</a> which is easier to deploy
+and maintain.</p>
+<p>The general idea is to follow the Debian philosophy with regard to
+maintaining stable distributions :</p>
+<ul>
+<li>the unstable (skaro) distribution roughly matches the Debian testing
+    distribution: it has been tried to be installable and roughly
+    functional, but it contains newly implemented features that may
+    require bug fixing when facing real world usage.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>the stable (Gallifrey) distribution is only updated for security
+    purposes, with the exception of newer asterisk versions.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>the old stable (dalek) distribution is kept for historical purposes</li>
+</ul>
+<p>The Debian unstable equivalent is the playground of the ten developers
+and there is no public URL for it. When one of them wants to update a
+package that is being actively developed, he logs in one of the virtual
+machines maintained by Nicolas, types a few command to create "dev"
+packages. All the developers use deb packaged based operating systems
+(Debian GNU/Linux or Ubuntu) and their source list points to the
+repositories located on the virtual machines where the "dev" packages
+are created. When one of the developers breaks a package, the others are
+quick to pick on it. This is both a curse (when it disrupts their work)
+and a blessing (because there is a continuous check of the distribution
+consistency). In order to help maintain the consistency of the
+distribution, strict version dependency is enforced between packages :
+if version 1.4.6 is required, version 1.4.7 will be rejected although it
+is presumably backward compatible. This policy may be relaxed in the
+future at the cost of extra care to ensure backward compatibility.</p>
+<p>When the developers are satisfied with the state of the XiVO
+distribution, they declare it a release and set a corresponding git
+branch (formerly a SVN tag). Nicolas notifies the production (i.e. the
+people ensuring that all deployed XiVO installation can rely on the
+stability of the existing repositories) that the skaro distribution
+(i.e. http://dak.proformatique.com/debian/dists/lenny-xivo-skaro-dev/)
+will be broken while the development packages are migrated to skaro. He
+then proceeds with the update and tests the resulting repository by
+performing an <a href="https://wiki.xivo.fr/index.php/XiVO_1.1-Gallifrey/Install_XiVO_From_Scratch">installation from
+scratch</a>
+on a virtual machine via PXE. If the virtual machine indeed contains the
+expected packages and that the web interface displays, the production
+team is notified and does additional tests before launching upgrades
+where relevant.</p>
+<p>When a packaging problem is found, either by the production team or by
+the developers, Nicolas is responsible for fixing it. If a new software
+is being deployed, Nicolas is also responsible for creating the
+corresponding package from scratch. More often than not, a problem
+requires an emergency fix by the developers shortly after a new release
+is put in production. In which case the whole process outlined above
+needs to be done again.</p>
+<p>The packaging process is evolving continuously and the following
+improvements are being considered:</p>
+<ul>
+<li>adding RPM based packages</li>
+<li>adding support for x86_64 and leave room for more architectures</li>
+<li>deploy a reprepro repository to replace
+    http://dak.proformatique.com/debian</li>
+<li>publish and document XiVO packaging tools</li>
+<li>Debian GNU/Linux squeeze support</li>
+<li>move as much as possible from the package to the source tree : some
+    packages contain so much knowledge that installing from sources is
+    difficult and is a serious obstacle for people running distributions
+    which are not explicitly supported</li>
+<li>improve and document the creation of CD based distributions and
+    ready to use virtual machines</li>
+<li>if a single machine is used to build packages, allow to build
+    multiple packages in parallel</li>
+</ul>
+<p>With these in mind, the following use case should be available to XiVO
+developers and packagers:</p>
+<ul>
+<li>developer side: I'm working alone on my code, it is perfect, ready
+    for production. I build the package (or the whole
+    corresponding suite) and I publish the package in the corresponding
+    development repository, so that it is available for
+    other developers.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>developer side: I'm not the only one working on the code (or I know
+    my work is not satisfactory) but I want to test a killer feature. I
+    build the package and publish it on my private repository and I can
+    test it without impacting other developers.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>packager side: the developers did a lot of work and there are many
+    bug fixes, asterisk version 3 has been published and chan_sccp
+    is stable. I build a full release ( tag + build + publish on a
+    release candidate repository ). The production team runs tests
+    suites and find bugs that are patched by the developers and propose
+    new packages. When the loop stabilizes, the release candidate
+    replaces the production.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>packager side: a new package is to be built, it must be added on
+    all repositories. The developer responsible for the code provides
+    all the information to:</li>
+</ul>
+<p>** build the package (dependencies, location of all files etc).</p>
+<p>** a HOWTO explaining how to test that the resulting software is
+working. It needs not be 100% tests but should cover the basics. A
+command --version returning the version number is better than nothing.</p>
+<p>The analysis of the existing XiVO release management practices and
+prospects reveal patterns that are common to a number of software
+publishers. At least those who are best served by deploying a dedicated
+distribution (repository, ISO or VM) rather than a single software
+package. They are in many ways identical to wide spread distributions
+such as Ubuntu or Debian GNU/Linux with a fundamental difference: it is
+cross distributions (Fedora, Gentoo, Debian GNU/Linux, Suse ...).</p>
+<p>The <a href="http://packaging-farm.dachary.org/">packaging-farm</a> tool has been
+developed to address this specific issue and will be used as a base to
+help implement the above features. It is based on the following ideas:</p>
+<h4>The input of the farm is a package and its output are repositories for the target distributions.</h4>
+<p>A Debian GNU/Linux package is a well defined format to transport
+software and packaging instructions. Using it to feed the farm saves the
+need to define custom conventions. The same goes for the output of the
+farm : all distributions define a format to store collections of
+packages, in source and binary forms.</p>
+<h4>The environment of a failed package attempt is preserved for debugging.</h4>
+<p>Each package is built in an pristine environment to minimize side
+effects due to previous executions. This environment (chroot or virtual
+machine) is destroyed if the packaging operation is a success. It is
+preserved if the package fail and the maintainer can chroot or ssh into
+it to figure out and fix the problem.</p>
+<h4>A farm can be stacked on top of others.</h4>
+<p>This really is a property of the fact that each farm creates a well
+formed repository for each distribution. A given farm can either build a
+package that has been submitted to it and put the result in its output
+repository. Or it can copy the content of the repository of a child farm
+into its own. For instance, a production farm/repository can be made a
+parent of a release candidate farm/repository. When the release
+candidate repository is declared final, the production farm/repository
+copies the content of the release candidate farm/repository into its
+own.</p>
+<h4>A farm delegates the work to a slave machine.</h4>
+<p>The farm creates environments (aufs based chroots and possibly lxc or
+kvm based virtual machines) and submits a source package for building.
+It does not assume the native operating system is able to build any kind
+of package itself. If a farm runs on a given operating system, it may be
+easier to delegate the actual building of the package to a virtual
+machine running the native operating system for the targeted
+distribution.</p>
+<h4>All package specifications must be maintained manually.</h4>
+<p>It is difficult to create a package from a given distribution
+automatically based on the package specification from another
+distribution. The farm does not support this kind of tool.</p>
+<p>The implementation is heavily based on Makefiles because it mostly
+handles a chain of dependencies for which they are best suited. The
+supporting scripts are shell based because it is the language of choice
+for Makefiles.</p>
+<p>The XiVO client is being packaged by kaou (nick on irc.freenode.net) and
+is not covered here. Nor is the process to create virtual machines or
+ISO based distributions.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "XiVO server packaging in a nutshell",
+  "headline": "XiVO server packaging in a nutshell",
+  "datePublished": "2011-01-24 18:41:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html",
+  "description": "Nicolas Hicher is the XiVO release manager that make it happen. His input comes from a number of sources which are gradually migrated toward a set of git repositories which will become a central place: git://git.xivo.fr/xivo-dalek.git for old stable git://git.xivo.fr/xivo-gallifrey.git ..."
+}
+</script></body>
+</html>

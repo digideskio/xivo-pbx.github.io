@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="sduthil" />
+<meta name="description" content="Hello, New features in this sprint: High Availablity: Phones can be rebooted and will still be functional when using a fallback server. The next step will be to replicate the phone's configuration on to the fallback server, so that an administrator may still be able to modify the phone ..." />
+<meta name="keywords" content="XiVO, development">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint Review 15.16"/>
+<meta property="og:description" content="Hello, New features in this sprint: High Availablity: Phones can be rebooted and will still be functional when using a fallback server. The next step will be to replicate the phone's configuration on to the fallback server, so that an administrator may still be able to modify the phone ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sprint-review-1516.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-09-28 14:03:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/sduthil.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="XiVO"/>
+<meta property="article:tag" content="development"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint Review 15.16</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1516">Sprint Review 15.16</h1>
+    <p>Posted on Mon 28 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>Hello,</p>
+<h3>New features in this sprint:</h3>
+<p><strong>High Availablity</strong>: Phones can be rebooted and will still be
+functional when using a fallback server. The next step will be to
+replicate the phone's configuration on to the fallback server, so that
+an administrator may still be able to modify the phone's options.</p>
+<p><strong>XiVO Client</strong>: Blind transfers and attended transfers have been added
+to the people xlet. The transfer destination may be either a contact's
+main phone, or his mobile phone. This feature is one more step towards
+replacing the contacts xlet and finishing the unificiation of contacts
+in the xivo client</p>
+<p><strong>Voicemails</strong>: We have removed some limitations about the management of
+voicemails that were introduced in the last version. The voicemail
+system is now fully integrated with the REST API.</p>
+<h3>Ongoing features:</h3>
+<p><strong>Directories</strong>: we continue working on a new service that will
+integrate the new directory infrastructure with phones. The goal is to
+make contacts exposed via XiVO's directory attainable via a user's
+phone. This means that a user's personal contacts will also be avaible.</p>
+<p><strong>Security</strong>: we have started working on an permission system for our
+REST APIs. This will allow a finer grained access to the REST APIs and
+reduce the chances of accidentally breaking the rest of the system. For
+example, users will be able to modify their function keys, without
+having access to the function keys of other users.</p>
+<p><strong>SIP Lines</strong>: We are revamping the extra parameters for sip accounts in
+the same way as what has been done for voicemails. This will make it
+easier for users to configure advanced features in asterisk.</p>
+<p>See you for the next sprint review.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/232" title="XiVO 15.16 Roadmap">XiVO 15.16
+Roadmap</a></p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>
+      <a href="http://blog.xivo.io/tag/development.html">development</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint Review 15.16",
+  "headline": "Sprint Review 15.16",
+  "datePublished": "2015-09-28 14:03:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "sduthil",
+    "url": "http://blog.xivo.io/author/sduthil.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sprint-review-1516.html",
+  "description": "Hello, New features in this sprint: High Availablity: Phones can be rebooted and will still be functional when using a fallback server. The next step will be to replicate the phone's configuration on to the fallback server, so that an administrator may still be able to modify the phone ..."
+}
+</script></body>
+</html>

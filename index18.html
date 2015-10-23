@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="XiVO developers" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="XiVO Blog"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io"/>
+<meta property="og:image" content="public/xivo-logo.png">
+  <title>XiVO Blog</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/around-xivo-pxe-server-setup.html#around-xivo-pxe-server-setup">Around XiVO - pxe server setup</a></h2>
+    <p>
+      Posted on Thu 01 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>This is the second part of the description of the XiVO installation
+process.</p>
+<p>I'm going to describe how to setup a simple pxe server.</p>
+<p>You need to have 2 services enabled on your server, dhcp and tftp.</p>
+<p>Dhcp is used to give ip parameters to join the tftp server from the
+client,the tftp server serves the files needed to install a debian
+system.</p>
+<p>On debian system, you have to install isc-dhcp-server, here is a
+minimaldhcp configuration:</p>
+<div class="highlight"><pre>#/etc/dhcp/dhcpd.conf
+ddns-update-style none;
+option domain-name &quot;mydomain.com&quot;;
+option domain-name-servers 10.10.32.1;
+default-lease-time 600;
+max-lease-time 7200;
+log-facility local7;
+subnet 10.10.32.0 netmask 255.255.255.0 {
+    range 10.10.32.10 10.10.32.20;
+    option routers 10.10.32.1;
+    next-server 10.10.32.1;
+    option tftp-server-name &quot;10.10.32.1&quot;;
+    filename &quot;pxelinux.0&quot;;
+}
+</pre></div>
+
+
+<p>You can test your dhcp configuration by booting a machine on pxe to
+ensurethat the dhcp configuration is functionnal :</p>
+<div class="highlight"><pre>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPREQUEST for 10.10.32.10 (10.10.32.1) from 52:54:00:d3:44:27 via br1
+   Mar  1 13:44:19 arkham dhcpd: DHCPACK on 10.10.32.10 to 52:54:00:d3:44:27 via br1
+</pre></div>
+
+
+<p>Now we have to install and configure a tftp server, we're going to
+installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
+too. Thispackage provide all the files used to install a fresh debian
+system by pxe.</p>
+<p>You have to modify tftp_directory on /etc/default/tftpd-hpa:</p>
+<div class="highlight"><pre>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
+</pre></div>
+
+
+<p>and restart the tftp server to apply your modification.</p>
+<p>You have to edit 2 files to finish your configuration: menu.cfg and
+syslinux.cfg</p>
+<p>You have to modify include and default path in boot-screens/syslinux.cfg</p>
+<div class="highlight"><pre># D-I config version 2.0
+   include boot-screens/menu.cfg
+   default boot-screens/vesamenu.c32
+   prompt 0
+   timeout 0
+</pre></div>
+
+
+<p>You have to add to boot-screens/menu.cfg</p>
+<div class="highlight"><pre>label squeeze-i386
+       menu label squeeze i386
+       kernel linux
+       append vga=normal initrd=initrd.gz
+</pre></div>
+
+
+<p>You can now test your modification by booting a computer on your subnet,
+herethe screen that you should view if your configuration is ok</p>
+<p><img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /></p>
+<p>In the next post, I will explain an advanced pxe configuration and how
+to usepreseeding to execute an automatic installation.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/sccpp-and-continuous-integration.html#sccpp-and-continuous-integration">SCCPp and continuous integration</a></h2>
+    <p>
+      Posted on Mon 20 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>SCCPp is a small tool that we developed in parallel of our Asterisk sccp
+channel. Its main purpose is to imitate a real cisco phone in a pure
+virtual way. One of the main goal behind it is to be able to do
+continuous integration. By coupling SCCPp with Asterisk testsuite and
+Jenkins we are able to automate tests that we would normally do
+manually. This way, when a commit is pushed, it trigger a task that
+launch the script responsible to update and compile the source, to pass
+every test in the list and to report if something went wrong.</p>
+<p>Only basic test are implemented via SCCPp at the present moment. We can
+simulate the full protocol exchange involved when a phone connect and
+authenticate itself to the server. Another supported option is the
+stress test of a configured device. In this mode, SCCPp start two
+threads and dial the device at random interval. The goal here is to pass
+through as much code as possible and to make sure there is no regression
+in the code under known scenarios.</p>
+<p>SCCPp doesn't support the RTP protocol (Real-Time Transport Protocol) at
+the present moment. What it mean is that we can't simulate the
+transportation of the voice from a device to another. The development of
+SCCPp is still at an early stage, and many more features will be added
+in the future.</p>
+<p>As the complexity of the libsccp increase, we need more tests to ensure
+that a change in the code, such a bug fix, do not introduce new faults.
+Functional testing is only one part of the solution, even if it's a
+powerful one to ensure that specific cases work well, it says nothing
+about the internal. The other half of the solution is to unit test the
+code. This is a method by which individual units of source code are
+tested to ensure they perform properly. Fortunately, Asterisk has its
+own framework that allow us to easily write unit test and to trigger
+them to see if they pass correctly. In another post, we will present
+what can be done with this Asterisk unit test framework and how it can
+help to do TDD (Test Driven Development).</p>
+<p>If you are interested to play with SCCPp, you can get the source code at
+this address:
+<a href="http://git.proformatique.com/?p=official/sccpp.git;a=summary" title="http://git.proformatique.com/?p=official/sccpp.git;a=summary">http://git.proformatique.com/?p=off...</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-12.html#xivo-12">XiVO 1.2</a></h2>
+    <p>
+      Posted on Tue 14 February 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>As we enter 2012, we continue our development to better meet market
+expectations allowing XiVO to be deployed in more companies. XiVO is a
+real open and free alternative for your business phone system and it
+will allow you to go even further. It is with great pleasure that I
+announce the arrival of this new major release of XiVO which is also our
+last considering that our development model is replaced by the agile
+methodology (SCRUM).</p>
+<p>Why do we change ?</p>
+<p>Just because we want to be closer to your requests, be able to stand
+out, constantly innovate and for this we need a new vision of
+development. It's been several months since we changed our habits, our
+ways of building software, our vision of what a software is and we will
+continue in that direction. We still have a long way to go but it only
+makes XiVO better for everyone.</p>
+<p><img alt="xivo-web-1-2.png" src="/public/.xivo-web-1-2_m.jpg" title="xivo-web-1-2.png, fév. 2012" /></p>
+<p>In this new release we have upgraded the operating system from Lenny to
+Squeeze, updated Asterisk by installing and using the last “Long Term
+Supported” 1.8 version. These major changes are not only naturally
+bringing us a bunch of new native functionalities but also better
+performance and stability.</p>
+<p>Regarding XiVO, we reviewed our provisioning server which was designed
+at the beginning of XiVO and was not suited any more to the big
+architectures we are targeting.</p>
+<p>We have refreshed the web interface in terms of functionality and
+ergonomics to meet the new functionalities provided by Asterisk. We also
+changed the way configuration is done by using a new server dedicated to
+configuration management.</p>
+<p>The news also made us realize that we were not sure where we go with
+mysql and we chose to use Postgres as a basis to save our
+configurations.TDM card drivers are also updated when this new release
+is installed.</p>
+<p>CTI server and XiVO client were also mainly rewritten and refactored.</p>
+<p>With this new release we also started to work on refactoring some
+features which are not delivered now any more. At first, high
+availability and contact center are our current priorities and will be
+offered in the next coming releases.Our development method is based on
+short iterations of 2 weeks, which will produce a finished and working
+product. So every 2 weeks a new release is produced and you will be able
+to upgrade and enjoy bug fixes and new features. Do not hesitate to
+follow http://projects.xivo.fr and http://documentation.xivo.fr/ to get
+a better view.</p>
+<p>We will go through our process in more details in a later post to
+describe what we have set up in term of tests, documentation, bug
+tracking etc ....</p>
+<p>Below what's new in this release at a glance :</p>
+<ul>
+<li>Asterisk 1.8 (New options, SSL authentication, etc ...)</li>
+<li>Web interface<ul>
+<li>New way of defining schedules<ul>
+<li>Time zones</li>
+<li>More than one time slice per schedule</li>
+<li>More than one action when on closed</li>
+<li>Same schedule can be applied to more than one target
+    (incoming calls / internal)</li>
+</ul>
+</li>
+<li>Call pickups groups are more flexible, can include not only
+    group of users but also queues and users.</li>
+<li>SSL certificates management<ul>
+<li>Can be created, updated and deleted using the interface. Can
+    also be associated to different objects ( SIP accounts, CTI
+    server ....)</li>
+</ul>
+</li>
+<li>Ergonomics improvements<ul>
+<li>On session expiration, last page is displayed on reconnect.</li>
+<li>Sort per columns</li>
+<li>Automatic id and password generation for user accounts</li>
+<li>Edited object reference appears on all tabs</li>
+<li>Dynamic search on all objects lists (i.e. group
+    members selected)</li>
+<li>Error report on CSV import</li>
+<li>Displays free extensions (add/edit users, groups ...)</li>
+<li>Remembers last search and sort order, per object.</li>
+<li>links <em>create</em> open in a new tab</li>
+<li>Stay on current tab on page reload</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sip Accounts (lines) are now separated from users</li>
+<li>Provisioning is completely redesigned to incorporate new server.<ul>
+<li>New provisioning server integration</li>
+</ul>
+</li>
+<li>Queue penalty</li>
+<li>MWI remote subscribing</li>
+<li>Outbound calls redesigned</li>
+<li>Paging</li>
+<li>Queue logger daemon removed.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-1.html#httptftp-requests-processing-in-provd-part-1">HTTP/TFTP requests processing in provd - part 1</a></h2>
+    <p>
+      Posted on Thu 09 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/provisioning.html">provisioning</a>    </p>
+  </header>
+  <div>
+      <p>Well. Yes. provd ask a "device info extractor" object to extract
+information from the HTTP request, and that object returns the
+information we were expecting. But what is really happening inside that
+"device info extractor" ? Let's see:</p>
+<p><a href="/public/provd/provd-dev-info-extraction-details.png" title="Device info extraction details"><img alt="Device info extraction
+details" src="/public/provd/.provd-dev-info-extraction-details_m.jpg" title="Device info extraction details, fév. 2012" /></a></p>
+<p>The device info extractor object is in fact only merging results from
+two others device info extractor.</p>
+<p>The "all plugins device info extractor" ask for each installed plugin to
+extract info from the request. In this case, thexivo-aastra plugin is of
+course able to extract a lot of information by looking at the User-Agent
+header, but the xivo-cisco-sccp plugin is of no help. The results are
+then merged and returned.</p>
+<p>The "standard device info extractor" extract the IP address. It's role
+is to only extract trivial information from requests.</p>
+<p>From what we learned, we can deduce some properties of device
+information extraction in provd.</p>
+<p>First, if no plugins are installed, only IP addresses will ever be
+extracted.</p>
+<p>Next, we can ask ourselves what happens when two plugins returns
+different information. Well, the "all plugins device info extractor" is
+capable of applying different merge strategies. I won't go into more
+details for now.</p>
+<p>The last thing we can see is that a bad plugin could make the system
+unreliable. You do not want to be in the situation were wrong
+information is extracted by a plugin. That is why it's always safer to
+only install the plugins you need, and no more.</p>
+<p>Now that we know all that, let's see what happens for a request coming
+from a Cisco 7940. One of the first request it does is:</p>
+<div class="highlight"><pre>TFTP RRQ SEP554433221100.cnf.xml
+</pre></div>
+
+
+<p>TFTP requests are really simple, especially if you compare them to HTTP
+requests. The only interesting information an RRQ (read request) can
+have is the filename. But a filename can contains a lot of information.</p>
+<p>TFTP requests take a similar flow as HTTP requests in provd. In our
+example, the xivo-aastra plugin will return no information from it, but
+the xivo-cisco-sccp plugin will be able to extract both the vendor and
+the MAC address. For this request, it's not possible to determine the
+model nor the firmware version.</p>
+<p>So provd knows the request came from a Cisco, and that its MAC address
+is 55:44:33:22:11:00. That's not much, but it's better than nothing.</p>
+<p>That said, there is a special trick for extracting information about the
+model on Cisco 7900 phones. I won't tell you what it is because I'm
+getting tired of writing this article, but all I can say is that it's
+pretty neat, and it's also useful in some other situation. Well okay,
+I'll just say the name: DHCP integration.</p>
+<p>That's all folks. We have both seen the best (Aastra 6731i) and the
+worst (Cisco 7940) case concerning device info extraction in provd. That
+said, even the worst case doesn't pose a real problem. Next time, if I
+don't get too many death threat following this article, I'll talk about
+the next step of request processing in provd, device retrieving, which
+is quite simpler by the way.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://blog.xivo.io/xivo-documentation-project.html#xivo-documentation-project">XiVO Documentation Project</a></h2>
+    <p>
+      Posted on Wed 01 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>Documentation is often a touchy subject on many projects, and for XiVO
+in this respect, it is also an important matter.</p>
+<p>Retrospective, over retrospective, documentation organization and tools
+comes often to the surface. Maybe some of you already noticed that XiVO
+development cycle has changed and that we are now producing a release
+every two weeks. In fact we started to use SCRUM six months ago, and in
+this respect, we do not forget to do our 'inspect and adapt' meeting,
+not so many often as we should but this is an other story !</p>
+<p>Anyway, XiVO documentation is currently done using a
+<a href="http://wiki.xivo.fr" title="wiki">wiki</a>, but this wiki is hard to maintain
+and to structure, information is also difficult to find. We tried also
+to use other type of wikis, but nothing was very satisfying.</p>
+<p>We looked over some other projects, to check how the documentation was
+done, and it comes to us that some of them are using
+<a href="http://sphinx.pocoo.org/" title="sphinx">sphinx</a></p>
+<blockquote>
+<p>“a tool that makes it easy to create intelligent and beautiful
+documentation, written by Georg Brandl and licensed under the BSD
+license”</p>
+</blockquote>
+<p>One of the item of our <em>Definition of Done</em> is documentation, it has to
+be done by the development team. It is so natural to us to edit
+restructured text, using GIT to push modification to a repository that
+all the team was enthusiast to use these tools for improving XiVO
+documentation. It was also an opportunity for us to try to use an
+external Git repository, we chose
+<a href="https://gitorious.org/xivo-doc" title="Gitorious">Gitorious</a> to start with
+XiVO documentation project. This is also a way to open it to a larger
+community.</p>
+<p>Do not hesitate to clone the project and submit documentation patches
+!!!</p>
+<p>Last but not least, documentation production is now integrated in our
+tool chain, using <a href="http://jenkins.xivo.fr" title="jenkins">jenkins</a> as
+integration server, files are pulled from Gitorious automatically to
+produce the <a href="http://documentation.xivo.fr" title="XiVO documentation site">XiVO documentation
+site</a></p>
+<p>You will find how to contribute
+<a href="http://documentation.xivo.fr/developers/contributes/index.html" title="here">here</a>
+Have fun !!</p>
+<p><img alt="XiVO documentation tool
+chain" src="/public/xivosoft/.doc_process_m.jpg" title="XiVO documentation tool chain, fév. 2012" /></p>
+</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://blog.xivo.io/index19.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="http://blog.xivo.io/index17.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " XiVO Blog ",
+  "url" : "http://blog.xivo.io",
+  "image": "public/xivo-logo.png",
+  "description": ""
+}
+</script></body>
+</html>

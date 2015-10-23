@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="Methodology Assuming a host running Debian GNU/Linux Squeeze, the general idea is to boot a virtual machine thatwill auto-install using debian-installer so that it uses a specific class that will pull packages from the gallifrey repository created with packaging-farm. Virtual machine The libvirt virtual machine is given 512MB RAM ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Testing a XiVO gallifrey repository (1/2)"/>
+<meta property="og:description" content="Methodology Assuming a host running Debian GNU/Linux Squeeze, the general idea is to boot a virtual machine thatwill auto-install using debian-installer so that it uses a specific class that will pull packages from the gallifrey repository created with packaging-farm. Virtual machine The libvirt virtual machine is given 512MB RAM ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-05-09 08:57:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Testing a XiVO gallifrey repository (1/2)</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="testing-a-xivo-gallifrey-repository-12">Testing a XiVO gallifrey repository (1/2)</h1>
+    <p>Posted on Mon 09 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>Methodology</h4>
+<p>Assuming a host running <a href="http://www.debian.org/releases/squeeze/">Debian GNU/Linux
+Squeeze</a>, the general idea is
+to boot a virtual machine thatwill auto-install using
+<a href="http://www.debian.org/devel/debian-installer/">debian-installer</a> so
+that it uses <a href="http://git.proformatique.com/?p=official/debian-installer.git;a=tree;f=squeeze/classes/skaro-farm;h=155b14e82c906b968d6d42a7b8e20faf0209d687;hb=692498d23dcd2daa173e2ed152010b6c22dd7fda">a specific
+class</a>
+that will pull packages from <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">the
+gallifrey</a>
+repository <a href="http://blog.xivo.fr/index.php?post/2011/04/27/An-alternate-XiVO-gallifrey-repository-%28part-2/2%29">created with
+packaging-farm</a>.</p>
+<h4>Virtual machine</h4>
+<p>The <a href="http://libvirt.org/">libvirt</a> virtual machine is given 512MB RAM,
+8GB RAW disk image, 1CPU.The configuration of libvirt is made to accept
+VNC connections from anywhere to gain access tothe console over the
+network:</p>
+<div class="highlight"><pre><span class="gh">diff --git a/libvirt/qemu.conf b/libvirt/qemu.conf</span>
+<span class="gh">index dc8eb83..282e734 100644</span>
+<span class="gd">--- a/libvirt/qemu.conf</span>
+<span class="gi">+++ b/libvirt/qemu.conf</span>
+<span class="gu">@@ -9,7 +9,7 @@</span>
+ # NB, strong recommendation to enable TLS + x509 certificate
+ # verification when allowing public access
+ #
+<span class="gd">-# vnc_listen = &quot;0.0.0.0&quot;</span>
+<span class="gi">+vnc_listen = &quot;0.0.0.0&quot;</span>
+
+
+ # Enable use of TLS encryption on the VNC server. This requires
+</pre></div>
+
+
+<h4>dhcpd and network boot</h4>
+<p>The dhcp server is instructed to allow for network boot in
+<em>/etc/dhcp/dhcpd.conf</em></p>
+<div class="highlight"><pre>subnet 10.10.70.0 netmask 255.255.255.0 {
+        range 10.10.70.70 10.10.70.100;
+        filename &quot;pxelinux&quot;;
+        next-server 10.10.70.254;
+        option domain-name &quot;farm&quot;;
+        option domain-name-servers 10.10.70.254;
+        option subnet-mask 255.255.255.0;
+        option broadcast-address 10.10.70.255;
+        option routers 10.10.70.254;
+}
+</pre></div>
+
+
+<p>The TFTP server is installed:</p>
+<div class="highlight"><pre>apt-get install tftpd-hpa
+</pre></div>
+
+
+<p>The kernel and pxelinux configuration files are <a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386">copied from a i386
+lenny
+directory</a>
+into <em>/var/lib/tftp/</em>. Actually a more elaborated variation rsync'ed
+from a machine on the avencall lan named kenny.avencall.com but this is
+not strictly necessary for the test: fai-linux-lenny below is equivalent
+to
+<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/linux">linux</a>
+and fai-initrd-lenny is equivalent to
+<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz">initrd</a>.The
+libvirt configuration of the virtual machineis instructed to boot from
+the network:</p>
+<div class="highlight"><pre><span class="nt">&lt;os&gt;</span>
+    <span class="nt">&lt;type</span> <span class="na">arch=</span><span class="s">&#39;i686&#39;</span> <span class="na">machine=</span><span class="s">&#39;pc-0.12&#39;</span><span class="nt">&gt;</span>hvm<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;network&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;hd&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;bootmenu</span> <span class="na">enable=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
+</pre></div>
+
+
+<p>When the virtual machine is started with</p>
+<div class="highlight"><pre>virsh start skaro.xivo.vm.test
+</pre></div>
+
+
+<p>it will show the following and be ready to boot from the
+network.<img alt="d-i" src="/public/.i_m.jpg" title="d-i, May 2011" />A new entry has been
+added to the menu displayed:</p>
+<div class="highlight"><pre>label xivo_gallifrey_farm
+        menu label gallifrey-farm
+        kernel fai-linux-lenny
+        append initrd=fai-initrd-lenny rw auto=true url=http://66.254.41.119 priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,xivo-gallifrey-farm hostname=xivo --
+</pre></div>
+
+
+<p>in the file <em>/var/lib/tftp/pxelinux.cfg/xivo_devel/xivo_devel.cfg</em>
+that has beenextracted with</p>
+<div class="highlight"><pre>cd /var/lib/tftp
+git clone git://git.proformatique.com/official/debian-pxelinux.git pxelinux.cfg
+</pre></div>
+
+
+<p>and contains all the menu for all the XiVO configurations.</p>
+<h4>Other packages</h4>
+<p>The <a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/postinst_script">debian-installer
+script</a>
+starts by installing <a href="pf-fai-xivo-1.1-gallifrey-farm">a package</a> whose
+sole purpose is to add files in the /etc/apt/sources.list.d/ so that
+packages are extracted from the . The sources of the package are in the
+packages/branches/official/lenny/pf-fai/ directory of the internal
+rcs.lan.proformatique.com/rcs/svn/common-softwares repository. They can
+also be retrieved from the package sources at</p>
+<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>with the command</p>
+<div class="highlight"><pre>apt-get source pf-fai
+</pre></div>
+
+
+<h4>Installation</h4>
+<p>All the common files are in the <a href="http://66.254.41.119/d-i/lenny/">lenny
+directory</a>, forinstance the
+<a href="http://66.254.41.119/d-i/lenny/preseed.cfg">preseed.cfg</a> and
+<a href="http://66.254.41.119/d-i/lenny/installer.cfg">installer.cfg</a> that sets
+the passwords and other package values.</p>
+<div class="highlight"><pre><span class="x">d-i passwd/root-password-crypted password </span><span class="p">$</span><span class="x">1</span><span class="p">$</span><span class="nv">NHxfkWun</span><span class="p">$</span><span class="nv">PMGLFNFtPKwIFT532sinD1</span><span class="x"></span>
+</pre></div>
+
+
+<p>That should be replaced with a known password, for instance:</p>
+<div class="highlight"><pre>d-i passwd/root-password password foobar
+</pre></div>
+
+
+<p>otherwise it will be impossible to login.The installation asks for the
+disk partition. If it fails,the error logs can be found at
+<em>/var/log/pf-fai/postinst.log</em>The key of the packaging-farm repository
+is addedto
+<a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/late_script">late_script</a></p>
+<div class="highlight"><pre>if [ -x /usr/bin/apt-key ]; then
+        apt-get -y install gnupg
+        wget http://gallifrey.dachary.org/gallifrey.gpg -O - | apt-key add -
+fi
+</pre></div>
+
+
+<p>It also removes any repository added by
+<a href="http://66.254.41.119/d-i/lenny/late_script_target">late_script_target</a>
+and replace them with the packaging-farm repository:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>If a script (such as late_script) fails, the error message can be found
+after login on the machine in the <em>/var/log/installer/syslog</em> file.</p>
+<h4>gallifrey distribution</h4>
+<p>The <a href="http://gallifrey.dachary.org/packaging-farm/">gallifrey
+distribution</a> has been
+updated to include the <em>misdn-user</em> package that was missing from the
+list although it was already created. The <em>pf-asterisk-module-xivo</em>,
+<em>pf-asterisk-res-sqlite2</em>, <em>pf-asterisk-ami-aoriginate</em>,
+<em>asterisk-chan-sccp</em>, <em>pf-asterisk-app-fax</em>,
+<em>pf-asterisk-app-nv-faxdetect</em> packages were imported into the farm from
+the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">official
+repository</a>
+and added to the list of packages necessary to install gallifrey.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Testing a XiVO gallifrey repository (1/2)",
+  "headline": "Testing a XiVO gallifrey repository (1/2)",
+  "datePublished": "2011-05-09 08:57:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html",
+  "description": "Methodology Assuming a host running Debian GNU/Linux Squeeze, the general idea is to boot a virtual machine thatwill auto-install using debian-installer so that it uses a specific class that will pull packages from the gallifrey repository created with packaging-farm. Virtual machine The libvirt virtual machine is given 512MB RAM ..."
+}
+</script></body>
+</html>

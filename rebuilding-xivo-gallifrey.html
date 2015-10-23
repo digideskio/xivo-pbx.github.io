@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="dachary" />
+<meta name="description" content="rebuilding gallifrey The /var/cache/packaging-farm/sources directory was removed and export VERSION_COMPUTE=false set in /etc/packaging-farm/packaging-farm.conf and packaging-farm --cd gallifrey rebuild was run to rebuild gallifrey from scratch. It took 42 minutes total. The purpose of this complete rebuild was to get rid of the timestamp ..." />
+<meta name="keywords" content="packages">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Rebuilding XiVO gallifrey"/>
+<meta property="og:description" content="rebuilding gallifrey The /var/cache/packaging-farm/sources directory was removed and export VERSION_COMPUTE=false set in /etc/packaging-farm/packaging-farm.conf and packaging-farm --cd gallifrey rebuild was run to rebuild gallifrey from scratch. It took 42 minutes total. The purpose of this complete rebuild was to get rid of the timestamp ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/rebuilding-xivo-gallifrey.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-09-05 08:39:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/dachary.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="packages"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Rebuilding XiVO gallifrey</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</h1>
+    <p>Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <h4>rebuilding gallifrey</h4>
+<p>The /var/cache/packaging-farm/sources directory was removed and</p>
+<div class="highlight"><pre>export VERSION_COMPUTE=false
+</pre></div>
+
+
+<p>set in /etc/packaging-farm/packaging-farm.conf and
+<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
+from scratch. It took 42 minutes total. The purpose of this complete
+rebuild was to get rid of the timestamp and hash that were previously
+part of the version number.</p>
+<h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
+<p>The build of the gallifrey development packages was blocked because of a
+compilation error.</p>
+<div class="highlight"><pre><span class="p">...</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
+<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+
+<span class="o">---------------------------------------------</span>
+
+<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
+<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
+<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+</pre></div>
+
+
+<p>To debug the problem, the following command was used to go in the chroot
+where it can be reproduced:</p>
+<div class="highlight"><pre>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
+</pre></div>
+
+
+<p>The compilation error:</p>
+<div class="highlight"><pre>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
+</pre></div>
+
+
+<p>is in <code>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c</code></p>
+<div class="highlight"><pre>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
+        .name = &quot;WANPIPE_HWEC&quot;,
+        .echocan_free = wp_tdmv_hwec_free,
+};
+</pre></div>
+
+
+<p>and comes from the fact that <code>/usr/include/dahdi/kernel.h</code> which is part
+of</p>
+<div class="highlight"><pre>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
+</pre></div>
+
+
+<p>contains</p>
+<div class="highlight"><pre>struct dahdi_echocan_ops {
+
+        /*! \brief Free an echocan state structure.                                                                                                             
+         * \param[in,out] ec Pointer to the state structure to free.                                                                                            
+         *                                                                                                                                                      
+         * \
+eturn Nothing.                                                                                                                                     
+         */
+        void (*echocan_free)(struct dahdi_chan *chan, struct dahdi_echocan_state *ec);
+...
+</pre></div>
+
+
+<p>and does not contain the <code>name</code> field which means that
+<code>sangoma-wanpipe-3.5.20</code> is not compatible with
+<code>dahdi-linux-dev 1:2.5.0</code></p>
+<h4>kernel-module dependencies</h4>
+<p>Nicolas Hicher faced a problem because <a href="http://packaging-farm.dachary.org/trac/ticket/19">kernel-modules dependencies did
+not work</a>. The
+dependency graph generated is wrong: it mentions the stamp files but do
+not assemble them properly. As a result the kernel-module is not rebuilt
+when the module is rebuilt. The make_graph and make_build functions
+<a href="are%20assembled%20into%20a%20single%20functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60" title="are assembled into a single functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60">are assembled into a single
+functio...</a>|
+so that the rule generated lists the timestamp files of the
+dependencies.</p>
+<h4>Makefiles moved to /etc/packaging-farm</h4>
+<p>The fact that Makefiles describing how a given package must be built are
+expected to be in /var/cache/packaging-farm <a href="http://packaging-farm.dachary.org/trac/ticket/20">is
+confusing</a>. In
+addition, they are copied in /var/lib/packaging-farm after the package
+is successfully built. As a result the system administrator is led to
+think that /var/lib/packaging-farm/package/Makefile is the file to be
+edited although it will be overridden the next time a package is
+built.The makefiles <a href="http://packaging-farm.dachary.org/trac/changeset/6450d8785be6406a5e1d1d205df23be04279f736">are moved from
+/var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk</a>.
+To ensure the compatibility with the existing scripts, a symbolic link
+is created from /var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk by the makefiles.sh script.The manual
+page is updated to remove references to the former build directory. The
+additional benefit of having the .mk files in /etc/packaging-farm is
+that they can be saved by etckeeper and backed up with /etc.The build
+machines for gallifrey, gallifrey-dev and skaro were migrated to the new
+convention.</p>
+</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Rebuilding XiVO gallifrey",
+  "headline": "Rebuilding XiVO gallifrey",
+  "datePublished": "2011-09-05 08:39:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "dachary",
+    "url": "http://blog.xivo.io/author/dachary.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/rebuilding-xivo-gallifrey.html",
+  "description": "rebuilding gallifrey The /var/cache/packaging-farm/sources directory was removed and export VERSION_COMPUTE=false set in /etc/packaging-farm/packaging-farm.conf and packaging-farm --cd gallifrey rebuild was run to rebuild gallifrey from scratch. It took 42 minutes total. The purpose of this complete rebuild was to get rid of the timestamp ..."
+}
+</script></body>
+</html>
