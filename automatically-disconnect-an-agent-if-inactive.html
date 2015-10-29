@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2015-10-16 12:00:00-04:00"/>
+<meta property="article:published_time" content="2015-10-29 09:00:00-04:00"/>
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="http://blog.xivo.io/author/nicolas-vdb.html">
 <meta property="article:section" content="XiVO IPBX"/>
@@ -60,7 +60,7 @@
 <article>
   <header>
     <h1 id="automatically-disconnect-an-agent-if-inactive">Automatically Disconnect an Agent if his SIP Account is Inactive</h1>
-    <p>Posted on Fri 16 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+    <p>Posted on Thu 29 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
   </header>
   <div>
     <p>Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
@@ -77,25 +77,25 @@ C – The agent is at home, the VPN tunnel stops</p>
 any alerts from his XiVO client or from the phone.</p>
 <h1>I. Standard operation</h1>
 <h2>Agent's point of view</h2>
-<p><img alt="photo 1" src="{filename}/public/agent_disconnect/photo1.png" /></p>
+<p><img alt="photo 1" src="http://blog.xivo.io/public/agent_disconnect/photo1.png" /></p>
 <h2>Point of view on the XiVO Server</h2>
-<p><img alt="photo 2" src="{filename}/public/agent_disconnect/photo2.png" /></p>
+<p><img alt="photo 2" src="http://blog.xivo.io/public/agent_disconnect/photo2.png" /></p>
 <h1>II. Anomaly</h1>
 <h2>Agent's point of view</h2>
 <p>Let us simulate the anomaly. For this simulation, the softphone has been forcefully disconnected.</p>
-<p><img alt="photo 3" src="{filename}/public/agent_disconnect/photo3.png" /></p>
+<p><img alt="photo 3" src="http://blog.xivo.io/public/agent_disconnect/photo3.png" /></p>
 <p><strong>We can see that our agent is still logged in and no other information about the disconnection is
 displayed</strong></p>
 <h2>Agent's point of view</h2>
-<p><img alt="photo 4" src="{filename}/public/agent_disconnect/photo4.png" /></p>
+<p><img alt="photo 4" src="http://blog.xivo.io/public/agent_disconnect/photo4.png" /></p>
 <p>We can see that the state of extension 741 is <code>UNKNOWN</code>, but agent 6002 (extension 728) is still
 connected.</p>
 <h1>III. Execution of the script</h1>
 <p>The script will find out that the SIP account is disconnected and will automatically log out the
 agent associated to the extension.</p>
-<p><img alt="photo 5" src="{filename}/public/agent_disconnect/photo5.png" /></p>
+<p><img alt="photo 5" src="http://blog.xivo.io/public/agent_disconnect/photo5.png" /></p>
 <p>Accordingly, the agent now knows that he is logged out:</p>
-<p><img alt="photo 6" src="{filename}/public/agent_disconnect/photo6.png" /></p>
+<p><img alt="photo 6" src="http://blog.xivo.io/public/agent_disconnect/photo6.png" /></p>
 <p>This script has been deployed in production and has been working successfully since Oct 1st 2015.
 You can download this script on <a href="https://github.com/h4wk3r/XIVO-Agentoff_if_sipoff">github</a>.</p>
 <p>For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
@@ -132,7 +132,7 @@ on IRC on irc.freenode.net channel #xivo.</p>
   "@type": "BlogPosting",
   "name": "Automatically Disconnect an Agent if his SIP Account is Inactive",
   "headline": "Automatically Disconnect an Agent if his SIP Account is Inactive",
-  "datePublished": "2015-10-16 12:00:00-04:00",
+  "datePublished": "2015-10-29 09:00:00-04:00",
   "dateModified": "",
   "author": {
     "@type": "Person",
