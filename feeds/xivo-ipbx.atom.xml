@@ -22,7 +22,7 @@ any alerts from his XiVO client or from the phone.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="photo 3" src="http://blog.xivo.io/public/agent_disconnect/photo3.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;We can see that our agent is still logged in and no other information about the disconnection is
 displayed&lt;/strong&gt;&lt;/p&gt;
-&lt;h2&gt;Agent's point of view&lt;/h2&gt;
+&lt;h2&gt;Point of view on the XiVO Server&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="photo 4" src="http://blog.xivo.io/public/agent_disconnect/photo4.png" /&gt;&lt;/p&gt;
 &lt;p&gt;We can see that the state of extension 741 is &lt;code&gt;UNKNOWN&lt;/code&gt;, but agent 6002 (extension 728) is still
 connected.&lt;/p&gt;
