@@ -54,6 +54,302 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">packaging infrastructure for XiVO</a></h2>
+    <p>
+      Posted on Mon 04 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Trying out packaging-farm</h4>
+<p>Nicolas Hicher and Loic Dachary worked together on building the skaro
+repository available at:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>The goal was to demonstrate the use of the packaging-farm and discover
+show stoppers. A few documentation shortcomings led to modifications of
+the manual page for packaging-farm. A problem with the handling of the
+dependencies was identified and fixed. The <a href="http://packaging-farm.dachary.org/downloads/">1.2.36
+release</a> was published
+with the corresponding changes.Nicolas Hicher feels confortable to give
+a try to the packaging-farm. That will help uncover real world usage
+issues.</p>
+<h4>VM host installation</h4>
+<p>A hardware (500GB disk, 8GB RAM, Intel(R) Xeon(R) CPU X3430 @ 2.40GHz)
+was installed at 66.254.41.119 to be dedicated to XiVO packaging. It was
+configured to host kvm based virtual machines using
+<a href="http://code.google.com/p/ganeti/">ganeti</a>.To better track the changes,
+a git repository was created in /etc and used to archive the
+configuration changes described below.</p>
+<h3>LVM and DRBD</h3>
+<p>In squeeze all the software required to run ganeti2 are standard. A year
+ago it was significantly more difficult as it required the compilation
+of the DRBD from sources, among other things.The second partition of the
+disk was set for LVM:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# pvs
+  PV         VG   Fmt  Attr PSize   PFree
+  /dev/sda2  all  lvm2 a-   442.38g 332.38g
+</pre></div>
+
+
+<p>and that was bound to the all volume group:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# vgs
+  VG   #PV #LV #SN Attr   VSize   VFree
+  all    1   3   0 wz--n- 442.38g 332.38g
+</pre></div>
+
+
+<p>The default DRBD configuration was removed so that ganeti can handle it
+on its own. It is not used at the moment but will come handy when
+another hardware is added.</p>
+<div class="highlight"><pre>mv /etc/drbd.conf /etc/drbd.conf.old
+touch /etc/drbd.conf
+/etc/init.d/drbd reload
+</pre></div>
+
+
+<h3>Network</h3>
+<p>A bridge and a fake lo:1 local interface were created in
+/etc/network/interfaces:</p>
+<div class="highlight"><pre>auto lo:1
+iface lo:1 inet static
+    address 10.10.0.10
+    netmask 255.255.255.255
+    up ip route add blackhole 10.0.0.0/8
+
+auto br0
+iface br0 inet static
+        address 10.10.0.254
+        netmask 255.255.255.255
+        bridge_ports none
+        bridge_stp off
+    bridge_maxwait 5
+        up ip route add 10.10.0.254 dev br0
+        up ip route add 10.10.60.0/24 dev br0
+</pre></div>
+
+
+<h3>BIND and DHCP</h3>
+<p>Ganeti hosts and virtual machines names are DNS entries. It would be
+possible to use a publicDNS to create them. A local DNS configuration is
+created locally instead, toreduce the propagation delays, ensure it can
+always be reached and isolate the maintainanceof the name space into a
+private network. The top level domain farm was createdand divided into
+host??.farm ( bound to 10.10.59.0/24 ) for all the ganeti hostsand
+vm.farm ( bound to 10.10.60.0/24 ) for all the virtual machines.</p>
+<p><strong>/etc/bind/named.conf.options</strong></p>
+<p>Do not listen or answer on public IPs.</p>
+<div class="highlight"><pre>allow-recursion { 127.0.0.1; 10.0.0.0/8; };
+listen-on { 127.0.0.1; 10.10.0.254; };
+</pre></div>
+
+
+<p><strong>/etc/bind/named.conf.local</strong></p>
+<div class="highlight"><pre>zone &quot;10.10.in-addr.arpa&quot; {
+    type master;
+    file &quot;/etc/bind/db.10.10&quot;;
+};
+
+zone &quot;farm&quot; {
+        type master;
+        file &quot;/etc/bind/db.farm&quot;;
+};
+</pre></div>
+
+
+<p><strong>/etc/bind/db.10.10</strong></p>
+<div class="highlight"><pre><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span> <span class="nt">mode</span><span class="o">:</span> <span class="nt">zone</span><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span>
+<span class="o">;</span>
+<span class="o">;</span> <span class="nt">BIND</span> <span class="nt">reverse</span> <span class="nt">data</span> <span class="nt">file</span> <span class="nt">for</span> <span class="nt">broadcast</span> <span class="nt">zone</span>
+<span class="o">;</span>
+<span class="o">$</span><span class="nt">TTL</span>    <span class="nt">604800</span>
+<span class="o">@</span>       <span class="nt">IN</span>      <span class="nt">SOA</span>     <span class="nt">localhost</span><span class="o">.</span> <span class="nt">root</span><span class="nc">.localhost</span><span class="o">.</span> <span class="o">(</span>
+        <span class="nt">2011031200</span>      <span class="o">;</span> <span class="nt">serial</span>
+                         <span class="nt">604800</span>         <span class="o">;</span> <span class="nt">Refresh</span>
+                          <span class="nt">86400</span>         <span class="o">;</span> <span class="nt">Retry</span>
+                        <span class="nt">2419200</span>         <span class="o">;</span> <span class="nt">Expire</span>
+                         <span class="nt">604800</span> <span class="o">)</span>       <span class="o">;</span> <span class="nt">Negative</span> <span class="nt">Cache</span> <span class="nt">TTL</span>
+<span class="o">@</span>       <span class="nt">IN</span>      <span class="nt">NS</span>      <span class="nt">localhost</span><span class="o">.</span>
+
+<span class="o">;;</span>
+<span class="o">;;</span> <span class="nt">perl</span> <span class="nt">-n</span> <span class="nt">-e</span> <span class="s1">&#39;print if(s/(\S+)\s+IN\s+A\s+10\.10\.(\d+)\.(\d+)/\3.\2\tIN\tPTR\t\1.farm./)&#39;</span> <span class="o">&lt;</span> <span class="nt">db</span><span class="nc">.farm</span>
+<span class="o">;;</span>
+<span class="nt">1</span><span class="nc">.60</span>    <span class="nt">IN</span>      <span class="nt">PTR</span>     <span class="nt">dev</span><span class="nc">.dachary.vm.farm</span><span class="o">.</span>
+<span class="nt">2</span><span class="nc">.60</span>    <span class="nt">IN</span>      <span class="nt">PTR</span>     <span class="nt">skaro</span><span class="nc">.xivo.vm.farm</span><span class="o">.</span>
+</pre></div>
+
+
+<p><strong>/etc/bind/db.farm</strong></p>
+<div class="highlight"><pre><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span> <span class="nt">mode</span><span class="o">:</span> <span class="nt">zone</span><span class="o">;</span> <span class="nt">-</span><span class="o">*</span><span class="nt">-</span>
+<span class="o">;</span>
+<span class="o">$</span><span class="nt">TTL</span> <span class="nt">1h</span> <span class="o">;</span> <span class="nt">default</span> <span class="nt">Time-to-Live</span><span class="o">.</span> <span class="nt">defines</span> <span class="nt">the</span> <span class="nt">duration</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">record</span> <span class="nt">may</span> <span class="nt">be</span> <span class="nt">cached</span> <span class="o">(</span><span class="nt">24h</span><span class="o">)</span>
+
+<span class="o">$</span><span class="nt">ORIGIN</span> <span class="nt">farm</span><span class="o">.</span>
+<span class="o">@</span>                       <span class="nt">IN</span>      <span class="nt">SOA</span>             <span class="nt">ns</span> <span class="nt">hostmaster</span> <span class="o">(</span>
+                        <span class="nt">2011031200</span>      <span class="o">;</span> <span class="nt">serial</span>
+                                <span class="nt">1h</span>              <span class="o">;</span> <span class="nt">refresh</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">slave</span> <span class="nt">will</span> <span class="nt">try</span> <span class="nt">to</span> <span class="nt">refresh</span> <span class="nt">the</span> <span class="nt">zone</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">master</span> <span class="o">(</span><span class="nt">8h</span><span class="o">)</span>
+                                <span class="nt">30m</span>             <span class="o">;</span> <span class="nt">update</span> <span class="nt">retry</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">between</span> <span class="nt">retries</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">slave</span> <span class="o">(</span><span class="nt">secondary</span><span class="o">)</span> <span class="o">(</span><span class="nt">2h</span><span class="o">)</span>
+                                                <span class="o">;</span> <span class="nt">fails</span> <span class="nt">to</span> <span class="nt">contact</span> <span class="nt">the</span> <span class="nt">master</span> <span class="nt">when</span> <span class="nt">refresh</span> <span class="o">(</span><span class="nt">above</span><span class="o">)</span> <span class="nt">has</span> <span class="nt">expired</span><span class="o">.</span>
+                                <span class="nt">2w</span>              <span class="o">;</span> <span class="nt">expiry</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">slave</span> <span class="nt">will</span> <span class="nt">continue</span> <span class="nt">to</span> <span class="nt">supply</span> <span class="nt">authoritative</span> <span class="nt">data</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">zone</span> <span class="o">(</span><span class="nt">1w</span><span class="o">)</span>
+                                                <span class="o">;</span> <span class="nt">after</span> <span class="nt">the</span> <span class="nt">master</span> <span class="nt">died</span>
+                                <span class="nt">30m</span><span class="o">)</span>            <span class="o">;</span> <span class="nt">minimum</span> <span class="nt">-</span> <span class="nt">time</span> <span class="nt">a</span> <span class="nt">NAME</span> <span class="nt">ERROR</span> <span class="o">=</span> <span class="nt">NXDOMAIN</span> <span class="nt">record</span> <span class="nt">is</span> <span class="nt">cached</span> <span class="o">(</span><span class="nt">24h</span><span class="o">)</span>
+
+                <span class="nt">IN</span>      <span class="nt">NS</span>      <span class="nt">ns</span>
+
+<span class="nt">ns</span>              <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.0.254</span>
+
+<span class="nt">gnt-cluster</span>     <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.59.1</span>
+<span class="nt">host01</span>          <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.59.10</span>
+
+<span class="nt">dev</span><span class="nc">.dachary.vm</span>  <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.60.1</span>
+<span class="nt">skaro</span><span class="nc">.xivo.vm</span>   <span class="nt">IN</span>      <span class="nt">A</span>       <span class="nt">10</span><span class="nc">.10.60.2</span>
+</pre></div>
+
+
+<p>A DHCP server is setup for each VM to use.</p>
+<p><strong>/etc/default/isc-dhcp-server</strong></p>
+<div class="highlight"><pre>INTERFACES=&quot;br0&quot;
+</pre></div>
+
+
+<p><strong>/etc/dhcp/dhcpd.conf</strong></p>
+<p>A MAC address is generated with the following oneliner:</p>
+<div class="highlight"><pre><span class="err">#</span> <span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
+</pre></div>
+
+
+<p>and used to define the entries</p>
+<div class="highlight"><pre><span class="nt">group</span> <span class="p">{</span>
+  <span class="n">option</span> <span class="n">domain</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;farm&quot;</span><span class="p">;</span>
+  <span class="n">option</span> <span class="n">routers</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">254</span><span class="p">;</span>
+  <span class="n">option</span> <span class="n">domain</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">servers</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">254</span><span class="p">;</span>
+  <span class="n">subnet</span> <span class="m">10</span><span class="o">.</span><span class="m">10</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span> <span class="n">netmask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span> <span class="err">{</span>
+    <span class="n">host</span> <span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span> <span class="err">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="n">bf</span><span class="o">:</span><span class="m">3</span><span class="n">d</span><span class="o">:</span><span class="n">d4</span><span class="o">:</span><span class="n">ef</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">host</span> <span class="nt">skaro</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="n">fb</span><span class="o">:</span><span class="m">77</span><span class="o">:</span><span class="m">1</span><span class="n">e</span><span class="o">:</span><span class="m">82</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">skaro</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h3>Cluster and instance creation</h3>
+<p>The hostname of the machine is host01.farm. When creating a cluster, the
+hostname is used to create the first node of the cluster and make it the
+master. Its IP set in /etc/hosts to 10.10.59.10. It is permanently set
+on eth0 in the /etc/network/interface as follows:</p>
+<div class="highlight"><pre>up ip addr add 10.10.59.10/32 broadcast 10.10.59.255 dev eth0
+</pre></div>
+
+
+<p>The prerequisite to run gnt-cluster init were met:</p>
+<ul>
+<li>host01.farm is not 127.0.0.1</li>
+<li>gnt-cluster.host.farm IP is not bound to any interface</li>
+</ul>
+<p>The cluster was created with:</p>
+<div class="highlight"><pre>gnt-cluster init --no-etc-hosts --enabled-hypervisors=kvm --nic-parameters link=br0 --master-netdev br0 --vg-name all gnt-cluster.farm
+</pre></div>
+
+
+<p>After downloading the installation CD of Debian GNU/Linux squeeze, the
+skaro.xivo.vm.farm instance was created:</p>
+<div class="highlight"><pre>gnt-instance add -d -t plain -s 30G -B memory=512M,vcpus=1 -H kvm:boot_order=cdrom,cdrom_image_path=/srv/ganeti/debian-6.0.1a-amd64-CD-1.iso,vnc_bind_address=0.0.0.0 -n host01.farm -o debootstrap+default --net 0:mac=52:54:fb:77:1e:82 skaro.xivo.vm.farm
+</pre></div>
+
+
+<h3>Copying the development VM</h3>
+<p>Instead of proceeding with a regular installation, a copy of the VM at
+http://xivo.dachary.org/ was made. It was stored in a 13GB bzip2 file:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# ls -lh
+-rw-r--r-- 1 root root  13G Mar 31 15:39 xivo.dachary.vm.gnt.bz2
+</pre></div>
+
+
+<p>The newly created instance was shutdown</p>
+<div class="highlight"><pre>gnt-instance shutdown --timeout=1 skaro.xivo.vm.farm
+</pre></div>
+
+
+<p>The location of its disk retrieved:</p>
+<div class="highlight"><pre>root@host01:/srv/ganeti# gnt-instance info skaro.xivo.vm.farm | grep /dev/all
+      on primary:  /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 (254:2)
+</pre></div>
+
+
+<p>and the backup unpacked into it:</p>
+<div class="highlight"><pre>bunzip2 &lt; xivo.dachary.vm.gnt.bz2 &gt; /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0
+</pre></div>
+
+
+<p>It ended with an error:</p>
+<div class="highlight"><pre><span class="n">bunzip2</span><span class="o">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">or</span> <span class="n">other</span> <span class="n">error</span><span class="o">,</span> <span class="n">bailing</span> <span class="n">out</span><span class="o">.</span>  <span class="n">Possible</span> <span class="n">reason</span> <span class="n">follows</span><span class="o">.</span>
+<span class="n">bunzip2</span><span class="o">:</span> <span class="n">No</span> <span class="n">space</span> <span class="n">left</span> <span class="n">on</span> <span class="n">device</span>
+        <span class="n">Input</span> <span class="n">file</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdin</span><span class="o">),</span> <span class="n">output</span> <span class="n">file</span> <span class="o">=</span> <span class="o">(</span><span class="n">stdout</span><span class="o">)</span>
+</pre></div>
+
+
+<p>which was ignored. To make sure the restoration was sane, the partition
+was checked:</p>
+<div class="highlight"><pre>root@montreal:/srv/ganeti# kpartx -av /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0
+add map all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1 (254:3): 0 61865984 linear /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 2048
+add map all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p2 (254:4): 0 1046528 linear /dev/all/97500dbf-ca9e-49b8-a4c9-4d96e5152916.disk0 61868032
+root@montreal:/srv/ganeti# fsck -f /dev/mapper/all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1
+fsck from util-linux-ng 2.17.2
+e2fsck 1.41.12 (17-May-2010)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/mapper/all-97500dbf--ca9e--49b8--a4c9--4d96e5152916.disk0p1: 260424/1925760 files (3.8% non-contiguous), 4826992/7733248 blocks
+</pre></div>
+
+
+<h4>firewall</h4>
+<p>A <a href="http://shorewall.net/">shorewall</a> based firewall was configured based
+on the two interface example found at
+<strong>/usr/share/doc/shorewall/examples/two-interfaces/</strong> and replacing the
+eth1 interface with br0. The idea is that the bridge contains virtual
+machines that are treated as if they were machines in the LAN for which
+this example was designed.</p>
+<h4>reverse proxy</h4>
+<p>A <a href="http://nginx.org/">nginx</a> based reverse proxy was installed on the to
+demultiplex the incoming http connections. The first configuration was
+added in /etc/nginx/sites-available/skaro.dachary.org to get to the
+virtual machine that will eventually replace http://xivo.dachary.org/</p>
+<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">skaro</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">skaro</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span>   <span class="n">http</span><span class="o">://</span><span class="n">skaro</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>and the HTTP port was accepted in the firewall in /etc/shorewall/rules</p>
+<div class="highlight"><pre><span class="x">DNAT           net             loc:</span><span class="p">$</span><span class="nv">VM_SKARO_XIVO</span><span class="x">:22 tcp             22002           -       </span><span class="p">$</span><span class="nv">IP_FAILOVER</span><span class="x"></span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html#sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey">Sourcing the components and scripting the components parts e-shops (digikey, ...)</a></h2>
     <p>
       Posted on Wed 30 March 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -728,100 +1024,6 @@ AUTHORS
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
-    <p>
-      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>pf-release.sh</h4>
-<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
-merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
-containing the sources and the SVN repository containing the debian
-packages into a well formed Debian GNU/Linux source package. For
-instance</p>
-<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
-</pre></div>
-
-
-<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
-<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the private SVN
-repostory</a>
-concluded that it will be bound to a public GIT repository shortly. When
-it is ready, the pf-release.sh script will be updated accordingly.In
-order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
-argument:</p>
-<div class="highlight"><pre>pf-release.sh TEST
-</pre></div>
-
-
-<p>This will simulate border cases using a temporary direcotry to check
-that it behaves as expected. Reading the tests (which are embeded in the
-script) is currently the only documentation.</p>
-<h4>packaging-farm submission</h4>
-<p>The output of <em>pf-release.sh</em> is stored in a directory that uses the
-same conventions as packaging-farm. Because of that, submitting the
-package to the host running the packaging farm can be done by copying
-the directory as follows:</p>
-<div class="highlight"><pre>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
-</pre></div>
-
-
-<h4>dependency generation</h4>
-<p>A recent addition to the packaging-farm was the automatic generation of
-dependencies. It calculates which source package depends on other
-packages built by the packaging-farm. Support for meta packages was
-added to the dependency generation. In the packaging-farm vocabulary, a
-meta package is a package that aggregates others but has no sources of
-its own. For instance, the meta package <em>skaro</em> was created to produce
-the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
-repository</a>.
-When running the depencency generations as follows:</p>
-<div class="highlight"><pre>packaging-farm depends
-</pre></div>
-
-
-<p>it includes the meta packages in the graph so that skaro can be built
-with:</p>
-<div class="highlight"><pre>packaging-farm skaro
-</pre></div>
-
-
-<p>If, for instance, <em>pf-xivo-lib-js</em> has been updated as shown with the
-<em>rsync</em> command above it will be rebuilt because the skaro meta package
-depends on it.</p>
-<h4>makefile generation</h4>
-<p>Each package entering the packaging-farm must have a <em>Makefile</em>
-associated with it. Setting the variables in this <em>Makefile</em> allows the
-administrator to tune the behaviour on a per package basis. When a
-package is simple enough, its <em>Makefile</em> can be automatically generated
-as follows:</p>
-<div class="highlight"><pre>packaging-farm makefiles
-</pre></div>
-
-
-<h4>packaging-farm sensible defaults</h4>
-<p>The <a href="http://packaging-farm.dachary.org/download/">version 1.2.33</a> of
-packaging-farm includes the modifications above to help reduce the
-number of steps required to rebuild a suite or a specific package.
-Submitting a package requires four steps:</p>
-<ul>
-<li>pf-release.sh</li>
-<li>rsync</li>
-<li>packaging-farm generate which calls depends and makefiles</li>
-<li>packaging-farm the_package</li>
-</ul>
-<p>This completes the making of the building blocks enabling the creation
-and maintainance of packages based on the XiVO development repository.
-The next step will be to document and simplify the usage, reducing the
-learning curve to a minimum.</p>
 </p>
   </div>
 </article>

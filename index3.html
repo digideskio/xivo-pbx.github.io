@@ -54,6 +54,57 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-and-asterisk-13.html#xivo-and-asterisk-13">XiVO and Asterisk 13</a></h2>
+    <p>
+      Posted on Mon 20 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>As some of you may already know, XiVO will soon be powered by <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Documentation">Asterisk
+13</a>
+instead of Asterisk 11. In fact, the development version of XiVO already
+comes with Asterisk 13, so it's just a matter of time before Asterisk 13
+makes its way in the official/production version of XiVO.</p>
+<p>Why switching from Asterisk 11 to Asterisk 13? Well first of all, this
+has to be done sooner or later, since Asterisk 11 will enter a "security
+fix only" period starting in October 2016 and Asterisk 13 is the new LTS
+(Long Term Support) version. But most importantly, Asterisk 13 comes
+with quite a few new features, improvements and bug fixes, and there's
+some plan (both short term and long term) on using these new Asterisk
+feature to build new features or enhance existing ones in XiVO.</p>
+<p>What will the switch to Asterisk 13 brings to XiVO? The first version of
+XiVO powered by Asterisk 13 won't bring a lot of changes for the users
+and administrators; this should be seen mostly as a technical change.
+For the first version of XiVO including Asterisk 13, the goal is to make
+sure everything that worked previously is still working well. Once this
+is done, the following XiVO versions will begin exploiting the new
+features offered by Asterisk 13. For example, Asterisk 13 brings a new
+SIP channel driver named
+<a href="https://wiki.asterisk.org/wiki/display/AST/Configuring+res_pjsip">chan_pjsip</a>,
+but XiVO will continue using the chan_sip SIP channel driver in the
+short term. Another example is
+<a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">ARI</a>,
+which XiVO will not use at first, but will use in future versions, for
+example to bring improvements to the call center feature or remove a few
+limitations with the current switchboard implementation.</p>
+<p>That said, there's a lot of technical changes between Asterisk 11 and
+Asterisk 13, and the passage to Asterisk 13 in XiVO will affect some
+users, especially users which have developed custom applications around
+XiVO or Asterisk. You'll want to review the <a href="http://documentation.xivo.io/en/latest/upgrade/15.13/asterisk_13.html">XiVO upgrade
+notes</a>
+to see if you are impacted or not.</p>
+<p>If you are eager to try out XiVO with Asterisk 13, you can install the
+development version of XiVO on a test machine using the <a href="http://documentation.xivo.io/en/stable/installation/installsystem.html#installing-from-a-minimal-debian-installation">installation
+script
+method</a>
+and executing the script as "bash xivo_install_current.sh -d".</p>
+<p><img alt="Asterisk13.png" src="/public/Asterisk13.png" title="Asterisk13.png, juil. 2015" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1512.html#sprint-review-1512">Sprint Review 15.12</a></h2>
     <p>
       Posted on Fri 03 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -386,100 +437,6 @@ bien sur sdX par votre SdCard.</dd>
 <ul>
 <li>Jof et wanda. Article en CC by sa 4.0</li>
 </ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1511.html#sprint-review-1511">Sprint review 15.11</a></h2>
-    <p>
-      Posted on Fri 12 June 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/authentification.html">authentification</a>,      <a href="http://blog.xivo.io/tag/consul.html">consul</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/telephonie.html">téléphonie</a>,      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>    </p>
-  </header>
-  <div>
-      <p>This sprint we have worked on various subjects regarding REST APIs. REST
-APIs enable a more customizable and flexible management of XiVO server.
-They also enable the development of third-party features. For example,
-you could create a new management interface that would replace the
-current web interface; or you could prepare a mass-update of all the
-users on the server.</p>
-<h3>New in this sprint:</h3>
-<ul>
-<li>The fax xlet indicates whether the fax has been successfully sent
-    or not. This means that when sending a fax, you see a waiting
-    indicator, and after a few seconds, the fax xlet shows a
-    confirmation or an error message.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>The switchboard newly supports Polycom VVX400 and VVX410. The
-    switchboard is now compatible with <a href="http://documentation.xivo.io/en/latest/administration/switchboard/switchboard.html#supported-devices" title="8 phone models">8 phone
-    models</a>
-    from Aastra, Polycom, Snom and Yealink.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Old call records and statistics will be automatically removed
-    (default: older than 1 year). Depending on your country, legislation
-    may restrict the period of personal data storage. Also, accumulating
-    call records and statistics is often useless and
-    degrades performances. You have the possibility of developing
-    scripts to archive call records and statistics before XiVO
-    deletes them.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Documentation for REST APIs are available at <a href="http://api.xivo.io">http://api.xivo.io</a>.
-    The documentation was built with
-    <a href="http://petstore.swagger.io/" title="Swagger">Swagger</a>. Swagger is a web
-    framework specifically aimed at documenting REST APIs. It also
-    allows direct interaction with the APIs via the website.</li>
-</ul>
-<h3>Also in this sprint, but more technical:</h3>
-<ul>
-<li>Asterisk updated from 11.17.0 to 11.17.1</li>
-<li>DAHDI updated from 2.10.0 to 2.10.1</li>
-</ul>
-<h3>Work done in this sprint, but not yet ready:</h3>
-<ul>
-<li>Function keys will be manageable via a REST API. This will allow
-    administrators to manage function keys more easily (creation and
-    update), by applying templates of function keys to a set of users.
-    In a more distant future, this will also allow users to manage their
-    own function keys.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Contacts can be bookmarked and users will be able to list their
-    bookmarked contacts. This also opens the way for personal contacts
-    to be accessible for each user from anywhere.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Users will be able log in their XiVO Clients using
-    LDAP authentication. This will remove the constraint for users to
-    remember one more password. It will also reduce the amount of
-    configuration needed for each user by the administrator.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>REST APIs will be usable from anywhere, but only by
-    authorized people/services. Currently most REST APIs are only usable
-    from the XiVO server and exposing them to the outside is a bad idea.
-    So we are adding an authentication system to these APIs to protect
-    them, so that they can be exposed.</li>
-</ul>
-<p>See you for the next sprint review.</p>
-<p>Source:</p>
-<p><a href="http://projects.xivo.io/versions/227" title="15.11 Roadmap">15.11 Roadmap</a></p>
 </p>
   </div>
 </article>

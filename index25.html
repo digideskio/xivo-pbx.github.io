@@ -54,6 +54,252 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-farm-dedicated-to-development.html#xivo-farm-dedicated-to-development">XiVO farm dedicated to development</a></h2>
+    <p>
+      Posted on Mon 25 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>XiVO submission with git version</h4>
+<p>The
+<a href="http://packaging-farm.dachary.org/trac/browser/submit/submit-xivo.sh?rev=934db22f985be6f102a327222a54c833380f3b13">submit-xivo.sh</a>
+script uses whatever GIT version it finds to be the default. The
+behavior was
+<a href="http://packaging-farm.dachary.org/trac/changeset/866f47eb8cd8b43f6956fe0d326d9e77cc212a9b/">changed</a>
+to allow an optional specification of the GIT revision, as documented in
+the <strong>submit-xivo.sh(1)</strong> manual page.</p>
+<div class="highlight"><pre>GIT_REVISION=master
+              The gitrevision(7) from which both source and debian git will be
+              checked out. If the value of this  variable  is  different  from
+              what  it was the last time packaging-farm(1) was run, the depen-
+              dency graph is cleared and all packages will be rebuild  regard-
+              less.
+</pre></div>
+
+
+<p>The version <a href="http://packaging-farm.dachary.org/download/">2.0.7</a> has
+been published with this modification.</p>
+<h4>separated repository versus dedicated farm</h4>
+<p>The pro and cons of were discussed with Nicolas Hicher on IRC.It was
+decided that creating a dedicated farm virtual machine was the best
+option.</p>
+<h3>separated repositories</h3>
+<p>A packaging-farm meta package would be created under the name
+gallifrey-dev with a configuration <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">similar to
+gallifrey</a>.
+The developer would use <strong>packaging-farm gallifrey-dev</strong> and the
+packager would use <strong>packaging-farm gallifrey</strong></p>
+<h3>pro</h3>
+<ul>
+<li>some packages that are not active are shared and do not need to be
+    rebuilt twice</li>
+<li>less hardware resources used (spare 1GB RAM and 30GB disk)</li>
+<li>no need to maintain two machines / operating systems</li>
+</ul>
+<h3>cons</h3>
+<ul>
+<li>if a developer works on a package (say asterisk), the package would
+    be rebuild three times if the following sequence of commands occur :
+    packaging-farm gallifrey-dev ; packaging-farm gallifrey ;
+    packaging-farm gallifrey-dev</li>
+<li>the implementation of the package submission that allows to chose
+    which GIT branch the packages are extracted from in the
+    packaging-farm needs to be fine grained to avoid submitting a
+    package just because the chosen branch changes</li>
+<li>if the production repository is being prepared, the added delay
+    involved when a developer and the release manager alternatively
+    update the repository may be an annoying drawback</li>
+<li>a given package is going to be build a number of times with the
+    exact same version. This will create checksum errors in the
+    mirroring of the repositories. It would require a modification of
+    the submission script to always increment the debian version number.</li>
+</ul>
+<h3>dedicated farm</h3>
+<p>A duplicate of the gallifrey VM is created. The release manager uses a
+machine when stabilizing a XiVO version and always builds from a given
+GIT version. The developers use another machine which is always built
+from the master branch.</p>
+<h3>pro</h3>
+<ul>
+<li>the implementation of the package submission that allows to chose
+    which GIT branch the packages are extracted from in the
+    packaging-farm can resubmit everything when the GIT version changes
+    because this is a rare event. It is a simpler implementation.</li>
+<li>there is no overhead because of duplicate builds and therefore no
+    checksum errors when mirroring the repository</li>
+</ul>
+<h3>cons</h3>
+<ul>
+<li>more hardware resources required (1GB RAM + 30GB disk)</li>
+<li>more machines to maintain : /etc/packaging-farm/packaging-farm.conf
+    and /var/cache/packaging-farm/build/gallifrey/Makefile must be
+    manually updated to be kept in sync</li>
+<li>more machine names to remember for the release manager. The
+    developers still only know one machine and need not be aware of the
+    machine dedicated to the building of the release.</li>
+</ul>
+<h4>cloning the gallifrey VM</h4>
+<ul>
+<li>create a snapshot of the LVM volume containing the gallifrey VM disk</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvcreate --snapshot --size 1G --name tmp /dev/all/f3e8d23f-21c0-417d-9b5e-91bb4da9b926.disk0
+</pre></div>
+
+
+<ul>
+<li>create a LVM volume of the same size as the gallifrey VM disk</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvcreate --size 30G --name dev all
+</pre></div>
+
+
+<ul>
+<li>copy the snapshot to the new disk with low priority I/O</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>ionice -c3 dd if=/dev/all/tmp of=/dev/all/dev bs=1024k
+</pre></div>
+
+
+<ul>
+<li>remove the snapshot</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>lvremove /dev/all/tmp
+</pre></div>
+
+
+<ul>
+<li>assign an IP to the gallifrey-dev future VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>root@host01:~# grep y-dev /etc/bind/db.farm
+gallifrey-dev.xivo.vm   IN  A   10.10.60.6
+</pre></div>
+
+
+<ul>
+<li>create a random MAC for the gallifrey-dev future VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
+</pre></div>
+
+
+<ul>
+<li>add a DHCP entry binding the MAC to the IP in
+    <strong>/etc/dhcp/dhcpd.conf</strong></li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">host</span> <span class="nt">gallifrey-dev</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
+        <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="m">86</span><span class="o">:</span><span class="n">b3</span><span class="o">:</span><span class="m">3</span><span class="n">f</span><span class="o">:</span><span class="m">10</span><span class="p">;</span>
+        <span class="k">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+        <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>reload bind and dhcp</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>/etc/init.d/bind9 reload
+/etc/init.d/isc-dhcp-server restart
+</pre></div>
+
+
+<ul>
+<li>create the gallifrey-dev VM by adopting the dev LVM volume</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>gnt-instance add -n host01.farm -B memory=4G -o debootstrap+default -t plain --disk 0:adopt=dev --no-install --net 0:mac=52:54:86:b3:3f:10 gallifrey-dev.xivo.vm.farm
+</pre></div>
+
+
+<ul>
+<li>bind the SSH port of the new VM to 22006</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="x">in /etc/shorewall/rules</span>
+<span class="x">DNAT           net             loc:</span><span class="p">$</span><span class="nv">VM_GALLIFREY_DEV_XIVO</span><span class="x">:22 tcp     22006           -       </span><span class="p">$</span><span class="nv">IP_FAILOVER</span><span class="x"></span>
+<span class="x">in /etc/shorewall/params</span>
+<span class="x">VM_GALLIFREY_DEV_XIVO=10.10.60.6</span>
+</pre></div>
+
+
+<ul>
+<li>reload shorewall</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>shorewall restart ; sleep 30 &amp;&amp; shorewall clear
+</pre></div>
+
+
+<ul>
+<li>start the gallifrey-dev VM</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>gnt-instance start gallifrey-dev.xivo.vm.farm
+</pre></div>
+
+
+<ul>
+<li>balloon down the gallifrey-dev VM memory to 1G</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>echo balloon 1024 | socat - unix:/var/run/ganeti/kvm-hypervisor/ctrl/gallifrey-dev.xivo.vm.farm.monitor
+</pre></div>
+
+
+<ul>
+<li>add nginx reverse proxy in
+    /etc/nginx/sites-available/gallifrey-dev.dachary.org</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span>   <span class="n">http</span><span class="o">://</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<ul>
+<li>reload nginx</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>/etc/init.d/nginx reload
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/coming-back-from-rmll2011.html#coming-back-from-rmll2011">Coming back from RMLL2011</a></h2>
     <p>
       Posted on Tue 19 July 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -447,114 +693,6 @@ can be used to implement the use case described above:</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html#a-gallifrey-repository-for-1116">A gallifrey repository for 1.1.16</a></h2>
-    <p>
-      Posted on Mon 13 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>upgrading packaging-farm</h4>
-<p>After the upgrade of packaging-farm to version 1.2.42, the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">gallifrey
-Makefile</a>
-was updated to add a <em>update</em> target that updates the git repositories
-and schedules for build the packages that have been changed since the
-last build.</p>
-<div class="highlight"><pre><span class="x">update:</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        for dir in chan_sccp asterisk dahdi-linux dahdi-tools asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        </span><span class="err">#</span><span class="x"> When symbolic links needs to be resolved before building the source package</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
-<span class="x">        </span><span class="err">#</span><span class="x"> </span>
-<span class="x">        </span><span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not in the GIT repositories</span>
-<span class="x">        </span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
-<span class="x">        </span><span class="err">#</span><span class="x"> virtual packages : pf-xivo pf-xivo-backup</span>
-<span class="x">        </span><span class="cp">#</span><span class="nf">cd</span><span class="x"> /var/cache/packaging-farm/sources ; for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp pf-xivo pf-xivo-backup  ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done ; packaging-farm generate</span>
-</pre></div>
-
-
-<p>Updating the repository can be done with</p>
-<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
-</pre></div>
-
-
-<h4>building gallifrey 1.1.16</h4>
-<p>It failed to build <em>asterisk-chan-sccp</em></p>
-<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
-</pre></div>
-
-
-<p>after building successfully the following</p>
-<div class="highlight"><pre><span class="mi">1115</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span> <span class="n">all</span>
-   <span class="mi">3867</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">cti</span><span class="o">-</span><span class="n">server</span> <span class="n">all</span>
-   <span class="mi">6655</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">utils</span> <span class="n">all</span>
-   <span class="mi">9311</span><span class="o">:</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="kd">interface</span> <span class="n">all</span>
-</pre></div>
-
-
-<p>The log of the error is:</p>
-<div class="highlight"><pre>Applying patch fix_hidden_callplane_on_transfer
-patching file src/sccp_channel.c
-Hunk #1 FAILED at 1556.
-1 out of 1 hunk FAILED -- rejects in file src/sccp_channel.c
-patching file src/sccp_indicate.c
-Hunk #1 FAILED at 146.
-1 out of 1 hunk FAILED -- rejects in file src/sccp_indicate.c
-Patch fix_hidden_callplane_on_transfer does not apply (enforce with -f)
-make[3]: *** [debian/stamp-patched] Error 1
-make[3]: Leaving directory `/usr/src/asterisk-chan-sccp-0~prerelease+svn2187+pf.xivo.1.1.16~20110\
-608.195041.34405d1&#39;
-dpkg-buildpackage: failure: debian/rules build gave error exit status 2
-</pre></div>
-
-
-<p>and a bug report was filled by Nicolas Hicher so that the developers are
-aware of the issue.As an interim solution, he removed the faulty patch
-from the git repository and the submission was run again:</p>
-<div class="highlight"><pre>packaging-farm --cd gallifrey PACKAGE= update ; packaging-farm gallifrey
-</pre></div>
-
-
-<p>and resumed where it left. The ntp package was installed to ensure the
-date on the VM is correct. It was 13 minutes ahead in the future and it
-created some confusion when synchronizing with the external repositories
-was required and did not produce the intended effects.Since each package
-name contains the XiVO version, if it changes ( in
-<em>/var/cache/packaging-farm/VCS/sources/xivo-gallifrey/VERSION</em> ) all
-packages must be rebuilt, regardless of the fact that their content
-changed. The <a href="http://hg.packaging-farm.dachary.org/rev/97cac490cb5d">packaging-farm
-2.0.0</a> version
-contains a patch that implements this behavior.</p>
-<h4>packaging-farm 2.0.0</h4>
-<p>This version marks the completion of the groundwork that was necessary
-to ensure that the software provides the minimal set of functionalities
-required to build the XiVO repositories. All the files were reviewed as
-well as the packaging instructions.</p>
-<p>The HTML / PHP reporting was removed and packaging-farm is now command
-line oriented only and has no web interface. A web interface could be
-added in the form of a webservice supported by a javascript based
-client. But it would not be an evolution of the interface that was
-removed.</p>
-<p>The license was upgraded from GPLv2+ (i.e. GPLv2 that can be upgraded to
-any later version at the user option) to AGPLv3+ (web service oriented
-license that ensure the propagation of the modifications when the
-service is deployed).</p>
-<p>The package was converted to
-<a href="http://en.wikipedia.org/wiki/Debhelper#Overview">dh7</a> and
-<a href="http://wiki.debian.org/Projects/DebSrc3.0">DebSrc3.0</a>. All lintian
-warnings were fixed. An <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=630358">Intent To
-Package</a> was
-sent to schedule the inclusion in Debian GNU/Linux.</p>
 </p>
   </div>
 </article>

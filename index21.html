@@ -54,6 +54,23 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-is-everywhere-part-4.html#xivo-is-everywhere-part-4">Xivo is everywhere part 4</a></h2>
+    <p>
+      Posted on Tue 06 December 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>Hello all,</p>
+<p>Some nice pictures of XiVO is everywhere :)</p>
+<p><img alt="100_1263.jpg" src="/public/.100_1263_m.jpg" title="100_1263.jpg, déc. 2011" /></p>
+<p><img alt="IMAG1010.jpg" src="/public/.IMAG1010_m.jpg" title="IMAG1010.jpg, déc. 2011" /></p>
+<p><img alt="20111206_113008.jpg" src="/public/.20111206_113008_m.jpg" title="20111206_113008.jpg, déc. 2011" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-12-and-asterisk-dialplan.html#xivo-12-and-asterisk-dialplan">XiVO 1.2 and Asterisk Dialplan</a></h2>
     <p>
       Posted on Tue 06 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -220,103 +237,6 @@ to find needed information quickly.</p>
 <p>We are currently working to improve XiVO documentation. We would like to
 reorganize it, and why not using another tool. Do not hesitate to share
 your ideas by posting a comment.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">XiVO GIT repository re-organisation</a></h2>
-    <p>
-      Posted on Mon 17 October 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>GIT_DIRECTORY specify the repository to use</h4>
-<div class="highlight"><pre>GIT_DIRECTORY=xivo-<span class="cp">${</span><span class="n">XIVO</span><span class="cp">}</span>
-              The subdirectory relative to SOURCE_GIT in which the  repository
-              is to be found.  The actual clone is composed as follows:
-
-              git clone <span class="cp">${</span><span class="n">SOURCE_GIT</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">GIT_DIRECTORY</span><span class="cp">}</span>.git
-
-              as of October 2011, there is a single repository named after the
-              XIVO variable, hence the default  xivo-<span class="cp">${</span><span class="n">XIVO</span><span class="cp">}</span>  value.  It  will
-              progressively be replaced by individual repositories that can be
-              used as follows:
-
-              packaging-farm DIRECTORY=pf-xivo-confgen GIT_DIRECTORY=xivo-confgen submit
-
-              so that it uses:
-
-              http://git.proformatique.com/?p=official/xivo-confgen.git
-
-              instead of
-
-              http://git.proformatique.com/?p=official/xivo-skaro.git
-</pre></div>
-
-
-<p><a href="http://packaging-farm.dachary.org/trac/changeset/d36f2baef2c601660d3efdef5c3734facef884ff">GIT_DIRECTORY</a>
-specify the repository to use in submit-xivo.sh. Although it is only
-applied to the source git directory, the name of the variable does not
-contain the word SOURCE. This is in anticipation to the fact that the
-debian and source repositories will eventually be merged. Even if this
-does not happen, the structure of both repositories is planned to be the
-same in the transition phase and the need to distinguish a directory
-name that would be different is unlikely.</p>
-<h4>fail to detect package build failure</h4>
-<p>asterisk-addons <a href="http://packaging-farm.dachary.org/trac/ticket/27">failed to build but packaging-farm thinks it
-succeeded</a>. As a
-consequence the meta package that depends on it fails and it is not
-obvious to track the error back to asterisk-addons. Here is the output
-of the build of asterisk-addons:</p>
-<div class="highlight"><pre>...
-/usr/share/cdbs/1/rules/buildcore.mk:72: parsing asterisk-addons_1.4.13.orig.tar.gz ...
-grep: debian/control.in: No such file or directory
-egrep: debian/control.in: No such file or directory
-/bin/sh: line 0: cd: build-tree/asterisk-addons-1.4.13: No such file or directory
-/bin/sh: line 1: debian/control.in: No such file or directory
-        rm -f debian/files
-        find .  \( \( -type f -a \
-                \( -name &#39;#*#&#39; -o -name &#39;.*~&#39; -o -name &#39;*~&#39; -o -name DEADJOE \
-                 -o -name &#39;*.orig&#39; -o -name &#39;*.rej&#39; -o -name &#39;*.bak&#39; \
-                 -o -name &#39;.*.orig&#39; -o -name .*.rej -o -name &#39;.SUMS&#39; \
-                 -o -name TAGS -o \( -path &#39;*/.deps/*&#39; -a -name &#39;*.P&#39; \) \
-                \) -exec rm -f {} \; \) -o \
-                \( -type d -a -name autom4te.cache -prune -exec rm -rf {} \; \) \)
-/usr/share/cdbs/1/rules/buildcore.mk:72: parsing asterisk-addons_1.4.13.orig.tar.gz ...
-grep: debian/control.in: No such file or directory
-egrep: debian/control.in: No such file or directory
-/bin/sh: line 0: cd: build-tree/asterisk-addons-1.4.13: No such file or directory
-make: *** build-tree/asterisk-addons-1.4.13: No such file or directory.  Stop.
- debian/rules build
-/usr/share/cdbs/1/rules/buildcore.mk:72: parsing asterisk-addons_1.4.13.orig.tar.gz ...
-grep: debian/control.in: No such file or directory
-egrep: debian/control.in: No such file or directory
-/bin/sh: line 0: cd: build-tree/asterisk-addons-1.4.13: No such file or directory
- debian/rules binary
-/usr/share/cdbs/1/rules/buildcore.mk:72: parsing asterisk-addons_1.4.13.orig.tar.gz ...
-grep: debian/control.in: No such file or directory
-egrep: debian/control.in: No such file or directory
-/bin/sh: line 0: cd: build-tree/asterisk-addons-1.4.13: No such file or directory
- dpkg-genchanges -b &gt;../asterisk-addons_1.4.13+pf.xivo.1.1.18-1_i386.changes
-dpkg-genchanges: failure: cannot read files list file: No such file or directory
-dpkg-buildpackage: failure: dpkg-genchanges gave error exit status 2
-BUILD END packaging-farm --cd asterisk-addons ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
-</pre></div>
-
-
-<p>When reading the error, it is obvious that the removal of control.in is
-the source of the error.The success of a debian package build is tested
-by looking for the dpkg-genchanges -b string in the output. This is the
-last step of packaging and there cannot be any error after this. Errors
-that occur before running dpkg-genchange will end the script immediately
-and the string will not be found. However the script looking for
-dpkg-genchange did not test for a failed run of dpkg-genchange. It is a
-rare condition.The status.sh script <a href="http://packaging-farm.dachary.org/trac/changeset/d3bbab7c88148a9f5670e0f8c598174d392f8ed2">now checks if the run of
-dpkg-genchange is
-successful</a>.</p>
 </p>
   </div>
 </article>

@@ -54,6 +54,83 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/kicad-walkthrough-part-2.html#kicad-walkthrough-part-2">KiCad walkthrough - Part 2</a></h2>
+    <p>
+      Posted on Tue 21 September 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>The schematic represents a logical point of view of an electronic
+circuit. Before we can design a
+<a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a>
+layout matching this circuit, we must specify how each schematic
+component will be physically implemented. For example, a 20 pin chip can
+come in
+<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
+or
+<a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package">DIP</a>,
+and the board won't look exactly the same in each case (the traces won't
+end at the same places).</p>
+<p><img alt="DIL20 to 50 mils spaced
+traces" src="/public/dil20.png" title="DIL20 to 50 mils spaced traces, sept. 2010" />
+<img alt="SSOP20 to 50 mils spaced
+traces" src="/public/ssop20.png" title="SSOP20 to 50 mils spaced traces, sept. 2010" /></p>
+<p>The two images above represent 20 traces (50 mils spaced) ending on a
+DIL20 package (left) and on a SSOP20 package (right).</p>
+<p><img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /> In
+<a href="http://www.kicad-eda.org/">KiCad</a>, this assignment between schematic
+components and module footprint is done with the program named CVpcb.</p>
+<p>Before CVpcb can be used, a
+<a href="http://en.wikipedia.org/wiki/Netlist">netlist</a> must be generated. A
+netlist is an abstract representation of the electronic circuit, which
+focus on describing which pins of the various components are
+interconnected (in a set that is called a net), disregarding the details
+of how they are connected in the schematic drawing. The schematic
+drawing is an abstract representation, and for example the length and
+the shape of a connection it includes is irrelevant to how this
+connection will eventually be physically implemented on the PCB. So the
+netlist is simply the list of all the components plus a list of nets,
+each one containing a list of interconnected pins of various components.</p>
+<p>The netlist and which footprint to use for each component will later be
+the input of the PCB design done with PCBnew. To automatically generate
+the netlist with EESchema, click on the generate netlist button
+<img alt="Generate netlist
+button" src="/public/generate_netlist_button.png" title="Generate netlist button, sept. 2010" />
+in the top toolbar: a "Netlist" window appears, in which you just have
+to click on the button "Netlist" in the tab Pcbnew while the "Default
+format" option is selected. You are then presented with a "Save Netlist
+Files" dialog, in which you just have to confirm the filename -- it
+should already be correctly selected as &lt;project_name&gt;.net in the
+project directory.</p>
+<p>Now that the netlist is generated, we can use CVpcb. Launch it for
+example by clicking on its icon <img alt="Run CVpcb
+button" src="/public/run_cvpcb_button.png" title="Run CVpcb button, sept. 2010" />
+also in the top toolbar of EESchema.When no affectation has been done
+before for the current project, CVpcb immediatly warns that a
+&lt;project_name&gt;.cmp file does not exist -- this is not a problem,
+it will be created by CVpcb when you save.</p>
+<p>Now for each schematic component you can assign a PCB footprint. Select
+the component on the left then double click on the footprint you want to
+use for it on the right. You can press the first letter of what you are
+looking for when one of the two lists is activated.</p>
+<p>When you save in CVpcb, it shows a "Save Net and Component List" dialog
+defaulting to the same &lt;project_name&gt;.net file that we created
+during netlist generation. This is OK, just overwrite the former: CVpcb
+will maintain the same netlist in the saved file, but the file will now
+also include schematic components to module footprints affectations. A
+&lt;project_name&gt;.cmp file is also created behind the scene, which
+contains just the affectations using a different file format.</p>
+<p>For our clock buffer, the affectation in CVpcb looks like the following
+screen-shoot.</p>
+<p><img alt="Clock buffer CVpcb footprint assignment
+screenshoot" src="/public/cvpcb_sshoot.png" title="Clock buffer CVpcb footprint assignment screenshoot, sept. 2010" /></p>
+<p>The corresponding .net and .cmp files are attached to this post.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/arrondir-les-coins.html#arrondir-les-coins">Arrondir les coins</a></h2>
     <p>
       Posted on Thu 16 September 2010 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -180,116 +257,6 @@ http://www.openhardwaresummit.org/schedule/
 
 </div>
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/kicad-walkthrough-part-1.html#kicad-walkthrough-part-1">KiCad walkthrough - Part 1</a></h2>
-    <p>
-      Posted on Mon 23 August 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>For our prototyping/validation tests, we need a particular clock buffer.
-Unfortunately, it only comes in
-<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
-or similar packages and we need to plug it to our
-<a href="http://en.wikipedia.org/wiki/Breadboard">breadboard</a>.</p>
-<p>While we could have used a generic off-the-shelf
-<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
-to
-<a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package">DIP</a>
-<a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a>,
-we preferred, armed with KiCad, to design a specific one that will
-perfectly fit on our breadboard between our existing connectors,
-minimizing the amount of additional wiring on those sensitive clock
-signals. Also, the small PCB will act as a module by integrating
-terminations, power, and activation tracks without needing to reserve
-horizontal breadboard line for that. As a result it will be easily
-replaceable (or entirely skippable) in virtually no time.</p>
-<p>The <a href="http://www.kicad-eda.org/">KiCad suite</a> is splitted in several
-programs. "kicad" the executable is a small project manager that permits
-to easily launch other programs to edit the right files.</p>
-<p><img alt="KiCad project
-manager" src="/public/kicad_project_manager.png" title="KiCad project manager, août 2010" /></p>
-<ul>
-<li><img alt="EESchema icon" src="/public/eeschema.png" title="EESchema icon, août 2010" />
-    EESchema is the
-    <a href="http://en.wikipedia.org/wiki/Circuit_diagram">schematic</a> editor.</li>
-<li><img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /> CVpcb
-    allows to assign module footprint (physical package) to
-    schematic components.</li>
-<li><img alt="PCBnew icon" src="/public/pcbnew.png" title="PCBnew icon, août 2010" /> PCBnew
-    is the
-    <a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a> editor.</li>
-<li><img alt="GerbView icon" src="/public/gerbview.png" title="GerbView icon, août 2010" />
-    GerbView is a
-    <a href="http://en.wikipedia.org/wiki/Gerber_File">Gerber</a> viewer.</li>
-</ul>
-<p>A typical workflow is to use them right in this order. You can also go
-back to previous steps to correct things; the changes can be correctly
-propagated to the next programs.</p>
-<p>To start a project from scratch, launch kicad, press Ctrl-N and name
-your project (and select the directory where it will live). Now launch
-EESchema by clicking on its icon. The most important tools to draw a
-schematic are in the bar on your right and in the Place menu. Among
-them, you'll need most:</p>
-<ul>
-<li><img alt="Place a component
-    icon" src="/public/place_a_component.png" title="Place a component icon, août 2010" />
-    Place a component</li>
-<li><img alt="Place a wire
-    icon" src="/public/place_a_wire.png" title="Place a wire icon, août 2010" /> Place
-    a wire</li>
-<li><img alt="Place no connect flag
-    icon" src="/public/place_no_connect_flag.png" title="Place no connect flag icon, août 2010" />
-    Place no connect flag</li>
-<li><img alt="Place net name
-    icon" src="/public/place_net_name.png" title="Place net name icon, août 2010" />
-    Place net name</li>
-</ul>
-<p>EESchema takes very little time to get used to. Don't hesitate to
-experiment and try a lot of features of this software. To speed you up,
-here are a few hints:</p>
-<ul>
-<li>Components are better selected, when you don't know their symbolic
-    name, by using the library browser during insertion: click anywhere
-    in the sheet while using the "Place a component" tool, then click on
-    the "Select by browser" button, find the component that you want and
-    finally click on the <img alt="Insert component in schematic
-    icon" src="/public/insert_component_in_schematic.png" title="Insert component in schematic icon, août 2010" />
-    "Insert component in schematic" button at top-right.</li>
-<li>EESchema UI for edition is mostly based on a contextual menu
-    accessible by right clicking;</li>
-<li>to end a wire "in the air" (for later connection); right click at
-    the wanted position when drawing one and select "Wire end";</li>
-<li>to drag a wire, right click on it and select "Drag wire";</li>
-<li>to drag a zone, left click-and-drag to select the zone, then right
-    click and select "Drag zone";</li>
-<li>dragging don't disconnect/change existing connections, while
-    moving/orienting will disconnect/reconnect things (depending on
-    where the module connectors end up);</li>
-<li>junctions are added automatically if you start/end a wire in the
-    middle of another;</li>
-<li>you can edit the title block in the <img alt="Page settings
-    icon" src="/public/page_settings.png" title="Page settings icon, août 2010" />
-    Page settings;</li>
-<li>learn shortcut keys and use them to be faster;</li>
-<li>note that KiCad file formats are plain text based, which is
-    extremely cool because you can write external scripts to automatize
-    certain tasks (moving a lot of references by a given vector comes
-    to mind).</li>
-</ul>
-<p>The schematic of our module looks like the following screenshoot.</p>
-<p><img alt="Clock buffer EESchema schematic
-screenshoot" src="/public/eeschema_sshoot.png" title="Clock buffer EESchema schematic screenshoot, août 2010" /></p>
-<p>Here is the corresponding KiCad schematic file:
-<a href="/public/pcb_h100_clk_fs_49fct3805a.sch">pcb_h100_clk_fs_49fct3805a.sch</a></p>
-<p>The <a href="index.php?post/2010/09/21/KiCad-walkthrough-Part-2">next article</a>
-will be about schematic component to module footprint assignment.
-(CVpcb)</p>
 </p>
   </div>
 </article>

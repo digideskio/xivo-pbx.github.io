@@ -54,6 +54,38 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/astricon-2012.html#astricon-2012">Astricon 2012</a></h2>
+    <p>
+      Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="/public/Astricon2012/astricon.JPG" title="astricon.JPG"><img alt="astricon.JPG" src="/public/Astricon2012/.astricon_m.jpg" title="astricon.JPG, nov. 2012" /></a></p>
+<p>For a second year, Avencall was present on the biggest Asterisk
+conference in the world: Astricon.This year, the conference was held in
+Georgia, Atlanta.</p>
+<p>Like every year, the Monday is the AstriDevCon, a small conference for
+developers by the developers to discuss the future and how to improve
+Asterisk. It's a very nice place to get to know the other people that
+are coding inside Asterisk and also to coordinate with others about what
+has to be done.</p>
+<p>You can find a nice resume of the whole day of discussion here:
+<a href="https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012">https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012</a></p>
+<p>As you can see, this year we also had a booth (#28). It was a great
+experience to expose ourself at Astricon because there is a huge flow of
+people interested and interesting. It was a lot of fun to talk about the
+XiVO project and the XiVO Open Hardware. All the gizmos we had on our
+table really attracted may people, especially the raspberry pi that was
+running XiVO.</p>
+<p><a href="/public/Astricon2012/conf-xav.jpg" title="conf-xav.jpg"><img alt="conf-xav.jpg" src="/public/Astricon2012/.conf-xav_s.jpg" title="conf-xav.jpg, nov. 2012" /></a></p>
+<p>To communicate further about us, we also gave a conference to present
+Avencall and the XiVO telephony system.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/a-conference-with-uncle-bob.html#a-conference-with-uncle-bob">A conference with Uncle Bob</a></h2>
     <p>
       Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
@@ -544,69 +576,6 @@ for the fast byte based implementation: CRC = table[CRC \^ byte]
 implementation should run in something like 9 cycles per byte when
 dropped in the right place. (xor CRC, Rm /* 3 cycles */; mov
 table[Rm], CRC; /* 6 cycles */)</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/an-engineering-story.html#an-engineering-story">An engineering story</a></h2>
-    <p>
-      Posted on Sat 29 September 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>To be able to track interesting quality metrics of our upcoming XiVO
-Office product (XiVO IPBX Open Hardware project), we have decided to add
-temperature sensors to our current XIOH pcb.</p>
-<p>In computers, the typical way to report the temperature to the main
-operating system is through SMBus. This is suitable in our case: we
-already have an MSP430 microcontroller that handles the power sequence
-and is connected to the SMBus of the board. We will connect some diodes
-to the MSP430 to measure the temperature. So the time has come to make
-use of the SMBus between the MSP and the EP80579 (our main System On
-Chip), for temperature measurements and also other purposes.</p>
-<p>The MSP430 does not have a full featured SMBus controller, only a
-generic I2C one. SMBus is a variant of I2C, with additional electrical
-and timing constraints in the physical layer and definition of the
-messages at the network layer level.</p>
-<p>Although formatting and parsing SMBus messages is easy, properly using
-the I2C controller of the MSP430 in a multi-master environment is not
-without pitfalls, even if we did not care about the SMBus timing
-constraints. To do it with the needed reliability, it is necessary to
-have a detailed knowledge of the whole system and to take into
-consideration all kind of interactions on the bus and in the chips. In
-our business, the reliability wanted by the customers is typically high
-enough that it makes sense to build robust systems instead of rushing a
-collapsing sandcastle to market. Plus, in that particular case, we are
-dealing with the subsystem that brings and keeps the whole board
-running, and for which the cost to debug in the field is absurdly high.</p>
-<p>All complex chips come with various design errors, and the MSP430 is no
-exception. On the exact version that we use, there are 6 documented
-errors affecting the I2C controller, of which 4 clearly apply to our
-board, 1 clearly does not apply, and one required careful system
-analysis to determine that the preconditions to this erroneous behavior
-could not happen in our system.</p>
-<p>On top of the 4 errata applying to the I2C controller, we have to deal
-with errata for other parts of the MSP430, plus some detailled aspects
-that are not errata but are also limiting the way we can make a reliable
-use of the chip for the tasks we want.Failure to properly take all those
-details into consideration would lead to eventual faults of various
-natures, probably including MSP430 crashes impossible to diagnose and
-leading to spurious shutdowns, systems stuck in the powered state, or
-any random behavior and degradation of system functions.</p>
-<p>The impact could be full-scale, with potential consequences on:
-availability, maintainability, safety, security, and reliability!</p>
-<p>It is worthwhile to note that one of the errata that could have the
-biggest consequences can only be handled by using one specific software
-architecture to drive the I2C controller, and that specific software
-architecture is not the first thing that comes to mind in our
-preexisting firmware. This is a case where iteration on the design of
-the I2C code would have meant its complete rewrite.</p>
-<p>Complex systems, even moderately so, need a careful design, especially
-on components that are critical for business or technical reasons.
-Wishful thinking never produces high reliability and neither does
-excessive reliance on luck. Modeling, even informally, sometimes pays.</p>
 </p>
   </div>
 </article>

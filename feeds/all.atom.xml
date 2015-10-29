@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/all.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-10-16T12:00:00-04:00</updated><entry><title>Sprint Review 15.17</title><link href="http://blog.xivo.io/sprint-review-1517.html" rel="alternate"></link><updated>2015-10-16T12:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-10-16:sprint-review-1517.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/all.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-10-16T12:00:00-04:00</updated><entry><title>Automatically Disconnect an Agent if his SIP Account is Inactive</title><link href="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html" rel="alternate"></link><updated>2015-10-16T12:00:00-04:00</updated><author><name>Nicolas Vdb</name></author><id>tag:blog.xivo.io,2015-10-16:automatically-disconnect-an-agent-if-inactive.html</id><summary type="html">&lt;p&gt;Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
+a Master in Computer Engineering and my work in a call center. I could not find any information in
+the XiVO CTI when a phone was disconnected, so I worked on a solution for generating this
+information. This allows agents to know their phone's status.&lt;/p&gt;
+&lt;p&gt;Let us imagine the following scenario: An agent in a call center is connected with is softphone 'N.
+SIP XXX'. He logs in via his XiVO Client in order to receive calls from his assigned queues. One of
+the following 3 events occurs :&lt;/p&gt;
+&lt;p&gt;A – The softphone is disconnected from asterisk .
+B – The agent finishes his day, turns off his softphone but forgets to disconnect his XiVO Client
+C – The agent is at home, the VPN tunnel stops&lt;/p&gt;
+&lt;p&gt;In these 3 examples, the agent cannot know if he can still recieve calls because he does not recieve
+any alerts from his XiVO client or from the phone.&lt;/p&gt;
+&lt;h1&gt;I. Standard operation&lt;/h1&gt;
+&lt;h2&gt;Agent's point of view&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="photo 1" src="{filename}/public/agent_disconnect/photo1.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Point of view on the XiVO Server&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="photo 2" src="{filename}/public/agent_disconnect/photo2.png" /&gt;&lt;/p&gt;
+&lt;h1&gt;II. Anomaly&lt;/h1&gt;
+&lt;h2&gt;Agent's point of view&lt;/h2&gt;
+&lt;p&gt;Let us simulate the anomaly. For this simulation, the softphone has been forcefully disconnected.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="photo 3" src="{filename}/public/agent_disconnect/photo3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We can see that our agent is still logged in and no other information about the disconnection is
+displayed&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Agent's point of view&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="photo 4" src="{filename}/public/agent_disconnect/photo4.png" /&gt;&lt;/p&gt;
+&lt;p&gt;We can see that the state of extension 741 is &lt;code&gt;UNKNOWN&lt;/code&gt;, but agent 6002 (extension 728) is still
+connected.&lt;/p&gt;
+&lt;h1&gt;III. Execution of the script&lt;/h1&gt;
+&lt;p&gt;The script will find out that the SIP account is disconnected and will automatically log out the
+agent associated to the extension.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="photo 5" src="{filename}/public/agent_disconnect/photo5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Accordingly, the agent now knows that he is logged out:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="photo 6" src="{filename}/public/agent_disconnect/photo6.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This script has been deployed in production and has been working successfully since Oct 1st 2015.
+You can download this script on &lt;a href="https://github.com/h4wk3r/XIVO-Agentoff_if_sipoff"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
+on IRC on irc.freenode.net channel #xivo.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson&lt;/em&gt;&lt;/p&gt;</summary><category term="call center"></category></entry><entry><title>Sprint Review 15.17</title><link href="http://blog.xivo.io/sprint-review-1517.html" rel="alternate"></link><updated>2015-10-16T12:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-10-16:sprint-review-1517.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for managing SIP accounts has been added. The API can be used for creating
 SIP accounts and associating them with users on a XiVO server. This API also offers third parties,

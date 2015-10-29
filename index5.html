@@ -54,6 +54,53 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1507.html#sprint-review-1507">Sprint Review 15.07</a></h2>
+    <p>
+      Posted on Fri 10 April 2015 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>Here are a few links explaining what we are going to ship in XiVO 15.07:</p>
+<ul>
+<li><a href="https://projects.xivo.io/versions/224" title="https://projects.xivo.io/versions/224">Roadmap</a></li>
+</ul>
+<p>XiVO 15.07 brings new visual and functional features and fixes a few
+bugs among which:</p>
+<ul>
+<li>The xlet services and fax has been redesigned</li>
+<li>The xlet people shows the mobile phone number</li>
+<li>Agent status in xlet people is always displayed</li>
+<li>(bug) background input in fax xlet on mac has been adjusted</li>
+<li>(bug) removed an error displayed in XiVO Client
+    (QPixmap::scaleHeight: Pixmap is a null pixmap)</li>
+<li>(bug) new fonts were not displayed if not installed locally on
+    client's system</li>
+<li>Old XiVO styles were removed</li>
+<li>Xlet conference code was refactored (in preparation of
+    upcoming redesign)</li>
+</ul>
+<p>This version also fixes 9 other bugs :</p>
+<ul>
+<li>4 bugs related to associating and de-associating lines (or
+    multiple lines) to a device</li>
+<li>2 bugs related to provisioning, setting admin/user password on
+    Polycom phones and resetting a device to autoprov when already in
+    autoprov</li>
+<li>2 bugs related to xivo-upgrade, queue periodic-announce is not lost
+    anymore when upgrading and an upgrade error when upgrading from
+    13.25</li>
+<li>it is now possible to dial a conference room begining with 0 from
+    the xivo client</li>
+</ul>
+<p>We also included a new Asterisk version 11.17.0 and added a new tutorial
+to the contributions section.</p>
+<p>Enjoy! ;)</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/les-contributeurs-de-la-communaute-xivo.html#les-contributeurs-de-la-communaute-xivo">Les contributeurs de la communauté XiVO</a></h2>
     <p>
       Posted on Tue 07 April 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
@@ -389,63 +436,6 @@ of a "folded" client :</p>
 <p>We also added an HTTP REST API interface to xivo-agentd which means you
 can now control agent status (login/logout/pause/unpause) from within
 your own application.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/launch-and-relaunch-docker-containers-manually-with-ease.html#launch-and-relaunch-docker-containers-manually-with-ease">Launch and relaunch docker containers manually with ease</a></h2>
-    <p>
-      Posted on Thu 26 February 2015 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
-    </p>
-  </header>
-  <div>
-      <p>First you create a file, let's say
-<code>/etc/YOUR_APPLICATION/docker-run.conf</code>, with one parameter by line. it
-can look like this:</p>
-<div class="highlight"><pre># cat /etc/YOUR_APPLICATION/docker-run.conf
--t
--d
---restart=always
---name=YOUR_CONTAINER_NAME
--p 9000:9000
--v /etc/YOUR_APPLICATION/conf:/conf/
-YOUR/REPOSITORY
-</pre></div>
-
-
-<p>Notice the <code>--restart=always</code> - it's an interesting option that
-automatically restarts the container when it stops.</p>
-<p>You can then start your container by running the following command:</p>
-<div class="highlight"><pre># docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
-</pre></div>
-
-
-<p>Now let's imagine that you have updated your image and you would like to
-deploy and restart it using the same parameters. You can do that with
-the following script. It ensures a minimum downtime and can also be used
-to start your container the first time.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/sh</span>
-
-docker pull YOUR/REPOSITORY:latest<span class="p">;</span>
-docker stop YOUR_CONTAINER_NAME<span class="p">;</span>
-docker rm YOUR_CONTAINER_NAME<span class="p">;</span>
-docker run <span class="k">$(</span>cat /etc/docker/YOUR_APPLICATION/docker-run.conf<span class="k">)</span>
-</pre></div>
-</td></tr></table>
-
-<p>You can check our XuC repository for a real world use case <a href="1" title="1">1</a></p>
-<p><strong>Ressources:</strong></p>
-<ul>
-<li><a href="1" title="1">1</a> XuC docker repository:
-    <a href="https://registry.hub.docker.com/u/xivo/xuc/" title="https://registry.hub.docker.com/u/xivo/xuc/">https://registry.hub.docker.com/u/x...</a>.</li>
-</ul>
 </p>
   </div>
 </article>
