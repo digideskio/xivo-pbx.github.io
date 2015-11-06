@@ -1081,7 +1081,7 @@ herethe screen that you should view if your configuration is ok&lt;/p&gt;
 &lt;p&gt;&lt;img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /&gt;&lt;/p&gt;
 &lt;p&gt;In the next post, I will explain an advanced pxe configuration and how
 to usepreseeding to execute an automatic installation.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>SCCPp and continuous integration</title><link href="http://blog.xivo.io/sccpp-and-continuous-integration.html" rel="alternate"></link><updated>2012-02-20T14:17:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-02-20:sccpp-and-continuous-integration.html</id><summary type="html">&lt;p&gt;SCCPp is a small tool that we developed in parallel of our Asterisk sccp
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>SCCPp and continuous integration</title><link href="http://blog.xivo.io/sccpp-and-continuous-integration.html" rel="alternate"></link><updated>2012-02-20T14:17:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-02-20:sccpp-and-continuous-integration.html</id><summary type="html">&lt;p&gt;SCCPp is a small tool that we developed in parallel of our Asterisk sccp
 channel. Its main purpose is to imitate a real cisco phone in a pure
 virtual way. One of the main goal behind it is to be able to do
 continuous integration. By coupling SCCPp with Asterisk testsuite and

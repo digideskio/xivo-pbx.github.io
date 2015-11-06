@@ -540,7 +540,7 @@ our /data directory (and an entry d-i in our nginx configuration) :&lt;/p&gt;
 git://git.xivo.fr/official/debian-installer.git&lt;/p&gt;
 &lt;p&gt;In a next post, I will explain how we use the class to customize our
 installation.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO high availability</title><link href="http://blog.xivo.io/xivo-high-availability.html" rel="alternate"></link><updated>2012-03-14T18:40:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-03-14:xivo-high-availability.html</id><summary type="html">&lt;p&gt;High availability is available in XiVO since version 1.2.3. The current
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>XiVO high availability</title><link href="http://blog.xivo.io/xivo-high-availability.html" rel="alternate"></link><updated>2012-03-14T18:40:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-03-14:xivo-high-availability.html</id><summary type="html">&lt;p&gt;High availability is available in XiVO since version 1.2.3. The current
 use cases is to be able to get telephony service back in less than 5
 minutes in case of a network or power failure on the master XiVO.&lt;/p&gt;
 &lt;p&gt;The architecture is pretty simple at the time of this writing. The

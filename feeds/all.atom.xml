@@ -5114,7 +5114,7 @@ our /data directory (and an entry d-i in our nginx configuration) :&lt;/p&gt;
 git://git.xivo.fr/official/debian-installer.git&lt;/p&gt;
 &lt;p&gt;In a next post, I will explain how we use the class to customize our
 installation.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO all over the world</title><link href="http://blog.xivo.io/xivo-all-over-the-world.html" rel="alternate"></link><updated>2012-05-25T19:16:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2012-05-25:xivo-all-over-the-world.html</id><summary type="html">&lt;p&gt;From ISO download statistics, you may see that XiVO is used in a lot of
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>XiVO all over the world</title><link href="http://blog.xivo.io/xivo-all-over-the-world.html" rel="alternate"></link><updated>2012-05-25T19:16:00-04:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2012-05-25:xivo-all-over-the-world.html</id><summary type="html">&lt;p&gt;From ISO download statistics, you may see that XiVO is used in a lot of
 countries over the world :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="xivoworld.png" src="/public/xivoworld.png" title="xivoworld.png, mai 2012" /&gt;&lt;/p&gt;
 &lt;p&gt;France, Algeria, Argentina, Austria, Belgium, Brazil, Canada, Colombia,
@@ -5480,7 +5480,7 @@ herethe screen that you should view if your configuration is ok&lt;/p&gt;
 &lt;p&gt;&lt;img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /&gt;&lt;/p&gt;
 &lt;p&gt;In the next post, I will explain an advanced pxe configuration and how
 to usepreseeding to execute an automatic installation.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>SCCPp and continuous integration</title><link href="http://blog.xivo.io/sccpp-and-continuous-integration.html" rel="alternate"></link><updated>2012-02-20T14:17:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-02-20:sccpp-and-continuous-integration.html</id><summary type="html">&lt;p&gt;SCCPp is a small tool that we developed in parallel of our Asterisk sccp
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>SCCPp and continuous integration</title><link href="http://blog.xivo.io/sccpp-and-continuous-integration.html" rel="alternate"></link><updated>2012-02-20T14:17:00-05:00</updated><author><name>nbouliane</name></author><id>tag:blog.xivo.io,2012-02-20:sccpp-and-continuous-integration.html</id><summary type="html">&lt;p&gt;SCCPp is a small tool that we developed in parallel of our Asterisk sccp
 channel. Its main purpose is to imitate a real cisco phone in a pure
 virtual way. One of the main goal behind it is to be able to do
 continuous integration. By coupling SCCPp with Asterisk testsuite and
@@ -5831,7 +5831,7 @@ can find a lot of online (possibly outdated) documentation.&lt;/p&gt;
     http://git.xivo.fr/?p=official/debian-installer.git;a=summary&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I will fully explain our configuration in futures posts&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>The creation of a new xlet for the XiVO client</title><link href="http://blog.xivo.io/the-creation-of-a-new-xlet-for-the-xivo-client.html" rel="alternate"></link><updated>2011-12-30T13:09:00-05:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2011-12-30:the-creation-of-a-new-xlet-for-the-xivo-client.html</id><summary type="html">&lt;p&gt;The XiVO client has been designed to be expendable. The plug-in
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>The creation of a new xlet for the XiVO client</title><link href="http://blog.xivo.io/the-creation-of-a-new-xlet-for-the-xivo-client.html" rel="alternate"></link><updated>2011-12-30T13:09:00-05:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2011-12-30:the-creation-of-a-new-xlet-for-the-xivo-client.html</id><summary type="html">&lt;p&gt;The XiVO client has been designed to be expendable. The plug-in
 architecture allows a user to create his own xlet to fulfill his needs.
 This short tutorial will guide you through the creation of a simple xlet
 and the required configuration to test it.&lt;/p&gt;

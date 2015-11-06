@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://blog.xivo.io"/>
 <meta property="og:image" content="public/xivo-logo.png">
-  <title>XiVO Blog &ndash; Category: articles</title>
+  <title>XiVO Blog &ndash; Tag: PXE</title>
 </head>
 <body>
   <aside>
@@ -54,40 +54,6 @@
 
 <article>
   <header>
-    <h2><a href="http://blog.xivo.io/hacking-at-the-hackfest.html#hacking-at-the-hackfest">Hacking at the Hackfest</a></h2>
-    <p>
-      Posted on Thu 08 November 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
-  </header>
-  <div>
-      <p>Hello once again XiVO followers ! What's this ? My first blog post has
-barely been published and i've already written a second one ! But this
-time, i'll be writing about something that will be more interesting for
-1337 h@X0r\$ and the like: the Hackfest !</p>
-<h3>Hackfest ? What's ...</h3>
-      <a class="btn" href="http://blog.xivo.io/hacking-at-the-hackfest.html#hacking-at-the-hackfest">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/a-conference-with-uncle-bob.html#a-conference-with-uncle-bob">A conference with Uncle Bob</a></h2>
-    <p>
-      Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
-  </header>
-  <div>
-      <p>Hello to everyone following the XiVO blog ! My name is Gregory Eric
-Sanderson Turcot Temlett MacDonnell Forbes. I've been working on the
-XiVO software team for 2 months now and the time has come to publish my
-first official blog post. Enjoy ;)</p>
-<p>At the end of last september, the ...</p>
-      <a class="btn" href="http://blog.xivo.io/a-conference-with-uncle-bob.html#a-conference-with-uncle-bob">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
     <h2><a href="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html#around-xivo-pxe-and-preseeding">Around XiVO - pxe and preseeding</a></h2>
     <p>
       Posted on Wed 30 May 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
@@ -107,43 +73,53 @@ http://wiki.debian ...</p>
 </article>
 <article>
   <header>
-    <h2><a href="http://blog.xivo.io/xivo-high-availability.html#xivo-high-availability">XiVO high availability</a></h2>
+    <h2><a href="http://blog.xivo.io/around-xivo-pxe-server-setup.html#around-xivo-pxe-server-setup">Around XiVO - pxe server setup</a></h2>
     <p>
-      Posted on Wed 14 March 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
+      Posted on Thu 01 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/pxe.html">PXE</a>    </p>
   </header>
   <div>
-      <p>High availability is available in XiVO since version 1.2.3. The current
-use cases is to be able to get telephony service back in less than 5
-minutes in case of a network or power failure on the master XiVO.</p>
-<p>The architecture is pretty simple at the time of ...</p>
-      <a class="btn" href="http://blog.xivo.io/xivo-high-availability.html#xivo-high-availability">Continue reading</a>
+      <p>This is the second part of the description of the XiVO installation
+process.</p>
+<p>I'm going to describe how to setup a simple pxe server.</p>
+<p>You need to have 2 services enabled on your server, dhcp and tftp.</p>
+<p>Dhcp is used to give ip parameters to join the tftp server ...</p>
+      <a class="btn" href="http://blog.xivo.io/around-xivo-pxe-server-setup.html#around-xivo-pxe-server-setup">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="http://blog.xivo.io/xivo-12.html#xivo-12">XiVO 1.2</a></h2>
+    <h2><a href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Around  XiVO - describe industrial installation process</a></h2>
     <p>
-      Posted on Tue 14 February 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
+      Posted on Fri 06 January 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/pxe.html">PXE</a>    </p>
   </header>
   <div>
-      <p>As we enter 2012, we continue our development to better meet market
-expectations allowing XiVO to be deployed in more companies. XiVO is a
-real open and free alternative for your business phone system and it
-will allow you to go even further. It is with great pleasure that I ...</p>
-      <a class="btn" href="http://blog.xivo.io/xivo-12.html#xivo-12">Continue reading</a>
+      <p>There are four possibilities to install Xivo software :</p>
+<ul>
+<li>By hand ;)</li>
+<li>Using an installation script (only for gallifrey and skaro-dev at
+    the moment)</li>
+<li>Using an installation cd (available on http://mirror.xivo.fr/iso)</li>
+<li>Using pxe</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre>
+</pre></div>
+
+
+<p>We use
+<a href="http://en.wikipedia.org/wiki/Preboot_Execution_Environment" title="pxe"></a>pxe
+for our installations.It is easier, we boot our client on pxe ...</p></!-->
+      <a class="btn" href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Continue reading</a>
   </div>
 </article>
 
   <div class="pagination">
-    <a class="btn" href="http://blog.xivo.io/category/articles3.html">
-      <i class="fa fa-angle-left"></i> Older Posts
-    </a>
-      <a class="btn float-right" href="http://blog.xivo.io/category/articles.html">
-        Newer Posts <i class="fa fa-angle-right"></i>
-      </a>
   </div>
 
     <footer>
