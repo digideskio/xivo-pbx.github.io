@@ -54,6 +54,89 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html#candidate-xivo-skaro-repository-for-x86_64">Candidate XiVO skaro repository for x86_64</a></h2>
+    <p>
+      Posted on Mon 28 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>XiVO skaro repository for x86_64</h4>
+<p>Last week Nicolas Hicher completed a release candidate for the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">i386
+XiVO skaro
+repository</a>.
+Although the repository claims to support the x86_64/amd64
+architecture, the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/main/binary-amd64/Packages">amd64 packages are
+missing</a>.
+All the source packages were fetched in an attempt to build a x86_64
+repository. The following problems were found and fixed:</p>
+<ul>
+<li><a href="https://projects.proformatique.com/issues/1998">dahdi-linux patch for
+    squeeze-i386</a></li>
+<li><a href="https://projects.proformatique.com/issues/1999">spandsp patch for
+    squeeze-x86_64</a></li>
+<li><a href="https://projects.proformatique.com/issues/2000">asterisk-1.8 unresolved dependency to postgres 8.3 on
+    debian/squeeze</a></li>
+<li><a href="https://projects.proformatique.com/issues/2001">pf-xivo-fetchfw missing dependency for
+    skaro</a></li>
+<li><a href="https://projects.proformatique.com/issues/2002">pf-xivo-provisioning missing dependency for
+    skaro</a></li>
+<li><a href="https://projects.proformatique.com/issues/2006">pf-xivo-confgen missing dependency for
+    skaro</a></li>
+</ul>
+<p>A problem on the <a href="https://projects.proformatique.com/issues/2003">misdn-kernel
+modules</a> was left
+unresolved, in the hope that Nicolas Hicher already knows the solution.
+A <a href="https://projects.proformatique.com/issues/2007">question</a> about an
+unusual pf-xivo-base-config and pf-xivo-web-interface interdendency was
+posted for discussion. None of these problems were blockers and their
+resolution was not mandatory.</p>
+<h4>Installation on Debian GNU/Linux squeeze</h4>
+<p>The resulting repository was added as follows to a fresh install of
+Debian GNU/Linux squeeze:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>A single package was missing ( <code>pf-sys-ca</code> ) and required the addition
+of a repository:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>In the hope of reducing the configuration work,
+<a href="http://wiki.debian.org/DebianInstaller/Preseed">preseed</a> information
+was extracted from the <a href="git://git.proformatique.com/official/debian-installer.git">debian-installer XiVO
+repository</a>
+and applied as follows:</p>
+<div class="highlight"><pre><span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">installed</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/installer.cfg;hb=6ee3ad5851ea7c0bb841cbd05e53835f483dd867&#39;</span>
+<span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">installed</span><span class="nc">.cfg</span>
+<span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">pkg</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/pkg.cfg;hb=127c11ffdb8f4ad42f59fce971f274cd0e079745&#39;</span>
+<span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">pkg</span><span class="nc">.cfg</span>
+</pre></div>
+
+
+<p>The <a href="http://xivo.dachary.org/2011-02-28-manual-installation.txt">full log of the shell
+session</a> was
+archived. However, now that the repository is ready, it should be
+possible to automatically install XiVO using the scripts from following
+repositories:</p>
+<ul>
+<li>git://git.proformatique.com/official/debian-installer.git</li>
+<li>git://git.proformatique.com/official/debian-pxelinux.git</li>
+</ul>
+<h4>packaging-farm release</h4>
+<p>While fixing the XiVO skaro repository, a few problems were found and
+fixed in <a href="http://packaging-farm.dachary.org/">packaging-farm</a> and
+released as version 1.2.32. The ChangeLog reads : add architecture to
+KVERS variables. load fakeroot in each dist-upgrade. input for apt-get
+is /dev/null to avoid input problems. fix dpkg-scan bug when building
+for multiple archictures.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Working ISDN prototype board</a></h2>
     <p>
       Posted on Fri 25 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -301,106 +384,6 @@ package to completly disablethe build of a binary kernel module. It is
 unclear where the original package comes from an amail was sent to Nenad
 Corbic &lt;ncorbic@sangoma.com&gt; reporting the patch and asking for
 information.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</a></h2>
-    <p>
-      Posted on Mon 14 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <h4>Source package dependencies</h4>
-<p>The<a href="http://xivo.dachary.org/packaging-farm/misdn-user/gnulinux/debian/i386/lenny/src/">misdn-user</a>package
-depends on
-the<a href="http://xivo.dachary.org/packaging-farm/misdn-kernel/gnulinux/debian/i386/lenny/src/">misdn-kernel</a>package.
-Therefore, when misdn-kernel is updated, it may be necessaryto rebuild
-the misdn-user package. There are no standard DebianGNU/Linux tools to
-compute the dependency graph between two source packages. And it's not
-astrivial as it seems, mainly because a source package creates one or
-more binary packages.For instance misdn-user depends on misdn-headers
-which is created by the misdn-kernel package.A
-<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">script</a>
-wascreated to compute the source package dependencies. Its input is a
-set of debian/control filesand its output is a set of Makefile rules
-such as:</p>
-<div class="highlight"><pre>misdn-kernel ::
-misdn-user ::  misdn-kernel
-</pre></div>
-
-
-<p>Note the <em>::</em> which allows for additional dependencies to appear later
-in the Makefile. Thisgraph is abstract and would not be of any use
-unless it is associated to actions such as:</p>
-<div class="highlight"><pre>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
-/var/cache/packaging-farm/depends/misdn-kernel :: /var/cache/packaging-farm/sources/misdn-kernel/*/debian/control
-        packaging-farm --cd misdn-kernel all
-        touch $@
-</pre></div>
-
-
-<p>The
-<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">depend.sh</a>
-script createsthe above snippet for each package. The
-<code>packaging-farm --cd misdn-kernel all</code> command creates all the
-packagesfor misdn-kernel. If it succeeds, the
-<code>/var/cache/packaging-farm/depends/misdn-kernel</code> timestamp is updatedand
-the package is considered up to date. When a newer version of the
-package is uploaded to the
-<code>/var/cache/packaging-farm/sources/misdn-kernel</code>directory, the
-<code>/var/cache/packaging-farm/sources/misdn-kernel/*/debian/control</code> file
-will have a modificationtime more recent than the timestamp, thus
-triggering the rebuild of all depending packages in the graph.</p>
-<p>The last set of lines created by depend.sh are source lists that allow
-each package to gain access to themost recently built version of the
-other packages:</p>
-<div class="highlight"><pre>define debian_SOURCE_LIST_APPEND
-echo &quot;deb http://localhost/packaging-farm/misdn-kernel/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
-echo &quot;deb http://localhost/packaging-farm/misdn-user/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
-: finished
-endef
-</pre></div>
-
-
-<p>It would be tempting to ensure that each package is given the source
-list it needs and nothing more. However, unlessthe number of packages
-handled on a single packaging farm grows over 100, it is probably
-overkill. There are lessthan 50 package currently in XiVO.</p>
-<p>A <a href="http://packaging-farm.dachary.org/download/packaging-farm_1.2.30.dsc">new version of
-packaging-farm</a>
-was published today, including support fordependencies, so that it can
-be used to continue building a standalone XiVO repository.</p>
-<h4>XiVO repository for i386 and x86_64</h4>
-<p>With the newer installation of the packaging-farm including dependency
-handling, another attempt to createa i386 based gallifrey repository for
-lenny was made. For each package a command similar to</p>
-<div class="highlight"><pre>packaging-farm misdn-kernel
-</pre></div>
-
-
-<p>was run. It is using the dependency graph to build the package and all
-the packages it depends on before it.In the end a few packages could not
-be built. Some of them because of trivial dependency problems thatwere
-<a href="https://projects.proformatique.com/issues/1942">reported to Nicolas
-Hicher</a> who agreed to
-fix them momentarily.Another, more serious, is found in the
-sangoma-wanpipe package. It relates to the fact that it pulls
-dependenciesbased on the kernel flavor. The native host is amd64 /
-x86_64 based and it fails when attempting to build in a i386chroot.
-There probably are workarounds already implemented and looking into
-pbuilder is probably the best lead.The <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/">i386 gallifrey
-repository</a>
-nowcontains more packages and there should be no major obstacle to
-complete it once the dependency and architecture problemsare
-resolved.Nicolas Hicher is almost done with porting the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro XiVO
-packages to
-squeeze</a>.
-An attempt was made to buildthem for x86_64. The <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/x86_64/squeeze/src/">result is still
-incomplete</a>
-but it should run when the last dependency problems are resolved.</p>
 </p>
   </div>
 </article>

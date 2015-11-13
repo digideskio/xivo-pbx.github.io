@@ -54,6 +54,22 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html#automatically-originating-call-with-cron-and-xivo-12">Automatically originating call with cron and XiVO 1.2</a></h2>
+    <p>
+      Posted on Wed 14 December 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>This bit of dialplan simply set the name part of the caller ID and then
+call our phone, which in our example is SIP/abcdef. Note that we dial
+the phone directly instead of jumping into the standard XiVO dialplan,
+because we don't want the voicemail of the user ...</p>
+      <a class="btn" href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html#automatically-originating-call-with-cron-and-xivo-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">XiVO GIT repository re-organisation</a></h2>
     <p>
       Posted on Mon 17 October 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -131,29 +147,6 @@ package. If the maintainer forgets to remove
 /var/cache/packaging-farm/sources, a mix of packages using different
 naming ...</p>
       <a class="btn" href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</a></h2>
-    <p>
-      Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>rebuilding gallifrey</h4>
-<p>The /var/cache/packaging-farm/sources directory was removed and</p>
-<div class="highlight"><pre>export VERSION_COMPUTE=false
-</pre></div>
-
-
-<p>set in /etc/packaging-farm/packaging-farm.conf and
-<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
-from scratch. It took 42 minutes total. The purpose of this complete
-rebuild was to get rid of the timestamp ...</p>
-      <a class="btn" href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Continue reading</a>
   </div>
 </article>
 

@@ -54,6 +54,74 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/hacking-at-the-hackfest.html#hacking-at-the-hackfest">Hacking at the Hackfest</a></h2>
+    <p>
+      Posted on Thu 08 November 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>Hello once again XiVO followers ! What's this ? My first blog post has
+barely been published and i've already written a second one ! But this
+time, i'll be writing about something that will be more interesting for
+1337 h@X0r\$ and the like: the Hackfest !</p>
+<h3>Hackfest ? What's a Hackfest ?</h3>
+<p>The <a href="http://www.hackfest.ca" title="Hackfest">Hackfest</a> is one of the biggest
+events about computer security in the province of Quebec. This year,
+more than 400 participants were treated to 2 days full of conferences
+and hacking games like Lockpicking, Cyber warfare and Capture The Flag.</p>
+<p><img alt="Hackfest
+cyberwar" src="/public/HackFest2012/.hackfest_cyberwar_m.jpg" title="Hackfest cyberwar, Nov 2012" /></p>
+<p>XiVO also participated in the Hackfest by giving a conference and
+organising the XiVO pwn2own hacking game.</p>
+<h3>What kind of conference ?</h3>
+<p>We gave a conference about the security and future of free
+telecommunications, the slides are available in attachment of this post.
+The conference was supposed to be given by our colleague <a href="http://twitter.com/nicboul" title="Nicolas Bouliane's twitter feed">Nicolas
+Bouliane</a>,
+but unfortunately, he got sick a few days before the event. Me and my
+SCRUM master gave the talk instead. Here's a picture of us during the
+conference. As you can see, the room was pretty full !</p>
+<p><a href="http://www.flickr.com/photos/hackfest2k9/8147555929/" title="Hackfest 2012: avencall #hf2012 by hackfest.ca, on Flickr"><img alt="Hackfest 2012: avencall
+#hf2012" src="http://farm9.staticflickr.com/8328/8147555929_6aa0caf977.jpg" /></a></p>
+<h3>What about the pwn2own ?</h3>
+<p>Hackers were given 48 hours to try and hack a standard XiVO server and
+find the most exploits possible. As the game went on, clues were given
+out through our twitter feed.</p>
+<p><img alt="XiVO twitter
+feed" src="/public/HackFest2012/.xivo_twitter_feed_m.jpg" title="XiVO twitter feed, Nov 2012" /></p>
+<p>Once a hacker found an exploit, he could submit it to our scoreboard to
+win points. At the end of the game, the top 3 teams with the most points
+won cash prizes. Here's a screenshot of the scoreboard at the end of the
+game.</p>
+<p><img alt="XiVO
+Scoreboard" src="/public/HackFest2012/.xivo_score_board_m.jpg" title="XiVO Scoreboard, Nov 2012" /></p>
+<h3>So what happened ? Did you get hacked ?!</h3>
+<p>Yes ! As you can see from the scoreboard, 3 teams were able to find
+quite a few exploits in XiVO. What surprised us most was the number of
+hacks that were found on the web interface. Since XiVO is first and
+foremost a telephony system, we thought that the hackers would
+concentrate on hacking the telephone services (For example, control SIP
+accounts, create fake telephones through the Provisionning service, DDoS
+the Asterisk server) After all, the web interface is only used for
+administrative purposes and isn't a critical piece of the XiVO server.
+Instead, we got a total of 10 web exploits and only 1 telephone exploit.</p>
+<h3>What happens now ?</h3>
+<p>The XiVO dev team is working on fixing all the exploits found during the
+pwn2own. The fixes will be released in version 12.22 at the end of next
+week.</p>
+<p>All in all, we had great fun participating in the Hackfest. We're
+already thinking about how we can make the game more exciting next year,
+like how to encourage people to go explore more of XiVO's telephony
+services.</p>
+<p>Thanks again to the 3 teams who participated in XIVO's pwn2own
+(RingZer0, Abed&amp;Francis and Bitducks). We look forward to more hacking
+next year !</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/astricon-2012.html#astricon-2012">Astricon 2012</a></h2>
     <p>
       Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -532,50 +600,6 @@ generate a graph in svg format:</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/test-vectors-for-smbus-packet-error-checking-pec-crc-8.html#test-vectors-for-smbus-packet-error-checking-pec-crc-8">Test vectors for SMBus Packet Error Checking (PEC) CRC-8</a></h2>
-    <p>
-      Posted on Tue 09 October 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>While implementing the SMBus on the MSP430 (see also the post "<a href="index.php?post/2012/09/29/An-engineering-story">An
-engineering story</a>"), I
-have been looking for SMBus
-<a href="http://en.wikipedia.org/wiki/System_Management_Bus#Packet_Error_Checking" title="PEC"><abbrev title="Packet Error Checking">PEC</abbrev></a>
-CRC-8 test vectors but could not find any.</p>
-<p>A CRC is a <a href="http://en.wikipedia.org/wiki/Cyclic_redundancy_check">Cyclic Redundancy
-Check</a>. It is a
-little piece of data typically added at the end of a packet and used to
-check with an high reliability that no unintended error occurred during
-transmission (or storage). The math to do the computation and the check
-of a CRC is not very complicated and can be explained to anybody who
-knows how to do a <a href="http://en.wikipedia.org/wiki/Long_division">long
-division</a>. The polynomial
-for the SMBus PEC CRC-8 is x**8+x**2+x**1+1 -- this is a
-polynomial in GF(2), but you don't really have to understand that part
-to be able to use CRCs in practice. It corresponds to the binary number
-100000111, to be used in a particular way. The following text explains
-it better than I could:
-<a href="http://www.ross.net/crc/download/crc_v3.txt" title="http://www.ross.net/crc/download/crc_v3.txt">http://www.ross.net/crc/download/cr...</a></p>
-<p>I made my own SMBus PEC CRC-8 test vectors (attached to this post). The
-format is one test vector per line, like:</p>
-<p>TV(616263, 5F)</p>
-<p>616263 is the 3-byte message in hexadecimal ("abc" in ASCII). The
-resulting one byte CRC-8 in hex is 5F.</p>
-<p>The test vectors are checked with an official <a href="http://smbus.org/faq/crc8Applet.htm">Java applet from
-smbus.org</a>. They include at the
-beginning the result for each one byte packet, which is also the table
-for the fast byte based implementation: CRC = table[CRC \^ byte]
-(because the initial value to use for CRC is zero), On the MSP430, this
-implementation should run in something like 9 cycles per byte when
-dropped in the right place. (xor CRC, Rm /* 3 cycles */; mov
-table[Rm], CRC; /* 6 cycles */)</p>
 </p>
   </div>
 </article>

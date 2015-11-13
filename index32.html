@@ -54,6 +54,106 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</a></h2>
+    <p>
+      Posted on Mon 14 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Source package dependencies</h4>
+<p>The<a href="http://xivo.dachary.org/packaging-farm/misdn-user/gnulinux/debian/i386/lenny/src/">misdn-user</a>package
+depends on
+the<a href="http://xivo.dachary.org/packaging-farm/misdn-kernel/gnulinux/debian/i386/lenny/src/">misdn-kernel</a>package.
+Therefore, when misdn-kernel is updated, it may be necessaryto rebuild
+the misdn-user package. There are no standard DebianGNU/Linux tools to
+compute the dependency graph between two source packages. And it's not
+astrivial as it seems, mainly because a source package creates one or
+more binary packages.For instance misdn-user depends on misdn-headers
+which is created by the misdn-kernel package.A
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">script</a>
+wascreated to compute the source package dependencies. Its input is a
+set of debian/control filesand its output is a set of Makefile rules
+such as:</p>
+<div class="highlight"><pre>misdn-kernel ::
+misdn-user ::  misdn-kernel
+</pre></div>
+
+
+<p>Note the <em>::</em> which allows for additional dependencies to appear later
+in the Makefile. Thisgraph is abstract and would not be of any use
+unless it is associated to actions such as:</p>
+<div class="highlight"><pre>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
+/var/cache/packaging-farm/depends/misdn-kernel :: /var/cache/packaging-farm/sources/misdn-kernel/*/debian/control
+        packaging-farm --cd misdn-kernel all
+        touch $@
+</pre></div>
+
+
+<p>The
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/debian/depends.sh">depend.sh</a>
+script createsthe above snippet for each package. The
+<code>packaging-farm --cd misdn-kernel all</code> command creates all the
+packagesfor misdn-kernel. If it succeeds, the
+<code>/var/cache/packaging-farm/depends/misdn-kernel</code> timestamp is updatedand
+the package is considered up to date. When a newer version of the
+package is uploaded to the
+<code>/var/cache/packaging-farm/sources/misdn-kernel</code>directory, the
+<code>/var/cache/packaging-farm/sources/misdn-kernel/*/debian/control</code> file
+will have a modificationtime more recent than the timestamp, thus
+triggering the rebuild of all depending packages in the graph.</p>
+<p>The last set of lines created by depend.sh are source lists that allow
+each package to gain access to themost recently built version of the
+other packages:</p>
+<div class="highlight"><pre>define debian_SOURCE_LIST_APPEND
+echo &quot;deb http://localhost/packaging-farm/misdn-kernel/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
+echo &quot;deb http://localhost/packaging-farm/misdn-user/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
+: finished
+endef
+</pre></div>
+
+
+<p>It would be tempting to ensure that each package is given the source
+list it needs and nothing more. However, unlessthe number of packages
+handled on a single packaging farm grows over 100, it is probably
+overkill. There are lessthan 50 package currently in XiVO.</p>
+<p>A <a href="http://packaging-farm.dachary.org/download/packaging-farm_1.2.30.dsc">new version of
+packaging-farm</a>
+was published today, including support fordependencies, so that it can
+be used to continue building a standalone XiVO repository.</p>
+<h4>XiVO repository for i386 and x86_64</h4>
+<p>With the newer installation of the packaging-farm including dependency
+handling, another attempt to createa i386 based gallifrey repository for
+lenny was made. For each package a command similar to</p>
+<div class="highlight"><pre>packaging-farm misdn-kernel
+</pre></div>
+
+
+<p>was run. It is using the dependency graph to build the package and all
+the packages it depends on before it.In the end a few packages could not
+be built. Some of them because of trivial dependency problems thatwere
+<a href="https://projects.proformatique.com/issues/1942">reported to Nicolas
+Hicher</a> who agreed to
+fix them momentarily.Another, more serious, is found in the
+sangoma-wanpipe package. It relates to the fact that it pulls
+dependenciesbased on the kernel flavor. The native host is amd64 /
+x86_64 based and it fails when attempting to build in a i386chroot.
+There probably are workarounds already implemented and looking into
+pbuilder is probably the best lead.The <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/">i386 gallifrey
+repository</a>
+nowcontains more packages and there should be no major obstacle to
+complete it once the dependency and architecture problemsare
+resolved.Nicolas Hicher is almost done with porting the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro XiVO
+packages to
+squeeze</a>.
+An attempt was made to buildthem for x86_64. The <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/x86_64/squeeze/src/">result is still
+incomplete</a>
+but it should run when the last dependency problems are resolved.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-is-everywhere-part-3.html#xivo-is-everywhere-part-3">XiVO is everywhere part 3 !</a></h2>
     <p>
       Posted on Fri 11 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -325,202 +425,6 @@ published Sunday 30 January, including the following features:</p>
 <p>It is still unclear how packaging-farm could be used to create
 multi-distribution and multi-architecture packages for XiVO and that
 will be my focus for the following weeks.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html#xivo-server-packaging-in-a-nutshell">XiVO server packaging in a nutshell</a></h2>
-    <p>
-      Posted on Mon 24 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>Nicolas Hicher is the XiVO release manager that make it happen. His
-input comes from a number of sources which are gradually migrated toward
-a set of git repositories which will become a central place:</p>
-<ul>
-<li>git://git.xivo.fr/xivo-dalek.git for old stable</li>
-<li>git://git.xivo.fr/xivo-gallifrey.git for stable</li>
-<li>git://git.xivo.fr/xivo-skaro.git for unstable</li>
-<li>http://git.proformatique.com/ debian fai and XiVO Qt, Web, Android
-    clients and more</li>
-</ul>
-<p>About ten developers have write access to commit their work on these
-repositories. In addition to their daily workload, they integrate
-patches andbug fixes contributed to the <a href="https://projects.proformatique.com/projects/xivo/issues">XiVO
-redmine</a>.Nicolas
-maintains packaging tools deployed on a few virtual machines which
-purpose are to produce a <a href="http://dak.proformatique.com/debian/">useable Debian
-repository</a>. Although it is
-currently updated with <a href="http://wiki.debian.org/DakHowTo">dak</a> it is
-complicated to maintain and will be migrated to
-<a href="http://mirrorer.alioth.debian.org/">reprepro</a> which is easier to deploy
-and maintain.</p>
-<p>The general idea is to follow the Debian philosophy with regard to
-maintaining stable distributions :</p>
-<ul>
-<li>the unstable (skaro) distribution roughly matches the Debian testing
-    distribution: it has been tried to be installable and roughly
-    functional, but it contains newly implemented features that may
-    require bug fixing when facing real world usage.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>the stable (Gallifrey) distribution is only updated for security
-    purposes, with the exception of newer asterisk versions.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>the old stable (dalek) distribution is kept for historical purposes</li>
-</ul>
-<p>The Debian unstable equivalent is the playground of the ten developers
-and there is no public URL for it. When one of them wants to update a
-package that is being actively developed, he logs in one of the virtual
-machines maintained by Nicolas, types a few command to create "dev"
-packages. All the developers use deb packaged based operating systems
-(Debian GNU/Linux or Ubuntu) and their source list points to the
-repositories located on the virtual machines where the "dev" packages
-are created. When one of the developers breaks a package, the others are
-quick to pick on it. This is both a curse (when it disrupts their work)
-and a blessing (because there is a continuous check of the distribution
-consistency). In order to help maintain the consistency of the
-distribution, strict version dependency is enforced between packages :
-if version 1.4.6 is required, version 1.4.7 will be rejected although it
-is presumably backward compatible. This policy may be relaxed in the
-future at the cost of extra care to ensure backward compatibility.</p>
-<p>When the developers are satisfied with the state of the XiVO
-distribution, they declare it a release and set a corresponding git
-branch (formerly a SVN tag). Nicolas notifies the production (i.e. the
-people ensuring that all deployed XiVO installation can rely on the
-stability of the existing repositories) that the skaro distribution
-(i.e. http://dak.proformatique.com/debian/dists/lenny-xivo-skaro-dev/)
-will be broken while the development packages are migrated to skaro. He
-then proceeds with the update and tests the resulting repository by
-performing an <a href="https://wiki.xivo.fr/index.php/XiVO_1.1-Gallifrey/Install_XiVO_From_Scratch">installation from
-scratch</a>
-on a virtual machine via PXE. If the virtual machine indeed contains the
-expected packages and that the web interface displays, the production
-team is notified and does additional tests before launching upgrades
-where relevant.</p>
-<p>When a packaging problem is found, either by the production team or by
-the developers, Nicolas is responsible for fixing it. If a new software
-is being deployed, Nicolas is also responsible for creating the
-corresponding package from scratch. More often than not, a problem
-requires an emergency fix by the developers shortly after a new release
-is put in production. In which case the whole process outlined above
-needs to be done again.</p>
-<p>The packaging process is evolving continuously and the following
-improvements are being considered:</p>
-<ul>
-<li>adding RPM based packages</li>
-<li>adding support for x86_64 and leave room for more architectures</li>
-<li>deploy a reprepro repository to replace
-    http://dak.proformatique.com/debian</li>
-<li>publish and document XiVO packaging tools</li>
-<li>Debian GNU/Linux squeeze support</li>
-<li>move as much as possible from the package to the source tree : some
-    packages contain so much knowledge that installing from sources is
-    difficult and is a serious obstacle for people running distributions
-    which are not explicitly supported</li>
-<li>improve and document the creation of CD based distributions and
-    ready to use virtual machines</li>
-<li>if a single machine is used to build packages, allow to build
-    multiple packages in parallel</li>
-</ul>
-<p>With these in mind, the following use case should be available to XiVO
-developers and packagers:</p>
-<ul>
-<li>developer side: I'm working alone on my code, it is perfect, ready
-    for production. I build the package (or the whole
-    corresponding suite) and I publish the package in the corresponding
-    development repository, so that it is available for
-    other developers.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>developer side: I'm not the only one working on the code (or I know
-    my work is not satisfactory) but I want to test a killer feature. I
-    build the package and publish it on my private repository and I can
-    test it without impacting other developers.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>packager side: the developers did a lot of work and there are many
-    bug fixes, asterisk version 3 has been published and chan_sccp
-    is stable. I build a full release ( tag + build + publish on a
-    release candidate repository ). The production team runs tests
-    suites and find bugs that are patched by the developers and propose
-    new packages. When the loop stabilizes, the release candidate
-    replaces the production.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>packager side: a new package is to be built, it must be added on
-    all repositories. The developer responsible for the code provides
-    all the information to:</li>
-</ul>
-<p>** build the package (dependencies, location of all files etc).</p>
-<p>** a HOWTO explaining how to test that the resulting software is
-working. It needs not be 100% tests but should cover the basics. A
-command --version returning the version number is better than nothing.</p>
-<p>The analysis of the existing XiVO release management practices and
-prospects reveal patterns that are common to a number of software
-publishers. At least those who are best served by deploying a dedicated
-distribution (repository, ISO or VM) rather than a single software
-package. They are in many ways identical to wide spread distributions
-such as Ubuntu or Debian GNU/Linux with a fundamental difference: it is
-cross distributions (Fedora, Gentoo, Debian GNU/Linux, Suse ...).</p>
-<p>The <a href="http://packaging-farm.dachary.org/">packaging-farm</a> tool has been
-developed to address this specific issue and will be used as a base to
-help implement the above features. It is based on the following ideas:</p>
-<h4>The input of the farm is a package and its output are repositories for the target distributions.</h4>
-<p>A Debian GNU/Linux package is a well defined format to transport
-software and packaging instructions. Using it to feed the farm saves the
-need to define custom conventions. The same goes for the output of the
-farm : all distributions define a format to store collections of
-packages, in source and binary forms.</p>
-<h4>The environment of a failed package attempt is preserved for debugging.</h4>
-<p>Each package is built in an pristine environment to minimize side
-effects due to previous executions. This environment (chroot or virtual
-machine) is destroyed if the packaging operation is a success. It is
-preserved if the package fail and the maintainer can chroot or ssh into
-it to figure out and fix the problem.</p>
-<h4>A farm can be stacked on top of others.</h4>
-<p>This really is a property of the fact that each farm creates a well
-formed repository for each distribution. A given farm can either build a
-package that has been submitted to it and put the result in its output
-repository. Or it can copy the content of the repository of a child farm
-into its own. For instance, a production farm/repository can be made a
-parent of a release candidate farm/repository. When the release
-candidate repository is declared final, the production farm/repository
-copies the content of the release candidate farm/repository into its
-own.</p>
-<h4>A farm delegates the work to a slave machine.</h4>
-<p>The farm creates environments (aufs based chroots and possibly lxc or
-kvm based virtual machines) and submits a source package for building.
-It does not assume the native operating system is able to build any kind
-of package itself. If a farm runs on a given operating system, it may be
-easier to delegate the actual building of the package to a virtual
-machine running the native operating system for the targeted
-distribution.</p>
-<h4>All package specifications must be maintained manually.</h4>
-<p>It is difficult to create a package from a given distribution
-automatically based on the package specification from another
-distribution. The farm does not support this kind of tool.</p>
-<p>The implementation is heavily based on Makefiles because it mostly
-handles a chain of dependencies for which they are best suited. The
-supporting scripts are shell based because it is the language of choice
-for Makefiles.</p>
-<p>The XiVO client is being packaged by kaou (nick on irc.freenode.net) and
-is not covered here. Nor is the process to create virtual machines or
-ISO based distributions.</p>
 </p>
   </div>
 </article>

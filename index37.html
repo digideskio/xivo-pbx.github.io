@@ -54,6 +54,47 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/prototype-description-of-the-functionnal-buses.html#prototype-description-of-the-functionnal-buses">[Prototype] Description of the functionnal buses</a></h2>
+    <p>
+      Posted on Tue 03 August 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>As this OpenHardware project moves forward, we are now approaching a
+<strong>complete prototyping</strong> of our functionnal blocks and
+telecommunications interfaces control from the Linux kernel. The main
+functionnal blocks to be tested and validated are in our architecture
+based on the following buses:</p>
+<ul>
+<li><strong>SPI (Serial Peripheral Interface)</strong> bus between the CPU and the
+    FXO/FXS chip</li>
+<li><strong>LEB (Local Expansion Bus)</strong> between the CPU and the ISDN chip</li>
+<li><strong>TDM (Time Division Multiplexing)</strong> connecting the CPU, ISDN and
+    FXO/FXS chip together to transmit the digial streams of voice
+    channels</li>
+<li><strong>GPIO (General Purpose Input Output)</strong> for the RST (Reset) signals
+    and IRQ (Interrupts) signals</li>
+<li><strong>CLK (Clock)</strong> signals architecture to be sent to the different
+    chips</li>
+</ul>
+<p><strong>Below is a picture of our prototype boards</strong> connected together to
+demonstrate the functionnalities of each blocks for our software
+development on the Linux kernel modules:</p>
+<p><img alt="XiVO IPBX Prototype
+WishBoard-108" src="/public/.20100802_002_m.jpg" title="XiVO IPBX Prototype WishBoard-108, août 2010" /></p>
+<p>We have been using the large prototyping breaboard from Wisher (at
+farnell.com on:
+<a href="http://fr.farnell.com/jsp/search/productdetail.jsp?SKU=1472854">http://fr.farnell.com/jsp/search/productdetail.jsp?SKU=1472854</a>) that
+is great to split different wires connectivity on the breadboard.</p>
+<p>In the next posts, we will describe the results and work done on each
+buses to achieve the first global tests for voice channel routing with
+our XiVO IPBX OpenHardware.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/the-first-openhardwaresummit-and-more-openhardware-movements.html#the-first-openhardwaresummit-and-more-openhardware-movements">The first OpenHardwareSummit and more OpenHardware movements</a></h2>
     <p>
       Posted on Tue 20 July 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -271,71 +312,6 @@ OpenHardware<a href="TM" title="TM">TM</a> off the ground.</p>
 <p>OHANDA is work in process. The process is open ...</p>
 <p>Please check http://www.ohanda.organd subscribe to our
 mailinglist:https://piksel.no/mailman/listinfo/ohanda</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/kicad-the-opensource-eda-tool-for-designing-pcbs.html#kicad-the-opensource-eda-tool-for-designing-pcbs">KiCAD: The OpenSource EDA tool for designing PCBs</a></h2>
-    <p>
-      Posted on Thu 20 May 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>This post aims at presenting KiCAD ^[<span
-id="rev-pnote-21-1"><a href="#pnote-21-1">1</a></span>]^, THE OpenSource EDA tool
-for CAD file used to design PCB (Printed Circuit Boards) originally
-designed and written by Jean-Pierre Charras, a researcher at LIS
-(Laboratoire des Images et des Signaux) and a teacher at IUT de Saint
-Martin d'Hères (France), in the field of electrical engineering and
-image processing.KiCAD aims at being a tool equivalent to the
-"closed-non-free" CAD software like Atium Protel, Eagle, Cadence with
-the benefit of a free and open-source with a community of developer and
-early-user implementing KiCAD for industrial hardware design of PCB up
-to 10layers and a growing collection of component footprints and
-reference in the library (the standard footprints like SOTs, QFPs, BGAs
-are crucial to have the maximum support of the ICs, chips of the silicon
-manufacturers)</p>
-<p>Kicad is a set of four softwares and a project manager:</p>
-<ul>
-<li>Eeschema: Schematic entry.</li>
-<li>Pcbnew:Board editor.</li>
-<li>Gerbview: GERBER viewer (photoplotter documents).</li>
-<li>Cvpcb: footprint selector for components used in the circuit design.</li>
-<li>Kicad: project manager.</li>
-</ul>
-<p>KiCAD early-users and developers can participate to the project on the
-subversion ^[<span id="rev-pnote-21-2"><a href="#pnote-21-2">2</a></span>]^</p>
-<p>A bug tracker ^[<span id="rev-pnote-21-3"><a href="#pnote-21-3">3</a></span>]^ is
-up and running for feedbacks from the users (GUI optimization for GNU
-users and Windows users mainly).</p>
-<p>From our XiVO IPBX OpenHardware project point of view, we are also using
-KiCAD mainly for small PCB and Schematics of your interfaces between
-each functionnal block. The screen-shot below presents the KiCAD
-Eeschema to implement the TDM connexion between the CPU and the ISDN
-chip:</p>
-<p><img alt="XiVO ISDN TDM Connexions
-Prototyping" src="/public/.KiCAD_XiVO_PCB_Prototyping_XHFC_4SU_TDM_Bus_m.jpg" title="XiVO ISDN TDM Connexions Prototyping, mai 2010" /></p>
-<p>The right-side toolbar is for selecting the object to include in the
-schematic (component, power, ground, wires ...), the top part toolbar is
-there for the sheet preferences and settings and for the interaction
-with the PCB editor and gerber exporter and viewer.</p>
-<div class="footnotes">
-
-#### Notes
-
-\[<span id="pnote-21-1">[1](#rev-pnote-21-1)</span>\]
-http://www.lis.inpg.fr/realise\_au\_lis/kicad/
-
-\[<span id="pnote-21-2">[2](#rev-pnote-21-2)</span>\]
-http://kicad.svn.sourceforge.net/viewvc/kicad/
-
-\[<span id="pnote-21-3">[3](#rev-pnote-21-3)</span>\]
-https://bugs.launchpad.net/kicad
-
-</div>
-
 </p>
   </div>
 </article>

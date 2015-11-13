@@ -54,6 +54,91 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1513.html#sprint-review-1513">Sprint review 15.13</a></h2>
+    <p>
+      Posted on Fri 24 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Hello everyone,</p>
+<p>During this sprint most of the work was done on pushing Asterisk 13 into
+XiVO. We added an extra testing day during the sprint in order to help
+detect differences between Asterisk 11 and 13.</p>
+<h3>New in this sprint</h3>
+<ul>
+<li><strong>Asterisk</strong>: Upgrade from Asterisk 11 to <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="Asterisk 13">Asterisk
+    13</a>.
+    In the long run, this will allow us to work on small and
+    not-so-small improvements to XiVO, such as: benefit from nice
+    performance improvements; add more control over queues and
+    switchboards (allowing us to correct undesirable behavior); generate
+    more meaningful call logs; make the system more easily
+    scalable, (i.e. multiple Asterisks could share the load of
+    phone calls). The
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="ARI">ARI</a>
+    is a very interesting feature of Asterisk 13 which gives us a lot of
+    flexibility and allows us to make new features easily. See also our
+    blog entry about <a href="/index.php?post/2015/07/20/XiVO-and-Asterisk-13" title="Asterisk 13">Asterisk
+    13</a>.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>XiVO Client</strong>: We have started integrating personal contacts into
+    the People Xlet. For now, you can list, create and delete
+    personal contacts. What remains to do is to edit contacts, integrate
+    them into search results, import and export contacts. The goal is to
+    delete the Personal Directory Xlet, and ultimately merge all other
+    contact-related xlets into the People Xlet. Note that these personal
+    contacts are accessible from any client, not just the one where they
+    were created, like before. They are also manageable via a REST API
+    in xivo-dird.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>REST API</strong>: We have continued to improve the management of
+    function keys via a REST API, adding more management features and
+    making it easier to use.</li>
+</ul>
+<h3>Ongoing features</h3>
+<ul>
+<li><strong>Directories</strong>: We are working on unifying directories so that all
+    contacts will be available from anywhere, be it your phone or your
+    CTI client. Also, we want XiVO to be able to get contacts from a
+    variety of third-party products, so we're setting up a plugin
+    mechanism allowing the retrieval of contacts from various sources.
+    For example, you can make XiVO list contacts <a href="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo" title="from your Odoo system">from your Odoo
+    system</a>.
+    Finally, we're working on integrating this plugin mechanism with the
+    current web interface.</li>
+</ul>
+<h3>Want to play with XiVO?</h3>
+<p>There's a new community-driven project called <strong>Raspivo</strong>, to support
+XiVO on Raspberry Pi 2. Take a look at the documentation <a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="on their website">on their
+website</a>.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/229" title="Roadmap 15.13">Roadmap
+15.13</a></p>
+<p>Links:</p>
+<ul>
+<li>Asterisk 13:
+    <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="https://wiki.asterisk.org/wiki/display/AST/New+in+13">https://wiki.asterisk.org/wiki/disp...</a></li>
+<li>ARI:
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">https://wiki.asterisk.org/wiki/page...</a></li>
+<li>Asterisk 13 in XiVO:
+    <a href="http://blog.xivo.io/index.php?post/2015/07/20/XiVO-and-Asterisk-13" title="http://blog.xivo.io/index.php?post/2015/07/20/XiVO-and-Asterisk-13">http://blog.xivo.io/index.php?post/...</a></li>
+<li>Odoo in XiVO:
+    <a href="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo" title="https://github.com/alexis-via/xivo-dird-plugin-backend-odoo">https://github.com/alexis-via/xivo-...</a></li>
+<li>Raspivo:
+    <a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="http://raspivo.io/installation-depuis-nos-depots-en.html">http://raspivo.io/installation-depu...</a></li>
+</ul>
+<p><img alt="XIVO-RELEASE-15.13-July-August2015.png" src="/public/XIVO-RELEASE-15.13-July-August2015.png" title="XIVO-RELEASE-15.13-July-August2015.png, juil. 2015" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-and-asterisk-13.html#xivo-and-asterisk-13">XiVO and Asterisk 13</a></h2>
     <p>
       Posted on Mon 20 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -264,179 +349,6 @@ line</a>.</p>
 <a href="https://www.april.org/">April</a>, <a href="http://www.asterisk-france.org/">Asterisk
 France</a> and the other communities in
 Free software.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html#raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system">Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</a></h2>
-    <p>
-      Posted on Fri 12 June 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
-    </p>
-  </header>
-  <div>
-      <p>(L'article au complet en français, juste après)</p>
-<p><strong>Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source
-telephone system</strong></p>
-<ul>
-<li>In 2012 a first attempt was made at integrating a raspberry-pi and
-    XiVO, a telephone system based on Asterisk and licensed under GPLv3.
-    More info at
-    <a href="http://www.raspberry-xivo.org/">http://www.raspberry-xivo.org</a>.</li>
-<li>Furthermore, the arrival of the raspberry pi version 2 has opened up
-    new technical avenues. That's why in may 2015, Jof launched the
-    project Raspivo, Raspberry Ri 2 + XiVO = Raspivo. Blog and more info
-    at <a href="http://raspivo.io">http://raspivo.io</a></li>
-</ul>
-<p><strong>The beggining of the adventure with raspberry pi 2, XiVO and
-Raspbian</strong></p>
-<ul>
-<li>Iris-Network (http://www.iris-network.fr), a telecommunications
-    company based in France, decided to launch a new project combining
-    XiVO and Raspberry-pi 2, a low-cost embedded platform.</li>
-<li>This article summarizes the installation of Raspbian, the
-    recompilation of XiVO packages for the ARM platform, and testing
-    that was done on incoming and outgoing calls in order to validate
-    the quality and the stability of the architecture.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>During the tests, 12 simultaneous calls were successfully handled in
-    optimal conditions.</li>
-<li>In order to test the project in real world conditions, the team at
-    Iris-Network replaced their internal telephone system, along with
-    the hotline platform, with a RPi2 server. So far, everything remains
-    stable and running ! Currently, testing is progressing with the help
-    of beta-testing customers. In the spirit of sharing and respect for
-    the open source philosophy, work on the project has been made
-    available to the public by publishing debian packages.</li>
-</ul>
-<p><strong>Installation using the debian repository and raspbian IMG</strong></p>
-<ul>
-<li>4 main steps to installing raspivo (RPi2 + XiVO): 1. Install
-    Raspbian (Debian for Raspberry Pi); 2. Install any other packages
-    you typically need for administering a server; 3. Add the raspivo
-    respository; 4. Install raspivo. More information available here (in
-    french): <a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html">http:
-    //www.raspivo.io/installation-depuis-nos-depots.html</a></li>
-</ul>
-<!-- -->
-
-<ul>
-<li>From a disk image (IMG): To make installation easier, a complete
-    disk image can be downloaded, taking less than 5 minutes to install.
-    In the same way as you would install Raspbian, you can also install
-    Raspivo thanks to 'dd': dd if=Raspivo-15.10.img of=/dev/sdX
-    (replacing sdX with the partition of your sdcard).</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>The changelog for XiVO is available here
-    http://projects.xivo.io/versions/223 and you can find more news on
-    raspivo here http://www.raspivo.io/version-1510.html.</li>
-<li>The project would be grateful to hear from anyone who would be
-    interested in testing or any other feedback.</li>
-<li>"These tutorials will help me during my presentation on raspberry pi
-    2 with XiVO for workshops for a local fablab in Quebec" wanda,
-    member of http://espace-lab.org; "<a href="Raspivo" title="Raspivo">Raspivo</a> is a
-    new initiative from the community ! Have fun ! I'm very happy with
-    xivo on raspberry pi. " quintana, <a href="http://www.raspberry-xivo.org/">http://www.raspberry-xivo.org/</a>.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Feel free to share and have fun with this open source project and
-    the logo <a href="raspivo.io">raspivo.io</a> ! :)</li>
-<li>Jof and wanda. Licence CC by sa 4.0</li>
-</ul>
-<hr />
-<p><strong>Raspivo, s'amuser avec raspberry pi 2 et XiVO système en téléphonie
-open source</strong></p>
-<ul>
-<li>En 2012, des ateliers ont commencé sur raspberry-pi et XiVO (système
-    de téléphonie, basé sur Asterisk et sous licence GPLv3).</li>
-</ul>
-<p>Toutes les étapes ici:
-<a href="http://www.raspberry-xivo.org">www.raspberry-xivo.org</a></p>
-<ul>
-<li>Avec l'arrivée de la version 2 de raspebrry pi, de nouvelles
-    possibilités sont maintenant offertes : en mai 2015 Jof lance
-    "raspberry pi 2 + XiVO = raspivo"</li>
-</ul>
-<p>Retrouvez les tests et tutoriaux sur mon/notre blog <a href="http://raspivo.io">http://raspivo.io</a></p>
-<p><strong>Le début de l'aventure raspberry pi 2, XiVO et Raspbian</strong></p>
-<ul>
-<li>Iris-Network (http://www.iris-network.fr), entreprise experte en
-    télécommunications, a lancé l'expérience XiVO sur Raspberry-pi 2,
-    plate-forme compacte à moindre frais.</li>
-<li>Cet article présente l'installation de Raspbian, la compilation des
-    paquets XiVO compatible pour plateformes ARM, des tests sur les
-    appels entrants et sortants pour valider la qualité et la stabilité
-    de cette architecture.</li>
-<li>Lors des tests, 12 appels simultanés ont été effectués dans des
-    conditions optimales. Pour passer en conditions réelles, l'équipe
-    d'Iris-Network à basculé son système de téléphonie interne ainsi que
-    sa plateforme de hotline sur ce RPi2. Tout est fonctionnel et fiable
-    ! Actuellement, ces tests continuent avec l'aide de
-    clients beta-testeurs.</li>
-<li>Dans un soucis de partage et de respect de la philosophie
-    OpenSource, ce travail est mis à la disposition de la communauté,
-    sous forme de paquets Debian.</li>
-<li>En savoir plus: http://www.raspivo.io/raspivo.html</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><ins>
-    Installation depuis les dépôts et depuis une image disque
-    </ins>
-    (IMG)</li>
-<li>Depuis les dépôts, l'installation de raspivo (RPi2 + XiVO) se
-    déroule en 4 étapes: 1. Installation de raspbian (Debian pour
-    Raspberry Pi) ; 2. Installation de logiciels typiques pour
-    l'administration</li>
-</ul>
-<p>3. Ajout du dépot raspivo ; 4. Installation de raspivo.</p>
-<ul>
-<li>En savoir plus:
-    <a href="http:%20//www.raspivo.io/installation-depuis-nos-depots.html">www.raspivo.io/installation-depuis-nos-depots.html</a></li>
-</ul>
-<!-- -->
-
-<ul>
-<li><ins>
-    Depuis une image disque (IMG):
-    </ins></li>
-</ul>
-<dl>
-<dt>Pour faciliter le déploiement, une image complete est mise à disposition</dt>
-<dd>l'installation prend moins de 5 minutes.De même que pour une
-installation de Raspbian classique, vous pouvez également installer
-Raspivo grace à 'dd' :dd if=Raspivo-15.10.img of=/dev/sdX et en adaptant
-bien sur sdX par votre SdCard.</dd>
-</dl>
-<p><strong>La version 15.10 de XiVO packagée pour votre Raspberry 2</strong></p>
-<ul>
-<li>Voici le changelog http://projects.xivo.io/versions/223 et les
-    nouveautés http://www.raspivo.io/version-1510.html</li>
-<li>Merci de nous envoyer vos témoignages ou vos tests. "Ces tutoriaux
-    vont m'aider a présenter raspberry pi 2 avec XiVO, pour des ateliers
-    dans un fablab local à Québec" wanda, membre de l'Espace Lab et
-    community manager XiVO ; au sujet de Raspivo, "c'est une nouvelle
-    initiative de la communauté ! Amusez-vous bien, avec XiVO et le
-    raspberry pi. " quintana,
-    <a href="http://www.raspberry-xivo.org/">www.raspberry-xivo.org</a>. Merci de
-    partager la doc. de ce projet open source et le logo
-    <a href="raspivo.io">raspivo.io</a> ! :)</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Jof et wanda. Article en CC by sa 4.0</li>
-</ul>
 </p>
   </div>
 </article>
