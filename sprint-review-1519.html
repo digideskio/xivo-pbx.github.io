@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.xivo.io/theme/css/font-awesome.min.css">
+  <link href="http://blog.xivo.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="XiVO Blog Atom">
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="gsanderson" />
+<meta name="description" content="Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released. This will be our last version released in 2015. The next version, 15.20, will be released during the month of January in 2016. New features in this sprint Call Forwards: Unconditional ..." />
+<meta name="keywords" content="XiVO, development">
+<meta property="og:site_name" content="XiVO Blog"/>
+<meta property="og:title" content="Sprint Review 15.19"/>
+<meta property="og:description" content="Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released. This will be our last version released in 2015. The next version, 15.20, will be released during the month of January in 2016. New features in this sprint Call Forwards: Unconditional ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.xivo.io/sprint-review-1519.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-12-04 12:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.xivo.io/author/gsanderson.html">
+<meta property="article:section" content="XiVO IPBX"/>
+<meta property="article:tag" content="XiVO"/>
+<meta property="article:tag" content="development"/>
+<meta property="og:image" content="public/xivo-logo.png">  <title>XiVO Blog &ndash; Sprint Review 15.19</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.xivo.io">
+        <img src="public/xivo-logo.png" alt="" title="">
+      </a>
+      <h1><a href="http://blog.xivo.io"></a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://xivo.io" target="_blank">XiVO.io</a></li>
+          <li><a href="http://documentation.xivo.io" target="_blank">Documentation</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/xivodevteam" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/xivo-pbx" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-facebook" href="https://www.facebook.com/XiVO-86529730831" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.xivo.io">Home</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="http://blog.xivo.io/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="sprint-review-1519">Sprint Review 15.19</h1>
+    <p>Posted on Fri 04 December 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a></p>
+  </header>
+  <div>
+    <p>Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released.
+This will be our last version released in 2015. The next version, 15.20, will be released during
+the month of January in 2016.</p>
+<h2>New features in this sprint</h2>
+<p><strong>Call Forwards</strong>: Unconditional forwards on a phone can be updated through a single operation. When you wish
+to update the phone number on a forward, simply dial <code>*21&lt;new_number&gt;</code> and the forward will be
+automatically updated.</p>
+<p><strong>REST API:</strong> A new API for importing users en masse has been added. A CSV file can be used for
+importing users, lines, extensions, cti profiles, incalls, and voicemails in a single operation. The
+goal of this API is to accelerate the installation and configuration of a server when deploying one
+or more XiVOs.</p>
+<p><strong>REST API:</strong> The search system on confd APIs has been improved. You can now filter results using
+exact matches on any field for a given resource. For example : If you have two users named "John
+Smith" and "Jane Smith", you can search for users who only have "Jane" as a firstname. These
+improvements allow API users to search and filter results more precisely.</p>
+<p><strong>REST API:</strong> A new API for remotely initiating calls has been added. This feature can be used
+for implementing custom services related to calling services, such as automatically dialing
+a client's phone number, or call reminders at a specific time.</p>
+<p><strong>XiVO Client</strong>: The new People xlet now has buttons for transfering calls to voicemails, sending
+emails, and chatting with other users. This means that it is now feature complete and can be used as
+a replacement for the old Contacts xlet. The XiVO dev team is very proud to have completed this major
+milestone ! The old Contacts xlet has now been removed from the client.</p>
+<p><strong>Caller ID:</strong> The caller ID lookup service has been improved. Lookups now include searches in your
+personal contacts. This means that when one of your personal contacts calls you, instead of seeing
+only her number, you will see her name along with her number.</p>
+<h2>Security Advisory</h2>
+<p>2 security bugs have been fixed in this sprint. Security advisories for vunerable versions of xivo
+have been released and can be consulted on the <a href="http://mirror.xivo.io/security">security advisory page</a></p>
+<h2>Ongoing features</h2>
+<p><strong>OS Upgrade:</strong> We will be upgrading the version of Debian GNU/Linux, on which XiVO is based, from
+Wheezy to Jessie. This will upgrade many libraires and programs running on
+a server to newer versions.</p>
+<p><strong>User import:</strong> We will be adding more features to the user import API in order
+to update information that has already been imported.</p>
+<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
+voicemails. The goal is to make configuration of advanced parameters easier while
+still keeping the interface simple.</p>
+<p><strong>Switchboard:</strong> We are changing the internals of the Switchboard feature so that
+we can control more precisely how calls are answered, transferred, etc.</p>
+<h2>Technical features</h2>
+<ul>
+<li>We have started working on a permission system in order to better secure communications between
+ services on a XiVO server. In the long term, this work will also enable users to access
+ various xivo subsystems in a restricted mode, allowing them the possibility of customizing
+ different features without impacting other parts of the system.</li>
+</ul>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to wish you all a merry christmas and a
+happy new year ! May your spirits remain joyous until the end of the year and throughout 2016.
+May the freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
+<p><img alt="XiVO Christmas Tree" src="http://blog.xivo.io/public/xivo_xmas_tree_2015.jpg" /></p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://projects.xivo.io/versions/235" title=" XiVO 15.19 Roadmap">XiVO 15.19 Roadmap</a></li>
+<li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>
+      <a href="http://blog.xivo.io/tag/development.html">development</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; XiVO developers 2015 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Create Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Sprint Review 15.19",
+  "headline": "Sprint Review 15.19",
+  "datePublished": "2015-12-04 12:00:00-05:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "gsanderson",
+    "url": "http://blog.xivo.io/author/gsanderson.html"
+  },
+  "image": "public/xivo-logo.png",
+  "url": "http://blog.xivo.io/sprint-review-1519.html",
+  "description": "Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released. This will be our last version released in 2015. The next version, 15.20, will be released during the month of January in 2016. New features in this sprint Call Forwards: Unconditional ..."
+}
+</script></body>
+</html>

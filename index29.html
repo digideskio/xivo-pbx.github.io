@@ -54,6 +54,124 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/introduction-to-the-plugin-model-of-the-new-provisioning-server.html#introduction-to-the-plugin-model-of-the-new-provisioning-server">Introduction to the plugin model of the new provisioning server</a></h2>
+    <p>
+      Posted on Mon 11 April 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/provisioning.html">provisioning</a>    </p>
+  </header>
+  <div>
+      <p>What must be understood is that if you install provd but you do not
+install any plugins, the server won't be able to configure anything.
+This means that without plugins, provd is pretty useless.</p>
+<p>Each plugin can configure devices from configuration specifications.
+Plugins can also offer some additional services, like the downloading of
+external files, like firmware or dictionary files for example. So what
+was done before by xivo_fetchfw is now partially integrated in each and
+every plugin.</p>
+<p>One important particularity of this system is that each plugin is
+isolated from the others. Besides, and unlike the old provisioning
+server, the plugins doesn't share a common directory like /tftpboot.
+This way, there's never a conflict between the files used by the
+different plugins, and this make it easy to have for example a
+xivo-aastra-3.2.0.1011 and a xivo-aastra-2.6.0.2019 plugin on the same
+server.</p>
+<p>This means that with provd, you can have at the same time and on the
+same network, for example, two Aastra 6730i, one using the 2.6.0.2019
+firmware and another using the 3.2.0.1011 firmware, and this using the
+same DHCP server configuration for the two devices. From the point of
+view of both devices, their firmware will be located at
+http://&lt;provd_ip&gt;/6730i.st, but for one, this will be a firmware
+in version 2.6.0.2019, and for the other, a firmware in version
+3.2.0.1011. And if you are curious and point your web browser to this
+URL, you'll get an error 404 !</p>
+<p>We must know that provd, unlike the old provisioning server, doesn't
+depend on an external HTTP/TFTP server to process the requests, since it
+handles these requests by itself. This was becoming necessary with the
+introduction of the plugin system and the 'dynamic' request processing.</p>
+<p>Now, if you are a mentally sane person, you might be asking yourself if
+this whole system is based on sound principles. And I have a good news
+for you; you are not insane, this system is not based on sound
+principles <em>a priori</em>.</p>
+<p>In fact, for this system to becomes reliable, a precondition must be
+true: for each request, it should be possible to unambiguously identify
+which device is behind it. With this unambiguous information available,
+we can then lookup in our device database for the complete information
+we have on this device, and then find which plugin should handle the
+request, and redirect the request to this plugin.</p>
+<p>The good thing about this is that most devices provide this unique
+information. For example, the Aastras send their MAC address in the
+User-Agent header of each HTTP request they make.</p>
+<p>That said, some device doesn't give as much information, like the Cisco
+7900, which can only do TFTP requests. This means that sometimes, and
+only for some requests, the only 'unique' information we can extract
+from a request is the IP address. This does not generally cause problem,
+except if you are constantly changing the IP addresses on your network.
+And if you enable the provd-DHCP server integration, it will make sure
+that the MAC-IP association is always up to date, and this means the
+system will be reliable once again.</p>
+<p>So, part of provd is only about making this system reliable and finely
+tunable if there's any need to fine-tune the behaviour of the system.
+And to make thing a bit more clear, here's a high level view of what
+happens when an HTTP request is made to the provisioning server:</p>
+<p><a href="/public/provd/provd-http-request-flow.png" title="Example HTTP request flow"><img alt="Example HTTP request
+flow" src="/public/provd/.provd-http-request-flow_m.jpg" title="Example HTTP request flow, avr. 2011" /></a></p>
+<ol>
+<li>An Aastra 6730i using firmware 2.6.0.2019, with MAC
+    XX:XX:XX:XX:XX:XX and IP Y.Y.Y.Y, does an HTTP GET request for
+    /aastra.cfg to the provd server</li>
+<li>The HTTP server component in provd receive the request. It then
+    sends it to the 'request processing' component. Note that TFTP
+    requests are also being processed by the request
+    processing component.</li>
+<li>The first step in the request processing is to extract information
+    from the request. The goal is to extract the maximum of information
+    about the device behind the request, like its MAC address, model,
+    vendor, firmware version, serial number, IP address, etc. By
+    default, each plugin can participate in this step. In this case, at
+    the end of this step, we know that the request comes from an Aastra
+    6730i in version 2.6.0.2019, that its MAC address is
+    XX:XX:XX:XX:XX:XX and its IP address is Y.Y.Y.Y.</li>
+<li>The second step in the request processing is to retrieve the device
+    from the device database using the information extracted at 3. In
+    this case, we suppose there was already a device with MAC
+    XX:XX:XX:XX:XX:XX in the device database, so we retrieve it.</li>
+<li>The third step is to update the retrieved device using the
+    extracted information. For example, we can update information we
+    didn't know about the device. We can also do generic operation in
+    this step if we needs to. Anyway, in our case, this step is actually
+    a no-op.</li>
+<li>The last step is to route the request to the HTTP handler that will
+    answer the request. In our case, from the device retrieved at 4, we
+    know that its associated plugin is xivo-aastra-2.6.0.2019, so the
+    request is routed to the HTTP handler of the
+    xivo-aastra-2.6.0.2019 plugin.</li>
+<li>Finaly, the handler chosen at 6 answer the request. In this case,
+    the xivo-aastra-2.6.0.2019 plugin will return the content of its
+    var/tftpboot/aastra.cfg file.</li>
+</ol>
+<p>Now, you might be wondering how this work when an unknown device make a
+request to the provisioning server. By default, at step 4, if no device
+can be found in the database, a new one is added.</p>
+<p>Then, at step 5, if a device has no plugin associated to it, an
+automatic device association process occurs. Also at this step, a device
+with no config associated to it can have a default config associated to
+it. So, at the end of step 5, we then have a device with a default
+config and an associated plugin although the device was not known from
+the provisioning server when the request was received.</p>
+<p>So this is what conclude our brief introduction to the plugin model of
+the new provisioning server. If you are interested into digging into the
+details, you might want to start by looking at the
+provd/devices/ident.py python source file (this make me thing I should
+rename this file) and the various *.py.conf.* configuration file.</p>
+<p>Note that to keep this text at the introduction level, some things
+stated here have been slightly simplified and are not 100% exact.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-12-queues-diversions-.html#xivo-12-queues-diversions-">XiVO 1.2 -*- Queues Diversions -*-</a></h2>
     <p>
       Posted on Fri 08 April 2011 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
@@ -791,96 +909,6 @@ would find useless. It would belong to an implementor guide.</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/new-schedule-jquery-widget-for-upcoming-xivo.html#new-schedule-jquery-widget-for-upcoming-xivo">New schedule jquery widget for upcoming XiVO</a></h2>
-    <p>
-      Posted on Fri 25 March 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>,      <a href="http://blog.xivo.io/tag/schedule.html">schedule</a>,      <a href="http://blog.xivo.io/tag/javascript.html">javascript</a>,      <a href="http://blog.xivo.io/tag/jquery.html">jquery</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>    </p>
-  </header>
-  <div>
-      <p><span class="Apple-style-span"
-style="font-size: 15px; font-weight: bold; ">How to use it</span></p>
-<p>Click once on the field with calendar icon to show the widget. Click
-again to hide it (or on the cross at title bar right's).Once visible,
-you can define your intervals:</p>
-<ol>
-<li>
-<p>for months and days</p>
-<ul>
-<li>select each month/day individually (a selected one move from
-    gray to yellow background)</li>
-<li>all/none button allow toggling all values at once</li>
-</ul>
-</li>
-<li>
-<p>for the time interval</p>
-<ul>
-<li>click down start or end toggle, then slide to adjust the value</li>
-<li>for a fine adjustment, use mouse wheel or up/down keyboard keys</li>
-</ul>
-</li>
-</ol>
-<p>NOTE: <strong>A datetime is considered in the schedule if it match all
-intervals (months, month days, week days and hours)</strong>.</p>
-<p>Lets see with a quick example:  </p>
-<p><a href="/public/xivo-schedule/example.png" title="example.png"><img alt="example.png" src="/public/xivo-schedule/.example_s.jpg" title="example.png, mar. 2011" /></a></p>
-<p>We have selected workdays from January to April, 8AM to 7PM.</p>
-<ul>
-<li>all datetimes with time lower than 8AM or higher than 7PM are out of
-    the schedule</li>
-<li>2011, march 25 9.30AM is in schedule, while 2012, march 25 9:30AM is
-    out (first is a friday, while last is a sunday)</li>
-</ul>
-<h3>Developpers: Including xivo-schedule in you pages</h3>
-<p>While developped for xivo, it can easily be integrated in other
-projects. xivo-schedule support jquery-ui themes and is multilingual
-(only french and english available at the moment).  </p>
-<p>xivo-schedule widget require jquery (&gt;= 1.5), jquery-ui (&gt;=1.8)
-and optionally jquery.mousewheel
-(<a href="http://brandonaaron.net/code/mousewheel/docs">http://brandonaaron.net/code/mousewheel/docs</a>).</p>
-<p>``` {style="font-size:small;"}
-<link rel="stylesheet"   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/ui-lightness/jquery-ui.css"   type="text/css" media="all" /><script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script><script src="jquery.mousewheel.min.js"></script></p>
-<div class="highlight"><pre>Then include xivo-schedule javascript and css files. Note that you can
-also include langpack(s) you want to use.
-
-``` {style=&quot;font-size:small;&quot;}
-<span class="nt">&lt;link</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;xivo.schedule.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule.js&quot;</span><span class="nt">&gt;&lt;/script&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule-fr.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
-
-
-<p>xivo-schedule required a text input to be attached to. If you want to
-get schedule intervals back, you also need 4 others text fields (one for
-months, monthdays, weekdays and time intervals), which will be filled
-with intervals raw value when the user will manipulate schedule widget.</p>
-<p>``` {style="font-size:small;"}
-    <form>
-      <div style="float:left">
-        <input id="schedule" type="text" /><br/>
-      </div></p>
-<p><div style="float:left; margin-left: 100px;">
-        <label for="sched-months">months :</label><input id="sched-months"    type="text" disabled /><br/>
-        <label for="sched-monthdays">month days :</label><input id="sched-monthdays" type="text" disabled /><br/>
-        <label for="sched-weekdays">week days :</label><input id="sched-weekdays"  type="text" disabled /><br/>
-        <label for="sched-hours">hours :</label><input id="sched-hours"     type="text" disabled />
-      </div>
-    </form></p>
-<div class="highlight"><pre>Finally, you initialize your schedule widget:
-
-``` {style=&quot;font-size:small;&quot;}
-<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>  $(function(){    $(&#39;#schedule&#39;).schedule({      &#39;language&#39;: &#39;fr&#39;,      &#39;inputs&#39;: {          &#39;months&#39;   : $(&#39;#sched-months&#39;),          &#39;monthdays&#39;: $(&#39;#sched-monthdays&#39;),          &#39;weekdays&#39; : $(&#39;#sched-weekdays&#39;),          &#39;hours&#39;    : $(&#39;#sched-hours&#39;)      },      &#39;defaults&#39;: {          &#39;months&#39;   : &#39;1,3-6,11,12&#39;,          &#39;monthdays&#39;: &#39;1,3,5,8,10,12-13,15,17,20,22,24-25,27,29&#39;,          &#39;weekdays&#39; : &#39;1,4-6&#39;,          &#39;hours&#39;    : &#39;08:35-17:30&#39;      }    });  });<span class="nt">&lt;/script&gt;</span>
-</pre></div>
-
-
-<p>and voila! see attached file for the complete sample.</p>
-<p><strong>xivo-schedule can be downloaded from <a href="git://git.xivo.fr/xivo-dalek.git">our git
-repository</a> or <a href="https://github.com/gbour/xivo-schedule">on
-github</a></strong></p>
 </p>
   </div>
 </article>

@@ -54,6 +54,59 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Safeguard against downgrades in XIVO packages</a></h2>
+    <p>
+      Posted on Mon 26 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Safeguard against downgrades in XIVO packages</h4>
+<p>The following use case creates a <a href="http://packaging-farm.dachary.org/trac/ticket/23">confusing
+situation</a>:</p>
+<ul>
+<li>package-1.1-1 is submitted to the farm and successfully built</li>
+<li>package-1.0-1 is submitted to the farm : it is a version lower than
+    the one already built</li>
+<li>packaging-farm creates package-1.1-1+build1 instead of package-1.0-1</li>
+<li>the .orig.tar.gz is package-1.0.orig.tar.gz and a package-1.1.tar.gz
+    is created</li>
+</ul>
+<p>Although building an older version of a package is not desirable, it
+should not claim to succeed while creating a package inconsistent with
+the orig.tar.gz file.</p>
+<p>The source of the problem comes from the logic that adds a +buildX to
+the debian version of a package when a package is rebuilt (for instance
+because a package it depends on has been rebuilt). When this logic was
+implemented, the possibility that a package with a lower version number
+than a previously built package could be submitted was overlooked. It is
+not the normal behavior and should be treated as an error. Instead, it
+was ignored and lead to confusing results as described in the bug
+report.</p>
+<p>The general rule is that the packaging-farm should refuse to build a
+package with a version lower than a previously build package. The goal
+is to prevent downgrades because the installation scripts are not
+designed for downgrades. However, this general rule cannot be applied
+just by comparing the versions of the existing package ( as found in
+/var/lib/packaging-farm ) and the current package ( as found in
+/var/cache/packaging-farm/source ). When a package is rebuilt, the
++buildX suffix will always make the existing package more recent than
+the current package. The check must therefore proceed in two steps:
+first check if the existing package is more recent and then throw an
+error if the reason why it is more recent is not just because there is a
++buildX appended to it.</p>
+<p>The <a href="http://packaging-farm.dachary.org/trac/changeset/c1e5dff59898ab5ac0f23854f55d752f1c001a05">associated
+patch</a>
+also moves the extraction of the existing package version from the
+makefile to the debuild.sh script. That avoids duplicating the logic. It
+also gives the debuild.sh script the name of the original dsc file in
+order to print a meaningfull error message.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/software-freedom-day-montreal.html#software-freedom-day-montreal">Software Freedom Day Montreal</a></h2>
     <p>
       Posted on Tue 20 September 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -472,122 +525,6 @@ submit-xivo.sh manual page:</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</a></h2>
-    <p>
-      Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>rebuilding gallifrey</h4>
-<p>The /var/cache/packaging-farm/sources directory was removed and</p>
-<div class="highlight"><pre>export VERSION_COMPUTE=false
-</pre></div>
-
-
-<p>set in /etc/packaging-farm/packaging-farm.conf and
-<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
-from scratch. It took 42 minutes total. The purpose of this complete
-rebuild was to get rid of the timestamp and hash that were previously
-part of the version number.</p>
-<h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
-<p>The build of the gallifrey development packages was blocked because of a
-compilation error.</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
-
-<span class="o">---------------------------------------------</span>
-
-<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
-<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
-</pre></div>
-
-
-<p>To debug the problem, the following command was used to go in the chroot
-where it can be reproduced:</p>
-<div class="highlight"><pre>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
-</pre></div>
-
-
-<p>The compilation error:</p>
-<div class="highlight"><pre>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
-</pre></div>
-
-
-<p>is in <code>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c</code></p>
-<div class="highlight"><pre>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
-        .name = &quot;WANPIPE_HWEC&quot;,
-        .echocan_free = wp_tdmv_hwec_free,
-};
-</pre></div>
-
-
-<p>and comes from the fact that <code>/usr/include/dahdi/kernel.h</code> which is part
-of</p>
-<div class="highlight"><pre>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
-</pre></div>
-
-
-<p>contains</p>
-<div class="highlight"><pre>struct dahdi_echocan_ops {
-
-        /*! \brief Free an echocan state structure.                                                                                                             
-         * \param[in,out] ec Pointer to the state structure to free.                                                                                            
-         *                                                                                                                                                      
-         * \
-eturn Nothing.                                                                                                                                     
-         */
-        void (*echocan_free)(struct dahdi_chan *chan, struct dahdi_echocan_state *ec);
-...
-</pre></div>
-
-
-<p>and does not contain the <code>name</code> field which means that
-<code>sangoma-wanpipe-3.5.20</code> is not compatible with
-<code>dahdi-linux-dev 1:2.5.0</code></p>
-<h4>kernel-module dependencies</h4>
-<p>Nicolas Hicher faced a problem because <a href="http://packaging-farm.dachary.org/trac/ticket/19">kernel-modules dependencies did
-not work</a>. The
-dependency graph generated is wrong: it mentions the stamp files but do
-not assemble them properly. As a result the kernel-module is not rebuilt
-when the module is rebuilt. The make_graph and make_build functions
-<a href="are%20assembled%20into%20a%20single%20functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60" title="are assembled into a single functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60">are assembled into a single
-functio...</a>|
-so that the rule generated lists the timestamp files of the
-dependencies.</p>
-<h4>Makefiles moved to /etc/packaging-farm</h4>
-<p>The fact that Makefiles describing how a given package must be built are
-expected to be in /var/cache/packaging-farm <a href="http://packaging-farm.dachary.org/trac/ticket/20">is
-confusing</a>. In
-addition, they are copied in /var/lib/packaging-farm after the package
-is successfully built. As a result the system administrator is led to
-think that /var/lib/packaging-farm/package/Makefile is the file to be
-edited although it will be overridden the next time a package is
-built.The makefiles <a href="http://packaging-farm.dachary.org/trac/changeset/6450d8785be6406a5e1d1d205df23be04279f736">are moved from
-/var/cache/packaging-farm/build/package/Makefile to
-/etc/packaging-farm/package.mk</a>.
-To ensure the compatibility with the existing scripts, a symbolic link
-is created from /var/cache/packaging-farm/build/package/Makefile to
-/etc/packaging-farm/package.mk by the makefiles.sh script.The manual
-page is updated to remove references to the former build directory. The
-additional benefit of having the .mk files in /etc/packaging-farm is
-that they can be saved by etckeeper and backed up with /etc.The build
-machines for gallifrey, gallifrey-dev and skaro were migrated to the new
-convention.</p>
 </p>
   </div>
 </article>

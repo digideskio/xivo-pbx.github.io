@@ -54,6 +54,28 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">packaging infrastructure for XiVO</a></h2>
+    <p>
+      Posted on Mon 04 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Trying out packaging-farm</h4>
+<p>Nicolas Hicher and Loic Dachary worked together on building the skaro
+repository available at:</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>The goal was to demonstrate the use of the packaging-farm and ...</p>
+      <a class="btn" href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/building-xivo-skaro-from-sources.html#building-xivo-skaro-from-sources">building XiVO skaro from sources</a></h2>
     <p>
       Posted on Tue 29 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -129,32 +151,6 @@ board of our XiVO IPBX OpenHardware with the gathering of our schematic
 design on the CPU board of our IPBX. The current step is to place the
 component, check the package of each component in ...</p>
       <a class="btn" href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html#the-road-to-the-final-pcb-layout-routing-of-the-cpu-board">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Creating a Debian GNU/Linux source package from the XiVO VCS (1/2)</a></h2>
-    <p>
-      Posted on Mon 07 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>Source GIT structure</h4>
-<p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
-extracted as follows:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
-</pre></div>
-
-
-<p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
-repository</a>.
-The names of the directories are mapped to the package names as follows:</p>
-<div class="highlight"><pre>agid -&gt; pf-xivo-agid
-app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
-asterisk ...</pre></div>
-      <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Continue reading</a>
   </div>
 </article>
 

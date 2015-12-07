@@ -54,6 +54,74 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1519.html#sprint-review-1519">Sprint Review 15.19</a></h2>
+    <p>
+      Posted on Fri 04 December 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released.
+This will be our last version released in 2015. The next version, 15.20, will be released during
+the month of January in 2016.</p>
+<h2>New features in this sprint</h2>
+<p><strong>Call Forwards</strong>: Unconditional forwards on a phone can be updated through a single operation. When you wish
+to update the phone number on a forward, simply dial <code>*21&lt;new_number&gt;</code> and the forward will be
+automatically updated.</p>
+<p><strong>REST API:</strong> A new API for importing users en masse has been added. A CSV file can be used for
+importing users, lines, extensions, cti profiles, incalls, and voicemails in a single operation. The
+goal of this API is to accelerate the installation and configuration of a server when deploying one
+or more XiVOs.</p>
+<p><strong>REST API:</strong> The search system on confd APIs has been improved. You can now filter results using
+exact matches on any field for a given resource. For example : If you have two users named "John
+Smith" and "Jane Smith", you can search for users who only have "Jane" as a firstname. These
+improvements allow API users to search and filter results more precisely.</p>
+<p><strong>REST API:</strong> A new API for remotely initiating calls has been added. This feature can be used
+for implementing custom services related to calling services, such as automatically dialing
+a client's phone number, or call reminders at a specific time.</p>
+<p><strong>XiVO Client</strong>: The new People xlet now has buttons for transfering calls to voicemails, sending
+emails, and chatting with other users. This means that it is now feature complete and can be used as
+a replacement for the old Contacts xlet. The XiVO dev team is very proud to have completed this major
+milestone ! The old Contacts xlet has now been removed from the client.</p>
+<p><strong>Caller ID:</strong> The caller ID lookup service has been improved. Lookups now include searches in your
+personal contacts. This means that when one of your personal contacts calls you, instead of seeing
+only her number, you will see her name along with her number.</p>
+<h2>Security Advisory</h2>
+<p>2 security bugs have been fixed in this sprint. Security advisories for vunerable versions of xivo
+have been released and can be consulted on the <a href="http://mirror.xivo.io/security">security advisory page</a></p>
+<h2>Ongoing features</h2>
+<p><strong>OS Upgrade:</strong> We will be upgrading the version of Debian GNU/Linux, on which XiVO is based, from
+Wheezy to Jessie. This will upgrade many libraires and programs running on
+a server to newer versions.</p>
+<p><strong>User import:</strong> We will be adding more features to the user import API in order
+to update information that has already been imported.</p>
+<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
+voicemails. The goal is to make configuration of advanced parameters easier while
+still keeping the interface simple.</p>
+<p><strong>Switchboard:</strong> We are changing the internals of the Switchboard feature so that
+we can control more precisely how calls are answered, transferred, etc.</p>
+<h2>Technical features</h2>
+<ul>
+<li>We have started working on a permission system in order to better secure communications between
+ services on a XiVO server. In the long term, this work will also enable users to access
+ various xivo subsystems in a restricted mode, allowing them the possibility of customizing
+ different features without impacting other parts of the system.</li>
+</ul>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to wish you all a merry christmas and a
+happy new year ! May your spirits remain joyous until the end of the year and throughout 2016.
+May the freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
+<p><img alt="XiVO Christmas Tree" src="http://blog.xivo.io/public/xivo_xmas_tree_2015.jpg" /></p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://projects.xivo.io/versions/235" title=" XiVO 15.19 Roadmap">XiVO 15.19 Roadmap</a></li>
+<li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1518.html#sprint-review-1518">Sprint Review 15.18</a></h2>
     <p>
       Posted on Fri 13 November 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -237,49 +305,6 @@ BlueMind is talking to XiVO? You get more features! You may:</p>
 documentation</a></p>
 <p>If you want to configure your instance of BlueMind, <a href="https://forge.blue-mind.net/confluence/display/LATEST/Configuration+du+plugin+Xivo+Avencall">click this
 link</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1516.html#sprint-review-1516">Sprint Review 15.16</a></h2>
-    <p>
-      Posted on Mon 28 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Hello,</p>
-<h3>New features in this sprint:</h3>
-<p><strong>High Availablity</strong>: Phones can be rebooted and will still be
-functional when using a fallback server. The next step will be to
-replicate the phone's configuration on to the fallback server, so that
-an administrator may still be able to modify the phone's options.</p>
-<p><strong>XiVO Client</strong>: Blind transfers and attended transfers have been added
-to the people xlet. The transfer destination may be either a contact's
-main phone, or his mobile phone. This feature is one more step towards
-replacing the contacts xlet and finishing the unificiation of contacts
-in the xivo client</p>
-<p><strong>Voicemails</strong>: We have removed some limitations about the management of
-voicemails that were introduced in the last version. The voicemail
-system is now fully integrated with the REST API.</p>
-<h3>Ongoing features:</h3>
-<p><strong>Directories</strong>: we continue working on a new service that will
-integrate the new directory infrastructure with phones. The goal is to
-make contacts exposed via XiVO's directory attainable via a user's
-phone. This means that a user's personal contacts will also be avaible.</p>
-<p><strong>Security</strong>: we have started working on an permission system for our
-REST APIs. This will allow a finer grained access to the REST APIs and
-reduce the chances of accidentally breaking the rest of the system. For
-example, users will be able to modify their function keys, without
-having access to the function keys of other users.</p>
-<p><strong>SIP Lines</strong>: We are revamping the extra parameters for sip accounts in
-the same way as what has been done for voicemails. This will make it
-easier for users to configure advanced features in asterisk.</p>
-<p>See you for the next sprint review.</p>
-<p>Source: <a href="http://projects.xivo.io/versions/232" title="XiVO 15.16 Roadmap">XiVO 15.16
-Roadmap</a></p>
 </p>
   </div>
 </article>

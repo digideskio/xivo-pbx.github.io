@@ -54,6 +54,54 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html#automatically-originating-call-with-cron-and-xivo-12">Automatically originating call with cron and XiVO 1.2</a></h2>
+    <p>
+      Posted on Wed 14 December 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>This bit of dialplan simply set the name part of the caller ID and then
+call our phone, which in our example is SIP/abcdef. Note that we dial
+the phone directly instead of jumping into the standard XiVO dialplan,
+because we don't want the voicemail of the user to answer the call if it
+isn't answered in time.</p>
+<p>Now that this is done, we load the dialplan we just added previously
+with the following command:</p>
+<div class="highlight"><pre>asterisk -rx &quot;dialplan reload&quot;
+</pre></div>
+
+
+<p>Next step before writing our cron job is to test out the command that
+will make our automatic call origination works. This use the "channel
+originate" command available from the asterisk 1.8 CLI. Let's try it
+out:</p>
+<div class="highlight"><pre>asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
+</pre></div>
+
+
+<p>This makes our SIP/abcdef phone ring, showing that "Daily Scrum" is
+calling us, and once we answer the call, we are bridged into our
+conference room at extension 1051.</p>
+<p>So we reach the last step on our journey; writing our cron job. Let's
+create a file at <em>/etc/cron.d/daily-scrum</em> and write the following line:</p>
+<div class="highlight"><pre>0 9 * * 1-5 root   /usr/sbin/asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
+</pre></div>
+
+
+<p>This cron job will launch our asterisk command every day of the week at
+9:00 AM.</p>
+<p>So that's it. Starting from this setup, it's possible to do other
+things. For example, paging and autoanswering a group of phones and then
+playing a sound file is just a bit of custom dialplan away.</p>
+<p>Note that to make this work in XiVO 1.1, the dialplan shown here need to
+be modified (the "same" syntax is not supported in asterisk 1.4) and the
+"channel originate" command be replaced by "originate".</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html#some-more-internationalization-in-xivo-part-1">Some more internationalization in XiVO (part 1)</a></h2>
     <p>
       Posted on Fri 09 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -172,59 +220,6 @@ to share our passion about technology.</p>
 <p><strong>We are already looking forward the next Astricon !</strong></p>
 <p><img alt="nick-astricon" src="/public/astricon2011/.nick-astricon_s.jpg" title="nick-astricon, nov. 2011" /></p>
 <p>Nicolas Bouliane, Xavier Carcelle</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/openhardware-landscape-q4-2011.html#openhardware-landscape-q4-2011">OpenHardware landscape Q4 2011</a></h2>
-    <p>
-      Posted on Tue 01 November 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p><strong>The OpenHardware community is expanding more and more these past
-months and here a short landscape view of the community nowadays :</strong></p>
-<ul>
-<li><strong>OpenHardware large board projects</strong></li>
-</ul>
-<p>PandaBoard :
-<a href="http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip">http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip</a><br />
-Chumby :
-<a href="http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip">http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip</a><br />
-MilkyMist :
-<a href="http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification">http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification</a><br />
-Tormenta v2 PCI card :
-<a href="http://www.zapatatelephony.org/t2/T2B2Gerber.zip">http://www.zapatatelephony.org/t2/T2B2Gerber.zip</a>  </p>
-<ul>
-<li><strong>OpenHardware smaller board projects</strong></li>
-</ul>
-<p>DIY boards : <a href="http://tuxgraphics.org/electronics/">http://tuxgraphics.org/electronics/</a>  </p>
-<ul>
-<li><strong>Open "specifications" Hardware products</strong></li>
-</ul>
-<p>Elphel camera :
-<a href="http://www.elphel.com/importwiki?title=353_in_a_nutshell">http://www.elphel.com/importwiki?title=353_in_a_nutshell</a>  </p>
-<ul>
-<li><strong>Blogs/Events/Journals</strong></li>
-</ul>
-<p>OpenHardwareJournal :
-<a href="http://openhardware.org/journal/2011/11/index.html">http://openhardware.org/journal/2011/11/index.html</a><br />
-Hack-a-day : <a href="http://hackaday.com">http://hackaday.com</a>  </p>
-<ul>
-<li><strong>Events/Conferences/Workshops</strong></li>
-</ul>
-<p>OpenHardwareSummit : <a href="http://www.openhardwaresummit.org/">http://www.openhardwaresummit.org/</a><br />
-OpenHardwareWorkshop :
-<a href="http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop">http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop</a><br />
-OpenSourceHardware2011 (Madrid) : <a href="http://oshwcon.org/">http://oshwcon.org/</a>  </p>
-<ul>
-<li><strong>Licences</strong></li>
-</ul>
-<p>OHANDA : <a href="http://ohanda.org">http://ohanda.org</a><br />
-CERN : <a href="http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects">http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects</a><br />
-OpenSourceHardwareDefintion : <a href="http://freedomdefined.org/OSHW">http://freedomdefined.org/OSHW</a>  </p>
 </p>
   </div>
 </article>

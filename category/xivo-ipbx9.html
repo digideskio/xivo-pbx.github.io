@@ -54,6 +54,32 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Testing a XiVO gallifrey repository (1/2)</a></h2>
+    <p>
+      Posted on Mon 09 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Methodology</h4>
+<p>Assuming a host running <a href="http://www.debian.org/releases/squeeze/">Debian GNU/Linux
+Squeeze</a>, the general idea is
+to boot a virtual machine thatwill auto-install using
+<a href="http://www.debian.org/devel/debian-installer/">debian-installer</a> so
+that it uses <a href="http://git.proformatique.com/?p=official/debian-installer.git;a=tree;f=squeeze/classes/skaro-farm;h=155b14e82c906b968d6d42a7b8e20faf0209d687;hb=692498d23dcd2daa173e2ed152010b6c22dd7fda">a specific
+class</a>
+that will pull packages from <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">the
+gallifrey</a>
+repository <a href="http://blog.xivo.fr/index.php?post/2011/04/27/An-alternate-XiVO-gallifrey-repository-%28part-2/2%29">created with
+packaging-farm</a>.</p>
+<h4>Virtual machine</h4>
+<p>The <a href="http://libvirt.org/">libvirt</a> virtual machine is given 512MB RAM ...</p>
+      <a class="btn" href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-packages-versions.html#xivo-packages-versions">XiVO packages versions</a></h2>
     <p>
       Posted on Mon 02 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -129,28 +155,6 @@ release. It can be imported using:</p>
 <p>Two variables were added to the packaging-farm configuration file to
 instruct dpkg-buildpackage and repreprothat they must ...</p>
       <a class="btn" href="http://blog.xivo.io/signing-and-naming-xivo-packages.html#signing-and-naming-xivo-packages">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">packaging infrastructure for XiVO</a></h2>
-    <p>
-      Posted on Mon 04 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>Trying out packaging-farm</h4>
-<p>Nicolas Hicher and Loic Dachary worked together on building the skaro
-repository available at:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
-<span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
-</pre></div>
-
-
-<p>The goal was to demonstrate the use of the packaging-farm and ...</p>
-      <a class="btn" href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html#packaging-infrastructure-for-xivo">Continue reading</a>
   </div>
 </article>
 

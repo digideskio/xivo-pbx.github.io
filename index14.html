@@ -54,6 +54,143 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/visualizing-asterisk-deadlocks.html#visualizing-asterisk-deadlocks">Visualizing asterisk deadlocks</a></h2>
+    <p>
+      Posted on Wed 24 October 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>It has recently come to our attention that a freeze would sometimes
+occur in the asterisk application shipped with XiVO.</p>
+<p>When the freeze happened, no new calls would be accepted and most of the
+current calls would freeze. A manual restart of the asterisk process
+would then be required for the situation to get back to normal.</p>
+<p>As you can understand, that's quite an unpleasant situation for a
+telephony system like XiVO.</p>
+<p>So we began investigating on what was causing the freeze, knowing it was
+probably some deadlocks occuring in the asterisk process.Fortunately for
+us, asterisk provides some compile time flags that help with debugging
+such conditions. This is documented <a href="https://wiki.asterisk.org/wiki/display/AST/Getting+a+Backtrace">on the asterisk
+wiki</a>.</p>
+<p>After recompiling the XiVO version of asterisk with the DEBUG_THREADS
+and DONT_OPTIMIZE flags, and with the help of some other people, we
+were able to reproduce the freeze and get some information about the
+various locks held by the various threads of the frozen asterisk process
+via the "coreshow locks" command.</p>
+<p>The output of the "core show locks" command looks like this:</p>
+<div class="highlight"><pre><span class="gh">=======================================================================</span>
+<span class="gh">=== Currently Held Locks ==============================================</span>
+<span class="gh">=======================================================================</span>
+===
+=== &lt;pending&gt; &lt;lock#&gt; (&lt;file&gt;): &lt;lock type&gt; &lt;line num&gt; &lt;function&gt; &lt;lock name&gt; &lt;lock addr&gt; (times locked)
+=== Thread ID: 0xb71ffb70 (tps_processing_function started at [  457] taskprocessor.c ast_taskprocessor_get())
+=== ---&gt; Lock #0 (event.c): RDLOCK 1488 handle_event &amp;(&amp;ast_event_subs[event_types[i]])-&gt;lock 0x822aa78 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_rwlock_rdlock+0xae) [0x8125263]
+    /usr/sbin/asterisk() [0x80ef7a5]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&gt; Lock #1 (chan_agent.c): MUTEX 421 device_state_cb &amp;(&amp;agents)-&gt;lock 0xb64fab48 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_trylock+0xae) [0x8123886]
+    /usr/lib/asterisk/modules/chan_agent.so(+0x2f8b) [0xb64e7f8b]
+    /usr/sbin/asterisk() [0x80ef81d]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&gt; Waiting for Lock #2 (chan_agent.c): MUTEX 430 device_state_cb &amp;p-&gt;lock 0x96a1a60 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/lib/asterisk/modules/chan_agent.so(+0x2fea) [0xb64e7fea]
+    /usr/sbin/asterisk() [0x80ef81d]
+    /usr/sbin/asterisk() [0x8194305]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== --- ---&gt; Locked Here: chan_agent.c line 516 (agent_lock_owner)
+<span class="gh">=== -------------------------------------------------------------------</span>
+<span class="gh">===</span>
+=== Thread ID: 0xb6cffb70 (do_devstate_changes  started at [  726] devicestate.c ast_device_state_engine_init())
+=== ---&gt; Lock #0 (astobj2.c): MUTEX 661 internal_ao2_callback c 0x9551498 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/sbin/asterisk(__ao2_lock+0x48) [0x8087fe4]
+    /usr/sbin/asterisk() [0x8088b19]
+    /usr/sbin/asterisk(__ao2_callback+0x56) [0x8088fa4]
+    /usr/sbin/asterisk(__ao2_find+0x29) [0x80890c0]
+    /usr/sbin/asterisk() [0x80afe6c]
+    /usr/sbin/asterisk(ast_channel_get_by_name_prefix+0x28) [0x80aff2c]
+    /usr/sbin/asterisk(ast_parse_device_state+0x43) [0x80dfc3e]
+    /usr/sbin/asterisk() [0x80dff2d]
+    /usr/sbin/asterisk() [0x80e03ac]
+    /usr/sbin/asterisk() [0x80e0702]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== ---&gt; Waiting for Lock #1 (channel.c): MUTEX 1703 ast_channel_cmp_cb chan 0xae044858 (1)
+    /usr/sbin/asterisk(ast_bt_get_addresses+0x19) [0x812a024]
+    /usr/sbin/asterisk(__ast_pthread_mutex_lock+0xae) [0x812351e]
+    /usr/sbin/asterisk(__ao2_lock+0x48) [0x8087fe4]
+    /usr/sbin/asterisk() [0x80afa11]
+    /usr/sbin/asterisk() [0x8088bdf]
+    /usr/sbin/asterisk(__ao2_callback+0x56) [0x8088fa4]
+    /usr/sbin/asterisk(__ao2_find+0x29) [0x80890c0]
+    /usr/sbin/asterisk() [0x80afe6c]
+    /usr/sbin/asterisk(ast_channel_get_by_name_prefix+0x28) [0x80aff2c]
+    /usr/sbin/asterisk(ast_parse_device_state+0x43) [0x80dfc3e]
+    /usr/sbin/asterisk() [0x80dff2d]
+    /usr/sbin/asterisk() [0x80e03ac]
+    /usr/sbin/asterisk() [0x80e0702]
+    /usr/sbin/asterisk() [0x81a5939]
+    /lib/i686/cmov/libpthread.so.0(+0x5955) [0xb7324955]
+    /lib/i686/cmov/libc.so.6(clone+0x5e) [0xb75361de]
+=== --- ---&gt; Locked Here: channel.c line 3767 (__ast_read)
+=== --- ---&gt; Locked Here: chan_agent.c line 515 (agent_lock_owner)
+<span class="gh">=== -------------------------------------------------------------------</span>
+<span class="gh">...</span>
+</pre></div>
+
+
+<p>and it continues this way for a total of 363 lines.</p>
+<p>The big advantage of this representation is that you have a lot of info
+to help with precise diagnostics and debugging. But there is a downside
+to this:it is quite hard to quickly get the "big picture" of which
+thread is waiting for which other thread, etc.</p>
+<p>Since it seemed like there were no tools to help us with getting the big
+picture, we wrote a really simple python script that takes the output of
+the "core show locks" command and outputs a directed graph in <a href="http://www.graphviz.org/content/dot-language">DOT
+language</a> of the relations
+between the threads. The generated graph is then fed to
+<a href="http://www.graphviz.org/Home.php">graphviz</a> to generate an image like
+this:</p>
+<p><a href="/public/graph-locks.png" title="Asterisk Deadlock"><img alt="Asterisk
+Deadlock" src="/public/.graph-locks_m.jpg" title="Asterisk Deadlock, oct. 2012" /></a></p>
+<p>Each node represents a thread, labeled with its thread ID, and edges
+represent a "is waiting for" relation.</p>
+<p>From the above image, we clearly see that there's a deadlock between
+thread 0xaeb2db70 and thread 0xb6cffb70 since both are waiting for each
+other. We also see a bunch of other threads waiting directly or
+indirectly on the deadlocked threads, showing the generalized freeze of
+the asterisk process.</p>
+<p>The script, which is named graph_ast_locks.py, can be found in <a href="https://gitorious.org/xivo/xivo-tools/trees/master/scripts">the
+xivo-tools
+repository</a>.
+Given you have the output of a "core show locks" invocation, and that
+you have graphviz installed, you can then run the following command to
+generate a graph in svg format:</p>
+<div class="highlight"><pre>graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/test-vectors-for-smbus-packet-error-checking-pec-crc-8.html#test-vectors-for-smbus-packet-error-checking-pec-crc-8">Test vectors for SMBus Packet Error Checking (PEC) CRC-8</a></h2>
     <p>
       Posted on Tue 09 October 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -257,88 +394,6 @@ live-demos, we will be at :</strong></p>
 <li>Hackfest 2012 (http://www.hackfest.ca/) : we will be using our XiVO
     IPBX OpenHardware during some hacking contest related to VoIP</li>
 </ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html#xioh-prototype-version-5-back-from-factory">XIOH prototype version 5: back from factory</a></h2>
-    <p>
-      Posted on Wed 22 August 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <h2>Feedback of the factory</h2>
-<p>In order to load the factory's pick-and-place machines (2 distinct ones
-were used to assemble bottom, then top, then throug-hole components), we
-needed an efficient way of sorting the components. Therefore, we created
-a database of the correspondence between our BOM and the stickers used
-by the factory to load the feeders. See below for an example of one
-sticker for one reference used on the top layer.</p>
-<p><img alt="XIOHV5_PCB_STICK_EX" src="/public/XIOHv5/.P1050993_m.jpg" title="XIOHV5_PCB_STICK_EX, août 2012" /></p>
-<p>Once all the components were ready and sorted out, they were ready to be
-carried at the factory for loading and assembling.</p>
-<p><img alt="XIOHV5_COMPONANTS_READY" src="/public/XIOHv5/.20120723_001_m.jpg" title="XIOHV5_COMPONANTS_READY, août 2012" /></p>
-<p>As an automatic machine geek, the best part was the loading and
-pick-and-place of the several ICs on the board. This part is quite
-impressive because of the efficiency of the placing. Afterwards, the PCB
-goes through an oven for 10minutes for the final soldering, then cools
-down prior to the manual assembly of the through-holes components.</p>
-<p>Below is a picture with the various IC packages we are using (CPU, ISDN,
-FXO/FXS, micro-controllers...)</p>
-<p><img alt="XIOHV5_LOADING_ICS" src="/public/XIOHv5/.20120725_005_m.jpg" title="XIOHV5_LOADING_ICS, août 2012" /></p>
-<p>We then prepared the through-holes to be manually assembled by the
-factory operators, with a schematic of each component in the best order
-to respect the mechanical constraints.</p>
-<p><img alt="XIOHV5_THROUGH_HOLES" src="/public/XIOHv5/.20120725_013_m.jpg" title="XIOHV5_THROUGH_HOLES, août 2012" /></p>
-<p>The assembling of those throug-holes components can take up to 30minutes
-for complex boards. It has to be checked when there are a lot of
-connectors (for instance) on a board. The ready-to-test boards were then
-placed on shelves for us to start our debugging.</p>
-<p><img alt="XIOHV5_MOUNTING_THOLES" src="/public/XIOHv5/.20120725_012_m.jpg" title="XIOHV5_MOUNTING_THOLES, août 2012" /></p>
-<p>The first batch of tests was done with 5 of the 50 PCBs in order for us
-to start the debugging in our lab.</p>
-<h2>Debugging the PCBs</h2>
-<p>Back to our lab, we were able to start the testing our boards. We did
-the following steps in-order:</p>
-<ul>
-<li>smoke test: testing the power-supply using current-limited power
-    supplies for each voltage level, on a special board without the CPU
-    assembled (in order to save one in case of short-circuit on
-    the board.)</li>
-<li>flashing the board with our firmwares (programming the
-    power-sequence in an MSP430 and a BIOS in an SPI flash.) This
-    validates the flashing method and flashing tools/cables.</li>
-<li>booting-up the CPU and testing the serial console</li>
-<li>RAM testing: this validates the calibration and initialization of
-    the DDR2 controller by our custom firmware.</li>
-<li>SATA testing: to be able to start the hard drive and the kernel
-    image after the complete BIOS boot sequence</li>
-<li>testing the telco interfaces and phone call features.</li>
-</ul>
-<p><img alt="XIOHV5_DEBUG_BOARD" src="/public/XIOHv5/.P1050995_m.jpg" title="XIOHV5_DEBUG_BOARD, août 2012" /></p>
-<p>Above is our main whiteboard listing the issues we have on each PCB, and
-how to fix those. This is the most exciting (though stressful) part of
-hardware development, as we were able to make progress and get results
-in a very short time. We were extastic when we got the first board fully
-working with the XiVO software running on it!</p>
-<h2>Final tests</h2>
-<p>The rest is mainly software: we got XiVO running with our kernel drivers
-and plan to do some stress testing to see how well our boards fare with
-time and use.</p>
-<p><img alt="XIOHV5_FULL_RUNNING" src="/public/XIOHv5/.20120802_001_m.jpg" title="XIOHV5_FULL_RUNNING, août 2012" /></p>
-<h2>Next steps</h2>
-<p>The next steps:</p>
-<ul>
-<li>finishing the production of the the first 50 PCB batch and start a
-    full 4-weeks time period of stress testing on our board to identify
-    potential hardware/software bugs,</li>
-<li>validating the hardware and software,</li>
-<li>optimizing the production process for the next batches</li>
-</ul>
-<p>To be continued soon...</p>
-<p>The XiVO Open Hardware team.</p>
 </p>
   </div>
 </article>
