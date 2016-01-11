@@ -54,6 +54,144 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-skaro-repository.html#an-alternate-xivo-skaro-repository">An alternate XiVO skaro repository</a></h2>
+    <p>
+      Posted on Mon 06 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>composing skaro</h4>
+<p>The gallifrey repository is made of packages built from the GIT
+repositories, some extracted from the official repository because they
+are not under GIT and others built for the occasion (kernel-modules and
+meta-packages). The source of each package is documented in
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> which is the
+meta-package that depends on all the others:</p>
+<div class="highlight"><pre><span class="x">PACKAGE=skaro</span>
+<span class="x">DISTRIBUTIONS=squeeze</span>
+<span class="x">COMPONENT=main</span>
+<span class="x">ARCHITECTURES=i386 x86_64</span>
+<span class="err">#</span><span class="x"> bntools  asterisk-chan-sccp                                                                                                                                                   </span>
+<span class="x">CHILD_PACKAGES = asterisk dahdi-linux dahdi-linux-modules dahdi-tools freeswitch libpri pf-xivo-base-config pf-xivo-confgen pf-xivo-cti-server pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-js pf-xivo-lib-python pf-xivo-monitoring pf-xivo-provisioning pf-xivo-sounds pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface pf-asterisk-res-watchdog pf-xivo pf-xivo-backup</span>
+<span class="err">#</span><span class="x">                                                                                                                                                                               </span>
+<span class="err">#</span><span class="x"> Waiting to be completed:                                                                                                                                                      </span>
+<span class="err">#</span><span class="x"> bntools chan_sccp                                                                                                                                                             </span>
+<span class="x">submit:</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories                                                                                                                                   </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        for dir in agid asterisk base-config confgen ctiservers dahdi-linux dahdi-tools extra fetchfw freeswitch lib-javascript lib-python monitoring provisioning sysconfd uti\</span>
+<span class="x">ls wanpipe web-interface xivo_ha xivo-sounds ; do packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> When symbolic links needs to be resolved before building the source package                                                                                           </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        for dir in res_watchdog ; do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                       </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not in the GIT repositories                                                                                     </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ squeeze-xivo-skaro-dev main                                                                                              </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> virtual packages : pf-xivo pf-xivo-backup                                                                                                                             </span>
+<span class="x">        for package in libpri pf-xivo pf-xivo-backup  ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+
+<span class="x">ROLE = meta-package</span>
+</pre></div>
+
+
+<p>The hand made packages (i.e. Makefiles) can be retrieved from their
+respective repositories:</p>
+<ul>
+<li>http://skaro.dachary.org/packaging-farm/skaro/Makefile</li>
+<li>http://skaro.dachary.org/packaging-farm/dahdi-linux-modules/Makefile</li>
+</ul>
+<p>The packages are built for two architectures : i386 and x86_64</p>
+<div class="highlight"><pre>ARCHITECTURES=i386 x86_64
+</pre></div>
+
+
+<p>Mirroring the http://skaro.dachary.org/packaging-farm/ directory is
+enough to get all the information required to re-install a
+packaging-farm from scratch.It can be used by adding the following to
+/etc/apt/sources.list</p>
+<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>troubleshooting</h4>
+<p>The pf-xivo-extra produced an error:</p>
+<div class="highlight"><pre><span class="n">cp</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">stat</span> <span class="err">`</span><span class="n">debian</span><span class="sr">/tmp/</span><span class="n">README</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="n">dh_install</span><span class="o">:</span> <span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="n">debian</span><span class="sr">/tmp/README debian/pf-xivo-extra/usr/share/pf-xivo-extra//</span> <span class="n">returned</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>Nicolas Hicher logged in the machine and went to debug into the chroot
+used to create the package:</p>
+<div class="highlight"><pre>packaging-farm --cd pf-xivo-extra DISTRIBUTION=squeeze ARCHITECTURE=x86_64 chroot-login
+</pre></div>
+
+
+<p>It turns out that the package is not properly built from git. The
+submit-xivo.sh corrupted the source distribution when called twice on
+the same package. The problem was fixed in the new
+<a href="http://packaging-farm.dachary.org/download/">1.2.42</a> packaging-farm
+release.The i386 squeeze chroot had a flaw that forced the installation
+of x11 when installing the devscripts package. The chroot was re-created
+using the following:</p>
+<div class="highlight"><pre>pbuilder --create --architecture i386 --distribution squeeze --basetgz /var/cache/pbuilder/squeeze-i386.tgz
+</pre></div>
+
+
+<p>The only package that could not be rebuilt was pf-asterisk-res-watchdog
+and a bug was reported regarding its <a href="https://projects.xivo.fr/issues/2302">missing build depend to
+python</a>.</p>
+<h4>managing timestamps when submitting a package</h4>
+<p>The oneliner that could be used to rebuild XiVO with all the updates
+from the git repositories is :</p>
+<div class="highlight"><pre>cd /var/cache/packaging-farm/build/skaro ; make submit ; packaging-farm skaro
+</pre></div>
+
+
+<p>It involves calling submit-xivo.sh for all known packages and therefore
+trigger a recompilation of each package, even those that were not
+changed since the last compilation. That can be avoided by selecting the
+relevant packages, using a method similar to the <a href="http://blog.xivo.fr/index.php?post/2011/05/30/Using-and-Updating-a-XiVO-gallifrey-repository">one described in a
+previous
+post</a>.
+To avoid a manual selection, the submit-xivo.sh was modified to do
+nothing if it notices that the git repositories do not contain any
+commit more recent than the timestamp updated when the last compilation
+completed successfully.</p>
+<div class="highlight"><pre>function need_update() {
+    local package=&quot;$1&quot;
+    local dir=&quot;$2&quot;
+    local suite=&quot;$3&quot;
+    local xivo=&quot;$4&quot;
+
+    if [ ! -f <span class="cp">${</span><span class="n">DEPENDS_DIR</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span> ] ; then
+        return 0
+    else
+        modified=$(stat --terse --printf=%Y <span class="cp">${</span><span class="n">DEPENDS_DIR</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span>)
+        (
+            cd <span class="cp">${</span><span class="n">VCS_DIR</span><span class="cp">}</span>/sources/xivo-<span class="cp">${</span><span class="n">xivo</span><span class="cp">}</span>/<span class="cp">${</span><span class="nb">dir</span><span class="cp">}</span>
+            git log -1 --after=<span class="cp">${</span><span class="n">modified</span><span class="cp">}</span> .
+            cd <span class="cp">${</span><span class="n">VCS_DIR</span><span class="cp">}</span>/debian/<span class="cp">${</span><span class="n">suite</span><span class="cp">}</span>-xivo-<span class="cp">${</span><span class="n">xivo</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span>
+            git log -1 --after=<span class="cp">${</span><span class="n">modified</span><span class="cp">}</span> .
+        ) &gt; /tmp/submit$$
+        [ -s /tmp/submit$$ ]
+        result=$?
+        rm /tmp/submit$$
+        return <span class="nv">$result</span>
+    fi
+}
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/using-and-updating-a-xivo-gallifrey-repository.html#using-and-updating-a-xivo-gallifrey-repository">Using and Updating a XiVO gallifrey repository</a></h2>
     <p>
       Posted on Mon 30 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -494,181 +632,6 @@ be displayed.</p>
     especially in order to be able to get smaller payload packet sizes.</li>
 </ul>
 <p>More details should come in a future blog entry.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html#testing-a-xivo-gallifrey-repository-12">Testing a XiVO gallifrey repository (1/2)</a></h2>
-    <p>
-      Posted on Mon 09 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>Methodology</h4>
-<p>Assuming a host running <a href="http://www.debian.org/releases/squeeze/">Debian GNU/Linux
-Squeeze</a>, the general idea is
-to boot a virtual machine thatwill auto-install using
-<a href="http://www.debian.org/devel/debian-installer/">debian-installer</a> so
-that it uses <a href="http://git.proformatique.com/?p=official/debian-installer.git;a=tree;f=squeeze/classes/skaro-farm;h=155b14e82c906b968d6d42a7b8e20faf0209d687;hb=692498d23dcd2daa173e2ed152010b6c22dd7fda">a specific
-class</a>
-that will pull packages from <a href="http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">the
-gallifrey</a>
-repository <a href="http://blog.xivo.fr/index.php?post/2011/04/27/An-alternate-XiVO-gallifrey-repository-%28part-2/2%29">created with
-packaging-farm</a>.</p>
-<h4>Virtual machine</h4>
-<p>The <a href="http://libvirt.org/">libvirt</a> virtual machine is given 512MB RAM,
-8GB RAW disk image, 1CPU.The configuration of libvirt is made to accept
-VNC connections from anywhere to gain access tothe console over the
-network:</p>
-<div class="highlight"><pre><span class="gh">diff --git a/libvirt/qemu.conf b/libvirt/qemu.conf</span>
-<span class="gh">index dc8eb83..282e734 100644</span>
-<span class="gd">--- a/libvirt/qemu.conf</span>
-<span class="gi">+++ b/libvirt/qemu.conf</span>
-<span class="gu">@@ -9,7 +9,7 @@</span>
- # NB, strong recommendation to enable TLS + x509 certificate
- # verification when allowing public access
- #
-<span class="gd">-# vnc_listen = &quot;0.0.0.0&quot;</span>
-<span class="gi">+vnc_listen = &quot;0.0.0.0&quot;</span>
-
-
- # Enable use of TLS encryption on the VNC server. This requires
-</pre></div>
-
-
-<h4>dhcpd and network boot</h4>
-<p>The dhcp server is instructed to allow for network boot in
-<em>/etc/dhcp/dhcpd.conf</em></p>
-<div class="highlight"><pre>subnet 10.10.70.0 netmask 255.255.255.0 {
-        range 10.10.70.70 10.10.70.100;
-        filename &quot;pxelinux&quot;;
-        next-server 10.10.70.254;
-        option domain-name &quot;farm&quot;;
-        option domain-name-servers 10.10.70.254;
-        option subnet-mask 255.255.255.0;
-        option broadcast-address 10.10.70.255;
-        option routers 10.10.70.254;
-}
-</pre></div>
-
-
-<p>The TFTP server is installed:</p>
-<div class="highlight"><pre>apt-get install tftpd-hpa
-</pre></div>
-
-
-<p>The kernel and pxelinux configuration files are <a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386">copied from a i386
-lenny
-directory</a>
-into <em>/var/lib/tftp/</em>. Actually a more elaborated variation rsync'ed
-from a machine on the avencall lan named kenny.avencall.com but this is
-not strictly necessary for the test: fai-linux-lenny below is equivalent
-to
-<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/linux">linux</a>
-and fai-initrd-lenny is equivalent to
-<a href="http://ftp.debian.org/debian/dists/lenny/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz">initrd</a>.The
-libvirt configuration of the virtual machineis instructed to boot from
-the network:</p>
-<div class="highlight"><pre><span class="nt">&lt;os&gt;</span>
-    <span class="nt">&lt;type</span> <span class="na">arch=</span><span class="s">&#39;i686&#39;</span> <span class="na">machine=</span><span class="s">&#39;pc-0.12&#39;</span><span class="nt">&gt;</span>hvm<span class="nt">&lt;/type&gt;</span>
-    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;network&#39;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;hd&#39;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;bootmenu</span> <span class="na">enable=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
-</pre></div>
-
-
-<p>When the virtual machine is started with</p>
-<div class="highlight"><pre>virsh start skaro.xivo.vm.test
-</pre></div>
-
-
-<p>it will show the following and be ready to boot from the
-network.<img alt="d-i" src="/public/.i_m.jpg" title="d-i, May 2011" />A new entry has been
-added to the menu displayed:</p>
-<div class="highlight"><pre>label xivo_gallifrey_farm
-        menu label gallifrey-farm
-        kernel fai-linux-lenny
-        append initrd=fai-initrd-lenny rw auto=true url=http://66.254.41.119 priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,xivo-gallifrey-farm hostname=xivo --
-</pre></div>
-
-
-<p>in the file <em>/var/lib/tftp/pxelinux.cfg/xivo_devel/xivo_devel.cfg</em>
-that has beenextracted with</p>
-<div class="highlight"><pre>cd /var/lib/tftp
-git clone git://git.proformatique.com/official/debian-pxelinux.git pxelinux.cfg
-</pre></div>
-
-
-<p>and contains all the menu for all the XiVO configurations.</p>
-<h4>Other packages</h4>
-<p>The <a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/postinst_script">debian-installer
-script</a>
-starts by installing <a href="pf-fai-xivo-1.1-gallifrey-farm">a package</a> whose
-sole purpose is to add files in the /etc/apt/sources.list.d/ so that
-packages are extracted from the . The sources of the package are in the
-packages/branches/official/lenny/pf-fai/ directory of the internal
-rcs.lan.proformatique.com/rcs/svn/common-softwares repository. They can
-also be retrieved from the package sources at</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
-</pre></div>
-
-
-<p>with the command</p>
-<div class="highlight"><pre>apt-get source pf-fai
-</pre></div>
-
-
-<h4>Installation</h4>
-<p>All the common files are in the <a href="http://66.254.41.119/d-i/lenny/">lenny
-directory</a>, forinstance the
-<a href="http://66.254.41.119/d-i/lenny/preseed.cfg">preseed.cfg</a> and
-<a href="http://66.254.41.119/d-i/lenny/installer.cfg">installer.cfg</a> that sets
-the passwords and other package values.</p>
-<div class="highlight"><pre><span class="x">d-i passwd/root-password-crypted password </span><span class="p">$</span><span class="x">1</span><span class="p">$</span><span class="nv">NHxfkWun</span><span class="p">$</span><span class="nv">PMGLFNFtPKwIFT532sinD1</span><span class="x"></span>
-</pre></div>
-
-
-<p>That should be replaced with a known password, for instance:</p>
-<div class="highlight"><pre>d-i passwd/root-password password foobar
-</pre></div>
-
-
-<p>otherwise it will be impossible to login.The installation asks for the
-disk partition. If it fails,the error logs can be found at
-<em>/var/log/pf-fai/postinst.log</em>The key of the packaging-farm repository
-is addedto
-<a href="http://66.254.41.119/d-i/lenny/classes/xivo-gallifrey-farm/late_script">late_script</a></p>
-<div class="highlight"><pre>if [ -x /usr/bin/apt-key ]; then
-        apt-get -y install gnupg
-        wget http://gallifrey.dachary.org/gallifrey.gpg -O - | apt-key add -
-fi
-</pre></div>
-
-
-<p>It also removes any repository added by
-<a href="http://66.254.41.119/d-i/lenny/late_script_target">late_script_target</a>
-and replace them with the packaging-farm repository:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
-</pre></div>
-
-
-<p>If a script (such as late_script) fails, the error message can be found
-after login on the machine in the <em>/var/log/installer/syslog</em> file.</p>
-<h4>gallifrey distribution</h4>
-<p>The <a href="http://gallifrey.dachary.org/packaging-farm/">gallifrey
-distribution</a> has been
-updated to include the <em>misdn-user</em> package that was missing from the
-list although it was already created. The <em>pf-asterisk-module-xivo</em>,
-<em>pf-asterisk-res-sqlite2</em>, <em>pf-asterisk-ami-aoriginate</em>,
-<em>asterisk-chan-sccp</em>, <em>pf-asterisk-app-fax</em>,
-<em>pf-asterisk-app-nv-faxdetect</em> packages were imported into the farm from
-the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">official
-repository</a>
-and added to the list of packages necessary to install gallifrey.</p>
 </p>
   </div>
 </article>

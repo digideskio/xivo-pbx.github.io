@@ -54,6 +54,97 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/automatic-tests-now-extend-to-xivo-client.html#automatic-tests-now-extend-to-xivo-client">Automatic tests now extend to XiVO Client</a></h2>
+    <p>
+      Posted on Thu 19 January 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/client.html">client</a>    </p>
+  </header>
+  <div>
+      <p>For months now, we have had our continuous integration tool
+<a href="http://jenkins.xivo.fr/" title="Jenkins">Jenkins</a> running automatic tests to
+detect regression bugs on the XiVO web interface. But the web interface
+is not the only interface XiVO offers ; there is a XiVO Client, running
+as a stand-alone Qt application on other machines.</p>
+<p>Until now, we were running tests on the XiVO Client by hand at the end
+of each development iteration. Well, we will still run some of them by
+hand for a time, but we now can make most of them run automatically. We
+just have to code the tests :-)</p>
+<p>Here's what a Lettuce test look like :  </p>
+<div class="highlight"><pre><span class="n">Scenario</span><span class="o">:</span> <span class="n">Enable</span> <span class="n">XiVO</span> <span class="n">Client</span>
+       <span class="n">Given</span> <span class="n">I</span> <span class="n">am</span> <span class="n">logged</span> <span class="k">in</span>
+       <span class="n">Given</span> <span class="n">there</span> <span class="k">is</span> <span class="n">a</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">edit</span> <span class="n">the</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">uncheck</span> <span class="n">the</span> <span class="n">option</span> <span class="s2">&quot;Enable XiVO Client&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">start</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span>
+       <span class="n">Then</span> <span class="n">I</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">log</span> <span class="k">in</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span> <span class="k">as</span> <span class="s2">&quot;charles&quot;</span><span class="o">,</span> <span class="n">pass</span> <span class="s2">&quot;magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">edit</span> <span class="n">the</span> <span class="n">user</span> <span class="s2">&quot;Charles&quot;</span> <span class="s2">&quot;Magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">check</span> <span class="n">the</span> <span class="n">option</span> <span class="s2">&quot;Enable XiVO Client&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Login&quot;</span> <span class="n">to</span> <span class="s2">&quot;&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Password&quot;</span> <span class="n">to</span> <span class="s2">&quot;&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span> <span class="k">with</span> <span class="n">errors</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Login&quot;</span> <span class="n">to</span> <span class="s2">&quot;charles&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="kd">set</span> <span class="n">the</span> <span class="n">text</span> <span class="n">field</span> <span class="s2">&quot;Password&quot;</span> <span class="n">to</span> <span class="s2">&quot;magne&quot;</span>
+       <span class="n">When</span> <span class="n">I</span> <span class="n">submit</span>
+       <span class="n">Then</span> <span class="n">I</span> <span class="n">log</span> <span class="k">in</span> <span class="n">the</span> <span class="n">XiVO</span> <span class="n">Client</span> <span class="k">as</span> <span class="s2">&quot;charles&quot;</span><span class="o">,</span> <span class="n">pass</span> <span class="s2">&quot;magne&quot;</span>
+</pre></div>
+
+
+<p>Let's get a bit more technical to explain how this works.The main
+problem was to make our
+<a href="http://lettuce.it/" title="Lettuce/Selenium">Lettuce/Selenium</a> automatic
+tests in Python communicate with a running instance of the XiVO Client
+in C++.</p>
+<p>Our first attempt got us to embed the XiVO Client in a C++ library, to
+wrap this library into a Python module with
+<a href="SWIG" title="http://www.swig.org/">SWIG</a>, load this module when running
+automatic tests and call some module functions to make the XiVO Client
+do what we wanted, for example click on this button or fill that text
+field. Of course, <a href="http://en.wikipedia.org/wiki/Friend_class" title="C++ classes friendship">C++ classes
+friendship</a>
+was mandarory to avoid coding getters and setters everywhere. We got the
+XiVO Client running within a Python module, but it was blocking the
+execution of automatic tests. We then tried to make the XiVO Client run
+in its own thread, while automatic tests were running in another.
+Unfortunately, the Qt library we use to develop the XiVO Client does not
+support running in a secondary thread as far as GUI is involved (and the
+XiVO Client is almost only about GUI).</p>
+<p>Our second attempt was greatly inspired from the first one, but we tried
+to run the XiVO Client in its own process. We replaced calls to the
+Python module by an IPC protocol through local domain UNIX sockets.
+Basically, the Lettuce process sends the name of the function it is
+executing along with its arguments and the XiVO Client reads them,
+execute the given function and returns whether the function failed or
+succeeded.</p>
+<p>This is no more no less than the behavior of a remote control for the
+XiVO Client. It does not have many buttons for now, but they are
+functional and their number is growing.</p>
+<p><a href="/public/xivosoft/xivoclient-remotecontrol.png" title="XiVO Client remote control"><img alt="XiVO Client remote
+control" src="/public/xivosoft/.xivoclient-remotecontrol_m.jpg" title="XiVO Client remote control, janv. 2012" /></a></p>
+<p>Of course this remote control "feature" is not released with official
+XiVO Client versions. It is only activated when the XiVO Client is
+compiled specifically for automatic tests.</p>
+<p>For now, we only test the GNU/Linux version of the XiVO Client, even
+though it is not the most used version. Ideally, we shoud test all
+platform versions. But unless we stumble upon major differences between
+different platform versions, we can rely on the <a href="http://qt.nokia.com/" title="Qt framework">Qt
+framework</a> quality and its platform
+abstraction features.</p>
+<p>There is a <a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Tester" title="documentation page">documentation
+page</a>
+that explains how to use the remote control feature.</p>
+<p>Links :<br />
+<a href="https://git.proformatique.com/?p=official/xivo-acceptance.git;a=tree;f=web-interface/features;h=239ee123d5bfabb313efd1f787bb5a7638217396;hb=HEAD" title="Our Lettuce tests">Our Lettuce
+tests</a><br />
+<a href="https://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="the XiVO Client git repository">the XiVO Client git
+repository</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-git-architecture-is-evolving.html#xivo-git-architecture-is-evolving">XiVO GIT Architecture is evolving</a></h2>
     <p>
       Posted on Tue 17 January 2012 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -295,75 +386,6 @@ here how to get started and more:<a href="https://wiki.xivo.fr/index.php/Sccp">h
 <p>If you are less comfortable with the 'Do It Yourself', libsccp is also
 getting integrated into XiVO Skaro and will be available in the next
 week or so.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-ioh-first-cpu-prototype-board-fully-working-part1.html#xivo-ioh-first-cpu-prototype-board-fully-working-part1">XiVO IOH first CPU prototype board fully working - part1</a></h2>
-    <p>
-      Posted on Fri 16 December 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>Dear followers of our <strong>XiVO IPBX OpenHardware project</strong>, we are happy
-to announce that our <strong>first version of our prototype for the CPU
-board</strong> (PCB prototyping the CPU and the different interfaces connected
-to the CPU) is now fully working and we have a full GNU/Linux system
-running on it to start stress-testing our platform (tests of currents
-and temperature in a full stress mode). We are now getting closer and
-closer to publish a fully-open design of an IPBX running
-GNU/Linux/Asterisk/XiVO in OpenHardware.</p>
-<p>First we had our <strong>PCB pick-and-placed in our PCB factory</strong> (mainly on a
-Fuji machine) and you can see below a screenshot from the precision
-placement camera on the machine</p>
-<p><img alt="XIOH_CPU_Factory_Cabling_Screenshot" src="/public/.20111006_014_m.jpg" title="XIOH_CPU_Factory_Cabling_Screenshot, déc. 2011" /></p>
-<p>The main concerns of a PCB design when one wants to first test the just
-"pick-and-placed" board is to follow different steps to prevent
-undetection of hardware errors of design. These steps are usually (at
-least, the ones we followed) the following :</p>
-<ul>
-<li><strong>Smoketest</strong> : of the powersupply block doing the different
-    voltages level of the board (crucial for a SoC like the one we
-    are using) by using different DC external powersuplies for the
-    different ATX voltage levels (+12V, -12V, +5V, +5VSBY, +3V3) and
-    limiting the current following the Intel EP80579 datasheet. This
-    test was positive on each of the voltage level and confirming that
-    our power-supply is functionnal in terms of voltage level and
-    current limitations</li>
-<li><strong>Bringup</strong> : booting the board with a correct DDR2 DIMM (1Go) and
-    flashing our version of coreboot build on our 2Mo SPI-flash using a
-    dediprog SF100 SPI programer</li>
-<li><strong>Connecting the SATA HDD w/ a fully configured Linux kernel</strong> and
-    trying to jump from the functionnal coreboot to grub then Linux
-    decompression of the image</li>
-</ul>
-<p>Please find below, a picture of the lab deployment of the board powered
-by external power-supplies and connected to a bus-pirate for the
-flashing of our bootloader through SPI connexions.</p>
-<p><img alt="XIOH_CPU_P4_test_1" src="/public/.20111118_001_m.jpg" title="XIOH_CPU_P4_test_1, déc. 2011" /></p>
-<p>Once this smoke-test and bring-up test were fully positive and allowing
-us to move to next step with some stress-tests :</p>
-<ul>
-<li><strong>Temperature#</strong>1 : Running a memtest86+ on the DDR2 and testing
-    the temperature of the CPU package w/ a temperature sensor</li>
-<li><strong>Temperateur#2</strong> : Running an Intel utility for our SoC (pushing
-    the CPU usage to 100% and memory to 50%) and measuring the
-    temperature</li>
-<li><strong>Temperature#3</strong> : Putting one of our board into a test metallic
-    case and connecting the board w/ 3 parallel GbE interfaces fully
-    loaded w/ iperf at 1Gbps and measuring the temperature in the case
-    after several hours</li>
-<li>Bitrate : Iperf'ing the 3xGbE interfaces and measuring the load of
-    the CPU and the transfer bitrates</li>
-</ul>
-<p>Please find below, a picture of our lab w/ 2 XIOH CPU boards running our
-test-program and 3xGbE interfaces connected together one-by-one</p>
-<p><img alt="XIOH_CPU_P4_test_2" src="/public/.20111125_002_m.jpg" title="XIOH_CPU_P4_test_2, déc. 2011" /></p>
-<p>We will update our different tests on the CPU boards and keep you update
-on the follow-ups of our design steps.</p>
-<p>Xavier Carcelle.</p>
 </p>
   </div>
 </article>

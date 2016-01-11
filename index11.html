@@ -54,6 +54,125 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/metrics-in-xuc.html#metrics-in-xuc">Metrics in XUC</a></h2>
+    <p>
+      Posted on Tue 11 November 2014 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
+    </p>
+  </header>
+  <div>
+      <p>We use Metrics in two contexts: contact centre statistics management and
+xuc health supervision. We created two independent registries to
+separate statistics data and technical data.</p>
+<p>Metrics integrates the ability to report periodically data to the
+logfile, or on demand via http.</p>
+<h3>JSON representation via HTTP</h3>
+<h4>JVM statistics</h4>
+<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&#39;@@
+{
+  &quot;version&quot; : &quot;3.0.0&quot;,
+  &quot;gauges&quot; : {
+    &quot;blocked.count&quot; : {
+      &quot;value&quot; : 0
+    },
+    &quot;count&quot; : {
+      &quot;value&quot; : 56
+    },
+    &quot;daemon.count&quot; : {
+      &quot;value&quot; : 17
+    },
+    &quot;deadlock.count&quot; : {
+      &quot;value&quot; : 0
+    },
+    &quot;deadlocks&quot; : {
+      &quot;value&quot; : [ ]
+    },
+    &quot;heap.committed&quot; : {
+      &quot;value&quot; : 1020264448
+    },
+    &quot;heap.init&quot; : {
+      &quot;value&quot; : 1073741824
+    },
+    &quot;heap.max&quot; : {
+      &quot;value&quot; : 1020264448
+    },
+    &quot;heap.usage&quot; : {
+      &quot;value&quot; : 0.4769269545301259
+    },
+    &quot;heap.used&quot; : {
+      &quot;value&quot; : 486591616
+    },
+    ...
+</pre></div>
+
+
+<h4>Call-centre statistics</h4>
+<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&#39;
+{
+  &quot;version&quot; : &quot;3.0.0&quot;,
+  &quot;gauges&quot; : {
+    &quot;3000-TotalNumberCallsAbandonned-gauge&quot; : {
+      &quot;value&quot; : 2.0
+    },
+    &quot;3000-TotalNumberCallsAbandonnedAfter15-gauge&quot; : {
+      &quot;value&quot; : 5.0
+    },
+    &quot;3000-TotalNumberCallsAnswered-gauge&quot; : {
+      &quot;value&quot; : 0.0
+    },
+    &quot;3000-TotalNumberCallsAnsweredBefore15-gauge&quot; : {
+      &quot;value&quot; : 0.0
+    },
+    &quot;3000-TotalNumberCallsClosed-gauge&quot; : {
+      &quot;value&quot; : 1.0
+    },
+    &quot;3000-TotalNumberCallsEntered-gauge&quot; : {
+      &quot;value&quot; : 1.0
+    }
+  },
+  &quot;counters&quot; : { },
+  &quot;histograms&quot; : {
+    &quot;3000-PercentageAbandonnedAfter15-window&quot; : {
+      &quot;count&quot; : 1,
+      &quot;max&quot; : 1,
+      &quot;mean&quot; : 1.0,
+      &quot;min&quot; : 1,
+      &quot;p50&quot; : 1.0,
+      &quot;p75&quot; : 1.0,
+      &quot;p95&quot; : 1.0,
+      &quot;p98&quot; : 1.0,
+      &quot;p99&quot; : 1.0,
+      &quot;p999&quot; : 1.0,
+      &quot;stddev&quot; : 0.0
+    },
+    ...
+</pre></div>
+
+
+<h3>Statistics in log file</h3>
+<div class="highlight"><pre>2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-PercentageAnsweredBefore15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonned-gauge, value=1.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonnedAfter15-gauge, value=0.0
+2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAnswered-gauge, value=0.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAnsweredBefore15-gauge, value=0.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsClosed-gauge, value=1.0
+2014-11-12 11:49:30,766 - [info] application - type=GAUGE, name=3000-TotalNumberCallsEntered-gauge, value=1.0
+</pre></div>
+
+
+<h3>Links</h3>
+<ul>
+<li><a href="https://gitlab.com/groups/xuc" title="XUC sources">XUC sources</a></li>
+<li><a href="http://xuc.readthedocs.org/en/latest/" title="XUC documentation">XUC
+    documentation</a></li>
+<li><a href="https://dropwizard.github.io/metrics/3.1.0/" title="Metrics">Metrics</a></li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/managing-agent-using-xuc-ccmanager.html#managing-agent-using-xuc-ccmanager">Managing agent using Xuc CCManager</a></h2>
     <p>
       Posted on Mon 10 November 2014 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
@@ -262,87 +381,6 @@ relevant today.</p>
     documentation</a>
     to find out how to set up an Interactive voice response with XiVO</li>
 </ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivos-new-directory-server.html#xivos-new-directory-server">XiVO's new directory server</a></h2>
-    <p>
-      Posted on Fri 26 September 2014 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>Some of you may know that a new version of the <a href="/public/xivo-client/Contacts.jpg" title="XiVO client">XiVO
-client</a> is being worked
-on at the moment. The newlook and feel require some work behind the
-scenes to merge all kindof contacts a XiVO user might have into a single
-source of information.</p>
-<p>What does all this mean ? A personal contact, an entry from an LDAP
-server or another XiVO usershould all be available to the user as one
-single list of contacts, even if some operations are not available on
-all kinds of entries.</p>
-<p>We already had a directory xlet that merged XiVO users and remote
-directoryentries into a single list. This xlet is used by the
-switchboard profile.The directory xlet does most of the heavy lifting of
-merging the different contactlists on the client side. This solution is
-not ideal for the future of XiVO as we wouldlike to be able to develop a
-mobile or web-based version of the client without theburden of rewriting
-the same logic.</p>
-<p>The first step of our work on this new client is to move this directory
-logicback on the server side. To do so, we are creating a new directory
-service, namedxivo-dird, that will be responsible of handling all
-queries made to all configured directory sources ona XiVO.</p>
-<p>This new service will offer a public REST interface. This means that
-custom client-side applicationswill be able to integrate the services
-provided by xivo-dird easily. We are also making this newservice
-runnable without a complete XiVO ecosystem. It will be possible to
-installxivo-dird on a dedicated server or in a container. The nature of
-the work doneon xivo-dird will also make it easy to run the service in a
-distributed manner. Withsome configuration, an administrator will be
-able to have many xivo-dird servers running behinda load balancer so
-that it may be used by many XiVOs simultaneously. For example:Avencall
-has one xivo per office but could use the same xivo-dird proxy for all
-offices.</p>
-<p><img alt="archi-xivo-dird.svg" src="/public/architecture/archi-xivo-dird.svg" title="archi-xivo-dird.svg, sept. 2014" /></p>
-<h3>Architecture</h3>
-<p>We are also designing xivo-dird for extensibility and we are trying to
-makeplugins as easy as possible to create, making it easier for the
-community to contribute.</p>
-<h4>Plugins</h4>
-<p>Currently planned extension points include:</p>
-<h5>Backends</h5>
-<p>Backends are plugins that are used to query directory sources. This is
-where we find the logicfor retrieving data from a specific kind of
-technology. Backends include, but arenot limited to, ldap, csv,
-xivo-directory (the internal directory of a
-XiVO),xivo-personal-directory (user's personal contact).</p>
-<h5>HTTP views</h5>
-<p>HTTP views are different URLs that are exposed by the xivo-dird server.
-At themoment we know that we will have a json view that will be used by
-other XiVOservices to retrieve lookup results. Other views will be added
-to support otherneeds. Phones are a good example of consumers that
-require a customized view.Adding support for a new brand of phone to
-xivo-dird will be a matter of addingthe HTTP view plugin that formats
-the lookup results in a way that the phoneunderstands.</p>
-<h4>Core</h4>
-<p>The core of the application is responsible for loading all of the
-plugins.We will probably use a third party library for this job. We have
-a proof ofconcept using
-<a href="http://stevedore.readthedocs.org/en/latest/" title="stevedore">stevedore</a>at
-the moment. Concurrency is also managed by the core.</p>
-<p>This kind of architecture will become the reference for other XiVO
-services. Having modular servicesthat can be executed independently from
-each other will allow us scale therequired parts of XiVO when needed.</p>
-<p>You can look at the <a href="https://github.com/xivo-pbx/xivo-dird" title="github repository">github
-repository</a>to
-view the source code and follow our work. Note that the master branch
-does not include thiswork yet. The code in other branches are proof of
-concepts used to confirm that our architecturecould handle the kind of
-load we were aiming for and that our modular architecture could
-beachieved but this code is not meant for production and will be
-replaced once we write theproduction version.</p>
 </p>
   </div>
 </article>

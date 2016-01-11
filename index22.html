@@ -54,6 +54,46 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/astricon-2011.html#astricon-2011">Astricon 2011</a></h2>
+    <p>
+      Posted on Tue 08 November 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="nib-xivo" src="/public/astricon2011/.nib-xivo_s.jpg" title="nib-xivo, nov. 2011" /></p>
+<p>Avencall was present at the world famous Asterisk conference:
+<strong>Astricon2011</strong>. This year the conferencewas held in Denver, Colorado
+from October 24th to 27th.</p>
+<p>Throughout the week we've met people from many different background:
+software developers, enterprise IT,system integrators, decision makers
+and much more. During AstriDevCon, a special day for developers only,we
+discussed with Asterisk main developers about technical aspect of the
+software and what next is coming into Asterisk.</p>
+<p><img alt="xav-pres2.JPG" src="/public/astricon2011/.xav-pres2_s.jpg" title="xav-pres2.JPG, nov. 2011" /></p>
+<p>The second day was marked by fellow developers delivering presentations
+about the internal mechanic of thecore and subsystems of asterisk. We
+also attended talks about the much-awaited <strong>AsteriskSCF</strong> (Scalable
+Communication Framework) which is quite promising for building high-end
+telecommunication services.</p>
+<p>On the third day, we had the pleasure to present the XiVO IPBX
+OpenHardware project and Avencall in general. The presentation generated
+a lot of positive feedbacks and people came to us to deepen the
+discussion about the technical side and also the business model
+surrounding the XiVO open platform. <strong>All this curiosity and eager was
+just another proof that we are going in the right direction.</strong></p>
+<p><img alt="photo.JPG" src="/public/astricon2011/.photo_s.jpg" title="photo.JPG, nov. 2011" /></p>
+<p>All in all, it was much fun to meet other enthusiasts from many
+different horizon gathering around a powerful technology: Asterisk, and
+to share our passion about technology.</p>
+<p><strong>We are already looking forward the next Astricon !</strong></p>
+<p><img alt="nick-astricon" src="/public/astricon2011/.nick-astricon_s.jpg" title="nick-astricon, nov. 2011" /></p>
+<p>Nicolas Bouliane, Xavier Carcelle</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/openhardware-landscape-q4-2011.html#openhardware-landscape-q4-2011">OpenHardware landscape Q4 2011</a></h2>
     <p>
       Posted on Tue 01 November 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -292,74 +332,6 @@ communication" src="/public/.testing_flash_communication_m.jpg" title="Testing f
 results" src="/public/.flash_comm_test_result_m.jpg" title="SPI flash communication test results, oct. 2011" /></p>
 <p>So we are now hopeful that at least the SPI flash communication will
 work on our assembled board \\o/</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-client-architecture.html#xivo-client-architecture">XiVO Client architecture</a></h2>
-    <p>
-      Posted on Fri 30 September 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>This blog post extends the diagram presented earlier explaining the
-<a href="/index.php?post/2011/05/13/CTI-external-architecture-in-XiVO-1.1-and-1.2" title="CTI global architecture diagram">global architecture of
-CTI</a>
-in XiVO.</p>
-<p>Here is what the XiVO Client looks like from a developer point of
-view:<img alt="XiVO Client
-architecture" src="/public/.xivoclient_m.jpg" title="XiVO Client architecture, sept. 2011" /></p>
-<p>This is the new architecture that will be included in our new
-development iteration beginning on Monday, 3rd October.The main change
-is the "creation" of the XLetlib, that was previously into the Baselib.
-The Baselib will be progressively stripped of everything not necessary:
-the goal is to make it a reusable component, which will only manage the
-connection with the CTI server.</p>
-<p>Everything in the XiVO Client is written in C++ and Qt.</p>
-<p>Let's explicit the spaghetti plate above a little :XLets, for XiVO
-applets, are plugins to the XiVO Client. Almost every function of the
-XiVO Client is pluggable/unpluggable, depending on the server
-configuration to allow some XLet to be activated. You can see what XLets
-look like in the <a href="https://wiki.xivo.fr/index.php/XiVO_1.0-Dalek/Documentation_XiVO_Client" title="XiVO Client user manual">XiVO
-wiki</a>
-(each tab is an XLet).</p>
-<p>Each XLet can use the tools available in the XLetlib, that are mainly
-GUI elements used to display information in a consistent way within all
-XLets. They are also given access to the Baselib "API" (it is an API,
-but scarcely documented for the time being), that receives or sends CTI
-events and informations to the CTI server, such as "a new phone has
-registered to Asterisk", "you have a new telephone message", "I want to
-call this number", etc.</p>
-<p>Of course, there are some options available to control how the XiVO
-Client behaves ; about half of them control GUI aspects and the other
-half control how the connection is established to the server. The GUI
-related options are some of the things we still have to migrate out of
-the Baselib, because someone wanting to connect to the CTI server
-through our Baselib does not care that the XiVO Client presence
-indicator is 5 pixels wide...</p>
-<p>About the communication protocol between the XiVO Client and the CTI
-server, everything is JSON encoded. For now, there is no compatibility
-between protocol versions, but we're thinking about it. The goal is to
-be able to release XiVO Client upgrades without having to wait for the
-XiVO distribution to be released, especially if the new version
-introduces mainly GUI improvements. But this can't happen if an "old"
-server can not talk with a more recent client.</p>
-<p>One could think that working on the XiVO Client may be boring, as it's
-only easy GUI stuff, placing a button here, making it violet with green
-dots for obscure marketing reasons. There's a part of GUI stuff, of
-course, but I find the plugins-only, freely movable (in dock mode)
-interface concept very interesting, it makes the XiVO Client a potential
-swiss-army knife, to which anyone can choose exactly the tools he needs,
-no more, no less.</p>
-<p>Some links :<br />
-<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="XiVO Client git repository">The XiVO Client git
-repository</a><br />
-<a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer" title="XiVO Client developer documentation">Developer oriented
-documentation</a><br />
-<a href="https://wiki.xivo.fr/index.php/Support_Community#IRC" title="IRC channel infos">IRC
-channel</a></p>
 </p>
   </div>
 </article>

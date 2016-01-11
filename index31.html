@@ -54,6 +54,183 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Creating a Debian GNU/Linux source package from the XiVO VCS (1/2)</a></h2>
+    <p>
+      Posted on Mon 07 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Source GIT structure</h4>
+<p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
+extracted as follows:</p>
+<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+</pre></div>
+
+
+<p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
+repository</a>.
+The names of the directories are mapped to the package names as follows:</p>
+<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
+asterisk -&gt; asterisk
+base-config -&gt; pf-xivo-base-config
+bntools -&gt; bntools
+chan_sccp -&gt; asterisk-chan-sccp
+confgen -&gt; pf-xivo-confgen
+ctiservers -&gt; pf-xivo-cti-server
+dahdi-linux -&gt; dahdi-linux
+dahdi-tools -&gt; dahdi-tools
+extra -&gt; pf-xivo-extra
+fetchfw -&gt; pf-xivo-fetchfw
+freeswitch -&gt; freeswitch
+lib-javascript -&gt; pf-xivo-lib-js
+lib-python -&gt; pf-xivo-lib-python
+monitoring -&gt; pf-xivo-monitoring
+provisioning -&gt; pf-xivo-provisioning
+queues-logger -&gt; pf-xivo-queues-logger
+res_watchdog -&gt; pf-asterisk-res-watchdog
+sysconfd -&gt; pf-xivo-sysconfd
+utils -&gt; pf-xivo-utils
+web-interface -&gt; pf-xivo-web-interface
+xivo-sounds -&gt; pf-xivo-sounds
+</pre></div>
+
+
+<p>The mapping is found in the <code>*/Makefile.pkg</code> file, in the <code>DEB_PKG</code>
+variable, such as</p>
+<div class="highlight"><pre>DEB_PKG=&quot;pf-xivo-monitoring&quot;
+</pre></div>
+
+
+<p>There are two sets of directories : the software imported from a third
+party (asterisk, for instance) and the software developped natively.The
+source tarbal of a native package is created from a tar of the
+directory, not including the directory name. For instance, the
+<a href="http://dak.proformatique.com/debian/pool/main/p/pf-xivo-cti-server/pf-xivo-cti-server_1.2~svn10269.orig.tar.gz">pf-xivo-cti-server
+tarbal</a>
+contains:</p>
+<div class="highlight"><pre>-rw-r--r--    root/root        305 ./Makefile.pkg
+ -rw-r--r--    root/root       6922 ./xivo_daemon.conf
+ -rw-r--r--    root/root      35068 ./LICENSE
+ drwxr-xr-x    root/root          0 ./xivo_ctiservers/
+ -rw-r--r--    root/root       8011 ./xivo_ctiservers/cti_trunklist.py
+ -rw-r--r--    root/root      13509 ./xivo_ctiservers/xivo_phones.py
+ -rw-r--r--    root/root       3199 ./xivo_ctiservers/cti_presence.py
+...
+</pre></div>
+
+
+<p>The source tarbal of a third party package is created with a tar of the
+<code>patches</code> and <code>tarballs</code> directories alone. The rest of the files are
+used during the development cycle ( such as asterisk/fetch_tarball.sh
+to synchronize with the asterisk upstream ) and are out of the scope of
+this discussion. For instance, the content of the <a href="http://dak.proformatique.com/debian/pool/main/d/dahdi-linux/dahdi-linux_2.4.1.0+dfsg+pf.xivo.1.2~svn10330.orig.tar.gz">dahdi-linux
+tarbal</a>
+is as follows:</p>
+<div class="highlight"><pre>drwxr-xr-x    root/root          0 ./patches/
+ -rw-r--r--    root/root       1106 ./patches/enable_oslec.diff
+ -rw-r--r--    root/root        776 ./patches/no_firmware_download
+ -rw-r--r--    root/root         39 ./patches/series
+ -rw-r--r--    root/root    1147443 ./dahdi-linux_2.4.1.0+dfsg.orig.tar.gz
+</pre></div>
+
+
+<p>Note that the tarbal is moved up one directory and the <code>tarballs</code>
+directory does not show. The actual content of the corresponding GIT
+repository is as follows:</p>
+<div class="highlight"><pre>dahdi-linux/prepare_test_sources
+dahdi-linux/sources.pkg
+dahdi-linux/SOURCE-VERSION
+dahdi-linux/AUTOBUILD-IGNORE
+dahdi-linux/Makefile.pkg
+dahdi-linux/tarballs
+dahdi-linux/tarballs/dahdi-linux_2.4.1+dfsg.orig.tar.gz
+dahdi-linux/fetch_sources
+dahdi-linux/patches/series
+dahdi-linux/patches/no_firmware_download
+</pre></div>
+
+
+<p>None of the source directories contain version numbers. A convention
+involving a SVN version number (a SVN repository is used behind the GIT)
+and the content of the <code>VERSION</code> file (1.2 for skaro) is used to
+generate a version (such as the <code>1.2~svn10330</code> part of
+<code>dahdi-linux_2.4.1.0+dfsg+pf.xivo.1.2~svn10330.orig.tar.gz</code>). A simpler
+convention is <a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000008.html">being
+discussed</a>
+to cope with two issues:</p>
+<ul>
+<li>the SVN version is not available to the general public</li>
+<li>the global version number (1.2 for skaro) is redundant and could be
+    ignored</li>
+</ul>
+<p>The directory <code>tools</code> is not a package. It contains files shared and
+duplicated in some native packages. For instance <code>gwr.py</code>:</p>
+<div class="highlight"><pre>app_nv_faxdetect/gwr.py -&gt; ../tools/gwr.py
+ res_watchdog/gwr.py -&gt; ../tools/gwr.py
+ tools/gwr.py
+</pre></div>
+
+
+<p>In order to ensure the inclusion of the file itself when the tarbal is
+created, the <code>-h</code> is used to store the content of the symbolic link
+instead of the symbolic link itself.Some sources, such as <code>libpri</code> are
+unmodified ports of the standard package and do not require special
+handling.</p>
+<h4>Debian package SVN structure</h4>
+<p>The Debian GNU/Linux package are stored in an internal SVN and its
+publication is <a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">being
+discussed</a>.
+The information can be retrieved from the source packages but the
+history is lost to the general public. The SVN tree is structured using
+a path named after the XiVO version and the Debian GNU/Linux version it
+is based on. For instance:</p>
+<div class="highlight"><pre>package=asterisk
+    suite=squeeze
+    xivo=skaro
+
+    means the packaging information will be found in
+
+    packages/branches/official/<span class="cp">${</span><span class="n">suite</span><span class="cp">}</span>-xivo-<span class="cp">${</span><span class="n">xivo</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">package</span><span class="cp">}</span>/trunk/debian
+</pre></div>
+
+
+<p>If the version found in <code>debian/changelog</code> does not reflect the source
+version number (for instance 2.4.1.0+dfsg+pf.xivo.1.2\~svn10330 in the
+chapter above), a new changelog entry will be created to match it. When
+this sanity check is done (and assuming the source tarbal is available
+in the upper directory), the source package can be created with:</p>
+<div class="highlight"><pre>dpkg-buildpackage -S -uc -us
+</pre></div>
+
+
+<p>Although most packages contain a
+<a href="http://cdbs-doc.duckcorp.org/en/cdbs-doc.xhtml">debian/control.in</a>
+file, the corresponding <code>debian/control</code> is commited to in the SVN
+repository. The CDBS documentation suggests it is not a mature feature
+and it could probably be ignored. The newer <a href="http://en.wikipedia.org/wiki/Debhelper#Overview">debhelper version
+7</a> could prefered to
+CDBS in the future.</p>
+<h4>Implementing the source package logic</h4>
+<p>A <a href="http://xivo.dachary.org/pf-release.sh">shell script stub has been
+created</a> to implement the logic
+described above, together with embeded tests. When the SVN containing
+the Debian GNU/Linux packaging information will be available, it will
+create the source packages that can be fed to
+<a href="packaging-farm">http://packaging-farm.dachary.org/</a> in order to create
+a <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">XiVO skaro
+repository</a>
+described in the <a href="http://blog.xivo.fr/index.php?post/2011/02/22/Creating-an-independant-XiVO-Debian-GNU/Linux-repository-from-scratch-%28part-4/4%29">series on building an independant XiVO
+repository</a>.In
+the second part of this entry, the script will be complete and a the
+XiVO skaro repository updated.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/looking-for-technical-documentation-on-the-matra-rc1173a.html#looking-for-technical-documentation-on-the-matra-rc1173a">Looking for technical documentation on the Matra RC1173A</a></h2>
     <p>
       Posted on Fri 04 March 2011 in <a href="http://blog.xivo.io/category/voip.html">VoIP</a>
@@ -255,43 +432,6 @@ This concludes the series on building an independant repository for
 XiVO. The resulting tools and the repository itself certainly need to be
 polished but the serious issues (requiring more than a few hours to
 overcome) have been addressed.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/back-from-fosdem2011.html#back-from-fosdem2011">Back from FOSDEM2011</a></h2>
-    <p>
-      Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p><strong>My impressions from this devroom :</strong></p>
-<ul>
-<li>60+ people room always packed (with some people constraint to wait
-    for the next talk outside :) )</li>
-<li>3 people from Digium able to interact with the community about the
-    Asterisk project</li>
-<li>No video-streaming available as the smal devrooms were not equiped</li>
-<li>Great presentations of the Kamalilio project that seems to be used
-    in the GSM and VoIP core-network</li>
-<li>People from UK, Spain, US, Germany ...</li>
-<li>Some XiVO community users coming over to exchange about their user
-    experiences</li>
-<li>A link to my <a href="http://carcelle.fu8.com/XiVO_IOH_Presentation_FOSDEM2011_06022011.pdf" title="XiVO IOH FOSDEM2011 Presentation">XiVO IOH FOSDEM2011
-    Presentation</a>
-    (40mns, Latex Beamer style)</li>
-</ul>
-<p><strong>The main feebacks from the room :</strong></p>
-<ul>
-<li>Availabiliy of more interfaces on the XiVO IPBX OpenHardware</li>
-<li>Possible interaction with the development team of XiVO IPBX</li>
-<li>Made-in-europe welcomed by the hardware geeks</li>
-<li>Possible usage of the XiVO IPBX OpenHardware for larger VoIP
-    deployments</li>
-<li>Any future concurrent of CIRPACK in OpenHardware ? :)</li>
-</ul>
 </p>
   </div>
 </article>

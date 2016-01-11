@@ -54,6 +54,20 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/think-about-xivo.html#think-about-xivo">Think about XiVO ...</a></h2>
+    <p>
+      Posted on Mon 09 July 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>... for your holiday ! Have fun for this summer and keep eyes on XiVO.  </p>
+<p><img alt="" src="/public/.20120707_175714_m.jpg" title="20120707_175714.jpg, juil. 2012" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/association-asterisk-france.html#association-asterisk-france">Association Asterisk France</a></h2>
     <p>
       Posted on Tue 03 July 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -139,47 +153,6 @@ iterations makes it all even more exiting.</p>
   </header>
   <div>
       <p><a href="/public/portes_ouvertes-1.png" title="portesouvertes"><img alt="portesouvertes" src="/public/.portes_ouvertes-1_m.jpg" title="portesouvertes, juin 2012" /></a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/using-reverse-look-ups-to-replace-caller-ids.html#using-reverse-look-ups-to-replace-caller-ids">Using Reverse Look-ups to Replace Caller IDs</a></h2>
-    <p>
-      Posted on Mon 11 June 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>XiVO directories are a way to store contact information to be able to do
-directory look-ups from the XiVO client and from supported phones.
-Another useful feature of directories, is the ability to set a reverse
-directory and replace incoming caller IDs with information from the
-directory.</p>
-<p>This article will show you how to setup reverse look-up on your XiVO. It
-is assumed that you already have a working directory setup on your XiVO.</p>
-<p>The first step is to set the reverse match fields in your directory
-configuration. These fields are the one that will be used to search
-against the incoming number. Interesting fields for reverse look-up are:</p>
-<ul>
-<li>phonebooknumber.home.number</li>
-<li>phonebooknumber.mobile.number</li>
-<li>phonebooknumber.office.number</li>
-</ul>
-<p><img alt="reverse_1.png" src="/public/.reverse_1_m.jpg" title="reverse_1.png, juin 2012" /></p>
-<p>The second step is to setup the field that will be shown in response to
-a reverse look-up. This field is configured in the Mapped fields list.
-All you have to do is add a field with the name <strong>reverse</strong> and the
-value will be used as the caller ID name of incoming calls.</p>
-<p>The last step is to add the configured directory to the list of reverse
-directories available for look up. Under reverse directories, in the
-related directories section add each directory you want to be able to
-access using reverse look-ups. It is usually not interesting to include
-internal directory in reverse look-ups since internal users already have
-a caller ID.</p>
-<p><img alt="reverse_2.png" src="/public/.reverse_2_m.jpg" title="reverse_2.png, juin 2012" /></p>
-<p>Note that reverse look-up will work as described in version 1.2.10 and
-later, another good reason to do a xivo-upgrade.</p>
 </p>
   </div>
 </article>
