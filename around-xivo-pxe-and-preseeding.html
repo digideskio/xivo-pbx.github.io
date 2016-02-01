@@ -72,9 +72,9 @@ http://wiki.debian.org/DebianInstaller/Preseed</p>
 <p>We are going to be using the default Debian preseed file. We are going
 to configure an HTTP server to serve this file to the Debian installer
 using nginx.</p>
-<div class="highlight"><pre><span class="nv">$ </span>apt-get install nginx
+<div class="highlight"><pre>$ apt-get install nginx
 
-<span class="nv">$ </span>cat /etc/nginx/sites-enabled/myhost
+$ cat /etc/nginx/sites-enabled/myhost
     server <span class="o">{</span>
       listen 80<span class="p">;</span>
       server_tokens off<span class="p">;</span>
@@ -91,8 +91,8 @@ using nginx.</p>
 <p>and restart the server.</p>
 <p>First, we need to create /data directory and get the preseed file from
 this directory.</p>
-<div class="highlight"><pre><span class="nv">$ </span>mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
-<span class="nv">$ </span>wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
+<div class="highlight"><pre>$ mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
+$ wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
 </pre></div>
 
 

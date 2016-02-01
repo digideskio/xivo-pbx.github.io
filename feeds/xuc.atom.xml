@@ -29,7 +29,7 @@ to start your container the first time.&lt;/p&gt;
 3
 4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
 
 docker pull YOUR/REPOSITORY:latest&lt;span class="p"&gt;;&lt;/span&gt;
 docker stop YOUR_CONTAINER_NAME&lt;span class="p"&gt;;&lt;/span&gt;

@@ -54,6 +54,47 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/how-is-the-xivo-sccp-development-going.html#how-is-the-xivo-sccp-development-going">How is the XiVO-SCCP development going ?</a></h2>
+    <p>
+      Posted on Tue 01 May 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>From XiVO 1.2.5 we started to integrate the SCCP management directly
+into the web interface.It means that now, people installing a XiVO
+server can natively use the SCCP technologywhen creating new lines,
+without the need to manually install the sccp channel driver andediting
+the configuration file. As the sccp library evolve, the options
+available throughthe web interface will also be expanded.</p>
+<p>Lately we've been working on the multi-instance per line, which will be
+released with XiVO 1.2.7 this week.Basically the multi-instance per line
+is the ability to receive or make many calls at the same time.While only
+one call can be active at a time, it is possible to keep the other call
+alive but on hold.You can then toggle between the calls to pickup any of
+them. Which will put the current active call on hold,and will set the
+selected call as active.</p>
+<p><a href="/public/libsccp/IMG_20120501_092831.jpg" title="7960-multi-instance1"><img alt="7960-multi-instance1" src="/public/libsccp/.IMG_20120501_092831_s.jpg" title="7960-multi-instance1, mai 2012" /></a></p>
+<p>We still have a long list of features we want to write and make
+available directly through XiVO.Even though we are still in early
+development, I encourage everyone that have CISCO phones to installand
+try the SCCP library. Either via XiVO or by manually installing the sccp
+channel driver.</p>
+<p>For those having CISCO phones that use the SCCP technology, we've put
+online a tutorial to help you get this done:
+<a href="http://documentation.xivo.fr/dev/administration/sccp/sccp.html">http://documentation.xivo.fr/dev/administration/sccp/sccp.html</a></p>
+<p>At the bottom of the tutorial, you will also find the list of feature
+and telephone type that we actually support.We hope to extend this list
+as time goes, but we need your help !</p>
+<p>At this point of development, we need more people that use the SCCP
+library. As the number of people using itwill increase, the number of
+bugs reported will increase and hence the number of fix and enhancement.
+At the end, everbody win.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/122-123-124-125-here-we-go.html#122-123-124-125-here-we-go">1.2.2 1.2.3 1.2.4 1.2.5 here we go</a></h2>
     <p>
       Posted on Fri 13 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -318,52 +359,6 @@ in a way validated by the dev team.The script executes many steps:</p>
 <li>Update all device configurations to integrate the backup_proxy_ip
     from the HA configuration.</li>
 <li>Set default web-interface language to english.</li>
-</ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-high-availability.html#xivo-high-availability">XiVO high availability</a></h2>
-    <p>
-      Posted on Wed 14 March 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
-  </header>
-  <div>
-      <p>High availability is available in XiVO since version 1.2.3. The current
-use cases is to be able to get telephony service back in less than 5
-minutes in case of a network or power failure on the master XiVO.</p>
-<p>The architecture is pretty simple at the time of this writing. The
-configuration database is replicated every hours to a slave XiVO. The
-slave XiVO pings the master XiVO every 30 seconds and launches asterisk
-if the master is down. The slave will also stop asterisk if the master
-is turned back up. The check (a ping) is pretty simple at the moment,
-this means that a fail-over will not happen if asterisk or any other
-service has crashed, monit should be able to restart the crashed service
-in most cases anyway.</p>
-<p>To enable this feature, go to <em>Configuration, High availability</em>. Choose
-master node on the master and enter the slave's IP address in the remote
-address field. On the slave, choose slave node and enter the master's IP
-address in the remote address field.</p>
-<p><img alt="ha_master.png" src="/public/.ha_master_m.jpg" title="ha_master.png, mar. 2012" /></p>
-<p>There is no way to trigger a synchronization between master and slave
-from the web interface, a work around is to launch
-xivo-master-slave-db-replication &lt;slave-ip&gt; on the master XiVO.
-This might be useful if you just finished your configuration and want to
-trigger a first replication or for test purposes.</p>
-<p>Some limitations:</p>
-<ul>
-<li>This solution uses the backup registrar from the phones, see the
-    <a href="http://documentation.xivo.fr" title="documentation">documentation</a> for
-    supported phones.</li>
-<li>Voice mail messages are not replicated between master and slave. A
-    solution is to attach the message and to mail it in the notification
-    and delete the message from the server when high availability
-    is enabled.</li>
-<li>CEL are not replicated between master and slave. Calls on the slave
-    are logged on the slave and calls on the master are logged on
-    the master.</li>
 </ul>
 </p>
   </div>

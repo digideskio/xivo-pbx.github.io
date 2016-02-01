@@ -77,21 +77,21 @@ part of the version number.</p>
 <h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
 <p>The build of the gallifrey development packages was blocked because of a
 compilation error.</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<div class="highlight"><pre>...
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;
+make[6]: *** [/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.o] Error 1
+make[5]: *** [_module_/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp] Error 2
+make[4]: *** [all] Error 2
 
-<span class="o">---------------------------------------------</span>
+---------------------------------------------
 
-<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
-<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+make[3]: *** [common-build-impl] Error 1
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+BUILD END packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
 </pre></div>
 
 

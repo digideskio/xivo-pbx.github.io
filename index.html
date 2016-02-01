@@ -54,6 +54,68 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1601.html#sprint-review-1601">Sprint Review 16.01</a></h2>
+    <p>
+      Posted on Mon 01 February 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Greetings fellow XiVO fans, I am pleased to announce the release of XiVO 16.01.</p>
+<h2>New features in this sprint</h2>
+<p><strong>XiVO Client Authentication</strong>: The XiVO client can use LDAP authentication for connecting to the XiVO server. This
+makes it easier for administrators to reuse services that manage their user accounts, such as Active Directory. LDAP
+authentication is managed by a new authentication backend configurable via the CTI. This backend requires manual
+configuration on the server. Further details can be obtained in the upgrade notes.</p>
+<p><strong>XiVO Client Connections</strong>: The XiVO client will issue a warning when it is unable to connect to the server using an
+encrypted connection. Users will have the option of reconnecting to the server using an unencrypted connection.
+Encrypted connections can be reactivated by clicking on the lock in the client's configuration window.</p>
+<p><strong>SIP:</strong> A new tab has been added to the page for configuring advanced options in SIP accounts. Advanced options can be
+added via the "advanced" tab on the lines page. These parameters will be included along side the rest of the SIP
+configuration in Asterisk. The advanced tab offers more flexibility to advanced users of Asterisk, while still keeping
+the rest of the UI simple enough for regular users.</p>
+<p><strong>Web Interface:</strong> A few minor improvements have been added to the web interface's UI:</p>
+<ul>
+<li>A search bar has been added to the context page</li>
+<li>The user's extension will now be displayed next to his name in multiselect boxes</li>
+<li>The line associated to a device can be edited by clicking on its number in the device list</li>
+</ul>
+<p><strong>REST API:</strong> A new API for managing "custom" endpoints has been added. Custom endpoints enable the use of communication
+protocols that are supported by Asterisk but not fully managed by XiVO, such as DAHDI cards. This new API represents an
+additional step towards our long-term goal of offering a PBX system that is more flexible, customizable and useful for
+third party developers.</p>
+<h2>Technical Features</h2>
+<p><strong>Snom phones:</strong> The plugin for Snom phones has been upgraded to version 8.7.5.35 of the firmware.</p>
+<p><strong>DAHDI upgrade:</strong> DAHDI has been upgraded to version 2.11</p>
+<p><strong>Consul upgrade:</strong> Consul has been upgraded to version 0.6.3</p>
+<p><strong>Asterisk upgrade:</strong> Asterisk has been upgraded to version 13.7.0</p>
+<p><strong>Web account ACLs</strong>: The permission system used for web service accounts has been replaced by Access Control Lists
+(ACL). ACLs are a part of our ongoing work on our new permission system. This system improves security in XiVO for
+various subsystems, such as communication between services. In the long term, ACLs will also permit users to access
+parts of in a restricted mode, giving them the possibility of customizing different features without impacting other
+parts of the system.</p>
+<p><strong>CTI protocol version</strong>: The CTI protocol has been upgraded to 2.0. XiVO Clients will issue a warning when connecting
+to a server that uses a version of the protocol that is incompatible with the current version of the client.</p>
+<h2>Ongoing features</h2>
+<p><strong>REST API:</strong> We will be working on a new API for associating devices with SIP or SCCP accounts.</p>
+<p><strong>Switchboard:</strong> We are changing the internals of the Switchboard feature so that we can control more precisely how
+calls are answered, transferred, etc.</p>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I wish you shall
+remain in high spirits until our next fateful encounter, 3 weeks from now. May the freedom of XiVO bless your
+communications across the vast VoIP expanse.</em></p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2">XiVO 16.01 Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/237">XiVO 16.01 Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
+<li><a href="http://documentation.xivo.io/en/stable/contributors/cti_server/cti_protocol.html#id2">CTI Protocol Changelog</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1520.html#sprint-review-1520">Sprint Review 15.20</a></h2>
     <p>
       Posted on Fri 08 January 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -282,50 +344,6 @@ You can download this script on <a href="https://github.com/h4wk3r/XIVO-Agentoff
 <p>For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
 on IRC on irc.freenode.net channel #xivo.</p>
 <p><em>Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson</em></p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1517.html#sprint-review-1517">Sprint Review 15.17</a></h2>
-    <p>
-      Posted on Fri 16 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.</p>
-<h2>New features in this sprint</h2>
-<p><strong>REST API:</strong> A new API for managing SIP accounts has been added. The API can be used for creating
-SIP accounts and associating them with users on a XiVO server. This API also offers third parties,
-such as developers or administrators, the flexibility of configuring all of the advanced SIP
-parameters offered by asterisk. This new API helps us expand on our goal of offering a more
-customizable and flexible system ideal for use in a wide range of environments, such as cloud
-infrastructures.</p>
-<p><strong>Directories:</strong> The contacts system used by the phones has been improved. Contact sources have been
-unified. This means that phones will now search through the same places as searches in the XiVO
-Client. Phones will also be able to search through personal contacts. Up until now, personal
-contacts could only be used from the XiVO Client. But with this release, any contact added through
-the client can be used on the phone.</p>
-<h2>Ongoing features</h2>
-<p><strong>SCCP:</strong> In a similar fashion to the SIP API, we will be adding a new API for managing
- SCCP accounts. This will make configuration of advanced SCCP parameters more flexible for
- administrators and other tech specialists.</p>
-<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
- voicemails. The goal is to make configuration of advanced parameters easier while
- still keeping the interface simple.</p>
-<p><strong>LDAP:</strong> We are working on a new authentication mecanism for allowing users access
- to XiVO based on LDAP credentials. This will allow administrators to integrate
- XiVO with their existing infrastructure and give them finer grained access
- to xivo's services.</p>
-<h2>Technical features</h2>
-<p><strong>Asterisk:</strong> Minor Asterisk upgrade from 13.5.0 to 13.6.0. This upgrade fixes the latest bugs and
-improves overall stability.</p>
-<hr />
-<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I
-wish you shall remain in high spirits until our next fateful encounter, 3 weeks from now. May the
-freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
-<p>Source: <a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap">XiVO 15.17 Roadmap</a></p>
   </div>
 </article>
 

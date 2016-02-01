@@ -54,6 +54,40 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/caluire-town-hall-installation.html#caluire-town-hall-installation">Caluire Town Hall Installation</a></h2>
+    <p>
+      Posted on Tue 07 June 2011 in <a href="http://blog.xivo.io/category/services.html">Services</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="installcaluire" src="/public/.IMAG0870_m.jpg" title="installcaluire, juin 2011" /></p>
+<p>I had the chance to participate to
+<a href="http://www.ville-caluire.fr/">Caluire</a> town hall installation a couple
+of weeks ago, where we deployed almost 150 phone sets in the building.</p>
+<p>Two corporate <a href="https://wiki.xivo.fr/index.php/Accueil">XIVO</a> servers
+were inserted between the legacy PBX (Matra) and the PSTN network, we
+spent a lot of time to try to figure out how many channels were
+available as nobody did know it and the information was lost ! ;). Once
+the proper dahdi configuration was found everything started to work well
+and we began to replace little by little all the phone sets.</p>
+<p>Highlights :</p>
+<ul>
+<li>150 phone sets</li>
+<li>DECT</li>
+<li>Mobile gateways to optimize mobile calls cost</li>
+<li>Polycom sound stations for audio conferences</li>
+<li>Fax gateway, mono and multi ports</li>
+</ul>
+<p>As new phone sets were setup beside the old phone sets and old numbers
+were forwarded to the new installed ones, users were able to gradually
+become used to the new way of calling.</p>
+<p>Thanks to Fred for this funny photo from the “installation war room”</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/an-alternate-xivo-skaro-repository.html#an-alternate-xivo-skaro-repository">An alternate XiVO skaro repository</a></h2>
     <p>
       Posted on Mon 06 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -332,7 +366,7 @@ number</a>. All of the instructiosn
 listed for IPPI apply to OVH because they use the same system (Cirpack).
 The values for DTMF were left unchanged and NAT set to <em>Yes</em>.Debugging
 was made convenient with the asterisk console</p>
-<div class="highlight"><pre><span class="nv">$ </span>asterisk -rvvvvv
+<div class="highlight"><pre>$ asterisk -rvvvvv
 gallifrey-test1*CLI&gt; sip show registry
 Host                            Username       Refresh State                Reg.Time                 
 sip.ovh.net:5060                <span class="m">003384452800</span>       <span class="m">105</span> Registered           Mon, <span class="m">23</span> May <span class="m">2011</span> 11:38:12
@@ -600,38 +634,6 @@ module</a> instructions:</p>
 
 <p>And the <a href="https://gallifrey-test1.dachary.org/">XiVO web interface</a> could
 be displayed.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html#glimpse-of-cti-architecture-in-xivo-11-and-12">Glimpse of CTI architecture in XiVO 1.1 and 1.2</a></h2>
-    <p>
-      Posted on Fri 13 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>As a reminder, this is what the CTI world looks like in XiVO 1.1 :</p>
-<p><a href="/public/external_cti_architecture_xivo_1.1.png" title="cti1.1"><img alt="cti1.1" src="/public/.external_cti_architecture_xivo_1.1_m.jpg" title="cti1.1, mai 2011" /></a></p>
-<p>The XiVO 1.2 part will be more like :</p>
-<p><a href="/public/external_cti_architecture_xivo_1.2.png" title="cti1.2"><img alt="cti1.2" src="/public/.external_cti_architecture_xivo_1.2_m.jpg" title="cti1.2, mai 2011" /></a></p>
-<p>namely :</p>
-<ul>
-<li>the queue-logger daemon does not exist any more, and the CTI server
-    fills the queue-logger database itself</li>
-<li>the services/features of user lines will be accessed through regular
-    XiVO web services instead of direct SQL access</li>
-</ul>
-<p>This is of course only a very global view.</p>
-<p>At the underneath level,</p>
-<ul>
-<li>the AMI commands have changed, since the asterisk version will be
-    1.8 (instead of 1.4)</li>
-<li>the CTI protocol between the server and its clients has evolved,
-    especially in order to be able to get smaller payload packet sizes.</li>
-</ul>
-<p>More details should come in a future blog entry.</p>
 </p>
   </div>
 </article>

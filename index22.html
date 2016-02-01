@@ -54,6 +54,39 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-12-and-asterisk-dialplan.html#xivo-12-and-asterisk-dialplan">XiVO 1.2 and Asterisk Dialplan</a></h2>
+    <p>
+      Posted on Tue 06 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="xivodialplan.jpg" src="/public/xivosoft/xivodialplan.jpg" title="xivodialplan.jpg, déc. 2011" /></p>
+<p>To route a call from origin to destination,
+<a href="http://www.asterisk.org/">Asterisk</a> relies on a so called dialplan. In
+XiVO, it is generated using 3 different components</p>
+<ul>
+<li>XiVO confgen, takes info from the configuration database and
+    generate a directory linked to the base config dialplan</li>
+<li>Base Config dialplan, the dialplan itself</li>
+<li>Agid, dynamically update the dialplan as setting variables (XIVO_),
+    or compute recording file names.</li>
+</ul>
+<p>You'll find this 3 components here :</p>
+<ul>
+<li>git://git.xivo.fr/official/xivo-confgen.git for confgen</li>
+<li>git://git.xivo.fr/official/xivo-skaro.git directory base-config for
+    the static part</li>
+<li>git://git.xivo.fr/official/xivo-skaro.git directory agid for the
+    dynamic part</li>
+</ul>
+<p>You may also have a look at our CI server
+<a href="http://jenkins.xivo.fr/">jenkins</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/astricon-2011.html#astricon-2011">Astricon 2011</a></h2>
     <p>
       Posted on Tue 08 November 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -284,54 +317,6 @@ dpkg-genchange did not test for a failed run of dpkg-genchange. It is a
 rare condition.The status.sh script <a href="http://packaging-farm.dachary.org/trac/changeset/d3bbab7c88148a9f5670e0f8c598174d392f8ed2">now checks if the run of
 dpkg-genchange is
 successful</a>.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/pcb-prototypes-and-flash-spi-testing.html#pcb-prototypes-and-flash-spi-testing">PCB prototypes and flash SPI testing</a></h2>
-    <p>
-      Posted on Tue 04 October 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>On the XiVO Open Hardware side, we have been very busy lately writing
-various bits of low level software, preparing the production of the
-first prototypes, validating some hardware subsystems and doing all sort
-of hardware + low level software debugging.</p>
-<p>We are starting again to have things interesting to show, with some cute
-photos.</p>
-<p><strong>PCB prototypes</strong></p>
-<p>We recently received our first PCB prototypes for our motherboard:</p>
-<p><img alt="XIOH motherboard
-prototype" src="/public/.xioh_motherboard_proto_m.jpg" title="XIOH motherboard prototype, oct. 2011" /></p>
-<p>To prepare for testing the first assembled prototypes, we wanted to
-somehow test the communication between the EP80579 and the SPI flash.
-For now we have a 74LVC125A buffer between the two chips in order to
-isolate the flash from the SoC, and we wanted to validate this design.</p>
-<p>We previously did a small model of the flash subsystem, A few days ago I
-heavily hacked it to make it work. (Well some of the modifications were
-probably not really necessary, but now we have a perfect signal quality
-:)</p>
-<p><img alt="Heavily hacked flash prototype
-board" src="/public/.heavily_hacked_flash_proto_m.jpg" title="Heavily hacked flash prototype board, oct. 2011" /></p>
-<p>The next step was to do the same test, this time using one of our spare
-naked PCBs dedicated to that kind of testing.We first soldered the flash
-and the buffer, then we strapped a HE10 ISP header to replace the
-EP80579 SPI drivers by a flash programmer (this is obviously not a
-perfect replacement, but we can't do much better...)</p>
-<p>Here is a photo of the header being soldered:</p>
-<p><img alt="Soldering an SPI header at SoC
-position" src="/public/.soldering_an_SPI_header_at_SoC_position_m.jpg" title="Soldering an SPI header at SoC position, oct. 2011" /></p>
-<p>Here is the soldered result, connected to the programmer:</p>
-<p><img alt="Testing flash
-communication" src="/public/.testing_flash_communication_m.jpg" title="Testing flash communication, oct. 2011" /></p>
-<p>And here is the result:</p>
-<p><img alt="SPI flash communication test
-results" src="/public/.flash_comm_test_result_m.jpg" title="SPI flash communication test results, oct. 2011" /></p>
-<p>So we are now hopeful that at least the SPI flash communication will
-work on our assembled board \\o/</p>
 </p>
   </div>
 </article>

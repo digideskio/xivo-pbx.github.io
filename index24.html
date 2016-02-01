@@ -54,6 +54,58 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/after-the-summer-an-active-start-for-xivo-open-hardware.html#after-the-summer-an-active-start-for-xivo-open-hardware">After the summer, an active start for XiVO Open Hardware !</a></h2>
+    <p>
+      Posted on Tue 13 September 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>No doubt, XiVO Open Hardware creates much interest and Avencall teams
+will demonstrate the project in different events in the coming months.</p>
+<ul>
+<li>On September 15 th , we will be at Open Hardware Summit in New York,
+    THE worldwide event about Open Hardware. We are in the breakout
+    sessions with <a href="http://www.openhardwaresummit.org/breakouts/" title="Open Hardware Summit">"Open Hardware in Voice
+    Telecommunications"</a> .</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On September 17 th , we will be at Software Freedom Day in Montreal
+    for a talk at 1pm <a href="http://wiki.softwarefreedomday.org/2011/Canada/Montreal/SFD-ETS" title="Software Freedom Day">“Xivo: aller plus loin que le logiciel libre,
+    libérer le matériel aussi (VoIP,
+    Asterisk)”</a> .</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On September 22 nd , we will be at Open World Forum in Paris for a
+    track <a href="http://www.openworldforum.org/Conferences/The-OpenHardware-movement-The-community-is-moving-from-software-to-hardware" title="Open World Forum">“The OpenHardware movement - The community is moving from
+    software to
+    hardware”</a>.
+    The Open World Forum is the first Open Source Forum in Europe.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On October, 26 th (10:00-10:35am), we will be at Astricon, the First
+    Asterisk User Conference in the world, for the track <a href="http://www.astricon.net/conferenceProgram.aspx" title="Astricon2011">"XiVO IPBX
+    OpenHardware: a full-open telephony solution for
+    SOHO"</a> .
+    This is a great opportunity to develop our XiVO Open
+    Hardware community.</li>
+</ul>
+<p>And don’t forget, from October 18-21, two tradeshows: <a href="http://www.ipconvergence.fr/" title="IP Convergence">IP
+Convergence</a> and <a href="/index.php?post/2011/07/29/AVENCALL-at-GIF-2011" title="IP Convergence">GIF
+2011</a>
+where we will make some demonstrations of XiVO Open Hardware.</p>
+<p>Come to visit us !</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">XiVO submission configuration</a></h2>
     <p>
       Posted on Mon 12 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -274,21 +326,21 @@ part of the version number.</p>
 <h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
 <p>The build of the gallifrey development packages was blocked because of a
 compilation error.</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<div class="highlight"><pre>...
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;
+make[6]: *** [/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.o] Error 1
+make[5]: *** [_module_/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp] Error 2
+make[4]: *** [all] Error 2
 
-<span class="o">---------------------------------------------</span>
+---------------------------------------------
 
-<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
-<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+make[3]: *** [common-build-impl] Error 1
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+BUILD END packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
 </pre></div>
 
 
@@ -391,39 +443,39 @@ in the dpkg-version manual page:</p>
 
 
 <p>This created somme confusion as demonstrated in the chat log below</p>
-<div class="highlight"><pre><span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">15</span><span class="s-Atom">:</span><span class="mi">22</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">pourquoi</span> <span class="s-Atom">on</span> <span class="s-Atom">conserve</span> <span class="s-Atom">la</span> <span class="s-Atom">date</span><span class="o">/</span><span class="s-Atom">le</span> <span class="s-Atom">n°</span> <span class="s-Atom">de</span> <span class="s-Atom">commit</span> <span class="s-Atom">dans</span> <span class="s-Atom">les</span> <span class="s-Atom">paquets</span> <span class="s-Atom">de</span> <span class="s-Atom">prod</span> <span class="s-Atom">?</span>
-<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">42</span><span class="s-Atom">:</span><span class="mi">23</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">la</span> <span class="s-Atom">date</span> <span class="s-Atom">c&#39;est pour avoir une numérotation chronologique. Le numéro de hash c&#39;est</span> <span class="s-Atom">pour</span> <span class="s-Atom">avoir</span> <span class="s-Atom">une</span> <span class="s-Atom">façon</span> <span class="s-Atom">de</span> <span class="s-Atom">trouver</span> <span class="s-Atom">a</span> <span class="s-Atom">quel</span> <span class="s-Atom">commit</span> <span class="s-Atom">ça</span> <span class="s-Atom">correspond</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">git</span><span class="p">.</span> 
-<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">52</span><span class="s-Atom">:</span><span class="mi">32</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">oui</span><span class="p">,</span> <span class="s-Atom">mais</span> <span class="s-Atom">pour</span> <span class="s-Atom">les</span> <span class="nf">releases</span> <span class="p">(</span><span class="s-Atom">du</span> <span class="s-Atom">temps</span> <span class="s-Atom">de</span> <span class="s-Atom">git</span><span class="o">/</span><span class="s-Atom">nono</span><span class="p">),</span> <span class="s-Atom">on</span> <span class="s-Atom">virait</span> <span class="s-Atom">le</span> <span class="s-Atom">numéro</span> <span class="s-Atom">de</span> <span class="s-Atom">commit</span> <span class="s-Atom">dans</span> <span class="s-Atom">la</span> <span class="s-Atom">version</span> <span class="s-Atom">du</span> <span class="nf">paquet</span>
-<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">54</span><span class="s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">pourrais</span> <span class="s-Atom">rajouter</span> <span class="s-Atom">cette</span> <span class="s-Atom">fonctionalité</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">script</span> <span class="s-Atom">de</span> <span class="s-Atom">soumission</span><span class="p">.</span> <span class="nv">Je</span> <span class="s-Atom">n&#39;avais pas réalisé qu&#39;elle</span> <span class="s-Atom">existait</span><span class="p">.</span>
-<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">55</span><span class="s-Atom">:</span><span class="mi">01</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">parce</span> <span class="s-Atom">qu&#39;il semble que là ça pose un pb pour les migrations (le script ne doit pas correctement gérer le &#39;~...&#39;)</span>
-<span class="s-Atom">(05:55:58 PM) dachary: guillaumeb: c&#39;est</span> <span class="s-Atom">clair</span> <span class="s-Atom">que</span> <span class="s-Atom">toute</span> <span class="s-Atom">déviation</span> <span class="s-Atom">du</span> <span class="s-Atom">modèle</span> <span class="s-Atom">établit</span> <span class="s-Atom">est</span> <span class="s-Atom">une</span> <span class="s-Atom">menace</span> <span class="s-Atom">de</span> <span class="s-Atom">péter</span> <span class="s-Atom">la</span> <span class="s-Atom">compatibilité</span><span class="p">.</span> 
-<span class="p">(</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">56</span><span class="s-Atom">:</span><span class="mi">28</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">tu</span> <span class="s-Atom">peux</span> <span class="s-Atom">me</span> <span class="s-Atom">décrire</span> <span class="s-Atom">l&#39;algo de nono pour la gestion de la numérotation pour la release ? </span>
-<span class="s-Atom">(05:57:31 PM) dachary: foo-1.1.1~svn283-1 puis foo-1.1.1-1 ca marcherait pas donc ca doit etre autre chose</span>
-<span class="s-Atom">(06:04:19 PM) guillaumeb: dachary: je ne connais pas l&#39;algo</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="nf">détail</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">04</span><span class="s-Atom">:</span><span class="mi">51</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">mais</span> <span class="s-Atom">par</span> <span class="s-Atom">exemple</span><span class="p">,</span> <span class="s-Atom">en</span> <span class="mf">1.1.14</span><span class="p">,</span> <span class="s-Atom">la</span> <span class="s-Atom">version</span> <span class="s-Atom">de</span> <span class="s-Atom">pf</span><span class="o">-</span><span class="s-Atom">xivo</span><span class="o">-</span><span class="s-Atom">web</span><span class="o">-</span><span class="s-Atom">interface</span> <span class="s-Atom">était</span> <span class="mi">7</span><span class="s-Atom">:</span><span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">47</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">vois</span> <span class="s-Atom">pas</span> <span class="s-Atom">comment</span> <span class="s-Atom">faire</span> <span class="s-Atom">pour</span> <span class="s-Atom">avoir</span> <span class="s-Atom">une</span> <span class="s-Atom">version</span> <span class="s-Atom">inferieure</span> <span class="s-Atom">a</span> <span class="mf">1.1.14</span> <span class="s-Atom">en</span> <span class="s-Atom">ajoutant</span> <span class="s-Atom">qqc</span> <span class="s-Atom">a</span> <span class="s-Atom">la</span> <span class="nf">fin</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span><span class="s-Atom">:</span><span class="mi">53</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">pour</span> <span class="s-Atom">moi</span> <span class="s-Atom">ca</span> <span class="s-Atom">va</span> <span class="s-Atom">toujours</span> <span class="s-Atom">etre</span> <span class="nf">superieur</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">05</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">doit</span> <span class="s-Atom">y</span> <span class="s-Atom">avoir</span> <span class="s-Atom">un</span> <span class="nf">truc</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">38</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">le</span> <span class="o">-</span><span class="mi">1</span> <span class="s-Atom">c&#39;est la revision du package</span>
-<span class="s-Atom">(06:06:43 PM) yoda1410: pas la version du package</span>
-<span class="s-Atom">(06:07:53 PM) dachary: yoda1410: oui. 7:1.1.14-1 c&#39;est</span> <span class="p">[</span><span class="nn">epoch</span><span class="p">:]</span><span class="s-Atom">version</span><span class="p">[</span><span class="o">-</span><span class="s-Atom">debianversion</span><span class="p">]</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">06</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">eh</span> <span class="s-Atom">bien</span> <span class="s-Atom">ou</span> <span class="s-Atom">est</span> <span class="s-Atom">le</span> <span class="s-Atom">soucis</span> <span class="s-Atom">?</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="s-Atom">yoda1410:</span> <span class="mf">1.1.13</span><span class="o">-</span><span class="mi">7</span> <span class="s-Atom">seras</span> <span class="s-Atom">toujours</span> <span class="s-Atom">inferieur</span> <span class="s-Atom">a</span> <span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">17</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">si</span> <span class="s-Atom">tu</span> <span class="s-Atom">as</span> <span class="mi">7</span><span class="s-Atom">:</span><span class="mf">1.1.14</span><span class="s-Atom">~svn200</span><span class="o">-</span><span class="mi">1</span> <span class="s-Atom">pendant</span> <span class="s-Atom">le</span> <span class="nf">dev</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">30</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">oui</span><span class="p">,</span> <span class="s-Atom">mais</span> <span class="s-Atom">ça</span> <span class="s-Atom">fait</span> <span class="s-Atom">partie</span> <span class="s-Atom">du</span> <span class="s-Atom">numéro</span> <span class="s-Atom">de</span> <span class="s-Atom">version</span> <span class="s-Atom">du</span> <span class="nf">paquet</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">37</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">ah</span> <span class="p">!</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">50</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">yoda1410:</span> <span class="s-Atom">c&#39;est pas bete ce que tu dis :-)</span>
-<span class="s-Atom">(06:09:05 PM) dachary: la version release est *inferieure* a la version de dev</span>
-<span class="s-Atom">(06:09:12 PM) dachary: mais superieure a la precedente release</span>
-<span class="s-Atom">(06:09:26 PM) dachary: donc qqn qui aurait une version de dev serait dans la mouise</span>
-<span class="s-Atom">(06:09:39 PM) dachary: mais qqn qui aurait une version stable a upgrade serait bon</span>
-<span class="s-Atom">(06:10:04 PM) dachary: dans la mouise =&gt; a devoir downgrader (du point de vue de dpkg --compare-version )</span>
-<span class="s-Atom">(06:10:13 PM) yoda1410: un repository de dev, un repository stable</span>
-<span class="s-Atom">(06:10:26 PM) yoda1410: potentiellement, tu passes pas vraiment de l&#39;un</span> <span class="s-Atom">a</span> <span class="s-Atom">l</span><span class="err">&#39;</span><span class="s-Atom">autre</span> <span class="s-Atom">et</span> <span class="s-Atom">vice</span> <span class="nf">versa</span>
-<span class="p">(</span><span class="mi">06</span><span class="s-Atom">:</span><span class="mi">10</span><span class="s-Atom">:</span><span class="mi">57</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">si</span> <span class="s-Atom">cette</span> <span class="s-Atom">incohérence</span> <span class="s-Atom">dans</span> <span class="s-Atom">le</span> <span class="s-Atom">numérotage</span> <span class="s-Atom">des</span> <span class="s-Atom">version</span> <span class="s-Atom">est</span> <span class="s-Atom">admise</span> <span class="s-Atom">et</span> <span class="s-Atom">habituelle</span><span class="p">,</span> <span class="s-Atom">alors</span> <span class="s-Atom">pourquoi</span> <span class="s-Atom">pas</span>
-<span class="mi">09</span><span class="s-Atom">:</span><span class="mi">07</span><span class="s-Atom">:</span><span class="mi">20</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">comme</span> <span class="s-Atom">disait</span> <span class="s-Atom">yoda1410</span> <span class="s-Atom">hier</span><span class="p">,</span> <span class="s-Atom">on</span> <span class="s-Atom">ne</span> <span class="s-Atom">mélange</span> <span class="s-Atom">pas</span> <span class="s-Atom">les</span> <span class="mi">2</span> <span class="p">(</span><span class="s-Atom">soit</span> <span class="s-Atom">on</span> <span class="s-Atom">installe</span> <span class="s-Atom">une</span> <span class="s-Atom">stable</span><span class="p">,</span> <span class="s-Atom">soit</span> <span class="s-Atom">une</span> <span class="s-Atom">dev</span><span class="p">),</span> <span class="s-Atom">donc</span> <span class="s-Atom">ça</span> <span class="s-Atom">ne</span> <span class="s-Atom">pose</span> <span class="s-Atom">pas</span> <span class="s-Atom">vraiment</span> <span class="s-Atom">de</span> <span class="nf">pb</span>
-<span class="p">(</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">08</span><span class="s-Atom">:</span><span class="mi">45</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s-Atom">ok</span><span class="p">,</span> <span class="s-Atom">donc</span> <span class="s-Atom">je</span> <span class="s-Atom">vais</span> <span class="s-Atom">implémenter</span> <span class="s-Atom">un</span> <span class="s-Atom">truc</span> <span class="s-Atom">qui</span> <span class="s-Atom">permet</span> <span class="s-Atom">de</span> <span class="s-Atom">supprimer</span> <span class="s-Atom">la</span> <span class="s-Atom">génération</span> <span class="s-Atom">de</span> <span class="s-Atom">timestamp</span> <span class="o">+</span> <span class="s-Atom">hash</span> <span class="s-Atom">après</span> <span class="s-Atom">~</span> <span class="s-Atom">et</span> <span class="s-Atom">ce</span> <span class="s-Atom">flag</span> <span class="s-Atom">pourra</span> <span class="s-Atom">etre</span> <span class="s-Atom">mis</span> <span class="s-Atom">sur</span> <span class="s-Atom">la</span> <span class="s-Atom">machine</span> <span class="s-Atom">de</span> <span class="s-Atom">build</span> <span class="s-Atom">qui</span> <span class="s-Atom">se</span> <span class="s-Atom">charge</span> <span class="s-Atom">des</span> <span class="s-Atom">release</span><span class="p">.</span> <span class="nv">Ca</span> <span class="s-Atom">ira</span> <span class="s-Atom">comme</span> <span class="s-Atom">ça</span> <span class="s-Atom">tu</span> <span class="s-Atom">penses</span> <span class="s-Atom">?</span> 
-<span class="p">(</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">09</span><span class="s-Atom">:</span><span class="mi">15</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s-Atom">je</span> <span class="s-Atom">peux</span> <span class="s-Atom">faire</span> <span class="s-Atom">ça</span> <span class="s-Atom">lundi</span><span class="p">.</span>
+<div class="highlight"><pre><span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">15</span><span class="s s-Atom">:</span><span class="mi">22</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">pourquoi</span> <span class="s s-Atom">on</span> <span class="s s-Atom">conserve</span> <span class="s s-Atom">la</span> <span class="s s-Atom">date</span><span class="o">/</span><span class="s s-Atom">le</span> <span class="s s-Atom">n°</span> <span class="s s-Atom">de</span> <span class="s s-Atom">commit</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">les</span> <span class="s s-Atom">paquets</span> <span class="s s-Atom">de</span> <span class="s s-Atom">prod</span> <span class="s s-Atom">?</span>
+<span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">42</span><span class="s s-Atom">:</span><span class="mi">23</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">la</span> <span class="s s-Atom">date</span> <span class="s s-Atom">c&#39;est pour avoir une numérotation chronologique. Le numéro de hash c&#39;est</span> <span class="s s-Atom">pour</span> <span class="s s-Atom">avoir</span> <span class="s s-Atom">une</span> <span class="s s-Atom">façon</span> <span class="s s-Atom">de</span> <span class="s s-Atom">trouver</span> <span class="s s-Atom">a</span> <span class="s s-Atom">quel</span> <span class="s s-Atom">commit</span> <span class="s s-Atom">ça</span> <span class="s s-Atom">correspond</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">le</span> <span class="s s-Atom">git</span><span class="p">.</span> 
+<span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">52</span><span class="s s-Atom">:</span><span class="mi">32</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">oui</span><span class="p">,</span> <span class="s s-Atom">mais</span> <span class="s s-Atom">pour</span> <span class="s s-Atom">les</span> <span class="nf">releases</span> <span class="p">(</span><span class="s s-Atom">du</span> <span class="s s-Atom">temps</span> <span class="s s-Atom">de</span> <span class="s s-Atom">git</span><span class="o">/</span><span class="s s-Atom">nono</span><span class="p">),</span> <span class="s s-Atom">on</span> <span class="s s-Atom">virait</span> <span class="s s-Atom">le</span> <span class="s s-Atom">numéro</span> <span class="s s-Atom">de</span> <span class="s s-Atom">commit</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">la</span> <span class="s s-Atom">version</span> <span class="s s-Atom">du</span> <span class="nf">paquet</span>
+<span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">54</span><span class="s s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">je</span> <span class="s s-Atom">pourrais</span> <span class="s s-Atom">rajouter</span> <span class="s s-Atom">cette</span> <span class="s s-Atom">fonctionalité</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">le</span> <span class="s s-Atom">script</span> <span class="s s-Atom">de</span> <span class="s s-Atom">soumission</span><span class="p">.</span> <span class="nv">Je</span> <span class="s s-Atom">n&#39;avais pas réalisé qu&#39;elle</span> <span class="s s-Atom">existait</span><span class="p">.</span>
+<span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">55</span><span class="s s-Atom">:</span><span class="mi">01</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">parce</span> <span class="s s-Atom">qu&#39;il semble que là ça pose un pb pour les migrations (le script ne doit pas correctement gérer le &#39;~...&#39;)</span>
+<span class="s s-Atom">(05:55:58 PM) dachary: guillaumeb: c&#39;est</span> <span class="s s-Atom">clair</span> <span class="s s-Atom">que</span> <span class="s s-Atom">toute</span> <span class="s s-Atom">déviation</span> <span class="s s-Atom">du</span> <span class="s s-Atom">modèle</span> <span class="s s-Atom">établit</span> <span class="s s-Atom">est</span> <span class="s s-Atom">une</span> <span class="s s-Atom">menace</span> <span class="s s-Atom">de</span> <span class="s s-Atom">péter</span> <span class="s s-Atom">la</span> <span class="s s-Atom">compatibilité</span><span class="p">.</span> 
+<span class="p">(</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">56</span><span class="s s-Atom">:</span><span class="mi">28</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">tu</span> <span class="s s-Atom">peux</span> <span class="s s-Atom">me</span> <span class="s s-Atom">décrire</span> <span class="s s-Atom">l&#39;algo de nono pour la gestion de la numérotation pour la release ? </span>
+<span class="s s-Atom">(05:57:31 PM) dachary: foo-1.1.1~svn283-1 puis foo-1.1.1-1 ca marcherait pas donc ca doit etre autre chose</span>
+<span class="s s-Atom">(06:04:19 PM) guillaumeb: dachary: je ne connais pas l&#39;algo</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">le</span> <span class="nf">détail</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">04</span><span class="s s-Atom">:</span><span class="mi">51</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">mais</span> <span class="s s-Atom">par</span> <span class="s s-Atom">exemple</span><span class="p">,</span> <span class="s s-Atom">en</span> <span class="mf">1.1.14</span><span class="p">,</span> <span class="s s-Atom">la</span> <span class="s s-Atom">version</span> <span class="s s-Atom">de</span> <span class="s s-Atom">pf</span><span class="o">-</span><span class="s s-Atom">xivo</span><span class="o">-</span><span class="s s-Atom">web</span><span class="o">-</span><span class="s s-Atom">interface</span> <span class="s s-Atom">était</span> <span class="mi">7</span><span class="s s-Atom">:</span><span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">47</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">je</span> <span class="s s-Atom">vois</span> <span class="s s-Atom">pas</span> <span class="s s-Atom">comment</span> <span class="s s-Atom">faire</span> <span class="s s-Atom">pour</span> <span class="s s-Atom">avoir</span> <span class="s s-Atom">une</span> <span class="s s-Atom">version</span> <span class="s s-Atom">inferieure</span> <span class="s s-Atom">a</span> <span class="mf">1.1.14</span> <span class="s s-Atom">en</span> <span class="s s-Atom">ajoutant</span> <span class="s s-Atom">qqc</span> <span class="s s-Atom">a</span> <span class="s s-Atom">la</span> <span class="nf">fin</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">05</span><span class="s s-Atom">:</span><span class="mi">53</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">pour</span> <span class="s s-Atom">moi</span> <span class="s s-Atom">ca</span> <span class="s s-Atom">va</span> <span class="s s-Atom">toujours</span> <span class="s s-Atom">etre</span> <span class="nf">superieur</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">05</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">doit</span> <span class="s s-Atom">y</span> <span class="s s-Atom">avoir</span> <span class="s s-Atom">un</span> <span class="nf">truc</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">38</span> <span class="nv">PM</span><span class="p">)</span> <span class="s s-Atom">yoda1410:</span> <span class="s s-Atom">le</span> <span class="o">-</span><span class="mi">1</span> <span class="s s-Atom">c&#39;est la revision du package</span>
+<span class="s s-Atom">(06:06:43 PM) yoda1410: pas la version du package</span>
+<span class="s s-Atom">(06:07:53 PM) dachary: yoda1410: oui. 7:1.1.14-1 c&#39;est</span> <span class="p">[</span><span class="nn">epoch</span><span class="p">:]</span><span class="s s-Atom">version</span><span class="p">[</span><span class="o">-</span><span class="s s-Atom">debianversion</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">06</span> <span class="nv">PM</span><span class="p">)</span> <span class="s s-Atom">yoda1410:</span> <span class="s s-Atom">eh</span> <span class="s s-Atom">bien</span> <span class="s s-Atom">ou</span> <span class="s s-Atom">est</span> <span class="s s-Atom">le</span> <span class="s s-Atom">soucis</span> <span class="s s-Atom">?</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">16</span> <span class="nv">PM</span><span class="p">)</span> <span class="s s-Atom">yoda1410:</span> <span class="mf">1.1.13</span><span class="o">-</span><span class="mi">7</span> <span class="s s-Atom">seras</span> <span class="s s-Atom">toujours</span> <span class="s s-Atom">inferieur</span> <span class="s s-Atom">a</span> <span class="mf">1.1.14</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">17</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">si</span> <span class="s s-Atom">tu</span> <span class="s s-Atom">as</span> <span class="mi">7</span><span class="s s-Atom">:</span><span class="mf">1.1.14</span><span class="s s-Atom">~svn200</span><span class="o">-</span><span class="mi">1</span> <span class="s s-Atom">pendant</span> <span class="s s-Atom">le</span> <span class="nf">dev</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">30</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">yoda1410:</span> <span class="s s-Atom">oui</span><span class="p">,</span> <span class="s s-Atom">mais</span> <span class="s s-Atom">ça</span> <span class="s s-Atom">fait</span> <span class="s s-Atom">partie</span> <span class="s s-Atom">du</span> <span class="s s-Atom">numéro</span> <span class="s s-Atom">de</span> <span class="s s-Atom">version</span> <span class="s s-Atom">du</span> <span class="nf">paquet</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">37</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">yoda1410:</span> <span class="s s-Atom">ah</span> <span class="p">!</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">50</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">yoda1410:</span> <span class="s s-Atom">c&#39;est pas bete ce que tu dis :-)</span>
+<span class="s s-Atom">(06:09:05 PM) dachary: la version release est *inferieure* a la version de dev</span>
+<span class="s s-Atom">(06:09:12 PM) dachary: mais superieure a la precedente release</span>
+<span class="s s-Atom">(06:09:26 PM) dachary: donc qqn qui aurait une version de dev serait dans la mouise</span>
+<span class="s s-Atom">(06:09:39 PM) dachary: mais qqn qui aurait une version stable a upgrade serait bon</span>
+<span class="s s-Atom">(06:10:04 PM) dachary: dans la mouise =&gt; a devoir downgrader (du point de vue de dpkg --compare-version )</span>
+<span class="s s-Atom">(06:10:13 PM) yoda1410: un repository de dev, un repository stable</span>
+<span class="s s-Atom">(06:10:26 PM) yoda1410: potentiellement, tu passes pas vraiment de l&#39;un</span> <span class="s s-Atom">a</span> <span class="s s-Atom">l</span><span class="err">&#39;</span><span class="s s-Atom">autre</span> <span class="s s-Atom">et</span> <span class="s s-Atom">vice</span> <span class="nf">versa</span>
+<span class="p">(</span><span class="mi">06</span><span class="s s-Atom">:</span><span class="mi">10</span><span class="s s-Atom">:</span><span class="mi">57</span> <span class="nv">PM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">si</span> <span class="s s-Atom">cette</span> <span class="s s-Atom">incohérence</span> <span class="s s-Atom">dans</span> <span class="s s-Atom">le</span> <span class="s s-Atom">numérotage</span> <span class="s s-Atom">des</span> <span class="s s-Atom">version</span> <span class="s s-Atom">est</span> <span class="s s-Atom">admise</span> <span class="s s-Atom">et</span> <span class="s s-Atom">habituelle</span><span class="p">,</span> <span class="s s-Atom">alors</span> <span class="s s-Atom">pourquoi</span> <span class="s s-Atom">pas</span>
+<span class="mi">09</span><span class="s s-Atom">:</span><span class="mi">07</span><span class="s s-Atom">:</span><span class="mi">20</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">comme</span> <span class="s s-Atom">disait</span> <span class="s s-Atom">yoda1410</span> <span class="s s-Atom">hier</span><span class="p">,</span> <span class="s s-Atom">on</span> <span class="s s-Atom">ne</span> <span class="s s-Atom">mélange</span> <span class="s s-Atom">pas</span> <span class="s s-Atom">les</span> <span class="mi">2</span> <span class="p">(</span><span class="s s-Atom">soit</span> <span class="s s-Atom">on</span> <span class="s s-Atom">installe</span> <span class="s s-Atom">une</span> <span class="s s-Atom">stable</span><span class="p">,</span> <span class="s s-Atom">soit</span> <span class="s s-Atom">une</span> <span class="s s-Atom">dev</span><span class="p">),</span> <span class="s s-Atom">donc</span> <span class="s s-Atom">ça</span> <span class="s s-Atom">ne</span> <span class="s s-Atom">pose</span> <span class="s s-Atom">pas</span> <span class="s s-Atom">vraiment</span> <span class="s s-Atom">de</span> <span class="nf">pb</span>
+<span class="p">(</span><span class="mi">09</span><span class="s s-Atom">:</span><span class="mi">08</span><span class="s s-Atom">:</span><span class="mi">45</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="nn">guillaumeb</span><span class="p">:</span> <span class="s s-Atom">ok</span><span class="p">,</span> <span class="s s-Atom">donc</span> <span class="s s-Atom">je</span> <span class="s s-Atom">vais</span> <span class="s s-Atom">implémenter</span> <span class="s s-Atom">un</span> <span class="s s-Atom">truc</span> <span class="s s-Atom">qui</span> <span class="s s-Atom">permet</span> <span class="s s-Atom">de</span> <span class="s s-Atom">supprimer</span> <span class="s s-Atom">la</span> <span class="s s-Atom">génération</span> <span class="s s-Atom">de</span> <span class="s s-Atom">timestamp</span> <span class="o">+</span> <span class="s s-Atom">hash</span> <span class="s s-Atom">après</span> <span class="s s-Atom">~</span> <span class="s s-Atom">et</span> <span class="s s-Atom">ce</span> <span class="s s-Atom">flag</span> <span class="s s-Atom">pourra</span> <span class="s s-Atom">etre</span> <span class="s s-Atom">mis</span> <span class="s s-Atom">sur</span> <span class="s s-Atom">la</span> <span class="s s-Atom">machine</span> <span class="s s-Atom">de</span> <span class="s s-Atom">build</span> <span class="s s-Atom">qui</span> <span class="s s-Atom">se</span> <span class="s s-Atom">charge</span> <span class="s s-Atom">des</span> <span class="s s-Atom">release</span><span class="p">.</span> <span class="nv">Ca</span> <span class="s s-Atom">ira</span> <span class="s s-Atom">comme</span> <span class="s s-Atom">ça</span> <span class="s s-Atom">tu</span> <span class="s s-Atom">penses</span> <span class="s s-Atom">?</span> 
+<span class="p">(</span><span class="mi">09</span><span class="s s-Atom">:</span><span class="mi">09</span><span class="s s-Atom">:</span><span class="mi">15</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">dachary</span><span class="p">:</span> <span class="s s-Atom">je</span> <span class="s s-Atom">peux</span> <span class="s s-Atom">faire</span> <span class="s s-Atom">ça</span> <span class="s s-Atom">lundi</span><span class="p">.</span>
 </pre></div>
 
 
@@ -490,21 +542,21 @@ when running</p>
 
 
 <p>it failed on sangoma-wanpipe with the following error:</p>
-<div class="highlight"><pre><span class="p">...</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;</span>
-<span class="err">/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">6</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="p">/</span><span class="nx">sdla_tdmv.o</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">5</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">_module_</span><span class="p">/</span><span class="nx">usr</span><span class="p">/</span><span class="nx">src</span><span class="p">/</span><span class="nx">sangoma</span><span class="na">-wanpipe</span><span class="o">-</span><span class="mf">3.5.17</span><span class="bp">.</span><span class="nx-Member">dfsg.1</span><span class="p">/</span><span class="nx">kdrvtmp</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
-<span class="nx">make</span><span class="cp">[</span><span class="mi">4</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="kc">all</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">2</span>
+<div class="highlight"><pre>...
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;
+make[6]: *** [/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.o] Error 1
+make[5]: *** [_module_/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp] Error 2
+make[4]: *** [all] Error 2
 
-<span class="o">---------------------------------------------</span>
+---------------------------------------------
 
-<span class="nx">make</span><span class="cp">[</span><span class="mi">3</span><span class="cp">]</span><span class="o">:</span> <span class="o">***</span> <span class="cp">[</span><span class="nx">common</span><span class="na">-build-impl</span><span class="cp">]</span> <span class="nb">Error</span> <span class="mi">1</span>
-<span class="nx">dpkg</span><span class="o">-</span><span class="nx">buildpackage</span><span class="o">:</span> <span class="nx">failure</span><span class="o">:</span> <span class="nx">debian</span><span class="o">/</span><span class="nx">rules</span> <span class="nx">build</span> <span class="nx">gave</span> <span class="nx">error</span> <span class="nx">exit</span> <span class="nx">status</span> <span class="mi">2</span>
-<span class="nx">BUILD</span> <span class="nx">END</span> <span class="nx">packaging</span><span class="o">-</span><span class="nx">farm</span> <span class="o">--</span><span class="nx">cd</span> <span class="nx">sangoma</span><span class="o">-</span><span class="nx">wanpipe</span> <span class="nx">ARCHITECTURE</span><span class="o">=</span><span class="nx">i386</span> <span class="nx">DISTRIBUTION</span><span class="o">=</span><span class="nx">lenny</span> <span class="nx">chroot</span><span class="o">-</span><span class="nx">login</span>
+make[3]: *** [common-build-impl] Error 1
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+BUILD END packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
 </pre></div>
 
 
@@ -707,75 +759,6 @@ submit-xivo.sh (3:1.2\~20110704.194720.51b210e-1)</p>
 </blockquote>
 <p>hexanol updated the changelog entry for each software above to reflect
 the change in the convention, adding to epoch as necessary.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-packaging-verbosity-and-safeguards.html#xivo-packaging-verbosity-and-safeguards">XiVO packaging verbosity and safeguards</a></h2>
-    <p>
-      Posted on Mon 15 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>package versions</h4>
-<p>The XiVO package versions are automatically generated in part and follow
-the debian conventions as documented in the deb-version(1) manual page.
-The automatic numbering occurs in the submit-xivo.sh script as described
-below:</p>
-<div class="highlight"><pre>VERSIONS
-       The  XiVO source packages have no version information. The Debian GNU/Linux package version numbers are generated based on the date
-       of the last commit in the source directory (not the debian directory), the version of the third party source if any, the content of
-       the  VERSION  file  from  the  source  directory,  followed  by  the  value  of  the  VERSION_FLAVOR  variable  and its short hash.
-       V.V.V+X.X.X~YYYYMMDD.HHMMSS.HASH will be the version number of a package built from the third party source version  V.V.V  for  the
-       benefit  of  XiVO version X.X.X where the last commit in the sources was made on YYYYMMDD.HHMMSS. This last commit hash is appended
-       to the version number.  Example: asterisk-1.4.42+1.1.15~20110312.102015.8ff428-1
-
-       When merging a source with its matching Debian GNU/Linux package, the first line of the debian/changelog file must contain the com‐
-       puted version number. If it does not, a new changelog entry is used with the following template:
-              echo &quot;<span class="nv">$package</span> (<span class="cp">${</span><span class="n">version</span><span class="cp">}${</span><span class="n">debian_version</span><span class="cp">}</span>) <span class="nv">$component</span>; urgency=low&quot;
-              echo
-              echo &quot;  * upstream update&quot;
-              echo
-              echo -n &quot; -- <span class="nv">$DEBFULLNAME</span> <span class="err">&lt;</span><span class="nv">$DEBEMAIL</span>&gt;  &quot;
-              date &#39;+%a, %d %b %Y %R:%S %z&#39;
-              echo
-
-       The  handling  of  the versions for the packages that have no corresponding source such as pf-xivo or pf-xivo-backup is simpler and
-       relies on the version found in the VERSION file of the source directory only.
-</pre></div>
-
-
-<p>The XiVO developers were used to a tool that also incremented the Debian
-GNU/Linux version. It is no longer the case and instead of having a -0
-version number the developer is required to take care of the increment
-as any Debian GNU/Linux package would.This created a confusion that led
-to inconsistencies in the sequence of the package versions. Because the
-submit-xivo.sh script was unable to detect and properly report these
-inconsistencies, it created a situation that was very confusing.To avoid
-such troubles, a number of safeguards <a href="http://packaging-farm.dachary.org/trac/changeset/bd8626b5f1d43677f9d3ce5990fb4a545a1982e6">were
-implemented</a>
-to properly document the following mistakes:</p>
-<ul>
-<li>a changelog with a mismatched package name</li>
-<li>a missing version</li>
-<li>a native package (submit-xivo.sh requires non native packages)</li>
-<li>a package version that goes back in time</li>
-</ul>
-<h4>verbosity</h4>
-<p>The packaging-farm script is based on make(1) which is very verbose by
-default. The amount of information produced is useful for debugging but
-confusing to the developer. The default was <a href="http://packaging-farm.dachary.org/trac/changeset/5c7ce86716fc16c5ad58910f4c973b081b4a6280">set to
-quiet</a>
-and can be reverted to verbose as follows:</p>
-<div class="highlight"><pre>QUIET=&#39;&#39; packaging-farm target
-</pre></div>
-
-
-<p>This was not documented as it is only useful to debug packaging-farm
-itself.</p>
 </p>
   </div>
 </article>
