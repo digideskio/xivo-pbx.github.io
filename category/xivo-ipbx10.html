@@ -54,6 +54,24 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">An alternate XiVO gallifrey repository (part 2/2)</a></h2>
+    <p>
+      Posted on Wed 27 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>composing gallifrey</h4>
+<p>The gallifrey repository is made of packages built from the GIT
+repositories, some extracted from the official repository because they
+are not under GIT and others built for the occasion (kernel-modules and
+meta-packages). The source of each package is documented in
+<strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> which ...</p>
+      <a class="btn" href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">An alternate XiVO gallifrey repository (part 1/2)</a></h2>
     <p>
       Posted on Mon 18 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -86,7 +104,7 @@ the global dependency computation ...</p>
 created for <a href="http://packaging-farm.dachary.org">packaging-farm</a> and used
 to sign the <a href="http://packaging-farm.dachary.org/downloads/">1.2.37</a>
 release. It can be imported using:</p>
-<div class="highlight"><pre>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
+<div class="highlight"><pre><span></span>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
 </pre></div>
 
 
@@ -108,7 +126,7 @@ instruct dpkg-buildpackage and repreprothat they must ...</p>
       <h4>Trying out packaging-farm</h4>
 <p>Nicolas Hicher and Loic Dachary worked together on building the skaro
 repository available at:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 <span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 </pre></div>
 
@@ -135,25 +153,6 @@ packages was not. An extensive manual page was written, focusing on the
 developer and the packager point of view. It does not go into the
 details of the packaging-farm implementation ...</p>
       <a class="btn" href="http://blog.xivo.io/building-xivo-skaro-from-sources.html#building-xivo-skaro-from-sources">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html#xivo-sources-conventions-implemented-and-documented">XiVO sources conventions implemented and documented</a></h2>
-    <p>
-      Posted on Mon 21 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>The <a href="http://git.xivo.fr/debian">debian GNU/Linux packages repository</a>
-was made public a few days ago. The
-<a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh</a> shell script
-based on the internal SVN repository has been updated to use the public
-GIT repository instead.</p>
-<p>In order to make it more convenient for the developer to submit a job to
-<a href="http://packaging-farm.dachary.org/">packaging-farm ...</a></p>
-      <a class="btn" href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html#xivo-sources-conventions-implemented-and-documented">Continue reading</a>
   </div>
 </article>
 

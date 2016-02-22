@@ -69,7 +69,7 @@
 as explained in the manual page. It depends on the source package
 providing the <em>MODULE = module-source</em> package. A script was added to
 the global dependency computation facility of packaging-farm</p>
-<div class="highlight"><pre>packaging-farm depends
+<div class="highlight"><pre><span></span>packaging-farm depends
 </pre></div>
 
 
@@ -94,7 +94,7 @@ should be as well.</p>
 <p>When something is not right with the debian package, it can be patched
 directly on the farm instead of going thru the repository. It may be
 useful as a temporary measure when the correct patch is still unclear.</p>
-<div class="highlight"><pre>cd /var/cache/packaging-farm/sources/PACKAGE
+<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/sources/PACKAGE
 # fix something in PACKAGE/debian/rules
 dpkg-source -b PACKAGE
 </pre></div>
@@ -102,7 +102,7 @@ dpkg-source -b PACKAGE
 
 <p>Note that once the fix is correct, it must be saved because the sources
 will be overriden when</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=PACKAGE submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=PACKAGE submit
 </pre></div>
 
 
@@ -114,13 +114,13 @@ will be overriden when</p>
 <p>In order for the packages to be signed, a GPG key is generated, without
 a password and added tothe <em>packaging-farm.conf</em> file (see below
 SIGN_debian=-kD08ED067 )</p>
-<div class="highlight"><pre>gpg --gen-key
+<div class="highlight"><pre><span></span>gpg --gen-key
 </pre></div>
 
 
 <p>The <em>/etc/packaging-farm/packaging-farm.conf</em> was modified for
 <em>gallifrey</em> as follows:</p>
-<div class="highlight"><pre>#
+<div class="highlight"><pre><span></span>#
 # Exclusively built for lenny
 #
 DISTRIBUTIONS=lenny
@@ -159,23 +159,23 @@ SIGN_WITH=SignWith: yes
 <h4>Collecting gallifrey modules.</h4>
 <p>The <em>gallifrey</em> sources and debian packages are to be found in the
 following repositories:</p>
-<div class="highlight"><pre>http://git.xivo.fr/xivo-gallifrey.git/ sources
+<div class="highlight"><pre><span></span>http://git.xivo.fr/xivo-gallifrey.git/ sources
 http://git.xivo.fr/debian/lenny-xivo-gallifrey.git/ debian packages
 </pre></div>
 
 
 <p>And the following were submitted :</p>
-<div class="highlight"><pre><span class="x">for dir in dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+<div class="highlight"><pre><span></span><span class="x">for dir in dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
 </pre></div>
 
 
 <p>However, some of them were rebuilt manually:</p>
-<div class="highlight"><pre>dahdi-linux-modules libasterisk-perl libpri misdn-kernel misdn-kernel-modules pf-asterisk-prompt-fr-xivo pf-xivo pf-xivo-backup sangoma-wanpipe sangoma-wanpipe-modules spandsp
+<div class="highlight"><pre><span></span>dahdi-linux-modules libasterisk-perl libpri misdn-kernel misdn-kernel-modules pf-asterisk-prompt-fr-xivo pf-xivo pf-xivo-backup sangoma-wanpipe sangoma-wanpipe-modules spandsp
 </pre></div>
 
 
 <p>and must be retrieved from the development repository:</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
 </pre></div>
 
 

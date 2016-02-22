@@ -78,7 +78,7 @@ are as follow, for each of the supported distributions, following the
 <a href="http://backports.debian.org/Contribute/#index5h3">Debian GNU/Linux
 backport</a> naming
 scheme, with the distribution name added for clarity:</p>
-<div class="highlight"><pre>* <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://wiki.ubuntu.com/Releases&quot;</span><span class="nt">&gt;</span>Ubuntu<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span>* <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://wiki.ubuntu.com/Releases&quot;</span><span class="nt">&gt;</span>Ubuntu<span class="nt">&lt;/a&gt;</span>
 ** natty = ~bpo1104natty+1
 ** maverick = ~bpo1010maverick+1
 ** lucid = ~bpo1004lucid+1
@@ -93,7 +93,7 @@ scheme, with the distribution name added for clarity:</p>
 
 
 <p>For the record, here is the chat log that led to the proposal above.</p>
-<div class="highlight"><pre><span class="p">(</span><span class="mi">10</span><span class="s s-Atom">:</span><span class="mi">29</span><span class="s s-Atom">:</span><span class="mi">46</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nv">Hi</span><span class="p">,</span> <span class="nv">I</span><span class="s s-Atom">&#39;m facing a problem organizing repositories made with reprepro. A package (the name is xivo) is fit to build for Debian wheezy, unstable &amp; Ubunty maverick and naty, for i386 &amp; amd64, without requiring any change. Because reprepro uses a pool to store the packages, these four packages (for wheezy, unstable, maverick &amp; naty) cannot coexist with the exact same name. I could either a) change the package name by adding the target distribution although these packages are strictly identical, b) make a separate repository for each distribution (which still is useful to aggregate the various architectures). Do you have any advice ?</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">10</span><span class="s s-Atom">:</span><span class="mi">29</span><span class="s s-Atom">:</span><span class="mi">46</span> <span class="nv">AM</span><span class="p">)</span> <span class="nn">loicd</span><span class="p">:</span> <span class="nv">Hi</span><span class="p">,</span> <span class="nv">I</span><span class="s s-Atom">&#39;m facing a problem organizing repositories made with reprepro. A package (the name is xivo) is fit to build for Debian wheezy, unstable &amp; Ubunty maverick and naty, for i386 &amp; amd64, without requiring any change. Because reprepro uses a pool to store the packages, these four packages (for wheezy, unstable, maverick &amp; naty) cannot coexist with the exact same name. I could either a) change the package name by adding the target distribution although these packages are strictly identical, b) make a separate repository for each distribution (which still is useful to aggregate the various architectures). Do you have any advice ?</span>
 <span class="s s-Atom">(10:30:43 AM) twb: FWIW I just use apt-ftparchive</span>
 <span class="s s-Atom">(10:31:44 AM) twb: http://paste.debian.net/115729/</span>
 <span class="s s-Atom">(10:31:49 AM) twb: Not very nice, but it does the job</span>
@@ -125,7 +125,7 @@ scheme, with the distribution name added for clarity:</p>
 creating a virtual machine using <a href="http://mirrors.ircam.fr/pub/ubuntu/releases//natty/ubuntu-11.04-server-amd64.iso">the server
 distribution</a>
 and creating i386 and x86_64 chroots with:</p>
-<div class="highlight"><pre>pbuilder --create --architecture i386 --basetgz /var/cache/pbuilder/natty-i386.tgz
+<div class="highlight"><pre><span></span>pbuilder --create --architecture i386 --basetgz /var/cache/pbuilder/natty-i386.tgz
 pbuilder --create --architecture amd64 --basetgz /var/cache/pbuilder/natty-amd64.tgz
 </pre></div>
 
@@ -135,7 +135,7 @@ repository</a> for
 <a href="http://packaging-farm.dachary.org/chroot/debian/i386/natty/">i386</a> and
 <a href="http://packaging-farm.dachary.org/chroot/debian/x86_64/natty/">x86_64</a>.The
 content of the <em>packaging-farm.conf</em> was documented as a manual page:</p>
-<div class="highlight"><pre>NAME
+<div class="highlight"><pre><span></span>NAME
        packaging-farm.conf - define the default environment to build a package
 
 
@@ -271,7 +271,7 @@ AUTHORS
 <p>The default <em>packaging-farm.conf</em> file was self documented and set with
 defaultvalues so that the user only need to copy/paste from it without a
 need to actuallyunderstand the details.</p>
-<div class="highlight"><pre>########################################################################
+<div class="highlight"><pre><span></span>########################################################################
 #
 # White space separated list of the distributions for which the packages
 # must be built.

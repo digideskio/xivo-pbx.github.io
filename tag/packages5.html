@@ -67,7 +67,7 @@
 created for <a href="http://packaging-farm.dachary.org">packaging-farm</a> and used
 to sign the <a href="http://packaging-farm.dachary.org/downloads/">1.2.37</a>
 release. It can be imported using:</p>
-<div class="highlight"><pre>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
+<div class="highlight"><pre><span></span>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
 </pre></div>
 
 
@@ -89,7 +89,7 @@ instruct dpkg-buildpackage and repreprothat they must ...</p>
       <h4>Trying out packaging-farm</h4>
 <p>Nicolas Hicher and Loic Dachary worked together on building the skaro
 repository available at:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 <span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 </pre></div>
 
@@ -134,7 +134,7 @@ merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
 containing the sources and the SVN repository containing the debian
 packages into a well formed Debian GNU/Linux source package. For
 instance</p>
-<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
 </pre></div>
 
 
@@ -156,14 +156,14 @@ instance</p>
       <h4>Source GIT structure</h4>
 <p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
 extracted as follows:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+<div class="highlight"><pre><span></span>git clone git://git.xivo.fr/xivo-skaro.git
 </pre></div>
 
 
 <p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
 repository</a>.
 The names of the directories are mapped to the package names as follows:</p>
-<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+<div class="highlight"><pre><span></span>agid -&gt; pf-xivo-agid
 app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
 asterisk ...</pre></div>
       <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Continue reading</a>

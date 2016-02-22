@@ -54,6 +54,63 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/launch-and-relaunch-docker-containers-manually-with-ease.html#launch-and-relaunch-docker-containers-manually-with-ease">Launch and relaunch docker containers manually with ease</a></h2>
+    <p>
+      Posted on Thu 26 February 2015 in <a href="http://blog.xivo.io/category/xuc.html">Xuc</a>
+    </p>
+  </header>
+  <div>
+      <p>First you create a file, let's say
+<code>/etc/YOUR_APPLICATION/docker-run.conf</code>, with one parameter by line. it
+can look like this:</p>
+<div class="highlight"><pre><span></span># cat /etc/YOUR_APPLICATION/docker-run.conf
+-t
+-d
+--restart=always
+--name=YOUR_CONTAINER_NAME
+-p 9000:9000
+-v /etc/YOUR_APPLICATION/conf:/conf/
+YOUR/REPOSITORY
+</pre></div>
+
+
+<p>Notice the <code>--restart=always</code> - it's an interesting option that
+automatically restarts the container when it stops.</p>
+<p>You can then start your container by running the following command:</p>
+<div class="highlight"><pre><span></span># docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
+</pre></div>
+
+
+<p>Now let's imagine that you have updated your image and you would like to
+deploy and restart it using the same parameters. You can do that with
+the following script. It ensures a minimum downtime and can also be used
+to start your container the first time.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+docker pull YOUR/REPOSITORY:latest<span class="p">;</span>
+docker stop YOUR_CONTAINER_NAME<span class="p">;</span>
+docker rm YOUR_CONTAINER_NAME<span class="p">;</span>
+docker run <span class="k">$(</span>cat /etc/docker/YOUR_APPLICATION/docker-run.conf<span class="k">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>You can check our XuC repository for a real world use case <a href="1" title="1">1</a></p>
+<p><strong>Ressources:</strong></p>
+<ul>
+<li><a href="1" title="1">1</a> XuC docker repository:
+    <a href="https://registry.hub.docker.com/u/xivo/xuc/" title="https://registry.hub.docker.com/u/xivo/xuc/">https://registry.hub.docker.com/u/x...</a>.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/quebec-international-et-xivo-pour-developper-les-ti.html#quebec-international-et-xivo-pour-developper-les-ti">Quebec International et XiVO, pour développer les TI</a></h2>
     <p>
       Posted on Mon 23 February 2015 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -216,7 +273,7 @@ We are also using another plugin: Head. It provides an easy but powerful
 web interface to ElasticSearch with data browsing features. Plugin
 installation is really very easy, the Head plugin installation can be
 accomplished with one command:</p>
-<div class="highlight"><pre>sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
+<div class="highlight"><pre><span></span>sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
 </pre></div>
 
 
@@ -369,31 +426,6 @@ l'<a href="https://espacelab2014.wordpress.com">EspaceLab</a>.</p>
     libre de généalogie)</li>
 <li>Samedi 28 mars 2015: Styles CSS et préprocesseurs – <strong>Docker par
     <a href="http://www.xivo.io/">XiVO</a> (S.Boily)</strong>.</li>
-</ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1502.html#sprint-review-1502">Sprint Review 15.02</a></h2>
-    <p>
-      Posted on Fri 30 January 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>Here are a few links explaining what we are going to ship in XiVO 15.02:</p>
-<ul>
-<li><a href="https://projects.xivo.io/versions/218" title="https://projects.xivo.io/versions/218">Roadmap</a></li>
-</ul>
-<p>Essentially, 15.02 brings changes into the XiVO Client. Visual and
-functionnal changes.</p>
-<p>We also fixed a bug introduced in 15.01 breaking api documentation in
-xivo-dird</p>
-<p>Work of interest:</p>
-<ul>
-<li>Ongoing work on xivo-dird's integration and visual reorganisation of
-    XiVO Client</li>
 </ul>
 </p>
   </div>

@@ -80,7 +80,7 @@ were able to reproduce the freeze and get some information about the
 various locks held by the various threads of the frozen asterisk process
 via the "coreshow locks" command.</p>
 <p>The output of the "core show locks" command looks like this:</p>
-<div class="highlight"><pre><span class="gh">=======================================================================</span>
+<div class="highlight"><pre><span></span><span class="gh">=======================================================================</span>
 <span class="gh">=== Currently Held Locks ==============================================</span>
 <span class="gh">=======================================================================</span>
 ===
@@ -183,7 +183,7 @@ repository</a>.
 Given you have the output of a "core show locks" invocation, and that
 you have graphviz installed, you can then run the following command to
 generate a graph in svg format:</p>
-<div class="highlight"><pre>graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
+<div class="highlight"><pre><span></span>graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
 </pre></div>
 
 

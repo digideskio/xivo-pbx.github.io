@@ -512,7 +512,7 @@ interfaces to allow these data and voice applications.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;!-- --&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -582,7 +582,7 @@ conclusion of this panel discussion.&lt;/p&gt;
 &lt;p&gt;This panel discussion was the occasion to have around the table several
 legal opinions (with lawyers, Peter Brown from the FSF, a hardware
 hacker) leading to the following topics :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;* What is the interest of opening hardware ?
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* What is the interest of opening hardware ?
 * How to protect a licence/trademark-ed OpenHardware project in case of legal violation from a files point of view ?
 * What about the closed documentation of the chips used in an OpenHardware ?
 * What about the firmware used in SoC -based OpenHardware projects ?
@@ -1029,7 +1029,7 @@ of the XiVO IPBX OpenHardware project, we can now describe more
 precisely the different blocks and the eco-system of the project.&lt;/p&gt;
 &lt;p&gt;The functionnal blocks are numbered now as followed for the validation
 and PCB Schematics :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;1-CPU
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1-CPU
 2-ISDN
 3-FXO-FXS
 4-UART

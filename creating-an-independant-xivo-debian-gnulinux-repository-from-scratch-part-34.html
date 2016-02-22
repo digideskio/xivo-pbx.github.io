@@ -67,29 +67,29 @@
 <a href="https://projects.proformatique.com/issues/1942">addressing the dependency
 problems</a> reported last
 week. They can be retrieved from the development repository</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>All source packages were downloaded using:</p>
-<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
 </pre></div>
 
 
 <p>the dependencies removed with:</p>
-<div class="highlight"><pre>rm /var/cache/packaging-farm/depends/*
+<div class="highlight"><pre><span></span>rm /var/cache/packaging-farm/depends/*
 </pre></div>
 
 
 <p>and the build of all packages relaunched with:</p>
-<div class="highlight"><pre><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
+<div class="highlight"><pre><span></span><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
 </pre></div>
 
 
 <p>Thanks to the dependency graph added to packaging-farm each package is
 compiled exactly once. It would be more convenient to be able run
 something like</p>
-<div class="highlight"><pre>packaging-farm all
+<div class="highlight"><pre><span></span>packaging-farm all
 </pre></div>
 
 
@@ -101,7 +101,7 @@ packages used by the company for various purposes and not specificaly
 for XiVO. It is not needed to properly create the XiVO packages and it
 should never be. It can be used by including the following in the source
 list:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
 </pre></div>
 
 
@@ -119,7 +119,7 @@ flavors : <code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and
 binary kernel packages. It needs to be modified to add a new type to
 package and meta-package : kernel-module. Instead of building a source
 package, it would run module-assistant as follows:</p>
-<div class="highlight"><pre><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<div class="highlight"><pre><span></span><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 <span class="n">module-assistant</span> <span class="n">prepare</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 <span class="n">KPKG_DEST_DIR</span>=<span class="sr">/tmp/</span><span class="n">a</span> <span class="n">SIGNCHANGES</span>=<span class="mi">0</span> <span class="n">module-assistant</span> <span class="n">build</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 </pre></div>
@@ -133,7 +133,7 @@ headers and fails. As it is the sangoma-wanpipe package has no way to
 override the kernel version chosen. A <a href="https://projects.proformatique.com/issues/1977#note-1">patch was
 submitted</a> to
 allows this:</p>
-<div class="highlight"><pre><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
+<div class="highlight"><pre><span></span><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
 <span class="gi">+++ rules       2011-02-21 16:18:47.000000000 +0100</span>
 <span class="gu">@@ -13,7 +13,12 @@</span>
  KPKG_DESTDIR := $(DEB_DESTDIR)
@@ -153,7 +153,7 @@ allows this:</p>
 
 
 <p>so that packaging can be done with:</p>
-<div class="highlight"><pre>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
+<div class="highlight"><pre><span></span>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
 </pre></div>
 
 

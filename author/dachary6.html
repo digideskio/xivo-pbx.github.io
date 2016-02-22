@@ -67,7 +67,7 @@ merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
 containing the sources and the SVN repository containing the debian
 packages into a well formed Debian GNU/Linux source package. For
 instance</p>
-<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
 </pre></div>
 
 
@@ -89,14 +89,14 @@ instance</p>
       <h4>Source GIT structure</h4>
 <p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
 extracted as follows:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+<div class="highlight"><pre><span></span>git clone git://git.xivo.fr/xivo-skaro.git
 </pre></div>
 
 
 <p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
 repository</a>.
 The names of the directories are mapped to the package names as follows:</p>
-<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+<div class="highlight"><pre><span></span>agid -&gt; pf-xivo-agid
 app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
 asterisk ...</pre></div>
       <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html#creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12">Continue reading</a>
@@ -155,12 +155,12 @@ compile the module from sources so that it matches the currently ...</p>
 <a href="https://projects.proformatique.com/issues/1942">addressing the dependency
 problems</a> reported last
 week. They can be retrieved from the development repository</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>All source packages were downloaded using:</p>
-<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
       <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Continue reading</a>
   </div>
 </article>

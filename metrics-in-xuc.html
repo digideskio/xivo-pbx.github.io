@@ -69,7 +69,7 @@ separate statistics data and technical data.</p>
 logfile, or on demand via http.</p>
 <h3>JSON representation via HTTP</h3>
 <h4>JVM statistics</h4>
-<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&#39;@@
+<div class="highlight"><pre><span></span>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&#39;@@
 {
   &quot;version&quot; : &quot;3.0.0&quot;,
   &quot;gauges&quot; : {
@@ -108,7 +108,7 @@ logfile, or on demand via http.</p>
 
 
 <h4>Call-centre statistics</h4>
-<div class="highlight"><pre>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&#39;
+<div class="highlight"><pre><span></span>#curl -XGET &#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&#39;
 {
   &quot;version&quot; : &quot;3.0.0&quot;,
   &quot;gauges&quot; : {
@@ -151,7 +151,7 @@ logfile, or on demand via http.</p>
 
 
 <h3>Statistics in log file</h3>
-<div class="highlight"><pre>2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
+<div class="highlight"><pre><span></span>2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-PercentageAnsweredBefore15-gauge, value=0.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonned-gauge, value=1.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonnedAfter15-gauge, value=0.0

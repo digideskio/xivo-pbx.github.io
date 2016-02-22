@@ -54,6 +54,62 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1515.html#sprint-review-1515">Sprint review 15.15</a></h2>
+    <p>
+      Posted on Wed 09 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Fellow Xivoists, the time has come for the release of 15.15. During
+thissprint we have fixed many bugs and continued working on
+featuressurrounding directories and contacts.</p>
+<h3>New features in this sprint</h3>
+<p><strong>Voicemail:</strong> The voicemail configuration page has been revamped.
+Youcan now configure as many extra parameters as you want in
+the"advanced" tab. These parameters will be included along side therest
+of the voicemail configuration in asterisk. This new free-formversion of
+the voicemail page offers more flexibility to advanced usersof asterisk,
+while still keeping it simple enough for regular users.</p>
+<p><strong>People Xlet:</strong> The new People Xlet is now fully integrated into
+xivo.We have talked about this xlet in previous sprints, however it
+could notbe used without some manual configuration on the server. With
+thisrelease, the xlet will work out-of-the-box once it has been added to
+aprofile. The People Xlet replaces the old remote directory, which
+hasbeen removed.</p>
+<h3>Ongoing features</h3>
+<p><strong>Directories:</strong> we have started working on a new service that
+willintegrate the new directory infrastructure with phones. The goal is
+tomake contacts exposed via xivo's directory usable from a user's
+phone.This means that bookmarked contacts and a user's personal contacts
+willalso be available.</p>
+<p><strong>SIP Lines:</strong> We will be revamping extra parameters for
+sipconfiguration in the same way as what has been done for voicemails.
+Thiswill make it easier for users to configure advanced features
+inasterisk.</p>
+<h3>Technical features</h3>
+<ul>
+<li><strong>Provd:</strong> new plugin for the 6800 series of Mitel phones
+    (formerly Aastra)</li>
+<li><strong>Directories:</strong> The configuration system for directories
+    has changed. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
+    notes</a>.</li>
+<li><strong>XiVO Client:</strong> The XiVO Client has been upgraded to Qt 5.5</li>
+<li>Certain restrictions regarding voicemails for a user have
+    been loosened. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
+    notes</a>.</li>
+</ul>
+<p>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a
+happyand invigorating farewell. I wish you shall remain in high spirits
+untilour next fateful encounter, 3 weeks from now. May the freedom of
+XiVObless your communications across the vast VoIP expanse.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/231" title="XiVO 15.15 Roadmap">XiVO 15.15
+Roadmap</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1514.html#sprint-review-1514">Sprint review 15.14</a></h2>
     <p>
       Posted on Fri 14 August 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -276,7 +332,7 @@ your communications, where ever they may be.</em></p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>Enjoy!
+<div class="highlight"><pre><span></span>Enjoy!
 </pre></div>
 
 
@@ -365,57 +421,6 @@ website</a>.</p>
     <a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="http://raspivo.io/installation-depuis-nos-depots-en.html">http://raspivo.io/installation-depu...</a></li>
 </ul>
 <p><img alt="XIVO-RELEASE-15.13-July-August2015.png" src="/public/XIVO-RELEASE-15.13-July-August2015.png" title="XIVO-RELEASE-15.13-July-August2015.png, juil. 2015" /></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-and-asterisk-13.html#xivo-and-asterisk-13">XiVO and Asterisk 13</a></h2>
-    <p>
-      Posted on Mon 20 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>As some of you may already know, XiVO will soon be powered by <a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Documentation">Asterisk
-13</a>
-instead of Asterisk 11. In fact, the development version of XiVO already
-comes with Asterisk 13, so it's just a matter of time before Asterisk 13
-makes its way in the official/production version of XiVO.</p>
-<p>Why switching from Asterisk 11 to Asterisk 13? Well first of all, this
-has to be done sooner or later, since Asterisk 11 will enter a "security
-fix only" period starting in October 2016 and Asterisk 13 is the new LTS
-(Long Term Support) version. But most importantly, Asterisk 13 comes
-with quite a few new features, improvements and bug fixes, and there's
-some plan (both short term and long term) on using these new Asterisk
-feature to build new features or enhance existing ones in XiVO.</p>
-<p>What will the switch to Asterisk 13 brings to XiVO? The first version of
-XiVO powered by Asterisk 13 won't bring a lot of changes for the users
-and administrators; this should be seen mostly as a technical change.
-For the first version of XiVO including Asterisk 13, the goal is to make
-sure everything that worked previously is still working well. Once this
-is done, the following XiVO versions will begin exploiting the new
-features offered by Asterisk 13. For example, Asterisk 13 brings a new
-SIP channel driver named
-<a href="https://wiki.asterisk.org/wiki/display/AST/Configuring+res_pjsip">chan_pjsip</a>,
-but XiVO will continue using the chan_sip SIP channel driver in the
-short term. Another example is
-<a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">ARI</a>,
-which XiVO will not use at first, but will use in future versions, for
-example to bring improvements to the call center feature or remove a few
-limitations with the current switchboard implementation.</p>
-<p>That said, there's a lot of technical changes between Asterisk 11 and
-Asterisk 13, and the passage to Asterisk 13 in XiVO will affect some
-users, especially users which have developed custom applications around
-XiVO or Asterisk. You'll want to review the <a href="http://documentation.xivo.io/en/latest/upgrade/15.13/asterisk_13.html">XiVO upgrade
-notes</a>
-to see if you are impacted or not.</p>
-<p>If you are eager to try out XiVO with Asterisk 13, you can install the
-development version of XiVO on a test machine using the <a href="http://documentation.xivo.io/en/stable/installation/installsystem.html#installing-from-a-minimal-debian-installation">installation
-script
-method</a>
-and executing the script as "bash xivo_install_current.sh -d".</p>
-<p><img alt="Asterisk13.png" src="/public/Asterisk13.png" title="Asterisk13.png, juil. 2015" /></p>
 </p>
   </div>
 </article>

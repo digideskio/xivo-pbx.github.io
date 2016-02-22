@@ -54,6 +54,100 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
+    <p>
+      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pf-release.sh</h4>
+<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
+merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
+containing the sources and the SVN repository containing the debian
+packages into a well formed Debian GNU/Linux source package. For
+instance</p>
+<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
+</pre></div>
+
+
+<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
+<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the private SVN
+repostory</a>
+concluded that it will be bound to a public GIT repository shortly. When
+it is ready, the pf-release.sh script will be updated accordingly.In
+order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
+argument:</p>
+<div class="highlight"><pre><span></span>pf-release.sh TEST
+</pre></div>
+
+
+<p>This will simulate border cases using a temporary direcotry to check
+that it behaves as expected. Reading the tests (which are embeded in the
+script) is currently the only documentation.</p>
+<h4>packaging-farm submission</h4>
+<p>The output of <em>pf-release.sh</em> is stored in a directory that uses the
+same conventions as packaging-farm. Because of that, submitting the
+package to the host running the packaging farm can be done by copying
+the directory as follows:</p>
+<div class="highlight"><pre><span></span>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
+</pre></div>
+
+
+<h4>dependency generation</h4>
+<p>A recent addition to the packaging-farm was the automatic generation of
+dependencies. It calculates which source package depends on other
+packages built by the packaging-farm. Support for meta packages was
+added to the dependency generation. In the packaging-farm vocabulary, a
+meta package is a package that aggregates others but has no sources of
+its own. For instance, the meta package <em>skaro</em> was created to produce
+the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
+repository</a>.
+When running the depencency generations as follows:</p>
+<div class="highlight"><pre><span></span>packaging-farm depends
+</pre></div>
+
+
+<p>it includes the meta packages in the graph so that skaro can be built
+with:</p>
+<div class="highlight"><pre><span></span>packaging-farm skaro
+</pre></div>
+
+
+<p>If, for instance, <em>pf-xivo-lib-js</em> has been updated as shown with the
+<em>rsync</em> command above it will be rebuilt because the skaro meta package
+depends on it.</p>
+<h4>makefile generation</h4>
+<p>Each package entering the packaging-farm must have a <em>Makefile</em>
+associated with it. Setting the variables in this <em>Makefile</em> allows the
+administrator to tune the behaviour on a per package basis. When a
+package is simple enough, its <em>Makefile</em> can be automatically generated
+as follows:</p>
+<div class="highlight"><pre><span></span>packaging-farm makefiles
+</pre></div>
+
+
+<h4>packaging-farm sensible defaults</h4>
+<p>The <a href="http://packaging-farm.dachary.org/download/">version 1.2.33</a> of
+packaging-farm includes the modifications above to help reduce the
+number of steps required to rebuild a suite or a specific package.
+Submitting a package requires four steps:</p>
+<ul>
+<li>pf-release.sh</li>
+<li>rsync</li>
+<li>packaging-farm generate which calls depends and makefiles</li>
+<li>packaging-farm the_package</li>
+</ul>
+<p>This completes the making of the building blocks enabling the creation
+and maintainance of packages based on the XiVO development repository.
+The next step will be to document and simplify the usage, reducing the
+learning curve to a minimum.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html#the-road-to-the-final-pcb-layout-routing-of-the-cpu-board">The road to the final PCB layout routing of the CPU board</a></h2>
     <p>
       Posted on Fri 11 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -84,14 +178,14 @@ optimization of the components sourcing.</p>
       <h4>Source GIT structure</h4>
 <p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
 extracted as follows:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+<div class="highlight"><pre><span></span>git clone git://git.xivo.fr/xivo-skaro.git
 </pre></div>
 
 
 <p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
 repository</a>.
 The names of the directories are mapped to the package names as follows:</p>
-<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+<div class="highlight"><pre><span></span>agid -&gt; pf-xivo-agid
 app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
 asterisk -&gt; asterisk
 base-config -&gt; pf-xivo-base-config
@@ -119,7 +213,7 @@ xivo-sounds -&gt; pf-xivo-sounds
 
 <p>The mapping is found in the <code>*/Makefile.pkg</code> file, in the <code>DEB_PKG</code>
 variable, such as</p>
-<div class="highlight"><pre>DEB_PKG=&quot;pf-xivo-monitoring&quot;
+<div class="highlight"><pre><span></span>DEB_PKG=&quot;pf-xivo-monitoring&quot;
 </pre></div>
 
 
@@ -130,7 +224,7 @@ directory, not including the directory name. For instance, the
 <a href="http://dak.proformatique.com/debian/pool/main/p/pf-xivo-cti-server/pf-xivo-cti-server_1.2~svn10269.orig.tar.gz">pf-xivo-cti-server
 tarbal</a>
 contains:</p>
-<div class="highlight"><pre>-rw-r--r--    root/root        305 ./Makefile.pkg
+<div class="highlight"><pre><span></span>-rw-r--r--    root/root        305 ./Makefile.pkg
  -rw-r--r--    root/root       6922 ./xivo_daemon.conf
  -rw-r--r--    root/root      35068 ./LICENSE
  drwxr-xr-x    root/root          0 ./xivo_ctiservers/
@@ -148,7 +242,7 @@ to synchronize with the asterisk upstream ) and are out of the scope of
 this discussion. For instance, the content of the <a href="http://dak.proformatique.com/debian/pool/main/d/dahdi-linux/dahdi-linux_2.4.1.0+dfsg+pf.xivo.1.2~svn10330.orig.tar.gz">dahdi-linux
 tarbal</a>
 is as follows:</p>
-<div class="highlight"><pre>drwxr-xr-x    root/root          0 ./patches/
+<div class="highlight"><pre><span></span>drwxr-xr-x    root/root          0 ./patches/
  -rw-r--r--    root/root       1106 ./patches/enable_oslec.diff
  -rw-r--r--    root/root        776 ./patches/no_firmware_download
  -rw-r--r--    root/root         39 ./patches/series
@@ -159,7 +253,7 @@ is as follows:</p>
 <p>Note that the tarbal is moved up one directory and the <code>tarballs</code>
 directory does not show. The actual content of the corresponding GIT
 repository is as follows:</p>
-<div class="highlight"><pre>dahdi-linux/prepare_test_sources
+<div class="highlight"><pre><span></span>dahdi-linux/prepare_test_sources
 dahdi-linux/sources.pkg
 dahdi-linux/SOURCE-VERSION
 dahdi-linux/AUTOBUILD-IGNORE
@@ -187,7 +281,7 @@ to cope with two issues:</p>
 </ul>
 <p>The directory <code>tools</code> is not a package. It contains files shared and
 duplicated in some native packages. For instance <code>gwr.py</code>:</p>
-<div class="highlight"><pre>app_nv_faxdetect/gwr.py -&gt; ../tools/gwr.py
+<div class="highlight"><pre><span></span>app_nv_faxdetect/gwr.py -&gt; ../tools/gwr.py
  res_watchdog/gwr.py -&gt; ../tools/gwr.py
  tools/gwr.py
 </pre></div>
@@ -206,7 +300,7 @@ The information can be retrieved from the source packages but the
 history is lost to the general public. The SVN tree is structured using
 a path named after the XiVO version and the Debian GNU/Linux version it
 is based on. For instance:</p>
-<div class="highlight"><pre>package=asterisk
+<div class="highlight"><pre><span></span>package=asterisk
     suite=squeeze
     xivo=skaro
 
@@ -221,7 +315,7 @@ version number (for instance 2.4.1.0+dfsg+pf.xivo.1.2\~svn10330 in the
 chapter above), a new changelog entry will be created to match it. When
 this sanity check is done (and assuming the source tarbal is available
 in the upper directory), the source package can be created with:</p>
-<div class="highlight"><pre>dpkg-buildpackage -S -uc -us
+<div class="highlight"><pre><span></span>dpkg-buildpackage -S -uc -us
 </pre></div>
 
 
@@ -310,13 +404,13 @@ resolution was not mandatory.</p>
 <h4>Installation on Debian GNU/Linux squeeze</h4>
 <p>The resulting repository was added as follows to a fresh install of
 Debian GNU/Linux squeeze:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>A single package was missing ( <code>pf-sys-ca</code> ) and required the addition
 of a repository:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
@@ -325,7 +419,7 @@ of a repository:</p>
 was extracted from the <a href="git://git.proformatique.com/official/debian-installer.git">debian-installer XiVO
 repository</a>
 and applied as follows:</p>
-<div class="highlight"><pre><span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">installed</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/installer.cfg;hb=6ee3ad5851ea7c0bb841cbd05e53835f483dd867&#39;</span>
+<div class="highlight"><pre><span></span><span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">installed</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/installer.cfg;hb=6ee3ad5851ea7c0bb841cbd05e53835f483dd867&#39;</span>
 <span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">installed</span><span class="nc">.cfg</span>
 <span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">pkg</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/pkg.cfg;hb=127c11ffdb8f4ad42f59fce971f274cd0e079745&#39;</span>
 <span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">pkg</span><span class="nc">.cfg</span>
@@ -348,24 +442,6 @@ released as version 1.2.32. The ChangeLog reads : add architecture to
 KVERS variables. load fakeroot in each dist-upgrade. input for apt-get
 is /dev/null to avoid input problems. fix dpkg-scan bug when building
 for multiple archictures.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Working ISDN prototype board</a></h2>
-    <p>
-      Posted on Fri 25 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>This is great to show the working PCB or the ISDN prototype board
-connected to our IPBX prototype through the LEB and TDM bus of our SoC
-(INTEL Tolapai). This PCB shows the 4 T0 ports routed to the CologneChip
-XHFC-4SU. We have been cabling this PCB in a factory facility close to
-Paris with good results on the quality of the cabling for 230+ parts on
-our PCB with 4 layers.</p>
 </p>
   </div>
 </article>

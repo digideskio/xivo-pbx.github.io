@@ -65,7 +65,7 @@
   <div>
     <h4>rebuilding gallifrey</h4>
 <p>The /var/cache/packaging-farm/sources directory was removed and</p>
-<div class="highlight"><pre>export VERSION_COMPUTE=false
+<div class="highlight"><pre><span></span>export VERSION_COMPUTE=false
 </pre></div>
 
 
@@ -77,7 +77,7 @@ part of the version number.</p>
 <h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
 <p>The build of the gallifrey development packages was blocked because of a
 compilation error.</p>
-<div class="highlight"><pre>...
+<div class="highlight"><pre><span></span>...
 /usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)
 /usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:
 /usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;
@@ -97,17 +97,17 @@ BUILD END packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=len
 
 <p>To debug the problem, the following command was used to go in the chroot
 where it can be reproduced:</p>
-<div class="highlight"><pre>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
+<div class="highlight"><pre><span></span>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
 </pre></div>
 
 
 <p>The compilation error:</p>
-<div class="highlight"><pre>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
+<div class="highlight"><pre><span></span>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
 </pre></div>
 
 
 <p>is in <code>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c</code></p>
-<div class="highlight"><pre>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
+<div class="highlight"><pre><span></span>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
         .name = &quot;WANPIPE_HWEC&quot;,
         .echocan_free = wp_tdmv_hwec_free,
 };
@@ -116,12 +116,12 @@ where it can be reproduced:</p>
 
 <p>and comes from the fact that <code>/usr/include/dahdi/kernel.h</code> which is part
 of</p>
-<div class="highlight"><pre>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
+<div class="highlight"><pre><span></span>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
 </pre></div>
 
 
 <p>contains</p>
-<div class="highlight"><pre>struct dahdi_echocan_ops {
+<div class="highlight"><pre><span></span>struct dahdi_echocan_ops {
 
         /*! \brief Free an echocan state structure.                                                                                                             
          * \param[in,out] ec Pointer to the state structure to free.                                                                                            

@@ -91,7 +91,7 @@ We are also using another plugin: Head. It provides an easy but powerful
 web interface to ElasticSearch with data browsing features. Plugin
 installation is really very easy, the Head plugin installation can be
 accomplished with one command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -366,7 +366,7 @@ best is to enable nfs mount on your development workstation and to mount
 the web interface development directory onto your XiVO virtual
 machine.If your development projects is located in /projects/xivo-skaro,
 the mount command can be :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -400,7 +400,7 @@ steps :&lt;/p&gt;
 &lt;p&gt;Let's start with a simple page that we want to be displayed in the menu
 "services -&amp;gt; IPBX -&amp;gt; Call management", edit a file
 xivo-skaro/web-interface/src/action/www/service/ipbx/asterisk/call_management/hellowivo.php&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
     &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello XiVO world !&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -412,7 +412,7 @@ within XiVO authorization framework. The list of available pages is
 located in the file
 xivo-skaro/web-interface/src/object/objectconf/acl/user.inc.Edit this
 file and add this new action.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;....&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;....&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;pickup&amp;#39;] = true;&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;schedule&amp;#39;] = true;&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;tree&amp;#39;][&amp;#39;service&amp;#39;][&amp;#39;ipbx&amp;#39;][&amp;#39;call_management&amp;#39;][&amp;#39;cel&amp;#39;] = true;&lt;/span&gt;
@@ -443,7 +443,7 @@ menu.&lt;/p&gt;
 &lt;p&gt;Edit
 xivo-skaro/web-interface/src/tpl/www/bloc/menu/left/service/ipbx/asterisk.php,
 add the menu entry :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;........
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;........
         if(xivo_user::chk_acl(&amp;#39;call_management&amp;#39;,&amp;#39;cel&amp;#39;) === true):
             echo    &amp;#39;&lt;span class="nt"&gt;&amp;lt;dd&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mn-call_management--cel&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&amp;#39;,
                 $url-&amp;gt;href_html($this-&amp;gt;bbf(&amp;#39;mn_left_callmanagement-cel&amp;#39;),
@@ -472,7 +472,7 @@ framework.&lt;/p&gt;
 &lt;h3&gt;XiVO URL Routing&lt;/h3&gt;
 &lt;p&gt;Edit xivo-skaro/web-interface/src/object/objectconf/url.inc and add the
 URL translation&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;.......&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;.......&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/schedule&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/schedule/&amp;#39;;&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/voicemenu&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/voicemenu/&amp;#39;;&lt;/span&gt;
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;array&lt;/span&gt;&lt;span class="x"&gt;[&amp;#39;service/ipbx/call_management/cel&amp;#39;] = &amp;#39;service/ipbx/index.php/call_management/cel/&amp;#39;;&lt;/span&gt;
@@ -505,7 +505,7 @@ were able to reproduce the freeze and get some information about the
 various locks held by the various threads of the frozen asterisk process
 via the "coreshow locks" command.&lt;/p&gt;
 &lt;p&gt;The output of the "core show locks" command looks like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gh"&gt;=======================================================================&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;=======================================================================&lt;/span&gt;
 &lt;span class="gh"&gt;=== Currently Held Locks ==============================================&lt;/span&gt;
 &lt;span class="gh"&gt;=======================================================================&lt;/span&gt;
 ===
@@ -608,7 +608,7 @@ repository&lt;/a&gt;.
 Given you have the output of a "core show locks" invocation, and that
 you have graphviz installed, you can then run the following command to
 generate a graph in svg format:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -837,21 +837,21 @@ people&lt;/a&gt;.&lt;/p&gt;
 a xivo-aastra plugin installed.&lt;/p&gt;
 &lt;p&gt;So we plug a brand new Aastra 6731i on our network. The phone then does
 the following HTTP request:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;GET&lt;/span&gt; &lt;span class="nn"&gt;/Aastra/aastra.cfg&lt;/span&gt; &lt;span class="kr"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;1.1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;GET&lt;/span&gt; &lt;span class="nn"&gt;/Aastra/aastra.cfg&lt;/span&gt; &lt;span class="kr"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;1.1&lt;/span&gt;
 &lt;span class="na"&gt;User-Agent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="l"&gt;Aastra6731i MAC:00-11-22-33-44-55 V:3.2.2.1136-SIP&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The "device info extraction" step is then able to extract the following
 information:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;{&amp;#39;vendor&amp;#39;: &amp;#39;Aastra&amp;#39;, &amp;#39;model&amp;#39;: &amp;#39;6731i&amp;#39;, &amp;#39;version&amp;#39;: &amp;#39;3.2.2.1136&amp;#39;,
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;vendor&amp;#39;: &amp;#39;Aastra&amp;#39;, &amp;#39;model&amp;#39;: &amp;#39;6731i&amp;#39;, &amp;#39;version&amp;#39;: &amp;#39;3.2.2.1136&amp;#39;,
  &amp;#39;mac&amp;#39;: &amp;#39;00:11:22:33:44:55&amp;#39;, &amp;#39;ip&amp;#39;: &amp;#39;192.168.1.100&amp;#39;}
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This information is then passed to a "device retriever" object. Here's a
 pseudo code version of what it looks like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;def process_request(request):
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def process_request(request):
     device_info = device_info_extractor.extract(request)
     device = device_retriever.retrieve(device_info)
     ...
@@ -1019,7 +1019,7 @@ client,the tftp server serves the files needed to install a debian
 system.&lt;/p&gt;
 &lt;p&gt;On debian system, you have to install isc-dhcp-server, here is a
 minimaldhcp configuration:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#/etc/dhcp/dhcpd.conf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#/etc/dhcp/dhcpd.conf
 ddns-update-style none;
 option domain-name &amp;quot;mydomain.com&amp;quot;;
 option domain-name-servers 10.10.32.1;
@@ -1038,7 +1038,7 @@ subnet 10.10.32.0 netmask 255.255.255.0 {
 
 &lt;p&gt;You can test your dhcp configuration by booting a machine on pxe to
 ensurethat the dhcp configuration is functionnal :&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
@@ -1052,7 +1052,7 @@ installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
 too. Thispackage provide all the files used to install a fresh debian
 system by pxe.&lt;/p&gt;
 &lt;p&gt;You have to modify tftp_directory on /etc/default/tftpd-hpa:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;TFTP_DIRECTORY=&amp;quot;/usr/lib/debian-installer/images/i386/text&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;TFTP_DIRECTORY=&amp;quot;/usr/lib/debian-installer/images/i386/text&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1060,7 +1060,7 @@ system by pxe.&lt;/p&gt;
 &lt;p&gt;You have to edit 2 files to finish your configuration: menu.cfg and
 syslinux.cfg&lt;/p&gt;
 &lt;p&gt;You have to modify include and default path in boot-screens/syslinux.cfg&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# D-I config version 2.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# D-I config version 2.0
    include boot-screens/menu.cfg
    default boot-screens/vesamenu.c32
    prompt 0
@@ -1069,7 +1069,7 @@ syslinux.cfg&lt;/p&gt;
 
 
 &lt;p&gt;You have to add to boot-screens/menu.cfg&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;label squeeze-i386
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;label squeeze-i386
        menu label squeeze i386
        kernel linux
        append vga=normal initrd=initrd.gz
@@ -1144,7 +1144,7 @@ information is extracted by a plugin. That is why it's always safer to
 only install the plugins you need, and no more.&lt;/p&gt;
 &lt;p&gt;Now that we know all that, let's see what happens for a request coming
 from a Cisco 7940. One of the first request it does is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;TFTP RRQ SEP554433221100.cnf.xml
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;TFTP RRQ SEP554433221100.cnf.xml
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1220,7 +1220,7 @@ of each development iteration. Well, we will still run some of them by
 hand for a time, but we now can make most of them run automatically. We
 just have to code the tests :-)&lt;/p&gt;
 &lt;p&gt;Here's what a Lettuce test look like :  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Scenario&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enable&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Scenario&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Enable&lt;/span&gt; &lt;span class="n"&gt;XiVO&lt;/span&gt; &lt;span class="n"&gt;Client&lt;/span&gt;
        &lt;span class="n"&gt;Given&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;am&lt;/span&gt; &lt;span class="n"&gt;logged&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
        &lt;span class="n"&gt;Given&lt;/span&gt; &lt;span class="n"&gt;there&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Magne&amp;quot;&lt;/span&gt;
        &lt;span class="n"&gt;When&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;edit&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Magne&amp;quot;&lt;/span&gt;
@@ -1295,7 +1295,7 @@ and the required configuration to test it.&lt;/p&gt;
 &lt;h2&gt;Getting the sources&lt;/h2&gt;
 &lt;p&gt;The first step to creating your own xlet is to get the XiVO client
 sources. The sources can be retrieved with the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git clone git://git.xivo.fr/official/xivo-client-qt.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://git.xivo.fr/official/xivo-client-qt.git
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1307,13 +1307,13 @@ for our new xlet.&lt;/p&gt;
 information for debugging purposes.&lt;/p&gt;
 &lt;p&gt;Copy the xletnull directory and give your new directory a significant
 name.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cd xivoclient/src/xlets
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd xivoclient/src/xlets
 cp -R xletnull channellist
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Rename files in the channellist directory to reflect your new xlet name.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;rename &amp;#39;s/xletnull/channellist/&amp;#39; *
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rename &amp;#39;s/xletnull/channellist/&amp;#39; *
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1328,7 +1328,7 @@ directory&lt;/p&gt;
 xivoclient/xlets.pro. Add src/xlets/channellist to the SUBDIRS array.&lt;/p&gt;
 &lt;h2&gt;Check if it still compiles&lt;/h2&gt;
 &lt;p&gt;Test your changes. From the root of the xivo-client-qt directory run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;make clean
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make clean
 make
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1338,7 +1338,7 @@ xivoclient/obj/ directory.&lt;/p&gt;
 &lt;h2&gt;Tell xivo-ctid about your new xlet&lt;/h2&gt;
 &lt;p&gt;On your XiVO, edit /etc/pf-xivo/xivo-ctid/allowedxlets.json.Add a line
 for your new xlet&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;quot;channellist&amp;quot; : []
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;channellist&amp;quot; : []
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1362,7 +1362,7 @@ channellist.cpp files.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the constructor of your xlet change the string sent to setTitle to
 your desired title.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;`setTitle(&amp;quot;Channel List&amp;quot;);`
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;`setTitle(&amp;quot;Channel List&amp;quot;);`
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1710,7 +1710,7 @@ and optionally jquery.mousewheel
 (&lt;a href="http://brandonaaron.net/code/mousewheel/docs"&gt;http://brandonaaron.net/code/mousewheel/docs&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;``` {style="font-size:small;"}
 &lt;link rel="stylesheet"   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/ui-lightness/jquery-ui.css"   type="text/css" media="all" /&gt;&lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"&gt;&lt;/script&gt;&lt;script src="jquery.mousewheel.min.js"&gt;&lt;/script&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Then include xivo-schedule javascript and css files. Note that you can
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Then include xivo-schedule javascript and css files. Note that you can
 also include langpack(s) you want to use.
 
 ``` {style=&amp;quot;font-size:small;&amp;quot;}
@@ -1734,7 +1734,7 @@ with intervals raw value when the user will manipulate schedule widget.&lt;/p&gt
         &lt;label for="sched-hours"&gt;hours :&lt;/label&gt;&lt;input id="sched-hours"     type="text" disabled /&gt;
       &lt;/div&gt;
     &lt;/form&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Finally, you initialize your schedule widget:
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Finally, you initialize your schedule widget:
 
 ``` {style=&amp;quot;font-size:small;&amp;quot;}
 &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;  $(function(){    $(&amp;#39;#schedule&amp;#39;).schedule({      &amp;#39;language&amp;#39;: &amp;#39;fr&amp;#39;,      &amp;#39;inputs&amp;#39;: {          &amp;#39;months&amp;#39;   : $(&amp;#39;#sched-months&amp;#39;),          &amp;#39;monthdays&amp;#39;: $(&amp;#39;#sched-monthdays&amp;#39;),          &amp;#39;weekdays&amp;#39; : $(&amp;#39;#sched-weekdays&amp;#39;),          &amp;#39;hours&amp;#39;    : $(&amp;#39;#sched-hours&amp;#39;)      },      &amp;#39;defaults&amp;#39;: {          &amp;#39;months&amp;#39;   : &amp;#39;1,3-6,11,12&amp;#39;,          &amp;#39;monthdays&amp;#39;: &amp;#39;1,3,5,8,10,12-13,15,17,20,22,24-25,27,29&amp;#39;,          &amp;#39;weekdays&amp;#39; : &amp;#39;1,4-6&amp;#39;,          &amp;#39;hours&amp;#39;    : &amp;#39;08:35-17:30&amp;#39;      }    });  });&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;

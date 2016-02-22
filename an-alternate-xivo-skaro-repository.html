@@ -70,7 +70,7 @@ are not under GIT and others built for the occasion (kernel-modules and
 meta-packages). The source of each package is documented in
 <strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> which is the
 meta-package that depends on all the others:</p>
-<div class="highlight"><pre><span class="x">PACKAGE=skaro</span>
+<div class="highlight"><pre><span></span><span class="x">PACKAGE=skaro</span>
 <span class="x">DISTRIBUTIONS=squeeze</span>
 <span class="x">COMPONENT=main</span>
 <span class="x">ARCHITECTURES=i386 x86_64</span>
@@ -107,7 +107,7 @@ respective repositories:</p>
 <li>http://skaro.dachary.org/packaging-farm/dahdi-linux-modules/Makefile</li>
 </ul>
 <p>The packages are built for two architectures : i386 and x86_64</p>
-<div class="highlight"><pre>ARCHITECTURES=i386 x86_64
+<div class="highlight"><pre><span></span>ARCHITECTURES=i386 x86_64
 </pre></div>
 
 
@@ -115,20 +115,20 @@ respective repositories:</p>
 enough to get all the information required to re-install a
 packaging-farm from scratch.It can be used by adding the following to
 /etc/apt/sources.list</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 </pre></div>
 
 
 <h4>troubleshooting</h4>
 <p>The pf-xivo-extra produced an error:</p>
-<div class="highlight"><pre><span class="n">cp</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">stat</span> <span class="err">`</span><span class="n">debian</span><span class="sr">/tmp/</span><span class="n">README</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<div class="highlight"><pre><span></span><span class="n">cp</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">stat</span> <span class="err">`</span><span class="n">debian</span><span class="sr">/tmp/</span><span class="n">README</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
 <span class="n">dh_install</span><span class="o">:</span> <span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="n">debian</span><span class="sr">/tmp/README debian/pf-xivo-extra/usr/share/pf-xivo-extra//</span> <span class="n">returned</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
 </pre></div>
 
 
 <p>Nicolas Hicher logged in the machine and went to debug into the chroot
 used to create the package:</p>
-<div class="highlight"><pre>packaging-farm --cd pf-xivo-extra DISTRIBUTION=squeeze ARCHITECTURE=x86_64 chroot-login
+<div class="highlight"><pre><span></span>packaging-farm --cd pf-xivo-extra DISTRIBUTION=squeeze ARCHITECTURE=x86_64 chroot-login
 </pre></div>
 
 
@@ -139,7 +139,7 @@ the same package. The problem was fixed in the new
 release.The i386 squeeze chroot had a flaw that forced the installation
 of x11 when installing the devscripts package. The chroot was re-created
 using the following:</p>
-<div class="highlight"><pre>pbuilder --create --architecture i386 --distribution squeeze --basetgz /var/cache/pbuilder/squeeze-i386.tgz
+<div class="highlight"><pre><span></span>pbuilder --create --architecture i386 --distribution squeeze --basetgz /var/cache/pbuilder/squeeze-i386.tgz
 </pre></div>
 
 
@@ -149,7 +149,7 @@ python</a>.</p>
 <h4>managing timestamps when submitting a package</h4>
 <p>The oneliner that could be used to rebuild XiVO with all the updates
 from the git repositories is :</p>
-<div class="highlight"><pre>cd /var/cache/packaging-farm/build/skaro ; make submit ; packaging-farm skaro
+<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/build/skaro ; make submit ; packaging-farm skaro
 </pre></div>
 
 
@@ -163,7 +163,7 @@ To avoid a manual selection, the submit-xivo.sh was modified to do
 nothing if it notices that the git repositories do not contain any
 commit more recent than the timestamp updated when the last compilation
 completed successfully.</p>
-<div class="highlight"><pre>function need_update() {
+<div class="highlight"><pre><span></span>function need_update() {
     local package=&quot;$1&quot;
     local dir=&quot;$2&quot;
     local suite=&quot;$3&quot;

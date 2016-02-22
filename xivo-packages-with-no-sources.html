@@ -70,7 +70,7 @@ pf-xivo-backup.The changes were published as part of the
 <a href="http://packaging-farm.dachary.org/download/">2.0.6</a> release of
 packaging-farm.The relevant part of the documentation (man
 submit-xivo.sh) explain how to use it:</p>
-<div class="highlight"><pre>NAME
+<div class="highlight"><pre><span></span>NAME
        submit-xivo.sh - create a source package from XiVO repositories
 
 
@@ -111,7 +111,7 @@ NOSOURCE=
 <p>The <strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> and
 <strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> were updated to take
 advantage of this new feature as follows:</p>
-<div class="highlight"><pre><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
 <span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT debian repositories                                                                                                                          </span>
 <span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
 <span class="x">        cd .. ; for package in pf-xivo pf-xivo-backup ; do packaging-farm NOSOURCE=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
@@ -123,7 +123,7 @@ advantage of this new feature as follows:</p>
 error occurs. This is a convenient way to throw an exception from a
 nested function being run, should an irrecoverable error occur. However,
 the following code demonstrate that the -e option is sometime disabled:</p>
-<div class="highlight"><pre>set -ex
+<div class="highlight"><pre><span></span>set -ex
 
   PS4=&#39; <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="cp">}</span>: <span class="nv">$LINENO</span>: &#39;
 
@@ -148,7 +148,7 @@ irc.freenode.net#bash did not bring any answer.</p>
 <h4>skaro and gallifrey build</h4>
 <p>Guillaume asked for a shortcut to rebuild the full distribution after
 updating a given package for skaro. Instead of running:</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=confgen submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=confgen submit
 packaging-farm ARCHITECTURES=i386 pf-xivo-confgen
 packaging-farm skaro
 </pre></div>
@@ -156,13 +156,13 @@ packaging-farm skaro
 
 <p>the following rule was added to
 <strong>/var/cache/packaging-farm/build/skaro/Makefile</strong></p>
-<div class="highlight"><pre><span class="n">rebuild</span><span class="o">:</span> <span class="n">update</span> 
+<div class="highlight"><pre><span></span><span class="n">rebuild</span><span class="o">:</span> <span class="n">update</span> 
         <span class="n">cd</span> <span class="o">..</span> <span class="o">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">skaro</span>
 </pre></div>
 
 
 <p>so that it is possible to run</p>
-<div class="highlight"><pre>packaging-farm --cd skaro rebuild
+<div class="highlight"><pre><span></span>packaging-farm --cd skaro rebuild
 </pre></div>
 
 
@@ -173,7 +173,7 @@ also be rebuilt. It is believed that such a case is rare enough and does
 not warrant a special case. If it turns out to be wrong, an other, more
 specialized, shortcut can be added.</p>
 <h4>rebuilding packages and publishing repositories</h4>
-<div class="highlight"><pre>packaging-farm  allows  to  rebuild  the same version of a package. For
+<div class="highlight"><pre><span></span>packaging-farm  allows  to  rebuild  the same version of a package. For
        instance, let say foo-1.2 was built and was made available,  either  as
        part  of  the package specific repository created with dpkg-scanpackage
        or as part of a meta package repository created with reprepro(1) A user

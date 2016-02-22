@@ -54,6 +54,38 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1602.html#sprint-review-1602">Sprint Review 16.02</a></h2>
+    <p>
+      Posted on Fri 19 February 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Hello,</p>
+<h2>New features in this sprint</h2>
+<p><strong>Users import</strong>: The CSV import of users now supports setting the call permissions for each user. Call permissions define which restriction are put on users regarding which numbers they can dial.</p>
+<p><strong>XiVO Client</strong>: All communications between the CTI server and the XiVO Clients will now be encrypted by default.</p>
+<p><strong>LDAP authentication</strong>: The LDAP authentication mechanisms now uses the new user field for email address, and is not considered experimental anymore. However, it only supports simple LDAP hierarchies, and we are going to improve it to be more flexible.</p>
+<h2>Technical Features</h2>
+<p><strong>Asterisk upgrade</strong>: Asterisk has been upgraded from version 13.7.0 to 13.7.2</p>
+<h2>Ongoing features</h2>
+<p><strong>Security</strong>: We are extending the permission system to all REST APIs. This will allow a finer grained access to the REST APIs and reduce the chances of accidentally breaking the rest of the system. For example, users will be able to modify their function keys, without having access to the function keys of other users.</p>
+<p><strong>REST API</strong>: We are working on a new REST API for associating devices with SIP or SCCP accounts.</p>
+<p><strong>Web applications</strong>: We are working towards making Web applications connected to XiVO possible. The two things it needs is REST APIs, which are growing more useful, and events, which will be provided via Websockets, introduced in this sprint. A good example of a Web application is a switchboard application, where the operator may answer, hold and transfer calls from his browser, effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full Web switchboard environment.</p>
+<p><strong>Switchboard</strong>: We are changing the internals of the Switchboard feature so that we can control more precisely how calls are answered, transferred, etc.</p>
+<hr />
+<p>See you at the next sprint review.</p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2">XiVO 16.02 Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/238">XiVO 16.02 Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1601.html#sprint-review-1601">Sprint Review 16.01</a></h2>
     <p>
       Posted on Mon 01 February 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -294,56 +326,6 @@ name (that you entered) along with her number.</p>
 <li><a href="http://projects.xivo.io/versions/234" title=" XiVO 15.18 Roadmap">XiVO 15.18 Roadmap</a></li>
 <li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
 </ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html#automatically-disconnect-an-agent-if-inactive">Automatically Disconnect an Agent if his SIP Account is Inactive</a></h2>
-    <p>
-      Posted on Thu 29 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/call-center.html">call center</a>    </p>
-  </header>
-  <div>
-      <p>Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
-a Master in Computer Engineering and my work in a call center. I could not find any information in
-the XiVO CTI when a phone was disconnected, so I worked on a solution for generating this
-information. This allows agents to know their phone's status.</p>
-<p>Let us imagine the following scenario: An agent in a call center is connected with is softphone 'N.
-SIP XXX'. He logs in via his XiVO Client in order to receive calls from his assigned queues. One of
-the following 3 events occurs :</p>
-<p>A – The softphone is disconnected from asterisk .
-B – The agent finishes his day, turns off his softphone but forgets to disconnect his XiVO Client
-C – The agent is at home, the VPN tunnel stops</p>
-<p>In these 3 examples, the agent cannot know if he can still recieve calls because he does not recieve
-any alerts from his XiVO client or from the phone.</p>
-<h1>I. Standard operation</h1>
-<h2>Agent's point of view</h2>
-<p><img alt="photo 1" src="http://blog.xivo.io/public/agent_disconnect/photo1.png" /></p>
-<h2>Point of view on the XiVO Server</h2>
-<p><img alt="photo 2" src="http://blog.xivo.io/public/agent_disconnect/photo2.png" /></p>
-<h1>II. Anomaly</h1>
-<h2>Agent's point of view</h2>
-<p>Let us simulate the anomaly. For this simulation, the softphone has been forcefully disconnected.</p>
-<p><img alt="photo 3" src="http://blog.xivo.io/public/agent_disconnect/photo3.png" /></p>
-<p><strong>We can see that our agent is still logged in and no other information about the disconnection is
-displayed</strong></p>
-<h2>Point of view on the XiVO Server</h2>
-<p><img alt="photo 4" src="http://blog.xivo.io/public/agent_disconnect/photo4.png" /></p>
-<p>We can see that the state of extension 741 is <code>UNKNOWN</code>, but agent 6002 (extension 728) is still
-connected.</p>
-<h1>III. Execution of the script</h1>
-<p>The script will find out that the SIP account is disconnected and will automatically log out the
-agent associated to the extension.</p>
-<p><img alt="photo 5" src="http://blog.xivo.io/public/agent_disconnect/photo5.png" /></p>
-<p>Accordingly, the agent now knows that he is logged out:</p>
-<p><img alt="photo 6" src="http://blog.xivo.io/public/agent_disconnect/photo6.png" /></p>
-<p>This script has been deployed in production and has been working successfully since Oct 1st 2015.
-You can download this script on <a href="https://github.com/h4wk3r/XIVO-Agentoff_if_sipoff">github</a>.</p>
-<p>For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
-on IRC on irc.freenode.net channel #xivo.</p>
-<p><em>Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson</em></p>
   </div>
 </article>
 

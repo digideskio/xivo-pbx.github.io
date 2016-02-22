@@ -54,6 +54,80 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/upgrading-xivo-with-xivo-upgrade.html#upgrading-xivo-with-xivo-upgrade">Upgrading XiVO with \"xivo-upgrade\"</a></h2>
+    <p>
+      Posted on Thu 29 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>In XiVO version 1.2.2, a new package has been introduced, xivo-upgrade.
+This new script must be usedto make sure that upgrades are completed
+properly. The objective is to minimize differences between machinesand
+to control the environment in case of problems.</p>
+<p>We had many problems to work around:</p>
+<ul>
+<li>questions to answer about replacing packaged files that have been
+    modified</li>
+<li>reload services when libraries are modified</li>
+<li>modify the database schema when needed</li>
+<li>showing the current and new version when upgrading</li>
+</ul>
+<p>We decided to put this system in place to keep upgrades simples and
+transparent to the end ~~user~~ admin.The goal being to stay as SIMPLE
+as possible!</p>
+<p>Too many people are stressed by their IPBX upgrades!<img alt="Stress
+Man" src="/public/human_pro/.file0001382919230_s.jpg" title="Stress Man, mar. 2012" /></p>
+<p>But not with
+XiVO!<img alt="Congratulation" src="/public/human_pro/.file6741271974648_s.jpg" title="Congratulation, mar. 2012" /></p>
+<p>No one should be afraid of the side effects of an upgrade!</p>
+<h2>Technical informations</h2>
+<p>This package allows the administrator to upgrade his XiVO securely and
+in a way validated by the dev team.The script executes many steps:</p>
+<ol>
+<li>xivo-upgrade upgrade, to get the latest modifications to the upgrade
+    process</li>
+<li>
+<p>Upgrade confirmation if upgrades are available:</p>
+<ul>
+<li>If the answer is NO, the upgrade is aborted</li>
+<li>If the answer is YES, the script continues to the next step</li>
+</ul>
+</li>
+<li>
+<p>Pre-upgrade scripts are run.</p>
+</li>
+<li>XiVO is upgraded</li>
+<li>Post-upgrade scripts are executed.</li>
+<li>All XiVO services are restarted in the right order.</li>
+</ol>
+<p>Package architecture:</p>
+<p>Binaries:</p>
+<ul>
+<li>xivo-upgrade (Update xivo-upgrade package and
+    execute real-xivo-upgrade)</li>
+<li>real-xivo-upgrade (Execute upgrade of XiVO and restart services)</li>
+</ul>
+<p>Libraries path: /usr/share/xivo-upgrade/</p>
+<p>Directories:</p>
+<ul>
+<li>pre-upgrade.d (All files in this directory will be executed before
+    upgrading XiVO)</li>
+<li>post-upgrade.d (All files in this directory will be executed after
+    XiVO upgrade)</li>
+</ul>
+<p>Current post-install scripts:</p>
+<ul>
+<li>Update template for device configuration.</li>
+<li>Update all device configurations to integrate the backup_proxy_ip
+    from the HA configuration.</li>
+<li>Set default web-interface language to english.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-high-availability.html#xivo-high-availability">XiVO high availability</a></h2>
     <p>
       Posted on Wed 14 March 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
@@ -116,7 +190,7 @@ client,the tftp server serves the files needed to install a debian
 system.</p>
 <p>On debian system, you have to install isc-dhcp-server, here is a
 minimaldhcp configuration:</p>
-<div class="highlight"><pre>#/etc/dhcp/dhcpd.conf
+<div class="highlight"><pre><span></span>#/etc/dhcp/dhcpd.conf
 ddns-update-style none;
 option domain-name &quot;mydomain.com&quot;;
 option domain-name-servers 10.10.32.1;
@@ -135,7 +209,7 @@ subnet 10.10.32.0 netmask 255.255.255.0 {
 
 <p>You can test your dhcp configuration by booting a machine on pxe to
 ensurethat the dhcp configuration is functionnal :</p>
-<div class="highlight"><pre>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+<div class="highlight"><pre><span></span>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
@@ -149,7 +223,7 @@ installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
 too. Thispackage provide all the files used to install a fresh debian
 system by pxe.</p>
 <p>You have to modify tftp_directory on /etc/default/tftpd-hpa:</p>
-<div class="highlight"><pre>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
+<div class="highlight"><pre><span></span>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
 </pre></div>
 
 
@@ -157,7 +231,7 @@ system by pxe.</p>
 <p>You have to edit 2 files to finish your configuration: menu.cfg and
 syslinux.cfg</p>
 <p>You have to modify include and default path in boot-screens/syslinux.cfg</p>
-<div class="highlight"><pre># D-I config version 2.0
+<div class="highlight"><pre><span></span># D-I config version 2.0
    include boot-screens/menu.cfg
    default boot-screens/vesamenu.c32
    prompt 0
@@ -166,7 +240,7 @@ syslinux.cfg</p>
 
 
 <p>You have to add to boot-screens/menu.cfg</p>
-<div class="highlight"><pre>label squeeze-i386
+<div class="highlight"><pre><span></span>label squeeze-i386
        menu label squeeze i386
        kernel linux
        append vga=normal initrd=initrd.gz
@@ -327,73 +401,6 @@ tracking etc ....</p>
 <li>Paging</li>
 <li>Queue logger daemon removed.</li>
 </ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-1.html#httptftp-requests-processing-in-provd-part-1">HTTP/TFTP requests processing in provd - part 1</a></h2>
-    <p>
-      Posted on Thu 09 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/provisioning.html">provisioning</a>    </p>
-  </header>
-  <div>
-      <p>Well. Yes. provd ask a "device info extractor" object to extract
-information from the HTTP request, and that object returns the
-information we were expecting. But what is really happening inside that
-"device info extractor" ? Let's see:</p>
-<p><a href="/public/provd/provd-dev-info-extraction-details.png" title="Device info extraction details"><img alt="Device info extraction
-details" src="/public/provd/.provd-dev-info-extraction-details_m.jpg" title="Device info extraction details, fév. 2012" /></a></p>
-<p>The device info extractor object is in fact only merging results from
-two others device info extractor.</p>
-<p>The "all plugins device info extractor" ask for each installed plugin to
-extract info from the request. In this case, thexivo-aastra plugin is of
-course able to extract a lot of information by looking at the User-Agent
-header, but the xivo-cisco-sccp plugin is of no help. The results are
-then merged and returned.</p>
-<p>The "standard device info extractor" extract the IP address. It's role
-is to only extract trivial information from requests.</p>
-<p>From what we learned, we can deduce some properties of device
-information extraction in provd.</p>
-<p>First, if no plugins are installed, only IP addresses will ever be
-extracted.</p>
-<p>Next, we can ask ourselves what happens when two plugins returns
-different information. Well, the "all plugins device info extractor" is
-capable of applying different merge strategies. I won't go into more
-details for now.</p>
-<p>The last thing we can see is that a bad plugin could make the system
-unreliable. You do not want to be in the situation were wrong
-information is extracted by a plugin. That is why it's always safer to
-only install the plugins you need, and no more.</p>
-<p>Now that we know all that, let's see what happens for a request coming
-from a Cisco 7940. One of the first request it does is:</p>
-<div class="highlight"><pre>TFTP RRQ SEP554433221100.cnf.xml
-</pre></div>
-
-
-<p>TFTP requests are really simple, especially if you compare them to HTTP
-requests. The only interesting information an RRQ (read request) can
-have is the filename. But a filename can contains a lot of information.</p>
-<p>TFTP requests take a similar flow as HTTP requests in provd. In our
-example, the xivo-aastra plugin will return no information from it, but
-the xivo-cisco-sccp plugin will be able to extract both the vendor and
-the MAC address. For this request, it's not possible to determine the
-model nor the firmware version.</p>
-<p>So provd knows the request came from a Cisco, and that its MAC address
-is 55:44:33:22:11:00. That's not much, but it's better than nothing.</p>
-<p>That said, there is a special trick for extracting information about the
-model on Cisco 7900 phones. I won't tell you what it is because I'm
-getting tired of writing this article, but all I can say is that it's
-pretty neat, and it's also useful in some other situation. Well okay,
-I'll just say the name: DHCP integration.</p>
-<p>That's all folks. We have both seen the best (Aastra 6731i) and the
-worst (Cisco 7940) case concerning device info extraction in provd. That
-said, even the worst case doesn't pose a real problem. Next time, if I
-don't get too many death threat following this article, I'll talk about
-the next step of request processing in provd, device retrieving, which
-is quite simpler by the way.</p>
 </p>
   </div>
 </article>

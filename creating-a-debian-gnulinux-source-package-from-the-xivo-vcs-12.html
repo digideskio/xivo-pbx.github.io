@@ -66,14 +66,14 @@
     <h4>Source GIT structure</h4>
 <p>The <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a> can be
 extracted as follows:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/xivo-skaro.git
+<div class="highlight"><pre><span></span>git clone git://git.xivo.fr/xivo-skaro.git
 </pre></div>
 
 
 <p>It contains a directory for each source package found in the <a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/">skaro
 repository</a>.
 The names of the directories are mapped to the package names as follows:</p>
-<div class="highlight"><pre>agid -&gt; pf-xivo-agid
+<div class="highlight"><pre><span></span>agid -&gt; pf-xivo-agid
 app_nv_faxdetect -&gt; pf-asterisk-app-nv-faxdetect
 asterisk -&gt; asterisk
 base-config -&gt; pf-xivo-base-config
@@ -101,7 +101,7 @@ xivo-sounds -&gt; pf-xivo-sounds
 
 <p>The mapping is found in the <code>*/Makefile.pkg</code> file, in the <code>DEB_PKG</code>
 variable, such as</p>
-<div class="highlight"><pre>DEB_PKG=&quot;pf-xivo-monitoring&quot;
+<div class="highlight"><pre><span></span>DEB_PKG=&quot;pf-xivo-monitoring&quot;
 </pre></div>
 
 
@@ -112,7 +112,7 @@ directory, not including the directory name. For instance, the
 <a href="http://dak.proformatique.com/debian/pool/main/p/pf-xivo-cti-server/pf-xivo-cti-server_1.2~svn10269.orig.tar.gz">pf-xivo-cti-server
 tarbal</a>
 contains:</p>
-<div class="highlight"><pre>-rw-r--r--    root/root        305 ./Makefile.pkg
+<div class="highlight"><pre><span></span>-rw-r--r--    root/root        305 ./Makefile.pkg
  -rw-r--r--    root/root       6922 ./xivo_daemon.conf
  -rw-r--r--    root/root      35068 ./LICENSE
  drwxr-xr-x    root/root          0 ./xivo_ctiservers/
@@ -130,7 +130,7 @@ to synchronize with the asterisk upstream ) and are out of the scope of
 this discussion. For instance, the content of the <a href="http://dak.proformatique.com/debian/pool/main/d/dahdi-linux/dahdi-linux_2.4.1.0+dfsg+pf.xivo.1.2~svn10330.orig.tar.gz">dahdi-linux
 tarbal</a>
 is as follows:</p>
-<div class="highlight"><pre>drwxr-xr-x    root/root          0 ./patches/
+<div class="highlight"><pre><span></span>drwxr-xr-x    root/root          0 ./patches/
  -rw-r--r--    root/root       1106 ./patches/enable_oslec.diff
  -rw-r--r--    root/root        776 ./patches/no_firmware_download
  -rw-r--r--    root/root         39 ./patches/series
@@ -141,7 +141,7 @@ is as follows:</p>
 <p>Note that the tarbal is moved up one directory and the <code>tarballs</code>
 directory does not show. The actual content of the corresponding GIT
 repository is as follows:</p>
-<div class="highlight"><pre>dahdi-linux/prepare_test_sources
+<div class="highlight"><pre><span></span>dahdi-linux/prepare_test_sources
 dahdi-linux/sources.pkg
 dahdi-linux/SOURCE-VERSION
 dahdi-linux/AUTOBUILD-IGNORE
@@ -169,7 +169,7 @@ to cope with two issues:</p>
 </ul>
 <p>The directory <code>tools</code> is not a package. It contains files shared and
 duplicated in some native packages. For instance <code>gwr.py</code>:</p>
-<div class="highlight"><pre>app_nv_faxdetect/gwr.py -&gt; ../tools/gwr.py
+<div class="highlight"><pre><span></span>app_nv_faxdetect/gwr.py -&gt; ../tools/gwr.py
  res_watchdog/gwr.py -&gt; ../tools/gwr.py
  tools/gwr.py
 </pre></div>
@@ -188,7 +188,7 @@ The information can be retrieved from the source packages but the
 history is lost to the general public. The SVN tree is structured using
 a path named after the XiVO version and the Debian GNU/Linux version it
 is based on. For instance:</p>
-<div class="highlight"><pre>package=asterisk
+<div class="highlight"><pre><span></span>package=asterisk
     suite=squeeze
     xivo=skaro
 
@@ -203,7 +203,7 @@ version number (for instance 2.4.1.0+dfsg+pf.xivo.1.2\~svn10330 in the
 chapter above), a new changelog entry will be created to match it. When
 this sanity check is done (and assuming the source tarbal is available
 in the upper directory), the source package can be created with:</p>
-<div class="highlight"><pre>dpkg-buildpackage -S -uc -us
+<div class="highlight"><pre><span></span>dpkg-buildpackage -S -uc -us
 </pre></div>
 
 

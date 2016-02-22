@@ -54,6 +54,39 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-architecture.html#xivo-architecture">XiVO Architecture</a></h2>
+    <p>
+      Posted on Mon 11 June 2012 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>The architecture of XiVO is still too complicated. As you can see, the
+components are virtually all related to each other.</p>
+<p><a href="/public/xivosoft/xivo_architecture.png" title="XiVO Architecture"><img alt="XiVO
+Architecture" src="/public/xivosoft/.xivo_architecture_m.jpg" title="XiVO Architecture, juin 2012" /></a></p>
+<p>We especially have too many requests from different services to the DB.
+Since so many components have direct access to the database, there are
+risks of data corruption. We currently are doing our best to simplify
+this architecture and to give each component its true purpose. A good
+example is CONFGEND which was developed to generate the Asterisk
+configuration by getting the information from the DB. It does one single
+task and it does it well.</p>
+<p>There are many challenges with current XiVO's architecture that we are
+adressing or will be working on in the near future. Asterisk's AGI
+should not make requests to the CTID. This is why we removed since XiVO
+1.2.11 all AGI interraction in the CTID (notice the link between the
+CTID and the AGI on the architecture's schema does not exist anymore).
+In the same vein, the AGID should have read-only access to the DB and
+the CTID should not interact directly with WebServices.</p>
+<p>A bunch of bad practices which we are aware of. We are up to the
+challenge and integrating this architecture evolution in our 2-weeks
+iterations makes it all even more exiting.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/journee-portes-ouvertes.html#journee-portes-ouvertes">Journée portes ouvertes</a></h2>
     <p>
       Posted on Mon 11 June 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -121,7 +154,7 @@ GPLv3 license. The result of this script is :</p>
 <p><img alt="aastra_resultat.jpg" src="/public/.aastra_resultat_m.jpg" title="aastra_resultat.jpg, juin 2012" /></p>
 <p>To activate this new function, simply change the aastra template in your
 provisioning server.</p>
-<div class="highlight"><pre><span class="x">xml status scroll delay: 2</span>
+<div class="highlight"><pre><span></span><span class="x">xml status scroll delay: 2</span>
 <span class="x">action uri registered: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
 <span class="x">action uri onhook: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
 <span class="x">action uri poll: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
@@ -156,7 +189,7 @@ http://wiki.debian.org/DebianInstaller/Preseed</p>
 <p>We are going to be using the default Debian preseed file. We are going
 to configure an HTTP server to serve this file to the Debian installer
 using nginx.</p>
-<div class="highlight"><pre>$ apt-get install nginx
+<div class="highlight"><pre><span></span>$ apt-get install nginx
 
 $ cat /etc/nginx/sites-enabled/myhost
     server <span class="o">{</span>
@@ -175,14 +208,14 @@ $ cat /etc/nginx/sites-enabled/myhost
 <p>and restart the server.</p>
 <p>First, we need to create /data directory and get the preseed file from
 this directory.</p>
-<div class="highlight"><pre>$ mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
+<div class="highlight"><pre><span></span>$ mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
 $ wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
 </pre></div>
 
 
 <p>We only do some small changes in the default file to perform a fully
 auto installation :</p>
-<div class="highlight"><pre>* do not create a user account
+<div class="highlight"><pre><span></span>* do not create a user account
 
     d-i passwd/make-user boolean false
 
@@ -204,7 +237,7 @@ auto installation :</p>
 <p>So, we have to modify
 /usr/lib/debian-installer/images/i386/text/boot-screens/menu.cfg to
 specify to the installer that it must use a preseed file.</p>
-<div class="highlight"><pre>label squeeze-i386
+<div class="highlight"><pre><span></span>label squeeze-i386
     menu label squeeze i386
     kernel linux
     append vga=normal initrd=initrd.gz
@@ -212,7 +245,7 @@ specify to the installer that it must use a preseed file.</p>
 
 
 <p>must be</p>
-<div class="highlight"><pre>label debian-squeeze                                                                                                                                                                           
+<div class="highlight"><pre><span></span>label debian-squeeze                                                                                                                                                                           
     menu label Install Auto Debian Squeeze                                                                                                                                                     
     kernel linux                                                                                                                                                                               
     append initrd=initrd.gz rw auto=true priority=critical url=myhost.mydomain.com/./preseed.cfg locale=en_US.UTF-8 interface=auto hostname=squeeze --
@@ -225,7 +258,7 @@ http://hands.com/d-i/</p>
 important).</p>
 <p>Or if you want to install a XiVO system, you can use this line to use
 our preseed</p>
-<div class="highlight"><pre>label XiVO
+<div class="highlight"><pre><span></span>label XiVO
        menu label XiVO
        kernel linux
        append initrd=initrd.gz rw auto=true priority=critical url=http://mirror.xivo.fr classes=skaro locale=en_US.UTF-8 interface=auto hostname=xivo --
@@ -234,7 +267,7 @@ our preseed</p>
 
 <p>Here, we only have an url. It's because we use a specific structure in
 our /data directory (and an entry d-i in our nginx configuration) :</p>
-<div class="highlight"><pre>/data
+<div class="highlight"><pre><span></span>/data
 ├── d-i
 │   ├── lenny
 │   │   ├── classes
@@ -250,27 +283,6 @@ our /data directory (and an entry d-i in our nginx configuration) :</p>
 git://git.xivo.fr/official/debian-installer.git</p>
 <p>In a next post, I will explain how we use the class to customize our
 installation.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-all-over-the-world.html#xivo-all-over-the-world">XiVO all over the world</a></h2>
-    <p>
-      Posted on Fri 25 May 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>From ISO download statistics, you may see that XiVO is used in a lot of
-countries over the world :</p>
-<p><img alt="xivoworld.png" src="/public/xivoworld.png" title="xivoworld.png, mai 2012" /></p>
-<p>France, Algeria, Argentina, Austria, Belgium, Brazil, Canada, Colombia,
-Croatia, Czech Republic, Finland, Germany, Great Britain,
-Greece,Hungary, Iceland, Indonesia, Israel, Italy, Lithuania,
-Luxembourg, Montenegro, Netherlands, New Caledonia (French), Poland,
-PortugalRussian Federation, Slovak Republic, South Africa, Spain,
-Switzerland, United Kingdom, United States, Vietnam</p>
 </p>
   </div>
 </article>

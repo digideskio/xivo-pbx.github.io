@@ -77,7 +77,7 @@ not match the existing package types (named ROLES) already implemented
 in packaging-farm (packages and meta-packages) and a new one was
 introduced : kernel-module. Here is a sample Makefile snippet used for
 <code>dahdi-linux</code>:</p>
-<div class="highlight"><pre>ROLE=kernel-module
+<div class="highlight"><pre><span></span>ROLE=kernel-module
 PACKAGE=dahdi-linux-modules
 MODULE=dahdi-linux-source
 DISTRIBUTIONS=lenny
@@ -89,7 +89,7 @@ ARCHITECTURES=i386
 be used against the designated <code>MODULE</code> (i.e. <code>dahdi-linux-source</code> which
 is a package created from the <code>dahdi-linux</code> source package). It will
 create a binary kernel module packages for the i386/lenny combination:</p>
-<div class="highlight"><pre>KVERS_i386_lenny=2.6.26-2-486 2.6.26-2-686-bigmem 2.6.26-2-686
+<div class="highlight"><pre><span></span>KVERS_i386_lenny=2.6.26-2-486 2.6.26-2-686-bigmem 2.6.26-2-686
 </pre></div>
 
 
@@ -109,12 +109,12 @@ that the latest version is used. However, they fail to provide the
 automatic architecture multiplexing provided by
 <a href="http://wiki.debian.org/DakHowTo">dak</a> repositories. On i386 the
 following line is valid</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src</span> <span class="kp">./</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src</span> <span class="kp">./</span>
 </pre></div>
 
 
 <p>but it needs to be changed to (note the x86_64)</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/x86_64/lenny/src</span> <span class="kp">./</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/x86_64/lenny/src</span> <span class="kp">./</span>
 </pre></div>
 
 
@@ -125,7 +125,7 @@ as a new way to index the packages when building a <code>meta-package</code>. It
 creates a repository that is located higher in the packaging-farm
 directory hierachy (immediatly above the architecture/distribut/src
 part) and that could be used as follows:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
 </pre></div>
 
 

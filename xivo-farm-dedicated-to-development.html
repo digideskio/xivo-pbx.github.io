@@ -71,7 +71,7 @@ behavior was
 <a href="http://packaging-farm.dachary.org/trac/changeset/866f47eb8cd8b43f6956fe0d326d9e77cc212a9b/">changed</a>
 to allow an optional specification of the GIT revision, as documented in
 the <strong>submit-xivo.sh(1)</strong> manual page.</p>
-<div class="highlight"><pre>GIT_REVISION=master
+<div class="highlight"><pre><span></span>GIT_REVISION=master
               The gitrevision(7) from which both source and debian git will be
               checked out. If the value of this  variable  is  different  from
               what  it was the last time packaging-farm(1) was run, the depen-
@@ -147,7 +147,7 @@ from the master branch.</p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>lvcreate --snapshot --size 1G --name tmp /dev/all/f3e8d23f-21c0-417d-9b5e-91bb4da9b926.disk0
+<div class="highlight"><pre><span></span>lvcreate --snapshot --size 1G --name tmp /dev/all/f3e8d23f-21c0-417d-9b5e-91bb4da9b926.disk0
 </pre></div>
 
 
@@ -156,7 +156,7 @@ from the master branch.</p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>lvcreate --size 30G --name dev all
+<div class="highlight"><pre><span></span>lvcreate --size 30G --name dev all
 </pre></div>
 
 
@@ -165,7 +165,7 @@ from the master branch.</p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>ionice -c3 dd if=/dev/all/tmp of=/dev/all/dev bs=1024k
+<div class="highlight"><pre><span></span>ionice -c3 dd if=/dev/all/tmp of=/dev/all/dev bs=1024k
 </pre></div>
 
 
@@ -174,7 +174,7 @@ from the master branch.</p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>lvremove /dev/all/tmp
+<div class="highlight"><pre><span></span>lvremove /dev/all/tmp
 </pre></div>
 
 
@@ -183,7 +183,7 @@ from the master branch.</p>
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>root@host01:~# grep y-dev /etc/bind/db.farm
+<div class="highlight"><pre><span></span>root@host01:~# grep y-dev /etc/bind/db.farm
 gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </pre></div>
 
@@ -193,7 +193,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre><span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
+<div class="highlight"><pre><span></span><span class="nt">MACADDR</span><span class="o">=</span><span class="s2">&quot;52:54:$(dd if=/dev/urandom count=1 2&gt;/dev/null | md5sum | sed &#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;)&quot;</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">MACADDR</span>
 </pre></div>
 
 
@@ -203,7 +203,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre><span class="nt">host</span> <span class="nt">gallifrey-dev</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">host</span> <span class="nt">gallifrey-dev</span><span class="nc">.xivo.vm.farm</span> <span class="p">{</span>
         <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">52</span><span class="o">:</span><span class="m">54</span><span class="o">:</span><span class="m">86</span><span class="o">:</span><span class="n">b3</span><span class="o">:</span><span class="m">3</span><span class="n">f</span><span class="o">:</span><span class="m">10</span><span class="p">;</span>
         <span class="nb">fixed</span><span class="o">-</span><span class="n">address</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="p">;</span>
         <span class="n">option</span> <span class="n">subnet</span><span class="o">-</span><span class="n">mask</span> <span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">255</span><span class="o">.</span><span class="m">0</span><span class="p">;</span>
@@ -216,7 +216,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>/etc/init.d/bind9 reload
+<div class="highlight"><pre><span></span>/etc/init.d/bind9 reload
 /etc/init.d/isc-dhcp-server restart
 </pre></div>
 
@@ -226,7 +226,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>gnt-instance add -n host01.farm -B memory=4G -o debootstrap+default -t plain --disk 0:adopt=dev --no-install --net 0:mac=52:54:86:b3:3f:10 gallifrey-dev.xivo.vm.farm
+<div class="highlight"><pre><span></span>gnt-instance add -n host01.farm -B memory=4G -o debootstrap+default -t plain --disk 0:adopt=dev --no-install --net 0:mac=52:54:86:b3:3f:10 gallifrey-dev.xivo.vm.farm
 </pre></div>
 
 
@@ -235,7 +235,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre><span class="x">in /etc/shorewall/rules</span>
+<div class="highlight"><pre><span></span><span class="x">in /etc/shorewall/rules</span>
 <span class="x">DNAT           net             loc:</span><span class="p">$</span><span class="nv">VM_GALLIFREY_DEV_XIVO</span><span class="x">:22 tcp     22006           -       </span><span class="p">$</span><span class="nv">IP_FAILOVER</span><span class="x"></span>
 <span class="x">in /etc/shorewall/params</span>
 <span class="x">VM_GALLIFREY_DEV_XIVO=10.10.60.6</span>
@@ -247,7 +247,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>shorewall restart ; sleep 30 &amp;&amp; shorewall clear
+<div class="highlight"><pre><span></span>shorewall restart ; sleep 30 &amp;&amp; shorewall clear
 </pre></div>
 
 
@@ -256,7 +256,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>gnt-instance start gallifrey-dev.xivo.vm.farm
+<div class="highlight"><pre><span></span>gnt-instance start gallifrey-dev.xivo.vm.farm
 </pre></div>
 
 
@@ -265,7 +265,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>echo balloon 1024 | socat - unix:/var/run/ganeti/kvm-hypervisor/ctrl/gallifrey-dev.xivo.vm.farm.monitor
+<div class="highlight"><pre><span></span>echo balloon 1024 | socat - unix:/var/run/ganeti/kvm-hypervisor/ctrl/gallifrey-dev.xivo.vm.farm.monitor
 </pre></div>
 
 
@@ -275,7 +275,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
  <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
  <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
  <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
@@ -292,7 +292,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 </ul>
 <!-- -->
 
-<div class="highlight"><pre>/etc/init.d/nginx reload
+<div class="highlight"><pre><span></span>/etc/init.d/nginx reload
 </pre></div>
 
 

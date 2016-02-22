@@ -72,7 +72,7 @@ a closer look at the page structure in order to get the XiVO
 look'n'feel.</p>
 <p>Menus and heading with user login panel can be added simply in a
 following way:</p>
-<div class="highlight"><pre><span class="p">$</span><span class="nv">menu</span><span class="x"> = &amp;</span><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;get_module(&#39;menu&#39;);</span>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">menu</span><span class="x"> = &amp;</span><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;get_module(&#39;menu&#39;);</span>
 <span class="x"> </span><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_top(&#39;top/user/&#39;.</span><span class="p">$</span><span class="nv">_USR</span><span class="x">-&gt;get_info(&#39;meta&#39;));</span>
 <span class="x"> </span><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_left(&#39;left/service/ipbx/&#39;.</span><span class="p">$</span><span class="nv">ipbx</span><span class="x">-&gt;get_name());</span>
 </pre></div>
@@ -85,7 +85,7 @@ current user is available via the <code>$_USR</code> variable. The last line add
 the left menu panel. The variable <code>$ipbx</code> hold the name of IPBX used
 (nowadays Asterisk) and it's reserved for interface customization.</p>
 <p>A customized toolbar can be added by the following line:</p>
-<div class="highlight"><pre><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_toolbar(&#39;toolbar/service/ipbx/&#39;.</span><span class="p">$</span><span class="nv">ipbx</span><span class="x">-&gt;get_name().&#39;/call_management/recording&#39;);</span>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">menu</span><span class="x">-&gt;set_toolbar(&#39;toolbar/service/ipbx/&#39;.</span><span class="p">$</span><span class="nv">ipbx</span><span class="x">-&gt;get_name().&#39;/call_management/recording&#39;);</span>
 </pre></div>
 
 
@@ -93,13 +93,13 @@ the left menu panel. The variable <code>$ipbx</code> hold the name of IPBX used
 @@src/tpl/www/bloc/menu/toolbar/service/ipbx/asterisk/call_management/.
 See some other file in the toolbar directory for an example.</p>
 <p>The BODY!!!</p>
-<div class="highlight"><pre>
+<div class="highlight"><pre><span></span>
 </pre></div>
 
 
 <p>The page is generated and displayed using the <code>display()</code> method of the
 <code>dwho_tpl</code> class :</p>
-<div class="highlight"><pre><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;display(&#39;index&#39;);</span>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">_TPL</span><span class="x">-&gt;display(&#39;index&#39;);</span>
 </pre></div>
 
 
@@ -108,7 +108,7 @@ login, load css and js files, variable instantiation etc. This page is
 loaded from <code>src/www/service/ipbx/index.php</code>.Used head and foot are
 defined in the template and inserted automatically based on templates in
 <code>src/tpl/www/bloc/</code>).An example of a complete page in colours of XiVO:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
     <span class="nv">$menu</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$_TPL</span><span class="o">-&gt;</span><span class="na">get_module</span><span class="p">(</span><span class="s1">&#39;menu&#39;</span><span class="p">);</span>
     <span class="nv">$menu</span><span class="o">-&gt;</span><span class="na">set_top</span><span class="p">(</span><span class="s1">&#39;top/user/&#39;</span><span class="o">.</span><span class="nv">$_USR</span><span class="o">-&gt;</span><span class="na">get_info</span><span class="p">(</span><span class="s1">&#39;meta&#39;</span><span class="p">));</span>
     <span class="nv">$menu</span><span class="o">-&gt;</span><span class="na">set_left</span><span class="p">(</span><span class="s1">&#39;left/service/ipbx/&#39;</span><span class="o">.</span><span class="nv">$ipbx</span><span class="o">-&gt;</span><span class="na">get_name</span><span class="p">());</span>

@@ -66,14 +66,14 @@
     <h4>SVN keyword substitution bug fix</h4>
 <p>In some of the installed software (ctiservers) the SVN keywords are used
 to extract the software version number:</p>
-<div class="highlight"><pre><span class="x">__version__ = &quot;</span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x">&quot;</span>
+<div class="highlight"><pre><span></span><span class="x">__version__ = &quot;</span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x">&quot;</span>
 </pre></div>
 
 
 <p>However, since the binaries have been built from a git repository with a
 different naming scheme, thisno longer works. Corentin Le Gall fixed the
 problem immediately in the internal SVN repository</p>
-<div class="highlight"><pre>------------------------------------------------------------------------
+<div class="highlight"><pre><span></span>------------------------------------------------------------------------
 r10824 | kaou | 2011-05-16 11:08:49 +0200 (Mon, 16 May 2011) | 1 line
 [bugfix] remove svn-dependent stuff because of git migration
 ------------------------------------------------------------------------
@@ -83,7 +83,7 @@ r10824 | kaou | 2011-05-16 11:08:49 +0200 (Mon, 16 May 2011) | 1 line
 <p>The <a href="http://git.xivo.fr/xivo-gallifrey.git/">git repository</a> was
 supposed to be updated by a cron job, but it crashed May 9th and was
 restarted May 16th by Romain Bignon:</p>
-<div class="highlight"><pre><span class="n">commit</span> <span class="n">a9f7ebff1a4db73184809a1696eb3b03b82b00f5</span>
+<div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">a9f7ebff1a4db73184809a1696eb3b03b82b00f5</span>
 <span class="nl">Author</span><span class="p">:</span> <span class="n">Corentin</span> <span class="n">Le</span> <span class="n">Gall</span> <span class="o">&lt;</span><span class="n">clegall</span><span class="p">@</span><span class="n">proformatique</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span>
 <span class="nl">Date</span><span class="p">:</span>   <span class="n">Mon</span> <span class="n">May</span> <span class="mi">16</span> <span class="mi">09</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">47</span> <span class="mi">2011</span> <span class="o">+</span><span class="mo">0000</span>
 
@@ -95,7 +95,7 @@ restarted May 16th by Romain Bignon:</p>
 
 <p>After the git pull, the logs showed that some packages were modified.
 They were submitted to the farm:</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=ctiservers submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=ctiservers submit
 packaging-farm DIRECTORY=asterisk submit
 packaging-farm DIRECTORY=agid submit
 packaging-farm DIRECTORY=lib-python submit
@@ -103,21 +103,21 @@ packaging-farm DIRECTORY=lib-python submit
 
 
 <p>and a rebuild of gallifrey was requested.</p>
-<div class="highlight"><pre>packaging-farm gallifrey
+<div class="highlight"><pre><span></span>packaging-farm gallifrey
 </pre></div>
 
 
 <h4>collecting symbolic links</h4>
 <p>A few packages contain symbolic links that point outside of their
 directory:</p>
-<div class="highlight"><pre>gwr.py -&gt; ../tools/gwr.py
+<div class="highlight"><pre><span></span>gwr.py -&gt; ../tools/gwr.py
 </pre></div>
 
 
 <p>When building the source package by assembling the debian directory and
 the sourcedirectory, the actual file must be put in the archive instead
 of the symbolic link.</p>
-<div class="highlight"><pre><span class="x">for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; </span>
+<div class="highlight"><pre><span></span><span class="x">for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; </span>
 <span class="x">  do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
 <span class="x">done</span>
 </pre></div>
@@ -125,7 +125,7 @@ of the symbolic link.</p>
 
 <p>The RSYNC_OPTIONS variable already existed in the <em>submit-xivo.sh</em>
 script but was not documented. A chapterwas added to the manual page:</p>
-<div class="highlight"><pre><span class="x">RSYNC_OPTIONS=</span>
+<div class="highlight"><pre><span></span><span class="x">RSYNC_OPTIONS=</span>
 <span class="x">              Before  the debian directory is assembled with the source direc-</span>
 <span class="x">              tory, a  copy  is  made  using  rsync(1).  The  content  of  the</span>
 <span class="x">              RSYNC_OPTIONS  variable  is  given in argument to the rsync com-</span>
@@ -139,7 +139,7 @@ script but was not documented. A chapterwas added to the manual page:</p>
 
 <p>Before installing <em>pf-xivo</em> it was necessary to install the
 <em>dahdi-linux</em> kernel module.</p>
-<div class="highlight"><pre>apt-get install dahdi-linux-modules-2.6.26-2-686 
+<div class="highlight"><pre><span></span>apt-get install dahdi-linux-modules-2.6.26-2-686 
 apt-get install pf-xivo
 </pre></div>
 
@@ -148,7 +148,7 @@ apt-get install pf-xivo
 XiVO" src="/public/.Screenshot-5_m.jpg" title="alternate XiVO, May 2011" /></p>
 <h4>gallifrey reference</h4>
 <p>ganeti instanceA new host is declared in the local DNS</p>
-<div class="highlight"><pre><span class="x">root@host01:/etc/bind</span><span class="err">#</span><span class="x"> git diff .</span>
+<div class="highlight"><pre><span></span><span class="x">root@host01:/etc/bind</span><span class="err">#</span><span class="x"> git diff .</span>
 <span class="x">diff --git a/bind/db.10.10 b/bind/db.10.10</span>
 <span class="x">index 684d569..ea30300 100644</span>
 <span class="x">--- a/bind/db.10.10</span>
@@ -193,7 +193,7 @@ XiVO" src="/public/.Screenshot-5_m.jpg" title="alternate XiVO, May 2011" /></p>
 
 <p>An entry is allocated in the DHCP server, configured with a server to be
 used for network boot.</p>
-<div class="highlight"><pre><span class="gh">diff --git a/bind/db.farm b/bind/db.farm</span>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/bind/db.farm b/bind/db.farm</span>
 <span class="gh">index 60da05a..2e4c669 100644</span>
 <span class="gd">--- a/bind/db.farm</span>
 <span class="gi">+++ b/bind/db.farm</span>
@@ -215,7 +215,7 @@ used for network boot.</p>
 
 
 <p>A ganeti based virtual machine is created with a VNC port enabled:</p>
-<div class="highlight"><pre>gnt-instance add -d -t plain -s 5G -B memory=512M,vcpus=1 \
+<div class="highlight"><pre><span></span>gnt-instance add -d -t plain -s 5G -B memory=512M,vcpus=1 \
    -H kvm:boot_order=network,vnc_bind_address=0.0.0.0 -n host01.farm \
    -o debootstrap+default --net 0:mac=52:54:24:1e:63:28 \
    gallifrey-test1.xivo.vm.farm
@@ -226,7 +226,7 @@ used for network boot.</p>
 selected.The firewall was reconfigured to accept HTTPS connections
 because it is the default when connecting to thevirtual machine with a
 browser (it gets redirected when trying with HTTP):</p>
-<div class="highlight"><pre><span class="gh">diff --git a/shorewall/rules b/shorewall/rules</span>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/shorewall/rules b/shorewall/rules</span>
 <span class="gh">index 3a7ea65..da38d67 100644</span>
 <span class="gd">--- a/shorewall/rules</span>
 <span class="gi">+++ b/shorewall/rules</span>
@@ -244,7 +244,7 @@ browser (it gets redirected when trying with HTTP):</p>
 <p>The nginx reverse proxy was configured to proxy SSL requests, after
 generating a certificateaccording to <a href="http://wiki.nginx.org/HttpSslModule">the SSL
 module</a> instructions:</p>
-<div class="highlight"><pre><span class="nt">server</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
  <span class="n">ssl</span> <span class="n">on</span><span class="p">;</span>
  <span class="n">listen</span> <span class="m">443</span><span class="p">;</span>
  <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">test1</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>

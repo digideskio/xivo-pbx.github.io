@@ -54,6 +54,50 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html#preparing-the-production-of-our-newer-prototype-xiohv5">Preparing the production of our newer prototype (XIOHv5)</a></h2>
+    <p>
+      Posted on Wed 11 July 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><strong>The current version of prototype is named XIOHv5</strong> (XiVO IPBX
+OpenHardware version5) and is still developed using 10-layers BRD file
+and 30+ pages of SCH (schematics) to handle the different blocks of the
+design and assemble them in one PCB. <strong>We have been doing several
+optimizations and features adding :</strong>-removing one DIMM of DDR2-using a
+MSP430 micro-controller to handle the power-sequence (critical feature
+for the boot of the CPU EP80579)-space optimization for the power supply
+and connectors-changing the format of certain connectors (i.e. UART
+RS232 to an RJ45 connector)</p>
+<p>Please find below a screenshot of our BRD file (board file in Eagle 6.2)
+showing the PCB and displaying the polygons for certain layers</p>
+<p><img alt="XIOHv5-BRD-Polygons" src="/public/XIOHv5/.XIOHv5_PCB_m.jpg" title="XIOHv5-BRD-Polygons, juil. 2012" /></p>
+<p>Polygons are signal, power and ground wires that assemble zone of wire
+to simplify the design and have wires to handle some currents needs on
+some power rails that we have. The power rails are numerous on the board
+and they should respect the current level needed by each block diagram
+(we will make an up-coming on the power rail organization) and namely
+the SoC that carries different functionnal block such as MAC, USB, RAM,
+UART, and TDM controller.</p>
+<p>The design of these polygons take some times and should checked to be
+sure that we don't multiply signals by making polygons of the same
+signal with different names. For instance, all GND (ground) polygons
+should be connected and named the same.</p>
+<p>Once the board and schematics had been finalized and checked (and
+double-checked), we did process FAB files for the PCB manufacturing and
+below you can see the picture of our PCB on top of a stack of PCBs ready
+to be assembled with the 1000+ components and 150+ different references
+of parts.</p>
+<p><img alt="XIOHv5-PCB-Stickers" src="/public/XIOHv5/.P1050963_m.jpg" title="XIOHv5-PCB-Stickers, juil. 2012" /></p>
+<p>Prior to do the assembling in factory, we need check the package for
+each of our references and do a BoM (Bill of Materials) optimization to
+handle nicely our stock.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/speaking-about-openhardware-at-solutionslinux2012.html#speaking-about-openhardware-at-solutionslinux2012">Speaking about OpenHardware at SolutionsLinux2012</a></h2>
     <p>
       Posted on Wed 11 July 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -142,39 +186,6 @@ Use the image to restore and select drives that you want to clone.  </p>
 To finish : y (for yes) and y (yes)  </p>
 <p>After waiting, (5-20min) it's finished : drives are cloned.<br />
 You can « Poweroff » your computer and use your new hdds with XiVO.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-architecture.html#xivo-architecture">XiVO Architecture</a></h2>
-    <p>
-      Posted on Mon 11 June 2012 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>The architecture of XiVO is still too complicated. As you can see, the
-components are virtually all related to each other.</p>
-<p><a href="/public/xivosoft/xivo_architecture.png" title="XiVO Architecture"><img alt="XiVO
-Architecture" src="/public/xivosoft/.xivo_architecture_m.jpg" title="XiVO Architecture, juin 2012" /></a></p>
-<p>We especially have too many requests from different services to the DB.
-Since so many components have direct access to the database, there are
-risks of data corruption. We currently are doing our best to simplify
-this architecture and to give each component its true purpose. A good
-example is CONFGEND which was developed to generate the Asterisk
-configuration by getting the information from the DB. It does one single
-task and it does it well.</p>
-<p>There are many challenges with current XiVO's architecture that we are
-adressing or will be working on in the near future. Asterisk's AGI
-should not make requests to the CTID. This is why we removed since XiVO
-1.2.11 all AGI interraction in the CTID (notice the link between the
-CTID and the AGI on the architecture's schema does not exist anymore).
-In the same vein, the AGID should have read-only access to the DB and
-the CTID should not interact directly with WebServices.</p>
-<p>A bunch of bad practices which we are aware of. We are up to the
-challenge and integrating this architecture evolution in our 2-weeks
-iterations makes it all even more exiting.</p>
 </p>
   </div>
 </article>

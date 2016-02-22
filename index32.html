@@ -54,6 +54,24 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Working ISDN prototype board</a></h2>
+    <p>
+      Posted on Fri 25 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>This is great to show the working PCB or the ISDN prototype board
+connected to our IPBX prototype through the LEB and TDM bus of our SoC
+(INTEL Tolapai). This PCB shows the 4 T0 ports routed to the CologneChip
+XHFC-4SU. We have been cabling this PCB in a factory facility close to
+Paris with good results on the quality of the cabling for 230+ parts on
+our PCB with 4 layers.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</a></h2>
     <p>
       Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -75,7 +93,7 @@ not match the existing package types (named ROLES) already implemented
 in packaging-farm (packages and meta-packages) and a new one was
 introduced : kernel-module. Here is a sample Makefile snippet used for
 <code>dahdi-linux</code>:</p>
-<div class="highlight"><pre>ROLE=kernel-module
+<div class="highlight"><pre><span></span>ROLE=kernel-module
 PACKAGE=dahdi-linux-modules
 MODULE=dahdi-linux-source
 DISTRIBUTIONS=lenny
@@ -87,7 +105,7 @@ ARCHITECTURES=i386
 be used against the designated <code>MODULE</code> (i.e. <code>dahdi-linux-source</code> which
 is a package created from the <code>dahdi-linux</code> source package). It will
 create a binary kernel module packages for the i386/lenny combination:</p>
-<div class="highlight"><pre>KVERS_i386_lenny=2.6.26-2-486 2.6.26-2-686-bigmem 2.6.26-2-686
+<div class="highlight"><pre><span></span>KVERS_i386_lenny=2.6.26-2-486 2.6.26-2-686-bigmem 2.6.26-2-686
 </pre></div>
 
 
@@ -107,12 +125,12 @@ that the latest version is used. However, they fail to provide the
 automatic architecture multiplexing provided by
 <a href="http://wiki.debian.org/DakHowTo">dak</a> repositories. On i386 the
 following line is valid</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src</span> <span class="kp">./</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src</span> <span class="kp">./</span>
 </pre></div>
 
 
 <p>but it needs to be changed to (note the x86_64)</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/x86_64/lenny/src</span> <span class="kp">./</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/x86_64/lenny/src</span> <span class="kp">./</span>
 </pre></div>
 
 
@@ -123,7 +141,7 @@ as a new way to index the packages when building a <code>meta-package</code>. It
 creates a repository that is located higher in the packaging-farm
 directory hierachy (immediatly above the architecture/distribut/src
 part) and that could be used as follows:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
 </pre></div>
 
 
@@ -188,29 +206,29 @@ overcome) have been addressed.</p>
 <a href="https://projects.proformatique.com/issues/1942">addressing the dependency
 problems</a> reported last
 week. They can be retrieved from the development repository</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>All source packages were downloaded using:</p>
-<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
 </pre></div>
 
 
 <p>the dependencies removed with:</p>
-<div class="highlight"><pre>rm /var/cache/packaging-farm/depends/*
+<div class="highlight"><pre><span></span>rm /var/cache/packaging-farm/depends/*
 </pre></div>
 
 
 <p>and the build of all packages relaunched with:</p>
-<div class="highlight"><pre><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
+<div class="highlight"><pre><span></span><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
 </pre></div>
 
 
 <p>Thanks to the dependency graph added to packaging-farm each package is
 compiled exactly once. It would be more convenient to be able run
 something like</p>
-<div class="highlight"><pre>packaging-farm all
+<div class="highlight"><pre><span></span>packaging-farm all
 </pre></div>
 
 
@@ -222,7 +240,7 @@ packages used by the company for various purposes and not specificaly
 for XiVO. It is not needed to properly create the XiVO packages and it
 should never be. It can be used by including the following in the source
 list:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
 </pre></div>
 
 
@@ -240,7 +258,7 @@ flavors : <code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and
 binary kernel packages. It needs to be modified to add a new type to
 package and meta-package : kernel-module. Instead of building a source
 package, it would run module-assistant as follows:</p>
-<div class="highlight"><pre><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<div class="highlight"><pre><span></span><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 <span class="n">module-assistant</span> <span class="n">prepare</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 <span class="n">KPKG_DEST_DIR</span>=<span class="sr">/tmp/</span><span class="n">a</span> <span class="n">SIGNCHANGES</span>=<span class="mi">0</span> <span class="n">module-assistant</span> <span class="n">build</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
 </pre></div>
@@ -254,7 +272,7 @@ headers and fails. As it is the sangoma-wanpipe package has no way to
 override the kernel version chosen. A <a href="https://projects.proformatique.com/issues/1977#note-1">patch was
 submitted</a> to
 allows this:</p>
-<div class="highlight"><pre><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
+<div class="highlight"><pre><span></span><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
 <span class="gi">+++ rules       2011-02-21 16:18:47.000000000 +0100</span>
 <span class="gu">@@ -13,7 +13,12 @@</span>
  KPKG_DESTDIR := $(DEB_DESTDIR)
@@ -274,7 +292,7 @@ allows this:</p>
 
 
 <p>so that packaging can be done with:</p>
-<div class="highlight"><pre>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
+<div class="highlight"><pre><span></span>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
 </pre></div>
 
 
@@ -309,7 +327,7 @@ which is created by the misdn-kernel package.A
 wascreated to compute the source package dependencies. Its input is a
 set of debian/control filesand its output is a set of Makefile rules
 such as:</p>
-<div class="highlight"><pre>misdn-kernel ::
+<div class="highlight"><pre><span></span>misdn-kernel ::
 misdn-user ::  misdn-kernel
 </pre></div>
 
@@ -317,7 +335,7 @@ misdn-user ::  misdn-kernel
 <p>Note the <em>::</em> which allows for additional dependencies to appear later
 in the Makefile. Thisgraph is abstract and would not be of any use
 unless it is associated to actions such as:</p>
-<div class="highlight"><pre>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
+<div class="highlight"><pre><span></span>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
 /var/cache/packaging-farm/depends/misdn-kernel :: /var/cache/packaging-farm/sources/misdn-kernel/*/debian/control
         packaging-farm --cd misdn-kernel all
         touch $@
@@ -339,7 +357,7 @@ triggering the rebuild of all depending packages in the graph.</p>
 <p>The last set of lines created by depend.sh are source lists that allow
 each package to gain access to themost recently built version of the
 other packages:</p>
-<div class="highlight"><pre>define debian_SOURCE_LIST_APPEND
+<div class="highlight"><pre><span></span>define debian_SOURCE_LIST_APPEND
 echo &quot;deb http://localhost/packaging-farm/misdn-kernel/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
 echo &quot;deb http://localhost/packaging-farm/misdn-user/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
 : finished
@@ -359,7 +377,7 @@ be used to continue building a standalone XiVO repository.</p>
 <p>With the newer installation of the packaging-farm including dependency
 handling, another attempt to createa i386 based gallifrey repository for
 lenny was made. For each package a command similar to</p>
-<div class="highlight"><pre>packaging-farm misdn-kernel
+<div class="highlight"><pre><span></span>packaging-farm misdn-kernel
 </pre></div>
 
 
@@ -383,22 +401,6 @@ squeeze</a>.
 An attempt was made to buildthem for x86_64. The <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/x86_64/squeeze/src/">result is still
 incomplete</a>
 but it should run when the last dependency problems are resolved.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-is-everywhere-part-3.html#xivo-is-everywhere-part-3">XiVO is everywhere part 3 !</a></h2>
-    <p>
-      Posted on Fri 11 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>Hello, it's cold (-15), it's winter but XiVO is always here !</p>
-<p><img alt="sylvain_xivo.png" src="/public/.sylvain_xivo_m.jpg" title="sylvain_xivo.png, fév. 2011" /></p>
-<p>Special for you Bertrand ;)</p>
-<p><img alt="IMG_20110211_144454.jpg" src="/public/.IMG_20110211_144454_m.jpg" title="IMG_20110211_144454.jpg, fév. 2011" /></p>
 </p>
   </div>
 </article>

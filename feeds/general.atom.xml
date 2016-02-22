@@ -580,7 +580,7 @@ GPLv3 license. The result of this script is :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="aastra_resultat.jpg" src="/public/.aastra_resultat_m.jpg" title="aastra_resultat.jpg, juin 2012" /&gt;&lt;/p&gt;
 &lt;p&gt;To activate this new function, simply change the aastra template in your
 provisioning server.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;xml status scroll delay: 2&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;xml status scroll delay: 2&lt;/span&gt;
 &lt;span class="x"&gt;action uri registered: https://&amp;lt;YOUR_URL&amp;gt;/?identity=&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="nv"&gt;DISPLAYNAME&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;action uri onhook: https://&amp;lt;YOUR_URL&amp;gt;/?identity=&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="nv"&gt;DISPLAYNAME&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;action uri poll: https://&amp;lt;YOUR_URL&amp;gt;/?identity=&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="nv"&gt;DISPLAYNAME&lt;/span&gt;&lt;span class="p"&gt;$$&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
@@ -612,7 +612,7 @@ Switzerland, United Kingdom, United States, Vietnam&lt;/p&gt;
 &lt;/ul&gt;
 &lt;!-- --&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -892,7 +892,7 @@ tous ceux qui ont participé à ce projet et à faire en sorte que cela
 soit possible. Vous pourrez retrouver des membres sur le prochain salon
 ip convergence en octobre ou nous serons également présent pour
 présenter XiVO et nos avancements sur notre appliance open hardware.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Longue vie à l&amp;#39;association !
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Longue vie à l&amp;#39;association !
 &lt;/pre&gt;&lt;/div&gt;
 
 

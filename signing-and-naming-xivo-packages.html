@@ -69,7 +69,7 @@
 created for <a href="http://packaging-farm.dachary.org">packaging-farm</a> and used
 to sign the <a href="http://packaging-farm.dachary.org/downloads/">1.2.37</a>
 release. It can be imported using:</p>
-<div class="highlight"><pre>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
+<div class="highlight"><pre><span></span>curl http://packaging-farm.dachary.org/download/packaging-farm.gpg | sudo apt-key add -
 </pre></div>
 
 
@@ -79,7 +79,7 @@ and repositories.If the GPG private key for the packager (as listed in
 the debian/changelogfor instance) is found (in the home of the user
 building the package)and that SIGN_debian is provided the packages will
 be signed with it.The relevant packaging-farm.conf(5) lines are:</p>
-<div class="highlight"><pre>#
+<div class="highlight"><pre><span></span>#
 # Signing related options for Debian GNU/Linux
 # See dpkg-buildpackage(1) for more information
 #
@@ -92,7 +92,7 @@ debian/changelogfor instance) is found (in the home of the user building
 the packages)and that SIGN_WITH is set the packages and the content of
 the repository will be signed with it.The relevant
 packaging-farm.conf(5) lines are:</p>
-<div class="highlight"><pre>#
+<div class="highlight"><pre><span></span>#
 # Signing related options for Debian GNU/Linux
 # See reprepro(1) for more information
 #

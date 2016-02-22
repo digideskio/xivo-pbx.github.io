@@ -54,6 +54,38 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/astricon-2012.html#astricon-2012">Astricon 2012</a></h2>
+    <p>
+      Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="/public/Astricon2012/astricon.JPG" title="astricon.JPG"><img alt="astricon.JPG" src="/public/Astricon2012/.astricon_m.jpg" title="astricon.JPG, nov. 2012" /></a></p>
+<p>For a second year, Avencall was present on the biggest Asterisk
+conference in the world: Astricon.This year, the conference was held in
+Georgia, Atlanta.</p>
+<p>Like every year, the Monday is the AstriDevCon, a small conference for
+developers by the developers to discuss the future and how to improve
+Asterisk. It's a very nice place to get to know the other people that
+are coding inside Asterisk and also to coordinate with others about what
+has to be done.</p>
+<p>You can find a nice resume of the whole day of discussion here:
+<a href="https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012">https://wiki.asterisk.org/wiki/display/AST/AstriDevCon+2012</a></p>
+<p>As you can see, this year we also had a booth (#28). It was a great
+experience to expose ourself at Astricon because there is a huge flow of
+people interested and interesting. It was a lot of fun to talk about the
+XiVO project and the XiVO Open Hardware. All the gizmos we had on our
+table really attracted may people, especially the raspberry pi that was
+running XiVO.</p>
+<p><a href="/public/Astricon2012/conf-xav.jpg" title="conf-xav.jpg"><img alt="conf-xav.jpg" src="/public/Astricon2012/.conf-xav_s.jpg" title="conf-xav.jpg, nov. 2012" /></a></p>
+<p>To communicate further about us, we also gave a conference to present
+Avencall and the XiVO telephony system.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/a-conference-with-uncle-bob.html#a-conference-with-uncle-bob">A conference with Uncle Bob</a></h2>
     <p>
       Posted on Mon 05 November 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
@@ -242,7 +274,7 @@ best is to enable nfs mount on your development workstation and to mount
 the web interface development directory onto your XiVO virtual
 machine.If your development projects is located in /projects/xivo-skaro,
 the mount command can be :</p>
-<div class="highlight"><pre>mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
+<div class="highlight"><pre><span></span>mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
 </pre></div>
 
 
@@ -276,7 +308,7 @@ steps :</p>
 <p>Let's start with a simple page that we want to be displayed in the menu
 "services -&gt; IPBX -&gt; Call management", edit a file
 xivo-skaro/web-interface/src/action/www/service/ipbx/asterisk/call_management/hellowivo.php</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
     <span class="k">echo</span> <span class="s2">&quot;Hello XiVO world !&quot;</span><span class="p">;</span>
 <span class="cp">?&gt;</span>
 </pre></div>
@@ -288,7 +320,7 @@ within XiVO authorization framework. The list of available pages is
 located in the file
 xivo-skaro/web-interface/src/object/objectconf/acl/user.inc.Edit this
 file and add this new action.</p>
-<div class="highlight"><pre><span class="x">....</span>
+<div class="highlight"><pre><span></span><span class="x">....</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;pickup&#39;] = true;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;schedule&#39;] = true;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;cel&#39;] = true;</span>
@@ -319,7 +351,7 @@ menu.</p>
 <p>Edit
 xivo-skaro/web-interface/src/tpl/www/bloc/menu/left/service/ipbx/asterisk.php,
 add the menu entry :</p>
-<div class="highlight"><pre>........
+<div class="highlight"><pre><span></span>........
         if(xivo_user::chk_acl(&#39;call_management&#39;,&#39;cel&#39;) === true):
             echo    &#39;<span class="nt">&lt;dd</span> <span class="na">id=</span><span class="s">&quot;mn-call_management--cel&quot;</span><span class="nt">&gt;</span>&#39;,
                 $url-&gt;href_html($this-&gt;bbf(&#39;mn_left_callmanagement-cel&#39;),
@@ -348,7 +380,7 @@ framework.</p>
 <h3>XiVO URL Routing</h3>
 <p>Edit xivo-skaro/web-interface/src/object/objectconf/url.inc and add the
 URL translation</p>
-<div class="highlight"><pre><span class="x">.......</span>
+<div class="highlight"><pre><span></span><span class="x">.......</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/schedule&#39;] = &#39;service/ipbx/index.php/call_management/schedule/&#39;;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/voicemenu&#39;] = &#39;service/ipbx/index.php/call_management/voicemenu/&#39;;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/cel&#39;] = &#39;service/ipbx/index.php/call_management/cel/&#39;;</span>
@@ -393,7 +425,7 @@ were able to reproduce the freeze and get some information about the
 various locks held by the various threads of the frozen asterisk process
 via the "coreshow locks" command.</p>
 <p>The output of the "core show locks" command looks like this:</p>
-<div class="highlight"><pre><span class="gh">=======================================================================</span>
+<div class="highlight"><pre><span></span><span class="gh">=======================================================================</span>
 <span class="gh">=== Currently Held Locks ==============================================</span>
 <span class="gh">=======================================================================</span>
 ===
@@ -496,7 +528,7 @@ repository</a>.
 Given you have the output of a "core show locks" invocation, and that
 you have graphviz installed, you can then run the following command to
 generate a graph in svg format:</p>
-<div class="highlight"><pre>graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
+<div class="highlight"><pre><span></span>graph_ast_locks.py core-show-locks.txt | circo -Tsvg -o graph-locks.svg
 </pre></div>
 
 
@@ -544,69 +576,6 @@ for the fast byte based implementation: CRC = table[CRC \^ byte]
 implementation should run in something like 9 cycles per byte when
 dropped in the right place. (xor CRC, Rm /* 3 cycles */; mov
 table[Rm], CRC; /* 6 cycles */)</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/an-engineering-story.html#an-engineering-story">An engineering story</a></h2>
-    <p>
-      Posted on Sat 29 September 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>To be able to track interesting quality metrics of our upcoming XiVO
-Office product (XiVO IPBX Open Hardware project), we have decided to add
-temperature sensors to our current XIOH pcb.</p>
-<p>In computers, the typical way to report the temperature to the main
-operating system is through SMBus. This is suitable in our case: we
-already have an MSP430 microcontroller that handles the power sequence
-and is connected to the SMBus of the board. We will connect some diodes
-to the MSP430 to measure the temperature. So the time has come to make
-use of the SMBus between the MSP and the EP80579 (our main System On
-Chip), for temperature measurements and also other purposes.</p>
-<p>The MSP430 does not have a full featured SMBus controller, only a
-generic I2C one. SMBus is a variant of I2C, with additional electrical
-and timing constraints in the physical layer and definition of the
-messages at the network layer level.</p>
-<p>Although formatting and parsing SMBus messages is easy, properly using
-the I2C controller of the MSP430 in a multi-master environment is not
-without pitfalls, even if we did not care about the SMBus timing
-constraints. To do it with the needed reliability, it is necessary to
-have a detailed knowledge of the whole system and to take into
-consideration all kind of interactions on the bus and in the chips. In
-our business, the reliability wanted by the customers is typically high
-enough that it makes sense to build robust systems instead of rushing a
-collapsing sandcastle to market. Plus, in that particular case, we are
-dealing with the subsystem that brings and keeps the whole board
-running, and for which the cost to debug in the field is absurdly high.</p>
-<p>All complex chips come with various design errors, and the MSP430 is no
-exception. On the exact version that we use, there are 6 documented
-errors affecting the I2C controller, of which 4 clearly apply to our
-board, 1 clearly does not apply, and one required careful system
-analysis to determine that the preconditions to this erroneous behavior
-could not happen in our system.</p>
-<p>On top of the 4 errata applying to the I2C controller, we have to deal
-with errata for other parts of the MSP430, plus some detailled aspects
-that are not errata but are also limiting the way we can make a reliable
-use of the chip for the tasks we want.Failure to properly take all those
-details into consideration would lead to eventual faults of various
-natures, probably including MSP430 crashes impossible to diagnose and
-leading to spurious shutdowns, systems stuck in the powered state, or
-any random behavior and degradation of system functions.</p>
-<p>The impact could be full-scale, with potential consequences on:
-availability, maintainability, safety, security, and reliability!</p>
-<p>It is worthwhile to note that one of the errata that could have the
-biggest consequences can only be handled by using one specific software
-architecture to drive the I2C controller, and that specific software
-architecture is not the first thing that comes to mind in our
-preexisting firmware. This is a case where iteration on the design of
-the I2C code would have meant its complete rewrite.</p>
-<p>Complex systems, even moderately so, need a careful design, especially
-on components that are critical for business or technical reasons.
-Wishful thinking never produces high reliability and neither does
-excessive reliance on luck. Modeling, even informally, sometimes pays.</p>
 </p>
   </div>
 </article>

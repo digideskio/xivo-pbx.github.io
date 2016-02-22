@@ -54,6 +54,22 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Working ISDN prototype board</a></h2>
+    <p>
+      Posted on Fri 25 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>This is great to show the working PCB or the ISDN prototype board
+connected to our IPBX prototype through the LEB and TDM bus of our SoC
+(INTEL Tolapai). This PCB shows the 4 T0 ports routed to the CologneChip
+XHFC-4SU. We have been cabling this PCB in a factory ...</p>
+      <a class="btn" href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</a></h2>
     <p>
       Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -83,12 +99,12 @@ compile the module from sources so that it matches the currently ...</p>
 <a href="https://projects.proformatique.com/issues/1942">addressing the dependency
 problems</a> reported last
 week. They can be retrieved from the development repository</p>
-<div class="highlight"><pre><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>All source packages were downloaded using:</p>
-<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
       <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Continue reading</a>
   </div>
   <hr />
@@ -127,32 +143,8 @@ DebianGNU/Linux squeeze, packaging-farm is installed from the
 repository. Anothersource is added to extract the XiVO packages in
 source form. Here we focuson <em>main</em> but the same principle can be done
 for others.</p>
-<div class="highlight"><pre><span class="k">deb ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="k">deb ...</span></pre></div>
       <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html#xivo-client-packaging-server-source-policy-and-packaging-farm-updates">XiVO client packaging, server source policy and packaging-farm updates</a></h2>
-    <p>
-      Posted on Mon 31 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <h4>XiVO Qt client packaging</h4>
-<p>The resulting packages are then uploaded to a directory that depends on
-the operating system :</p>
-<ul>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/linux/debian/">Debian GNU/Linux i386 and
-    amd64</a></li>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/win32/">Windows</a></li>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/macos/">MacOsX</a></li>
-</ul>
-<p>The Debian GNU/Linux packages are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer.sh">custom
-script</a>
-that builds the binary .deb file using the binary produced by the ...</p>
-      <a class="btn" href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html#xivo-client-packaging-server-source-policy-and-packaging-farm-updates">Continue reading</a>
   </div>
 </article>
 

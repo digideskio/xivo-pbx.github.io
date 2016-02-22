@@ -69,7 +69,7 @@ merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
 containing the sources and the SVN repository containing the debian
 packages into a well formed Debian GNU/Linux source package. For
 instance</p>
-<div class="highlight"><pre>pf-release.sh lib-javascript squeeze skaro
+<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
 </pre></div>
 
 
@@ -80,7 +80,7 @@ concluded that it will be bound to a public GIT repository shortly. When
 it is ready, the pf-release.sh script will be updated accordingly.In
 order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
 argument:</p>
-<div class="highlight"><pre>pf-release.sh TEST
+<div class="highlight"><pre><span></span>pf-release.sh TEST
 </pre></div>
 
 
@@ -92,7 +92,7 @@ script) is currently the only documentation.</p>
 same conventions as packaging-farm. Because of that, submitting the
 package to the host running the packaging farm can be done by copying
 the directory as follows:</p>
-<div class="highlight"><pre>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
+<div class="highlight"><pre><span></span>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
 </pre></div>
 
 
@@ -106,13 +106,13 @@ its own. For instance, the meta package <em>skaro</em> was created to produce
 the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
 repository</a>.
 When running the depencency generations as follows:</p>
-<div class="highlight"><pre>packaging-farm depends
+<div class="highlight"><pre><span></span>packaging-farm depends
 </pre></div>
 
 
 <p>it includes the meta packages in the graph so that skaro can be built
 with:</p>
-<div class="highlight"><pre>packaging-farm skaro
+<div class="highlight"><pre><span></span>packaging-farm skaro
 </pre></div>
 
 
@@ -125,7 +125,7 @@ associated with it. Setting the variables in this <em>Makefile</em> allows the
 administrator to tune the behaviour on a per package basis. When a
 package is simple enough, its <em>Makefile</em> can be automatically generated
 as follows:</p>
-<div class="highlight"><pre>packaging-farm makefiles
+<div class="highlight"><pre><span></span>packaging-farm makefiles
 </pre></div>
 
 

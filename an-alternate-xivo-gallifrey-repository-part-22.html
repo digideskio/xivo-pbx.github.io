@@ -69,7 +69,7 @@ are not under GIT and others built for the occasion (kernel-modules and
 meta-packages). The source of each package is documented in
 <strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> which is the
 meta-package that depends on all the others:</p>
-<div class="highlight"><pre><span class="err">#</span><span class="x"></span>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"></span>
 <span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
 <span class="err">#</span><span class="x"></span>
 <span class="err">#</span><span class="x"> for dir in asterisk dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca \</span>
@@ -109,7 +109,7 @@ repository</a>
 does not deviate from the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">existing
 dak</a>,
 the packages it contains were extracted from sources and compared.</p>
-<div class="highlight"><pre><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
 <span class="x">dak:</span>
 <span class="x">        mkdir -p dak</span>
 <span class="x">        apt-get update</span>
@@ -151,7 +151,7 @@ the packages it contains were extracted from sources and compared.</p>
 timestamp</a>.According to Nicolas
 Hicher, the numerous SVN tag substitutions that are missing because of
 the migration to GIT will be harmless:</p>
-<div class="highlight"><pre><span class="x">pf_magic_pickupmark</span>
+<div class="highlight"><pre><span></span><span class="x">pf_magic_pickupmark</span>
 <span class="x">-       </span><span class="p">$</span><span class="nv">Revision</span><span class="x">: 10011 </span><span class="p">$</span><span class="x"></span>
 <span class="x">-       </span><span class="p">$</span><span class="nv">Date</span><span class="x">: 2011-01-21 17:22:28 +0100 (Fri, 21 Jan 2011) </span><span class="p">$</span><span class="x"></span>
 <span class="x">+       </span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x"></span>
@@ -165,7 +165,7 @@ against the latest packaging-farm, but they were not fixed because they
 are not blocking. Other problems required immediate attention and they
 were fixed in the <a href="http://packaging-farm.dachary.org/download/">1.2.39</a>
 release</p>
-<div class="highlight"><pre>* home/www/packaging-farm/packaging-farm/lib/Makefile:
+<div class="highlight"><pre><span></span>* home/www/packaging-farm/packaging-farm/lib/Makefile:
         kill all processes left over in a chroot before trying to umount
         [dd63f7ecef41] 
 

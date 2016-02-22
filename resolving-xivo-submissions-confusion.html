@@ -69,12 +69,12 @@ explained in the manual pages. However, they have changed a lot while
 packaging-farm matured in the past months and they deserve a short
 summary.The first step is to submit work to the packaging-farm and this
 is done by the submit-xivo.sh script as follows:</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=asterisk submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=asterisk submit
 </pre></div>
 
 
 <p>which is run as a side effect of the command</p>
-<div class="highlight"><pre>rebuild
+<div class="highlight"><pre><span></span>rebuild
 </pre></div>
 
 
@@ -87,7 +87,7 @@ it fully relies on what has been done manually. It does, however,
 creates the package version according to a complex set of rules,
 explained in the VERSIONS section of the submit-xivo.sh.The asterisk
 source package will not be generated each time the</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=asterisk submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=asterisk submit
 </pre></div>
 
 
@@ -122,7 +122,7 @@ decision to rebuild a source package.</p>
 <p>Some packages are not yet in the git repositories and they are completly
 outside the control of submit-xivo.sh. As a consequence they must be
 submitted manually to packaging farm. The</p>
-<div class="highlight"><pre>rebuild
+<div class="highlight"><pre><span></span>rebuild
 </pre></div>
 
 
@@ -135,7 +135,7 @@ submitted manually to packaging farm. The</p>
 <p>The list of packages that need manual care is found in the
 <strong>/etc/packaging-farm/gallifrey.mk</strong> or <strong>/etc/packaging-farm/skaro.mk</strong>
 files:</p>
-<div class="highlight"><pre><span class="x">cd /var/cache/packaging-farm/sources</span>
+<div class="highlight"><pre><span></span><span class="x">cd /var/cache/packaging-farm/sources</span>
 <span class="x">for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp</span>
 <span class="x">do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> </span>
 <span class="x">      rm -f /var/cache/packaging-farm/depends/</span><span class="p">$</span><span class="nv">package</span><span class="x"> )</span>
@@ -191,7 +191,7 @@ avoid this problem:</p>
 </ul>
 <h4>misleading error message</h4>
 <p>When nothing needs to be done according to submit-xivo.sh, it shows</p>
-<div class="highlight"><pre>package <span class="cp">${</span><span class="n">package</span><span class="cp">}</span> was not modified in git since the last package generation
+<div class="highlight"><pre><span></span>package <span class="cp">${</span><span class="n">package</span><span class="cp">}</span> was not modified in git since the last package generation
 </pre></div>
 
 

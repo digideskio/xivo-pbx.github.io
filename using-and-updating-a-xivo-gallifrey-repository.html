@@ -66,7 +66,7 @@
     <h4>Updating the repository</h4>
 <p>To figure out what needs updating, a query is made on the git
 repositories.</p>
-<div class="highlight"><pre>cd /var/cache/packaging-farm/VCS/sources/xivo-gallifrey
+<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/VCS/sources/xivo-gallifrey
 git fetch
 git log --stat=2000,2000 ..origin/master
 </pre></div>
@@ -75,25 +75,25 @@ git log --stat=2000,2000 ..origin/master
 <p>The <em>--stat</em> option shows which files are modified and the numbers after
 it ensure that they are not truncated. The first component of the file
 name designate the directory of interest. For instance</p>
-<div class="highlight"><pre>chan_sccp/patches/fix_forward_on_bad_numbers       |   13 ++
+<div class="highlight"><pre><span></span>chan_sccp/patches/fix_forward_on_bad_numbers       |   13 ++
  chan_sccp/patches/fix_useless_channel_unlocks      |  155 ++++++++++++++++++++
 </pre></div>
 
 
 <p>says that we need to re-submit as follows:</p>
-<div class="highlight"><pre>packaging-farm DIRECTORY=chan_sccp submit
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=chan_sccp submit
 </pre></div>
 
 
 <p>The same should be done for the git repository of the debian packages</p>
-<div class="highlight"><pre>cd /var/cache/packaging-farm/VCS/debian/lenny-xivo-gallifrey
+<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/VCS/debian/lenny-xivo-gallifrey
 git fetch
 git log --stat=2000,2000 ..origin/master
 </pre></div>
 
 
 <p>There was a need to re-submit the following:</p>
-<div class="highlight"><pre><span class="x">for dir in web-interface chan_sccp ctiservers</span>
+<div class="highlight"><pre><span></span><span class="x">for dir in web-interface chan_sccp ctiservers</span>
 <span class="x">do </span>
 <span class="x">  packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit</span>
 <span class="x">done</span>
@@ -101,12 +101,12 @@ git log --stat=2000,2000 ..origin/master
 
 
 <p>and the repository was updated with:</p>
-<div class="highlight"><pre>packaging-farm gallifrey
+<div class="highlight"><pre><span></span>packaging-farm gallifrey
 </pre></div>
 
 
 <p>after checking what would be done with</p>
-<div class="highlight"><pre>packaging-farm -n gallifrey
+<div class="highlight"><pre><span></span>packaging-farm -n gallifrey
 </pre></div>
 
 
@@ -128,13 +128,13 @@ parents.</p>
 using the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey">gallifrey
 repository</a> and
 the following command:</p>
-<div class="highlight"><pre>apt-get install pf-xivo
+<div class="highlight"><pre><span></span>apt-get install pf-xivo
 </pre></div>
 
 
 <p>The host firewall was configured to send the <em>5060</em> port to the virtual
 machine and forward the https port to the nginx proxy:</p>
-<div class="highlight"><pre><span class="gd">--- a/shorewall/params</span>
+<div class="highlight"><pre><span></span><span class="gd">--- a/shorewall/params</span>
 <span class="gi">+++ b/shorewall/params</span>
 <span class="gu">@@ -28,4 +28,5 @@ IP_FAILOVER=66.254.41.119</span>
  VM_DEV_DACHARY=10.10.60.1
@@ -166,7 +166,7 @@ machine and forward the https port to the nginx proxy:</p>
 
 
 <p>The nginx proxy was configured to reverse proxy https:</p>
-<div class="highlight"><pre><span class="gh">diff --git a/nginx/sites-available/gallifrey-test2.dachary.org b/nginx/sites-available/gallifrey-test2.dachary.org</span>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/nginx/sites-available/gallifrey-test2.dachary.org b/nginx/sites-available/gallifrey-test2.dachary.org</span>
 new file mode 100644
 <span class="gh">index 0000000..2525ff9</span>
 <span class="gd">--- /dev/null</span>
@@ -196,7 +196,7 @@ number</a>. All of the instructiosn
 listed for IPPI apply to OVH because they use the same system (Cirpack).
 The values for DTMF were left unchanged and NAT set to <em>Yes</em>.Debugging
 was made convenient with the asterisk console</p>
-<div class="highlight"><pre>$ asterisk -rvvvvv
+<div class="highlight"><pre><span></span>$ asterisk -rvvvvv
 gallifrey-test1*CLI&gt; sip show registry
 Host                            Username       Refresh State                Reg.Time                 
 sip.ovh.net:5060                <span class="m">003384452800</span>       <span class="m">105</span> Registered           Mon, <span class="m">23</span> May <span class="m">2011</span> 11:38:12
@@ -204,7 +204,7 @@ sip.ovh.net:5060                <span class="m">003384452800</span>       <span 
 
 
 <p>And the actual SIP requests could be viewed with</p>
-<div class="highlight"><pre>gallifrey-test1*CLI&gt; set debug peer trunk_ovh
+<div class="highlight"><pre><span></span>gallifrey-test1*CLI&gt; set debug peer trunk_ovh
 </pre></div>
 
 
@@ -212,19 +212,19 @@ sip.ovh.net:5060                <span class="m">003384452800</span>       <span 
 irc.freenode.net#xivo and irc.freenode.net#asterisk.</p>
 <h4>Independent install of XiVO</h4>
 <p>Nicolas Hicher installed XiVO using</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>and</p>
-<div class="highlight"><pre>apt-get install dahdi-linux-modules-2.6.26-2-486
+<div class="highlight"><pre><span></span>apt-get install dahdi-linux-modules-2.6.26-2-486
 apt-get install pf-xivo
 </pre></div>
 
 
 <p>(the actual package was adapted to the running kernel) and reported
 success</p>
-<div class="highlight"><pre>(11:53:20 AM) atarakt: Installation successful !!!
+<div class="highlight"><pre><span></span>(11:53:20 AM) atarakt: Installation successful !!!
 (11:53:24 AM) atarakt: excellent =)
 (11:54:28 AM) atarakt: j&#39;ai un xivo qui tourne
 (11:57:37 AM) dachary: oO

@@ -74,7 +74,7 @@ and the required configuration to test it.</p>
 <h2>Getting the sources</h2>
 <p>The first step to creating your own xlet is to get the XiVO client
 sources. The sources can be retrieved with the following command:</p>
-<div class="highlight"><pre>git clone git://git.xivo.fr/official/xivo-client-qt.git
+<div class="highlight"><pre><span></span>git clone git://git.xivo.fr/official/xivo-client-qt.git
 </pre></div>
 
 
@@ -86,13 +86,13 @@ for our new xlet.</p>
 information for debugging purposes.</p>
 <p>Copy the xletnull directory and give your new directory a significant
 name.</p>
-<div class="highlight"><pre>cd xivoclient/src/xlets
+<div class="highlight"><pre><span></span>cd xivoclient/src/xlets
 cp -R xletnull channellist
 </pre></div>
 
 
 <p>Rename files in the channellist directory to reflect your new xlet name.</p>
-<div class="highlight"><pre>rename &#39;s/xletnull/channellist/&#39; *
+<div class="highlight"><pre><span></span>rename &#39;s/xletnull/channellist/&#39; *
 </pre></div>
 
 
@@ -107,7 +107,7 @@ directory</p>
 xivoclient/xlets.pro. Add src/xlets/channellist to the SUBDIRS array.</p>
 <h2>Check if it still compiles</h2>
 <p>Test your changes. From the root of the xivo-client-qt directory run:</p>
-<div class="highlight"><pre>make clean
+<div class="highlight"><pre><span></span>make clean
 make
 </pre></div>
 
@@ -117,7 +117,7 @@ xivoclient/obj/ directory.</p>
 <h2>Tell xivo-ctid about your new xlet</h2>
 <p>On your XiVO, edit /etc/pf-xivo/xivo-ctid/allowedxlets.json.Add a line
 for your new xlet</p>
-<div class="highlight"><pre>&quot;channellist&quot; : []
+<div class="highlight"><pre><span></span>&quot;channellist&quot; : []
 </pre></div>
 
 
@@ -141,7 +141,7 @@ channellist.cpp files.</p>
 </ul>
 <p>In the constructor of your xlet change the string sent to setTitle to
 your desired title.</p>
-<div class="highlight"><pre>`setTitle(&quot;Channel List&quot;);`
+<div class="highlight"><pre><span></span>`setTitle(&quot;Channel List&quot;);`
 </pre></div>
 
 

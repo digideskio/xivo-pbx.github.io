@@ -107,7 +107,7 @@ by the test suite. An asset consists of a fig.yml file to describethe
 environment in which we want to run dird as well as allconfiguration
 files that are required for this given test.</p>
 <p>Here is an example of an asset directory:</p>
-<div class="highlight"><pre><span class="c">% tree assets/xivo_users_multiple_xivo </span>
+<div class="highlight"><pre><span></span><span class="c">% tree assets/xivo_users_multiple_xivo </span>
 <span class="n">assets</span><span class="o">/</span><span class="n">xivo_users_multiple_xivo</span>
 ├── <span class="n">confd_data</span>
 │   ├── <span class="n">america</span>
@@ -141,7 +141,7 @@ files that are required for this given test.</p>
 asset field that map the test to an asset. The BaseDirdIntegrationTestis
 responsible of launching and stopping the environment for each testcase.</p>
 <p>Here is an example fig file for the asset shown above:</p>
-<div class="highlight"><pre><span class="c">% cat assets/xivo_users_multiple_xivo/fig.yml</span>
+<div class="highlight"><pre><span></span><span class="c">% cat assets/xivo_users_multiple_xivo/fig.yml</span>
 <span class="n">dird</span><span class="p">:</span>
   <span class="n">image</span><span class="p">:</span> <span class="n">dird</span><span class="o">-</span><span class="n">test</span>
   <span class="n">ports</span><span class="p">:</span>

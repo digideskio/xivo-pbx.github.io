@@ -76,7 +76,7 @@ which is created by the misdn-kernel package.A
 wascreated to compute the source package dependencies. Its input is a
 set of debian/control filesand its output is a set of Makefile rules
 such as:</p>
-<div class="highlight"><pre>misdn-kernel ::
+<div class="highlight"><pre><span></span>misdn-kernel ::
 misdn-user ::  misdn-kernel
 </pre></div>
 
@@ -84,7 +84,7 @@ misdn-user ::  misdn-kernel
 <p>Note the <em>::</em> which allows for additional dependencies to appear later
 in the Makefile. Thisgraph is abstract and would not be of any use
 unless it is associated to actions such as:</p>
-<div class="highlight"><pre>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
+<div class="highlight"><pre><span></span>misdn-kernel :: /var/cache/packaging-farm/depends/misdn-kernel
 /var/cache/packaging-farm/depends/misdn-kernel :: /var/cache/packaging-farm/sources/misdn-kernel/*/debian/control
         packaging-farm --cd misdn-kernel all
         touch $@
@@ -106,7 +106,7 @@ triggering the rebuild of all depending packages in the graph.</p>
 <p>The last set of lines created by depend.sh are source lists that allow
 each package to gain access to themost recently built version of the
 other packages:</p>
-<div class="highlight"><pre>define debian_SOURCE_LIST_APPEND
+<div class="highlight"><pre><span></span>define debian_SOURCE_LIST_APPEND
 echo &quot;deb http://localhost/packaging-farm/misdn-kernel/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
 echo &quot;deb http://localhost/packaging-farm/misdn-user/gnulinux/debian/<span class="cp">${</span><span class="n">ARCHITECTURE</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">DISTRIBUTION</span><span class="cp">}</span>/src ./&quot; &gt;&gt; $$source_list ; \\
 : finished
@@ -126,7 +126,7 @@ be used to continue building a standalone XiVO repository.</p>
 <p>With the newer installation of the packaging-farm including dependency
 handling, another attempt to createa i386 based gallifrey repository for
 lenny was made. For each package a command similar to</p>
-<div class="highlight"><pre>packaging-farm misdn-kernel
+<div class="highlight"><pre><span></span>packaging-farm misdn-kernel
 </pre></div>
 
 

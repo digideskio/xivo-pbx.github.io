@@ -68,7 +68,7 @@ DebianGNU/Linux squeeze, packaging-farm is installed from the
 repository. Anothersource is added to extract the XiVO packages in
 source form. Here we focuson <em>main</em> but the same principle can be done
 for others.</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey</span> <span class="kp">main</span>
 <span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey</span> <span class="kp">main</span>
 </pre></div>
 
@@ -76,7 +76,7 @@ for others.</p>
 <p>packaging-farm expects to find package sources in
 /var/cache/packaging-farm/sourceswithin a directory that is named after
 the package. This hierarchy was build withthe following:</p>
-<div class="highlight"><pre><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey_main_source_Sources | </span>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey_main_source_Sources | </span>
 <span class="x">while read package </span>
 <span class="x">do </span>
 <span class="x">  ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> )</span>
@@ -93,7 +93,7 @@ a directory named after the package is created in /usr/src
 contain a Makefile that may contain exceptions or additional build
 instructions for the farm. Since there is no need for such tweaking at
 the moment, the Makefiles are generated:</p>
-<div class="highlight"><pre>for package in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp ; do
+<div class="highlight"><pre><span></span>for package in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp ; do
 cat &gt; /usr/src/<span class="nv">$package</span>/Makefile <span class="err">&lt;</span><span class="nt">&lt;EOF</span>
 <span class="na">PACKAGE=</span><span class="s">$package</span>
 <span class="na">DISTRIBUTIONS=</span><span class="s">lenny</span>
@@ -112,7 +112,7 @@ therefore they need to be rebuilt if a new asterisk package is
 published. In preparation for a patch submission to add support for
 source package dependencies, a set of shell commands have been performed
 to generate a set of dependencies written as Makefile entries:</p>
-<div class="highlight"><pre><span class="err">#</span> <span class="nt">these</span> <span class="nt">lines</span> <span class="nt">are</span> <span class="nt">approximations</span> <span class="nt">that</span> <span class="nt">won</span><span class="s1">&#39;t work out of the box</span>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">these</span> <span class="nt">lines</span> <span class="nt">are</span> <span class="nt">approximations</span> <span class="nt">that</span> <span class="nt">won</span><span class="s1">&#39;t work out of the box</span>
 <span class="s1"># list all packages for each source package</span>
 <span class="s1">cat  */*/debian/control | perl -ne &#39;</span><span class="nt">print</span> <span class="s2">&quot;$1|&quot;</span> <span class="nt">if</span><span class="o">(</span><span class="nt">s</span><span class="o">/^</span><span class="nt">Package</span><span class="o">:</span><span class="err">\</span><span class="nt">s</span><span class="o">*(.*)</span><span class="err">\</span><span class="nt">s</span><span class="o">*//)</span><span class="s1">&#39;</span>
 <span class="s1"># map package to corresponding source package</span>
@@ -125,7 +125,7 @@ to generate a set of dependencies written as Makefile entries:</p>
 
 
 <p>created:</p>
-<div class="highlight"><pre># level 4
+<div class="highlight"><pre><span></span># level 4
 pf-asterisk-ami-aoriginate ::  asterisk
 pf-asterisk-app-fax ::  asterisk spandsp
 pf-asterisk-app-nv-faxdetect ::  asterisk
@@ -155,7 +155,7 @@ dependencies could be successfully built
 <a href="http://xivo.dachary.org/packaging-farm/dahdi-linux/gnulinux/debian/i386/lenny/src/">dahdi-linux</a>
 and <a href="http://xivo.dachary.org/packaging-farm/">more</a>), the idea was to
 encode the dependencies in the Makefile for each package.</p>
-<div class="highlight"><pre><span class="x">for i in asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca dahdi-linux libasterisk-perl libpri misdn-kernel pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface spandsp  ; do ( echo --------------------------- ; echo </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; make all ) ; done</span>
+<div class="highlight"><pre><span></span><span class="x">for i in asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca dahdi-linux libasterisk-perl libpri misdn-kernel pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface spandsp  ; do ( echo --------------------------- ; echo </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; make all ) ; done</span>
 </pre></div>
 
 
@@ -175,7 +175,7 @@ repository</a>.
 The following line could be added to a virgin Debian GNU/linux lenny
 source list and should now be equivalent to its counterpart on
 http://dak.proformatique.com/debian/</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/</span> <span class="kp">./</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/</span> <span class="kp">./</span>
 <span class="k">deb-src</span> <span class="s">http://xivo.dachary.org/packaging-farm/gallifrey/gnulinux/debian/i386/lenny/src/</span> <span class="kp">./</span>
 </pre></div>
 

@@ -54,6 +54,28 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">XiVO GIT repository re-organisation</a></h2>
+    <p>
+      Posted on Mon 17 October 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>GIT_DIRECTORY specify the repository to use</h4>
+<div class="highlight"><pre><span></span>GIT_DIRECTORY=xivo-<span class="cp">${</span><span class="n">XIVO</span><span class="cp">}</span>
+              The subdirectory relative to SOURCE_GIT in which the  repository
+              is to be found.  The actual clone is composed as follows:
+
+              git clone <span class="cp">${</span><span class="n">SOURCE_GIT</span><span class="cp">}</span>/<span class="cp">${</span><span class="n">GIT_DIRECTORY</span><span class="cp">}</span>.git
+
+              as of October 2011, there is a single repository named after the
+              XIVO variable, hence the ...</pre></div>
+      <a class="btn" href="http://blog.xivo.io/xivo-git-repository-re-organisation.html#xivo-git-repository-re-organisation">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Safeguard against downgrades in XIVO packages</a></h2>
     <p>
       Posted on Mon 26 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -123,7 +145,7 @@ naming ...</p>
   <div>
       <h4>rebuilding gallifrey</h4>
 <p>The /var/cache/packaging-farm/sources directory was removed and</p>
-<div class="highlight"><pre>export VERSION_COMPUTE=false
+<div class="highlight"><pre><span></span>export VERSION_COMPUTE=false
 </pre></div>
 
 
@@ -132,26 +154,6 @@ naming ...</p>
 from scratch. It took 42 minutes total. The purpose of this complete
 rebuild was to get rid of the timestamp ...</p>
       <a class="btn" href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">XiVO package versioning</a></h2>
-    <p>
-      Posted on Mon 29 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>production version conventions</h4>
-<p>XiVO package release numbers <a href="http://packaging-farm.dachary.org/trac/ticket/16">must not contain the timestamp +
-hash</a>. When upgrading
-from a development machine to a production machine, the package numbers
-for production are lexicographically lower than the package numbers for
-development. For instance 1.1.15<a></a> in a special way as documented
-in the ...</p>
-      <a class="btn" href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">Continue reading</a>
   </div>
 </article>
 

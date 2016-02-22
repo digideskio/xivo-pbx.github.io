@@ -72,7 +72,7 @@ client,the tftp server serves the files needed to install a debian
 system.</p>
 <p>On debian system, you have to install isc-dhcp-server, here is a
 minimaldhcp configuration:</p>
-<div class="highlight"><pre>#/etc/dhcp/dhcpd.conf
+<div class="highlight"><pre><span></span>#/etc/dhcp/dhcpd.conf
 ddns-update-style none;
 option domain-name &quot;mydomain.com&quot;;
 option domain-name-servers 10.10.32.1;
@@ -91,7 +91,7 @@ subnet 10.10.32.0 netmask 255.255.255.0 {
 
 <p>You can test your dhcp configuration by booting a machine on pxe to
 ensurethat the dhcp configuration is functionnal :</p>
-<div class="highlight"><pre>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
+<div class="highlight"><pre><span></span>Mar  1 13:44:16 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPDISCOVER from 52:54:00:d3:44:27 via br1
    Mar  1 13:44:17 arkham dhcpd: DHCPOFFER on 10.10.32.10 to 52:54:00:d3:44:27 via br1
@@ -105,7 +105,7 @@ installtftpd-hpa. You have to install debian-installer-4.0-netboot-i386
 too. Thispackage provide all the files used to install a fresh debian
 system by pxe.</p>
 <p>You have to modify tftp_directory on /etc/default/tftpd-hpa:</p>
-<div class="highlight"><pre>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
+<div class="highlight"><pre><span></span>TFTP_DIRECTORY=&quot;/usr/lib/debian-installer/images/i386/text&quot;
 </pre></div>
 
 
@@ -113,7 +113,7 @@ system by pxe.</p>
 <p>You have to edit 2 files to finish your configuration: menu.cfg and
 syslinux.cfg</p>
 <p>You have to modify include and default path in boot-screens/syslinux.cfg</p>
-<div class="highlight"><pre># D-I config version 2.0
+<div class="highlight"><pre><span></span># D-I config version 2.0
    include boot-screens/menu.cfg
    default boot-screens/vesamenu.c32
    prompt 0
@@ -122,7 +122,7 @@ syslinux.cfg</p>
 
 
 <p>You have to add to boot-screens/menu.cfg</p>
-<div class="highlight"><pre>label squeeze-i386
+<div class="highlight"><pre><span></span>label squeeze-i386
        menu label squeeze i386
        kernel linux
        append vga=normal initrd=initrd.gz

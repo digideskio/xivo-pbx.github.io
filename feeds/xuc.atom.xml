@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xuc.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-02-26T09:35:00-05:00</updated><entry><title>Launch and relaunch docker containers manually with ease</title><link href="http://blog.xivo.io/launch-and-relaunch-docker-containers-manually-with-ease.html" rel="alternate"></link><updated>2015-02-26T09:35:00-05:00</updated><author><name>jhlavacek</name></author><id>tag:blog.xivo.io,2015-02-26:launch-and-relaunch-docker-containers-manually-with-ease.html</id><summary type="html">&lt;p&gt;First you create a file, let's say
 &lt;code&gt;/etc/YOUR_APPLICATION/docker-run.conf&lt;/code&gt;, with one parameter by line. it
 can look like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# cat /etc/YOUR_APPLICATION/docker-run.conf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cat /etc/YOUR_APPLICATION/docker-run.conf
 -t
 -d
 --restart=always
@@ -16,7 +16,7 @@ YOUR/REPOSITORY
 &lt;p&gt;Notice the &lt;code&gt;--restart=always&lt;/code&gt; - it's an interesting option that
 automatically restarts the container when it stops.&lt;/p&gt;
 &lt;p&gt;You can then start your container by running the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -29,7 +29,7 @@ to start your container the first time.&lt;/p&gt;
 3
 4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
 
 docker pull YOUR/REPOSITORY:latest&lt;span class="p"&gt;;&lt;/span&gt;
 docker stop YOUR_CONTAINER_NAME&lt;span class="p"&gt;;&lt;/span&gt;
@@ -51,7 +51,7 @@ separate statistics data and technical data.&lt;/p&gt;
 logfile, or on demand via http.&lt;/p&gt;
 &lt;h3&gt;JSON representation via HTTP&lt;/h3&gt;
 &lt;h4&gt;JVM statistics&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#curl -XGET &amp;#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&amp;#39;@@
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#curl -XGET &amp;#39;http://127.0.0.1:9000/stats/admin/metrics?name=tech&amp;#39;@@
 {
   &amp;quot;version&amp;quot; : &amp;quot;3.0.0&amp;quot;,
   &amp;quot;gauges&amp;quot; : {
@@ -90,7 +90,7 @@ logfile, or on demand via http.&lt;/p&gt;
 
 
 &lt;h4&gt;Call-centre statistics&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#curl -XGET &amp;#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&amp;#39;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#curl -XGET &amp;#39;http://127.0.0.1:9000/stats/admin/metrics?name=Stats&amp;#39;
 {
   &amp;quot;version&amp;quot; : &amp;quot;3.0.0&amp;quot;,
   &amp;quot;gauges&amp;quot; : {
@@ -133,7 +133,7 @@ logfile, or on demand via http.&lt;/p&gt;
 
 
 &lt;h3&gt;Statistics in log file&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2014-11-12 11:49:30,764 - [info] application - type=GAUGE, name=3000-PercentageAbandonnedAfter15-gauge, value=0.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-PercentageAnsweredBefore15-gauge, value=0.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonned-gauge, value=1.0
 2014-11-12 11:49:30,765 - [info] application - type=GAUGE, name=3000-TotalNumberCallsAbandonnedAfter15-gauge, value=0.0

@@ -95,13 +95,13 @@ resolution was not mandatory.</p>
 <h4>Installation on Debian GNU/Linux squeeze</h4>
 <p>The resulting repository was added as follows to a fresh install of
 Debian GNU/Linux squeeze:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
 </pre></div>
 
 
 <p>A single package was missing ( <code>pf-sys-ca</code> ) and required the addition
 of a repository:</p>
-<div class="highlight"><pre><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny-dev</span> <span class="kp">main</span>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny-dev</span> <span class="kp">main</span>
 </pre></div>
 
 
@@ -110,7 +110,7 @@ of a repository:</p>
 was extracted from the <a href="git://git.proformatique.com/official/debian-installer.git">debian-installer XiVO
 repository</a>
 and applied as follows:</p>
-<div class="highlight"><pre><span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">installed</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/installer.cfg;hb=6ee3ad5851ea7c0bb841cbd05e53835f483dd867&#39;</span>
+<div class="highlight"><pre><span></span><span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">installed</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/installer.cfg;hb=6ee3ad5851ea7c0bb841cbd05e53835f483dd867&#39;</span>
 <span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">installed</span><span class="nc">.cfg</span>
 <span class="nt">wget</span> <span class="nt">-O</span> <span class="nt">pkg</span><span class="nc">.cfg</span> <span class="s1">&#39;http://git.proformatique.com/?p=official/debian-installer.git;a=blob_plain;f=squeeze/pkg.cfg;hb=127c11ffdb8f4ad42f59fce971f274cd0e079745&#39;</span>
 <span class="nt">debconf-set-selections</span> <span class="o">&lt;</span> <span class="nt">pkg</span><span class="nc">.cfg</span>

@@ -75,7 +75,7 @@ best is to enable nfs mount on your development workstation and to mount
 the web interface development directory onto your XiVO virtual
 machine.If your development projects is located in /projects/xivo-skaro,
 the mount command can be :</p>
-<div class="highlight"><pre>mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
+<div class="highlight"><pre><span></span>mount -t nfs devipaddress:/projects/xivo-skaro/web-interface/src /usr/share/pf-xivo-web-interface
 </pre></div>
 
 
@@ -109,7 +109,7 @@ steps :</p>
 <p>Let's start with a simple page that we want to be displayed in the menu
 "services -&gt; IPBX -&gt; Call management", edit a file
 xivo-skaro/web-interface/src/action/www/service/ipbx/asterisk/call_management/hellowivo.php</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
     <span class="k">echo</span> <span class="s2">&quot;Hello XiVO world !&quot;</span><span class="p">;</span>
 <span class="cp">?&gt;</span>
 </pre></div>
@@ -121,7 +121,7 @@ within XiVO authorization framework. The list of available pages is
 located in the file
 xivo-skaro/web-interface/src/object/objectconf/acl/user.inc.Edit this
 file and add this new action.</p>
-<div class="highlight"><pre><span class="x">....</span>
+<div class="highlight"><pre><span></span><span class="x">....</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;pickup&#39;] = true;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;schedule&#39;] = true;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;tree&#39;][&#39;service&#39;][&#39;ipbx&#39;][&#39;call_management&#39;][&#39;cel&#39;] = true;</span>
@@ -152,7 +152,7 @@ menu.</p>
 <p>Edit
 xivo-skaro/web-interface/src/tpl/www/bloc/menu/left/service/ipbx/asterisk.php,
 add the menu entry :</p>
-<div class="highlight"><pre>........
+<div class="highlight"><pre><span></span>........
         if(xivo_user::chk_acl(&#39;call_management&#39;,&#39;cel&#39;) === true):
             echo    &#39;<span class="nt">&lt;dd</span> <span class="na">id=</span><span class="s">&quot;mn-call_management--cel&quot;</span><span class="nt">&gt;</span>&#39;,
                 $url-&gt;href_html($this-&gt;bbf(&#39;mn_left_callmanagement-cel&#39;),
@@ -181,7 +181,7 @@ framework.</p>
 <h3>XiVO URL Routing</h3>
 <p>Edit xivo-skaro/web-interface/src/object/objectconf/url.inc and add the
 URL translation</p>
-<div class="highlight"><pre><span class="x">.......</span>
+<div class="highlight"><pre><span></span><span class="x">.......</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/schedule&#39;] = &#39;service/ipbx/index.php/call_management/schedule/&#39;;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/voicemenu&#39;] = &#39;service/ipbx/index.php/call_management/voicemenu/&#39;;</span>
 <span class="p">$</span><span class="nv">array</span><span class="x">[&#39;service/ipbx/call_management/cel&#39;] = &#39;service/ipbx/index.php/call_management/cel/&#39;;</span>

@@ -65,7 +65,7 @@
     <p>First you create a file, let's say
 <code>/etc/YOUR_APPLICATION/docker-run.conf</code>, with one parameter by line. it
 can look like this:</p>
-<div class="highlight"><pre># cat /etc/YOUR_APPLICATION/docker-run.conf
+<div class="highlight"><pre><span></span># cat /etc/YOUR_APPLICATION/docker-run.conf
 -t
 -d
 --restart=always
@@ -79,7 +79,7 @@ YOUR/REPOSITORY
 <p>Notice the <code>--restart=always</code> - it's an interesting option that
 automatically restarts the container when it stops.</p>
 <p>You can then start your container by running the following command:</p>
-<div class="highlight"><pre># docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
+<div class="highlight"><pre><span></span># docker run $(cat /etc/YOUR_APPLICATION/docker-run.conf)
 </pre></div>
 
 
@@ -92,7 +92,7 @@ to start your container the first time.</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="ch">#!/bin/sh</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 
 docker pull YOUR/REPOSITORY:latest<span class="p">;</span>
 docker stop YOUR_CONTAINER_NAME<span class="p">;</span>
