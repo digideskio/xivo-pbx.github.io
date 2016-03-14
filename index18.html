@@ -54,6 +54,122 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html#around-xivo-pxe-and-preseeding">Around XiVO - pxe and preseeding</a></h2>
+    <p>
+      Posted on Wed 30 May 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/pxe.html">PXE</a>    </p>
+  </header>
+  <div>
+      <p>Now that we have a functional PXE installation, we want to fully
+automatise the installation process. Debian have a useful solution
+called 'preseeding'. Preseeding provides a way to set answers to
+questions asked during the installation process.</p>
+<p>You can find Debian documentation about preseeding on Debian wiki :
+http://wiki.debian.org/DebianInstaller/Preseed</p>
+<p>We are going to be using the default Debian preseed file. We are going
+to configure an HTTP server to serve this file to the Debian installer
+using nginx.</p>
+<div class="highlight"><pre><span></span>$ apt-get install nginx
+
+$ cat /etc/nginx/sites-enabled/myhost
+    server <span class="o">{</span>
+      listen 80<span class="p">;</span>
+      server_tokens off<span class="p">;</span>
+      server_name myhost.mydomain.com<span class="p">;</span>
+      root /data<span class="p">;</span>
+
+      location / <span class="o">{</span>
+        autoindex on<span class="p">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>and restart the server.</p>
+<p>First, we need to create /data directory and get the preseed file from
+this directory.</p>
+<div class="highlight"><pre><span></span>$ mkdir /data <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /data
+$ wget http://www.debian.org/releases/squeeze/example-preseed.txt -O preseed.cfg
+</pre></div>
+
+
+<p>We only do some small changes in the default file to perform a fully
+auto installation :</p>
+<div class="highlight"><pre><span></span>* do not create a user account
+
+    d-i passwd/make-user boolean false
+
+* add the root password (will be changed after the install process
+
+    d-i passwd/root-password password r00tme
+    d-i passwd/root-password-again password r00tme
+
+* change the disk path for using in a virtual machine
+
+    d-i partman-auto/disk string /dev/vda
+
+* install a minimal system (without X)
+
+    tasksel tasksel/first multiselect standard
+</pre></div>
+
+
+<p>So, we have to modify
+/usr/lib/debian-installer/images/i386/text/boot-screens/menu.cfg to
+specify to the installer that it must use a preseed file.</p>
+<div class="highlight"><pre><span></span>label squeeze-i386
+    menu label squeeze i386
+    kernel linux
+    append vga=normal initrd=initrd.gz
+</pre></div>
+
+
+<p>must be</p>
+<div class="highlight"><pre><span></span>label debian-squeeze                                                                                                                                                                           
+    menu label Install Auto Debian Squeeze                                                                                                                                                     
+    kernel linux                                                                                                                                                                               
+    append initrd=initrd.gz rw auto=true priority=critical url=myhost.mydomain.com/./preseed.cfg locale=en_US.UTF-8 interface=auto hostname=squeeze --
+</pre></div>
+
+
+<p>You can find some explanations about the different parameters on
+http://hands.com/d-i/</p>
+<p>You have to use a specific url in this case (the "/./" is very
+important).</p>
+<p>Or if you want to install a XiVO system, you can use this line to use
+our preseed</p>
+<div class="highlight"><pre><span></span>label XiVO
+       menu label XiVO
+       kernel linux
+       append initrd=initrd.gz rw auto=true priority=critical url=http://mirror.xivo.fr classes=skaro locale=en_US.UTF-8 interface=auto hostname=xivo --
+</pre></div>
+
+
+<p>Here, we only have an url. It's because we use a specific structure in
+our /data directory (and an entry d-i in our nginx configuration) :</p>
+<div class="highlight"><pre><span></span>/data
+├── d-i
+│   ├── lenny
+│   │   ├── classes
+│   │   └── lib
+│   └── squeeze
+│       ├── classes
+│       ├── docs
+│       └── lib
+</pre></div>
+
+
+<p>You can find our preseed repository on
+git://git.xivo.fr/official/debian-installer.git</p>
+<p>In a next post, I will explain how we use the class to customize our
+installation.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-all-over-the-world.html#xivo-all-over-the-world">XiVO all over the world</a></h2>
     <p>
       Posted on Fri 25 May 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -274,39 +390,6 @@ integration". Yes. Just believe me.</p>
 <p>So that's all folks. Next time, if your brain still hasn't suffered from
 an epileptic seizure, get ready because we'll be talking about the
 "device updating" step.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/two-new-platforms-for-the-xivo-client.html#two-new-platforms-for-the-xivo-client">Two new platforms for the XiVO Client</a></h2>
-    <p>
-      Posted on Wed 04 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>Until now, the XiVO Client was released for only two different
-platforms : Windows, Debian GNU/Linux and Ubuntu. Yes, that makes three,
-but Ubuntu is based upon Debian, and the two versions do not differ.</p>
-<p>However, the Qt framework that is used by the XiVO Client allows
-applications to be also built for Mac OS. Furthermore, back in the 1.1
-version, the XiVO Client was supported on Mac OS. We then reused the old
-building script that were rotting in our Git repository and cleaned them
-up to allow us to build a new Mac version of the XiVO Client.</p>
-<p>Here's what it looks like :</p>
-<p><a href="/public/xivosoft/xivoclient-macos.png" title="XiVO Client Mac OS"><img alt="XiVO Client Mac
-OS" src="/public/xivosoft/.xivoclient-macos_m.jpg" title="XiVO Client Mac OS, avr. 2012" /></a></p>
-<p>The stable version will be released at the same time as other platforms,
-by the end of the week, with the XiVO 1.2.5 release.</p>
-<p>For hackers who would want to play around with the XiVO Client's source
-code on Mac OS (or other platforms), the instructions for building and
-coding can be found here :
-http://documentation.xivo.fr/dev/developers/xivo_client/xivo_client.html</p>
-<p>Another big news, even though Archers are (unfortunately ;) ) a bit
-fewer than Mac users, the XiVO Client package for Archlinux on the AUR
-is also being restored, and will soon be available in the AUR. The two
-packages already here have not been updated since last year.</p>
 </p>
   </div>
 </article>

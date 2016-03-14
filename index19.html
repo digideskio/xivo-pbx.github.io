@@ -54,6 +54,39 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/two-new-platforms-for-the-xivo-client.html#two-new-platforms-for-the-xivo-client">Two new platforms for the XiVO Client</a></h2>
+    <p>
+      Posted on Wed 04 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>Until now, the XiVO Client was released for only two different
+platforms : Windows, Debian GNU/Linux and Ubuntu. Yes, that makes three,
+but Ubuntu is based upon Debian, and the two versions do not differ.</p>
+<p>However, the Qt framework that is used by the XiVO Client allows
+applications to be also built for Mac OS. Furthermore, back in the 1.1
+version, the XiVO Client was supported on Mac OS. We then reused the old
+building script that were rotting in our Git repository and cleaned them
+up to allow us to build a new Mac version of the XiVO Client.</p>
+<p>Here's what it looks like :</p>
+<p><a href="/public/xivosoft/xivoclient-macos.png" title="XiVO Client Mac OS"><img alt="XiVO Client Mac
+OS" src="/public/xivosoft/.xivoclient-macos_m.jpg" title="XiVO Client Mac OS, avr. 2012" /></a></p>
+<p>The stable version will be released at the same time as other platforms,
+by the end of the week, with the XiVO 1.2.5 release.</p>
+<p>For hackers who would want to play around with the XiVO Client's source
+code on Mac OS (or other platforms), the instructions for building and
+coding can be found here :
+http://documentation.xivo.fr/dev/developers/xivo_client/xivo_client.html</p>
+<p>Another big news, even though Archers are (unfortunately ;) ) a bit
+fewer than Mac users, the XiVO Client package for Archlinux on the AUR
+is also being restored, and will soon be available in the AUR. The two
+packages already here have not been updated since last year.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/upgrading-xivo-with-xivo-upgrade.html#upgrading-xivo-with-xivo-upgrade">Upgrading XiVO with \"xivo-upgrade\"</a></h2>
     <p>
       Posted on Thu 29 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -298,109 +331,6 @@ help to do TDD (Test Driven Development).</p>
 <p>If you are interested to play with SCCPp, you can get the source code at
 this address:
 <a href="http://git.proformatique.com/?p=official/sccpp.git;a=summary" title="http://git.proformatique.com/?p=official/sccpp.git;a=summary">http://git.proformatique.com/?p=off...</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-12.html#xivo-12">XiVO 1.2</a></h2>
-    <p>
-      Posted on Tue 14 February 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
-    </p>
-  </header>
-  <div>
-      <p>As we enter 2012, we continue our development to better meet market
-expectations allowing XiVO to be deployed in more companies. XiVO is a
-real open and free alternative for your business phone system and it
-will allow you to go even further. It is with great pleasure that I
-announce the arrival of this new major release of XiVO which is also our
-last considering that our development model is replaced by the agile
-methodology (SCRUM).</p>
-<p>Why do we change ?</p>
-<p>Just because we want to be closer to your requests, be able to stand
-out, constantly innovate and for this we need a new vision of
-development. It's been several months since we changed our habits, our
-ways of building software, our vision of what a software is and we will
-continue in that direction. We still have a long way to go but it only
-makes XiVO better for everyone.</p>
-<p><img alt="xivo-web-1-2.png" src="/public/.xivo-web-1-2_m.jpg" title="xivo-web-1-2.png, fév. 2012" /></p>
-<p>In this new release we have upgraded the operating system from Lenny to
-Squeeze, updated Asterisk by installing and using the last “Long Term
-Supported” 1.8 version. These major changes are not only naturally
-bringing us a bunch of new native functionalities but also better
-performance and stability.</p>
-<p>Regarding XiVO, we reviewed our provisioning server which was designed
-at the beginning of XiVO and was not suited any more to the big
-architectures we are targeting.</p>
-<p>We have refreshed the web interface in terms of functionality and
-ergonomics to meet the new functionalities provided by Asterisk. We also
-changed the way configuration is done by using a new server dedicated to
-configuration management.</p>
-<p>The news also made us realize that we were not sure where we go with
-mysql and we chose to use Postgres as a basis to save our
-configurations.TDM card drivers are also updated when this new release
-is installed.</p>
-<p>CTI server and XiVO client were also mainly rewritten and refactored.</p>
-<p>With this new release we also started to work on refactoring some
-features which are not delivered now any more. At first, high
-availability and contact center are our current priorities and will be
-offered in the next coming releases.Our development method is based on
-short iterations of 2 weeks, which will produce a finished and working
-product. So every 2 weeks a new release is produced and you will be able
-to upgrade and enjoy bug fixes and new features. Do not hesitate to
-follow http://projects.xivo.fr and http://documentation.xivo.fr/ to get
-a better view.</p>
-<p>We will go through our process in more details in a later post to
-describe what we have set up in term of tests, documentation, bug
-tracking etc ....</p>
-<p>Below what's new in this release at a glance :</p>
-<ul>
-<li>Asterisk 1.8 (New options, SSL authentication, etc ...)</li>
-<li>Web interface<ul>
-<li>New way of defining schedules<ul>
-<li>Time zones</li>
-<li>More than one time slice per schedule</li>
-<li>More than one action when on closed</li>
-<li>Same schedule can be applied to more than one target
-    (incoming calls / internal)</li>
-</ul>
-</li>
-<li>Call pickups groups are more flexible, can include not only
-    group of users but also queues and users.</li>
-<li>SSL certificates management<ul>
-<li>Can be created, updated and deleted using the interface. Can
-    also be associated to different objects ( SIP accounts, CTI
-    server ....)</li>
-</ul>
-</li>
-<li>Ergonomics improvements<ul>
-<li>On session expiration, last page is displayed on reconnect.</li>
-<li>Sort per columns</li>
-<li>Automatic id and password generation for user accounts</li>
-<li>Edited object reference appears on all tabs</li>
-<li>Dynamic search on all objects lists (i.e. group
-    members selected)</li>
-<li>Error report on CSV import</li>
-<li>Displays free extensions (add/edit users, groups ...)</li>
-<li>Remembers last search and sort order, per object.</li>
-<li>links <em>create</em> open in a new tab</li>
-<li>Stay on current tab on page reload</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Sip Accounts (lines) are now separated from users</li>
-<li>Provisioning is completely redesigned to incorporate new server.<ul>
-<li>New provisioning server integration</li>
-</ul>
-</li>
-<li>Queue penalty</li>
-<li>MWI remote subscribing</li>
-<li>Outbound calls redesigned</li>
-<li>Paging</li>
-<li>Queue logger daemon removed.</li>
-</ul>
 </p>
   </div>
 </article>

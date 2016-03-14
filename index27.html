@@ -54,6 +54,206 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html#xivo-packaging-from-the-developer-point-of-view">XiVO packaging from the developer point of view</a></h2>
+    <p>
+      Posted on Mon 04 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pre-requistes</h4>
+<p>The ssh key of the developer must be installed in
+/root/.ssh/authorized_keys on http://skaro.dachary.org/packaging-farm/.</p>
+<h4>workflow</h4>
+<p>The reference for the following can be found in the packaging-farm,
+packaging-farm.conf and submit-xivo.sh manual pages.</p>
+<ul>
+<li>Guillaume gets work done on the <strong>web-interface</strong> directory of the
+    internal SVN</li>
+<li>It is mirrored every 5 minutes to the <a href="http://git.xivo.fr/xivo-skaro.git/">external
+    GIT</a></li>
+<li>Guillaume submits the rebuild of the package to skaro.dachary.org</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">DIRECTORY</span><span class="o">=</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">submit</span> <span class="err">\</span><span class="p">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<ul>
+<li>If the build fails, it has a non zero exit status. Guillaume goes
+    into the chroot that was preserved after the failure to try and fix
+    the issue:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">login</span>
+ <span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+
+
+<ul>
+<li>After fixing the issue and rebuilding successfully, a <a href="http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src/">repository
+    containing the resulting
+    package</a>
+    can be used by adding the following to the /etc/apt/sources.list
+    file:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src</span> <span class="kp">./</span>
+</pre></div>
+
+
+<ul>
+<li>Guillaume conducts a few tests on a virtual machine of his own with
+    the newly built package.</li>
+<li>When satisfied with the result, he decides to update the skaro
+    repository by asking the machine to harvest the results of each
+    individual package into a global repository:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">skaro</span>
+</pre></div>
+
+
+<ul>
+<li>The updated repository can be used by adding the following to the
+    file /etc/apt/sources.list:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://skaro.dachary.org/packaging-farm/skaro/gnulinux/debian</span> <span class="kp">skaro-squeeze</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>debugging on the farm</h4>
+<p>When in the chroot by running the following command:</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">login</span>
+</pre></div>
+
+
+<p>new software can be installed and one must not fear to destroy anything
+of value. If the chroot becomes messy, it can be re-initialized as
+follows, after exiting it.</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">ARCHITECTURE</span><span class="o">=</span><span class="n">i386</span> <span class="n">DISTRIBUTION</span><span class="o">=</span><span class="n">squeeze</span> <span class="n">chroot</span><span class="o">-</span><span class="n">reinit</span> <span class="n">get</span><span class="o">/</span><span class="n">debian</span>
+</pre></div>
+
+
+<p>The <strong>chroot-reinit</strong> target remove the chroot entirely and replaces it
+with a virgin copy of the corresponding distribution. The get/debian
+target get a clean copy of the sources found in the /usr/src directory.</p>
+<h4>concurrency</h4>
+<p>All packages can be built in parallel. For instance:</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<p>can be run at the same time as</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span>
+</pre></div>
+
+
+<p>and they will not interfere. However, if both commands trigger the build
+of another package because they have it in common in the dependency
+graph, the two build may overlap. A package can be built without any
+regard to the dependency graph as follows:</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">cd</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">config</span> <span class="n">all</span>
+</pre></div>
+
+
+<p>The general principle is that the <strong>--cd</strong> flag goes to the self
+contained directory when the package is being built and ignore the
+dependency graph. Without the <strong>--cd</strong> flag, the command will lookup in
+the dependency graph to find an entry with the argument name and make
+sure all its dependencies are compiled before it.</p>
+<h4>building for a given architecture</h4>
+<p>Guillaume has a i386 virtual machine but the current skaro packages are
+built for x86_64. The following command was used to <a href="http://skaro.dachary.org/packaging-farm/pf-xivo-web-interface/gnulinux/debian/i386/squeeze/src/">build the package
+of interest for
+i386</a></p>
+<div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">packaging</span><span class="o">-</span><span class="n">farm</span><span class="o">/</span><span class="n">depends</span><span class="o">/</span><span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+<span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">DIRECTORY</span><span class="o">=</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span> <span class="n">submit</span> <span class="err">\</span><span class="p">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">ARCHITECTURES</span><span class="o">=</span><span class="n">i386</span> <span class="n">pf</span><span class="o">-</span><span class="n">xivo</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">interface</span>
+</pre></div>
+
+
+<h4>forcing the build of a package</h4>
+<p>The <strong>--force</strong> option was implemented and documented to bypass the
+dependency graph:</p>
+<div class="highlight"><pre><span></span>--force &lt;package-name&gt;
+              disregard the dependency graph and perform the action  &lt;package-
+              name&gt;  without  any  consideration  to the fact that none of its
+              dependencies have changed since the last time it was run.
+</pre></div>
+
+
+<h4>packaging-farm wish-list</h4>
+<ul>
+<li><a href="http://packaging-farm.dachary.org/trac/ticket/6">add a lock per
+    distribution/architecture</a></li>
+<li><a href="http://packaging-farm.dachary.org/trac/ticket/7">end of build email/jabber/chat
+    notification</a></li>
+</ul>
+<h4>listing what can be done</h4>
+<p>The following command can be used to list all the known variables that
+can be used to implement the use case described above:</p>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">22002</span> <span class="o">-</span><span class="n">A</span> <span class="n">root</span><span class="mf">@66.254.41.119</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">print</span><span class="o">-</span><span class="n">directory</span> <span class="n">submit</span>
+</pre></div>
+
+
+<p>It will output something that looks like:</p>
+<div class="highlight"><pre><span></span><span class="x">Create source packages from XiVO repositories.</span>
+
+<span class="x">The debian directories are cloned from git://git.xivo.fr/debian into /var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro</span>
+<span class="x">The sources are cloned from git://git.xivo.fr into /var/cache/packaging-farm/VCS/sources/xivo-skaro</span>
+<span class="x">The packages are created in /var/cache/packaging-farm/sources</span>
+
+<span class="x">Usage:</span>
+<span class="err">#</span><span class="x"> submit all known sources but do nothing</span>
+<span class="x">for directory in agid asterisk base-config bntools chan_sccp confgen ctiservers dahdi-linux dahdi-tools extra fetchfw freeswitch lib-javascript lib-python libpri monitoring pf-xivo pf-xivo-backup provisioning res_watchdog sysconfd utils wanpipe web-interface xivo-sounds xivo_ha ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">directory</span><span class="x"> submit ; done</span>
+<span class="err">#</span><span class="x"> submit a given source and update the repository</span>
+<span class="x">packaging-farm DIRECTORY=agid PACKAGE=pf-xivo-agid submit</span>
+<span class="x">packaging-farm DIRECTORY=asterisk PACKAGE=asterisk submit</span>
+<span class="x">packaging-farm DIRECTORY=base-config PACKAGE=pf-xivo-base-config submit</span>
+<span class="x">packaging-farm DIRECTORY=bntools PACKAGE=bntools submit</span>
+<span class="x">packaging-farm DIRECTORY=chan_sccp PACKAGE=asterisk-chan-sccp submit</span>
+<span class="x">packaging-farm DIRECTORY=confgen PACKAGE=pf-xivo-confgen submit</span>
+<span class="x">packaging-farm DIRECTORY=ctiservers PACKAGE=pf-xivo-cti-server submit</span>
+<span class="x">packaging-farm DIRECTORY=dahdi-linux PACKAGE=dahdi-linux submit</span>
+<span class="x">packaging-farm DIRECTORY=dahdi-tools PACKAGE=dahdi-tools submit</span>
+<span class="x">packaging-farm DIRECTORY=extra PACKAGE=pf-xivo-extra submit</span>
+<span class="x">packaging-farm DIRECTORY=fetchfw PACKAGE=pf-xivo-fetchfw submit</span>
+<span class="x">packaging-farm DIRECTORY=freeswitch PACKAGE=freeswitch submit</span>
+<span class="x">packaging-farm DIRECTORY=lib-javascript PACKAGE=pf-xivo-lib-js submit</span>
+<span class="x">packaging-farm DIRECTORY=lib-python PACKAGE=pf-xivo-lib-python submit</span>
+<span class="x">packaging-farm DIRECTORY=libpri PACKAGE= submit</span>
+<span class="x">packaging-farm DIRECTORY=monitoring PACKAGE=pf-xivo-monitoring submit</span>
+<span class="x">packaging-farm DIRECTORY=pf-xivo PACKAGE= submit</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/libpri/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/libpri/Makefile.pkg to extract package name</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo/Makefile.pkg to extract package name</span>
+<span class="x">Can&#39;t open /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo-backup/Makefile.pkg: No such file or directory.</span>
+<span class="x">could not match ^DEB_PKG.*?([\w-]+) in file /var/cache/packaging-farm/VCS/sources/xivo-skaro/pf-xivo-backup/Makefile.pkg to extract package name</span>
+<span class="x">packaging-farm DIRECTORY=pf-xivo-backup PACKAGE= submit</span>
+<span class="x">packaging-farm DIRECTORY=provisioning PACKAGE=pf-xivo-provisioning submit</span>
+<span class="x">packaging-farm DIRECTORY=res_watchdog PACKAGE=pf-asterisk-res-watchdog submit</span>
+<span class="x">packaging-farm DIRECTORY=sysconfd PACKAGE=pf-xivo-sysconfd submit</span>
+<span class="x">packaging-farm DIRECTORY=utils PACKAGE=pf-xivo-utils submit</span>
+<span class="x">packaging-farm DIRECTORY=wanpipe PACKAGE=sangoma-wanpipe-source submit</span>
+<span class="x">packaging-farm DIRECTORY=web-interface PACKAGE=pf-xivo-web-interface submit</span>
+<span class="x">packaging-farm DIRECTORY=xivo-sounds PACKAGE=pf-xivo-sounds submit</span>
+<span class="x">packaging-farm DIRECTORY=xivo_ha PACKAGE=pf-xivo-ha submit</span>
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html#a-gallifrey-repository-for-1116">A gallifrey repository for 1.1.16</a></h2>
     <p>
       Posted on Mon 13 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -510,26 +710,6 @@ success</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/coming-back-from-solutions-linux-2011.html#coming-back-from-solutions-linux-2011">Coming back from Solutions Linux 2011</a></h2>
-    <p>
-      Posted on Thu 19 May 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>We had to opportunity to demonstrate our prototype of the XiVO IPBX
-OpenHardware with 3 different phones connected to the appliance
-(original orange french Socotel S63 analog phone, Siemens Gigaset SX353
-ISDN phone and Aastra 6731i SIP phone) and available through our
-softwitch interface.The mini-conference was also the opportunity to
-exchange with different hardware engineers in the telecommunications
-field about OpenHardware designs and PCB fabs in Europe. We hope this
-will help the telco OpenHardware community to grow in the coming months.</p>
 </p>
   </div>
 </article>

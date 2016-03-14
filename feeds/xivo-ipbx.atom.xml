@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-02-19T00:00:00-05:00</updated><entry><title>Sprint Review 16.02</title><link href="http://blog.xivo.io/sprint-review-1602.html" rel="alternate"></link><updated>2016-02-19T00:00:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-02-19:sprint-review-1602.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-03-14T00:00:00-04:00</updated><entry><title>Sprint Review 16.03</title><link href="http://blog.xivo.io/sprint-review-1603.html" rel="alternate"></link><updated>2016-03-14T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-03-14:sprint-review-1603.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for associating a device with a line has been added. Devices can now be fully provisioned and
+controlled via the REST API. This new API represents an additional step towards our long-term goal of offering a PBX
+system that is more flexible, customizable and useful for third party developers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Switchboard Statistics&lt;/strong&gt;: Calls that go through a switchboard will now generate statistics. Statistics provide
+valuable information to managers of an organization when analyzing the amount of calls they receive. These statistics
+can be consulted by downloading a CSV file.&lt;/p&gt;
+&lt;h2&gt;Technical Features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Websocketd&lt;/strong&gt;: Connections made to websocketd can now use backends such as "xivo_user" or "ldap_user" to authenticate
+themselves. These connections will only receive events that they are authorized to see.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Service discovery&lt;/strong&gt;: xivo-dird and xivo-agentd now register their services via consul.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LDAP authentication&lt;/strong&gt;: After discussions with members of the community, the LDAP plugin has been rewritten in order to
+adapt more easily to the needs of our users. We have also added these new features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The plugin can optionally be configured to find a user via an LDAP search&lt;/li&gt;
+&lt;li&gt;The attributes used for matching a user's username and email are configurable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Security Advisory&lt;/h2&gt;
+&lt;p&gt;A security bug has been fixed in this sprint. Security advisories for vulnerable versions of XiVO
+can be consulted on the &lt;a href="http://mirror.xivo.io/security"&gt;security advisory page&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;REST API&lt;/strong&gt;: We are working on new APIs for managing a users's call services and call forwards. This will offer third
+parties more flexibility when developing applications that manage a user's services.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web applications&lt;/strong&gt;: Work on tools for connecting web applications to XiVO is ongoing. A good example of a Web application is a switchboard application, where the operator may answer, hold and transfer calls from his browser, effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full Web switchboard environment.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;See you at the next sprint review.&lt;/p&gt;
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2"&gt;XiVO 16.03 Upgrade notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/versions/239"&gt;XiVO 16.03 Roadmap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/boards/8/topics/5048"&gt;Discussion on LDAP (fr)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.02</title><link href="http://blog.xivo.io/sprint-review-1602.html" rel="alternate"></link><updated>2016-02-19T00:00:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-02-19:sprint-review-1602.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Users import&lt;/strong&gt;: The CSV import of users now supports setting the call permissions for each user. Call permissions define which restriction are put on users regarding which numbers they can dial.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: All communications between the CTI server and the XiVO Clients will now be encrypted by default.&lt;/p&gt;
