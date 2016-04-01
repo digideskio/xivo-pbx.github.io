@@ -54,6 +54,118 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</a></h2>
+    <p>
+      Posted on Mon 21 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Lenny backports</h4>
+<p>Nicolas Hicher published newer versions of the gallifrey packages
+<a href="https://projects.proformatique.com/issues/1942">addressing the dependency
+problems</a> reported last
+week. They can be retrieved from the development repository</p>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>All source packages were downloaded using:</p>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
+</pre></div>
+
+
+<p>the dependencies removed with:</p>
+<div class="highlight"><pre><span></span>rm /var/cache/packaging-farm/depends/*
+</pre></div>
+
+
+<p>and the build of all packages relaunched with:</p>
+<div class="highlight"><pre><span></span><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
+</pre></div>
+
+
+<p>Thanks to the dependency graph added to packaging-farm each package is
+compiled exactly once. It would be more convenient to be able run
+something like</p>
+<div class="highlight"><pre><span></span>packaging-farm all
+</pre></div>
+
+
+<p>but such refinements are better addressed when the larger problems are
+resolved.</p>
+<h4>Proformatique Debian GNU/Linux lenny packages</h4>
+<p>It is worth mentionning the existence of a lenny repository containing
+packages used by the company for various purposes and not specificaly
+for XiVO. It is not needed to properly create the XiVO packages and it
+should never be. It can be used by including the following in the source
+list:</p>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>XiVO Kernel modules</h4>
+<p>A few XiVO packages provide kernel modules :
+<code>misdn-kernel, sangoma-wanpipe, divas4linux-melware</code> and <code>dahdi-linux</code>.
+The general idea is that each of the create a package designed to be
+used by <a href="http://wiki.debian.org/ModuleAssistant">module-assistant</a>. A
+kernel module is designed to be loaded in the kernel running on a
+specific machine and module-assistant will help build the matching
+binary from the kernel module sources. The lenny XiVO repository not
+only provides sources for the module, but also supports a few kernel
+flavors : <code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and
+<code>2.6.26-2-686</code>.Unfortunately packaging-farm does not support building
+binary kernel packages. It needs to be modified to add a new type to
+package and meta-package : kernel-module. Instead of building a source
+package, it would run module-assistant as follows:</p>
+<div class="highlight"><pre><span></span><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<span class="n">module-assistant</span> <span class="n">prepare</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+<span class="n">KPKG_DEST_DIR</span>=<span class="sr">/tmp/</span><span class="n">a</span> <span class="n">SIGNCHANGES</span>=<span class="mi">0</span> <span class="n">module-assistant</span> <span class="n">build</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
+</pre></div>
+
+
+<p>The sangoma-wanpipe package adds another problem : when creating the
+packages, it also tries to build a binary kernel module for the kernel
+on which the packaging process is run. As a consequence, when in a i386
+chroot running on a amd64 host, it cannot find the corresponding kernel
+headers and fails. As it is the sangoma-wanpipe package has no way to
+override the kernel version chosen. A <a href="https://projects.proformatique.com/issues/1977#note-1">patch was
+submitted</a> to
+allows this:</p>
+<div class="highlight"><pre><span></span><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
+<span class="gi">+++ rules       2011-02-21 16:18:47.000000000 +0100</span>
+<span class="gu">@@ -13,7 +13,12 @@</span>
+ KPKG_DESTDIR := $(DEB_DESTDIR)
+
+ # fallback for XEN
+<span class="gd">-MA_OPTIONS=</span>
+<span class="gi">+#MA_OPTIONS=</span>
+<span class="gi">+DEB_KVERS=$(shell echo &quot;${DEB_BUILD_OPTIONS}&quot; | perl -ne &#39;print $$1 if(/.*KVERS=(\S*)/)&#39;)</span>
+<span class="gi">+ifneq ($(DEB_KVERS),)</span>
+<span class="gi">+KVERS=${DEB_KVERS}</span>
+<span class="gi">+MA_OPTIONS=--kvers-list ${KVERS}</span>
+<span class="gi">+endif</span>
+ ifeq ($(KVERS),unknown)
+ KVERS=$(shell uname -r)
+ MA_OPTIONS=--kvers-list $(KVERS)
+</pre></div>
+
+
+<p>so that packaging can be done with:</p>
+<div class="highlight"><pre><span></span>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
+</pre></div>
+
+
+<p>A better solution would be to propose a patch to the author of the
+package to completly disablethe build of a binary kernel module. It is
+unclear where the original package comes from an amail was sent to Nenad
+Corbic &lt;ncorbic@sangoma.com&gt; reporting the patch and asking for
+information.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</a></h2>
     <p>
       Posted on Mon 14 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -329,102 +441,6 @@ the other operations to be supported by a specific tool (for instance
 importing all the packages from a known repository), such an operation
 is not frequent and the time to properly write such a tool and make sure
 it works as expected probably outweights the benefit.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html#xivo-client-packaging-server-source-policy-and-packaging-farm-updates">XiVO client packaging, server source policy and packaging-farm updates</a></h2>
-    <p>
-      Posted on Mon 31 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <h4>XiVO Qt client packaging</h4>
-<p>The resulting packages are then uploaded to a directory that depends on
-the operating system :</p>
-<ul>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/linux/debian/">Debian GNU/Linux i386 and
-    amd64</a></li>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/win32/">Windows</a></li>
-<li><a href="http://downloads.xivo.fr/xivo_cti_client/macos/">MacOsX</a></li>
-</ul>
-<p>The Debian GNU/Linux packages are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer.sh">custom
-script</a>
-that builds the binary .deb file using the binary produced by the
-compilation. There is no corresponding source package. The MacOsX .dmg
-are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/build_config/on-MacOsX-SnowLeopard">custom
-script</a>.</p>
-<p>The Windows .exe are created by a
-<a href="http://en.wikipedia.org/wiki/Nullsoft_Scriptable_Install_System">NSIS</a>
-<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer_config/win32-shared">script</a>.</p>
-<h4>Other XiVO clients</h4>
-<p>The XiVO web interface is made of a JQuery based
-<a href="http://git.proformatique.com/?p=official/xivo-client-web.git">webapp</a>
-relying on web services provided by the XiVO server. It is not packaged
-on its own : when the user connects to the PHP based web interface (as
-found in the web-interface directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
-repository</a>) the browser loads it as
-a side effect.</p>
-<p>The XiVO android client is packaged using the Eclipse based toolkit.</p>
-<h4>XiVO server packaging source policy</h4>
-<p>The <a href="http://git.xivo.fr/">XiVO server sources</a> and the corresponding
-Debian GNU/Linux packaging instructions follow an undocumented policy.
-The SVN respository containing the packaging instructions is not
-published but it can be re-constructed from the Debian GNU/Linux
-directories found in the source packages of the <a href="http://dak.proformatique.com/debian/">XiVO Debian GNU/Linux
-repository</a>.</p>
-<ul>
-<li>All packages authored by Avencall start with the pf- prefix (for
-    instance pf-xivo-fetchfw)</li>
-<li>The Debian GNU/Linux package of third party packages (asterisk
-    for instance) is a fork of the official package that may or may not
-    be synchronized with it. In particular patches applied to the
-    upstream in Debian GNU/Linux may or may not be applied in the
-    XiVO distribution.</li>
-<li>A third party package source tree is made of (take a look at the
-    freeswitch directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
-    repository</a> for an example):<ul>
-<li>tarballs that contains all past and current source archives</li>
-<li>fetch_tarball.sh that will get the latest source archive from
-    the official source and place it in the tarballs directory</li>
-<li>Makefile.pkg that contains the name of the directory in
-    the (unpublished) SVN repository containing the debian package
-    (for freeswitch it is : DEB_PKG = "freeswitch")</li>
-<li>prepare_test_sources.sh is a script that:<ul>
-<li>unpacks the source archive</li>
-<li>apply the patches (which may be in the debian directory or
-    in the source directory) (freeswitch has no patch although
-    it contains a call to quilt)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>An unpublished tool has been used consistently over the years and rely
-on this policy. The purpose of this tool is essentially the same as the
-Debian GNU/Linux
-<a href="http://wiki.debian.org/DebianWannaBuildInfrastructure">WannaBuild</a> or
-<a href="https://launchpad.net/">launchpad</a>.</p>
-<h4>packaging-farm multi architecture support</h4>
-<p>A new release of <a href="http://packaging-farm.dachary.org">packaging-farm</a> was
-published Sunday 30 January, including the following features:</p>
-<ul>
-<li>Basic multi-architecture support : i386 and x86_64 are supported
-    when running the packaging-farm on an x86_64 platform. It should
-    ultimately rely on a slave virtual machine, either running localy or
-    on a remote machine.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Support for the currently active
-    <a href="https://wiki.ubuntu.com/Releases">ubuntu</a> releases.</li>
-</ul>
-<p>It is still unclear how packaging-farm could be used to create
-multi-distribution and multi-architecture packages for XiVO and that
-will be my focus for the following weeks.</p>
 </p>
   </div>
 </article>

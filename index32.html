@@ -54,6 +54,26 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/looking-for-technical-documentation-on-the-matra-rc1173a.html#looking-for-technical-documentation-on-the-matra-rc1173a">Looking for technical documentation on the Matra RC1173A</a></h2>
+    <p>
+      Posted on Fri 04 March 2011 in <a href="http://blog.xivo.io/category/voip.html">VoIP</a>
+    </p>
+  </header>
+  <div>
+      <p>The picture below presents the only connector available on the Matra
+RC1173A  </p>
+<p><img alt="RC1173A
+connector" src="/public/.P1050040_m.jpg" title="RC1173A connector, mar. 2011" /></p>
+<p>After some studies, it seems that device is a "pupitre" from MATRA that
+sould be connected to a PABX Matracom (45xx series) of CGCT type.The
+device seems to be using a micro-controler Philips/RTC 84C21 and 84C85
+using probably the firmware HX00070xx et HX00072xx</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html#candidate-xivo-skaro-repository-for-x86_64">Candidate XiVO skaro repository for x86_64</a></h2>
     <p>
       Posted on Mon 28 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -272,118 +292,6 @@ overcome) have been addressed.</p>
     deployments</li>
 <li>Any future concurrent of CIRPACK in OpenHardware ? :)</li>
 </ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</a></h2>
-    <p>
-      Posted on Mon 21 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <h4>Lenny backports</h4>
-<p>Nicolas Hicher published newer versions of the gallifrey packages
-<a href="https://projects.proformatique.com/issues/1942">addressing the dependency
-problems</a> reported last
-week. They can be retrieved from the development repository</p>
-<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
-</pre></div>
-
-
-<p>All source packages were downloaded using:</p>
-<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | while read package ; do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
-</pre></div>
-
-
-<p>the dependencies removed with:</p>
-<div class="highlight"><pre><span></span>rm /var/cache/packaging-farm/depends/*
-</pre></div>
-
-
-<p>and the build of all packages relaunched with:</p>
-<div class="highlight"><pre><span></span><span class="x">for i in asterisk asterisk-addons asterisk-app-conference asterisk-chan-capi asterisk-chan-sccp asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca bntools dahdi-linux dahdi-tools libasterisk-perl libpri misdn-kernel misdn-user pf-asterisk-ami-aoriginate pf-asterisk-app-fax pf-asterisk-app-nv-faxdetect pf-asterisk-module-xivo pf-asterisk-prompt-fr pf-asterisk-prompt-fr-xivo pf-asterisk-prompts-xivo pf-asterisk-res-sqlite2 pf-asterisk-res-watchdog pf-asternic-stats pf-sources.list-ldlc pf-xivo pf-xivo-agid pf-xivo-backup pf-xivo-base-config pf-xivo-cti-server pf-xivo-cti-webclient pf-xivo-extra pf-xivo-fetchfw pf-xivo-lib-python pf-xivo-provisioning pf-xivo-queues-logger pf-xivo-sysconfd pf-xivo-utils pf-xivo-web-interface sangoma-wanpipe spandsp gallifrey ; do packaging-farm </span><span class="p">$</span><span class="nv">i</span><span class="x"> ; done</span>
-</pre></div>
-
-
-<p>Thanks to the dependency graph added to packaging-farm each package is
-compiled exactly once. It would be more convenient to be able run
-something like</p>
-<div class="highlight"><pre><span></span>packaging-farm all
-</pre></div>
-
-
-<p>but such refinements are better addressed when the larger problems are
-resolved.</p>
-<h4>Proformatique Debian GNU/Linux lenny packages</h4>
-<p>It is worth mentionning the existence of a lenny repository containing
-packages used by the company for various purposes and not specificaly
-for XiVO. It is not needed to properly create the XiVO packages and it
-should never be. It can be used by including the following in the source
-list:</p>
-<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://dak.proformatique.com/debian</span> <span class="kp">lenny</span> <span class="kp">main</span>
-</pre></div>
-
-
-<h4>XiVO Kernel modules</h4>
-<p>A few XiVO packages provide kernel modules :
-<code>misdn-kernel, sangoma-wanpipe, divas4linux-melware</code> and <code>dahdi-linux</code>.
-The general idea is that each of the create a package designed to be
-used by <a href="http://wiki.debian.org/ModuleAssistant">module-assistant</a>. A
-kernel module is designed to be loaded in the kernel running on a
-specific machine and module-assistant will help build the matching
-binary from the kernel module sources. The lenny XiVO repository not
-only provides sources for the module, but also supports a few kernel
-flavors : <code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and
-<code>2.6.26-2-686</code>.Unfortunately packaging-farm does not support building
-binary kernel packages. It needs to be modified to add a new type to
-package and meta-package : kernel-module. Instead of building a source
-package, it would run module-assistant as follows:</p>
-<div class="highlight"><pre><span></span><span class="n">module-assistant</span> <span class="n">get</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
-<span class="n">module-assistant</span> <span class="n">prepare</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
-<span class="n">KPKG_DEST_DIR</span>=<span class="sr">/tmp/</span><span class="n">a</span> <span class="n">SIGNCHANGES</span>=<span class="mi">0</span> <span class="n">module-assistant</span> <span class="n">build</span> --<span class="n">non-inter</span> --<span class="n">text-mode</span> --<span class="n">kvers-list</span> <span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">486</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span><span class="o">-</span><span class="n">bigmem</span>,<span class="mf">2.6.26</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">686</span> <span class="n">sangoma-wanpipe-source</span>
-</pre></div>
-
-
-<p>The sangoma-wanpipe package adds another problem : when creating the
-packages, it also tries to build a binary kernel module for the kernel
-on which the packaging process is run. As a consequence, when in a i386
-chroot running on a amd64 host, it cannot find the corresponding kernel
-headers and fails. As it is the sangoma-wanpipe package has no way to
-override the kernel version chosen. A <a href="https://projects.proformatique.com/issues/1977#note-1">patch was
-submitted</a> to
-allows this:</p>
-<div class="highlight"><pre><span></span><span class="gd">--- /tmp/rules.orig     2011-02-21 15:59:23.000000000 +0100</span>
-<span class="gi">+++ rules       2011-02-21 16:18:47.000000000 +0100</span>
-<span class="gu">@@ -13,7 +13,12 @@</span>
- KPKG_DESTDIR := $(DEB_DESTDIR)
-
- # fallback for XEN
-<span class="gd">-MA_OPTIONS=</span>
-<span class="gi">+#MA_OPTIONS=</span>
-<span class="gi">+DEB_KVERS=$(shell echo &quot;${DEB_BUILD_OPTIONS}&quot; | perl -ne &#39;print $$1 if(/.*KVERS=(\S*)/)&#39;)</span>
-<span class="gi">+ifneq ($(DEB_KVERS),)</span>
-<span class="gi">+KVERS=${DEB_KVERS}</span>
-<span class="gi">+MA_OPTIONS=--kvers-list ${KVERS}</span>
-<span class="gi">+endif</span>
- ifeq ($(KVERS),unknown)
- KVERS=$(shell uname -r)
- MA_OPTIONS=--kvers-list $(KVERS)
-</pre></div>
-
-
-<p>so that packaging can be done with:</p>
-<div class="highlight"><pre><span></span>DEB_BUILD_OPTIONS=KVERS=2.6.26-2-486 dpkg-buildpackage
-</pre></div>
-
-
-<p>A better solution would be to propose a patch to the author of the
-package to completly disablethe build of a binary kernel module. It is
-unclear where the original package comes from an amail was sent to Nenad
-Corbic &lt;ncorbic@sangoma.com&gt; reporting the patch and asking for
-information.</p>
 </p>
   </div>
 </article>

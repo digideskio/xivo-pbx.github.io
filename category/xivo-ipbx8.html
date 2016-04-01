@@ -54,6 +54,25 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html#multiple-users-building-on-the-xivo-packaging-machine">Multiple users building on the XiVO packaging machine</a></h2>
+    <p>
+      Posted on Tue 09 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>multiuser locking</h4>
+<p>The packaging-farm command does not behave well when two are run
+simultaneously to build the same package. Nothing bad happens but fixing
+the result involves umounting a number of aufs corrupted file systems
+and it is inconvenient. To avoid this, the packaging-farm command was
+<a href="http://packaging-farm.dachary.org/trac/changeset/8855a9c5fc09b088edaa055a33de1e820f30cc42">modified to set a ...</a></p>
+      <a class="btn" href="http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html#multiple-users-building-on-the-xivo-packaging-machine">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-package-submissions-rules.html#xivo-package-submissions-rules">XiVO package submissions rules</a></h2>
     <p>
       Posted on Mon 01 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -133,30 +152,6 @@ packaging-farm.conf and submit-xivo.sh manual pages.</p>
 <li>Guillaume gets work done on the <strong>web-interface</strong> directory of the
     internal ...</li></ul>
       <a class="btn" href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html#xivo-packaging-from-the-developer-point-of-view">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html#a-gallifrey-repository-for-1116">A gallifrey repository for 1.1.16</a></h2>
-    <p>
-      Posted on Mon 13 June 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>upgrading packaging-farm</h4>
-<p>After the upgrade of packaging-farm to version 1.2.42, the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile">gallifrey
-Makefile</a>
-was updated to add a <em>update</em> target that updates the git repositories
-and schedules for build the packages that have been changed since the
-last build.</p>
-<div class="highlight"><pre><span></span><span class="x">update:</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
-<span class="x">        </span><span class="err">#</span><span class="x"></span>
-<span class="x">        for dir in ...</span></pre></div>
-      <a class="btn" href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html#a-gallifrey-repository-for-1116">Continue reading</a>
   </div>
 </article>
 

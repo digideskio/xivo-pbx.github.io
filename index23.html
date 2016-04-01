@@ -54,6 +54,59 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/openhardware-landscape-q4-2011.html#openhardware-landscape-q4-2011">OpenHardware landscape Q4 2011</a></h2>
+    <p>
+      Posted on Tue 01 November 2011 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><strong>The OpenHardware community is expanding more and more these past
+months and here a short landscape view of the community nowadays :</strong></p>
+<ul>
+<li><strong>OpenHardware large board projects</strong></li>
+</ul>
+<p>PandaBoard :
+<a href="http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip">http://pandaboard.org/sites/default/files/board_reference/EA1/720-2152-001_EA1_BRD.zip</a><br />
+Chumby :
+<a href="http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip">http://files.chumby.com/bunnie/chumbyone_hw/chumbyone_gerbers.zip</a><br />
+MilkyMist :
+<a href="http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification">http://en.qi-hardware.com/wiki/Milkymist_One_RC1_PCB_Specification</a><br />
+Tormenta v2 PCI card :
+<a href="http://www.zapatatelephony.org/t2/T2B2Gerber.zip">http://www.zapatatelephony.org/t2/T2B2Gerber.zip</a>  </p>
+<ul>
+<li><strong>OpenHardware smaller board projects</strong></li>
+</ul>
+<p>DIY boards : <a href="http://tuxgraphics.org/electronics/">http://tuxgraphics.org/electronics/</a>  </p>
+<ul>
+<li><strong>Open "specifications" Hardware products</strong></li>
+</ul>
+<p>Elphel camera :
+<a href="http://www.elphel.com/importwiki?title=353_in_a_nutshell">http://www.elphel.com/importwiki?title=353_in_a_nutshell</a>  </p>
+<ul>
+<li><strong>Blogs/Events/Journals</strong></li>
+</ul>
+<p>OpenHardwareJournal :
+<a href="http://openhardware.org/journal/2011/11/index.html">http://openhardware.org/journal/2011/11/index.html</a><br />
+Hack-a-day : <a href="http://hackaday.com">http://hackaday.com</a>  </p>
+<ul>
+<li><strong>Events/Conferences/Workshops</strong></li>
+</ul>
+<p>OpenHardwareSummit : <a href="http://www.openhardwaresummit.org/">http://www.openhardwaresummit.org/</a><br />
+OpenHardwareWorkshop :
+<a href="http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop">http://www.ohwr.org/projects/ohr-meta/wiki/OHWorkshop</a><br />
+OpenSourceHardware2011 (Madrid) : <a href="http://oshwcon.org/">http://oshwcon.org/</a>  </p>
+<ul>
+<li><strong>Licences</strong></li>
+</ul>
+<p>OHANDA : <a href="http://ohanda.org">http://ohanda.org</a><br />
+CERN : <a href="http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects">http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects</a><br />
+OpenSourceHardwareDefintion : <a href="http://freedomdefined.org/OSHW">http://freedomdefined.org/OSHW</a>  </p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-wiki-news.html#xivo-wiki-news">XiVO wiki news</a></h2>
     <p>
       Posted on Tue 25 October 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -307,59 +360,6 @@ repository</a><br />
 documentation</a><br />
 <a href="https://wiki.xivo.fr/index.php/Support_Community#IRC" title="IRC channel infos">IRC
 channel</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Safeguard against downgrades in XIVO packages</a></h2>
-    <p>
-      Posted on Mon 26 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>Safeguard against downgrades in XIVO packages</h4>
-<p>The following use case creates a <a href="http://packaging-farm.dachary.org/trac/ticket/23">confusing
-situation</a>:</p>
-<ul>
-<li>package-1.1-1 is submitted to the farm and successfully built</li>
-<li>package-1.0-1 is submitted to the farm : it is a version lower than
-    the one already built</li>
-<li>packaging-farm creates package-1.1-1+build1 instead of package-1.0-1</li>
-<li>the .orig.tar.gz is package-1.0.orig.tar.gz and a package-1.1.tar.gz
-    is created</li>
-</ul>
-<p>Although building an older version of a package is not desirable, it
-should not claim to succeed while creating a package inconsistent with
-the orig.tar.gz file.</p>
-<p>The source of the problem comes from the logic that adds a +buildX to
-the debian version of a package when a package is rebuilt (for instance
-because a package it depends on has been rebuilt). When this logic was
-implemented, the possibility that a package with a lower version number
-than a previously built package could be submitted was overlooked. It is
-not the normal behavior and should be treated as an error. Instead, it
-was ignored and lead to confusing results as described in the bug
-report.</p>
-<p>The general rule is that the packaging-farm should refuse to build a
-package with a version lower than a previously build package. The goal
-is to prevent downgrades because the installation scripts are not
-designed for downgrades. However, this general rule cannot be applied
-just by comparing the versions of the existing package ( as found in
-/var/lib/packaging-farm ) and the current package ( as found in
-/var/cache/packaging-farm/source ). When a package is rebuilt, the
-+buildX suffix will always make the existing package more recent than
-the current package. The check must therefore proceed in two steps:
-first check if the existing package is more recent and then throw an
-error if the reason why it is more recent is not just because there is a
-+buildX appended to it.</p>
-<p>The <a href="http://packaging-farm.dachary.org/trac/changeset/c1e5dff59898ab5ac0f23854f55d752f1c001a05">associated
-patch</a>
-also moves the extraction of the existing package version from the
-makefile to the debuild.sh script. That avoids duplicating the logic. It
-also gives the debuild.sh script the name of the original dsc file in
-order to print a meaningfull error message.</p>
 </p>
   </div>
 </article>

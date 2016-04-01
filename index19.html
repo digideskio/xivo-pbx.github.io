@@ -54,6 +54,112 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-2.html#httptftp-requests-processing-in-provd-part-2">HTTP/TFTP requests processing in provd - part 2</a></h2>
+    <p>
+      Posted on Thu 12 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>Let's take the same example as we did last time, i.e. let's say we have
+a xivo-aastra plugin installed.</p>
+<p>So we plug a brand new Aastra 6731i on our network. The phone then does
+the following HTTP request:</p>
+<div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/Aastra/aastra.cfg</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Aastra6731i MAC:00-11-22-33-44-55 V:3.2.2.1136-SIP</span>
+</pre></div>
+
+
+<p>The "device info extraction" step is then able to extract the following
+information:</p>
+<div class="highlight"><pre><span></span>{&#39;vendor&#39;: &#39;Aastra&#39;, &#39;model&#39;: &#39;6731i&#39;, &#39;version&#39;: &#39;3.2.2.1136&#39;,
+ &#39;mac&#39;: &#39;00:11:22:33:44:55&#39;, &#39;ip&#39;: &#39;192.168.1.100&#39;}
+</pre></div>
+
+
+<p>This information is then passed to a "device retriever" object. Here's a
+pseudo code version of what it looks like:</p>
+<div class="highlight"><pre><span></span>def process_request(request):
+    device_info = device_info_extractor.extract(request)
+    device = device_retriever.retrieve(device_info)
+    ...
+</pre></div>
+
+
+<p>A device object can be seen as a superset of a device info object. Both
+are dictionaries, but the device object can contain keys that the device
+infoobject never will, like an "id", a "plugin" and a "config" key.</p>
+<p>Let's see in more details what happens in this "device retriever"
+object:</p>
+<p><a href="/public/provd/device-retriever.png" title="Device retriever"><img alt="Device
+retriever" src="/public/provd/.device-retriever_m.jpg" title="Device retriever, avr. 2012" /></a></p>
+<p>The device retriever will ask one at a time the different other device
+retrievers until one returns something. In our example, since the provd
+serverdoesn't know yet about our Aastra, the "mac device retriever" will
+returns nothing because there is no device with the MAC address
+00:11:22:33:44:55 in the device database, then the "SN (serial number)
+device retriever" will returns nothing because no SN is used with
+Aastra, then the "ip device retriever" will also returns nothing, and
+finally, the "add device retriever" will add the new device to the
+database and return it.</p>
+<p>On the next requests of our Aastra, the "mac device retriever" will
+search for a device with the given MAC and will then return the device
+object that was added previously.</p>
+<p>From what we just learned, we can see that it's at this step that
+devices are automatically added to provd. That said, the automatic
+plugin association and automatic config association (taken from a
+"template" config) is not done at this step but later on, which is
+something we'll see in more details in my next blog post.</p>
+<p>If provd had to support only Aastra phones, only the "mac device
+retriever" and the "add device retriever" would be needed (and some part
+of provd would be a whole lot simpler also). That said, the reality is
+more complex. Some phones are only doing TFTP requests, which means no
+User-Agent header and little information to extract for some requests,
+sometimes only the IP address. This is where the "ip device retriever"
+comes in handy. It's usually able to find the right device by only using
+the IP address. This is possible because provd always try to maintain
+the most up to date info about IP address used by devices.</p>
+<p>That said, for some devices, there is some scenarios where the system
+just isn't powerful enough:</p>
+<ul>
+<li>you power on a new Linksys/Cisco SPA3102, which is given the
+    192.168.1.101 IP address by the DHCP server</li>
+<li>the phone then ask the /spa3102.cfg file via TFTP</li>
+<li>provd knows the request came from a Linksys SPA3102 with the
+    192.168.1.101 IP address, but doesn't know the MAC address. No
+    worry, it still adds it to the device database.</li>
+<li>the phone then ask the /001122334477.xml file, still via TFTP.</li>
+<li>provd is able to retrieve the device by using the IP address, and
+    now knows that the device behind the request has the MAC
+    00:11:22:33:44:77</li>
+<li>the phone is unplugged from the network</li>
+<li>a couple of days later, the phone is power on again. This time, the
+    DHCP server gives it the 192.168.1.102 IP address</li>
+<li>the phone then ask the /spa3102.cfg file via TFTP</li>
+<li>the only information that can used to retrieve the device is the
+    IP address. That said, no device in the device database use this
+    IP address. provd will then create a new device, believing its a
+    new device.</li>
+<li>the phone then ask the /001122334477.xml file</li>
+<li>provd is then able to retrieve the first device by using the
+    MAC address. It then updates the IP address information of
+    this device. Unfortunately, the previous step created a device in
+    the database for nothing.</li>
+</ul>
+<p>The system still works in these cases. The only problem is that you get
+junk devices in provd device's database, and these can only be removed
+manually. They are not causing any real harm except then adding some
+confusion as to why theses devices are in the database.</p>
+<p>There is a way to get by this problem, and it's called "dhcp
+integration". Yes. Just believe me.</p>
+<p>So that's all folks. Next time, if your brain still hasn't suffered from
+an epileptic seizure, get ready because we'll be talking about the
+"device updating" step.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/two-new-platforms-for-the-xivo-client.html#two-new-platforms-for-the-xivo-client">Two new platforms for the XiVO Client</a></h2>
     <p>
       Posted on Wed 04 April 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -285,52 +391,6 @@ herethe screen that you should view if your configuration is ok</p>
 <p><img alt="pxe_screen.png" src="/public/pxe_screen.png" title="pxe_screen.png, mar. 2012" /></p>
 <p>In the next post, I will explain an advanced pxe configuration and how
 to usepreseeding to execute an automatic installation.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sccpp-and-continuous-integration.html#sccpp-and-continuous-integration">SCCPp and continuous integration</a></h2>
-    <p>
-      Posted on Mon 20 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>SCCPp is a small tool that we developed in parallel of our Asterisk sccp
-channel. Its main purpose is to imitate a real cisco phone in a pure
-virtual way. One of the main goal behind it is to be able to do
-continuous integration. By coupling SCCPp with Asterisk testsuite and
-Jenkins we are able to automate tests that we would normally do
-manually. This way, when a commit is pushed, it trigger a task that
-launch the script responsible to update and compile the source, to pass
-every test in the list and to report if something went wrong.</p>
-<p>Only basic test are implemented via SCCPp at the present moment. We can
-simulate the full protocol exchange involved when a phone connect and
-authenticate itself to the server. Another supported option is the
-stress test of a configured device. In this mode, SCCPp start two
-threads and dial the device at random interval. The goal here is to pass
-through as much code as possible and to make sure there is no regression
-in the code under known scenarios.</p>
-<p>SCCPp doesn't support the RTP protocol (Real-Time Transport Protocol) at
-the present moment. What it mean is that we can't simulate the
-transportation of the voice from a device to another. The development of
-SCCPp is still at an early stage, and many more features will be added
-in the future.</p>
-<p>As the complexity of the libsccp increase, we need more tests to ensure
-that a change in the code, such a bug fix, do not introduce new faults.
-Functional testing is only one part of the solution, even if it's a
-powerful one to ensure that specific cases work well, it says nothing
-about the internal. The other half of the solution is to unit test the
-code. This is a method by which individual units of source code are
-tested to ensure they perform properly. Fortunately, Asterisk has its
-own framework that allow us to easily write unit test and to trigger
-them to see if they pass correctly. In another post, we will present
-what can be done with this Asterisk unit test framework and how it can
-help to do TDD (Test Driven Development).</p>
-<p>If you are interested to play with SCCPp, you can get the source code at
-this address:
-<a href="http://git.proformatique.com/?p=official/sccpp.git;a=summary" title="http://git.proformatique.com/?p=official/sccpp.git;a=summary">http://git.proformatique.com/?p=off...</a></p>
 </p>
   </div>
 </article>

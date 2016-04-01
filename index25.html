@@ -54,6 +54,122 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html#rebuilding-xivo-gallifrey">Rebuilding XiVO gallifrey</a></h2>
+    <p>
+      Posted on Mon 05 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>rebuilding gallifrey</h4>
+<p>The /var/cache/packaging-farm/sources directory was removed and</p>
+<div class="highlight"><pre><span></span>export VERSION_COMPUTE=false
+</pre></div>
+
+
+<p>set in /etc/packaging-farm/packaging-farm.conf and
+<code>packaging-farm --cd gallifrey rebuild</code> was run to rebuild gallifrey
+from scratch. It took 42 minutes total. The purpose of this complete
+rebuild was to get rid of the timestamp and hash that were previously
+part of the version number.</p>
+<h4>compatibility between sangoma-wanpipe and dahdi-linux</h4>
+<p>The build of the gallifrey development packages was blocked because of a
+compilation error.</p>
+<div class="highlight"><pre><span></span>...
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:1504: error: &#39;DAHDI_MAINT_LOOPSTOP&#39; undeclared (first use in this function)
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c: In function &#39;wp_tdmv_rx_dchan&#39;:
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2516: error: &#39;struct dahdi_chan&#39; has no member named &#39;readbufq&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2517: error: &#39;struct dahdi_chan&#39; has no member named &#39;sel&#39;
+/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.c:2519: error: &#39;struct dahdi_chan&#39; has no member named &#39;eventbufq&#39;
+make[6]: *** [/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp/sdla_tdmv.o] Error 1
+make[5]: *** [_module_/usr/src/sangoma-wanpipe-3.5.17.dfsg.1/kdrvtmp] Error 2
+make[4]: *** [all] Error 2
+
+---------------------------------------------
+
+make[3]: *** [common-build-impl] Error 1
+dpkg-buildpackage: failure: debian/rules build gave error exit status 2
+BUILD END packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
+</pre></div>
+
+
+<p>To debug the problem, the following command was used to go in the chroot
+where it can be reproduced:</p>
+<div class="highlight"><pre><span></span>packaging-farm --cd sangoma-wanpipe ARCHITECTURE=i386 DISTRIBUTION=lenny chroot-login
+</pre></div>
+
+
+<p>The compilation error:</p>
+<div class="highlight"><pre><span></span>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c:352: error: unknown field &#39;name&#39; specified in initializer
+</pre></div>
+
+
+<p>is in <code>/usr/src/sangoma-wanpipe-3.5.20.dfsg.1/kdrvtmp/sdla_tdmv.c</code></p>
+<div class="highlight"><pre><span></span>static const struct dahdi_echocan_ops wp_tdmv_ec_ops = {
+        .name = &quot;WANPIPE_HWEC&quot;,
+        .echocan_free = wp_tdmv_hwec_free,
+};
+</pre></div>
+
+
+<p>and comes from the fact that <code>/usr/include/dahdi/kernel.h</code> which is part
+of</p>
+<div class="highlight"><pre><span></span>ii  dahdi-linux-dev                 1:2.5.0+pf.xivo.1.1.18~20110820.120254.7b98919-1 DAHDI telephony interface (source code
+</pre></div>
+
+
+<p>contains</p>
+<div class="highlight"><pre><span></span>struct dahdi_echocan_ops {
+
+        /*! \brief Free an echocan state structure.                                                                                                             
+         * \param[in,out] ec Pointer to the state structure to free.                                                                                            
+         *                                                                                                                                                      
+         * \
+eturn Nothing.                                                                                                                                     
+         */
+        void (*echocan_free)(struct dahdi_chan *chan, struct dahdi_echocan_state *ec);
+...
+</pre></div>
+
+
+<p>and does not contain the <code>name</code> field which means that
+<code>sangoma-wanpipe-3.5.20</code> is not compatible with
+<code>dahdi-linux-dev 1:2.5.0</code></p>
+<h4>kernel-module dependencies</h4>
+<p>Nicolas Hicher faced a problem because <a href="http://packaging-farm.dachary.org/trac/ticket/19">kernel-modules dependencies did
+not work</a>. The
+dependency graph generated is wrong: it mentions the stamp files but do
+not assemble them properly. As a result the kernel-module is not rebuilt
+when the module is rebuilt. The make_graph and make_build functions
+<a href="are%20assembled%20into%20a%20single%20functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60" title="are assembled into a single functionhttp://packaging-farm.dachary.org/trac/changeset/d561c3d271e26651c2f94f96d343d7d33070eb60">are assembled into a single
+functio...</a>|
+so that the rule generated lists the timestamp files of the
+dependencies.</p>
+<h4>Makefiles moved to /etc/packaging-farm</h4>
+<p>The fact that Makefiles describing how a given package must be built are
+expected to be in /var/cache/packaging-farm <a href="http://packaging-farm.dachary.org/trac/ticket/20">is
+confusing</a>. In
+addition, they are copied in /var/lib/packaging-farm after the package
+is successfully built. As a result the system administrator is led to
+think that /var/lib/packaging-farm/package/Makefile is the file to be
+edited although it will be overridden the next time a package is
+built.The makefiles <a href="http://packaging-farm.dachary.org/trac/changeset/6450d8785be6406a5e1d1d205df23be04279f736">are moved from
+/var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk</a>.
+To ensure the compatibility with the existing scripts, a symbolic link
+is created from /var/cache/packaging-farm/build/package/Makefile to
+/etc/packaging-farm/package.mk by the makefiles.sh script.The manual
+page is updated to remove references to the former build directory. The
+additional benefit of having the .mk files in /etc/packaging-farm is
+that they can be saved by etckeeper and backed up with /etc.The build
+machines for gallifrey, gallifrey-dev and skaro were migrated to the new
+convention.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">XiVO package versioning</a></h2>
     <p>
       Posted on Mon 29 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -539,85 +655,6 @@ to avoid this confusion.</p>
        say 1.1-1 is published, it will be compared to the last  built  version
        using dpkg --compare-version Because it is found to be greater, it will
        be used as if there was no previous build.
-</pre></div>
-
-
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-package-submissions-rules.html#xivo-package-submissions-rules">XiVO package submissions rules</a></h2>
-    <p>
-      Posted on Mon 01 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>conditional update based on version instead of time</h4>
-<p>The following use case fails if <strong>submit-xivo.sh</strong> does not create a
-source package if the timestamp of the last successfull build is more
-recent than the latest commit of the debian or source repository.</p>
-<ul>
-<li>DIRECTORY=package submit-xivo.sh</li>
-<li>checkout a tag set a day before</li>
-<li>DIRECTORY=package submit-xivo.sh</li>
-</ul>
-<p>This problem was introduced with the implementation of the GIT_REVISION
-variable that allows to chose which tag or branch the debian and source
-should be set.Instead of checking for the build timestamp, the version
-of the package that should be build is checked against an existing
-.diff.gz file in the source directory. If no match is found, the source
-package is created.The documentation was updated to reflect this new
-behavior:</p>
-<div class="highlight"><pre><span></span>When run as DIRECTORY=asterisk submit.xivo.sh will merge  the  asterisk
-       sources  with  the  corresponding Debian GNU/Linux package instructions
-       and build a source package.
-
-
-       step 1 - update the git repositories
-              the SOURCE_GIT and DEBIAN_GIT repositories  are  pulled  in  the
-              VCS_DIR directory.
-
-       step 2 - test dependencies
-              if  there exists a .diff.gz file matching the current version of
-              the package (see VERSION below), skip step 3 and step 4
-
-       step 3 - merge sources and Debian GNU/Linux package
-              the source  and  Debian  package  information  are  copied  from
-              VCS_DIR and merged into PACKAGES_DIR
-
-       step 4 - build source package
-              without  any attempt at resolving dependencies, a source package
-              is built using dpkg-buildpackage
-</pre></div>
-
-
-<h4>VERSION_FLAVOR</h4>
-<p>At the request of Nicolas Hicher, the VERSION_FLAVOR variable was added
-to implement the following:</p>
-<div class="highlight"><pre><span></span>VERSIONS
-       The XiVO source  packages  have  no  version  information.  The  Debian
-       GNU/Linux  package  version  numbers are generated based on the date of
-       the last commit in the source directory (not the debian directory), the
-       version  of  the  third party source if any, the content of the VERSION
-       file from the source directory, followed  by  the  value  of  the  VER-
-       SION_FLAVOR   variable   and   its   short   hash.   V.V.V+X.X.X~YYYYM-
-       MDD.HHMMSS.HASH will be the version number of a package built from  the
-       third  party source version V.V.V for the benefit of XiVO version X.X.X
-       where the last commit in the sources was made on YYYYMMDD.HHMMSS.  This
-       last  commit  hash  is appended to the version number.  Example: aster-
-       isk-1.4.42+1.1.15~20110312.102015.8ff428-1
-</pre></div>
-
-
-<p>and</p>
-<div class="highlight"><pre><span></span>VERSION_FLAVOR=
-              The content of this variable is appended to the value  found  in
-              the  VERSION file and may be used to distinguish from a develop-
-              ment version and a production version for instance.
-              VERSION_FLAVOR=-dev
 </pre></div>
 
 

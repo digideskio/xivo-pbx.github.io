@@ -54,6 +54,21 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/association-asterisk-france.html#association-asterisk-france">Association Asterisk France</a></h2>
+    <p>
+      Posted on Tue 03 July 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>The association Asterisk France is continuing. Please reading the press
+document (in french).</p>
+<p><a href="/public/info_presse_asterisk-france.pdf">info_presse_asterisk-france.pdf</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/multicloning-with-clonezilla-part-1.html#multicloning-with-clonezilla-part-1">Multicloning with Clonezilla - part 1</a></h2>
     <p>
       Posted on Fri 29 June 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -165,38 +180,6 @@ a caller ID.</p>
 <p><img alt="reverse_2.png" src="/public/.reverse_2_m.jpg" title="reverse_2.png, juin 2012" /></p>
 <p>Note that reverse look-up will work as described in version 1.2.10 and
 later, another good reason to do a xivo-upgrade.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-is-a-free-software-and-yes-you-can-contribute.html#xivo-is-a-free-software-and-yes-you-can-contribute">XiVO is a free software and YES you can contribute !</a></h2>
-    <p>
-      Posted on Mon 04 June 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>One of our customers Medes has contributed an external script for XiVO.
-They have enhanced the features (eg. do not disturb, call forward ...)
-by creating a new python script. They released the script under the
-GPLv3 license. The result of this script is :</p>
-<p><img alt="aastra_resultat.jpg" src="/public/.aastra_resultat_m.jpg" title="aastra_resultat.jpg, juin 2012" /></p>
-<p>To activate this new function, simply change the aastra template in your
-provisioning server.</p>
-<div class="highlight"><pre><span></span><span class="x">xml status scroll delay: 2</span>
-<span class="x">action uri registered: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
-<span class="x">action uri onhook: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
-<span class="x">action uri poll: https://&lt;YOUR_URL&gt;/?identity=</span><span class="p">$$</span><span class="nv">DISPLAYNAME</span><span class="p">$$</span><span class="x"></span>
-<span class="x">action uri poll interval: 60</span>
-</pre></div>
-
-
-<p>For more information about the template go to : <a href="http://documentation.xivo.fr/production/administration/provisioning/adv_configuration.html#creating-custom-templates">creating custom
-templates</a></p>
-<p>The code is available on
-<a href="https://gitorious.org/xivo/xivo-experimental/trees/master/xivoaastrafrommedes">gitorious</a>
-in our xivo-experimental repository.</p>
 </p>
   </div>
 </article>

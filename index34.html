@@ -54,6 +54,102 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html#xivo-client-packaging-server-source-policy-and-packaging-farm-updates">XiVO client packaging, server source policy and packaging-farm updates</a></h2>
+    <p>
+      Posted on Mon 31 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>XiVO Qt client packaging</h4>
+<p>The resulting packages are then uploaded to a directory that depends on
+the operating system :</p>
+<ul>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/linux/debian/">Debian GNU/Linux i386 and
+    amd64</a></li>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/win32/">Windows</a></li>
+<li><a href="http://downloads.xivo.fr/xivo_cti_client/macos/">MacOsX</a></li>
+</ul>
+<p>The Debian GNU/Linux packages are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer.sh">custom
+script</a>
+that builds the binary .deb file using the binary produced by the
+compilation. There is no corresponding source package. The MacOsX .dmg
+are created by a <a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/build_config/on-MacOsX-SnowLeopard">custom
+script</a>.</p>
+<p>The Windows .exe are created by a
+<a href="http://en.wikipedia.org/wiki/Nullsoft_Scriptable_Install_System">NSIS</a>
+<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=blob;f=cross/installer_config/win32-shared">script</a>.</p>
+<h4>Other XiVO clients</h4>
+<p>The XiVO web interface is made of a JQuery based
+<a href="http://git.proformatique.com/?p=official/xivo-client-web.git">webapp</a>
+relying on web services provided by the XiVO server. It is not packaged
+on its own : when the user connects to the PHP based web interface (as
+found in the web-interface directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
+repository</a>) the browser loads it as
+a side effect.</p>
+<p>The XiVO android client is packaged using the Eclipse based toolkit.</p>
+<h4>XiVO server packaging source policy</h4>
+<p>The <a href="http://git.xivo.fr/">XiVO server sources</a> and the corresponding
+Debian GNU/Linux packaging instructions follow an undocumented policy.
+The SVN respository containing the packaging instructions is not
+published but it can be re-constructed from the Debian GNU/Linux
+directories found in the source packages of the <a href="http://dak.proformatique.com/debian/">XiVO Debian GNU/Linux
+repository</a>.</p>
+<ul>
+<li>All packages authored by Avencall start with the pf- prefix (for
+    instance pf-xivo-fetchfw)</li>
+<li>The Debian GNU/Linux package of third party packages (asterisk
+    for instance) is a fork of the official package that may or may not
+    be synchronized with it. In particular patches applied to the
+    upstream in Debian GNU/Linux may or may not be applied in the
+    XiVO distribution.</li>
+<li>A third party package source tree is made of (take a look at the
+    freeswitch directory of the <a href="http://git.xivo.fr/xivo-skaro.git/">git
+    repository</a> for an example):<ul>
+<li>tarballs that contains all past and current source archives</li>
+<li>fetch_tarball.sh that will get the latest source archive from
+    the official source and place it in the tarballs directory</li>
+<li>Makefile.pkg that contains the name of the directory in
+    the (unpublished) SVN repository containing the debian package
+    (for freeswitch it is : DEB_PKG = "freeswitch")</li>
+<li>prepare_test_sources.sh is a script that:<ul>
+<li>unpacks the source archive</li>
+<li>apply the patches (which may be in the debian directory or
+    in the source directory) (freeswitch has no patch although
+    it contains a call to quilt)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>An unpublished tool has been used consistently over the years and rely
+on this policy. The purpose of this tool is essentially the same as the
+Debian GNU/Linux
+<a href="http://wiki.debian.org/DebianWannaBuildInfrastructure">WannaBuild</a> or
+<a href="https://launchpad.net/">launchpad</a>.</p>
+<h4>packaging-farm multi architecture support</h4>
+<p>A new release of <a href="http://packaging-farm.dachary.org">packaging-farm</a> was
+published Sunday 30 January, including the following features:</p>
+<ul>
+<li>Basic multi-architecture support : i386 and x86_64 are supported
+    when running the packaging-farm on an x86_64 platform. It should
+    ultimately rely on a slave virtual machine, either running localy or
+    on a remote machine.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>Support for the currently active
+    <a href="https://wiki.ubuntu.com/Releases">ubuntu</a> releases.</li>
+</ul>
+<p>It is still unclear how packaging-farm could be used to create
+multi-distribution and multi-architecture packages for XiVO and that
+will be my focus for the following weeks.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html#xivo-server-packaging-in-a-nutshell">XiVO server packaging in a nutshell</a></h2>
     <p>
       Posted on Mon 24 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -356,24 +452,6 @@ file with all the electrical connexions between the components and the
 chips on-board) and the .BRD (Board file with the actual real-sized PCB
 and the components position with all the net connexions</strong>). This image
 displays the .BRD file designed for the FXO/FXS interfaces.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-is-everywhere-part-2.html#xivo-is-everywhere-part-2">XiVO is everywhere part 2 !</a></h2>
-    <p>
-      Posted on Mon 13 December 2010 in <a href="http://blog.xivo.io/category/general.html">General</a>
-    </p>
-  </header>
-  <div>
-      <p>Hello !</p>
-<p>This is the next session for XiVO is everywhere, thank for the pictures
-;).</p>
-<p><img alt="DSCN1822.JPG" src="/public/.DSCN1822_m.jpg" title="DSCN1822.JPG, déc. 2010" /></p>
-<p><img alt="IMG_1465.jpg" src="/public/.IMG_1465_m.jpg" title="IMG_1465.jpg, déc. 2010" /></p>
-<p><img alt="PA020107.JPG" src="/public/.PA020107_m.jpg" title="PA020107.JPG, déc. 2010" /></p>
 </p>
   </div>
 </article>

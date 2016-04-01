@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-03-14T00:00:00-04:00</updated><entry><title>Sprint Review 16.03</title><link href="http://blog.xivo.io/sprint-review-1603.html" rel="alternate"></link><updated>2016-03-14T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-03-14:sprint-review-1603.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-04-04T00:00:00-04:00</updated><entry><title>Sprint Review 16.04</title><link href="http://blog.xivo.io/sprint-review-1604.html" rel="alternate"></link><updated>2016-04-04T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-04-04:sprint-review-1604.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Fax&lt;/strong&gt;: The Fax system in XiVO has been improved, thanks to the XiVO community (thank you Julien Revert). Fax files can be
+converted to PDF on reception. Files can also be deposited on a FTP server. Further details on how to configure these
+features can be found
+&lt;a href="http://documentation.xivo.io/en/latest/administration/fax/fax.html#using-the-ftp-backend"&gt;in the documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forwards&lt;/strong&gt;: The behaviour of the call forwards BLFs is completely consistent across the unconditional, busy and no-answer
+forwards. A BLF (Busy Lamp Field) is a small light found next to the function key on a phone. The light helps indicate
+to the user if any call forwards are currently active.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: The Xlet People has received small mouse improvements: it is now possible to copy contact informations
+  to the clipboard, such as the phone number or email via a right click.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;REST API&lt;/strong&gt;: New APIs for managing forwards and services have been integrated to the user resource. All call forwards
+can now be fully controlled through the REST API. This new API represents an additional step towards our long-term goal
+of offering a PBX system that is more flexible, customizable and useful for third party developers.&lt;/p&gt;
+&lt;h2&gt;Technical Features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;SCCP&lt;/strong&gt;: SCCP phones can be configured to use the G.722 codec.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Digium&lt;/strong&gt;: The firmware for Digium cards has been updated to the latest version which supports TE133 and TE435
+cards.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Yealink&lt;/strong&gt;: The firmware for V80 has been updated to the latest version. Official support for the Yealink T40P and
+  community support for the T27P, T29G and T49G has also been added.&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;REST API&lt;/strong&gt;: We are working on new APIs for managing call transfers and call permissions. Call permissions enable
+administrators to control which phone numbers are allowed to be called by users. This will offer third parties more
+flexibility when developing applications that control the call flows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web applications&lt;/strong&gt;: Work on tools for connecting web applications to XiVO is ongoing. A good example of a Web
+  application is a switchboard application, where the operator may answer, hold and transfer calls from his browser,
+  effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full
+  Web switchboard environment.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;My fellow xivoists, as the &lt;strong&gt;Lord of XiVO&lt;/strong&gt; allow me to bid you a happy and invigorating farewell. I wish you shall
+remain in high spirits until our next fateful encounter, 3 weeks from now. May the freedom of XiVO bless your
+communications across the vast VoIP expanse.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2"&gt;XiVO 16.04 Upgrade notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/versions/240"&gt;XiVO 16.04 Roadmap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.03</title><link href="http://blog.xivo.io/sprint-review-1603.html" rel="alternate"></link><updated>2016-03-14T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-03-14:sprint-review-1603.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for associating a device with a line has been added. Devices can now be fully provisioned and
 controlled via the REST API. This new API represents an additional step towards our long-term goal of offering a PBX
