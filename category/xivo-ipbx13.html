@@ -54,6 +54,29 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</a></h2>
+    <p>
+      Posted on Mon 21 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Lenny backports</h4>
+<p>Nicolas Hicher published newer versions of the gallifrey packages
+<a href="https://projects.proformatique.com/issues/1942">addressing the dependency
+problems</a> reported last
+week. They can be retrieved from the development repository</p>
+<div class="highlight"><pre><span></span><span class="k">deb-src</span> <span class="s">http://dak.proformatique.com/debian/</span> <span class="kp">lenny-xivo-gallifrey-dev</span> <span class="kp">main</span>
+</pre></div>
+
+
+<p>All source packages were downloaded using:</p>
+<div class="highlight"><pre><span></span><span class="x">awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique ...</span></pre></div>
+      <a class="btn" href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</a></h2>
     <p>
       Posted on Mon 14 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -130,24 +153,6 @@ a set of git repositories which will become a central place:</p>
 <li>git://git.xivo.fr/xivo-dalek.git for old stable</li>
 <li>git://git.xivo.fr/xivo-gallifrey.git ...</li></ul>
       <a class="btn" href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html#xivo-server-packaging-in-a-nutshell">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/cabling-the-fxo-fxs-prototype-board.html#cabling-the-fxo-fxs-prototype-board">Cabling the FXO-FXS prototype board</a></h2>
-    <p>
-      Posted on Tue 11 January 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p><img alt="Cabling FXv5 prototype PCB
-2" src="/public/.P1040816_m.jpg" title="Cabling FXv5 prototype PCB 2, janv. 2011" /><img alt="Cabling
-FXv5 prototype PCB
-1" src="/public/.P1040817_m.jpg" title="Cabling FXv5 prototype PCB 1, janv. 2011" /></p>
-<p>As we are developing an OpenHardware projects/products, it's important
-to ...</p>
-      <a class="btn" href="http://blog.xivo.io/cabling-the-fxo-fxs-prototype-board.html#cabling-the-fxo-fxs-prototype-board">Continue reading</a>
   </div>
 </article>
 

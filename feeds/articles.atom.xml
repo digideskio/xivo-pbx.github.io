@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/articles.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-09-09T16:57:00-04:00</updated><entry><title>We are 6 and yes we have more than 150 phones :)</title><link href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html" rel="alternate"></link><updated>2015-09-09T16:57:00-04:00</updated><author><name>quintana</name></author><id>tag:blog.xivo.io,2015-09-09:we-are-6-and-yes-we-have-more-than-150-phones.html</id><summary type="html">&lt;p&gt;Hey XiVO community,&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/articles.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-09-09T16:57:00-04:00</updated><entry><title>We are 6 and yes we have more than 150 phones :)</title><link href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html" rel="alternate"></link><published>2015-09-09T16:57:00-04:00</published><author><name>quintana</name></author><id>tag:blog.xivo.io,2015-09-09:we-are-6-and-yes-we-have-more-than-150-phones.html</id><summary type="html">&lt;p&gt;Hey XiVO community,&lt;/p&gt;
 &lt;p&gt;Yes we work on telecomunications/telecoms, we would like to share with
 you some photos from our office at Quebec city ! Thanks to Etienne to
 have counted the phones.&lt;/p&gt;
@@ -11,7 +11,7 @@ have counted the phones.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="IMG_20150909_124927.jpg" src="/public/office/IMG_20150909_124927.jpg" title="IMG_20150909_124927.jpg, sept. 2015" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="IMG_20150909_124936.jpg" src="/public/office/IMG_20150909_124936.jpg" title="IMG_20150909_124936.jpg, sept. 2015" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="IMG_20150909_124943.jpg" src="/public/office/IMG_20150909_124943.jpg" title="IMG_20150909_124943.jpg, sept. 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.07</title><link href="http://blog.xivo.io/sprint-review-1507.html" rel="alternate"></link><updated>2015-04-10T13:52:00-04:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-04-10:sprint-review-1507.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.07:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.07</title><link href="http://blog.xivo.io/sprint-review-1507.html" rel="alternate"></link><published>2015-04-10T13:52:00-04:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-04-10:sprint-review-1507.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.07:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/224" title="https://projects.xivo.io/versions/224"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -46,7 +46,7 @@ bugs among which:&lt;/p&gt;
 &lt;p&gt;We also included a new Asterisk version 11.17.0 and added a new tutorial
 to the contributions section.&lt;/p&gt;
 &lt;p&gt;Enjoy! ;)&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.06</title><link href="http://blog.xivo.io/sprint-review-1506.html" rel="alternate"></link><updated>2015-03-27T14:19:00-04:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-03-27:sprint-review-1506.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.06:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.06</title><link href="http://blog.xivo.io/sprint-review-1506.html" rel="alternate"></link><published>2015-03-27T14:19:00-04:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-03-27:sprint-review-1506.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.06:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/222" title="https://projects.xivo.io/versions/222"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -72,7 +72,7 @@ changes among which:&lt;/p&gt;
 &lt;p&gt;You can consult &lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id1" title="Upgrade Notes"&gt;upgrade
 notes&lt;/a&gt;
 for this version.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.05</title><link href="http://blog.xivo.io/sprint-review-1505.html" rel="alternate"></link><updated>2015-03-13T13:55:00-04:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-03-13:sprint-review-1505.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.05:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.05</title><link href="http://blog.xivo.io/sprint-review-1505.html" rel="alternate"></link><published>2015-03-13T13:55:00-04:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-03-13:sprint-review-1505.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.05:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/221" title="https://projects.xivo.io/versions/221"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -86,7 +86,7 @@ of a "folded" client :&lt;/p&gt;
 &lt;p&gt;We also added an HTTP REST API interface to xivo-agentd which means you
 can now control agent status (login/logout/pause/unpause) from within
 your own application.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>How we test xivo-dird</title><link href="http://blog.xivo.io/how-we-test-xivo-dird.html" rel="alternate"></link><updated>2014-12-03T21:23:00-05:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2014-12-03:how-we-test-xivo-dird.html</id><summary type="html">&lt;p&gt;XiVO dird is a new directory service in XiVO. It will be used as the
+&lt;/p&gt;</summary></entry><entry><title>How we test xivo-dird</title><link href="http://blog.xivo.io/how-we-test-xivo-dird.html" rel="alternate"></link><published>2014-12-03T21:23:00-05:00</published><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2014-12-03:how-we-test-xivo-dird.html</id><summary type="html">&lt;p&gt;XiVO dird is a new directory service in XiVO. It will be used as the
 entry pointfor lookups and reverse lookups in the near future. Dird is
 the first service inXiVO that is developed with the objective of being
 runnable on a separate machine.This objective made it essential to make
@@ -222,7 +222,7 @@ want totry running the test suite.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.fig.sh" title="fig"&gt;fig&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://docker.com" title="docker"&gt;docker&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Hacking at the Hackfest</title><link href="http://blog.xivo.io/hacking-at-the-hackfest.html" rel="alternate"></link><updated>2012-11-08T13:45:00-05:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2012-11-08:hacking-at-the-hackfest.html</id><summary type="html">&lt;p&gt;Hello once again XiVO followers ! What's this ? My first blog post has
+&lt;/p&gt;</summary></entry><entry><title>Hacking at the Hackfest</title><link href="http://blog.xivo.io/hacking-at-the-hackfest.html" rel="alternate"></link><published>2012-11-08T13:45:00-05:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2012-11-08:hacking-at-the-hackfest.html</id><summary type="html">&lt;p&gt;Hello once again XiVO followers ! What's this ? My first blog post has
 barely been published and i've already written a second one ! But this
 time, i'll be writing about something that will be more interesting for
 1337 h@X0r\$ and the like: the Hackfest !&lt;/p&gt;
@@ -278,7 +278,7 @@ services.&lt;/p&gt;
 &lt;p&gt;Thanks again to the 3 teams who participated in XIVO's pwn2own
 (RingZer0, Abed&amp;amp;Francis and Bitducks). We look forward to more hacking
 next year !&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>A conference with Uncle Bob</title><link href="http://blog.xivo.io/a-conference-with-uncle-bob.html" rel="alternate"></link><updated>2012-11-05T13:35:00-05:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2012-11-05:a-conference-with-uncle-bob.html</id><summary type="html">&lt;p&gt;Hello to everyone following the XiVO blog ! My name is Gregory Eric
+&lt;/p&gt;</summary></entry><entry><title>A conference with Uncle Bob</title><link href="http://blog.xivo.io/a-conference-with-uncle-bob.html" rel="alternate"></link><published>2012-11-05T13:35:00-05:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2012-11-05:a-conference-with-uncle-bob.html</id><summary type="html">&lt;p&gt;Hello to everyone following the XiVO blog ! My name is Gregory Eric
 Sanderson Turcot Temlett MacDonnell Forbes. I've been working on the
 XiVO software team for 2 months now and the time has come to publish my
 first official blog post. Enjoy ;)&lt;/p&gt;
@@ -437,7 +437,7 @@ out there: programming.&lt;/p&gt;
 &lt;p&gt;That's it for my first blog post folks ! I hope you enjoyed it and look
 forward to my next one. If you'd like to discuss more about what i've
 written, you're more than welcome to leave comments.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Around XiVO - pxe and preseeding</title><link href="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html" rel="alternate"></link><updated>2012-05-30T19:47:00-04:00</updated><author><name>atarakt</name></author><id>tag:blog.xivo.io,2012-05-30:around-xivo-pxe-and-preseeding.html</id><summary type="html">&lt;p&gt;Now that we have a functional PXE installation, we want to fully
+&lt;/p&gt;</summary></entry><entry><title>Around XiVO - pxe and preseeding</title><link href="http://blog.xivo.io/around-xivo-pxe-and-preseeding.html" rel="alternate"></link><published>2012-05-30T19:47:00-04:00</published><author><name>atarakt</name></author><id>tag:blog.xivo.io,2012-05-30:around-xivo-pxe-and-preseeding.html</id><summary type="html">&lt;p&gt;Now that we have a functional PXE installation, we want to fully
 automatise the installation process. Debian have a useful solution
 called 'preseeding'. Preseeding provides a way to set answers to
 questions asked during the installation process.&lt;/p&gt;
@@ -540,7 +540,7 @@ our /data directory (and an entry d-i in our nginx configuration) :&lt;/p&gt;
 git://git.xivo.fr/official/debian-installer.git&lt;/p&gt;
 &lt;p&gt;In a next post, I will explain how we use the class to customize our
 installation.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>XiVO high availability</title><link href="http://blog.xivo.io/xivo-high-availability.html" rel="alternate"></link><updated>2012-03-14T18:40:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-03-14:xivo-high-availability.html</id><summary type="html">&lt;p&gt;High availability is available in XiVO since version 1.2.3. The current
+&lt;/p&gt;</summary><category term="PXE"></category></entry><entry><title>XiVO high availability</title><link href="http://blog.xivo.io/xivo-high-availability.html" rel="alternate"></link><published>2012-03-14T18:40:00-04:00</published><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2012-03-14:xivo-high-availability.html</id><summary type="html">&lt;p&gt;High availability is available in XiVO since version 1.2.3. The current
 use cases is to be able to get telephony service back in less than 5
 minutes in case of a network or power failure on the master XiVO.&lt;/p&gt;
 &lt;p&gt;The architecture is pretty simple at the time of this writing. The
@@ -574,7 +574,7 @@ trigger a first replication or for test purposes.&lt;/p&gt;
     are logged on the slave and calls on the master are logged on
     the master.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO 1.2</title><link href="http://blog.xivo.io/xivo-12.html" rel="alternate"></link><updated>2012-02-14T19:35:00-05:00</updated><author><name>quintana</name></author><id>tag:blog.xivo.io,2012-02-14:xivo-12.html</id><summary type="html">&lt;p&gt;As we enter 2012, we continue our development to better meet market
+&lt;/p&gt;</summary></entry><entry><title>XiVO 1.2</title><link href="http://blog.xivo.io/xivo-12.html" rel="alternate"></link><published>2012-02-14T19:35:00-05:00</published><author><name>quintana</name></author><id>tag:blog.xivo.io,2012-02-14:xivo-12.html</id><summary type="html">&lt;p&gt;As we enter 2012, we continue our development to better meet market
 expectations allowing XiVO to be deployed in more companies. XiVO is a
 real open and free alternative for your business phone system and it
 will allow you to go even further. It is with great pleasure that I
@@ -665,13 +665,13 @@ tracking etc ....&lt;/p&gt;
 &lt;li&gt;Paging&lt;/li&gt;
 &lt;li&gt;Queue logger daemon removed.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO from 2007 until now with Gource</title><link href="http://blog.xivo.io/xivo-from-2007-until-now-with-gource.html" rel="alternate"></link><updated>2011-05-06T14:32:00-04:00</updated><author><name>gbour</name></author><id>tag:blog.xivo.io,2011-05-06:xivo-from-2007-until-now-with-gource.html</id><summary type="html">&lt;p&gt;&lt;em&gt;5 years of development, 24 contributors, 7824 commits, 195k lines of
+&lt;/p&gt;</summary></entry><entry><title>XiVO from 2007 until now with Gource</title><link href="http://blog.xivo.io/xivo-from-2007-until-now-with-gource.html" rel="alternate"></link><published>2011-05-06T14:32:00-04:00</published><author><name>gbour</name></author><id>tag:blog.xivo.io,2011-05-06:xivo-from-2007-until-now-with-gource.html</id><summary type="html">&lt;p&gt;&lt;em&gt;5 years of development, 24 contributors, 7824 commits, 195k lines of
 code.&lt;/em&gt;&lt;br /&gt;
 History of Xivo in 2'30 minutes, done with Gource.&lt;/p&gt;
 &lt;iframe width="425" height="349" src="http://www.youtube.com/embed/g0jI9A53BoM" frameborder="0" allowfullscreen&gt;
 &lt;/iframe&gt;
 
-&lt;/p&gt;</summary><category term="gource"></category><category term="xivo"></category></entry><entry><title>XiVO 1.2 -*- Queues Diversions -*-</title><link href="http://blog.xivo.io/xivo-12-queues-diversions-.html" rel="alternate"></link><updated>2011-04-08T09:08:00-04:00</updated><author><name>gbour</name></author><id>tag:blog.xivo.io,2011-04-08:xivo-12-queues-diversions-.html</id><summary type="html">&lt;p&gt;&lt;ins&gt;Asterisk queues&lt;/ins&gt; have limited possibilities of
+&lt;/p&gt;</summary><category term="gource"></category><category term="xivo"></category></entry><entry><title>XiVO 1.2 -*- Queues Diversions -*-</title><link href="http://blog.xivo.io/xivo-12-queues-diversions-.html" rel="alternate"></link><published>2011-04-08T09:08:00-04:00</published><author><name>gbour</name></author><id>tag:blog.xivo.io,2011-04-08:xivo-12-queues-diversions-.html</id><summary type="html">&lt;p&gt;&lt;ins&gt;Asterisk queues&lt;/ins&gt; have limited possibilities of
 interactions.The only way to know how a call was processed and decide
 what to do next is falling back on &lt;strong&gt;\${QUEUESTATUS}&lt;/strong&gt; when the call
 exits the queue.  &lt;/p&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-community.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-07-29T18:50:00-04:00</updated><entry><title>All you wanted to know about XiVO</title><link href="http://blog.xivo.io/all-you-wanted-to-know-about-xivo.html" rel="alternate"></link><updated>2015-07-29T18:50:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-29:all-you-wanted-to-know-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;em&gt;XiVO in &lt;a href="https://fr.wikipedia.org/wiki/XiVO"&gt;french&lt;/a&gt; and in
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-community.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-07-29T18:50:00-04:00</updated><entry><title>All you wanted to know about XiVO</title><link href="http://blog.xivo.io/all-you-wanted-to-know-about-xivo.html" rel="alternate"></link><published>2015-07-29T18:50:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-29:all-you-wanted-to-know-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;em&gt;XiVO in &lt;a href="https://fr.wikipedia.org/wiki/XiVO"&gt;french&lt;/a&gt; and in
 &lt;a href="https://es.wikipedia.org/wiki/XiVO"&gt;spanish&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;DEFINITION: XIVO, A FREE IPBX&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -112,7 +112,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>1st video about XiVO</title><link href="http://blog.xivo.io/1st-video-about-xivo.html" rel="alternate"></link><updated>2015-07-28T20:08:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-28:1st-video-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;We are glad to share this FIRST video about XIVO:&lt;/strong&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>1st video about XiVO</title><link href="http://blog.xivo.io/1st-video-about-xivo.html" rel="alternate"></link><published>2015-07-28T20:08:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-07-28:1st-video-about-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;We are glad to share this FIRST video about XIVO:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Watch the video
     &lt;a href="http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre"&gt;http://www.blog-des-telecoms.com/xivo-video-de-presentation-de-lipbx-libre&lt;/a&gt;&lt;/li&gt;
@@ -136,7 +136,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary></entry><entry><title>June 2015, XiVO 15.11 release</title><link href="http://blog.xivo.io/june-2015-xivo-1511-release.html" rel="alternate"></link><updated>2015-06-25T15:54:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-25:june-2015-xivo-1511-release.html</id><summary type="html">&lt;p&gt;June 2015: sprint review 15.11&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>June 2015, XiVO 15.11 release</title><link href="http://blog.xivo.io/june-2015-xivo-1511-release.html" rel="alternate"></link><published>2015-06-25T15:54:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-25:june-2015-xivo-1511-release.html</id><summary type="html">&lt;p&gt;June 2015: sprint review 15.11&lt;/p&gt;
 &lt;p&gt;This sprint we have worked on various subjects regarding REST APIs. REST
 APIs enable a more customizable and flexible management of XiVO server.
 They also enable the development of third-party features.&lt;/p&gt;
@@ -148,7 +148,7 @@ They also enable the development of third-party features.&lt;/p&gt;
     &lt;a href="/index.php?post/2015/06/12/Sprint-review-15.11"&gt;http://blog.xivo.io/index.php?post/2015/06/12/Sprint-review-15.11&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="JUNE2015-XIVO-RELEASED.png" src="/public/JUNE2015-XIVO-RELEASED.png" title="JUNE2015-XIVO-RELEASED.png, juin 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Summary about the VoIP meeting with Mumble, about telephony system and Free Software</title><link href="http://blog.xivo.io/summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html" rel="alternate"></link><updated>2015-06-18T15:50:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-18:summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" src="/public/June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" title="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png, juin 2015" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Summary about the VoIP meeting with Mumble, about telephony system and Free Software</title><link href="http://blog.xivo.io/summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html" rel="alternate"></link><published>2015-06-18T15:50:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-18:summary-about-the-voip-meeting-with-mumble-about-telephony-system-and-free-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" src="/public/June-2015-BarCamp-Mumble-voIP-Libre-Invert.png" title="June-2015-BarCamp-Mumble-voIP-Libre-Invert.png, juin 2015" /&gt;&lt;/p&gt;
 &lt;p&gt;The BarCamp summary about VoIP meeting, organised with Mumble, is &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;on
 line&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
@@ -173,7 +173,7 @@ line&lt;/a&gt;.&lt;/p&gt;
 &lt;a href="https://www.april.org/"&gt;April&lt;/a&gt;, &lt;a href="http://www.asterisk-france.org/"&gt;Asterisk
 France&lt;/a&gt; and the other communities in
 Free software.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="barcamp"></category><category term="free software"></category><category term="mumble"></category><category term="voip"></category></entry><entry><title>Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</title><link href="http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html" rel="alternate"></link><updated>2015-06-12T18:40:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-12:raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html</id><summary type="html">&lt;p&gt;(L'article au complet en français, juste après)&lt;/p&gt;
+&lt;/p&gt;</summary><category term="barcamp"></category><category term="free software"></category><category term="mumble"></category><category term="voip"></category></entry><entry><title>Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source telephone system</title><link href="http://blog.xivo.io/raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html" rel="alternate"></link><published>2015-06-12T18:40:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-06-12:raspivo-having-fun-with-raspberry-pi-2-and-xivo-an-open-source-telephone-system.html</id><summary type="html">&lt;p&gt;(L'article au complet en français, juste après)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Raspivo, having fun with Raspberry Pi 2 and XiVO, an open source
 telephone system&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -334,7 +334,7 @@ bien sur sdX par votre SdCard.&lt;/dd&gt;
 &lt;ul&gt;
 &lt;li&gt;Jof et wanda. Article en CC by sa 4.0&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>2nd BarCamp about VoIP and open source telephony system</title><link href="http://blog.xivo.io/2nd-barcamp-about-voip-and-open-source-telephony-system.html" rel="alternate"></link><updated>2015-04-20T20:37:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-20:2nd-barcamp-about-voip-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;To better know each other skills and projects, we organised a &lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;survey
+&lt;/p&gt;</summary></entry><entry><title>2nd BarCamp about VoIP and open source telephony system</title><link href="http://blog.xivo.io/2nd-barcamp-about-voip-and-open-source-telephony-system.html" rel="alternate"></link><published>2015-04-20T20:37:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-20:2nd-barcamp-about-voip-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;To better know each other skills and projects, we organised a &lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;survey
 about XiVO
 contributors&lt;/a&gt;
 (in french) and a meeting with the &lt;a href="/index.php?post/2015/04/16/1st-BarCampIRC-about-Asterisk-and-open-source-telephony-system"&gt;1st BarCampIRC about VoIP open
@@ -360,7 +360,7 @@ advices about a cartoon with XiVO 1,2,3... go!&lt;/p&gt;
 &lt;p&gt;Reading &lt;a href="/public/BarCampIRC-2ndMeeting-VoIP-OpenSource-2015-CRv01.pdf"&gt;the report about the 2nd
 BarCampIRC&lt;/a&gt;
 about VoIP and open source telephony system.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>1st BarCampIRC about Asterisk and open source telephony system</title><link href="http://blog.xivo.io/1st-barcampirc-about-asterisk-and-open-source-telephony-system.html" rel="alternate"></link><updated>2015-04-16T20:01:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-16:1st-barcampirc-about-asterisk-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIP.png" src="/public/BarCampVoIP.png" title="BarCampVoIP.png, avr. 2015" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>1st BarCampIRC about Asterisk and open source telephony system</title><link href="http://blog.xivo.io/1st-barcampirc-about-asterisk-and-open-source-telephony-system.html" rel="alternate"></link><published>2015-04-16T20:01:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-16:1st-barcampirc-about-asterisk-and-open-source-telephony-system.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIP.png" src="/public/BarCampVoIP.png" title="BarCampVoIP.png, avr. 2015" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;DOWNLOAD THE REPORT about this #1 meeting:&lt;/li&gt;
 &lt;li&gt;&lt;a href="/public/BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf"&gt;BarCampIRC-1ereRencontreSurVoIP-CRv01.pdf&lt;/a&gt;&lt;/li&gt;
@@ -389,7 +389,7 @@ and different skills.The stake is to speak about the differents topics
 coming from participants, to present your skills or your needs, to share
 documents or news.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015-Flyer-BarCampIRC-Telephony-OpenSource.png" src="/public/2015-Flyer-BarCampIRC-Telephony-OpenSource.png" title="2015-Flyer-BarCampIRC-Telephony-OpenSource.png, avr. 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary><category term="Asterisk"></category><category term="open source"></category><category term="telephony"></category></entry><entry><title>Les contributeurs de la communauté XiVO</title><link href="http://blog.xivo.io/les-contributeurs-de-la-communaute-xivo.html" rel="alternate"></link><updated>2015-04-07T17:23:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-07:les-contributeurs-de-la-communaute-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RÉSULTAT DU SONDAGE: les réponses des contributeurs de XiVO&lt;/strong&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="Asterisk"></category><category term="open source"></category><category term="telephony"></category></entry><entry><title>Les contributeurs de la communauté XiVO</title><link href="http://blog.xivo.io/les-contributeurs-de-la-communaute-xivo.html" rel="alternate"></link><published>2015-04-07T17:23:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-07:les-contributeurs-de-la-communaute-xivo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RÉSULTAT DU SONDAGE: les réponses des contributeurs de XiVO&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Le statut, le genre et l'âge des répondants, contributeurs sur XiVO&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Parmi les 20 répondants&lt;/strong&gt;, 19 sont des hommes et 60% des répondants
 ont entre 31 et 40 ans. 25% se définissent passionnés de
@@ -562,7 +562,7 @@ l'aire sympas et motivé. »« Longue vie à XiVO et à sa communauté !  »&
 &lt;li&gt;A. témoigne : « Ce logiciel est parfait =) .»&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Avec les remerciements de Valérie, C.M de XIVO :)&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Indonesian and French meeting in Paris about XiVO</title><link href="http://blog.xivo.io/indonesian-and-french-meeting-in-paris-about-xivo.html" rel="alternate"></link><updated>2015-03-16T19:09:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-03-16:indonesian-and-french-meeting-in-paris-about-xivo.html</id><summary type="html">&lt;ul&gt;
+&lt;/p&gt;</summary></entry><entry><title>Indonesian and French meeting in Paris about XiVO</title><link href="http://blog.xivo.io/indonesian-and-french-meeting-in-paris-about-xivo.html" rel="alternate"></link><published>2015-03-16T19:09:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-03-16:indonesian-and-french-meeting-in-paris-about-xivo.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Can you present us your company and in what industry you work
     within Indonesia ?&lt;/strong&gt;&lt;/p&gt;
@@ -642,7 +642,7 @@ solutions, especially with a XiVO server".&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creative Commons Share-Alike (CC-SA) v3.0 - 03.2015&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>A BarCamp about VoIP, with Mumble</title><link href="http://blog.xivo.io/a-barcamp-about-voip-with-mumble.html" rel="alternate"></link><updated>2015-02-16T21:16:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-02-16:a-barcamp-about-voip-with-mumble.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIPopensource-With-Mumble-June2015.png" src="/public/BarCampVoIPopensource-With-Mumble-June2015.png" title="BarCampVoIPopensource-With-Mumble-June2015.png, juin 2015" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>A BarCamp about VoIP, with Mumble</title><link href="http://blog.xivo.io/a-barcamp-about-voip-with-mumble.html" rel="alternate"></link><published>2015-02-16T21:16:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-02-16:a-barcamp-about-voip-with-mumble.html</id><summary type="html">&lt;p&gt;&lt;img alt="BarCampVoIPopensource-With-Mumble-June2015.png" src="/public/BarCampVoIPopensource-With-Mumble-June2015.png" title="BarCampVoIPopensource-With-Mumble-June2015.png, juin 2015" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;A new BarCamp about VoIP:What&lt;/strong&gt; Write directly your questions or
 topics on the &lt;a href="http://barcamp.org/w/page/97007235/BarCampMumble-VoIP-OpenSource"&gt;wiki
 website&lt;/a&gt;
@@ -689,7 +689,7 @@ BlueJimp (Jitsi) Your advices about a cartoon with XiVO 1,2,3...
 go!Reading &lt;a href="/public/BarCampIRC-2ndMeeting-VoIP-OpenSource-2015-CRv01.pdf"&gt;the report (FR) about the 2nd
 BarCampIRC&lt;/a&gt;
 about VoIP and open source telephony system.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 4</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html" rel="alternate"></link><updated>2015-01-26T16:44:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+&lt;/p&gt;</summary></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 4</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html" rel="alternate"></link><published>2015-01-26T16:44:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-4.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
 autumn 2014, in the district of Sainte-Foy, Quebec, Canada.This week,
 workshops are about: Open-Data, Printer 3D, plants walls and
 intelligents plants, 3D modeling with the software Blender, arduino,
@@ -902,7 +902,7 @@ sans frontières." Rousseau&lt;/p&gt;
     et des créations &lt;a href="https://www.flickr.com/photos/129970080@N03/sets/72157649499560797/"&gt;pour jeux de role grandeur
     nature&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 3</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html" rel="alternate"></link><updated>2015-01-26T14:32:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L’EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique - article 3</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html" rel="alternate"></link><published>2015-01-26T14:32:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-26:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-3.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
 autumn 2014, in the district of Sainte-Foy, Quebec, Canada.This week,
 workshops are about: Printer 3D, Linux and hackable devices magazines,
 solar drone, open-source software in telephony, Information about LinuQ
@@ -1015,7 +1015,7 @@ le site a-brest.&lt;/p&gt;
 &lt;li&gt;Atelier coopératif la Patente:
     &lt;a href="http://atelierlapatente.org"&gt;http://atelierlapatente.org/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>XiVO: Logiciel Libre et bidouillage en réseau - Network hack</title><link href="http://blog.xivo.io/xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html" rel="alternate"></link><updated>2014-12-17T21:41:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-17:xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html</id><summary type="html">&lt;p&gt;&lt;em&gt;licence cc by sa 3.0 0.2015 par valérie dagrain&lt;/em&gt;&lt;/p&gt;
+&lt;/p&gt;</summary><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>XiVO: Logiciel Libre et bidouillage en réseau - Network hack</title><link href="http://blog.xivo.io/xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html" rel="alternate"></link><published>2014-12-17T21:41:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-17:xivo-logiciel-libre-et-bidouillage-en-reseau-network-hack.html</id><summary type="html">&lt;p&gt;&lt;em&gt;licence cc by sa 3.0 0.2015 par valérie dagrain&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;L'équipe qui développe XiVO soutient la communauté du Libre en:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;contribuant à Asterisk, PABX open-source et propriétaire ;&lt;/li&gt;
@@ -1057,7 +1057,7 @@ d'étudiants en informatique et télécommunication à l'Université
 Laval.&lt;strong&gt;ÉCOLES EN TÉLÉCOMMUNICATION&lt;/strong&gt;groupe d'étudiants en
 télécommunication. &lt;a href="http://www.telecom-bretagne.eu/"&gt;Telecom Bretagne&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A bientôt pour de nouvelles activités!&lt;/p&gt;
-&lt;/p&gt;</summary><category term="fablab"></category><category term="hackspace"></category><category term="telecommunication"></category><category term="EspaceLab"></category><category term="hackerspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Quebec avec des ateliers en logiciel libre et domotique - article 2</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html" rel="alternate"></link><updated>2014-12-15T15:31:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-15:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
+&lt;/p&gt;</summary><category term="fablab"></category><category term="hackspace"></category><category term="telecommunication"></category><category term="EspaceLab"></category><category term="hackerspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Quebec avec des ateliers en logiciel libre et domotique - article 2</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html" rel="alternate"></link><published>2014-12-15T15:31:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-15:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique-article-2.html</id><summary type="html">&lt;p&gt;The EspaceLab is a space for the digital creation community, opened in
 autumn 2014, in the district of Sainte-Foy, Quebec, Canada. This week,
 workshops are about: Printer 3D, programming, astronomy software,
 Arduino ou Raspberry Pi, sparki robot.&lt;/p&gt;
@@ -1158,7 +1158,7 @@ utilise l'imprimante 3D.&lt;/p&gt;
 &lt;li&gt;Ateliers sur la plante et la fusée:
     &lt;a href="https://espacelab2014.wordpress.com/projets/"&gt;https://espacelab2014.wordpress.com/projets/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary><category term="domotique ateliers téléphonie logiciel libre Do-it-yourself"></category><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html" rel="alternate"></link><updated>2014-12-01T14:44:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-01:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html</id><summary type="html">&lt;p&gt;Reportage par
+&lt;/p&gt;</summary><category term="domotique ateliers téléphonie logiciel libre Do-it-yourself"></category><category term="EspaceLab"></category><category term="fablab"></category><category term="hackerspace"></category><category term="hackspace"></category></entry><entry><title>L'EspaceLab, un nouvel espace numérique communautaire à Québec avec des ateliers en logiciel libre et domotique</title><link href="http://blog.xivo.io/lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html" rel="alternate"></link><published>2014-12-01T14:44:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2014-12-01:lespacelab-un-nouvel-espace-numerique-communautaire-a-quebec-avec-des-ateliers-en-logiciel-libre-et-domotique.html</id><summary type="html">&lt;p&gt;Reportage par
 &lt;a href="valerie-dagrain.org" title="valerie-dagrain.org"&gt;valerie-dagrain.org&lt;/a&gt;
 cc-by-sa c EspaceLab Nov.2014 (english following soon)&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;Présentation de l'EspaceLab:&lt;/strong&gt;&lt;/h3&gt;

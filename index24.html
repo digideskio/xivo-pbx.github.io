@@ -54,6 +54,74 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-client-architecture.html#xivo-client-architecture">XiVO Client architecture</a></h2>
+    <p>
+      Posted on Fri 30 September 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+    </p>
+  </header>
+  <div>
+      <p>This blog post extends the diagram presented earlier explaining the
+<a href="/index.php?post/2011/05/13/CTI-external-architecture-in-XiVO-1.1-and-1.2" title="CTI global architecture diagram">global architecture of
+CTI</a>
+in XiVO.</p>
+<p>Here is what the XiVO Client looks like from a developer point of
+view:<img alt="XiVO Client
+architecture" src="/public/.xivoclient_m.jpg" title="XiVO Client architecture, sept. 2011" /></p>
+<p>This is the new architecture that will be included in our new
+development iteration beginning on Monday, 3rd October.The main change
+is the "creation" of the XLetlib, that was previously into the Baselib.
+The Baselib will be progressively stripped of everything not necessary:
+the goal is to make it a reusable component, which will only manage the
+connection with the CTI server.</p>
+<p>Everything in the XiVO Client is written in C++ and Qt.</p>
+<p>Let's explicit the spaghetti plate above a little :XLets, for XiVO
+applets, are plugins to the XiVO Client. Almost every function of the
+XiVO Client is pluggable/unpluggable, depending on the server
+configuration to allow some XLet to be activated. You can see what XLets
+look like in the <a href="https://wiki.xivo.fr/index.php/XiVO_1.0-Dalek/Documentation_XiVO_Client" title="XiVO Client user manual">XiVO
+wiki</a>
+(each tab is an XLet).</p>
+<p>Each XLet can use the tools available in the XLetlib, that are mainly
+GUI elements used to display information in a consistent way within all
+XLets. They are also given access to the Baselib "API" (it is an API,
+but scarcely documented for the time being), that receives or sends CTI
+events and informations to the CTI server, such as "a new phone has
+registered to Asterisk", "you have a new telephone message", "I want to
+call this number", etc.</p>
+<p>Of course, there are some options available to control how the XiVO
+Client behaves ; about half of them control GUI aspects and the other
+half control how the connection is established to the server. The GUI
+related options are some of the things we still have to migrate out of
+the Baselib, because someone wanting to connect to the CTI server
+through our Baselib does not care that the XiVO Client presence
+indicator is 5 pixels wide...</p>
+<p>About the communication protocol between the XiVO Client and the CTI
+server, everything is JSON encoded. For now, there is no compatibility
+between protocol versions, but we're thinking about it. The goal is to
+be able to release XiVO Client upgrades without having to wait for the
+XiVO distribution to be released, especially if the new version
+introduces mainly GUI improvements. But this can't happen if an "old"
+server can not talk with a more recent client.</p>
+<p>One could think that working on the XiVO Client may be boring, as it's
+only easy GUI stuff, placing a button here, making it violet with green
+dots for obscure marketing reasons. There's a part of GUI stuff, of
+course, but I find the plugins-only, freely movable (in dock mode)
+interface concept very interesting, it makes the XiVO Client a potential
+swiss-army knife, to which anyone can choose exactly the tools he needs,
+no more, no less.</p>
+<p>Some links :<br />
+<a href="http://git.proformatique.com/?p=official/xivo-client-qt.git;a=summary" title="XiVO Client git repository">The XiVO Client git
+repository</a><br />
+<a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer" title="XiVO Client developer documentation">Developer oriented
+documentation</a><br />
+<a href="https://wiki.xivo.fr/index.php/Support_Community#IRC" title="IRC channel infos">IRC
+channel</a></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html#safeguard-against-downgrades-in-xivo-packages">Safeguard against downgrades in XIVO packages</a></h2>
     <p>
       Posted on Mon 26 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -326,205 +394,6 @@ Convergence</a> and <a href="/index.php?post/2011/07/29/AVENCALL-at-GIF-2011" ti
 2011</a>
 where we will make some demonstrations of XiVO Open Hardware.</p>
 <p>Come to visit us !</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">XiVO submission configuration</a></h2>
-    <p>
-      Posted on Mon 12 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>clearing the generated sources</h4>
-<p>When some environment variables used by submit-xivo.sh change value, the
-whole source directory <a href="http://packaging-farm.dachary.org/trac/ticket/21">must be
-regenerated</a>. For
-instance, the VERSION_FLAVOR variable change the name of each source
-package. If the maintainer forgets to remove
-/var/cache/packaging-farm/sources, a mix of packages using different
-naming conventions is used and creates a very confusing situation.</p>
-<p>Although it would be possible and safe to wipe out the cache (i.e.
-/var/cache/packaging-farm/sources) each time the environment changes,
-that would be overkill. For instance if setting VERBOSE=true has this
-effect, it would be inconvenient. Instead, a set of <a href="http://packaging-farm.dachary.org/trac/changeset/5a601108bb90a2bbf2dfbdd2a330700d980c2e23">variables is chosen
-and their content written into a file after each
-run</a>
-of submit-xivo.sh. When submit-xivo.sh is run, the content of the file
-from the previous run is matched against the values of the variables in
-the environment. If it turns out that they are not the same, the
-directory /var/cache/packaging-farm/sources is removed and will be fully
-repopuplated.</p>
-<h4>example file</h4>
-<p>Although each environment variable for the submit-xivo.sh script is
-documented in the submit-xivo.sh manual page, it is much more convenient
-to change values from a commented configuration file that shows all the
-expected default values. The <strong>/etc/packaging-farm/submit-xivo.conf</strong>
-file was created for this purpose.</p>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The submit-xivo.sh(1) configuration file. </span>
-<span class="err">#</span><span class="x"> In the following each line starting with </span><span class="cp">#</span><span class="nf">export</span><span class="x"> shows the default</span>
-<span class="err">#</span><span class="x"> value of the corresponding environment variable. For instance</span>
-<span class="err">#</span><span class="x"> export XIVO=skaro shows that the default value of the &quot;XIVO&quot; variable</span>
-<span class="err">#</span><span class="x"> is the string &quot;skaro&quot;. </span>
-<span class="err">#</span><span class="x"> The line can be uncommented and the value changed. The change will take</span>
-<span class="err">#</span><span class="x"> effect which the next packaging-farm(1) command is run.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The name of the skaro distribution. Can be one of skaro, gallifrey.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> XIVO=skaro</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> A Debian GNU/Linux suite. Can be one of squeeze, lenny.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> SUITE=squeeze</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The directory in which the source and debian repositories will be</span>
-<span class="err">#</span><span class="x"> cloned.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> VCS_DIR=/var/cache/packaging-farm/VCS</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The directory in which the resulting source packages will be stored.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> PACKAGES_DIR=/var/cache/packaging-farm/sources</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The content of this variable is appended to the value found in the</span>
-<span class="err">#</span><span class="x"> VERSION file and may be used to distinguish from a development</span>
-<span class="err">#</span><span class="x"> version and a production version for instance.  VERSION_FLAVOR=-dev</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> VERSION_FLAVOR=</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> By default each source version number is created by computing the</span>
-<span class="err">#</span><span class="x"> current time and extracting the last commit hash from the source</span>
-<span class="err">#</span><span class="x"> repository (see the VERSION section above.  If VERSION_COMPUTE is</span>
-<span class="err">#</span><span class="x"> set to false then the current time and last commit hash are not used</span>
-<span class="err">#</span><span class="x"> when generating the version number.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> VERSION_COMPUTE=true</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The gitrevision(7) from which both source and debian git will be</span>
-<span class="err">#</span><span class="x"> checked out. If the GIT_REVISION designates a branch, the latest</span>
-<span class="err">#</span><span class="x"> changes will be pulled from it.  If  GIT_REVISION  designates  a</span>
-<span class="err">#</span><span class="x"> tag, it will be checked out.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_REVISION=master</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The SOURCE_GIT and DEBIAN_GIT repositories will be pulled only if</span>
-<span class="err">#</span><span class="x"> the last pull occured more than GIT_CACHE_MINUTES minutes ago.  By</span>
-<span class="err">#</span><span class="x"> default it is pull every time (i.e. if the last pull occured more</span>
-<span class="err">#</span><span class="x"> than zero minutes ago). It can be used to reduce the number of pull</span>
-<span class="err">#</span><span class="x"> occuring when running many submit-xivo in sequence.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_CACHE_MINUTES=0</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The directory containing the source code repositories for each XiVO</span>
-<span class="err">#</span><span class="x"> suite.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> SOURCE_GIT=git://git.proformatique.com/official</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> the directory name within the SOURCE_GIT repository where the</span>
-<span class="err">#</span><span class="x"> sources can be found.  The package name will be infered from the</span>
-<span class="err">#</span><span class="x"> content of the Makefile.pkg file within this directory. For instance</span>
-<span class="err">#</span><span class="x"> DIRECTORY=web-interface submit-xivo.sh will submit the package</span>
-<span class="err">#</span><span class="x"> pf-xivo-web-interface</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> DIRECTORY=</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The directory containing the Debian GNU/Linux repositories for each</span>
-<span class="err">#</span><span class="x"> XiVO suite.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBIAN_GIT=git://git.proformatique.com/official</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> the directory name within the DEBIAN_GIT repository where the</span>
-<span class="err">#</span><span class="x"> package can be found.  The submit-xivo.sh command will not attempt</span>
-<span class="err">#</span><span class="x"> to locate a source in the SOURCE_GIT repository. It will submit a</span>
-<span class="err">#</span><span class="x"> package that has the same name as the content of the NOSOURCE=</span>
-<span class="err">#</span><span class="x"> variable. For instance NOSOURCE=pf-xivo will submit the pf-xivo</span>
-<span class="err">#</span><span class="x"> package. The version number of the package is either the one found</span>
-<span class="err">#</span><span class="x"> in the debian/changelog, if it contains the con- tent of the VERSION</span>
-<span class="err">#</span><span class="x"> file found in the SOURCE_GIT repository. For instance if the first</span>
-<span class="err">#</span><span class="x"> line of the debian/changelog contains 8:1.1.16~5 and the VERSION</span>
-<span class="err">#</span><span class="x"> file contains 1.1.16 it won&#39;t be mod- ified. However, if VERSION</span>
-<span class="err">#</span><span class="x"> contains 1.1.17 a debian/changelog line will be added, preserving</span>
-<span class="err">#</span><span class="x"> the epoch and will contain 8:1.1.17.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> NOSOURCE=</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> If set to true, no changes will be committed to the Debian GNU/Linux</span>
-<span class="err">#</span><span class="x"> repository if a debian/changelog entry is added.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> GIT_DRY_RUN=false</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The mail used when generating a debian/changelog entry.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBEMAIL=technique@proformatique.com</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> The user name used when generating a debian/changelog entry.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> DEBFULLNAME=&quot;Proformatique Maintainance Team&quot;</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">##</span><span class="c">######################################################################</span><span class="x"></span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> Before the debian directory is assembled with the source directory,</span>
-<span class="err">#</span><span class="x"> a copy is made using rsync(1).  The content of the RSYNC_OPTIONS</span>
-<span class="err">#</span><span class="x"> variable is given in argument to the rsync command. For instance it</span>
-<span class="err">#</span><span class="x"> may be used to collect the actual content of symbolic links pointing</span>
-<span class="err">#</span><span class="x"> outside of the source directory.</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ;</span>
-<span class="err">#</span><span class="x">  do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
-<span class="err">#</span><span class="x"> done</span>
-<span class="err">#</span><span class="x"></span>
-<span class="cp">#</span><span class="nf">export</span><span class="x"> RSYNC_OPTIONS=</span>
-</pre></div>
-
-
-<p>The inclusion of the configuration file is documented in the
-submit-xivo.sh manual page:</p>
-<div class="highlight"><pre><span></span>When this script is called as a side effect of packaging-farm(1) it can
-       be   configured   system  wide  using  the  /etc/packaging-farm/submit-
-       xivo.conf example configuration file, which can then be included in the
-       global packaging-farm.conf(5) file located in /etc/packaging-farm/pack-
-       aging-farm.conf For instance, the line
-
-              export VERSION_COMPUTE=false
-
-       can be added to override the default.
-</pre></div>
-
-
 </p>
   </div>
 </article>

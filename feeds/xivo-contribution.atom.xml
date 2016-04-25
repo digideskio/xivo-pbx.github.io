@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-contribution.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-04-13T20:36:00-04:00</updated><entry><title>XiVO contributors: Why I chose XiVO?</title><link href="http://blog.xivo.io/xivo-contributors-why-i-chose-xivo.html" rel="alternate"></link><updated>2015-04-13T20:36:00-04:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-13:xivo-contributors-why-i-chose-xivo.html</id><summary type="html">&lt;p&gt;--- &lt;em&gt;Summary in english&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-contribution.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-04-13T20:36:00-04:00</updated><entry><title>XiVO contributors: Why I chose XiVO?</title><link href="http://blog.xivo.io/xivo-contributors-why-i-chose-xivo.html" rel="alternate"></link><published>2015-04-13T20:36:00-04:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-04-13:xivo-contributors-why-i-chose-xivo.html</id><summary type="html">&lt;p&gt;--- &lt;em&gt;Summary in english&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;To better know each other skills and projects, we organised a survey
     about XiVO contributors (&lt;a href="/index.php?post/2015/04/07/Les-contributeurs-de-la-communaut%C3%A9-XiVO"&gt;in
@@ -180,7 +180,7 @@ contributeur.&lt;/p&gt;
 &lt;p&gt;d-raven&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;d-raven&amp;gt; je pense que la meilleur façon de convaincre, c'est de
 montrer que çà fonctionne !!&lt;/em&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>NyXD Systems, des fans de XiVO racontent leurs aventures dans la téléphonie</title><link href="http://blog.xivo.io/nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html" rel="alternate"></link><updated>2015-01-29T13:57:00-05:00</updated><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-29:nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html</id><summary type="html">&lt;p&gt;Summary: NyXD Systems is a team passionated for computer science and
+&lt;/p&gt;</summary></entry><entry><title>NyXD Systems, des fans de XiVO racontent leurs aventures dans la téléphonie</title><link href="http://blog.xivo.io/nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html" rel="alternate"></link><published>2015-01-29T13:57:00-05:00</published><author><name>vdagrain</name></author><id>tag:blog.xivo.io,2015-01-29:nyxd-systems-des-fans-de-xivo-racontent-leurs-aventures-dans-la-telephonie.html</id><summary type="html">&lt;p&gt;Summary: NyXD Systems is a team passionated for computer science and
 telecommunication systems, founded in 2006, near Paris (France). This
 interview shows how they made communicate computers, installed a
 network, configured a VPN on their routers, set a hosting services.

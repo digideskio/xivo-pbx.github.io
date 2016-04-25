@@ -54,6 +54,44 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1506.html#sprint-review-1506">Sprint Review 15.06</a></h2>
+    <p>
+      Posted on Fri 27 March 2015 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>Here are a few links explaining what we are going to ship in XiVO 15.06:</p>
+<ul>
+<li><a href="https://projects.xivo.io/versions/222" title="https://projects.xivo.io/versions/222">Roadmap</a></li>
+</ul>
+<p>XiVO 15.06 brings changes into the XiVO Client, visual and functional
+changes among which:</p>
+<ul>
+<li>the identity xlet's transformation continued</li>
+<li>the fax xlet has been revamped</li>
+<li>the tabber has been revamped</li>
+</ul>
+<p>This version also fixes 8 bugs.</p>
+<p>Technical matters :</p>
+<ul>
+<li>xivo-provd was splitted into multiple git repositories :
+    xivo-provisioning, xivo-provd-client and xivo-provd-cli. The later
+    replaces the deprecated xivo-provd-pycli, the command line
+    interpreter for provd.</li>
+<li>xivo-agent was renamed to xivo-agentd to be coherent with the
+    general naming convention.</li>
+<li>xivo-agent-ctl was renamed to xivo-agentd-cli to be coherent with
+    the general naming convention.</li>
+</ul>
+<p>You can consult <a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id1" title="Upgrade Notes">upgrade
+notes</a>
+for this version.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/indonesian-and-french-meeting-in-paris-about-xivo.html#indonesian-and-french-meeting-in-paris-about-xivo">Indonesian and French meeting in Paris about XiVO</a></h2>
     <p>
       Posted on Mon 16 March 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
@@ -327,99 +365,6 @@ leur accueil et ces échanges!</p>
     <a href="http://www.rcgt.com/en/offices/">www.rcgt.com</a>;</li>
 <li>XiVO-Avencall: Open Minded Open source System in telephony
     <a href="xivo.io">xivo.io</a></li>
-</ul>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/elasticsearch-in-the-xivo-ecosystem.html#elasticsearch-in-the-xivo-ecosystem">ElasticSearch in the XiVO ecosystem</a></h2>
-    <p>
-      Posted on Thu 19 February 2015 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p><strong>What is ElasticSearch</strong></p>
-<ul>
-<li>ElasticSearch is a real-time search and analytics engine with a
-    RESTful API. It's a part of the ELK Stack, which is composed of a
-    search engine (ElasticSearch), a logging tool (Logstash) and a
-    visualization tool (Kibana). ElasticSearch is a distributed system,
-    schema-less and provides a powerful query DSL.</li>
-</ul>
-<p><img alt="elasticsearch.png" src="/public/elasticsearch.png" title="elasticsearch.png" /></p>
-<p><strong>Our use cases</strong></p>
-<ul>
-<li>We are using ElasticSearch and Kibana together with XiVO in call
-    centers as a real-time information board, usually on a call
-    center dashboard. It can be also used by supervisors for fast and
-    easy analysis of trends and statistics history.</li>
-</ul>
-<p><img alt="Kibana call
-center" src="/public/xuc/KibanaCC.png" title="Kibana call center, fév. 2015" /></p>
-<ul>
-<li>We are also integrating ElasticSeach and Kibana for use by our
-    support team. They will use it for analyzing the recurrence of
-    issues, common problems and other trends.</li>
-</ul>
-<p><strong>Data structure</strong></p>
-<ul>
-<li>ElasticSearch is schema free. Data must be organized differently
-    than in a traditional relational database. The basic ElasticSearch
-    data unit is a document with multiple fields.</li>
-<li>The organization of our data is heavily influenced by the way the
-    Kibana engine works. Kibana provides a time oriented graphical or
-    textual representation of search results. Kibana dashboards are
-    composed of widgets, each one showing a selection of a search
-    request configured for the dashboard.</li>
-<li>Data stored in ElasticSearch are usually structured as
-    timestamped events. A parent-child relation between documents
-    enables drill-down analysis. For example: A parent document can
-    store data on a call and its child documents can will represent
-    events associated with the call.</li>
-</ul>
-<p><strong>Technical background</strong>When we started with Elastic, the river-jdbc
-<a href="2" title="2">2</a> plugin was not production ready. Therefore we developed a
-small utility we called qlogtransfer. It is a basic synchronisation tool
-written in Scala. It uses the jdbc Java driver to retrieve the data from
-XiVO's postgresql database and inserts it into ElasticSearch using the
-elastic4s scala client. The only data transformation done is through a
-SQL request with JOIN clauses. The river-jdbc plugin seems to be stable
-nowadays, so we are integrating it with our support team's use case.<br />
-We are also using another plugin: Head. It provides an easy but powerful
-web interface to ElasticSearch with data browsing features. Plugin
-installation is really very easy, the Head plugin installation can be
-accomplished with one command:</p>
-<div class="highlight"><pre><span></span>sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head
-</pre></div>
-
-
-<p>However, ElasticSearch doesn't include any access right management, a
-commercial extension called Shield must be used for this purpose.</p>
-<p><strong>Kibana features</strong>Kibana is a powerful web based visualization tool.
-Multiple dashboards can be configured, each dashboard contains widgets
-organized in rows as can be seen on the picture of our use case.
-Dashboards are saved in ElasticSearch, inside a specific index. They can
-be exported and you can also use advanced features like templated or
-scripted dashboards. Kibana runs completely inside the web browser and
-gets data from ElasticSearch through its REST API. Therefore, it's quite
-CPU intensive, can consume a lot of bandwidth and needs to be able to
-communicate directly with the ElasticSearch server. It seems to be a
-good idea to protect the server behind a proxy, eventually with some
-form of authorization if you don't have the Shield plugin (which is our
-case).</p>
-<p><strong>Conclusion</strong>ElasticSearch is a powerful tool. Combined with Kibana you
-can create nice monitoring interface. You can use nice features like the
-time to live parameter for each document inserted, automatic data
-distribution between nodes and a powerful search API. However, it's a
-pity that the Shield plugin isn't open sourced.</p>
-<p><strong>Ressources:</strong></p>
-<ul>
-<li><a href="1" title="1">1</a> ElasticSearch: <a href="http://www.elasticsearch.org">http://www.elasticsearch.org</a></li>
-<li><a href="2" title="2">2</a> River-jdbc:
-    <a href="https://github.com/jprante/elasticsearch-river-jdbc">https://github.com/jprante/elasticsearch-river-jdbc</a></li>
-<li>Community: <a href="http://www.elasticsearch.com/community/">http://www.elasticsearch.com/community/</a></li>
 </ul>
 </p>
   </div>

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-04-04T00:00:00-04:00</updated><entry><title>Sprint Review 16.04</title><link href="http://blog.xivo.io/sprint-review-1604.html" rel="alternate"></link><updated>2016-04-04T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-04-04:sprint-review-1604.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xivo-ipbx.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-04-20T00:00:00-04:00</updated><entry><title>Sprint Review 16.05</title><link href="http://blog.xivo.io/sprint-review-1605.html" rel="alternate"></link><published>2016-04-20T00:00:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-04-20:sprint-review-1605.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.05.&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Translations&lt;/strong&gt;: Thanks to the XiVO community (thank you Marcos Tadeu), the XiVO Client and phone directory labels are translated in Portuguese (Brazil).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;REST API&lt;/strong&gt;: A new API has been added to create and associate call permissions to users. Call permissions enable administrators to control which phone numbers are allowed to be called by users.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SIP Lines&lt;/strong&gt;: The SIP lines configuration page has been simplified. A lot of advanced options may now be set freely, independently of what options are supported by the web interface.&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Call Transfers&lt;/strong&gt;: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Installation Wizard&lt;/strong&gt;: The wizard is the little assistant that allows administrators to setup the XiVO server. The wizard is a very important part of XiVO, since it's the mandatory way to finalize the installation of XiVO. We are working on a new API allowing to setup XiVO automatically, without the need of the XiVO web interface. Also there are some known bugs in the current wizard blocking the end of the installation that would put beginners to a complete stop before even trying XiVO. So the time has come to squash those nasty bugs!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;See you at the next sprint review!&lt;/p&gt;
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2"&gt;XiVO 16.05 Upgrade notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/versions/241"&gt;XiVO 16.05 Roadmap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.04</title><link href="http://blog.xivo.io/sprint-review-1604.html" rel="alternate"></link><published>2016-04-04T00:00:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-04-04:sprint-review-1604.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Fax&lt;/strong&gt;: The Fax system in XiVO has been improved, thanks to the XiVO community (thank you Julien Revert). Fax files can be
 converted to PDF on reception. Files can also be deposited on a FTP server. Further details on how to configure these
@@ -36,7 +51,7 @@ communications across the vast VoIP expanse.&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2"&gt;XiVO 16.04 Upgrade notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/240"&gt;XiVO 16.04 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.03</title><link href="http://blog.xivo.io/sprint-review-1603.html" rel="alternate"></link><updated>2016-03-14T00:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-03-14:sprint-review-1603.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.03</title><link href="http://blog.xivo.io/sprint-review-1603.html" rel="alternate"></link><published>2016-03-14T00:00:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-03-14:sprint-review-1603.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for associating a device with a line has been added. Devices can now be fully provisioned and
 controlled via the REST API. This new API represents an additional step towards our long-term goal of offering a PBX
@@ -69,7 +84,7 @@ parties more flexibility when developing applications that manage a user's servi
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/239"&gt;XiVO 16.03 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/boards/8/topics/5048"&gt;Discussion on LDAP (fr)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.02</title><link href="http://blog.xivo.io/sprint-review-1602.html" rel="alternate"></link><updated>2016-02-19T00:00:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-02-19:sprint-review-1602.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.02</title><link href="http://blog.xivo.io/sprint-review-1602.html" rel="alternate"></link><published>2016-02-19T00:00:00-05:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-02-19:sprint-review-1602.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Users import&lt;/strong&gt;: The CSV import of users now supports setting the call permissions for each user. Call permissions define which restriction are put on users regarding which numbers they can dial.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: All communications between the CTI server and the XiVO Clients will now be encrypted by default.&lt;/p&gt;
@@ -88,7 +103,7 @@ parties more flexibility when developing applications that manage a user's servi
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2"&gt;XiVO 16.02 Upgrade notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/238"&gt;XiVO 16.02 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.01</title><link href="http://blog.xivo.io/sprint-review-1601.html" rel="alternate"></link><updated>2016-02-01T00:00:00-05:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-02-01:sprint-review-1601.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, I am pleased to announce the release of XiVO 16.01.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.01</title><link href="http://blog.xivo.io/sprint-review-1601.html" rel="alternate"></link><published>2016-02-01T00:00:00-05:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-02-01:sprint-review-1601.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, I am pleased to announce the release of XiVO 16.01.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;XiVO Client Authentication&lt;/strong&gt;: The XiVO client can use LDAP authentication for connecting to the XiVO server. This
 makes it easier for administrators to reuse services that manage their user accounts, such as Active Directory. LDAP
@@ -137,7 +152,7 @@ communications across the vast VoIP expanse.&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/237"&gt;XiVO 16.01 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/contributors/cti_server/cti_protocol.html#id2"&gt;CTI Protocol Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.20</title><link href="http://blog.xivo.io/sprint-review-1520.html" rel="alternate"></link><updated>2016-01-08T12:00:00-05:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-01-08:sprint-review-1520.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, allow me to wish you all a happy new year ! I am pleased to announce that the first version
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.20</title><link href="http://blog.xivo.io/sprint-review-1520.html" rel="alternate"></link><published>2016-01-08T12:00:00-05:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-01-08:sprint-review-1520.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, allow me to wish you all a happy new year ! I am pleased to announce that the first version
 of XiVO in 2016, version 15.20, has been released. Since we have started a new year, the next version of XiVO will be
 numbered 16.01.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
@@ -179,7 +194,7 @@ freedom of XiVO bless your communications across the vast VoIP expanse.&lt;/em&g
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2"&gt;XiVO 15.20 Upgrade notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/236"&gt;XiVO 15.20 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.19</title><link href="http://blog.xivo.io/sprint-review-1519.html" rel="alternate"></link><updated>2015-12-04T12:00:00-05:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-12-04:sprint-review-1519.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released.
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.19</title><link href="http://blog.xivo.io/sprint-review-1519.html" rel="alternate"></link><published>2015-12-04T12:00:00-05:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-12-04:sprint-review-1519.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released.
 This will be our last version released in 2015. The next version, 15.20, will be released during
 the month of January in 2016.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
@@ -234,7 +249,7 @@ May the freedom of XiVO bless your communications across the vast VoIP expanse.&
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/235" title=" XiVO 15.19 Roadmap"&gt;XiVO 15.19 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;xivo-confd Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.18</title><link href="http://blog.xivo.io/sprint-review-1518.html" rel="alternate"></link><updated>2015-11-13T12:00:00-05:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-11-13:sprint-review-1518.html</id><summary type="html">&lt;p&gt;Hi everyone, this release was delayed by a week because we moved our development
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 15.18</title><link href="http://blog.xivo.io/sprint-review-1518.html" rel="alternate"></link><published>2015-11-13T12:00:00-05:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-11-13:sprint-review-1518.html</id><summary type="html">&lt;p&gt;Hi everyone, this release was delayed by a week because we moved our development
 office in another spot in Quebec City. It's smaller, but more adapted to our
 team size (there are 6 of us now, and the previous office was designed for more
 than 10 people). And we managed to keep &lt;a href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html"&gt;all our
@@ -281,7 +296,7 @@ name (that you entered) along with her number.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/234" title=" XiVO 15.18 Roadmap"&gt;XiVO 15.18 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;xivo-confd Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Automatically Disconnect an Agent if his SIP Account is Inactive</title><link href="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html" rel="alternate"></link><updated>2015-10-29T09:00:00-04:00</updated><author><name>Nicolas Vdb</name></author><id>tag:blog.xivo.io,2015-10-29:automatically-disconnect-an-agent-if-inactive.html</id><summary type="html">&lt;p&gt;Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Automatically Disconnect an Agent if his SIP Account is Inactive</title><link href="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html" rel="alternate"></link><published>2015-10-29T09:00:00-04:00</published><author><name>Nicolas Vdb</name></author><id>tag:blog.xivo.io,2015-10-29:automatically-disconnect-an-agent-if-inactive.html</id><summary type="html">&lt;p&gt;Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
 a Master in Computer Engineering and my work in a call center. I could not find any information in
 the XiVO CTI when a phone was disconnected, so I worked on a solution for generating this
 information. This allows agents to know their phone's status.&lt;/p&gt;
@@ -318,7 +333,7 @@ agent associated to the extension.&lt;/p&gt;
 You can download this script on &lt;a href="https://github.com/h4wk3r/XIVO-Agentoff_if_sipoff"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
 on IRC on irc.freenode.net channel #xivo.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson&lt;/em&gt;&lt;/p&gt;</summary><category term="call center"></category></entry><entry><title>Sprint Review 15.17</title><link href="http://blog.xivo.io/sprint-review-1517.html" rel="alternate"></link><updated>2015-10-16T12:00:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-10-16:sprint-review-1517.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson&lt;/em&gt;&lt;/p&gt;</summary><category term="call center"></category></entry><entry><title>Sprint Review 15.17</title><link href="http://blog.xivo.io/sprint-review-1517.html" rel="alternate"></link><published>2015-10-16T12:00:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-10-16:sprint-review-1517.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVOists ! I am pleased to announce that version 15.17 of XiVO has been released.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;REST API:&lt;/strong&gt; A new API for managing SIP accounts has been added. The API can be used for creating
 SIP accounts and associating them with users on a XiVO server. This API also offers third parties,
@@ -349,7 +364,7 @@ improves overall stability.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;My fellow xivoists, as the &lt;strong&gt;Lord of XiVO&lt;/strong&gt; allow me to bid you a happy and invigorating farewell. I
 wish you shall remain in high spirits until our next fateful encounter, 3 weeks from now. May the
 freedom of XiVO bless your communications across the vast VoIP expanse.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap"&gt;XiVO 15.17 Roadmap&lt;/a&gt;&lt;/p&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>XiVO + Bluemind Integration</title><link href="http://blog.xivo.io/xivo-bluemind-integration.html" rel="alternate"></link><updated>2015-09-30T15:57:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-30:xivo-bluemind-integration.html</id><summary type="html">&lt;p&gt;Telephone systems are nice, but it gets even better when they meld into
+&lt;p&gt;Source: &lt;a href="http://projects.xivo.io/versions/233" title="XiVO 15.17 Roadmap"&gt;XiVO 15.17 Roadmap&lt;/a&gt;&lt;/p&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>XiVO + Bluemind Integration</title><link href="http://blog.xivo.io/xivo-bluemind-integration.html" rel="alternate"></link><published>2015-09-30T15:57:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-30:xivo-bluemind-integration.html</id><summary type="html">&lt;p&gt;Telephone systems are nice, but it gets even better when they meld into
 the computer interfaces that we use to communicate daily. After all, a
 big part of our daily lives revolves around email, contacts and agendas.
 That is why we are excited to introduce you to Bluemind. BlueMind is a
@@ -372,7 +387,7 @@ BlueMind is talking to XiVO? You get more features! You may:&lt;/p&gt;
 documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;If you want to configure your instance of BlueMind, &lt;a href="https://forge.blue-mind.net/confluence/display/LATEST/Configuration+du+plugin+Xivo+Avencall"&gt;click this
 link&lt;/a&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.16</title><link href="http://blog.xivo.io/sprint-review-1516.html" rel="alternate"></link><updated>2015-09-28T14:03:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-09-28:sprint-review-1516.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.16</title><link href="http://blog.xivo.io/sprint-review-1516.html" rel="alternate"></link><published>2015-09-28T14:03:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-09-28:sprint-review-1516.html</id><summary type="html">&lt;p&gt;Hello,&lt;/p&gt;
 &lt;h3&gt;New features in this sprint:&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;High Availablity&lt;/strong&gt;: Phones can be rebooted and will still be
 functional when using a fallback server. The next step will be to
@@ -402,7 +417,7 @@ easier for users to configure advanced features in asterisk.&lt;/p&gt;
 &lt;p&gt;See you for the next sprint review.&lt;/p&gt;
 &lt;p&gt;Source: &lt;a href="http://projects.xivo.io/versions/232" title="XiVO 15.16 Roadmap"&gt;XiVO 15.16
 Roadmap&lt;/a&gt;&lt;/p&gt;
-&lt;/p&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint review 15.15</title><link href="http://blog.xivo.io/sprint-review-1515.html" rel="alternate"></link><updated>2015-09-09T14:40:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-09:sprint-review-1515.html</id><summary type="html">&lt;p&gt;Fellow Xivoists, the time has come for the release of 15.15. During
+&lt;/p&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint review 15.15</title><link href="http://blog.xivo.io/sprint-review-1515.html" rel="alternate"></link><published>2015-09-09T14:40:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-09-09:sprint-review-1515.html</id><summary type="html">&lt;p&gt;Fellow Xivoists, the time has come for the release of 15.15. During
 thissprint we have fixed many bugs and continued working on
 featuressurrounding directories and contacts.&lt;/p&gt;
 &lt;h3&gt;New features in this sprint&lt;/h3&gt;
@@ -446,7 +461,7 @@ untilour next fateful encounter, 3 weeks from now. May the freedom of
 XiVObless your communications across the vast VoIP expanse.&lt;/p&gt;
 &lt;p&gt;Source: &lt;a href="http://projects.xivo.io/versions/231" title="XiVO 15.15 Roadmap"&gt;XiVO 15.15
 Roadmap&lt;/a&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.14</title><link href="http://blog.xivo.io/sprint-review-1514.html" rel="alternate"></link><updated>2015-08-14T17:18:00-04:00</updated><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-08-14:sprint-review-1514.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.14</title><link href="http://blog.xivo.io/sprint-review-1514.html" rel="alternate"></link><published>2015-08-14T17:18:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2015-08-14:sprint-review-1514.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
 &lt;p&gt;With the end of this sprint, most of the work on our new personal
 contacts system has been completed. We have also continued working on
 features already in progress in order to improve and solidify XiVO as a
@@ -505,7 +520,7 @@ whole.&lt;/p&gt;
 invigorating reading. I wish you shall remain in high spirits until our
 next fateful encounter, 3 weeks from now. May the freedom of xivo bless
 your communications, where ever they may be.&lt;/em&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.13</title><link href="http://blog.xivo.io/sprint-review-1513.html" rel="alternate"></link><updated>2015-07-24T14:19:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-07-24:sprint-review-1513.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.13</title><link href="http://blog.xivo.io/sprint-review-1513.html" rel="alternate"></link><published>2015-07-24T14:19:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-07-24:sprint-review-1513.html</id><summary type="html">&lt;p&gt;Hello everyone,&lt;/p&gt;
 &lt;p&gt;During this sprint most of the work was done on pushing Asterisk 13 into
 XiVO. We added an extra testing day during the sprint in order to help
 detect differences between Asterisk 11 and 13.&lt;/p&gt;
@@ -578,7 +593,7 @@ website&lt;/a&gt;.&lt;/p&gt;
     &lt;a href="http://raspivo.io/installation-depuis-nos-depots-en.html" title="http://raspivo.io/installation-depuis-nos-depots-en.html"&gt;http://raspivo.io/installation-depu...&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="XIVO-RELEASE-15.13-July-August2015.png" src="/public/XIVO-RELEASE-15.13-July-August2015.png" title="XIVO-RELEASE-15.13-July-August2015.png, juil. 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO and Asterisk 13</title><link href="http://blog.xivo.io/xivo-and-asterisk-13.html" rel="alternate"></link><updated>2015-07-20T13:49:00-04:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2015-07-20:xivo-and-asterisk-13.html</id><summary type="html">&lt;p&gt;As some of you may already know, XiVO will soon be powered by &lt;a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Documentation"&gt;Asterisk
+&lt;/p&gt;</summary></entry><entry><title>XiVO and Asterisk 13</title><link href="http://blog.xivo.io/xivo-and-asterisk-13.html" rel="alternate"></link><published>2015-07-20T13:49:00-04:00</published><author><name>hexanol</name></author><id>tag:blog.xivo.io,2015-07-20:xivo-and-asterisk-13.html</id><summary type="html">&lt;p&gt;As some of you may already know, XiVO will soon be powered by &lt;a href="https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Documentation"&gt;Asterisk
 13&lt;/a&gt;
 instead of Asterisk 11. In fact, the development version of XiVO already
 comes with Asterisk 13, so it's just a matter of time before Asterisk 13
@@ -617,7 +632,7 @@ script
 method&lt;/a&gt;
 and executing the script as "bash xivo_install_current.sh -d".&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Asterisk13.png" src="/public/Asterisk13.png" title="Asterisk13.png, juil. 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.12</title><link href="http://blog.xivo.io/sprint-review-1512.html" rel="alternate"></link><updated>2015-07-03T14:04:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-07-03:sprint-review-1512.html</id><summary type="html">&lt;h3&gt;New in this sprint&lt;/h3&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.12</title><link href="http://blog.xivo.io/sprint-review-1512.html" rel="alternate"></link><published>2015-07-03T14:04:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-07-03:sprint-review-1512.html</id><summary type="html">&lt;h3&gt;New in this sprint&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: The people xlet allows you to bookmark your
     contacts and list them. This also opens the way for personal
@@ -708,7 +723,7 @@ Roadmap&lt;/a&gt;&lt;/p&gt;
     &lt;a href="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso" title="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso"&gt;http://mirror.xivo.io/iso/xivo-late...&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" src="/public/2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" title="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png, juil. 2015" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.11</title><link href="http://blog.xivo.io/sprint-review-1511.html" rel="alternate"></link><updated>2015-06-12T14:25:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-06-12:sprint-review-1511.html</id><summary type="html">&lt;p&gt;This sprint we have worked on various subjects regarding REST APIs. REST
+&lt;/p&gt;</summary></entry><entry><title>Sprint review 15.11</title><link href="http://blog.xivo.io/sprint-review-1511.html" rel="alternate"></link><published>2015-06-12T14:25:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2015-06-12:sprint-review-1511.html</id><summary type="html">&lt;p&gt;This sprint we have worked on various subjects regarding REST APIs. REST
 APIs enable a more customizable and flexible management of XiVO server.
 They also enable the development of third-party features. For example,
 you could create a new management interface that would replace the
@@ -789,7 +804,7 @@ users on the server.&lt;/p&gt;
 &lt;p&gt;See you for the next sprint review.&lt;/p&gt;
 &lt;p&gt;Source:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://projects.xivo.io/versions/227" title="15.11 Roadmap"&gt;15.11 Roadmap&lt;/a&gt;&lt;/p&gt;
-&lt;/p&gt;</summary><category term="XiVO"></category><category term="authentification"></category><category term="consul"></category><category term="development"></category><category term="software"></category><category term="téléphonie"></category><category term="web-interface"></category><category term="xivo"></category></entry><entry><title>Sprint Review 15.02</title><link href="http://blog.xivo.io/sprint-review-1502.html" rel="alternate"></link><updated>2015-01-30T14:59:00-05:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-01-30:sprint-review-1502.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.02:&lt;/p&gt;
+&lt;/p&gt;</summary><category term="XiVO"></category><category term="authentification"></category><category term="consul"></category><category term="development"></category><category term="software"></category><category term="téléphonie"></category><category term="web-interface"></category><category term="xivo"></category></entry><entry><title>Sprint Review 15.02</title><link href="http://blog.xivo.io/sprint-review-1502.html" rel="alternate"></link><published>2015-01-30T14:59:00-05:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-01-30:sprint-review-1502.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.02:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/218" title="https://projects.xivo.io/versions/218"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -802,7 +817,7 @@ xivo-dird&lt;/p&gt;
 &lt;li&gt;Ongoing work on xivo-dird's integration and visual reorganisation of
     XiVO Client&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.01</title><link href="http://blog.xivo.io/sprint-review-1501.html" rel="alternate"></link><updated>2015-01-16T14:55:00-05:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-01-16:sprint-review-1501.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.01:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 15.01</title><link href="http://blog.xivo.io/sprint-review-1501.html" rel="alternate"></link><published>2015-01-16T14:55:00-05:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2015-01-16:sprint-review-1501.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 15.01:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/217" title="https://projects.xivo.io/versions/217"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -833,7 +848,7 @@ xivo-dird&lt;/p&gt;
 &lt;li&gt;Ongoing work on xivo-dird's integration and visual reorganisation of
     XiVO Client&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.23</title><link href="http://blog.xivo.io/sprint-review-1423.html" rel="alternate"></link><updated>2014-12-05T14:56:00-05:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2014-12-05:sprint-review-1423.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.23:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.23</title><link href="http://blog.xivo.io/sprint-review-1423.html" rel="alternate"></link><published>2014-12-05T14:56:00-05:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2014-12-05:sprint-review-1423.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.23:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/215" title="https://projects.xivo.io/versions/215"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -860,7 +875,7 @@ xivo-dird&lt;/p&gt;
     &lt;a href="/index.php?post/2014/09/26/XiVO-s-new-directory-server"&gt;xivo-dird&lt;/a&gt;
     has been completed, and is now integrated into XiVO.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.20</title><link href="http://blog.xivo.io/sprint-review-1420.html" rel="alternate"></link><updated>2014-10-24T12:57:00-04:00</updated><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2014-10-24:sprint-review-1420.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.20:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.20</title><link href="http://blog.xivo.io/sprint-review-1420.html" rel="alternate"></link><published>2014-10-24T12:57:00-04:00</published><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2014-10-24:sprint-review-1420.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.20:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/211" title="https://projects.xivo.io/versions/211"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -883,14 +898,14 @@ xivo-dird&lt;/p&gt;
     &lt;a href="/index.php?post/2014/09/26/XiVO-s-new-directory-server"&gt;xivo-dird&lt;/a&gt;
     has been completed, but is not yet integrated into XiVO.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.19</title><link href="http://blog.xivo.io/sprint-review-1419.html" rel="alternate"></link><updated>2014-10-10T12:31:00-04:00</updated><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2014-10-10:sprint-review-1419.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.19:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint Review 14.19</title><link href="http://blog.xivo.io/sprint-review-1419.html" rel="alternate"></link><published>2014-10-10T12:31:00-04:00</published><author><name>jpgelinas</name></author><id>tag:blog.xivo.io,2014-10-10:sprint-review-1419.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.19:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/210" title="https://projects.xivo.io/versions/210"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/dev/administration/ivr/ivr.html" title="http://documentation.xivo.io/dev/administration/ivr/ivr.html"&gt;IVR
     documentation&lt;/a&gt;
     to find out how to set up an Interactive voice response with XiVO&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sprint review 14.18</title><link href="http://blog.xivo.io/sprint-review-1418.html" rel="alternate"></link><updated>2014-09-26T12:55:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2014-09-26:sprint-review-1418.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.18:&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Sprint review 14.18</title><link href="http://blog.xivo.io/sprint-review-1418.html" rel="alternate"></link><published>2014-09-26T12:55:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2014-09-26:sprint-review-1418.html</id><summary type="html">&lt;p&gt;Here are a few links explaining what we are going to ship in XiVO 14.18:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://projects.xivo.io/versions/209" title="https://projects.xivo.io/versions/209"&gt;Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.fr/dev/administration/cli_tools/cli_tools.html#xivo-dist" title="http://documentation.xivo.fr/dev/administration/cli_tools/cli_tools.html#xivo-dist"&gt;xivo-dist&lt;/a&gt;
@@ -899,7 +914,7 @@ xivo-dird&lt;/p&gt;
     upgrade&lt;/a&gt;
     to explain how to choose the version when xivo-dist is not available&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Update from XiVO 13.20</title><link href="http://blog.xivo.io/update-from-xivo-1320.html" rel="alternate"></link><updated>2013-10-21T17:01:00-04:00</updated><author><name>sduthil</name></author><id>tag:blog.xivo.io,2013-10-21:update-from-xivo-1320.html</id><summary type="html">&lt;p&gt;It's been a while since we gave any updates, but we've been quite
+&lt;/p&gt;</summary></entry><entry><title>Update from XiVO 13.20</title><link href="http://blog.xivo.io/update-from-xivo-1320.html" rel="alternate"></link><published>2013-10-21T17:01:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2013-10-21:update-from-xivo-1320.html</id><summary type="html">&lt;p&gt;It's been a while since we gave any updates, but we've been quite
 active.&lt;/p&gt;
 &lt;p&gt;We are currently writing a REST API to configure XiVO, giving access to
 asimplified set of the Web interface's controls and replacing thecurrent
@@ -946,7 +961,7 @@ movedsome of our repositories to Gitorious, which we preferred because
 it iscompletely based on free software, but we've had a few problems
 with it.So we decided to switch to Github. You can now fork us at
 &lt;a href="https://github.com/xivo-pbx"&gt;https://github.com/xivo-pbx&lt;/a&gt;.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO Architecture</title><link href="http://blog.xivo.io/xivo-architecture.html" rel="alternate"></link><updated>2012-06-11T14:56:00-04:00</updated><author><name>cedric</name></author><id>tag:blog.xivo.io,2012-06-11:xivo-architecture.html</id><summary type="html">&lt;p&gt;The architecture of XiVO is still too complicated. As you can see, the
+&lt;/p&gt;</summary></entry><entry><title>XiVO Architecture</title><link href="http://blog.xivo.io/xivo-architecture.html" rel="alternate"></link><published>2012-06-11T14:56:00-04:00</published><author><name>cedric</name></author><id>tag:blog.xivo.io,2012-06-11:xivo-architecture.html</id><summary type="html">&lt;p&gt;The architecture of XiVO is still too complicated. As you can see, the
 components are virtually all related to each other.&lt;/p&gt;
 &lt;p&gt;&lt;a href="/public/xivosoft/xivo_architecture.png" title="XiVO Architecture"&gt;&lt;img alt="XiVO
 Architecture" src="/public/xivosoft/.xivo_architecture_m.jpg" title="XiVO Architecture, juin 2012" /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -967,7 +982,7 @@ the CTID should not interact directly with WebServices.&lt;/p&gt;
 &lt;p&gt;A bunch of bad practices which we are aware of. We are up to the
 challenge and integrating this architecture evolution in our 2-weeks
 iterations makes it all even more exiting.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO GIT Architecture is evolving</title><link href="http://blog.xivo.io/xivo-git-architecture-is-evolving.html" rel="alternate"></link><updated>2012-01-17T19:10:00-05:00</updated><author><name>cedric</name></author><id>tag:blog.xivo.io,2012-01-17:xivo-git-architecture-is-evolving.html</id><summary type="html">&lt;p&gt;The &lt;a href="https://twitter.com/#!/Xivodevteam" title=" # xivodevteam"&gt;#
+&lt;/p&gt;</summary></entry><entry><title>XiVO GIT Architecture is evolving</title><link href="http://blog.xivo.io/xivo-git-architecture-is-evolving.html" rel="alternate"></link><published>2012-01-17T19:10:00-05:00</published><author><name>cedric</name></author><id>tag:blog.xivo.io,2012-01-17:xivo-git-architecture-is-evolving.html</id><summary type="html">&lt;p&gt;The &lt;a href="https://twitter.com/#!/Xivodevteam" title=" # xivodevteam"&gt;#
 xivodevteam&lt;/a&gt;
 decided to change the architecture of the git repository of
 &lt;a href="/index.php?tag/XiVO"&gt;XiVO&lt;/a&gt;.&lt;/p&gt;
@@ -987,7 +1002,7 @@ together.&lt;/p&gt;
 &lt;p&gt;Each component will become an independent &lt;a href="http://git.proformatique.com/" title=" git repository "&gt;git
 repository&lt;/a&gt;
 http://git.proformatique.com/&lt;/p&gt;
-&lt;/p&gt;</summary><category term="XiVO"></category></entry><entry><title>Automatically originating call with cron and XiVO 1.2</title><link href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html" rel="alternate"></link><updated>2011-12-14T19:02:00-05:00</updated><author><name>hexanol</name></author><id>tag:blog.xivo.io,2011-12-14:automatically-originating-call-with-cron-and-xivo-12.html</id><summary type="html">&lt;p&gt;This bit of dialplan simply set the name part of the caller ID and then
+&lt;/p&gt;</summary><category term="XiVO"></category></entry><entry><title>Automatically originating call with cron and XiVO 1.2</title><link href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html" rel="alternate"></link><published>2011-12-14T19:02:00-05:00</published><author><name>hexanol</name></author><id>tag:blog.xivo.io,2011-12-14:automatically-originating-call-with-cron-and-xivo-12.html</id><summary type="html">&lt;p&gt;This bit of dialplan simply set the name part of the caller ID and then
 call our phone, which in our example is SIP/abcdef. Note that we dial
 the phone directly instead of jumping into the standard XiVO dialplan,
 because we don't want the voicemail of the user to answer the call if it
@@ -1023,7 +1038,7 @@ playing a sound file is just a bit of custom dialplan away.&lt;/p&gt;
 &lt;p&gt;Note that to make this work in XiVO 1.1, the dialplan shown here need to
 be modified (the "same" syntax is not supported in asterisk 1.4) and the
 "channel originate" command be replaced by "originate".&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO GIT repository re-organisation</title><link href="http://blog.xivo.io/xivo-git-repository-re-organisation.html" rel="alternate"></link><updated>2011-10-17T12:22:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-10-17:xivo-git-repository-re-organisation.html</id><summary type="html">&lt;h4&gt;GIT_DIRECTORY specify the repository to use&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO GIT repository re-organisation</title><link href="http://blog.xivo.io/xivo-git-repository-re-organisation.html" rel="alternate"></link><published>2011-10-17T12:22:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-10-17:xivo-git-repository-re-organisation.html</id><summary type="html">&lt;h4&gt;GIT_DIRECTORY specify the repository to use&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GIT_DIRECTORY=xivo-&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;XIVO&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
               The subdirectory relative to SOURCE_GIT in which the  repository
               is to be found.  The actual clone is composed as follows:
@@ -1107,7 +1122,7 @@ dpkg-genchange did not test for a failed run of dpkg-genchange. It is a
 rare condition.The status.sh script &lt;a href="http://packaging-farm.dachary.org/trac/changeset/d3bbab7c88148a9f5670e0f8c598174d392f8ed2"&gt;now checks if the run of
 dpkg-genchange is
 successful&lt;/a&gt;.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Safeguard against downgrades in XIVO packages</title><link href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html" rel="alternate"></link><updated>2011-09-26T09:53:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-26:safeguard-against-downgrades-in-xivo-packages.html</id><summary type="html">&lt;h4&gt;Safeguard against downgrades in XIVO packages&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Safeguard against downgrades in XIVO packages</title><link href="http://blog.xivo.io/safeguard-against-downgrades-in-xivo-packages.html" rel="alternate"></link><published>2011-09-26T09:53:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-26:safeguard-against-downgrades-in-xivo-packages.html</id><summary type="html">&lt;h4&gt;Safeguard against downgrades in XIVO packages&lt;/h4&gt;
 &lt;p&gt;The following use case creates a &lt;a href="http://packaging-farm.dachary.org/trac/ticket/23"&gt;confusing
 situation&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
@@ -1147,7 +1162,7 @@ also moves the extraction of the existing package version from the
 makefile to the debuild.sh script. That avoids duplicating the logic. It
 also gives the debuild.sh script the name of the original dsc file in
 order to print a meaningfull error message.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>resolving XiVO submissions confusion</title><link href="http://blog.xivo.io/resolving-xivo-submissions-confusion.html" rel="alternate"></link><updated>2011-09-19T07:15:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-19:resolving-xivo-submissions-confusion.html</id><summary type="html">&lt;h4&gt;nothing needs to be done&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>resolving XiVO submissions confusion</title><link href="http://blog.xivo.io/resolving-xivo-submissions-confusion.html" rel="alternate"></link><published>2011-09-19T07:15:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-19:resolving-xivo-submissions-confusion.html</id><summary type="html">&lt;h4&gt;nothing needs to be done&lt;/h4&gt;
 &lt;p&gt;The rules that decide when packaging-farm should work on a package are
 explained in the manual pages. However, they have changed a lot while
 packaging-farm matured in the past months and they deserve a short
@@ -1285,7 +1300,7 @@ VERSION_COMPUTE=false.The message explaining that no update is needed
 is &lt;a href="http://packaging-farm.dachary.org/trac/changeset/d6c8676bd54b95b76ce475d7fe7dbe0d2592aafa"&gt;moved to the need_update
 function&lt;/a&gt;
 and displays the exact reason, path included, why no update is required.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO submission configuration</title><link href="http://blog.xivo.io/xivo-submission-configuration.html" rel="alternate"></link><updated>2011-09-12T08:12:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-12:xivo-submission-configuration.html</id><summary type="html">&lt;h4&gt;clearing the generated sources&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO submission configuration</title><link href="http://blog.xivo.io/xivo-submission-configuration.html" rel="alternate"></link><published>2011-09-12T08:12:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-12:xivo-submission-configuration.html</id><summary type="html">&lt;h4&gt;clearing the generated sources&lt;/h4&gt;
 &lt;p&gt;When some environment variables used by submit-xivo.sh change value, the
 whole source directory &lt;a href="http://packaging-farm.dachary.org/trac/ticket/21"&gt;must be
 regenerated&lt;/a&gt;. For
@@ -1471,7 +1486,7 @@ submit-xivo.sh manual page:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Rebuilding XiVO gallifrey</title><link href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html" rel="alternate"></link><updated>2011-09-05T08:39:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-05:rebuilding-xivo-gallifrey.html</id><summary type="html">&lt;h4&gt;rebuilding gallifrey&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Rebuilding XiVO gallifrey</title><link href="http://blog.xivo.io/rebuilding-xivo-gallifrey.html" rel="alternate"></link><published>2011-09-05T08:39:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-09-05:rebuilding-xivo-gallifrey.html</id><summary type="html">&lt;h4&gt;rebuilding gallifrey&lt;/h4&gt;
 &lt;p&gt;The /var/cache/packaging-farm/sources directory was removed and&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;export VERSION_COMPUTE=false
 &lt;/pre&gt;&lt;/div&gt;
@@ -1574,7 +1589,7 @@ additional benefit of having the .mk files in /etc/packaging-farm is
 that they can be saved by etckeeper and backed up with /etc.The build
 machines for gallifrey, gallifrey-dev and skaro were migrated to the new
 convention.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO package versioning</title><link href="http://blog.xivo.io/xivo-package-versioning.html" rel="alternate"></link><updated>2011-08-29T08:37:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-29:xivo-package-versioning.html</id><summary type="html">&lt;h4&gt;production version conventions&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO package versioning</title><link href="http://blog.xivo.io/xivo-package-versioning.html" rel="alternate"></link><published>2011-08-29T08:37:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-29:xivo-package-versioning.html</id><summary type="html">&lt;h4&gt;production version conventions&lt;/h4&gt;
 &lt;p&gt;XiVO package release numbers &lt;a href="http://packaging-farm.dachary.org/trac/ticket/16"&gt;must not contain the timestamp +
 hash&lt;/a&gt;. When upgrading
 from a development machine to a production machine, the package numbers
@@ -1755,7 +1770,7 @@ manual page was updated:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Bug fixing XiVO package generation</title><link href="http://blog.xivo.io/bug-fixing-xivo-package-generation.html" rel="alternate"></link><updated>2011-08-22T09:47:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-22:bug-fixing-xivo-package-generation.html</id><summary type="html">&lt;h4&gt;kernel-module ignores SOURCE_MODULE&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Bug fixing XiVO package generation</title><link href="http://blog.xivo.io/bug-fixing-xivo-package-generation.html" rel="alternate"></link><published>2011-08-22T09:47:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-22:bug-fixing-xivo-package-generation.html</id><summary type="html">&lt;h4&gt;kernel-module ignores SOURCE_MODULE&lt;/h4&gt;
 &lt;p&gt;When the ROLE=kernel-module is set, the binary packages are built from
 an existing package containing the sources of a kernel module in a
 fashion that is suitable for module-assistant to work on. The kernel
@@ -1892,7 +1907,7 @@ submit-xivo.sh (3:1.2\~20110704.194720.51b210e-1)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;hexanol updated the changelog entry for each software above to reflect
 the change in the convention, adding to epoch as necessary.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packaging verbosity and safeguards</title><link href="http://blog.xivo.io/xivo-packaging-verbosity-and-safeguards.html" rel="alternate"></link><updated>2011-08-15T13:58:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-15:xivo-packaging-verbosity-and-safeguards.html</id><summary type="html">&lt;h4&gt;package versions&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packaging verbosity and safeguards</title><link href="http://blog.xivo.io/xivo-packaging-verbosity-and-safeguards.html" rel="alternate"></link><published>2011-08-15T13:58:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-15:xivo-packaging-verbosity-and-safeguards.html</id><summary type="html">&lt;h4&gt;package versions&lt;/h4&gt;
 &lt;p&gt;The XiVO package versions are automatically generated in part and follow
 the debian conventions as documented in the deb-version(1) manual page.
 The automatic numbering occurs in the submit-xivo.sh script as described
@@ -1948,7 +1963,7 @@ and can be reverted to verbose as follows:&lt;/p&gt;
 
 &lt;p&gt;This was not documented as it is only useful to debug packaging-farm
 itself.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Multiple users building on the XiVO packaging machine</title><link href="http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html" rel="alternate"></link><updated>2011-08-09T16:23:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-09:multiple-users-building-on-the-xivo-packaging-machine.html</id><summary type="html">&lt;h4&gt;multiuser locking&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Multiple users building on the XiVO packaging machine</title><link href="http://blog.xivo.io/multiple-users-building-on-the-xivo-packaging-machine.html" rel="alternate"></link><published>2011-08-09T16:23:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-09:multiple-users-building-on-the-xivo-packaging-machine.html</id><summary type="html">&lt;h4&gt;multiuser locking&lt;/h4&gt;
 &lt;p&gt;The packaging-farm command does not behave well when two are run
 simultaneously to build the same package. Nothing bad happens but fixing
 the result involves umounting a number of aufs corrupted file systems
@@ -2016,7 +2031,7 @@ to avoid this confusion.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO package submissions rules</title><link href="http://blog.xivo.io/xivo-package-submissions-rules.html" rel="alternate"></link><updated>2011-08-01T21:47:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-01:xivo-package-submissions-rules.html</id><summary type="html">&lt;h4&gt;conditional update based on version instead of time&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO package submissions rules</title><link href="http://blog.xivo.io/xivo-package-submissions-rules.html" rel="alternate"></link><published>2011-08-01T21:47:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-08-01:xivo-package-submissions-rules.html</id><summary type="html">&lt;h4&gt;conditional update based on version instead of time&lt;/h4&gt;
 &lt;p&gt;The following use case fails if &lt;strong&gt;submit-xivo.sh&lt;/strong&gt; does not create a
 source package if the timestamp of the last successfull build is more
 recent than the latest commit of the debian or source repository.&lt;/p&gt;
@@ -2082,7 +2097,7 @@ to implement the following:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO farm dedicated to development</title><link href="http://blog.xivo.io/xivo-farm-dedicated-to-development.html" rel="alternate"></link><updated>2011-07-25T09:56:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-25:xivo-farm-dedicated-to-development.html</id><summary type="html">&lt;h4&gt;XiVO submission with git version&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO farm dedicated to development</title><link href="http://blog.xivo.io/xivo-farm-dedicated-to-development.html" rel="alternate"></link><published>2011-07-25T09:56:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-25:xivo-farm-dedicated-to-development.html</id><summary type="html">&lt;h4&gt;XiVO submission with git version&lt;/h4&gt;
 &lt;p&gt;The
 &lt;a href="http://packaging-farm.dachary.org/trac/browser/submit/submit-xivo.sh?rev=934db22f985be6f102a327222a54c833380f3b13"&gt;submit-xivo.sh&lt;/a&gt;
 script uses whatever GIT version it finds to be the default. The
@@ -2315,7 +2330,7 @@ gallifrey-dev.xivo.vm   IN  A   10.10.60.6
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packages with no sources</title><link href="http://blog.xivo.io/xivo-packages-with-no-sources.html" rel="alternate"></link><updated>2011-07-10T08:54:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-10:xivo-packages-with-no-sources.html</id><summary type="html">&lt;h4&gt;XiVO packages with no source&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packages with no sources</title><link href="http://blog.xivo.io/xivo-packages-with-no-sources.html" rel="alternate"></link><published>2011-07-10T08:54:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-10:xivo-packages-with-no-sources.html</id><summary type="html">&lt;h4&gt;XiVO packages with no source&lt;/h4&gt;
 &lt;p&gt;The submit-xivo.sh command that is part of packaging-farm was improved
 to support the packages that have no source files such as pf-xivo and
 pf-xivo-backup.The changes were published as part of the
@@ -2458,7 +2473,7 @@ specialized, shortcut can be added.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packaging from the developer point of view</title><link href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html" rel="alternate"></link><updated>2011-07-04T12:04:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-04:xivo-packaging-from-the-developer-point-of-view.html</id><summary type="html">&lt;h4&gt;pre-requistes&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packaging from the developer point of view</title><link href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html" rel="alternate"></link><published>2011-07-04T12:04:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-07-04:xivo-packaging-from-the-developer-point-of-view.html</id><summary type="html">&lt;h4&gt;pre-requistes&lt;/h4&gt;
 &lt;p&gt;The ssh key of the developer must be installed in
 /root/.ssh/authorized_keys on http://skaro.dachary.org/packaging-farm/.&lt;/p&gt;
 &lt;h4&gt;workflow&lt;/h4&gt;
@@ -2645,7 +2660,7 @@ can be used to implement the use case described above:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>A gallifrey repository for 1.1.16</title><link href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html" rel="alternate"></link><updated>2011-06-13T08:40:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-06-13:a-gallifrey-repository-for-1116.html</id><summary type="html">&lt;h4&gt;upgrading packaging-farm&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>A gallifrey repository for 1.1.16</title><link href="http://blog.xivo.io/a-gallifrey-repository-for-1116.html" rel="alternate"></link><published>2011-06-13T08:40:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-06-13:a-gallifrey-repository-for-1116.html</id><summary type="html">&lt;h4&gt;upgrading packaging-farm&lt;/h4&gt;
 &lt;p&gt;After the upgrade of packaging-farm to version 1.2.42, the &lt;a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile"&gt;gallifrey
 Makefile&lt;/a&gt;
 was updated to add a &lt;em&gt;update&lt;/em&gt; target that updates the git repositories
@@ -2740,7 +2755,7 @@ service is deployed).&lt;/p&gt;
 warnings were fixed. An &lt;a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=630358"&gt;Intent To
 Package&lt;/a&gt; was
 sent to schedule the inclusion in Debian GNU/Linux.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>An alternate XiVO skaro repository</title><link href="http://blog.xivo.io/an-alternate-xivo-skaro-repository.html" rel="alternate"></link><updated>2011-06-06T11:13:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-06-06:an-alternate-xivo-skaro-repository.html</id><summary type="html">&lt;h4&gt;composing skaro&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>An alternate XiVO skaro repository</title><link href="http://blog.xivo.io/an-alternate-xivo-skaro-repository.html" rel="alternate"></link><published>2011-06-06T11:13:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-06-06:an-alternate-xivo-skaro-repository.html</id><summary type="html">&lt;h4&gt;composing skaro&lt;/h4&gt;
 &lt;p&gt;The gallifrey repository is made of packages built from the GIT
 repositories, some extracted from the official repository because they
 are not under GIT and others built for the occasion (kernel-modules and
@@ -2865,7 +2880,7 @@ completed successfully.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Using and Updating a XiVO gallifrey repository</title><link href="http://blog.xivo.io/using-and-updating-a-xivo-gallifrey-repository.html" rel="alternate"></link><updated>2011-05-30T12:57:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-30:using-and-updating-a-xivo-gallifrey-repository.html</id><summary type="html">&lt;h4&gt;Updating the repository&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Using and Updating a XiVO gallifrey repository</title><link href="http://blog.xivo.io/using-and-updating-a-xivo-gallifrey-repository.html" rel="alternate"></link><published>2011-05-30T12:57:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-30:using-and-updating-a-xivo-gallifrey-repository.html</id><summary type="html">&lt;h4&gt;Updating the repository&lt;/h4&gt;
 &lt;p&gt;To figure out what needs updating, a query is made on the git
 repositories.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /var/cache/packaging-farm/VCS/sources/xivo-gallifrey
@@ -3034,7 +3049,7 @@ success&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Testing a XiVO gallifrey repository (2/2)</title><link href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-22.html" rel="alternate"></link><updated>2011-05-16T13:27:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-16:testing-a-xivo-gallifrey-repository-22.html</id><summary type="html">&lt;h4&gt;SVN keyword substitution bug fix&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Testing a XiVO gallifrey repository (2/2)</title><link href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-22.html" rel="alternate"></link><published>2011-05-16T13:27:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-16:testing-a-xivo-gallifrey-repository-22.html</id><summary type="html">&lt;h4&gt;SVN keyword substitution bug fix&lt;/h4&gt;
 &lt;p&gt;In some of the installed software (ctiservers) the SVN keywords are used
 to extract the software version number:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;__version__ = &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;Revision&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
@@ -3233,7 +3248,7 @@ module&lt;/a&gt; instructions:&lt;/p&gt;
 
 &lt;p&gt;And the &lt;a href="https://gallifrey-test1.dachary.org/"&gt;XiVO web interface&lt;/a&gt; could
 be displayed.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Glimpse of CTI architecture in XiVO 1.1 and 1.2</title><link href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html" rel="alternate"></link><updated>2011-05-13T11:41:00-04:00</updated><author><name>corentin</name></author><id>tag:blog.xivo.io,2011-05-13:glimpse-of-cti-architecture-in-xivo-11-and-12.html</id><summary type="html">&lt;p&gt;As a reminder, this is what the CTI world looks like in XiVO 1.1 :&lt;/p&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Glimpse of CTI architecture in XiVO 1.1 and 1.2</title><link href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html" rel="alternate"></link><published>2011-05-13T11:41:00-04:00</published><author><name>corentin</name></author><id>tag:blog.xivo.io,2011-05-13:glimpse-of-cti-architecture-in-xivo-11-and-12.html</id><summary type="html">&lt;p&gt;As a reminder, this is what the CTI world looks like in XiVO 1.1 :&lt;/p&gt;
 &lt;p&gt;&lt;a href="/public/external_cti_architecture_xivo_1.1.png" title="cti1.1"&gt;&lt;img alt="cti1.1" src="/public/.external_cti_architecture_xivo_1.1_m.jpg" title="cti1.1, mai 2011" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The XiVO 1.2 part will be more like :&lt;/p&gt;
 &lt;p&gt;&lt;a href="/public/external_cti_architecture_xivo_1.2.png" title="cti1.2"&gt;&lt;img alt="cti1.2" src="/public/.external_cti_architecture_xivo_1.2_m.jpg" title="cti1.2, mai 2011" /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -3253,7 +3268,7 @@ be displayed.&lt;/p&gt;
     especially in order to be able to get smaller payload packet sizes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;More details should come in a future blog entry.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Testing a XiVO gallifrey repository (1/2)</title><link href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html" rel="alternate"></link><updated>2011-05-09T08:57:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-09:testing-a-xivo-gallifrey-repository-12.html</id><summary type="html">&lt;h4&gt;Methodology&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Testing a XiVO gallifrey repository (1/2)</title><link href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-12.html" rel="alternate"></link><published>2011-05-09T08:57:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-09:testing-a-xivo-gallifrey-repository-12.html</id><summary type="html">&lt;h4&gt;Methodology&lt;/h4&gt;
 &lt;p&gt;Assuming a host running &lt;a href="http://www.debian.org/releases/squeeze/"&gt;Debian GNU/Linux
 Squeeze&lt;/a&gt;, the general idea is
 to boot a virtual machine thatwill auto-install using
@@ -3415,7 +3430,7 @@ list although it was already created. The &lt;em&gt;pf-asterisk-module-xivo&lt;/
 the &lt;a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/"&gt;official
 repository&lt;/a&gt;
 and added to the list of packages necessary to install gallifrey.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packages versions</title><link href="http://blog.xivo.io/xivo-packages-versions.html" rel="alternate"></link><updated>2011-05-02T14:41:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-02:xivo-packages-versions.html</id><summary type="html">&lt;h4&gt;package names and multiple distributions&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO packages versions</title><link href="http://blog.xivo.io/xivo-packages-versions.html" rel="alternate"></link><published>2011-05-02T14:41:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-05-02:xivo-packages-versions.html</id><summary type="html">&lt;h4&gt;package names and multiple distributions&lt;/h4&gt;
 &lt;p&gt;As it is, packaging-farm will create packages with names that are not
 dependent on the distribution. It creates a problem that is immediately
 visible when trying to build a repository that includes all the
@@ -3755,7 +3770,7 @@ SIGN_WITH=
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>An alternate XiVO gallifrey repository (part 2/2)</title><link href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html" rel="alternate"></link><updated>2011-04-27T05:47:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-27:an-alternate-xivo-gallifrey-repository-part-22.html</id><summary type="html">&lt;h4&gt;composing gallifrey&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>An alternate XiVO gallifrey repository (part 2/2)</title><link href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html" rel="alternate"></link><published>2011-04-27T05:47:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-27:an-alternate-xivo-gallifrey-repository-part-22.html</id><summary type="html">&lt;h4&gt;composing gallifrey&lt;/h4&gt;
 &lt;p&gt;The gallifrey repository is made of packages built from the GIT
 repositories, some extracted from the official repository because they
 are not under GIT and others built for the occasion (kernel-modules and
@@ -3891,7 +3906,7 @@ release&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary></entry><entry><title>An alternate XiVO gallifrey repository (part 1/2)</title><link href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html" rel="alternate"></link><updated>2011-04-18T16:40:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-18:an-alternate-xivo-gallifrey-repository-part-12.html</id><summary type="html">&lt;h4&gt;Kernel module dependencies&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>An alternate XiVO gallifrey repository (part 1/2)</title><link href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html" rel="alternate"></link><published>2011-04-18T16:40:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-18:an-alternate-xivo-gallifrey-repository-part-12.html</id><summary type="html">&lt;h4&gt;Kernel module dependencies&lt;/h4&gt;
 &lt;p&gt;When binary kernel modules need to be rebuilt, a Makefile containing
 &lt;em&gt;ROLE = kernel-module&lt;/em&gt; is created for the packaging-farm to work with,
 as explained in the manual page. It depends on the source package
@@ -4013,7 +4028,7 @@ scratch&lt;/a&gt;
 series.At the moment the development repository is incomplete. But it is
 being worked on and the making of the repository will resume when it is
 back online.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Signing and naming XiVO packages</title><link href="http://blog.xivo.io/signing-and-naming-xivo-packages.html" rel="alternate"></link><updated>2011-04-11T17:15:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-11:signing-and-naming-xivo-packages.html</id><summary type="html">&lt;h4&gt;signing packages&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Signing and naming XiVO packages</title><link href="http://blog.xivo.io/signing-and-naming-xivo-packages.html" rel="alternate"></link><published>2011-04-11T17:15:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-11:signing-and-naming-xivo-packages.html</id><summary type="html">&lt;h4&gt;signing packages&lt;/h4&gt;
 &lt;p&gt;A GPG
 &lt;a href="http://packaging-farm.dachary.org/download/packaging-farm.gpg"&gt;key&lt;/a&gt; was
 created for &lt;a href="http://packaging-farm.dachary.org"&gt;packaging-farm&lt;/a&gt; and used
@@ -4103,7 +4118,7 @@ must start with the upstream version and ends with a version number
 computed from the date and a mercurial hash. It is computed for packages
 for which a *-VERSION file found in the corresponding &lt;a href="http://git.xivo.fr/xivo-skaro.git/"&gt;source
 directory&lt;/a&gt;.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>packaging infrastructure for XiVO</title><link href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html" rel="alternate"></link><updated>2011-04-04T10:51:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-04:packaging-infrastructure-for-xivo.html</id><summary type="html">&lt;h4&gt;Trying out packaging-farm&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>packaging infrastructure for XiVO</title><link href="http://blog.xivo.io/packaging-infrastructure-for-xivo.html" rel="alternate"></link><published>2011-04-04T10:51:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-04-04:packaging-infrastructure-for-xivo.html</id><summary type="html">&lt;h4&gt;Trying out packaging-farm&lt;/h4&gt;
 &lt;p&gt;Nicolas Hicher and Loic Dachary worked together on building the skaro
 repository available at:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;deb&lt;/span&gt; &lt;span class="s"&gt;http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian&lt;/span&gt; &lt;span class="kp"&gt;skaro-squeeze&lt;/span&gt; &lt;span class="kp"&gt;main&lt;/span&gt;
@@ -4386,7 +4401,7 @@ virtual machine that will eventually replace http://xivo.dachary.org/&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>building XiVO skaro from sources</title><link href="http://blog.xivo.io/building-xivo-skaro-from-sources.html" rel="alternate"></link><updated>2011-03-29T14:45:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-29:building-xivo-skaro-from-sources.html</id><summary type="html">&lt;h4&gt;packaging-farm documentation&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>building XiVO skaro from sources</title><link href="http://blog.xivo.io/building-xivo-skaro-from-sources.html" rel="alternate"></link><published>2011-03-29T14:45:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-29:building-xivo-skaro-from-sources.html</id><summary type="html">&lt;h4&gt;packaging-farm documentation&lt;/h4&gt;
 &lt;p&gt;The XiVO package submission &lt;a href="http://blog.xivo.fr/index.php?post/2011/03/22/XiVO-sources-conventions-implemented-and-documented"&gt;was
 documented&lt;/a&gt;
 but the packaging-farm command line that is used to build the submitted
@@ -4732,7 +4747,7 @@ would find useless. It would belong to an implementor guide.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO sources conventions implemented and documented</title><link href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html" rel="alternate"></link><updated>2011-03-21T23:49:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-21:xivo-sources-conventions-implemented-and-documented.html</id><summary type="html">&lt;p&gt;The &lt;a href="http://git.xivo.fr/debian"&gt;debian GNU/Linux packages repository&lt;/a&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>XiVO sources conventions implemented and documented</title><link href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html" rel="alternate"></link><published>2011-03-21T23:49:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-21:xivo-sources-conventions-implemented-and-documented.html</id><summary type="html">&lt;p&gt;The &lt;a href="http://git.xivo.fr/debian"&gt;debian GNU/Linux packages repository&lt;/a&gt;
 was made public a few days ago. The
 &lt;a href="http://xivo.dachary.org/pf-release.sh"&gt;pf-release.sh&lt;/a&gt; shell script
 based on the internal SVN repository has been updated to use the public
@@ -4927,7 +4942,7 @@ AUTHORS
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/p&gt;</summary></entry><entry><title>Creating a Debian GNU/Linux source package from the VCS (2/2)</title><link href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html" rel="alternate"></link><updated>2011-03-14T22:04:00-04:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-14:creating-a-debian-gnulinux-source-package-from-the-vcs-22.html</id><summary type="html">&lt;h4&gt;pf-release.sh&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating a Debian GNU/Linux source package from the VCS (2/2)</title><link href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html" rel="alternate"></link><published>2011-03-14T22:04:00-04:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-14:creating-a-debian-gnulinux-source-package-from-the-vcs-22.html</id><summary type="html">&lt;h4&gt;pf-release.sh&lt;/h4&gt;
 &lt;p&gt;The &lt;a href="http://xivo.dachary.org/pf-release.sh"&gt;pf-release.sh shell script&lt;/a&gt;
 merges the &lt;a href="http://git.xivo.fr/xivo-skaro.git/"&gt;GIT repository&lt;/a&gt;
 containing the sources and the SVN repository containing the debian
@@ -5008,7 +5023,7 @@ Submitting a package requires four steps:&lt;/p&gt;
 and maintainance of packages based on the XiVO development repository.
 The next step will be to document and simplify the usage, reducing the
 learning curve to a minimum.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>The road to the final PCB layout routing of the CPU board</title><link href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html" rel="alternate"></link><updated>2011-03-11T12:07:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-11:the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html</id><summary type="html">&lt;p&gt;We are now entering the road to the final PCB layout routing of the CPU
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>The road to the final PCB layout routing of the CPU board</title><link href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html" rel="alternate"></link><published>2011-03-11T12:07:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-11:the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html</id><summary type="html">&lt;p&gt;We are now entering the road to the final PCB layout routing of the CPU
 board of our XiVO IPBX OpenHardware with the gathering of our schematic
 design on the CPU board of our IPBX. The current step is to place the
 component, check the package of each component in the library (Lbr in
@@ -5016,7 +5031,7 @@ Eagle), double-check the schematics associated to the layout and prepare
 the final routing of the netwire optimized for our 10-layers design. We
 will document the BoM step with different posts coming up and namely the
 optimization of the components sourcing.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Creating a Debian GNU/Linux source package from the XiVO VCS (1/2)</title><link href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html" rel="alternate"></link><updated>2011-03-07T19:10:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-07:creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html</id><summary type="html">&lt;h4&gt;Source GIT structure&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating a Debian GNU/Linux source package from the XiVO VCS (1/2)</title><link href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html" rel="alternate"></link><published>2011-03-07T19:10:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-03-07:creating-a-debian-gnulinux-source-package-from-the-xivo-vcs-12.html</id><summary type="html">&lt;h4&gt;Source GIT structure&lt;/h4&gt;
 &lt;p&gt;The &lt;a href="http://git.xivo.fr/xivo-skaro.git/"&gt;GIT repository&lt;/a&gt; can be
 extracted as follows:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://git.xivo.fr/xivo-skaro.git
@@ -5180,7 +5195,7 @@ described in the &lt;a href="http://blog.xivo.fr/index.php?post/2011/02/22/Creat
 repository&lt;/a&gt;.In
 the second part of this entry, the script will be complete and a the
 XiVO skaro repository updated.&lt;/p&gt;
-&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Candidate XiVO skaro repository for x86_64</title><link href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html" rel="alternate"></link><updated>2011-02-28T21:08:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-28:candidate-xivo-skaro-repository-for-x86_64.html</id><summary type="html">&lt;h4&gt;XiVO skaro repository for x86_64&lt;/h4&gt;
+&lt;/p&gt;</summary><category term="packages"></category></entry><entry><title>Candidate XiVO skaro repository for x86_64</title><link href="http://blog.xivo.io/candidate-xivo-skaro-repository-for-x86_64.html" rel="alternate"></link><published>2011-02-28T21:08:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-28:candidate-xivo-skaro-repository-for-x86_64.html</id><summary type="html">&lt;h4&gt;XiVO skaro repository for x86_64&lt;/h4&gt;
 &lt;p&gt;Last week Nicolas Hicher completed a release candidate for the &lt;a href="http://dak.proformatique.com/debian/dists/squeeze-xivo-skaro-dev/"&gt;i386
 XiVO skaro
 repository&lt;/a&gt;.
@@ -5251,13 +5266,13 @@ released as version 1.2.32. The ChangeLog reads : add architecture to
 KVERS variables. load fakeroot in each dist-upgrade. input for apt-get
 is /dev/null to avoid input problems. fix dpkg-scan bug when building
 for multiple archictures.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Working ISDN prototype board</title><link href="http://blog.xivo.io/working-isdn-prototype-board.html" rel="alternate"></link><updated>2011-02-25T13:26:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-02-25:working-isdn-prototype-board.html</id><summary type="html">&lt;p&gt;This is great to show the working PCB or the ISDN prototype board
+&lt;/p&gt;</summary></entry><entry><title>Working ISDN prototype board</title><link href="http://blog.xivo.io/working-isdn-prototype-board.html" rel="alternate"></link><published>2011-02-25T13:26:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-02-25:working-isdn-prototype-board.html</id><summary type="html">&lt;p&gt;This is great to show the working PCB or the ISDN prototype board
 connected to our IPBX prototype through the LEB and TDM bus of our SoC
 (INTEL Tolapai). This PCB shows the 4 T0 ports routed to the CologneChip
 XHFC-4SU. We have been cabling this PCB in a factory facility close to
 Paris with good results on the quality of the cabling for 230+ parts on
 our PCB with 4 layers.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html" rel="alternate"></link><updated>2011-02-22T18:19:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-22:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html</id><summary type="html">&lt;h4&gt;Kernel modules support&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html" rel="alternate"></link><published>2011-02-22T18:19:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-22:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html</id><summary type="html">&lt;h4&gt;Kernel modules support&lt;/h4&gt;
 &lt;p&gt;In Debian GNU/Linux kernel modules are packaged as a &lt;code&gt;modulename-source&lt;/code&gt;
 package which contains the source of the kernel module. When someone
 needs a given kernel module, it is customary to invoque the
@@ -5331,7 +5346,7 @@ This concludes the series on building an independant repository for
 XiVO. The resulting tools and the repository itself certainly need to be
 polished but the serious issues (requiring more than a few hours to
 overcome) have been addressed.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html" rel="alternate"></link><updated>2011-02-21T16:48:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-21:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html</id><summary type="html">&lt;h4&gt;Lenny backports&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 3/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html" rel="alternate"></link><published>2011-02-21T16:48:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-21:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-34.html</id><summary type="html">&lt;h4&gt;Lenny backports&lt;/h4&gt;
 &lt;p&gt;Nicolas Hicher published newer versions of the gallifrey packages
 &lt;a href="https://projects.proformatique.com/issues/1942"&gt;addressing the dependency
 problems&lt;/a&gt; reported last
@@ -5431,7 +5446,7 @@ package to completly disablethe build of a binary kernel module. It is
 unclear where the original package comes from an amail was sent to Nenad
 Corbic &amp;lt;ncorbic@sangoma.com&amp;gt; reporting the patch and asking for
 information.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html" rel="alternate"></link><updated>2011-02-14T17:20:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-14:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html</id><summary type="html">&lt;h4&gt;Source package dependencies&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 2/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html" rel="alternate"></link><published>2011-02-14T17:20:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-14:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-24.html</id><summary type="html">&lt;h4&gt;Source package dependencies&lt;/h4&gt;
 &lt;p&gt;The&lt;a href="http://xivo.dachary.org/packaging-farm/misdn-user/gnulinux/debian/i386/lenny/src/"&gt;misdn-user&lt;/a&gt;package
 depends on
 the&lt;a href="http://xivo.dachary.org/packaging-farm/misdn-kernel/gnulinux/debian/i386/lenny/src/"&gt;misdn-kernel&lt;/a&gt;package.
@@ -5519,7 +5534,7 @@ squeeze&lt;/a&gt;.
 An attempt was made to buildthem for x86_64. The &lt;a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/x86_64/squeeze/src/"&gt;result is still
 incomplete&lt;/a&gt;
 but it should run when the last dependency problems are resolved.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 1/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html" rel="alternate"></link><updated>2011-02-07T21:40:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-07:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html</id><summary type="html">&lt;h4&gt;Extracting XiVO Gallifrey for Debian lenny&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>Creating an independant XiVO Debian GNU/Linux repository from scratch (part 1/4)</title><link href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html" rel="alternate"></link><published>2011-02-07T21:40:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-02-07:creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-14.html</id><summary type="html">&lt;h4&gt;Extracting XiVO Gallifrey for Debian lenny&lt;/h4&gt;
 &lt;p&gt;After creating a virtual machine based on the recently published
 DebianGNU/Linux squeeze, packaging-farm is installed from the
 repository. Anothersource is added to extract the XiVO packages in
@@ -5647,7 +5662,7 @@ the other operations to be supported by a specific tool (for instance
 importing all the packages from a known repository), such an operation
 is not frequent and the time to properly write such a tool and make sure
 it works as expected probably outweights the benefit.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO client packaging, server source policy and packaging-farm updates</title><link href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html" rel="alternate"></link><updated>2011-01-31T17:39:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-01-31:xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html</id><summary type="html">&lt;h4&gt;XiVO Qt client packaging&lt;/h4&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO client packaging, server source policy and packaging-farm updates</title><link href="http://blog.xivo.io/xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html" rel="alternate"></link><published>2011-01-31T17:39:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-01-31:xivo-client-packaging-server-source-policy-and-packaging-farm-updates.html</id><summary type="html">&lt;h4&gt;XiVO Qt client packaging&lt;/h4&gt;
 &lt;p&gt;The resulting packages are then uploaded to a directory that depends on
 the operating system :&lt;/p&gt;
 &lt;ul&gt;
@@ -5731,7 +5746,7 @@ published Sunday 30 January, including the following features:&lt;/p&gt;
 &lt;p&gt;It is still unclear how packaging-farm could be used to create
 multi-distribution and multi-architecture packages for XiVO and that
 will be my focus for the following weeks.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO server packaging in a nutshell</title><link href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html" rel="alternate"></link><updated>2011-01-24T18:41:00-05:00</updated><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-01-24:xivo-server-packaging-in-a-nutshell.html</id><summary type="html">&lt;p&gt;Nicolas Hicher is the XiVO release manager that make it happen. His
+&lt;/p&gt;</summary></entry><entry><title>XiVO server packaging in a nutshell</title><link href="http://blog.xivo.io/xivo-server-packaging-in-a-nutshell.html" rel="alternate"></link><published>2011-01-24T18:41:00-05:00</published><author><name>dachary</name></author><id>tag:blog.xivo.io,2011-01-24:xivo-server-packaging-in-a-nutshell.html</id><summary type="html">&lt;p&gt;Nicolas Hicher is the XiVO release manager that make it happen. His
 input comes from a number of sources which are gradually migrated toward
 a set of git repositories which will become a central place:&lt;/p&gt;
 &lt;ul&gt;
@@ -5915,7 +5930,7 @@ for Makefiles.&lt;/p&gt;
 &lt;p&gt;The XiVO client is being packaged by kaou (nick on irc.freenode.net) and
 is not covered here. Nor is the process to create virtual machines or
 ISO based distributions.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Cabling the FXO-FXS prototype board</title><link href="http://blog.xivo.io/cabling-the-fxo-fxs-prototype-board.html" rel="alternate"></link><updated>2011-01-11T15:49:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-01-11:cabling-the-fxo-fxs-prototype-board.html</id><summary type="html">&lt;p&gt;&lt;img alt="Cabling FXv5 prototype PCB
+&lt;/p&gt;</summary></entry><entry><title>Cabling the FXO-FXS prototype board</title><link href="http://blog.xivo.io/cabling-the-fxo-fxs-prototype-board.html" rel="alternate"></link><published>2011-01-11T15:49:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-01-11:cabling-the-fxo-fxs-prototype-board.html</id><summary type="html">&lt;p&gt;&lt;img alt="Cabling FXv5 prototype PCB
 2" src="/public/.P1040816_m.jpg" title="Cabling FXv5 prototype PCB 2, janv. 2011" /&gt;&lt;img alt="Cabling
 FXv5 prototype PCB
 1" src="/public/.P1040817_m.jpg" title="Cabling FXv5 prototype PCB 1, janv. 2011" /&gt;&lt;/p&gt;
@@ -5939,7 +5954,7 @@ references of tools we are using :&lt;/p&gt;
 &lt;li&gt;A flux cleaner (farnell#3916613)&lt;/li&gt;
 &lt;li&gt;A 15ml flux dispenser pen (farnell#876732)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Moving forward to the production of the prototypes</title><link href="http://blog.xivo.io/moving-forward-to-the-production-of-the-prototypes.html" rel="alternate"></link><updated>2010-12-03T20:35:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-12-03:moving-forward-to-the-production-of-the-prototypes.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;As the XiVO IPBX OpenHardware project moves forward to the production
+&lt;/p&gt;</summary></entry><entry><title>Moving forward to the production of the prototypes</title><link href="http://blog.xivo.io/moving-forward-to-the-production-of-the-prototypes.html" rel="alternate"></link><published>2010-12-03T20:35:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-12-03:moving-forward-to-the-production-of-the-prototypes.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;As the XiVO IPBX OpenHardware project moves forward to the production
 of our first protoboards&lt;/strong&gt; for our internal tests, we are pleased to
 give a first display of the PCB board file for the ISDN interfaces on
 the IPBX that are routed from the XHFC-4SU controller :  &lt;/p&gt;

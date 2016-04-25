@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xuc.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-02-26T09:35:00-05:00</updated><entry><title>Launch and relaunch docker containers manually with ease</title><link href="http://blog.xivo.io/launch-and-relaunch-docker-containers-manually-with-ease.html" rel="alternate"></link><updated>2015-02-26T09:35:00-05:00</updated><author><name>jhlavacek</name></author><id>tag:blog.xivo.io,2015-02-26:launch-and-relaunch-docker-containers-manually-with-ease.html</id><summary type="html">&lt;p&gt;First you create a file, let's say
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/xuc.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-02-26T09:35:00-05:00</updated><entry><title>Launch and relaunch docker containers manually with ease</title><link href="http://blog.xivo.io/launch-and-relaunch-docker-containers-manually-with-ease.html" rel="alternate"></link><published>2015-02-26T09:35:00-05:00</published><author><name>jhlavacek</name></author><id>tag:blog.xivo.io,2015-02-26:launch-and-relaunch-docker-containers-manually-with-ease.html</id><summary type="html">&lt;p&gt;First you create a file, let's say
 &lt;code&gt;/etc/YOUR_APPLICATION/docker-run.conf&lt;/code&gt;, with one parameter by line. it
 can look like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cat /etc/YOUR_APPLICATION/docker-run.conf
@@ -44,7 +44,7 @@ docker run &lt;span class="k"&gt;$(&lt;/span&gt;cat /etc/docker/YOUR_APPLICATION
 &lt;li&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; XuC docker repository:
     &lt;a href="https://registry.hub.docker.com/u/xivo/xuc/" title="https://registry.hub.docker.com/u/xivo/xuc/"&gt;https://registry.hub.docker.com/u/x...&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Metrics in XUC</title><link href="http://blog.xivo.io/metrics-in-xuc.html" rel="alternate"></link><updated>2014-11-11T17:45:00-05:00</updated><author><name>jhlavacek</name></author><id>tag:blog.xivo.io,2014-11-11:metrics-in-xuc.html</id><summary type="html">&lt;p&gt;We use Metrics in two contexts: contact centre statistics management and
+&lt;/p&gt;</summary></entry><entry><title>Metrics in XUC</title><link href="http://blog.xivo.io/metrics-in-xuc.html" rel="alternate"></link><published>2014-11-11T17:45:00-05:00</published><author><name>jhlavacek</name></author><id>tag:blog.xivo.io,2014-11-11:metrics-in-xuc.html</id><summary type="html">&lt;p&gt;We use Metrics in two contexts: contact centre statistics management and
 xuc health supervision. We created two independent registries to
 separate statistics data and technical data.&lt;/p&gt;
 &lt;p&gt;Metrics integrates the ability to report periodically data to the
@@ -151,7 +151,7 @@ logfile, or on demand via http.&lt;/p&gt;
     documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dropwizard.github.io/metrics/3.1.0/" title="Metrics"&gt;Metrics&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>Managing agent using Xuc CCManager</title><link href="http://blog.xivo.io/managing-agent-using-xuc-ccmanager.html" rel="alternate"></link><updated>2014-11-10T08:18:00-05:00</updated><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2014-11-10:managing-agent-using-xuc-ccmanager.html</id><summary type="html">&lt;p&gt;&lt;img alt="Selection_025.png" src="/public/xuc/xucagent.png?200X50" title="Selection_025.png, nov. 2014" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Managing agent using Xuc CCManager</title><link href="http://blog.xivo.io/managing-agent-using-xuc-ccmanager.html" rel="alternate"></link><published>2014-11-10T08:18:00-05:00</published><author><name>jylebleu</name></author><id>tag:blog.xivo.io,2014-11-10:managing-agent-using-xuc-ccmanager.html</id><summary type="html">&lt;p&gt;&lt;img alt="Selection_025.png" src="/public/xuc/xucagent.png?200X50" title="Selection_025.png, nov. 2014" /&gt;&lt;/p&gt;
 &lt;p&gt;You may now user ccmanager to manage your #xivo contact center agents.&lt;/p&gt;
 &lt;p&gt;In addition to drag and drop in ccmanager main window, agents can be
 easily added in a queue with a specific penalty, penalty can be changed

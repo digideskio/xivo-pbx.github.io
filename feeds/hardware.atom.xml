@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/hardware.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2013-03-14T11:04:00-04:00</updated><entry><title>Understanding the XIOH label on our product</title><link href="http://blog.xivo.io/understanding-the-xioh-label-on-our-product.html" rel="alternate"></link><updated>2013-03-14T11:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-14:understanding-the-xioh-label-on-our-product.html</id><summary type="html">&lt;p&gt;Dear XIOH followers,&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/hardware.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2013-03-14T11:04:00-04:00</updated><entry><title>Understanding the XIOH label on our product</title><link href="http://blog.xivo.io/understanding-the-xioh-label-on-our-product.html" rel="alternate"></link><published>2013-03-14T11:04:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-14:understanding-the-xioh-label-on-our-product.html</id><summary type="html">&lt;p&gt;Dear XIOH followers,&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;As we have passed the CE marking certification, we have finalized the
 label that we will have on our product with the revelant informations
 necessary to identify the product once on the market :&lt;/strong&gt;&lt;/p&gt;
@@ -28,7 +28,7 @@ necessary to identify the product once on the market :&lt;/strong&gt;&lt;/p&gt;
     production as well as the OHANDA logo.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;(1) : http://en.wikipedia.org/wiki/CE_marking&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Passing the CE marking certification for EU market</title><link href="http://blog.xivo.io/passing-the-ce-marking-certification-for-eu-market.html" rel="alternate"></link><updated>2013-03-11T11:17:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-11:passing-the-ce-marking-certification-for-eu-market.html</id><summary type="html">&lt;div&gt;
+&lt;/p&gt;</summary></entry><entry><title>Passing the CE marking certification for EU market</title><link href="http://blog.xivo.io/passing-the-ce-marking-certification-for-eu-market.html" rel="alternate"></link><published>2013-03-11T11:17:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-03-11:passing-the-ce-marking-certification-for-eu-market.html</id><summary type="html">&lt;div&gt;
 
 ![Measurement of radiated
 disturbances](/public/XIOHv5/.MeasurementRadiatedDisturbances_m.jpg "Measurement of radiated disturbances, mar. 2013")
@@ -62,7 +62,7 @@ following equipments :**
 &lt;p&gt;This tests had been done for the B-class which stands for domestic and
 professional markets which means we can now sell in all EU countries.&lt;/p&gt;
 &lt;p&gt;Xavier Carcelle.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Starting beta-test period for XIOH power-users and developers</title><link href="http://blog.xivo.io/starting-beta-test-period-for-xioh-power-users-and-developers.html" rel="alternate"></link><updated>2013-01-10T10:22:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-01-10:starting-beta-test-period-for-xioh-power-users-and-developers.html</id><summary type="html">&lt;p&gt;Dear XIOH followers and developers,&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Starting beta-test period for XIOH power-users and developers</title><link href="http://blog.xivo.io/starting-beta-test-period-for-xioh-power-users-and-developers.html" rel="alternate"></link><published>2013-01-10T10:22:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2013-01-10:starting-beta-test-period-for-xioh-power-users-and-developers.html</id><summary type="html">&lt;p&gt;Dear XIOH followers and developers,&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;We are now entering our beta-test period with our first batch of XIOH
 appliances&lt;/strong&gt; available for shipping for developers and power-users that
 could be interested in testing and giving feedback on our product. The
@@ -89,7 +89,7 @@ shipping.&lt;/p&gt;
 different locations are good and we are able to confirm that we can
 handle up to 1000 calls a day on a single XiVO IOH.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;HaPPy 2013 OpenHardware to yall.&lt;/strong&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Test vectors for SMBus Packet Error Checking (PEC) CRC-8</title><link href="http://blog.xivo.io/test-vectors-for-smbus-packet-error-checking-pec-crc-8.html" rel="alternate"></link><updated>2012-10-09T17:26:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-10-09:test-vectors-for-smbus-packet-error-checking-pec-crc-8.html</id><summary type="html">&lt;p&gt;While implementing the SMBus on the MSP430 (see also the post "&lt;a href="index.php?post/2012/09/29/An-engineering-story"&gt;An
+&lt;/p&gt;</summary></entry><entry><title>Test vectors for SMBus Packet Error Checking (PEC) CRC-8</title><link href="http://blog.xivo.io/test-vectors-for-smbus-packet-error-checking-pec-crc-8.html" rel="alternate"></link><published>2012-10-09T17:26:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-10-09:test-vectors-for-smbus-packet-error-checking-pec-crc-8.html</id><summary type="html">&lt;p&gt;While implementing the SMBus on the MSP430 (see also the post "&lt;a href="index.php?post/2012/09/29/An-engineering-story"&gt;An
 engineering story&lt;/a&gt;"), I
 have been looking for SMBus
 &lt;a href="http://en.wikipedia.org/wiki/System_Management_Bus#Packet_Error_Checking" title="PEC"&gt;&lt;abbrev title="Packet Error Checking"&gt;PEC&lt;/abbrev&gt;&lt;/a&gt;
@@ -121,7 +121,7 @@ for the fast byte based implementation: CRC = table[CRC \^ byte]
 implementation should run in something like 9 cycles per byte when
 dropped in the right place. (xor CRC, Rm /* 3 cycles */; mov
 table[Rm], CRC; /* 6 cycles */)&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>An engineering story</title><link href="http://blog.xivo.io/an-engineering-story.html" rel="alternate"></link><updated>2012-09-29T16:12:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-09-29:an-engineering-story.html</id><summary type="html">&lt;p&gt;To be able to track interesting quality metrics of our upcoming XiVO
+&lt;/p&gt;</summary></entry><entry><title>An engineering story</title><link href="http://blog.xivo.io/an-engineering-story.html" rel="alternate"></link><published>2012-09-29T16:12:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2012-09-29:an-engineering-story.html</id><summary type="html">&lt;p&gt;To be able to track interesting quality metrics of our upcoming XiVO
 Office product (XiVO IPBX Open Hardware project), we have decided to add
 temperature sensors to our current XIOH pcb.&lt;/p&gt;
 &lt;p&gt;In computers, the typical way to report the temperature to the main
@@ -172,7 +172,7 @@ the I2C code would have meant its complete rewrite.&lt;/p&gt;
 on components that are critical for business or technical reasons.
 Wishful thinking never produces high reliability and neither does
 excessive reliance on luck. Modeling, even informally, sometimes pays.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Showing off XIOHv5 prototype PCB in its laser cut acrylic case</title><link href="http://blog.xivo.io/showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html" rel="alternate"></link><updated>2012-09-03T20:39:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-09-03:showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Please dear XIOH followers, as we approach the production of our final
+&lt;/p&gt;</summary></entry><entry><title>Showing off XIOHv5 prototype PCB in its laser cut acrylic case</title><link href="http://blog.xivo.io/showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html" rel="alternate"></link><published>2012-09-03T20:39:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-09-03:showing-off-xiohv5-prototype-pcb-in-its-laser-cut-acrylic-case.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Please dear XIOH followers, as we approach the production of our final
 PCB, we have tried the PCB in an orange laser cut acrylic case.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Below you can discover the front view of the casing with our famous
 analog vintage Socotel S63 phone&lt;/p&gt;
@@ -189,7 +189,7 @@ live-demos, we will be at :&lt;/strong&gt;&lt;/p&gt;
 &lt;li&gt;Hackfest 2012 (http://www.hackfest.ca/) : we will be using our XiVO
     IPBX OpenHardware during some hacking contest related to VoIP&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>XIOH prototype version 5: back from factory</title><link href="http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html" rel="alternate"></link><updated>2012-08-22T10:43:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-08-22:xioh-prototype-version-5-back-from-factory.html</id><summary type="html">&lt;h2&gt;Feedback of the factory&lt;/h2&gt;
+&lt;/p&gt;</summary></entry><entry><title>XIOH prototype version 5: back from factory</title><link href="http://blog.xivo.io/xioh-prototype-version-5-back-from-factory.html" rel="alternate"></link><published>2012-08-22T10:43:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-08-22:xioh-prototype-version-5-back-from-factory.html</id><summary type="html">&lt;h2&gt;Feedback of the factory&lt;/h2&gt;
 &lt;p&gt;In order to load the factory's pick-and-place machines (2 distinct ones
 were used to assemble bottom, then top, then throug-hole components), we
 needed an efficient way of sorting the components. Therefore, we created
@@ -259,7 +259,7 @@ time and use.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;To be continued soon...&lt;/p&gt;
 &lt;p&gt;The XiVO Open Hardware team.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Preparing the production of our newer prototype (XIOHv5)</title><link href="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html" rel="alternate"></link><updated>2012-07-11T10:16:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:preparing-the-production-of-our-newer-prototype-xiohv5.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The current version of prototype is named XIOHv5&lt;/strong&gt; (XiVO IPBX
+&lt;/p&gt;</summary></entry><entry><title>Preparing the production of our newer prototype (XIOHv5)</title><link href="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html" rel="alternate"></link><published>2012-07-11T10:16:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:preparing-the-production-of-our-newer-prototype-xiohv5.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The current version of prototype is named XIOHv5&lt;/strong&gt; (XiVO IPBX
 OpenHardware version5) and is still developed using 10-layers BRD file
 and 30+ pages of SCH (schematics) to handle the different blocks of the
 design and assemble them in one PCB. &lt;strong&gt;We have been doing several
@@ -291,7 +291,7 @@ of parts.&lt;/p&gt;
 &lt;p&gt;Prior to do the assembling in factory, we need check the package for
 each of our references and do a BoM (Bill of Materials) optimization to
 handle nicely our stock.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Speaking about OpenHardware at SolutionsLinux2012</title><link href="http://blog.xivo.io/speaking-about-openhardware-at-solutionslinux2012.html" rel="alternate"></link><updated>2012-07-11T09:41:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:speaking-about-openhardware-at-solutionslinux2012.html</id><summary type="html">&lt;p&gt;The last &lt;strong&gt;"SolutionsLinux2012"&lt;/strong&gt; fair in Paris was the occasion once
+&lt;/p&gt;</summary></entry><entry><title>Speaking about OpenHardware at SolutionsLinux2012</title><link href="http://blog.xivo.io/speaking-about-openhardware-at-solutionslinux2012.html" rel="alternate"></link><published>2012-07-11T09:41:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2012-07-11:speaking-about-openhardware-at-solutionslinux2012.html</id><summary type="html">&lt;p&gt;The last &lt;strong&gt;"SolutionsLinux2012"&lt;/strong&gt; fair in Paris was the occasion once
 again (as we keep the tradition to have a booth there) to present our
 latest developments for XiVO and the current deployments we have in
 France and elsewhere. This year, &lt;strong&gt;the local web TV&lt;/strong&gt; was giving many
@@ -314,7 +314,7 @@ l'OpenHardware](http://www.youtube.com/watch?v=QyiHHfr_1zQ&amp;list=UUwuwOISdsHy
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>Multicloning with Clonezilla - part 1</title><link href="http://blog.xivo.io/multicloning-with-clonezilla-part-1.html" rel="alternate"></link><updated>2012-06-29T12:12:00-04:00</updated><author><name>bligneul</name></author><id>tag:blog.xivo.io,2012-06-29:multicloning-with-clonezilla-part-1.html</id><summary type="html">&lt;p&gt;First step, you need to boot on Clonezilla from the usb drive.Choose
+&lt;/p&gt;</summary></entry><entry><title>Multicloning with Clonezilla - part 1</title><link href="http://blog.xivo.io/multicloning-with-clonezilla-part-1.html" rel="alternate"></link><published>2012-06-29T12:12:00-04:00</published><author><name>bligneul</name></author><id>tag:blog.xivo.io,2012-06-29:multicloning-with-clonezilla-part-1.html</id><summary type="html">&lt;p&gt;First step, you need to boot on Clonezilla from the usb drive.Choose
 "Default settings: 800x600", use English language, and select "don't
 touch keymap".  &lt;/p&gt;
 &lt;p&gt;Then, « Start Clonezilla »&lt;br /&gt;
@@ -332,7 +332,7 @@ Use the image to restore and select drives that you want to clone.  &lt;/p&gt;
 To finish : y (for yes) and y (yes)  &lt;/p&gt;
 &lt;p&gt;After waiting, (5-20min) it's finished : drives are cloned.&lt;br /&gt;
 You can « Poweroff » your computer and use your new hdds with XiVO.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO IOH first CPU prototype board fully working - part1</title><link href="http://blog.xivo.io/xivo-ioh-first-cpu-prototype-board-fully-working-part1.html" rel="alternate"></link><updated>2011-12-16T10:06:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-12-16:xivo-ioh-first-cpu-prototype-board-fully-working-part1.html</id><summary type="html">&lt;p&gt;Dear followers of our &lt;strong&gt;XiVO IPBX OpenHardware project&lt;/strong&gt;, we are happy
+&lt;/p&gt;</summary></entry><entry><title>XiVO IOH first CPU prototype board fully working - part1</title><link href="http://blog.xivo.io/xivo-ioh-first-cpu-prototype-board-fully-working-part1.html" rel="alternate"></link><published>2011-12-16T10:06:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-12-16:xivo-ioh-first-cpu-prototype-board-fully-working-part1.html</id><summary type="html">&lt;p&gt;Dear followers of our &lt;strong&gt;XiVO IPBX OpenHardware project&lt;/strong&gt;, we are happy
 to announce that our &lt;strong&gt;first version of our prototype for the CPU
 board&lt;/strong&gt; (PCB prototyping the CPU and the different interfaces connected
 to the CPU) is now fully working and we have a full GNU/Linux system
@@ -389,7 +389,7 @@ test-program and 3xGbE interfaces connected together one-by-one&lt;/p&gt;
 &lt;p&gt;We will update our different tests on the CPU boards and keep you update
 on the follow-ups of our design steps.&lt;/p&gt;
 &lt;p&gt;Xavier Carcelle.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>OpenHardware landscape Q4 2011</title><link href="http://blog.xivo.io/openhardware-landscape-q4-2011.html" rel="alternate"></link><updated>2011-11-01T19:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-11-01:openhardware-landscape-q4-2011.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The OpenHardware community is expanding more and more these past
+&lt;/p&gt;</summary></entry><entry><title>OpenHardware landscape Q4 2011</title><link href="http://blog.xivo.io/openhardware-landscape-q4-2011.html" rel="alternate"></link><published>2011-11-01T19:26:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-11-01:openhardware-landscape-q4-2011.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;The OpenHardware community is expanding more and more these past
 months and here a short landscape view of the community nowadays :&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;OpenHardware large board projects&lt;/strong&gt;&lt;/li&gt;
@@ -430,7 +430,7 @@ OpenSourceHardware2011 (Madrid) : &lt;a href="http://oshwcon.org/"&gt;http://os
 &lt;p&gt;OHANDA : &lt;a href="http://ohanda.org"&gt;http://ohanda.org&lt;/a&gt;&lt;br /&gt;
 CERN : &lt;a href="http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects"&gt;http://www.ohwr.org/projects/cernohl/wiki/CernOhlProjects&lt;/a&gt;&lt;br /&gt;
 OpenSourceHardwareDefintion : &lt;a href="http://freedomdefined.org/OSHW"&gt;http://freedomdefined.org/OSHW&lt;/a&gt;  &lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>PCB prototypes and flash SPI testing</title><link href="http://blog.xivo.io/pcb-prototypes-and-flash-spi-testing.html" rel="alternate"></link><updated>2011-10-04T16:10:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2011-10-04:pcb-prototypes-and-flash-spi-testing.html</id><summary type="html">&lt;p&gt;On the XiVO Open Hardware side, we have been very busy lately writing
+&lt;/p&gt;</summary></entry><entry><title>PCB prototypes and flash SPI testing</title><link href="http://blog.xivo.io/pcb-prototypes-and-flash-spi-testing.html" rel="alternate"></link><published>2011-10-04T16:10:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2011-10-04:pcb-prototypes-and-flash-spi-testing.html</id><summary type="html">&lt;p&gt;On the XiVO Open Hardware side, we have been very busy lately writing
 various bits of low level software, preparing the production of the
 first prototypes, validating some hardware subsystems and doing all sort
 of hardware + low level software debugging.&lt;/p&gt;
@@ -466,7 +466,7 @@ communication" src="/public/.testing_flash_communication_m.jpg" title="Testing f
 results" src="/public/.flash_comm_test_result_m.jpg" title="SPI flash communication test results, oct. 2011" /&gt;&lt;/p&gt;
 &lt;p&gt;So we are now hopeful that at least the SPI flash communication will
 work on our assembled board \\o/&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Sourcing the components and scripting the components parts e-shops (digikey, ...)</title><link href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html" rel="alternate"></link><updated>2011-03-30T17:19:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-30:sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html</id><summary type="html">&lt;p&gt;As I am constantly searching for informations on the different parts
+&lt;/p&gt;</summary></entry><entry><title>Sourcing the components and scripting the components parts e-shops (digikey, ...)</title><link href="http://blog.xivo.io/sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html" rel="alternate"></link><published>2011-03-30T17:19:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2011-03-30:sourcing-the-components-and-scripting-the-components-parts-e-shops-digikey.html</id><summary type="html">&lt;p&gt;As I am constantly searching for informations on the different parts
 (i.e. components on the PCB), &lt;strong&gt;i have scripted www.digikey.com&lt;/strong&gt; (the
 HTML form is quite stable) in python in order to automatize the search
 on the website.&lt;/p&gt;
@@ -478,7 +478,7 @@ on the website.&lt;/p&gt;
 such as Farnell, Mouser, Radiospares in order to have a common script
 tool able to search all these e-shops in one and give a report on the
 availability for parts in a db run daily or weekly.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Moving forward to the production of the prototypes - FXO/FXS boards</title><link href="http://blog.xivo.io/moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html" rel="alternate"></link><updated>2010-12-20T18:00:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-12-20:moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;As the XiVO IPBX OpenHardware project moves forward to the production
+&lt;/p&gt;</summary></entry><entry><title>Moving forward to the production of the prototypes - FXO/FXS boards</title><link href="http://blog.xivo.io/moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html" rel="alternate"></link><published>2010-12-20T18:00:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-12-20:moving-forward-to-the-production-of-the-prototypes-fxofxs-boards.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;As the XiVO IPBX OpenHardware project moves forward to the production
 of our first protoboards&lt;/strong&gt; for our internal tests, we are pleased to
 give a first display of the PCB board file for the FXO/FXS interfaces on
 the IPBX that are routed from the XHFC-4SU controller :  &lt;/p&gt;
@@ -492,7 +492,7 @@ file with all the electrical connexions between the components and the
 chips on-board) and the .BRD (Board file with the actual real-sized PCB
 and the components position with all the net connexions&lt;/strong&gt;). This image
 displays the .BRD file designed for the FXO/FXS interfaces.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Visiting CologneChip AG : The ISDN Chip company !</title><link href="http://blog.xivo.io/visiting-colognechip-ag-the-isdn-chip-company.html" rel="alternate"></link><updated>2010-11-03T11:07:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:visiting-colognechip-ag-the-isdn-chip-company.html</id><summary type="html">&lt;p&gt;We had the pleasure to visit the CologneChip AG engineering team this
+&lt;/p&gt;</summary></entry><entry><title>Visiting CologneChip AG : The ISDN Chip company !</title><link href="http://blog.xivo.io/visiting-colognechip-ag-the-isdn-chip-company.html" rel="alternate"></link><published>2010-11-03T11:07:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:visiting-colognechip-ag-the-isdn-chip-company.html</id><summary type="html">&lt;p&gt;We had the pleasure to visit the CologneChip AG engineering team this
 week in Koln, Germany and exchange on the ISDN markets and chips (and
 the different market penetration of ISDN, FTTH, DOCSIS, xDSL in Europe
 countries). ISDN is still strong in Germany w/ 29 Millions subscribers
@@ -518,7 +518,7 @@ interfaces to allow these data and voice applications.&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="cologneChip
 offices" src="/public/.CologneChip_AG_Offices_m.jpg" title="cologneChip offices, nov. 2010" /&gt;  &lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Participation to IPConvergence 2010 - Feedbacks and pictures</title><link href="http://blog.xivo.io/participation-to-ipconvergence-2010-feedbacks-and-pictures.html" rel="alternate"></link><updated>2010-11-03T10:24:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:participation-to-ipconvergence-2010-feedbacks-and-pictures.html</id><summary type="html">&lt;p&gt;It was a great pleasure to be participating to the IPConvergence
+&lt;/p&gt;</summary></entry><entry><title>Participation to IPConvergence 2010 - Feedbacks and pictures</title><link href="http://blog.xivo.io/participation-to-ipconvergence-2010-feedbacks-and-pictures.html" rel="alternate"></link><published>2010-11-03T10:24:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-11-03:participation-to-ipconvergence-2010-feedbacks-and-pictures.html</id><summary type="html">&lt;p&gt;It was a great pleasure to be participating to the IPConvergence
 telecommunications fair and present the XiVO IPBX OpenHardware project.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Please find below our prototype cased in a 1U rack for
@@ -537,7 +537,7 @@ booth" src="/public/.P1040544_m.jpg" title="IPConvergence XiVO booth, nov. 2010"
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="FT Socotel S63 orange
 1983" src="/public/.P1040592_m.jpg" title="FT Socotel S63 orange 1983, nov. 2010" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Participation to the OpenHardwareSummit : OHANDA representation and feedbacks</title><link href="http://blog.xivo.io/participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html" rel="alternate"></link><updated>2010-10-04T09:03:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html</id><summary type="html">&lt;p&gt;It was a great pleasure to participate to the &lt;strong&gt;OpenHardwareSummit2010
+&lt;/p&gt;</summary></entry><entry><title>Participation to the OpenHardwareSummit : OHANDA representation and feedbacks</title><link href="http://blog.xivo.io/participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html" rel="alternate"></link><published>2010-10-04T09:03:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:participation-to-the-openhardwaresummit-ohanda-representation-and-feedbacks.html</id><summary type="html">&lt;p&gt;It was a great pleasure to participate to the &lt;strong&gt;OpenHardwareSummit2010
 in the New York City Museum of Science&lt;/strong&gt; and representing the OHANDA
 trademark during the LAW panel. Thanks to Alicia and Ayah to have
 organized such an event that gives publicity to the OpenHardware
@@ -602,7 +602,7 @@ talks&lt;/a&gt;  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.isoc-ny.org/p2/?p=1237"&gt;Audio MP3 archives of the OHS&lt;/a&gt;  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://punkcast.com/1795/1795-12/1795-12_ohs_law_panel.mp3"&gt;Audio MP3 archives of the LAW
 panel&lt;/a&gt;  &lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO IPBX OpenHardware selected for the innovation trophy</title><link href="http://blog.xivo.io/xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html" rel="alternate"></link><updated>2010-10-04T08:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html</id><summary type="html">&lt;p&gt;&lt;img alt="IPConvergence
+&lt;/p&gt;</summary></entry><entry><title>XiVO IPBX OpenHardware selected for the innovation trophy</title><link href="http://blog.xivo.io/xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html" rel="alternate"></link><published>2010-10-04T08:26:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-10-04:xivo-ipbx-openhardware-selected-for-the-innovation-trophy.html</id><summary type="html">&lt;p&gt;&lt;img alt="IPConvergence
 2010" src="/public/.IPConvergence_2010_m.jpg" title="IPConvergence 2010, oct. 2010" /&gt;  &lt;/p&gt;
 &lt;dl&gt;
 &lt;dt&gt;We are very pleased to announce that the **XiVO IPBX OpenHardware&lt;/dt&gt;
@@ -618,7 +618,7 @@ nomination&lt;/a&gt;&lt;/p&gt;
 using our &lt;strong&gt;brand new logo for the project&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Logo XiVO IPBX
 OpenHardware" src="/public/.XiVO_IPBX_OpenHardware_Logo_s.jpg" title="Logo XiVO IPBX OpenHardware, sept. 2010" /&gt;&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 2</title><link href="http://blog.xivo.io/kicad-walkthrough-part-2.html" rel="alternate"></link><updated>2010-09-21T12:04:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-09-21:kicad-walkthrough-part-2.html</id><summary type="html">&lt;p&gt;The schematic represents a logical point of view of an electronic
+&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 2</title><link href="http://blog.xivo.io/kicad-walkthrough-part-2.html" rel="alternate"></link><published>2010-09-21T12:04:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-09-21:kicad-walkthrough-part-2.html</id><summary type="html">&lt;p&gt;The schematic represents a logical point of view of an electronic
 circuit. Before we can design a
 &lt;a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board"&gt;PCB&lt;/a&gt;
 layout matching this circuit, we must specify how each schematic
@@ -683,7 +683,7 @@ screen-shoot.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Clock buffer CVpcb footprint assignment
 screenshoot" src="/public/cvpcb_sshoot.png" title="Clock buffer CVpcb footprint assignment screenshoot, sept. 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;The corresponding .net and .cmp files are attached to this post.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>IEEE MAC OUI Bloc registration for the XiVO IPBX OpenHardware - [08-D2-9A]</title><link href="http://blog.xivo.io/ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html" rel="alternate"></link><updated>2010-09-08T08:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-09-08:ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html</id><summary type="html">&lt;p&gt;We are very pleased to update our followers with the different steps of
+&lt;/p&gt;</summary></entry><entry><title>IEEE MAC OUI Bloc registration for the XiVO IPBX OpenHardware - [08-D2-9A]</title><link href="http://blog.xivo.io/ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html" rel="alternate"></link><published>2010-09-08T08:04:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-09-08:ieee-mac-oui-bloc-registration-for-the-xivo-ipbx-openhardware-08-d2-9a.html</id><summary type="html">&lt;p&gt;We are very pleased to update our followers with the different steps of
 the process of design of our &lt;strong&gt;XiVO IPBX OpenHarware&lt;/strong&gt;. Most of us work
 since several years in the telecommunication field and have been using
 extensively MAC Ethernet addresses on numerous networks appliances at
@@ -706,7 +706,7 @@ as 08-D2-9A-XX-XX-XX on the Ethernet networks.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;A search on &lt;strong&gt;Proformatique&lt;/strong&gt; on &lt;a href="http://standards.ieee.org/regauth/oui/index.shtml"&gt;the IEEE OUI and Company_id search
 interface&lt;/a&gt; help to
 retrieve the associated informations.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Representing OHANDA at the OpenHardwareSummit (NYC, 23/9/10)</title><link href="http://blog.xivo.io/representing-ohanda-at-the-openhardwaresummit-nyc-23910.html" rel="alternate"></link><updated>2010-08-30T08:40:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-30:representing-ohanda-at-the-openhardwaresummit-nyc-23910.html</id><summary type="html">&lt;p&gt;&lt;img alt="OpenHardwareSummit" src="/public/.OHS_site_logo_m.jpg" title="OpenHardwareSummit, août 2010" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Representing OHANDA at the OpenHardwareSummit (NYC, 23/9/10)</title><link href="http://blog.xivo.io/representing-ohanda-at-the-openhardwaresummit-nyc-23910.html" rel="alternate"></link><published>2010-08-30T08:40:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-30:representing-ohanda-at-the-openhardwaresummit-nyc-23910.html</id><summary type="html">&lt;p&gt;&lt;img alt="OpenHardwareSummit" src="/public/.OHS_site_logo_m.jpg" title="OpenHardwareSummit, août 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="OHANDA Logo" src="/public/.OHANDA_Logo_m.jpg" title="OHANDA Logo, août 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;We are very pleased to announce that we will be participating to the
 &lt;strong&gt;OpenHardwareSummit&lt;/strong&gt; ^[&lt;span
@@ -736,7 +736,7 @@ http://www.openhardwaresummit.org/schedule/
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 1</title><link href="http://blog.xivo.io/kicad-walkthrough-part-1.html" rel="alternate"></link><updated>2010-08-23T18:18:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-08-23:kicad-walkthrough-part-1.html</id><summary type="html">&lt;p&gt;For our prototyping/validation tests, we need a particular clock buffer.
+&lt;/p&gt;</summary></entry><entry><title>KiCad walkthrough - Part 1</title><link href="http://blog.xivo.io/kicad-walkthrough-part-1.html" rel="alternate"></link><published>2010-08-23T18:18:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-08-23:kicad-walkthrough-part-1.html</id><summary type="html">&lt;p&gt;For our prototyping/validation tests, we need a particular clock buffer.
 Unfortunately, it only comes in
 &lt;a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package"&gt;SSOP&lt;/a&gt;
 or similar packages and we need to plug it to our
@@ -834,7 +834,7 @@ screenshoot" src="/public/eeschema_sshoot.png" title="Clock buffer EESchema sche
 &lt;p&gt;The &lt;a href="index.php?post/2010/09/21/KiCad-walkthrough-Part-2"&gt;next article&lt;/a&gt;
 will be about schematic component to module footprint assignment.
 (CVpcb)&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Giving more tools, hints and URLs to the community</title><link href="http://blog.xivo.io/giving-more-tools-hints-and-urls-to-the-community.html" rel="alternate"></link><updated>2010-08-04T08:57:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-04:giving-more-tools-hints-and-urls-to-the-community.html</id><summary type="html">&lt;p&gt;In the world of the OpenHardware projects, we do aim at giving to the
+&lt;/p&gt;</summary></entry><entry><title>Giving more tools, hints and URLs to the community</title><link href="http://blog.xivo.io/giving-more-tools-hints-and-urls-to-the-community.html" rel="alternate"></link><published>2010-08-04T08:57:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-04:giving-more-tools-hints-and-urls-to-the-community.html</id><summary type="html">&lt;p&gt;In the world of the OpenHardware projects, we do aim at giving to the
 community more hints about prototyping hardware, understanding (also
 reversing) existing hardware, hacking (in the sense of modifying and
 adding more unexpected features) equipments, reusing "old" hardware and
@@ -864,7 +864,7 @@ of blogs and URLs in this field such as:&lt;/p&gt;
     hardware exploits and a link with forum that somehow more difficult
     to find.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/p&gt;</summary></entry><entry><title>[Prototype] Description of the functionnal buses</title><link href="http://blog.xivo.io/prototype-description-of-the-functionnal-buses.html" rel="alternate"></link><updated>2010-08-03T09:50:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-03:prototype-description-of-the-functionnal-buses.html</id><summary type="html">&lt;p&gt;As this OpenHardware project moves forward, we are now approaching a
+&lt;/p&gt;</summary></entry><entry><title>[Prototype] Description of the functionnal buses</title><link href="http://blog.xivo.io/prototype-description-of-the-functionnal-buses.html" rel="alternate"></link><published>2010-08-03T09:50:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-08-03:prototype-description-of-the-functionnal-buses.html</id><summary type="html">&lt;p&gt;As this OpenHardware project moves forward, we are now approaching a
 &lt;strong&gt;complete prototyping&lt;/strong&gt; of our functionnal blocks and
 telecommunications interfaces control from the Linux kernel. The main
 functionnal blocks to be tested and validated are in our architecture
@@ -893,7 +893,7 @@ is great to split different wires connectivity on the breadboard.&lt;/p&gt;
 &lt;p&gt;In the next posts, we will describe the results and work done on each
 buses to achieve the first global tests for voice channel routing with
 our XiVO IPBX OpenHardware.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>The first OpenHardwareSummit and more OpenHardware movements</title><link href="http://blog.xivo.io/the-first-openhardwaresummit-and-more-openhardware-movements.html" rel="alternate"></link><updated>2010-07-20T13:52:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-07-20:the-first-openhardwaresummit-and-more-openhardware-movements.html</id><summary type="html">&lt;p&gt;We see currently a great energy and interest for the &lt;strong&gt;OpenHardware
+&lt;/p&gt;</summary></entry><entry><title>The first OpenHardwareSummit and more OpenHardware movements</title><link href="http://blog.xivo.io/the-first-openhardwaresummit-and-more-openhardware-movements.html" rel="alternate"></link><published>2010-07-20T13:52:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-07-20:the-first-openhardwaresummit-and-more-openhardware-movements.html</id><summary type="html">&lt;p&gt;We see currently a great energy and interest for the &lt;strong&gt;OpenHardware
 movement&lt;/strong&gt; with different groups or consortiums aiming at creating a
 common energy in this. The OHANDA Trademark is definitely a great
 baseline for the upcoming OpenHardware project to have a legal umbrella
@@ -938,7 +938,7 @@ http://www.openhardwaresummit.org
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</title><link href="http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html" rel="alternate"></link><updated>2010-06-22T14:19:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-22:using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html</id><summary type="html">&lt;p&gt;In the process of developing an OpenHardware project, the prototyping
+&lt;/p&gt;</summary></entry><entry><title>Using a LogicAnalyzer to prototype/monitor the data buses: example of the Local Expansion Bus between the CPU and the ISDN interface</title><link href="http://blog.xivo.io/using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html" rel="alternate"></link><published>2010-06-22T14:19:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-22:using-a-logicanalyzer-to-prototypemonitor-the-data-buses-example-of-the-local-expansion-bus-between-the-cpu-and-the-isdn-interface.html</id><summary type="html">&lt;p&gt;In the process of developing an OpenHardware project, the prototyping
 process is quite important and namely the validation of the data buses
 exchanging telecommunications data (synchronization, reset, interrupts,
 tx/rx data, signaling...) between the different interfaces and chips on
@@ -1024,7 +1024,7 @@ http://www.saleae.com
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>The XiVO IPBX OpenHardware eco-system</title><link href="http://blog.xivo.io/the-xivo-ipbx-openhardware-eco-system.html" rel="alternate"></link><updated>2010-06-17T13:41:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-17:the-xivo-ipbx-openhardware-eco-system.html</id><summary type="html">&lt;p&gt;As we move forward on the validation of the different functionnal block
+&lt;/p&gt;</summary></entry><entry><title>The XiVO IPBX OpenHardware eco-system</title><link href="http://blog.xivo.io/the-xivo-ipbx-openhardware-eco-system.html" rel="alternate"></link><published>2010-06-17T13:41:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-06-17:the-xivo-ipbx-openhardware-eco-system.html</id><summary type="html">&lt;p&gt;As we move forward on the validation of the different functionnal block
 of the XiVO IPBX OpenHardware project, we can now describe more
 precisely the different blocks and the eco-system of the project.&lt;/p&gt;
 &lt;p&gt;The functionnal blocks are numbered now as followed for the validation
@@ -1057,7 +1057,7 @@ product.&lt;/p&gt;
 EcoSystem" src="/public/.XiVO_IPBX_OpenHardware_EcoSystem_m.jpg" title="XiVO IPBX OpenHardware EcoSystem, juin 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;The next posts will describe the validation of the communication between
 the CPU&lt;a href="1" title="1"&gt;1&lt;/a&gt; and the ISDN&lt;a href="2" title="2"&gt;2&lt;/a&gt; and the FXO-FXS&lt;a href="3" title="3"&gt;3&lt;/a&gt;.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Official OHANDA annoucement</title><link href="http://blog.xivo.io/official-ohanda-annoucement.html" rel="alternate"></link><updated>2010-05-24T21:57:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-24:official-ohanda-annoucement.html</id><summary type="html">&lt;p&gt;OHANDA stands for Open Source Hardware and Design Alliance&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>Official OHANDA annoucement</title><link href="http://blog.xivo.io/official-ohanda-annoucement.html" rel="alternate"></link><published>2010-05-24T21:57:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-24:official-ohanda-annoucement.html</id><summary type="html">&lt;p&gt;OHANDA stands for Open Source Hardware and Design Alliance&lt;/p&gt;
 &lt;p&gt;OHANDA is an initiative to foster sustainable sharing of open hardware
 and design. It was first drafted at the GOSH!-Grounding Open Source
 Hardware summit at the Banff Centre in July 2009.&lt;/p&gt;
@@ -1068,7 +1068,7 @@ OpenHardware&lt;a href="TM" title="TM"&gt;TM&lt;/a&gt; off the ground.&lt;/p&gt;
 &lt;p&gt;OHANDA is work in process. The process is open ...&lt;/p&gt;
 &lt;p&gt;Please check http://www.ohanda.organd subscribe to our
 mailinglist:https://piksel.no/mailman/listinfo/ohanda&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>KiCAD: The OpenSource EDA tool for designing PCBs</title><link href="http://blog.xivo.io/kicad-the-opensource-eda-tool-for-designing-pcbs.html" rel="alternate"></link><updated>2010-05-20T14:49:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-20:kicad-the-opensource-eda-tool-for-designing-pcbs.html</id><summary type="html">&lt;p&gt;This post aims at presenting KiCAD ^[&lt;span
+&lt;/p&gt;</summary></entry><entry><title>KiCAD: The OpenSource EDA tool for designing PCBs</title><link href="http://blog.xivo.io/kicad-the-opensource-eda-tool-for-designing-pcbs.html" rel="alternate"></link><published>2010-05-20T14:49:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-20:kicad-the-opensource-eda-tool-for-designing-pcbs.html</id><summary type="html">&lt;p&gt;This post aims at presenting KiCAD ^[&lt;span
 id="rev-pnote-21-1"&gt;&lt;a href="#pnote-21-1"&gt;1&lt;/a&gt;&lt;/span&gt;]^, THE OpenSource EDA tool
 for CAD file used to design PCB (Printed Circuit Boards) originally
 designed and written by Jean-Pierre Charras, a researcher at LIS
@@ -1121,7 +1121,7 @@ https://bugs.launchpad.net/kicad
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>The perfect OpenHardware Lab</title><link href="http://blog.xivo.io/the-perfect-openhardware-lab.html" rel="alternate"></link><updated>2010-05-11T12:04:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-11:the-perfect-openhardware-lab.html</id><summary type="html">&lt;p&gt;In an OpenHardware project, making up a perfect lab is crucial in order
+&lt;/p&gt;</summary></entry><entry><title>The perfect OpenHardware Lab</title><link href="http://blog.xivo.io/the-perfect-openhardware-lab.html" rel="alternate"></link><published>2010-05-11T12:04:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-11:the-perfect-openhardware-lab.html</id><summary type="html">&lt;p&gt;In an OpenHardware project, making up a perfect lab is crucial in order
 to prototype, test and solder parts before going to PCB pre-production
 and production.&lt;/p&gt;
 &lt;p&gt;This post aims at presenting the set-up of the XiVO IPBX OpenHardware
@@ -1160,7 +1160,7 @@ wires (like the precious HIRSCHMANN MKL0,64/25-0,25 - reference
 soldering wires (RoHS with 1mm and 0.5mm diameter), screw-drivers, SMT
 and non SMT resistors, capacitors and selfs, labels for different wire
 description.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Prototype PCB for the ISDN and FXO/FXS interfaces</title><link href="http://blog.xivo.io/prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html" rel="alternate"></link><updated>2010-05-04T13:42:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-04:prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html</id><summary type="html">&lt;p&gt;As the XiVO IPBX OpenHardware project moves forward, we are now doing
+&lt;/p&gt;</summary></entry><entry><title>Prototype PCB for the ISDN and FXO/FXS interfaces</title><link href="http://blog.xivo.io/prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html" rel="alternate"></link><published>2010-05-04T13:42:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-05-04:prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html</id><summary type="html">&lt;p&gt;As the XiVO IPBX OpenHardware project moves forward, we are now doing
 the prototyping of the different fonctionnal bloc of the PCB and namely
 the interaction between the CPU and the Telco interfaces (ISDN and
 FXO/FXS).In order to do a clean prototyping, it is usually adviced to
@@ -1186,7 +1186,7 @@ following PCB (Zarlink-VE890-Protoboard) ;&lt;/p&gt;
 &lt;p&gt;Next posts will be presenting the results and the signal obtained on the
 SPI and TDM buses from a Digital Oscilloscope and from a Logic Analyzer
 (like the saleae one),&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Connecting a telephony chip</title><link href="http://blog.xivo.io/connecting-a-telephony-chip.html" rel="alternate"></link><updated>2010-04-27T18:20:00-04:00</updated><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-04-27:connecting-a-telephony-chip.html</id><summary type="html">&lt;hr /&gt;
+&lt;/p&gt;</summary></entry><entry><title>Connecting a telephony chip</title><link href="http://blog.xivo.io/connecting-a-telephony-chip.html" rel="alternate"></link><published>2010-04-27T18:20:00-04:00</published><author><name>xilun</name></author><id>tag:blog.xivo.io,2010-04-27:connecting-a-telephony-chip.html</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;&lt;a href="English%20version" title="English version"&gt;English version&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Several interfaces and connections exist in order to connect an
 end-device to a PSTN. Mostly used in Europe: analog, digital
@@ -1406,7 +1406,7 @@ est maître du bus SPI, la puce téléphonique esclave.
 
 &lt;/div&gt;
 
-&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware presentation at SolutionsLinux 2010 and upcoming AstriEurope 2010</title><link href="http://blog.xivo.io/xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html" rel="alternate"></link><updated>2010-04-07T09:53:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-04-07:xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html</id><summary type="html">&lt;p&gt;&lt;img alt="AstriEurope" src="/public/.AstriEurope_Logo_s.jpg" title="AstriEurope, avr. 2010" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware presentation at SolutionsLinux 2010 and upcoming AstriEurope 2010</title><link href="http://blog.xivo.io/xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html" rel="alternate"></link><published>2010-04-07T09:53:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-04-07:xivo-openhardware-presentation-at-solutionslinux-2010-and-upcoming-astrieurope-2010.html</id><summary type="html">&lt;p&gt;&lt;img alt="AstriEurope" src="/public/.AstriEurope_Logo_s.jpg" title="AstriEurope, avr. 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;Following the presentation we did at SolutionsLinux 2010 in Paris (&lt;strong&gt;the
 presentation we made is now available at (1)&lt;/strong&gt; and had been made in
 french as the crowd was mainly french-speakers).&lt;/p&gt;
@@ -1423,7 +1423,7 @@ Digium supporting the event.&lt;/p&gt;
 http://carcelle.fu8.com/Presentation_Projet_Appliance_XiVO_SolutionsLinux_2010.pdf&lt;br /&gt;
 (2) : http://www.astrieurop.com/&lt;br /&gt;
 (3) : http://carcelle.fu8.com/AstriEuropConferencesProgram.pdf&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>The OHANDA Trademark/Licence for the XiVO IPBX [1] : Meeting in Helsinki</title><link href="http://blog.xivo.io/the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html" rel="alternate"></link><updated>2010-03-30T09:26:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-30:the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html</id><summary type="html">&lt;p&gt;&lt;img alt="Helsinki Harbour in
+&lt;/p&gt;</summary></entry><entry><title>The OHANDA Trademark/Licence for the XiVO IPBX [1] : Meeting in Helsinki</title><link href="http://blog.xivo.io/the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html" rel="alternate"></link><published>2010-03-30T09:26:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-30:the-ohanda-trademarklicence-for-the-xivo-ipbx-1-meeting-in-helsinki.html</id><summary type="html">&lt;p&gt;&lt;img alt="Helsinki Harbour in
 March" src="/public/.Helsinki_Harbour_28032010_m.jpg" title="Helsinki Harbour in March, mar. 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;I just got back from the Pixelache Festival in Helsinki&lt;/strong&gt; (1) where we
 had a OHANDA (2) meeting with the founding members of the OHANDA
@@ -1454,7 +1454,7 @@ http://www.pixelache.ac/helsinki/festival-2010/programme/open-source-hardware/&l
 (2) : http://www.ohanda.org&lt;br /&gt;
 (3) : http://www.sebruiz.net/326&lt;br /&gt;
 (4) : http://www.gosh2009.ca/wiki/images/Ohanda_piksel.pdf&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware IPBX presented at SolutionsLinux2010, Paris</title><link href="http://blog.xivo.io/xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html" rel="alternate"></link><updated>2010-03-22T11:15:00-04:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-22:xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html</id><summary type="html">&lt;p&gt;&lt;img alt="SolutionsLinux2010" src="/public/SolutionsLinux2010_logo.jpg" title="SolutionsLinux2010, mar. 2010" /&gt;&lt;/p&gt;
+&lt;/p&gt;</summary></entry><entry><title>XiVO OpenHardware IPBX presented at SolutionsLinux2010, Paris</title><link href="http://blog.xivo.io/xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html" rel="alternate"></link><published>2010-03-22T11:15:00-04:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-03-22:xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html</id><summary type="html">&lt;p&gt;&lt;img alt="SolutionsLinux2010" src="/public/SolutionsLinux2010_logo.jpg" title="SolutionsLinux2010, mar. 2010" /&gt;&lt;/p&gt;
 &lt;p&gt;It was a great pleasure to present the XiVO IPBX OpenHardware project at
 SolutionsLinux2010 (the largest Linux fair in France yearly) on last
 week and we had several discussions about the architecture choosen for
@@ -1467,7 +1467,7 @@ targeting.&lt;/p&gt;
 &lt;p&gt;Finally, we will presenting soon the work done on the potential
 OpenHardware licence that we want to use based on a mixed between
 trademarks and CreativeCommons licences.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html" rel="alternate"></link><updated>2010-02-25T11:13:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-25:opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html</id><summary type="html">&lt;p&gt;Following the previous posts about the "open" bootloaders available to
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html" rel="alternate"></link><published>2010-02-25T11:13:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-25:opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html</id><summary type="html">&lt;p&gt;Following the previous posts about the "open" bootloaders available to
 improve and implement advanced features at the boot of your SoC/CPU, we
 are, in this post, considering Barebox (formely known as u-boot v2) as
 another open bootloader. Barebox aims at giving the developer and
@@ -1569,7 +1569,7 @@ lists the different key features of barebox that can listed as followed:&lt;/p&g
 &lt;p&gt;Barebox is under GPLv2 licence.&lt;/p&gt;
 &lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; : http://barebox.org/&lt;a href="2" title="2"&gt;2&lt;/a&gt; :
 http://barebox.org/documentation/barebox-2010.03.0/&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [2] : U-boot - ''Das Unterseeboot\"</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html" rel="alternate"></link><updated>2010-02-23T09:57:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-23:opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html</id><summary type="html">&lt;p&gt;This series of posts are dedicated to the different opensource
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [2] : U-boot - ''Das Unterseeboot\"</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html" rel="alternate"></link><published>2010-02-23T09:57:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-23:opening-the-bootloader-for-openhardware-projects-2-u-boot-das-unterseeboot.html</id><summary type="html">&lt;p&gt;This series of posts are dedicated to the different opensource
 bootloaders available out-there that are or can be used for OpenHardware
 project such as the XiVO IPBX we are currently developping.&lt;/p&gt;
 &lt;p&gt;This second post on the bootloaders available will present U-boot, one
@@ -1619,7 +1619,7 @@ details for specific architectures with x86 platform that we are
 targetting for the XiVO IPBX project.&lt;/p&gt;
 &lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; :
 http://www.einfochips.com/designers-corner/U-boot%20Porting%20guide.pdf&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [1] : Coreboot and the BIOS</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html" rel="alternate"></link><updated>2010-02-15T14:44:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-15:opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html</id><summary type="html">&lt;p&gt;The OpenHardware community had been seeking for more and more openess
+&lt;/p&gt;</summary></entry><entry><title>Opening the bootloader for OpenHardware projects [1] : Coreboot and the BIOS</title><link href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html" rel="alternate"></link><published>2010-02-15T14:44:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-15:opening-the-bootloader-for-openhardware-projects-1-coreboot-and-the-bios.html</id><summary type="html">&lt;p&gt;The OpenHardware community had been seeking for more and more openess
 lately in the hardware side, as well as in the software side. We see
 more and more steps forward of the software side into the configuration
 of the hardware (i.e. HDL projects for reconfigurable hardware such as
@@ -1666,7 +1666,7 @@ with more details the battle to open the bootloaders (once you open the
 bootloader you allow the hardware hackers to play with your device
 definitely).&lt;/p&gt;
 &lt;p&gt;&lt;a href="1" title="1"&gt;1&lt;/a&gt; : http://www.coreboot.org&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Understanding the S0/T0/T1/E1 ISDN protocols and lines</title><link href="http://blog.xivo.io/understanding-the-s0t0t1e1-isdn-protocols-and-lines.html" rel="alternate"></link><updated>2010-02-08T18:47:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-08:understanding-the-s0t0t1e1-isdn-protocols-and-lines.html</id><summary type="html">&lt;p&gt;As the XiVO OpenHardware IPBX will be using 4 T0 ISDN lines, it's
+&lt;/p&gt;</summary></entry><entry><title>Understanding the S0/T0/T1/E1 ISDN protocols and lines</title><link href="http://blog.xivo.io/understanding-the-s0t0t1e1-isdn-protocols-and-lines.html" rel="alternate"></link><published>2010-02-08T18:47:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-08:understanding-the-s0t0t1e1-isdn-protocols-and-lines.html</id><summary type="html">&lt;p&gt;As the XiVO OpenHardware IPBX will be using 4 T0 ISDN lines, it's
 important to present and educate reader on how works ISDN lines for IPBX
 usage. As the telecommunications world (POTS, PSTN, GSM, ISDN, ADSL) and
 the TCP/IP world are now merged into the networks we daily use, we see a
@@ -1772,7 +1772,7 @@ CEPI: Connection EndPoint Identifier  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;HDLC Frames Format:&lt;/strong&gt;&lt;br /&gt;
 F (Flag) | Ad (Adresses) | C (Controle) | CALL REQUEST | FCS (Frame
 Controle Sequence) | F(Flag) |&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Choosing the right CPU/SoC for an OpenHardware IPBX</title><link href="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html" rel="alternate"></link><updated>2010-02-01T10:56:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-01:choosing-the-right-cpusoc-for-an-openhardware-ipbx.html</id><summary type="html">&lt;p&gt;Once one starts an OpenHardware project, you should be thinking about
+&lt;/p&gt;</summary></entry><entry><title>Choosing the right CPU/SoC for an OpenHardware IPBX</title><link href="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html" rel="alternate"></link><published>2010-02-01T10:56:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-02-01:choosing-the-right-cpusoc-for-an-openhardware-ipbx.html</id><summary type="html">&lt;p&gt;Once one starts an OpenHardware project, you should be thinking about
 the core of the device to be designed and namely the CPU/SoC
 (System-on-Chip integrating the CPU and the peripherals controllers
 built-in the chip). The CPU/SoC is the core of the system and will be
@@ -1799,7 +1799,7 @@ specifications/data-sheets as this point.&lt;/p&gt;
 &lt;p&gt;Our current objectives is to target an x86 platform that smooths downs
 the porting of the existing XiVO framework or the integration of a
 ARM/MIPS CPU/SoC with open specifications.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Hardware specifications 1.0 of the XiVO appliance</title><link href="http://blog.xivo.io/hardware-specifications-10-of-the-xivo-appliance.html" rel="alternate"></link><updated>2010-01-25T11:21:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-25:hardware-specifications-10-of-the-xivo-appliance.html</id><summary type="html">&lt;p&gt;The goal of the XiVO OpenHardware project is to to develop a open-specs,
+&lt;/p&gt;</summary></entry><entry><title>Hardware specifications 1.0 of the XiVO appliance</title><link href="http://blog.xivo.io/hardware-specifications-10-of-the-xivo-appliance.html" rel="alternate"></link><published>2010-01-25T11:21:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-25:hardware-specifications-10-of-the-xivo-appliance.html</id><summary type="html">&lt;p&gt;The goal of the XiVO OpenHardware project is to to develop a open-specs,
 open-docs appliance from the design of the hardware project to the CAD
 files and production files underneath the project. The target of this
 appliance is a small IPBX appliance ideal for SOHO requirements in terms
@@ -1861,7 +1861,7 @@ specificatons" src="/public/.XiVO_Appliance_Hardware_Specifications_m.jpg" title
 &lt;/ul&gt;
 &lt;p&gt;Next steps: prototyping of the different bloc diagram connected to the
 EVB (EValuation Board) of the CPU based on the XiVO framework.&lt;/p&gt;
-&lt;/p&gt;</summary></entry><entry><title>Blog of the OpenHardware XiVO IPBX Project</title><link href="http://blog.xivo.io/blog-of-the-openhardware-xivo-ipbx-project.html" rel="alternate"></link><updated>2010-01-14T15:04:00-05:00</updated><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-14:blog-of-the-openhardware-xivo-ipbx-project.html</id><summary type="html">&lt;p&gt;This blog is dedicated to the XiVO IPBX OpenHardware project and will be
+&lt;/p&gt;</summary></entry><entry><title>Blog of the OpenHardware XiVO IPBX Project</title><link href="http://blog.xivo.io/blog-of-the-openhardware-xivo-ipbx-project.html" rel="alternate"></link><published>2010-01-14T15:04:00-05:00</published><author><name>xcarcelle</name></author><id>tag:blog.xivo.io,2010-01-14:blog-of-the-openhardware-xivo-ipbx-project.html</id><summary type="html">&lt;p&gt;This blog is dedicated to the XiVO IPBX OpenHardware project and will be
 displaying the different steps of the project as well as the results,
 prototyping and feedbacks from each step.&lt;/p&gt;
 &lt;p&gt;Xavier Carcelle.&lt;/p&gt;
