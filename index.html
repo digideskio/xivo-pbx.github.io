@@ -54,6 +54,36 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1606.html#sprint-review-1606">Sprint Review 16.06</a></h2>
+    <p>
+      Posted on Mon 16 May 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Hello XiVO community! Here comes the release of XiVO 16.06!</p>
+<h2>New features in this sprint</h2>
+<p><strong>Installation Wizard</strong>: The wizard is the little assistant that allows administrators to setup the XiVO server. The wizard is a very important part of XiVO, since it's the mandatory way to finalize the installation of XiVO. We have released a new API allowing to setup XiVO automatically, without the need of the XiVO web interface. Also a number of bugs related to the wizard were fixed.</p>
+<p><strong>XiVO Client</strong>: Thanks to the XiVO community (thank you Julien Revert), the deployment of the XiVO Client for Windows on multiple machines is easier in 16.06. This facilitates upgrading the version of XiVO and the XiVO Client together.</p>
+<h2>Technical Features</h2>
+<p><strong>Polycom phones:</strong> The plugin for Polycom phones has been upgraded to version 5.4.3 of the firmware. Also, two new models are supported: VVX101 and VVX201.</p>
+<p><strong>Personal contacts</strong>: The import of personal contacts has been improved: there were some performance issues that are fixed in 16.06, and there can not be any more duplicated personal contacts.</p>
+<h2>Ongoing features</h2>
+<p><strong>Call Transfers</strong>: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers.</p>
+<p><strong>Entity management</strong>: Entities are used to manage multiple groups of users on the same XiVO server, but each group can't see the other. This is useful for example when managing multiple departments of the same big company, but each department has its own telephony administrator, and each administrator should only see the users of their own department. This feature was until now exclusive to the web interface, but we are working on making this feature manageable through a REST API. Be aware that this is a long-term job, because entities apply to every single configuration object in XiVO. As with other REST APIs, this will allow creating different graphical interfaces for managing XiVO, as well as automating this management.</p>
+<hr />
+<p>See you at the next sprint review!</p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes">Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/242">XiVO 16.06 Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1605.html#sprint-review-1605">Sprint Review 16.05</a></h2>
     <p>
       Posted on Wed 20 April 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -75,36 +105,6 @@
 <ul>
 <li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2">XiVO 16.05 Upgrade notes</a></li>
 <li><a href="http://projects.xivo.io/versions/241">XiVO 16.05 Roadmap</a></li>
-<li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
-</ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1606.html#sprint-review-1606">Sprint Review 16.06</a></h2>
-    <p>
-      Posted on Wed 20 April 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Hello XiVO community! Here comes the release of XiVO 16.06!</p>
-<h2>New features in this sprint</h2>
-<p><strong>Installation Wizard</strong>: The wizard is the little assistant that allows administrators to setup the XiVO server. The wizard is a very important part of XiVO, since it's the mandatory way to finalize the installation of XiVO. We have released a new API allowing to setup XiVO automatically, without the need of the XiVO web interface. Also a number of bugs related to the wizard were fixed.</p>
-<p><strong>XiVO Client</strong>: Thanks to the XiVO community (thank you Julien Revert), the deployment of the XiVO Client for Windows on multiple machines is easier in 16.06. This facilitates upgrading the version of XiVO and the XiVO Client together.</p>
-<h2>Technical Features</h2>
-<p><strong>Polycom phones:</strong> The plugin for Polycom phones has been upgraded to version 5.4.3 of the firmware. Also, two new models are supported: VVX101 and VVX201.</p>
-<p><strong>Personal contacts</strong>: The import of personal contacts has been improved: there were some performance issues that are fixed in 16.06, and there can not be any more duplicated personal contacts.</p>
-<h2>Ongoing features</h2>
-<p><strong>Call Transfers</strong>: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers.</p>
-<p><strong>Entity management</strong>: Entities are used to manage multiple groups of users on the same XiVO server, but each group can't see the other. This is useful for example when managing multiple departments of the same big company, but each department has its own telephony administrator, and each administrator should only see the users of their own department. This feature was until now exclusive to the web interface, but we are working on making this feature manageable through a REST API. Be aware that this is a long-term job, because entities apply to every single configuration object in XiVO. As with other REST APIs, this will allow creating different graphical interfaces for managing XiVO, as well as automating this management.</p>
-<hr />
-<p>See you at the next sprint review!</p>
-<p>Sources:</p>
-<ul>
-<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes">Upgrade notes</a></li>
-<li><a href="http://projects.xivo.io/versions/242">XiVO 16.06 Roadmap</a></li>
 <li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
 </ul>
   </div>
