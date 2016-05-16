@@ -54,6 +54,25 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">An alternate XiVO gallifrey repository (part 1/2)</a></h2>
+    <p>
+      Posted on Mon 18 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>Kernel module dependencies</h4>
+<p>When binary kernel modules need to be rebuilt, a Makefile containing
+<em>ROLE = kernel-module</em> is created for the packaging-farm to work with,
+as explained in the manual page. It depends on the source package
+providing the <em>MODULE = module-source</em> package. A script was added to
+the global dependency computation ...</p>
+      <a class="btn" href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-12.html#an-alternate-xivo-gallifrey-repository-part-12">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/signing-and-naming-xivo-packages.html#signing-and-naming-xivo-packages">Signing and naming XiVO packages</a></h2>
     <p>
       Posted on Mon 11 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -135,31 +154,6 @@ GIT repository instead.</p>
 <p>In order to make it more convenient for the developer to submit a job to
 <a href="http://packaging-farm.dachary.org/">packaging-farm ...</a></p>
       <a class="btn" href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html#xivo-sources-conventions-implemented-and-documented">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
-    <p>
-      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>pf-release.sh</h4>
-<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
-merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
-containing the sources and the SVN repository containing the debian
-packages into a well formed Debian GNU/Linux source package. For
-instance</p>
-<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
-</pre></div>
-
-
-<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
-<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the ...</a></p>
-      <a class="btn" href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Continue reading</a>
   </div>
 </article>
 

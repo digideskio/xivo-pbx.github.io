@@ -54,6 +54,52 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-high-availability.html#xivo-high-availability">XiVO high availability</a></h2>
+    <p>
+      Posted on Wed 14 March 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>High availability is available in XiVO since version 1.2.3. The current
+use cases is to be able to get telephony service back in less than 5
+minutes in case of a network or power failure on the master XiVO.</p>
+<p>The architecture is pretty simple at the time of this writing. The
+configuration database is replicated every hours to a slave XiVO. The
+slave XiVO pings the master XiVO every 30 seconds and launches asterisk
+if the master is down. The slave will also stop asterisk if the master
+is turned back up. The check (a ping) is pretty simple at the moment,
+this means that a fail-over will not happen if asterisk or any other
+service has crashed, monit should be able to restart the crashed service
+in most cases anyway.</p>
+<p>To enable this feature, go to <em>Configuration, High availability</em>. Choose
+master node on the master and enter the slave's IP address in the remote
+address field. On the slave, choose slave node and enter the master's IP
+address in the remote address field.</p>
+<p><img alt="ha_master.png" src="/public/.ha_master_m.jpg" title="ha_master.png, mar. 2012" /></p>
+<p>There is no way to trigger a synchronization between master and slave
+from the web interface, a work around is to launch
+xivo-master-slave-db-replication &lt;slave-ip&gt; on the master XiVO.
+This might be useful if you just finished your configuration and want to
+trigger a first replication or for test purposes.</p>
+<p>Some limitations:</p>
+<ul>
+<li>This solution uses the backup registrar from the phones, see the
+    <a href="http://documentation.xivo.fr" title="documentation">documentation</a> for
+    supported phones.</li>
+<li>Voice mail messages are not replicated between master and slave. A
+    solution is to attach the message and to mail it in the notification
+    and delete the message from the server when high availability
+    is enabled.</li>
+<li>CEL are not replicated between master and slave. Calls on the slave
+    are logged on the slave and calls on the master are logged on
+    the master.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/around-xivo-pxe-server-setup.html#around-xivo-pxe-server-setup">Around XiVO - pxe server setup</a></h2>
     <p>
       Posted on Thu 01 March 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -348,59 +394,6 @@ said, even the worst case doesn't pose a real problem. Next time, if I
 don't get too many death threat following this article, I'll talk about
 the next step of request processing in provd, device retrieving, which
 is quite simpler by the way.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-documentation-project.html#xivo-documentation-project">XiVO Documentation Project</a></h2>
-    <p>
-      Posted on Wed 01 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>Documentation is often a touchy subject on many projects, and for XiVO
-in this respect, it is also an important matter.</p>
-<p>Retrospective, over retrospective, documentation organization and tools
-comes often to the surface. Maybe some of you already noticed that XiVO
-development cycle has changed and that we are now producing a release
-every two weeks. In fact we started to use SCRUM six months ago, and in
-this respect, we do not forget to do our 'inspect and adapt' meeting,
-not so many often as we should but this is an other story !</p>
-<p>Anyway, XiVO documentation is currently done using a
-<a href="http://wiki.xivo.fr" title="wiki">wiki</a>, but this wiki is hard to maintain
-and to structure, information is also difficult to find. We tried also
-to use other type of wikis, but nothing was very satisfying.</p>
-<p>We looked over some other projects, to check how the documentation was
-done, and it comes to us that some of them are using
-<a href="http://sphinx.pocoo.org/" title="sphinx">sphinx</a></p>
-<blockquote>
-<p>“a tool that makes it easy to create intelligent and beautiful
-documentation, written by Georg Brandl and licensed under the BSD
-license”</p>
-</blockquote>
-<p>One of the item of our <em>Definition of Done</em> is documentation, it has to
-be done by the development team. It is so natural to us to edit
-restructured text, using GIT to push modification to a repository that
-all the team was enthusiast to use these tools for improving XiVO
-documentation. It was also an opportunity for us to try to use an
-external Git repository, we chose
-<a href="https://gitorious.org/xivo-doc" title="Gitorious">Gitorious</a> to start with
-XiVO documentation project. This is also a way to open it to a larger
-community.</p>
-<p>Do not hesitate to clone the project and submit documentation patches
-!!!</p>
-<p>Last but not least, documentation production is now integrated in our
-tool chain, using <a href="http://jenkins.xivo.fr" title="jenkins">jenkins</a> as
-integration server, files are pulled from Gitorious automatically to
-produce the <a href="http://documentation.xivo.fr" title="XiVO documentation site">XiVO documentation
-site</a></p>
-<p>You will find how to contribute
-<a href="http://documentation.xivo.fr/developers/contributes/index.html" title="here">here</a>
-Have fun !!</p>
-<p><img alt="XiVO documentation tool
-chain" src="/public/xivosoft/.doc_process_m.jpg" title="XiVO documentation tool chain, fév. 2012" /></p>
 </p>
   </div>
 </article>

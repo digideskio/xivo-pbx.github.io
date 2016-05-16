@@ -54,6 +54,109 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1512.html#sprint-review-1512">Sprint Review 15.12</a></h2>
+    <p>
+      Posted on Fri 03 July 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h3>New in this sprint</h3>
+<ul>
+<li><strong>XiVO Client</strong>: The people xlet allows you to bookmark your
+    contacts and list them. This also opens the way for personal
+    contacts to be available from anywhere.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>High Availability</strong>: The High Availability system now synchronizes
+    important files between servers. For example, IVR, custom sound
+    files and favorite contacts are preserved. During a failure,
+    telephony will be less affected while the main server is
+    being repaired.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>Function keys</strong>: Function keys are manageable via a <a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html" title="REST API">REST
+    API</a>.
+    This allows administrators to manage function keys more easily by
+    applying templates of function keys to a set of users. In the
+    future, this will also allow users to manage their own
+    function keys.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>REST API</strong>: We currently have REST APIs for 5 components of XiVO,
+    and now 2 of them (xivo-auth and xivo-dird) are protected with
+    encryption and authentication. They can be used directly without
+    requiring configuration. The other 3 are not exposed to the
+    outside world.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>XiVO Client</strong>: We also made small improvements to the XiVO Client:<ul>
+<li>The systray icon changed from the four letters (XiVO) to a
+    single X</li>
+<li>The list in the People xlet can be sorted by agent status</li>
+<li>New language available: Spanish (Chile)</li>
+</ul>
+</li>
+</ul>
+<h3>Work done in this sprint, but not yet ready</h3>
+<ul>
+<li><strong>Asterisk upgrade</strong>: Upgrade from Asterisk 11 to <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="Asterisk 13">Asterisk
+    13</a>.
+    In the long run, this will allow us to benefit from new features and
+    other improvements, e.g. better performance, more control over
+    queues and switchboards, correct undesirable behavior, create more
+    meaningful call logs, make Asterisk more scalable (multiple Asterisk
+    servers sharing the load of phone calls). The
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="ARI">ARI</a>
+    is a very interesting feature of Asterisk 13 which gives us a lot
+    more flexibility and allows us to add new features easily.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>CTI authentication</strong>: We mentioned in the previous sprint review
+    users being able to log in their XiVO Clients using
+    LDAP authentication. We are not there yet, but the bookmarked
+    contacts feature validated our authentication mechanism and it is a
+    step in the right direction.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li><strong>64-bit</strong>: XiVO is currently only supported on 32-bit architectures
+    (AKA i386 or x86), but we are working on supporting 64-bit
+    architectures (AKA amd64 or x86_64). An ISO for 64-bit in beta
+    version is <a href="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso" title="available for testing">available for
+    testing</a>.</li>
+</ul>
+<p>See you for the next sprint review.</p>
+<p>Source: <a href="http://projects.xivo.io/versions/228" title="15.12 Roadmap">15.12
+Roadmap</a></p>
+<p>Links:</p>
+<ul>
+<li>Function keys REST API:
+    <a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html" title="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/func_keys.html">http://documentation.xivo.io/en/lat...</a></li>
+<li>Asterisk 13 changelog:
+    <a href="https://wiki.asterisk.org/wiki/display/AST/New+in+13" title="https://wiki.asterisk.org/wiki/display/AST/New+in+13">https://wiki.asterisk.org/wiki/disp...</a></li>
+<li>ARI:
+    <a href="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573" title="https://wiki.asterisk.org/wiki/pages/viewpage.action?pageId=29395573">https://wiki.asterisk.org/wiki/page...</a></li>
+<li>64-bit ISO download:
+    <a href="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso" title="http://mirror.xivo.io/iso/xivo-latest-beta-amd64.iso">http://mirror.xivo.io/iso/xivo-late...</a></li>
+</ul>
+<p><img alt="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" src="/public/2015-07-XIVO-15-12-RELEASED-SHARE-IT.png" title="2015-07-XIVO-15-12-RELEASED-SHARE-IT.png, juil. 2015" /></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/june-2015-xivo-1511-release.html#june-2015-xivo-1511-release">June 2015, XiVO 15.11 release</a></h2>
     <p>
       Posted on Thu 25 June 2015 in <a href="http://blog.xivo.io/category/xivo-community.html">XiVO Community</a>
@@ -377,60 +480,6 @@ users on the server.</p>
 <p>See you for the next sprint review.</p>
 <p>Source:</p>
 <p><a href="http://projects.xivo.io/versions/227" title="15.11 Roadmap">15.11 Roadmap</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/authentication-in-xivo.html#authentication-in-xivo">Authentication in XiVO</a></h2>
-    <p>
-      Posted on Mon 25 May 2015 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/authentification.html">authentification</a>,      <a href="http://blog.xivo.io/tag/http.html">HTTP</a>,      <a href="http://blog.xivo.io/tag/consul.html">consul</a>,      <a href="http://blog.xivo.io/tag/directory.html">directory</a>    </p>
-  </header>
-  <div>
-      <p>In recent months we have been working on the new XiVO client which
-included amajor rework of the directory services in XiVO. A new daemon
-is born from thiswork, xivo-dird. One of the challenge of the new
-directory service is to allowusers to have access to their favorites and
-personal contacts from any device- the current implementation of
-personal contacts are stored locally and arelost in a context where
-users change seats.</p>
-<p>Bringing the personal information to xivo-dird means that some form
-ofauthentication is now required. The first step is to be able to use
-user'sCTI login and password and to evolve from there to add more
-flexibility.</p>
-<h3>Meet xivo-auth</h3>
-<p>xivo-auth is a new service that is going to be used as the single entry
-pointfor authentication in XiVO. The first step being the authentication
-in xivo-dird.Some of the requirements for xivo-auth is to be able to
-implement other forms ofauthentication. The plugin architecture used,
-similar to xivo-dird, will makethe development of new authentication
-source fast and easy. This mean that LDAPserver, CSV file, Facebook or
-Twitter authentication should and will be possibleto implement without
-having to modify xivo-auth.</p>
-<h3>The internals of xivo-auth</h3>
-<p>xivo-auth is a simple HTTP server that checks a username and
-passwordcombination (though other forms of authentication might appear)
-and delivers a tokenthat can be forwarded to other services that require
-authentication. Otherservices can validate that token and also forward
-it to other services on behalfof the user. Tokens and ACLs are generated
-and managed by <a href="https://consul.io" title="Consul">consul</a> which is alsoused
-for personal data storage.</p>
-<p>The following sequence diagram show the interaction when a user
-connectsto its XiVO client.</p>
-<p><img alt="login.png" src="/public/architecture/login_cti_via_xivo_auth.png" title="login.png, mai 2015" /></p>
-<p>After this step, xivo-ctid has a token with a limited lifetime for this
-user.</p>
-<p>When a logged-in user performs a lookup in its XiVO client, the user's
-token isforwarded to xivo-dird which can return the appropriate results
-for this user.</p>
-<p><img alt="lookup.png" src="/public/architecture/lookup_cti_via_dird_xivo_auth.png" title="lookup.png, mai 2015" /></p>
-<p>Stay tuned for more information as we implement xivo-auth and the
-firstauthentication plugins.</p>
-<p><em>* Images created with
-<a href="https://github.com/violetumleditor/violetumleditor" title="Violet">Violet</a></em></p>
 </p>
   </div>
 </article>

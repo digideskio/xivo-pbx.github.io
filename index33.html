@@ -54,6 +54,92 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44.html#creating-an-independant-xivo-debian-gnulinux-repository-from-scratch-part-44">Creating an independant XiVO Debian GNU/Linux repository from scratch (part 4/4)</a></h2>
+    <p>
+      Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <h4>Kernel modules support</h4>
+<p>In Debian GNU/Linux kernel modules are packaged as a <code>modulename-source</code>
+package which contains the source of the kernel module. When someone
+needs a given kernel module, it is customary to invoque the
+<a href="http://wiki.debian.org/ModuleAssistant">module-assistant</a> utility to
+compile the module from sources so that it matches the currently running
+kernel and install it on the fly. However, this operation requires the
+installation of a full fledged development environment and this is
+resource consuming. For this reason, XiVO chose to distribute binary
+packages for the most common kernel flavors :
+<code>2.6.26-2-486, 2.6.26-2-686-bigmem</code> and <code>2.6.26-2-686</code>.This logic does
+not match the existing package types (named ROLES) already implemented
+in packaging-farm (packages and meta-packages) and a new one was
+introduced : kernel-module. Here is a sample Makefile snippet used for
+<code>dahdi-linux</code>:</p>
+<div class="highlight"><pre><span></span>ROLE=kernel-module
+PACKAGE=dahdi-linux-modules
+MODULE=dahdi-linux-source
+DISTRIBUTIONS=lenny
+ARCHITECTURES=i386
+</pre></div>
+
+
+<p>The default <code>ROLE</code> is overriden to specify that module-assistant should
+be used against the designated <code>MODULE</code> (i.e. <code>dahdi-linux-source</code> which
+is a package created from the <code>dahdi-linux</code> source package). It will
+create a binary kernel module packages for the i386/lenny combination:</p>
+<div class="highlight"><pre><span></span>KVERS_i386_lenny=2.6.26-2-486 2.6.26-2-686-bigmem 2.6.26-2-686
+</pre></div>
+
+
+<p>The list is hardcoded in packaging-farm. The resulting packages can be
+found in their respective repositories for
+<a href="http://xivo.dachary.org/packaging-farm/misdn-kernel-modules/gnulinux/debian/i386/lenny/src/">misdn-kernel</a>,
+<a href="http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src/">dahdi-linux</a>
+and
+<a href="http://xivo.dachary.org/packaging-farm/sangoma-wanpipe-modules/gnulinux/debian/i386/lenny/src/">sangoma-wanpipe</a>.</p>
+<h4>reprepro support</h4>
+<p>Each package created with packaging-farm has its own standalone
+repository with indices created by
+<a href="http://www.debian.org/doc/manuals/repository-howto/repository-howto#id443712">dpkg-scanpackage</a>.
+They are conveniently used when packages depend on each other (see the
+implementation of package dependencies in a previous post) to ensure
+that the latest version is used. However, they fail to provide the
+automatic architecture multiplexing provided by
+<a href="http://wiki.debian.org/DakHowTo">dak</a> repositories. On i386 the
+following line is valid</p>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/i386/lenny/src</span> <span class="kp">./</span>
+</pre></div>
+
+
+<p>but it needs to be changed to (note the x86_64)</p>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian/x86_64/lenny/src</span> <span class="kp">./</span>
+</pre></div>
+
+
+<p>if the architecture is different. The
+<a href="http://mirrorer.alioth.debian.org/">reprepro</a> utility has been
+<a href="http://packaging-farm.dachary.org/packaging-farm/packaging-farm/lib/meta-package/reprepro.sh">added</a>
+as a new way to index the packages when building a <code>meta-package</code>. It
+creates a repository that is located higher in the packaging-farm
+directory hierachy (immediatly above the architecture/distribut/src
+part) and that could be used as follows:</p>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://xivo.dachary.org/packaging-farm/dahdi-linux-modules/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h4>Conclusion</h4>
+<p>This repository should now be a viable replacement for the official
+<a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">lenny-xivo-gallifrey-dev</a>.
+This concludes the series on building an independant repository for
+XiVO. The resulting tools and the repository itself certainly need to be
+polished but the serious issues (requiring more than a few hours to
+overcome) have been addressed.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/back-from-fosdem2011.html#back-from-fosdem2011">Back from FOSDEM2011</a></h2>
     <p>
       Posted on Tue 22 February 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -313,31 +399,6 @@ but it should run when the last dependency problems are resolved.</p>
 <p><img alt="sylvain_xivo.png" src="/public/.sylvain_xivo_m.jpg" title="sylvain_xivo.png, fév. 2011" /></p>
 <p>Special for you Bertrand ;)</p>
 <p><img alt="IMG_20110211_144454.jpg" src="/public/.IMG_20110211_144454_m.jpg" title="IMG_20110211_144454.jpg, fév. 2011" /></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/new-statistic-xivo-modules.html#new-statistic-xivo-modules">New statistic XiVO modules</a></h2>
-    <p>
-      Posted on Fri 11 February 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>I'm very proud to announce our <strong>new statistics module for XiVO</strong>.
-Please see a first screenshot of this module below :</p>
-<p><img alt="stats.png" src="/public/.stats_m.jpg" title="stats.png, fév. 2011" /></p>
-<p>As you can see, we have integrated a full statistic module for our next
-major version, Skaro. All existing statistics queues in Asterisk (GPLv3)
-are not really usable and not suitable for a call center. Our previous
-version is using Asternic with a lack of performances in the free
-software version and namely in terms if counters from our customers
-point of view.</p>
-<p>We are implementing a cache system to have real-time results and stats.
-The Asterisk queue CSV files can be importable within this module. In
-order to produce graphics, we are using the jqplot library that gives us
-very decent results.</p>
 </p>
   </div>
 </article>

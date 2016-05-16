@@ -54,6 +54,58 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/after-the-summer-an-active-start-for-xivo-open-hardware.html#after-the-summer-an-active-start-for-xivo-open-hardware">After the summer, an active start for XiVO Open Hardware !</a></h2>
+    <p>
+      Posted on Tue 13 September 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p>No doubt, XiVO Open Hardware creates much interest and Avencall teams
+will demonstrate the project in different events in the coming months.</p>
+<ul>
+<li>On September 15 th , we will be at Open Hardware Summit in New York,
+    THE worldwide event about Open Hardware. We are in the breakout
+    sessions with <a href="http://www.openhardwaresummit.org/breakouts/" title="Open Hardware Summit">"Open Hardware in Voice
+    Telecommunications"</a> .</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On September 17 th , we will be at Software Freedom Day in Montreal
+    for a talk at 1pm <a href="http://wiki.softwarefreedomday.org/2011/Canada/Montreal/SFD-ETS" title="Software Freedom Day">“Xivo: aller plus loin que le logiciel libre,
+    libérer le matériel aussi (VoIP,
+    Asterisk)”</a> .</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On September 22 nd , we will be at Open World Forum in Paris for a
+    track <a href="http://www.openworldforum.org/Conferences/The-OpenHardware-movement-The-community-is-moving-from-software-to-hardware" title="Open World Forum">“The OpenHardware movement - The community is moving from
+    software to
+    hardware”</a>.
+    The Open World Forum is the first Open Source Forum in Europe.</li>
+</ul>
+<!-- -->
+
+<ul>
+<li>On October, 26 th (10:00-10:35am), we will be at Astricon, the First
+    Asterisk User Conference in the world, for the track <a href="http://www.astricon.net/conferenceProgram.aspx" title="Astricon2011">"XiVO IPBX
+    OpenHardware: a full-open telephony solution for
+    SOHO"</a> .
+    This is a great opportunity to develop our XiVO Open
+    Hardware community.</li>
+</ul>
+<p>And don’t forget, from October 18-21, two tradeshows: <a href="http://www.ipconvergence.fr/" title="IP Convergence">IP
+Convergence</a> and <a href="/index.php?post/2011/07/29/AVENCALL-at-GIF-2011" title="IP Convergence">GIF
+2011</a>
+where we will make some demonstrations of XiVO Open Hardware.</p>
+<p>Come to visit us !</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-submission-configuration.html#xivo-submission-configuration">XiVO submission configuration</a></h2>
     <p>
       Posted on Mon 12 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -707,75 +759,6 @@ submit-xivo.sh (3:1.2\~20110704.194720.51b210e-1)</p>
 </blockquote>
 <p>hexanol updated the changelog entry for each software above to reflect
 the change in the convention, adding to epoch as necessary.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-packaging-verbosity-and-safeguards.html#xivo-packaging-verbosity-and-safeguards">XiVO packaging verbosity and safeguards</a></h2>
-    <p>
-      Posted on Mon 15 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>package versions</h4>
-<p>The XiVO package versions are automatically generated in part and follow
-the debian conventions as documented in the deb-version(1) manual page.
-The automatic numbering occurs in the submit-xivo.sh script as described
-below:</p>
-<div class="highlight"><pre><span></span>VERSIONS
-       The  XiVO source packages have no version information. The Debian GNU/Linux package version numbers are generated based on the date
-       of the last commit in the source directory (not the debian directory), the version of the third party source if any, the content of
-       the  VERSION  file  from  the  source  directory,  followed  by  the  value  of  the  VERSION_FLAVOR  variable  and its short hash.
-       V.V.V+X.X.X~YYYYMMDD.HHMMSS.HASH will be the version number of a package built from the third party source version  V.V.V  for  the
-       benefit  of  XiVO version X.X.X where the last commit in the sources was made on YYYYMMDD.HHMMSS. This last commit hash is appended
-       to the version number.  Example: asterisk-1.4.42+1.1.15~20110312.102015.8ff428-1
-
-       When merging a source with its matching Debian GNU/Linux package, the first line of the debian/changelog file must contain the com‐
-       puted version number. If it does not, a new changelog entry is used with the following template:
-              echo &quot;<span class="nv">$package</span> (<span class="cp">${</span><span class="n">version</span><span class="cp">}${</span><span class="n">debian_version</span><span class="cp">}</span>) <span class="nv">$component</span>; urgency=low&quot;
-              echo
-              echo &quot;  * upstream update&quot;
-              echo
-              echo -n &quot; -- <span class="nv">$DEBFULLNAME</span> <span class="err">&lt;</span><span class="nv">$DEBEMAIL</span>&gt;  &quot;
-              date &#39;+%a, %d %b %Y %R:%S %z&#39;
-              echo
-
-       The  handling  of  the versions for the packages that have no corresponding source such as pf-xivo or pf-xivo-backup is simpler and
-       relies on the version found in the VERSION file of the source directory only.
-</pre></div>
-
-
-<p>The XiVO developers were used to a tool that also incremented the Debian
-GNU/Linux version. It is no longer the case and instead of having a -0
-version number the developer is required to take care of the increment
-as any Debian GNU/Linux package would.This created a confusion that led
-to inconsistencies in the sequence of the package versions. Because the
-submit-xivo.sh script was unable to detect and properly report these
-inconsistencies, it created a situation that was very confusing.To avoid
-such troubles, a number of safeguards <a href="http://packaging-farm.dachary.org/trac/changeset/bd8626b5f1d43677f9d3ce5990fb4a545a1982e6">were
-implemented</a>
-to properly document the following mistakes:</p>
-<ul>
-<li>a changelog with a mismatched package name</li>
-<li>a missing version</li>
-<li>a native package (submit-xivo.sh requires non native packages)</li>
-<li>a package version that goes back in time</li>
-</ul>
-<h4>verbosity</h4>
-<p>The packaging-farm script is based on make(1) which is very verbose by
-default. The amount of information produced is useful for debugging but
-confusing to the developer. The default was <a href="http://packaging-farm.dachary.org/trac/changeset/5c7ce86716fc16c5ad58910f4c973b081b4a6280">set to
-quiet</a>
-and can be reverted to verbose as follows:</p>
-<div class="highlight"><pre><span></span>QUIET=&#39;&#39; packaging-farm target
-</pre></div>
-
-
-<p>This was not documented as it is only useful to debug packaging-farm
-itself.</p>
 </p>
   </div>
 </article>

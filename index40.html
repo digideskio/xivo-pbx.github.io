@@ -54,6 +54,44 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/prototype-pcb-for-the-isdn-and-fxofxs-interfaces.html#prototype-pcb-for-the-isdn-and-fxofxs-interfaces">Prototype PCB for the ISDN and FXO/FXS interfaces</a></h2>
+    <p>
+      Posted on Tue 04 May 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>As the XiVO IPBX OpenHardware project moves forward, we are now doing
+the prototyping of the different fonctionnal bloc of the PCB and namely
+the interaction between the CPU and the Telco interfaces (ISDN and
+FXO/FXS).In order to do a clean prototyping, it is usually adviced to
+use the different EVB (EValuationBoards) and SDK (Software Development
+Kits) supplied by the chip manufacturer (CPU, ISDN, FXO/FXS) and try to
+do the "proof-of-concept" of the hardware design connecting the
+different EVBs and use the SDKs provided to run the SPI and TDM buses
+(Master and Slaves) from the CPU.</p>
+<p>In our case, we made some intermediate PCBs that can make a clean
+connection between the CPU EVB and the ISDN and FXO/FXS interfaces. With
+the great help of Mehdi Khairy (that used to work with me on the
+OpenPattern project) using KiCAD to route the different PCBs (some
+bugfixes sent to the KiCAD bugtracker during the routing at
+https://bugs.launchpad.net/kicad).</p>
+<p>The ISDN connection from the CPU EVB to the ISDN EVB chip (XHFC-4SU - a
+4 T1 lines ISDN frame buffers on-chip from CologneChip) is done using
+the following PCB (XHFC-4SU-Protoboard) ;</p>
+<p><img alt="XHFC-4SU-Protoboard" src="/public/.XHFC-4SU_Protoboard_m.jpg" title="XHFC-4SU-Protoboard, mai 2010" /></p>
+<p>The FXO/FXS connection from the CPU EVB to the FXO/FXS EVB chip (VE890
+EVB from Zarlink implementing 2 FXS and 1 FXO) is done using the
+following PCB (Zarlink-VE890-Protoboard) ;</p>
+<p><img alt="Zarlink-VE890-Protoboard" src="/public/.Zarlink_VE890_Protoboard_m.jpg" title="Zarlink-VE890-Protoboard, mai 2010" /></p>
+<p>Next posts will be presenting the results and the signal obtained on the
+SPI and TDM buses from a Digital Oscilloscope and from a Logic Analyzer
+(like the saleae one),</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/connecting-a-telephony-chip.html#connecting-a-telephony-chip">Connecting a telephony chip</a></h2>
     <p>
       Posted on Tue 27 April 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -377,120 +415,6 @@ targeting.</p>
 <p>Finally, we will presenting soon the work done on the potential
 OpenHardware licence that we want to use based on a mixed between
 trademarks and CreativeCommons licences.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html#opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2">Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</a></h2>
-    <p>
-      Posted on Thu 25 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>Following the previous posts about the "open" bootloaders available to
-improve and implement advanced features at the boot of your SoC/CPU, we
-are, in this post, considering Barebox (formely known as u-boot v2) as
-another open bootloader. Barebox aims at giving the developer and
-embedded users the best of u-boot (space, easy-to-flash, handy tools)
-and the best of the Linux kernel (Kconfig, Kbuild, standards C API,
-building methods identical to the kernel with ARCH/CROSS primitives...).</p>
-<p>The latest documentation for barebox can be found here <a href="2" title="2">2</a> and
-lists the different key features of barebox that can listed as followed:</p>
-<ul>
-<li><strong>A posix based file API</strong>: inside barebox the usual
-    open/close/read/write/lseek functions are used. This makes it
-    familiar to everyone who has programmed under unix systems.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Usual shell commands</strong> like ls/cd/mkdir/echo/cat,...</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>The environment is a file store</strong>. It has currently some
-    limitations, of course. The environment is not a real read/write
-    filesystem, it is more like a tar archive, or even more like an ar
-    archive, because it cannot handle directories. The saveenv command
-    saves the files under a certain directory (by default /env) in
-    persistent storage (by default /dev/env0). There is a counterpart
-    called loadenv, too.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Real filesystem support</strong>: The loader starts up with mounting a
-    ramdisk on /. Then a devfs is mounted on /dev allowing the user (or
-    shell commands) to access devices. Apart from these two filesystems
-    there is currently one filesystem ported: cramfs. One can mount it
-    with the usual mount command.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Device/driver model</strong>: Devices are no longer described by defines
-    in the config file. Instead there are devices which can be
-    registered in the board .c file or dynamically allocated. Drivers
-    will match upon the devices automatically.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Clocksource support</strong>: Timekeeping has been simplified by the use
-    of the Linux clocksource API. Only one function is needed for a new
-    board, no <a href="gs" title="gs">gs</a>et_timer<a href="masked" title="masked">masked</a>() or
-    reset_timer<a href="masked" title="masked">masked</a>() functions.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Kconfig and Kernel build system</strong>: Only targets which are really
-    needed get recompiled. Parallel builds are no problem anymore. This
-    also removes the need for many many ifdefs in the code.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Simulation target</strong>: barebox can be compiled to run under Linux.
-    While this is rather useless in real world this is a great debugging
-    and development aid. New features can be easily developped and
-    tested on long train journeys and started under gdb. There is a
-    console driver for linux which emulates a serial device and a tap
-    based ethernet driver. Linux files can be mapped to devices under
-    barebox to emulate storage devices.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Device parameter support</strong>: Each device can have a unlimited
-    number of parameters. They can be accessed on the command line with
-    &lt;devid&gt;.&lt;param&gt;="...", for example 'eth0.ip=192.168.0.7'
-    or 'echo \$eth0.ip'</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Initcalls</strong>: Hooks in the startup process can be archieved
-    with *_initcall() directives in each file.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li><strong>Getopt</strong>: There is a small getopt implementation. Some commands
-    got really complicated (both in code and in usage) due to the fact
-    that U-Boot only allowed positional parameters.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Editor: Scripts can be edited with a small editor.</li>
-</ul>
-<p>Barebox is under GPLv2 licence.</p>
-<p><a href="1" title="1">1</a> : http://barebox.org/<a href="2" title="2">2</a> :
-http://barebox.org/documentation/barebox-2010.03.0/</p>
 </p>
   </div>
 </article>

@@ -14,6 +14,23 @@
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2"&gt;XiVO 16.05 Upgrade notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://projects.xivo.io/versions/241"&gt;XiVO 16.05 Roadmap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.06</title><link href="http://blog.xivo.io/sprint-review-1606.html" rel="alternate"></link><published>2016-04-20T00:00:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-04-20:sprint-review-1606.html</id><summary type="html">&lt;p&gt;Hello XiVO community! Here comes the release of XiVO 16.06!&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Installation Wizard&lt;/strong&gt;: The wizard is the little assistant that allows administrators to setup the XiVO server. The wizard is a very important part of XiVO, since it's the mandatory way to finalize the installation of XiVO. We have released a new API allowing to setup XiVO automatically, without the need of the XiVO web interface. Also a number of bugs related to the wizard were fixed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: Thanks to the XiVO community (thank you Julien Revert), the deployment of the XiVO Client for Windows on multiple machines is easier in 16.06. This facilitates upgrading the version of XiVO and the XiVO Client together.&lt;/p&gt;
+&lt;h2&gt;Technical Features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Polycom phones:&lt;/strong&gt; The plugin for Polycom phones has been upgraded to version 5.4.3 of the firmware. Also, two new models are supported: VVX101 and VVX201.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Personal contacts&lt;/strong&gt;: The import of personal contacts has been improved: there were some performance issues that are fixed in 16.06, and there can not be any more duplicated personal contacts.&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Call Transfers&lt;/strong&gt;: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Entity management&lt;/strong&gt;: Entities are used to manage multiple groups of users on the same XiVO server, but each group can't see the other. This is useful for example when managing multiple departments of the same big company, but each department has its own telephony administrator, and each administrator should only see the users of their own department. This feature was until now exclusive to the web interface, but we are working on making this feature manageable through a REST API. Be aware that this is a long-term job, because entities apply to every single configuration object in XiVO. As with other REST APIs, this will allow creating different graphical interfaces for managing XiVO, as well as automating this management.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;See you at the next sprint review!&lt;/p&gt;
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes"&gt;Upgrade notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/versions/242"&gt;XiVO 16.06 Roadmap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html"&gt;REST API Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.04</title><link href="http://blog.xivo.io/sprint-review-1604.html" rel="alternate"></link><published>2016-04-04T00:00:00-04:00</published><author><name>gsanderson</name></author><id>tag:blog.xivo.io,2016-04-04:sprint-review-1604.html</id><summary type="html">&lt;p&gt;Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Fax&lt;/strong&gt;: The Fax system in XiVO has been improved, thanks to the XiVO community (thank you Julien Revert). Fax files can be

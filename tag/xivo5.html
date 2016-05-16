@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://blog.xivo.io"/>
 <meta property="og:image" content="public/xivo-logo.png">
-  <title>XiVO Blog</title>
+  <title>XiVO Blog &ndash; Tag: XiVO</title>
 </head>
 <body>
   <aside>
@@ -54,96 +54,43 @@
 
 <article>
   <header>
-    <h2><a href="http://blog.xivo.io/hardware-specifications-10-of-the-xivo-appliance.html#hardware-specifications-10-of-the-xivo-appliance">Hardware specifications 1.0 of the XiVO appliance</a></h2>
+    <h2><a href="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html#some-more-internationalization-in-xivo-part-1">Some more internationalization in XiVO (part 1)</a></h2>
     <p>
-      Posted on Mon 25 January 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
+      Posted on Fri 09 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/i18n.html">i18n</a>    </p>
   </header>
   <div>
-      <p>The goal of the XiVO OpenHardware project is to to develop a open-specs,
-open-docs appliance from the design of the hardware project to the CAD
-files and production files underneath the project. The target of this
-appliance is a small IPBX appliance ideal for SOHO requirements in terms
-of IP-phone lines as well as analog connectivity for fax/analog lines.</p>
-<p>The following bloc diagram expresses the different features targetted on
-the XiVO OpenHardware project to allow the appliance to interact with 4
-PSTN T0 lines, analog FXO and FXS interfaces as well as usual IP
-networks connectivities, storage interfaces and configuration/debugging
-interfaces.</p>
-<p><img alt="XiVO Hardware
-specificatons" src="/public/.XiVO_Appliance_Hardware_Specifications_m.jpg" title="XiVO Hardware specificatons, janv. 2010" /></p>
-<ul>
-<li>The CPU is purposely chosen with a x86 architecture to allow a
-    smooth porting from the existing XiVO framework into the hardware.
-    The BSP is a debian-based Linux and will be easily into this
-    CPU architecture. The CPU will probably behaves as a SoC
-    intregrating the different controllers for the peripherals. RAM will
-    be connected</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>ISDN Lines: 4 T0 lines which allows 8 simultaneous communications.
-    These interfaces will be controlled by a ISDN chip connected to the
-    CPU (SPI/TDM interfaces)</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Analog phone lines: The appliance is supposed to interact with
-    existing PABX and to act as a PABX for the local phones on the
-    SOHO network. The FXS (Foreign eXchange Subscriber) interface will
-    allow the IPBX to connect to PSTN lines as a subscriber for
-    analog/fax needs. The FXO (Foreign eXchange Office) interface will
-    allow the IPBX to act as an analog PBX to connect local analog
-    phones to the IPBX and allows a SOHO phone environment mixed between
-    IP-phones and analog phones.</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>IP Network: The XiVO IPBX will have 2 100baseT Ethernet interfaces
-    for WAN/LAN IP connectivity</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Storage: The XiVO IPBX will have external SD, internal HDD storage
-    for the BSP config files as well as for the logs, firewall rules...</li>
-</ul>
-<!-- -->
-
-<ul>
-<li>Debugging/Configuration: The XiVO IPBX will have a USB interface
-    (USB host) allowing the connexion of external devices. Also for
-    debugging and output console, the XiVO IPBX will have a RS232
-    external serial interface as well as on-PCB console ports on
-    the CPU.</li>
-</ul>
-<p>Next steps: prototyping of the different bloc diagram connected to the
-EVB (EValuation Board) of the CPU based on the XiVO framework.</p>
-</p>
+      <p>We recently had a few bugs in XiVO about non-ASCII characters, mainly
+accented character, as we love them in French. We fixed the bugs, but
+there will certainly be more. We then decided to push the test a little
+further and try to flood a few data pipes with non-european ...</p>
+      <a class="btn" href="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html#some-more-internationalization-in-xivo-part-1">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="http://blog.xivo.io/blog-of-the-openhardware-xivo-ipbx-project.html#blog-of-the-openhardware-xivo-ipbx-project">Blog of the OpenHardware XiVO IPBX Project</a></h2>
+    <h2><a href="http://blog.xivo.io/xivo-from-2007-until-now-with-gource.html#xivo-from-2007-until-now-with-gource">XiVO from 2007 until now with Gource</a></h2>
     <p>
-      Posted on Thu 14 January 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
+      Posted on Fri 06 May 2011 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/gource.html">gource</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>    </p>
   </header>
   <div>
-      <p>This blog is dedicated to the XiVO IPBX OpenHardware project and will be
-displaying the different steps of the project as well as the results,
-prototyping and feedbacks from each step.</p>
-<p>Xavier Carcelle.</p>
+      <p><em>5 years of development, 24 contributors, 7824 commits, 195k lines of
+code.</em><br />
+History of Xivo in 2'30 minutes, done with Gource.</p>
+<iframe width="425" height="349" src="http://www.youtube.com/embed/g0jI9A53BoM" frameborder="0" allowfullscreen>
+</iframe>
+
 </p>
+      <a class="btn" href="http://blog.xivo.io/xivo-from-2007-until-now-with-gource.html#xivo-from-2007-until-now-with-gource">Continue reading</a>
   </div>
 </article>
 
   <div class="pagination">
-      <a class="btn float-right" href="http://blog.xivo.io/index41.html">
+      <a class="btn float-right" href="http://blog.xivo.io/tag/xivo4.html">
         Newer Posts <i class="fa fa-angle-right"></i>
       </a>
   </div>
