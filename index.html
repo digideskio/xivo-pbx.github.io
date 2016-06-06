@@ -54,6 +54,32 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1607.html#sprint-review-1607">Sprint Review 16.07</a></h2>
+    <p>
+      Posted on Mon 06 June 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Hello XiVO community! Here comes the release of XiVO 16.07!</p>
+<h2>New features in this sprint</h2>
+<p><strong>Asterisk</strong>: Asterisk has been updated to version 13.9.1</p>
+<h2>Community contributions</h2>
+<p><strong>Tutorials</strong>: Many thanks for Ward Mundy from <a href="http://nerdvittles.com?p=18468">Nerd Vittles</a> for creating many new tutorials for XiVO.</p>
+<h2>Ongoing features</h2>
+<p><strong>Call Transfers</strong>: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers. In this iteration we started working on a version of the CTI server that uses this new API for all XiVO Client transfers.</p>
+<hr />
+<p>See you at the next sprint review!</p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes">Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/243">XiVO 16.07 Roadmap</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1606.html#sprint-review-1606">Sprint Review 16.06</a></h2>
     <p>
       Posted on Mon 16 May 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -202,38 +228,6 @@ parties more flexibility when developing applications that manage a user's servi
 <li><a href="http://projects.xivo.io/versions/239">XiVO 16.03 Roadmap</a></li>
 <li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
 <li><a href="http://projects.xivo.io/boards/8/topics/5048">Discussion on LDAP (fr)</a></li>
-</ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1602.html#sprint-review-1602">Sprint Review 16.02</a></h2>
-    <p>
-      Posted on Fri 19 February 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Hello,</p>
-<h2>New features in this sprint</h2>
-<p><strong>Users import</strong>: The CSV import of users now supports setting the call permissions for each user. Call permissions define which restriction are put on users regarding which numbers they can dial.</p>
-<p><strong>XiVO Client</strong>: All communications between the CTI server and the XiVO Clients will now be encrypted by default.</p>
-<p><strong>LDAP authentication</strong>: The LDAP authentication mechanisms now uses the new user field for email address, and is not considered experimental anymore. However, it only supports simple LDAP hierarchies, and we are going to improve it to be more flexible.</p>
-<h2>Technical Features</h2>
-<p><strong>Asterisk upgrade</strong>: Asterisk has been upgraded from version 13.7.0 to 13.7.2</p>
-<h2>Ongoing features</h2>
-<p><strong>Security</strong>: We are extending the permission system to all REST APIs. This will allow a finer grained access to the REST APIs and reduce the chances of accidentally breaking the rest of the system. For example, users will be able to modify their function keys, without having access to the function keys of other users.</p>
-<p><strong>REST API</strong>: We are working on a new REST API for associating devices with SIP or SCCP accounts.</p>
-<p><strong>Web applications</strong>: We are working towards making Web applications connected to XiVO possible. The two things it needs is REST APIs, which are growing more useful, and events, which will be provided via Websockets, introduced in this sprint. A good example of a Web application is a switchboard application, where the operator may answer, hold and transfer calls from his browser, effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full Web switchboard environment.</p>
-<p><strong>Switchboard</strong>: We are changing the internals of the Switchboard feature so that we can control more precisely how calls are answered, transferred, etc.</p>
-<hr />
-<p>See you at the next sprint review.</p>
-<p>Sources:</p>
-<ul>
-<li><a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2">XiVO 16.02 Upgrade notes</a></li>
-<li><a href="http://projects.xivo.io/versions/238">XiVO 16.02 Roadmap</a></li>
-<li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
 </ul>
   </div>
 </article>

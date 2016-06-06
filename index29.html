@@ -54,6 +54,218 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/testing-a-xivo-gallifrey-repository-22.html#testing-a-xivo-gallifrey-repository-22">Testing a XiVO gallifrey repository (2/2)</a></h2>
+    <p>
+      Posted on Mon 16 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>SVN keyword substitution bug fix</h4>
+<p>In some of the installed software (ctiservers) the SVN keywords are used
+to extract the software version number:</p>
+<div class="highlight"><pre><span></span><span class="x">__version__ = &quot;</span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x">&quot;</span>
+</pre></div>
+
+
+<p>However, since the binaries have been built from a git repository with a
+different naming scheme, thisno longer works. Corentin Le Gall fixed the
+problem immediately in the internal SVN repository</p>
+<div class="highlight"><pre><span></span>------------------------------------------------------------------------
+r10824 | kaou | 2011-05-16 11:08:49 +0200 (Mon, 16 May 2011) | 1 line
+[bugfix] remove svn-dependent stuff because of git migration
+------------------------------------------------------------------------
+</pre></div>
+
+
+<p>The <a href="http://git.xivo.fr/xivo-gallifrey.git/">git repository</a> was
+supposed to be updated by a cron job, but it crashed May 9th and was
+restarted May 16th by Romain Bignon:</p>
+<div class="highlight"><pre><span></span><span class="n">commit</span> <span class="n">a9f7ebff1a4db73184809a1696eb3b03b82b00f5</span>
+<span class="nl">Author</span><span class="p">:</span> <span class="n">Corentin</span> <span class="n">Le</span> <span class="n">Gall</span> <span class="o">&lt;</span><span class="n">clegall</span><span class="p">@</span><span class="n">proformatique</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span>
+<span class="nl">Date</span><span class="p">:</span>   <span class="n">Mon</span> <span class="n">May</span> <span class="mi">16</span> <span class="mi">09</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">47</span> <span class="mi">2011</span> <span class="o">+</span><span class="mo">0000</span>
+
+    <span class="n">remove</span> <span class="n">svn</span><span class="o">-</span><span class="n">dependent</span> <span class="n">stuff</span> <span class="n">because</span> <span class="n">of</span> <span class="n">git</span> <span class="n">migration</span>
+
+    <span class="n">git</span><span class="o">-</span><span class="n">svn</span><span class="o">-</span><span class="kt">id</span><span class="o">:</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//rcs.lan.proformatique.com/svn/xivo/branches/official/1.1-gallifrey@10825 dc85baef-7018-0410-bfbd-8a639da648bb</span>
+</pre></div>
+
+
+<p>After the git pull, the logs showed that some packages were modified.
+They were submitted to the farm:</p>
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=ctiservers submit
+packaging-farm DIRECTORY=asterisk submit
+packaging-farm DIRECTORY=agid submit
+packaging-farm DIRECTORY=lib-python submit
+</pre></div>
+
+
+<p>and a rebuild of gallifrey was requested.</p>
+<div class="highlight"><pre><span></span>packaging-farm gallifrey
+</pre></div>
+
+
+<h4>collecting symbolic links</h4>
+<p>A few packages contain symbolic links that point outside of their
+directory:</p>
+<div class="highlight"><pre><span></span>gwr.py -&gt; ../tools/gwr.py
+</pre></div>
+
+
+<p>When building the source package by assembling the debian directory and
+the sourcedirectory, the actual file must be put in the archive instead
+of the symbolic link.</p>
+<div class="highlight"><pre><span></span><span class="x">for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ; </span>
+<span class="x">  do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
+<span class="x">done</span>
+</pre></div>
+
+
+<p>The RSYNC_OPTIONS variable already existed in the <em>submit-xivo.sh</em>
+script but was not documented. A chapterwas added to the manual page:</p>
+<div class="highlight"><pre><span></span><span class="x">RSYNC_OPTIONS=</span>
+<span class="x">              Before  the debian directory is assembled with the source direc-</span>
+<span class="x">              tory, a  copy  is  made  using  rsync(1).  The  content  of  the</span>
+<span class="x">              RSYNC_OPTIONS  variable  is  given in argument to the rsync com-</span>
+<span class="x">              mand. For instance it may be used to collect the actual  content</span>
+<span class="x">              of symbolic links pointing outside of the source directory.</span>
+<span class="x">              for dir in app_nv_faxdetect app_fax ami_aoriginate module_xivo res_config_sqlite ;</span>
+<span class="x">                do RSYNC_OPTIONS=--copy-unsafe-links packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ;</span>
+<span class="x">              done</span>
+</pre></div>
+
+
+<p>Before installing <em>pf-xivo</em> it was necessary to install the
+<em>dahdi-linux</em> kernel module.</p>
+<div class="highlight"><pre><span></span>apt-get install dahdi-linux-modules-2.6.26-2-686 
+apt-get install pf-xivo
+</pre></div>
+
+
+<p>It was then possible to connect to the XiVO web interface:<img alt="alternate
+XiVO" src="/public/.Screenshot-5_m.jpg" title="alternate XiVO, May 2011" /></p>
+<h4>gallifrey reference</h4>
+<p>ganeti instanceA new host is declared in the local DNS</p>
+<div class="highlight"><pre><span></span><span class="x">root@host01:/etc/bind</span><span class="err">#</span><span class="x"> git diff .</span>
+<span class="x">diff --git a/bind/db.10.10 b/bind/db.10.10</span>
+<span class="x">index 684d569..ea30300 100644</span>
+<span class="x">--- a/bind/db.10.10</span>
+<span class="x">+++ b/bind/db.10.10</span>
+<span class="x">@@ -4,7 +4,7 @@</span>
+<span class="x"> ;</span>
+<span class="x"> </span><span class="p">$</span><span class="nv">TTL</span><span class="x">    604800</span>
+<span class="x"> @       IN      SOA     localhost. root.localhost. (</span>
+<span class="x">-        2011041800      ; serial</span>
+<span class="x">+        2011051601      ; serial</span>
+<span class="x">                          604800         ; Refresh</span>
+<span class="x">                           86400         ; Retry</span>
+<span class="x">                         2419200         ; Expire</span>
+<span class="x">@@ -14,6 +14,9 @@ </span><span class="p">$</span><span class="nv">TTL</span><span class="x">    604800</span>
+<span class="x"> ;;</span>
+<span class="x"> ;; perl -n -e &#39;print if(s/(\S+)\s+IN\s+A\s+10\.10\.(\d+)\.(\d+)/\3.\2\tIN\tPTR\t\1.farm./)&#39; &lt; db.farm</span>
+<span class="x"> ;;</span>
+<span class="x"> 1.60   IN      PTR     dev.dachary.vm.farm.</span>
+<span class="x"> 2.60   IN      PTR     skaro.xivo.vm.farm.</span>
+<span class="x"> 3.60   IN      PTR     gallifrey.xivo.vm.farm.</span>
+<span class="x">+4.60   IN      PTR     gallifrey-test1.xivo.vm.farm.</span>
+<span class="x">diff --git a/bind/db.farm b/bind/db.farm</span>
+<span class="x">index 60da05a..2e4c669 100644</span>
+<span class="x">--- a/bind/db.farm</span>
+<span class="x">+++ b/bind/db.farm</span>
+<span class="x">@@ -4,7 +4,7 @@ </span><span class="p">$</span><span class="nv">TTL</span><span class="x"> 1h ; default Time-to-Live. defines the duration that the record may be cach</span>
+
+<span class="x"> </span><span class="p">$</span><span class="nv">ORIGIN</span><span class="x"> farm.</span>
+<span class="x"> @                       IN      SOA             ns hostmaster (</span>
+<span class="x">-                        2011041800      ; serial</span>
+<span class="x">+                        2011051601      ; serial</span>
+<span class="x">                                 1h              ; refresh - time when the slave will try to refresh the zone from the mast</span>
+<span class="x">                                 30m             ; update retry - time between retries if the slave (secondary) (2h)</span>
+<span class="x">                                                 ; fails to contact the master when refresh (above) has expired.</span>
+<span class="x">@@ -22,3 +22,4 @@ host01                IN      A       10.10.59.10</span>
+<span class="x"> dev.dachary.vm         IN      A       10.10.60.1</span>
+<span class="x"> skaro.xivo.vm          IN      A       10.10.60.2</span>
+<span class="x"> gallifrey.xivo.vm      IN      A       10.10.60.3</span>
+<span class="x">+gallifrey-test1.xivo.vm        IN      A       10.10.60.4</span>
+</pre></div>
+
+
+<p>An entry is allocated in the DHCP server, configured with a server to be
+used for network boot.</p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/bind/db.farm b/bind/db.farm</span>
+<span class="gh">index 60da05a..2e4c669 100644</span>
+<span class="gd">--- a/bind/db.farm</span>
+<span class="gi">+++ b/bind/db.farm</span>
+<span class="gu">@@ -4,7 +4,7 @@ $TTL 1h ; default Time-to-Live. defines the duration that the record may be cach</span>
+
+ $ORIGIN farm.
+ @                       IN      SOA             ns hostmaster (
+<span class="gd">-                        2011041800      ; serial</span>
+<span class="gi">+                        2011051601      ; serial</span>
+                                 1h              ; refresh - time when the slave will try to refresh the zone from the mast
+                                 30m             ; update retry - time between retries if the slave (secondary) (2h)
+                                                 ; fails to contact the master when refresh (above) has expired.
+<span class="gu">@@ -22,3 +22,4 @@ host01                IN      A       10.10.59.10</span>
+ dev.dachary.vm         IN      A       10.10.60.1
+ skaro.xivo.vm          IN      A       10.10.60.2
+ gallifrey.xivo.vm      IN      A       10.10.60.3
+<span class="gi">+gallifrey-test1.xivo.vm        IN      A       10.10.60.4</span>
+</pre></div>
+
+
+<p>A ganeti based virtual machine is created with a VNC port enabled:</p>
+<div class="highlight"><pre><span></span>gnt-instance add -d -t plain -s 5G -B memory=512M,vcpus=1 \
+   -H kvm:boot_order=network,vnc_bind_address=0.0.0.0 -n host01.farm \
+   -o debootstrap+default --net 0:mac=52:54:24:1e:63:28 \
+   gallifrey-test1.xivo.vm.farm
+</pre></div>
+
+
+<p>At boot time the menu options <em>Production</em> and <em>Gallifrey</em> are
+selected.The firewall was reconfigured to accept HTTPS connections
+because it is the default when connecting to thevirtual machine with a
+browser (it gets redirected when trying with HTTP):</p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/shorewall/rules b/shorewall/rules</span>
+<span class="gh">index 3a7ea65..da38d67 100644</span>
+<span class="gd">--- a/shorewall/rules</span>
+<span class="gi">+++ b/shorewall/rules</span>
+<span class="gu">@@ -39,6 +39,7 @@ ACCEPT                $FW             net             icmp</span>
+
+ SSH(ACCEPT)    net             $FW
+ HTTP(ACCEPT)   net             $FW
+<span class="gi">+HTTPS(ACCEPT)  net             $FW</span>
+ # VNC ganeti
+ ACCEPT         net             $FW             tcp     11000:11010
+ # VNC libvirt
+</pre></div>
+
+
+<p>The nginx reverse proxy was configured to proxy SSL requests, after
+generating a certificateaccording to <a href="http://wiki.nginx.org/HttpSslModule">the SSL
+module</a> instructions:</p>
+<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
+ <span class="n">ssl</span> <span class="n">on</span><span class="p">;</span>
+ <span class="n">listen</span> <span class="m">443</span><span class="p">;</span>
+ <span class="n">server_name</span> <span class="n">gallifrey</span><span class="o">-</span><span class="n">test1</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="p">;</span>
+ <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">gallifrey</span><span class="o">.</span><span class="n">dachary</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+ <span class="n">ssl_certificate</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">crt</span><span class="p">;</span>
+ <span class="n">ssl_certificate_key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">key</span><span class="p">;</span>
+
+ <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+  <span class="n">proxy_pass</span> <span class="n">https</span><span class="o">://</span><span class="n">gallifrey</span><span class="o">-</span><span class="n">test1</span><span class="o">.</span><span class="n">xivo</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">farm</span><span class="o">:</span><span class="m">443</span><span class="p">;</span>
+<span class="err">#</span>  <span class="n">proxy_set_header</span> <span class="n">Host</span> <span class="err">$</span><span class="n">host</span><span class="p">;</span>       
+ <span class="p">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>And the <a href="https://gallifrey-test1.dachary.org/">XiVO web interface</a> could
+be displayed.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/glimpse-of-cti-architecture-in-xivo-11-and-12.html#glimpse-of-cti-architecture-in-xivo-11-and-12">Glimpse of CTI architecture in XiVO 1.1 and 1.2</a></h2>
     <p>
       Posted on Fri 13 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -624,154 +836,6 @@ SIGN_debian=
 #SIGN_WITH=SignWith: yes
 SIGN_WITH=
 #
-</pre></div>
-
-
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/an-alternate-xivo-gallifrey-repository-part-22.html#an-alternate-xivo-gallifrey-repository-part-22">An alternate XiVO gallifrey repository (part 2/2)</a></h2>
-    <p>
-      Posted on Wed 27 April 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <h4>composing gallifrey</h4>
-<p>The gallifrey repository is made of packages built from the GIT
-repositories, some extracted from the official repository because they
-are not under GIT and others built for the occasion (kernel-modules and
-meta-packages). The source of each package is documented in
-<strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> which is the
-meta-package that depends on all the others:</p>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> Submitted from the GIT repositories</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> for dir in asterisk dahdi-linux asterisk-sounds-gsm-de-de asterisk-sounds-wav-en-us asterisk-sounds-wav-es-es asterisk-sounds-wav-fr-ca \</span>
-<span class="err">#</span><span class="x">       prompts-xivo prompts asternic-stats agid base-config ctiservers ctiwebclient extra fetchfw \</span>
-<span class="err">#</span><span class="x">       lib-python provisioning queues-logger sysconfd utils web-interface ; do packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> Retrieved from dak.proformatique.com because they are not yet in the GIT repositories</span>
-<span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
-<span class="err">#</span><span class="x"> for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user \</span>
-<span class="err">#</span><span class="x">                sangoma-wanpipe spandsp pf-xivo pf-xivo-backup  ; \</span>
-<span class="err">#</span><span class="x">                do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> ) ; done</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> Hand made packages</span>
-<span class="err">#</span><span class="x"></span>
-<span class="err">#</span><span class="x"> gallifrey</span>
-<span class="err">#</span><span class="x"> dahdi-linux-modules</span>
-<span class="err">#</span><span class="x"> sangoma-wanpipe-modules</span>
-<span class="err">#</span><span class="x"> misdn-kernel-modules</span>
-<span class="err">#</span><span class="x"></span>
-</pre></div>
-
-
-<p>The hand made packages (i.e. Makefiles) can be retrieved from their
-respective repositories:</p>
-<ul>
-<li>http://gallifrey.dachary.org/packaging-farm/gallifrey/Makefile</li>
-<li>http://gallifrey.dachary.org/packaging-farm/dahdi-linux-modules/Makefile</li>
-<li>http://gallifrey.dachary.org/packaging-farm/misdn-kernel-modules/Makefile</li>
-<li>http://gallifrey.dachary.org/packaging-farm/sangoma-wanpipe-modules/Makefile</li>
-</ul>
-<p>Mirroring the http://gallifrey.dachary.org/packaging-farm/ directory is
-enough to get all the information required to re-install a
-packaging-farm from scratch.</p>
-<h4>comparing repositories</h4>
-<p>In order to make sure that the new <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian/">gallifrey
-repository</a>
-does not deviate from the <a href="http://dak.proformatique.com/debian/dists/lenny-xivo-gallifrey-dev/">existing
-dak</a>,
-the packages it contains were extracted from sources and compared.</p>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> deb-src http://dak.proformatique.com/debian/ lenny-xivo-gallifrey-dev main</span>
-<span class="x">dak:</span>
-<span class="x">        mkdir -p dak</span>
-<span class="x">        apt-get update</span>
-<span class="x">        cd dak ; awk &#39;/^Package/</span><span class="err">{</span><span class="x">print </span><span class="p">$$</span><span class="x">2}&#39; /var/lib/apt/lists/dak.proformatique.com_debian_dists_lenny-xivo-gallifrey-dev_main_source_Sources | \</span>
-<span class="x">        while read package ; do ( rm -fr </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ) ; done</span>
-
-<span class="x">farm:</span>
-<span class="x">        rm -fr farm ; mkdir -p farm</span>
-<span class="x">        cd farm ; for package in `ls /var/lib/packaging-farm` ; do \</span>
-<span class="x">                if [ -f &quot;`echo /var/lib/packaging-farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/gnulinux/debian/i386/lenny/src/*.dsc`&quot; ] ; then \</span>
-<span class="x">                        ( \</span>
-<span class="x">                                mkdir </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$$</span><span class="nv">package</span><span class="x"> ; \</span>
-<span class="x">                                dpkg-source -x /var/lib/packaging-farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/gnulinux/debian/i386/lenny/src/*.dsc ; \</span>
-<span class="x">                        ) \</span>
-<span class="x">                fi ; \</span>
-<span class="x">        done</span>
-
-<span class="x">diff:</span>
-<span class="x">        cd farm ; for package in * ; do \</span>
-<span class="x">                if [ -d ../dak/</span><span class="p">$$</span><span class="nv">package</span><span class="x"> ] ; then \</span>
-<span class="x">                        farm_dir=`find </span><span class="p">$$</span><span class="nv">package</span><span class="x">/* -maxdepth 0 -type d` ; \</span>
-<span class="x">                        dak_dir=`find ../dak/</span><span class="p">$$</span><span class="nv">package</span><span class="x">/* -maxdepth 0 -type d` ; \</span>
-<span class="x">                        diff -ur </span><span class="p">$$</span><span class="nv">dak_dir</span><span class="x"> </span><span class="p">$$</span><span class="nv">farm_dir</span><span class="x"> ; \</span>
-<span class="x">                else \</span>
-<span class="x">                        echo </span><span class="p">$$</span><span class="nv">package</span><span class="x"> not in dak ; \</span>
-<span class="x">                fi ; \</span>
-<span class="x">        done &gt; /var/www/diff/diff-`date +%Y-%m-%d`.txt</span>
-<span class="x">        cd dak ; for package in * ; do \</span>
-<span class="x">                if [ ! -d ../farm/</span><span class="p">$$</span><span class="nv">package</span><span class="x"> ] ; then \</span>
-<span class="x">                        echo </span><span class="p">$$</span><span class="nv">package</span><span class="x"> not in farm ; \</span>
-<span class="x">                fi ; \</span>
-<span class="x">        done &gt;&gt; /var/www/diff/diff-`date +%Y-%m-%d`.txt</span>
-
-<span class="x">.PHONY: dak farm</span>
-</pre></div>
-
-
-<p>The result is <a href="http://gallifrey.dachary.org/diff/">archived with a
-timestamp</a>.According to Nicolas
-Hicher, the numerous SVN tag substitutions that are missing because of
-the migration to GIT will be harmless:</p>
-<div class="highlight"><pre><span></span><span class="x">pf_magic_pickupmark</span>
-<span class="x">-       </span><span class="p">$</span><span class="nv">Revision</span><span class="x">: 10011 </span><span class="p">$</span><span class="x"></span>
-<span class="x">-       </span><span class="p">$</span><span class="nv">Date</span><span class="x">: 2011-01-21 17:22:28 +0100 (Fri, 21 Jan 2011) </span><span class="p">$</span><span class="x"></span>
-<span class="x">+       </span><span class="p">$</span><span class="nv">Revision</span><span class="p">$</span><span class="x"></span>
-<span class="x">+       </span><span class="p">$</span><span class="nv">Date</span><span class="p">$</span><span class="x"></span>
-</pre></div>
-
-
-<h4>packaging-farm release 1.2.39</h4>
-<p>A few <a href="http://packaging-farm.dachary.org/#Issue">issues</a> were reported
-against the latest packaging-farm, but they were not fixed because they
-are not blocking. Other problems required immediate attention and they
-were fixed in the <a href="http://packaging-farm.dachary.org/download/">1.2.39</a>
-release</p>
-<div class="highlight"><pre><span></span>* home/www/packaging-farm/packaging-farm/lib/Makefile:
-        kill all processes left over in a chroot before trying to umount
-        [dd63f7ecef41] 
-
-        * home/www/packaging-farm/packaging-farm/debian/changelog, home/www
-        /packaging-farm/packaging-farm/debian/control, home/www/packaging-
-        farm/packaging-farm/lib/Makefile, home/www/packaging-farm/packaging-
-        farm/lib/debian/official-op.sh, home/www/packaging-farm/packaging-
-        farm/lib/debian/submit.sh, home/www/packaging-farm/packaging-
-        farm/lib/kernel-module/depends.sh:
-        add support for wheezy
-        [8f9a40627f0b]
-
-        * home/www/packaging-farm/packaging-farm/lib/report.sh:
-        add support for debian src format 3.0 by recognizing the
-        .debian.tar.gz
-        [36b30f22e4d8]
-
-        * home/www/packaging-farm/packaging-farm/etc/packaging-farm.conf:
-        change the semantic and example of SIGN_debian
-        [d3215a3a920f]
-
-        * home/www/packaging-farm/packaging-farm/submit/submit-xivo.sh:
-        preserve epoch from version, if any
-        [6deaae005d9a]
-
-        * home/www/packaging-farm/packaging-farm/bin/packaging-farm.1:
-        document the updating of the chroots and add a section on
-        troubleshooting
-        [2af56b21eb6a]
 </pre></div>
 
 

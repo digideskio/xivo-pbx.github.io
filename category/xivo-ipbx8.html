@@ -54,6 +54,26 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">XiVO package versioning</a></h2>
+    <p>
+      Posted on Mon 29 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>production version conventions</h4>
+<p>XiVO package release numbers <a href="http://packaging-farm.dachary.org/trac/ticket/16">must not contain the timestamp +
+hash</a>. When upgrading
+from a development machine to a production machine, the package numbers
+for production are lexicographically lower than the package numbers for
+development. For instance 1.1.15<a></a> in a special way as documented
+in the ...</p>
+      <a class="btn" href="http://blog.xivo.io/xivo-package-versioning.html#xivo-package-versioning">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/bug-fixing-xivo-package-generation.html#bug-fixing-xivo-package-generation">Bug fixing XiVO package generation</a></h2>
     <p>
       Posted on Mon 22 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -126,29 +146,6 @@ recent than the latest commit of the debian or source repository.</p>
 <li>DIRECTORY=package submit-xivo.sh</li>
 <li>checkout a tag ...</li></ul>
       <a class="btn" href="http://blog.xivo.io/xivo-package-submissions-rules.html#xivo-package-submissions-rules">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/xivo-farm-dedicated-to-development.html#xivo-farm-dedicated-to-development">XiVO farm dedicated to development</a></h2>
-    <p>
-      Posted on Mon 25 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>XiVO submission with git version</h4>
-<p>The
-<a href="http://packaging-farm.dachary.org/trac/browser/submit/submit-xivo.sh?rev=934db22f985be6f102a327222a54c833380f3b13">submit-xivo.sh</a>
-script uses whatever GIT version it finds to be the default. The
-behavior was
-<a href="http://packaging-farm.dachary.org/trac/changeset/866f47eb8cd8b43f6956fe0d326d9e77cc212a9b/">changed</a>
-to allow an optional specification of the GIT revision, as documented in
-the <strong>submit-xivo.sh(1)</strong> manual page.</p>
-<div class="highlight"><pre><span></span>GIT_REVISION=master
-              The gitrevision(7) from which both source ...</pre></div>
-      <a class="btn" href="http://blog.xivo.io/xivo-farm-dedicated-to-development.html#xivo-farm-dedicated-to-development">Continue reading</a>
   </div>
 </article>
 

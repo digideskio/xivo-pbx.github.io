@@ -54,6 +54,100 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/creating-a-debian-gnulinux-source-package-from-the-vcs-22.html#creating-a-debian-gnulinux-source-package-from-the-vcs-22">Creating a Debian GNU/Linux source package from the VCS (2/2)</a></h2>
+    <p>
+      Posted on Mon 14 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>pf-release.sh</h4>
+<p>The <a href="http://xivo.dachary.org/pf-release.sh">pf-release.sh shell script</a>
+merges the <a href="http://git.xivo.fr/xivo-skaro.git/">GIT repository</a>
+containing the sources and the SVN repository containing the debian
+packages into a well formed Debian GNU/Linux source package. For
+instance</p>
+<div class="highlight"><pre><span></span>pf-release.sh lib-javascript squeeze skaro
+</pre></div>
+
+
+<p>would create the <em>pf-xivo-lib-js</em> package. The discussion about the
+<a href="https://lists.proformatique.com/pipermail/xivo-dev/2011-March/000012.html">publication of the private SVN
+repostory</a>
+concluded that it will be bound to a public GIT repository shortly. When
+it is ready, the pf-release.sh script will be updated accordingly.In
+order to test the <em>pf-release.sh</em> code, it can be run with the <em>TEST</em>
+argument:</p>
+<div class="highlight"><pre><span></span>pf-release.sh TEST
+</pre></div>
+
+
+<p>This will simulate border cases using a temporary direcotry to check
+that it behaves as expected. Reading the tests (which are embeded in the
+script) is currently the only documentation.</p>
+<h4>packaging-farm submission</h4>
+<p>The output of <em>pf-release.sh</em> is stored in a directory that uses the
+same conventions as packaging-farm. Because of that, submitting the
+package to the host running the packaging farm can be done by copying
+the directory as follows:</p>
+<div class="highlight"><pre><span></span>rsync -av pf-xivo-lib-js/ packaging-farm.org:/var/lib/packaging-farm/sources/pf-xivo-lib-js/
+</pre></div>
+
+
+<h4>dependency generation</h4>
+<p>A recent addition to the packaging-farm was the automatic generation of
+dependencies. It calculates which source package depends on other
+packages built by the packaging-farm. Support for meta packages was
+added to the dependency generation. In the packaging-farm vocabulary, a
+meta package is a package that aggregates others but has no sources of
+its own. For instance, the meta package <em>skaro</em> was created to produce
+the <a href="http://xivo.dachary.org/packaging-farm/skaro/gnulinux/debian/">skaro squeeze
+repository</a>.
+When running the depencency generations as follows:</p>
+<div class="highlight"><pre><span></span>packaging-farm depends
+</pre></div>
+
+
+<p>it includes the meta packages in the graph so that skaro can be built
+with:</p>
+<div class="highlight"><pre><span></span>packaging-farm skaro
+</pre></div>
+
+
+<p>If, for instance, <em>pf-xivo-lib-js</em> has been updated as shown with the
+<em>rsync</em> command above it will be rebuilt because the skaro meta package
+depends on it.</p>
+<h4>makefile generation</h4>
+<p>Each package entering the packaging-farm must have a <em>Makefile</em>
+associated with it. Setting the variables in this <em>Makefile</em> allows the
+administrator to tune the behaviour on a per package basis. When a
+package is simple enough, its <em>Makefile</em> can be automatically generated
+as follows:</p>
+<div class="highlight"><pre><span></span>packaging-farm makefiles
+</pre></div>
+
+
+<h4>packaging-farm sensible defaults</h4>
+<p>The <a href="http://packaging-farm.dachary.org/download/">version 1.2.33</a> of
+packaging-farm includes the modifications above to help reduce the
+number of steps required to rebuild a suite or a specific package.
+Submitting a package requires four steps:</p>
+<ul>
+<li>pf-release.sh</li>
+<li>rsync</li>
+<li>packaging-farm generate which calls depends and makefiles</li>
+<li>packaging-farm the_package</li>
+</ul>
+<p>This completes the making of the building blocks enabling the creation
+and maintainance of packages based on the XiVO development repository.
+The next step will be to document and simplify the usage, reducing the
+learning curve to a minimum.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/the-road-to-the-final-pcb-layout-routing-of-the-cpu-board.html#the-road-to-the-final-pcb-layout-routing-of-the-cpu-board">The road to the final PCB layout routing of the CPU board</a></h2>
     <p>
       Posted on Fri 11 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -348,24 +442,6 @@ released as version 1.2.32. The ChangeLog reads : add architecture to
 KVERS variables. load fakeroot in each dist-upgrade. input for apt-get
 is /dev/null to avoid input problems. fix dpkg-scan bug when building
 for multiple archictures.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/working-isdn-prototype-board.html#working-isdn-prototype-board">Working ISDN prototype board</a></h2>
-    <p>
-      Posted on Fri 25 February 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>This is great to show the working PCB or the ISDN prototype board
-connected to our IPBX prototype through the LEB and TDM bus of our SoC
-(INTEL Tolapai). This PCB shows the 4 T0 ports routed to the CologneChip
-XHFC-4SU. We have been cabling this PCB in a factory facility close to
-Paris with good results on the quality of the cabling for 230+ parts on
-our PCB with 4 layers.</p>
 </p>
   </div>
 </article>

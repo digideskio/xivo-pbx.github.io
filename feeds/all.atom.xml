@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/all.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-05-16T00:00:00-04:00</updated><entry><title>Sprint Review 16.06</title><link href="http://blog.xivo.io/sprint-review-1606.html" rel="alternate"></link><published>2016-05-16T00:00:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-05-16:sprint-review-1606.html</id><summary type="html">&lt;p&gt;Hello XiVO community! Here comes the release of XiVO 16.06!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/all.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-06-06T00:00:00-04:00</updated><entry><title>Sprint Review 16.07</title><link href="http://blog.xivo.io/sprint-review-1607.html" rel="alternate"></link><published>2016-06-06T00:00:00-04:00</published><author><name>pcadotte</name></author><id>tag:blog.xivo.io,2016-06-06:sprint-review-1607.html</id><summary type="html">&lt;p&gt;Hello XiVO community! Here comes the release of XiVO 16.07!&lt;/p&gt;
+&lt;h2&gt;New features in this sprint&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Asterisk&lt;/strong&gt;: Asterisk has been updated to version 13.9.1&lt;/p&gt;
+&lt;h2&gt;Community contributions&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Tutorials&lt;/strong&gt;: Many thanks for Ward Mundy from &lt;a href="http://nerdvittles.com?p=18468"&gt;Nerd Vittles&lt;/a&gt; for creating many new tutorials for XiVO.&lt;/p&gt;
+&lt;h2&gt;Ongoing features&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Call Transfers&lt;/strong&gt;: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers. In this iteration we started working on a version of the CTI server that uses this new API for all XiVO Client transfers.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;See you at the next sprint review!&lt;/p&gt;
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes"&gt;Upgrade notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://projects.xivo.io/versions/243"&gt;XiVO 16.07 Roadmap&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="XiVO"></category><category term="development"></category></entry><entry><title>Sprint Review 16.06</title><link href="http://blog.xivo.io/sprint-review-1606.html" rel="alternate"></link><published>2016-05-16T00:00:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-05-16:sprint-review-1606.html</id><summary type="html">&lt;p&gt;Hello XiVO community! Here comes the release of XiVO 16.06!&lt;/p&gt;
 &lt;h2&gt;New features in this sprint&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Installation Wizard&lt;/strong&gt;: The wizard is the little assistant that allows administrators to setup the XiVO server. The wizard is a very important part of XiVO, since it's the mandatory way to finalize the installation of XiVO. We have released a new API allowing to setup XiVO automatically, without the need of the XiVO web interface. Also a number of bugs related to the wizard were fixed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;XiVO Client&lt;/strong&gt;: Thanks to the XiVO community (thank you Julien Revert), the deployment of the XiVO Client for Windows on multiple machines is easier in 16.06. This facilitates upgrading the version of XiVO and the XiVO Client together.&lt;/p&gt;

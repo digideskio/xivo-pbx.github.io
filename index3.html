@@ -54,6 +54,56 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/automatically-disconnect-an-agent-if-inactive.html#automatically-disconnect-an-agent-if-inactive">Automatically Disconnect an Agent if his SIP Account is Inactive</a></h2>
+    <p>
+      Posted on Thu 29 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/call-center.html">call center</a>    </p>
+  </header>
+  <div>
+      <p>Hello, my name is Nicolas (h4wk3r on irc #xivo). I am a currently alternating between my studies for
+a Master in Computer Engineering and my work in a call center. I could not find any information in
+the XiVO CTI when a phone was disconnected, so I worked on a solution for generating this
+information. This allows agents to know their phone's status.</p>
+<p>Let us imagine the following scenario: An agent in a call center is connected with is softphone 'N.
+SIP XXX'. He logs in via his XiVO Client in order to receive calls from his assigned queues. One of
+the following 3 events occurs :</p>
+<p>A – The softphone is disconnected from asterisk .
+B – The agent finishes his day, turns off his softphone but forgets to disconnect his XiVO Client
+C – The agent is at home, the VPN tunnel stops</p>
+<p>In these 3 examples, the agent cannot know if he can still recieve calls because he does not recieve
+any alerts from his XiVO client or from the phone.</p>
+<h1>I. Standard operation</h1>
+<h2>Agent's point of view</h2>
+<p><img alt="photo 1" src="http://blog.xivo.io/public/agent_disconnect/photo1.png" /></p>
+<h2>Point of view on the XiVO Server</h2>
+<p><img alt="photo 2" src="http://blog.xivo.io/public/agent_disconnect/photo2.png" /></p>
+<h1>II. Anomaly</h1>
+<h2>Agent's point of view</h2>
+<p>Let us simulate the anomaly. For this simulation, the softphone has been forcefully disconnected.</p>
+<p><img alt="photo 3" src="http://blog.xivo.io/public/agent_disconnect/photo3.png" /></p>
+<p><strong>We can see that our agent is still logged in and no other information about the disconnection is
+displayed</strong></p>
+<h2>Point of view on the XiVO Server</h2>
+<p><img alt="photo 4" src="http://blog.xivo.io/public/agent_disconnect/photo4.png" /></p>
+<p>We can see that the state of extension 741 is <code>UNKNOWN</code>, but agent 6002 (extension 728) is still
+connected.</p>
+<h1>III. Execution of the script</h1>
+<p>The script will find out that the SIP account is disconnected and will automatically log out the
+agent associated to the extension.</p>
+<p><img alt="photo 5" src="http://blog.xivo.io/public/agent_disconnect/photo5.png" /></p>
+<p>Accordingly, the agent now knows that he is logged out:</p>
+<p><img alt="photo 6" src="http://blog.xivo.io/public/agent_disconnect/photo6.png" /></p>
+<p>This script has been deployed in production and has been working successfully since Oct 1st 2015.
+You can download this script on <a href="https://github.com/h4wk3r/XIVO-Agentoff_if_sipoff">github</a>.</p>
+<p>For further information, you can contact me directly be email (vdbnicolas [at] gmail [dot] com) or
+on IRC on irc.freenode.net channel #xivo.</p>
+<p><em>Article by h4wk3r. Licensed under cc.by.sa 4.0. Revised by Valérie Dagrain. Translated by Gregory Eric Sanderson</em></p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1517.html#sprint-review-1517">Sprint Review 15.17</a></h2>
     <p>
       Posted on Fri 16 October 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -194,62 +244,6 @@ have counted the phones.</p>
 <p><img alt="IMG_20150909_124927.jpg" src="/public/office/IMG_20150909_124927.jpg" title="IMG_20150909_124927.jpg, sept. 2015" /></p>
 <p><img alt="IMG_20150909_124936.jpg" src="/public/office/IMG_20150909_124936.jpg" title="IMG_20150909_124936.jpg, sept. 2015" /></p>
 <p><img alt="IMG_20150909_124943.jpg" src="/public/office/IMG_20150909_124943.jpg" title="IMG_20150909_124943.jpg, sept. 2015" /></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1515.html#sprint-review-1515">Sprint review 15.15</a></h2>
-    <p>
-      Posted on Wed 09 September 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>Fellow Xivoists, the time has come for the release of 15.15. During
-thissprint we have fixed many bugs and continued working on
-featuressurrounding directories and contacts.</p>
-<h3>New features in this sprint</h3>
-<p><strong>Voicemail:</strong> The voicemail configuration page has been revamped.
-Youcan now configure as many extra parameters as you want in
-the"advanced" tab. These parameters will be included along side therest
-of the voicemail configuration in asterisk. This new free-formversion of
-the voicemail page offers more flexibility to advanced usersof asterisk,
-while still keeping it simple enough for regular users.</p>
-<p><strong>People Xlet:</strong> The new People Xlet is now fully integrated into
-xivo.We have talked about this xlet in previous sprints, however it
-could notbe used without some manual configuration on the server. With
-thisrelease, the xlet will work out-of-the-box once it has been added to
-aprofile. The People Xlet replaces the old remote directory, which
-hasbeen removed.</p>
-<h3>Ongoing features</h3>
-<p><strong>Directories:</strong> we have started working on a new service that
-willintegrate the new directory infrastructure with phones. The goal is
-tomake contacts exposed via xivo's directory usable from a user's
-phone.This means that bookmarked contacts and a user's personal contacts
-willalso be available.</p>
-<p><strong>SIP Lines:</strong> We will be revamping extra parameters for
-sipconfiguration in the same way as what has been done for voicemails.
-Thiswill make it easier for users to configure advanced features
-inasterisk.</p>
-<h3>Technical features</h3>
-<ul>
-<li><strong>Provd:</strong> new plugin for the 6800 series of Mitel phones
-    (formerly Aastra)</li>
-<li><strong>Directories:</strong> The configuration system for directories
-    has changed. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
-    notes</a>.</li>
-<li><strong>XiVO Client:</strong> The XiVO Client has been upgraded to Qt 5.5</li>
-<li>Certain restrictions regarding voicemails for a user have
-    been loosened. More details available in the <a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#upgrade-notes" title="upgrade notes">upgrade
-    notes</a>.</li>
-</ul>
-<p>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a
-happyand invigorating farewell. I wish you shall remain in high spirits
-untilour next fateful encounter, 3 weeks from now. May the freedom of
-XiVObless your communications across the vast VoIP expanse.</p>
-<p>Source: <a href="http://projects.xivo.io/versions/231" title="XiVO 15.15 Roadmap">XiVO 15.15
-Roadmap</a></p>
 </p>
   </div>
 </article>

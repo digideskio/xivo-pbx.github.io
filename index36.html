@@ -54,6 +54,48 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/mini-debconf-paris-2010.html#mini-debconf-paris-2010">mini-debconf Paris 2010</a></h2>
+    <p>
+      Posted on Wed 03 November 2010 in <a href="http://blog.xivo.io/category/general.html">General</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="Mini-Deb-Conf-Paris-2010" src="/public/.mini-debconf-paris_m.jpg" title="Mini-Deb-Conf-Paris-2010, nov. 2010" /></p>
+<p>We wanted to blog this post to report the first event of this kind
+organized by <a href="france.debian.net">debian france</a> (french debian
+association), The event was held at Université Paris Diderot - Paris 7,
+on October 30 and 31.</p>
+<p>There was 3 rooms dedicated to the debconf, the first for the
+conferences, the second one for the workshop and the lastest for the bug
+squashing party (squeeze, the next debian stable, is frozen at the
+moment). It was the first time, that I could meet some DD in the real
+life, spoke with them about free software and some other stuffs. Very
+pleasant.</p>
+<p>So I followed some conf during theses 2 days, some of them were very
+interesting, some other less, but I learned a lot of things about debian
+packaging tools in all of them (I am the only living member of the xivo
+packaging team, so I was here for that !).</p>
+<p>You can find the schedule of the event on mini-debconf
+<a href="http://wiki.debconf.org/wiki/Miniconf-Paris/2010#Schedule_of_the_event">wiki</a></p>
+<p>For myself, the most interesting talks/workshops were:</p>
+<ul>
+<li><strong>Workshop Packaging and patch management with git by Thomas Kock,
+    not for the tool presented, but there was an interesting discussion
+    after the call about git-buildpackage and others packaging tools.</strong></li>
+<li><strong>Newest features of dpkg-dev by Raphael Hertzog.</strong></li>
+<li><strong>Conquering the education by Louis-Maurice de Sousa.</strong></li>
+<li><strong>Package Config::Model with GSoC by Domique Dumont, a tool to
+    manage config files upgrade writting in perl.</strong></li>
+</ul>
+<p>So, it was a very pleasant moment, It was really a good opportunity to
+meet people who work/using debian. I recommend you get there next year
+=)</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/visiting-colognechip-ag-the-isdn-chip-company.html#visiting-colognechip-ag-the-isdn-chip-company">Visiting CologneChip AG : The ISDN Chip company !</a></h2>
     <p>
       Posted on Wed 03 November 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -222,83 +264,6 @@ nomination</a></p>
 using our <strong>brand new logo for the project</strong>.</p>
 <p><img alt="Logo XiVO IPBX
 OpenHardware" src="/public/.XiVO_IPBX_OpenHardware_Logo_s.jpg" title="Logo XiVO IPBX OpenHardware, sept. 2010" /></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/kicad-walkthrough-part-2.html#kicad-walkthrough-part-2">KiCad walkthrough - Part 2</a></h2>
-    <p>
-      Posted on Tue 21 September 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>The schematic represents a logical point of view of an electronic
-circuit. Before we can design a
-<a href="http://en.wikipedia.org/wiki/Printed_circuit_board" title="Printed circuit board">PCB</a>
-layout matching this circuit, we must specify how each schematic
-component will be physically implemented. For example, a 20 pin chip can
-come in
-<a href="http://en.wikipedia.org/wiki/Shrink_Small-Outline_Package" title="Shrink small-outline package">SSOP</a>
-or
-<a href="http://en.wikipedia.org/wiki/Dual_in-line_package" title="Dual in-line package">DIP</a>,
-and the board won't look exactly the same in each case (the traces won't
-end at the same places).</p>
-<p><img alt="DIL20 to 50 mils spaced
-traces" src="/public/dil20.png" title="DIL20 to 50 mils spaced traces, sept. 2010" />
-<img alt="SSOP20 to 50 mils spaced
-traces" src="/public/ssop20.png" title="SSOP20 to 50 mils spaced traces, sept. 2010" /></p>
-<p>The two images above represent 20 traces (50 mils spaced) ending on a
-DIL20 package (left) and on a SSOP20 package (right).</p>
-<p><img alt="CVpcb icon" src="/public/cvpcb.png" title="CVpcb icon, août 2010" /> In
-<a href="http://www.kicad-eda.org/">KiCad</a>, this assignment between schematic
-components and module footprint is done with the program named CVpcb.</p>
-<p>Before CVpcb can be used, a
-<a href="http://en.wikipedia.org/wiki/Netlist">netlist</a> must be generated. A
-netlist is an abstract representation of the electronic circuit, which
-focus on describing which pins of the various components are
-interconnected (in a set that is called a net), disregarding the details
-of how they are connected in the schematic drawing. The schematic
-drawing is an abstract representation, and for example the length and
-the shape of a connection it includes is irrelevant to how this
-connection will eventually be physically implemented on the PCB. So the
-netlist is simply the list of all the components plus a list of nets,
-each one containing a list of interconnected pins of various components.</p>
-<p>The netlist and which footprint to use for each component will later be
-the input of the PCB design done with PCBnew. To automatically generate
-the netlist with EESchema, click on the generate netlist button
-<img alt="Generate netlist
-button" src="/public/generate_netlist_button.png" title="Generate netlist button, sept. 2010" />
-in the top toolbar: a "Netlist" window appears, in which you just have
-to click on the button "Netlist" in the tab Pcbnew while the "Default
-format" option is selected. You are then presented with a "Save Netlist
-Files" dialog, in which you just have to confirm the filename -- it
-should already be correctly selected as &lt;project_name&gt;.net in the
-project directory.</p>
-<p>Now that the netlist is generated, we can use CVpcb. Launch it for
-example by clicking on its icon <img alt="Run CVpcb
-button" src="/public/run_cvpcb_button.png" title="Run CVpcb button, sept. 2010" />
-also in the top toolbar of EESchema.When no affectation has been done
-before for the current project, CVpcb immediatly warns that a
-&lt;project_name&gt;.cmp file does not exist -- this is not a problem,
-it will be created by CVpcb when you save.</p>
-<p>Now for each schematic component you can assign a PCB footprint. Select
-the component on the left then double click on the footprint you want to
-use for it on the right. You can press the first letter of what you are
-looking for when one of the two lists is activated.</p>
-<p>When you save in CVpcb, it shows a "Save Net and Component List" dialog
-defaulting to the same &lt;project_name&gt;.net file that we created
-during netlist generation. This is OK, just overwrite the former: CVpcb
-will maintain the same netlist in the saved file, but the file will now
-also include schematic components to module footprints affectations. A
-&lt;project_name&gt;.cmp file is also created behind the scene, which
-contains just the affectations using a different file format.</p>
-<p>For our clock buffer, the affectation in CVpcb looks like the following
-screen-shoot.</p>
-<p><img alt="Clock buffer CVpcb footprint assignment
-screenshoot" src="/public/cvpcb_sshoot.png" title="Clock buffer CVpcb footprint assignment screenshoot, sept. 2010" /></p>
-<p>The corresponding .net and .cmp files are attached to this post.</p>
 </p>
   </div>
 </article>

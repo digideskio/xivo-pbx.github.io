@@ -54,6 +54,45 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html#choosing-the-right-cpusoc-for-an-openhardware-ipbx">Choosing the right CPU/SoC for an OpenHardware IPBX</a></h2>
+    <p>
+      Posted on Mon 01 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p>Once one starts an OpenHardware project, you should be thinking about
+the core of the device to be designed and namely the CPU/SoC
+(System-on-Chip integrating the CPU and the peripherals controllers
+built-in the chip). The CPU/SoC is the core of the system and will be
+holding the BSP (BoardSupportPackage) with the Linux kernel and the
+different drivers/controllers (kernel modules and drivers) and the IPBX
+software core system (XiVO and Asterisk in this case) communicating with
+the ISDN/FXO/FXS interfaces.</p>
+<p>Ideally, to integrate the OpenHardware issue to the core of the device,
+the CPU/SoC has to be as open (as in "open specifications", "open
+datasheet" or "open HDL source code") as possible. Then several issues
+has to be clarified such as:</p>
+<p>-The smooth technical gap for users and developers to integrate, use and
+hack with the OpenHardware IPBX</p>
+<p>-How open can the CPU/SoC be opened ? The next step will be to use
+"OpenCores" CPU based on FPGA platform (such as the ones used for
+OpenPattern project, the Milkymist Softcore integrating lm32 or the USRP
+platform used to integrate the GnuRadio framework)</p>
+<p>-What platform is "more" for existing CPU/SoC outhere between
+x86/ARM/MIPS/others?</p>
+<p>Lots of the current IPBX projects are mainly using the Blackfin DSP
+(i.e. the Astfin project) from AnalogDevices that allows advanced DSP
+(Digital Signal Processing) functions but lacks openess in terms of
+specifications/data-sheets as this point.</p>
+<p>Our current objectives is to target an x86 platform that smooths downs
+the porting of the existing XiVO framework or the integration of a
+ARM/MIPS CPU/SoC with open specifications.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/hardware-specifications-10-of-the-xivo-appliance.html#hardware-specifications-10-of-the-xivo-appliance">Hardware specifications 1.0 of the XiVO appliance</a></h2>
     <p>
       Posted on Mon 25 January 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>

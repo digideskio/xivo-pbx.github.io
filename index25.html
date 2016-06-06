@@ -54,6 +54,157 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/resolving-xivo-submissions-confusion.html#resolving-xivo-submissions-confusion">resolving XiVO submissions confusion</a></h2>
+    <p>
+      Posted on Mon 19 September 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>nothing needs to be done</h4>
+<p>The rules that decide when packaging-farm should work on a package are
+explained in the manual pages. However, they have changed a lot while
+packaging-farm matured in the past months and they deserve a short
+summary.The first step is to submit work to the packaging-farm and this
+is done by the submit-xivo.sh script as follows:</p>
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=asterisk submit
+</pre></div>
+
+
+<p>which is run as a side effect of the command</p>
+<div class="highlight"><pre><span></span>rebuild
+</pre></div>
+
+
+<p>which is an alias for running the <strong>rebuild</strong> target of the
+<strong>/etc/packaging-farm/gallifrey.mk</strong> Makefile.What it really does is to
+use the content of the XiVO git repository to create a Debian GNU/Linux
+source package. It uses the debian packaging instructions found in the
+git repository and follow them : it does not create rules automatically,
+it fully relies on what has been done manually. It does, however,
+creates the package version according to a complex set of rules,
+explained in the VERSIONS section of the submit-xivo.sh.The asterisk
+source package will not be generated each time the</p>
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=asterisk submit
+</pre></div>
+
+
+<p>is run for two reasons:</p>
+<ul>
+<li>To save time. It currently takes less than 30 seconds for
+    packaging-farm to update the <strong>skaro</strong> build machine when nothing
+    needs to be done. If the source packages were always rebuilt it
+    would take at least 15 minutes.</li>
+<li>To avoid checksum errors when reprepro mirrors the packages built
+    by packaging-farm. When a <strong>.orig.tar.gz</strong> is built for a given
+    version of a package, it is preserved. Even when the content of two
+    <strong>.tar.gz</strong> are strictly identical, the file itself has a different
+    md5sum signature because of the compression.</li>
+</ul>
+<p>The submit-xivo.sh script decides if a source package should be rebuilt
+using a simple comparison : if the existing <strong>.dsc</strong> file has the same
+path as the one that would be created, it declares there is no need to
+re-create it. In other words, the decision to rebuild a source package
+solely depends on the version number of the package.Note that when
+submit-xivo.sh decides that nothing needs to be done, it does not rely
+on the log history of the git repository. It only relies on the version
+number. However, when <strong>VERSION_COMPUTE=true</strong> (which is the default)
+the date and time of the last commit from the git repository is used to
+create the version number. Therefore there is a relationship between the
+history of the git repository and the decision to recreate the source
+package because each new commit will create a new version.This
+relationship no longer exists when <strong>VERSION_COMPUTE=false</strong> and
+commits to the git repository will not have any consequence on the
+decision to rebuild a source package.</p>
+<h4>manually submitted packages</h4>
+<p>Some packages are not yet in the git repositories and they are completly
+outside the control of submit-xivo.sh. As a consequence they must be
+submitted manually to packaging farm. The</p>
+<div class="highlight"><pre><span></span>rebuild
+</pre></div>
+
+
+<p>command will not submit these packages because:</p>
+<ul>
+<li>it would create checksum errors when the same package version is
+    submitted twice</li>
+<li>it would uselessly slow down the command when nothing needs update</li>
+</ul>
+<p>The list of packages that need manual care is found in the
+<strong>/etc/packaging-farm/gallifrey.mk</strong> or <strong>/etc/packaging-farm/skaro.mk</strong>
+files:</p>
+<div class="highlight"><pre><span></span><span class="x">cd /var/cache/packaging-farm/sources</span>
+<span class="x">for package in asterisk-chan-capi libasterisk-perl libpri misdn-kernel misdn-user sangoma-wanpipe spandsp</span>
+<span class="x">do ( rm -fr </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; mkdir </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; cd </span><span class="p">$</span><span class="nv">package</span><span class="x"> ; apt-get source </span><span class="p">$</span><span class="nv">package</span><span class="x"> </span>
+<span class="x">      rm -f /var/cache/packaging-farm/depends/</span><span class="p">$</span><span class="nv">package</span><span class="x"> )</span>
+<span class="x">done ; packaging-farm generate</span>
+</pre></div>
+
+
+<p>Note however that this is merely a reminder and running it without
+evaluating the consequences may lead to checksum errors. The following
+should be checked:</p>
+<ul>
+<li>from which source will the package be retrieved ?</li>
+<li>which package version will be retrieved ?</li>
+<li>is the package retrieved compatible with the other package in the
+    build farm ?</li>
+<li>is there already a package with the same version in the
+    /var/cache/packaging-farm/source/package directory ?</li>
+</ul>
+<h4>checksum errors</h4>
+<p>The gallifrey and skaro build machines output is a repository created
+with reprepro. It is then mirrored, using reprepro, to mirror.xivo.fr.If
+the build machines were lost and had to be reinstalled manually, all
+packages would be rebuilt. As a consequence, trying to update the mirror
+on mirror.xivo.fr would lead to checksum errors because both the sources
+and binary files would have the same name and different checksum,
+because of the same content has a different checksum after compression,
+either in a <strong>.tar.gz</strong> or in a <strong>.deb</strong> . The only way to recover from
+such a situation would be to :</p>
+<ul>
+<li>identify all packages that are to be rebuilt by the farm</li>
+<li>dget from mirror.xivo.fr each of them in
+    /var/lib/packaging-farm/package</li>
+<li>rebuild the gallifrey / skaro meta package</li>
+</ul>
+<p>Doing so is, in a nutshell, re-importing the packages saved on
+mirror.xivo.fr back to the build machine, as if it was the result
+created with it. The actual restoration of such a catastrophic event is
+likely to be more complicated in reality. But the general idea is simple
+enough.A more common problem comes from the fact that mirror.xivo.fr is
+a single reprepro repository that is used to merge unrelated
+repositories. For instance gallifrey, gallifrey-dev, skaro, skaro-dev
+and so on. Because reprepro has a single package pool shared between all
+distributions, if package P-1.1.1-1 has been built on gallifrey and
+gallifrey-dev, it will be imported twice with the same version but
+different checksum and lead to a checksum error. There are two ways to
+avoid this problem:</p>
+<ul>
+<li>manually ensure that such a case never happens (for instance by
+    setting the VERSION_FLAVOR veriable of submit-xivo.sh to add a
+    distinctive string unique to the distribution in the name of
+    each package).</li>
+<li>create a separate reprepro repository for each distribution</li>
+</ul>
+<h4>misleading error message</h4>
+<p>When nothing needs to be done according to submit-xivo.sh, it shows</p>
+<div class="highlight"><pre><span></span>package <span class="cp">${</span><span class="n">package</span><span class="cp">}</span> was not modified in git since the last package generation
+</pre></div>
+
+
+<p><a href="http://packaging-farm.dachary.org/trac/ticket/22">although it is unrelated to
+git</a> when
+VERSION_COMPUTE=false.The message explaining that no update is needed
+is <a href="http://packaging-farm.dachary.org/trac/changeset/d6c8676bd54b95b76ce475d7fe7dbe0d2592aafa">moved to the need_update
+function</a>
+and displays the exact reason, path included, why no update is required.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/after-the-summer-an-active-start-for-xivo-open-hardware.html#after-the-summer-an-active-start-for-xivo-open-hardware">After the summer, an active start for XiVO Open Hardware !</a></h2>
     <p>
       Posted on Tue 13 September 2011 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -609,156 +760,6 @@ manual page was updated:</p>
 </pre></div>
 
 
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/bug-fixing-xivo-package-generation.html#bug-fixing-xivo-package-generation">Bug fixing XiVO package generation</a></h2>
-    <p>
-      Posted on Mon 22 August 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>kernel-module ignores SOURCE_MODULE</h4>
-<p>When the ROLE=kernel-module is set, the binary packages are built from
-an existing package containing the sources of a kernel module in a
-fashion that is suitable for module-assistant to work on. The kernel
-module to be built is set in the MODULE= variable. If the name of the
-module and the name of the package containing the sources from which it
-must be built are the same, module-assistant will guess and retrieve the
-package from the repository. If the package name is different, it must
-be set in the SOURCE_MODULE= variable.When MODULE is different from
-SOURCE_MODULE, the dependency graph generated by
-lib/kernel-module/depends.sh will fail to create the dependency to the
-SOURCE_MODULE package</p>
-<p>The dependency was changed from depending on the rule that is used to
-build the package to the timestamp generated by the build of the
-package. Using the rule would always recompile the package. Using the
-timestamp only recompiles of one timestamp is more recent.The regular
-expression looking for the MODULE in the Makefile is changed to also
-look for the SOURCE_MODULE variable. When both are found, their content
-is used to lookup a source package. If it turns out that both MODULE and
-SOURCE_MODULE are present and MODULE is the name of a source package,
-their will be one undesired dependency. However, this is harmless
-because the worst that can happen is that the kernel modules are rebuilt
-although they don't need to.</p>
-<p><a href="http://packaging-farm.dachary.org/trac/changeset/3c7465772c1bcb81fd508bd060cf980a7806d490">changeset</a></p>
-<h4>submit-xivo.sh must reuse tarbal</h4>
-<p>When the Debian GNU/Linux package of a XiVO software is improved, the
-source tarbal must not be rebuilt. Rebuilding the .orig.tar.gz for the
-exact same directory tree will lead to a different md5sum signature,
-because of the compression. This is problematic when software building
-Debian GNU/Linux repositories such as reprepro refuse a submission
-because they already know of a previous tarbal of the same name but with
-a different version number.</p>
-<p>XiVO formerly had native Debian GNU/Linux packages (i.e. packages where
-there is no separate source tarbal). It was later decided to not create
-native Debian GNU/Linux packages but the code that prevented the
-re-generation of the tarbal was not modified accordingly.A native
-package, in the XiVO sense, has no third party code. There is a source
-tree separate from the debian tree, but both are dedicated to XiVO. In
-order to simplify the submission script, it was decided to avoid
-handling Debian GNU/Linux native packages. Even when the source tree is
-empty, the resulting package is treated as if there was a source
-tree.The code is slightly different with regard to the generation of the
-tarbal because the XiVO native package has a source tree including the
-name of the software at the root. The third party source tree does not
-contain this additional hierarchy level.</p>
-<p><a href="http://packaging-farm.dachary.org/trac/changeset/034e2d1a16a2b4b80d22463be300f4bacbaba458">changeset</a></p>
-<h4>reduce the number of hg pull</h4>
-<p>When running packaging-farm DIRECTORY=a submit ; packaging-farm
-DIRECTORY=b submit, it does a git fetch twice on the source and debian
-repositories although one would be enough. When this operations is
-repeated 30 times only to find that one package must be rebuild, it can
-take up to 2 minutes.</p>
-<p>A timestamp is set after pulling the debian and source repositories.
-Before pulling, the modification time of the timestamp is checked and if
-it is found to be more recent than X minutes ago ( GIT_CACHE_MINUTES
-), the pull is not done. By default the value of GIT_CACHE_MINUTES is
-set to zero to preserve the current behavior (i.e. the pull occurs every
-time).</p>
-<p><a href="http://packaging-farm.dachary.org/trac/changeset/504cd6a6f8b3ad1b1d256fb88adf029861469632">changeset</a></p>
-<h4>epoch always triggers submission</h4>
-<p>The epoch ( number: prepended to package version as explained in
-deb-version ) does not show in the .dsc file created by
-dpkg-buildpackage -SWhen submit/submit-xivo.sh looks for the .dsc file
-matching the package version extracted from the debian changelog, it
-does not remove the epoch. As a consequence, the package is never found
-to match and is always submitted.</p>
-<p>The epoch is stripped from the version before checking it against an
-existing .dsc file.</p>
-<p><a href="http://packaging-farm.dachary.org/trac/changeset/6c1ef0ea8cc190da44157af9abfb1e6db0fa6109">changeset</a></p>
-<h4>wanpipe</h4>
-<p>The <strong>wanpipe</strong> directory is mentionned in the
-<strong>/var/cache/packaging-farm/skaro/Makefile</strong> line that checks for
-submissions. It is not listed as a package to be build. In order to
-avoid submitting it to the farm each time a rebuild is required, it was
-commented out.</p>
-<h4>epoch change</h4>
-<p>The migration from svn to git imposed a change in the version numbers.
-It must be taken into account by incrementing the epochin the package
-version, otherwise the versions will go back in time which is not good
-for upgrading. The safeguards introduced insubmit-xivo.sh issue an error
-for each package that has a version going back in time:</p>
-<blockquote>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-agid/trunk/debian/changelog
-is 'pf-xivo-agid (6:1.2<a></a>svn10175-2) that is greater or equal
-(according to dpkg --compare-versions) than the version computed by
-submit-xivo.sh (6:1.2\~20110819.160331.530a224-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/libpri/trunk/debian/changelog
-is 'libpri (28:1.4.12+pf.xivo.1.2<a></a>20110805.172915.12438dd-1)
-that is greater or equal (according to dpkg --compare-versions) than
-the version computed by submit-xivo.sh
-(28:1.4.12+pf.xivo.1.2\~20110707.095210.a65f898-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-base-config/trunk/debian/changelog
-is 'pf-xivo-base-config (10:1.2<a></a>svn10395-3) that is greater or
-equal (according to dpkg --compare-versions) than the version computed
-by submit-xivo.sh (10:1.2\~20110817.155800.06ea074-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-cti-server/trunk/debian/changelog
-is 'pf-xivo-cti-server (26:1.2<a></a>svn11342-3) that is greater or
-equal (according to dpkg --compare-versions) than the version computed
-by submit-xivo.sh (26:1.2\~20110819.160331.530a224-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/freeswitch/trunk/debian/changelog
-is 'freeswitch (1.0.6+pf.xivo.1.2.0<a></a>svn9780-0) that is greater
-or equal (according to dpkg --compare-versions) than the version
-computed by submit-xivo.sh
-(1.0.6+pf.xivo.1.2\~20110308.141044.93b0896-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-lib-js/trunk/debian/changelog
-is 'pf-xivo-lib-js (1:1.2<a></a>svn10977) that is greater or equal
-(according to dpkg --compare-versions) than the version computed by
-submit-xivo.sh (1:1.2\~20110729.174030.0a57146-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-sysconfd/trunk/debian/changelog
-is 'pf-xivo-sysconfd (1.2<a></a>svn10913-0) that is greater or equal
-(according to dpkg --compare-versions) than the version computed by
-submit-xivo.sh (1.2\~20110818.192128.9f3d578-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-web-interface/trunk/debian/changelog
-is 'pf-xivo-web-interface (7:1.2<a></a>svn10978-0) that is greater or
-equal (according to dpkg --compare-versions) than the version computed
-by submit-xivo.sh (7:1.2\~20110819.134415.57c6e08-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-ha/trunk/debian/changelog
-is 'pf-xivo-ha (1.2<a></a>svn10449-2) that is greater or equal
-(according to dpkg --compare-versions) than the version computed by
-submit-xivo.sh (1.2\~20110816.090747.baf278f-1)</p>
-<p>The first line of
-/var/cache/packaging-farm/VCS/debian/squeeze-xivo-skaro/pf-xivo-fetchfw/trunk/debian/changelog
-is 'pf-xivo-fetchfw (3:1.2<a></a>svn11102-0) that is greater or equal
-(according to dpkg --compare-versions) than the version computed by
-submit-xivo.sh (3:1.2\~20110704.194720.51b210e-1)</p>
-</blockquote>
-<p>hexanol updated the changelog entry for each software above to reflect
-the change in the convention, adding to epoch as necessary.</p>
 </p>
   </div>
 </article>

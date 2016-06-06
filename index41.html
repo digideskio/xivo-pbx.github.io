@@ -54,6 +54,31 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris.html#xivo-openhardware-ipbx-presented-at-solutionslinux2010-paris">XiVO OpenHardware IPBX presented at SolutionsLinux2010, Paris</a></h2>
+    <p>
+      Posted on Mon 22 March 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
+    </p>
+  </header>
+  <div>
+      <p><img alt="SolutionsLinux2010" src="/public/SolutionsLinux2010_logo.jpg" title="SolutionsLinux2010, mar. 2010" /></p>
+<p>It was a great pleasure to present the XiVO IPBX OpenHardware project at
+SolutionsLinux2010 (the largest Linux fair in France yearly) on last
+week and we had several discussions about the architecture choosen for
+the IPBX and the interfaces / functionnalities.</p>
+<p>We had some great feedbacks from different VoIP projects and deployment
+feedbacks that will help us understand the needs from the market.</p>
+<p>The next steps are now for the OpenHardware community, to present our
+prototyping feddbacks and the detailed architecture that we are
+targeting.</p>
+<p>Finally, we will presenting soon the work done on the potential
+OpenHardware licence that we want to use based on a mixed between
+trademarks and CreativeCommons licences.</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2.html#opening-the-bootloader-for-openhardware-projects-3-barebox-ex-u-boot-v2">Opening the bootloader for OpenHardware projects [3] : Barebox (ex-U-boot v2)</a></h2>
     <p>
       Posted on Thu 25 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -401,45 +426,6 @@ CEPI: Connection EndPoint Identifier  </p>
 <p><strong>HDLC Frames Format:</strong><br />
 F (Flag) | Ad (Adresses) | C (Controle) | CALL REQUEST | FCS (Frame
 Controle Sequence) | F(Flag) |</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/choosing-the-right-cpusoc-for-an-openhardware-ipbx.html#choosing-the-right-cpusoc-for-an-openhardware-ipbx">Choosing the right CPU/SoC for an OpenHardware IPBX</a></h2>
-    <p>
-      Posted on Mon 01 February 2010 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>Once one starts an OpenHardware project, you should be thinking about
-the core of the device to be designed and namely the CPU/SoC
-(System-on-Chip integrating the CPU and the peripherals controllers
-built-in the chip). The CPU/SoC is the core of the system and will be
-holding the BSP (BoardSupportPackage) with the Linux kernel and the
-different drivers/controllers (kernel modules and drivers) and the IPBX
-software core system (XiVO and Asterisk in this case) communicating with
-the ISDN/FXO/FXS interfaces.</p>
-<p>Ideally, to integrate the OpenHardware issue to the core of the device,
-the CPU/SoC has to be as open (as in "open specifications", "open
-datasheet" or "open HDL source code") as possible. Then several issues
-has to be clarified such as:</p>
-<p>-The smooth technical gap for users and developers to integrate, use and
-hack with the OpenHardware IPBX</p>
-<p>-How open can the CPU/SoC be opened ? The next step will be to use
-"OpenCores" CPU based on FPGA platform (such as the ones used for
-OpenPattern project, the Milkymist Softcore integrating lm32 or the USRP
-platform used to integrate the GnuRadio framework)</p>
-<p>-What platform is "more" for existing CPU/SoC outhere between
-x86/ARM/MIPS/others?</p>
-<p>Lots of the current IPBX projects are mainly using the Blackfin DSP
-(i.e. the Astfin project) from AnalogDevices that allows advanced DSP
-(Digital Signal Processing) functions but lacks openess in terms of
-specifications/data-sheets as this point.</p>
-<p>Our current objectives is to target an x86 platform that smooths downs
-the porting of the existing XiVO framework or the integration of a
-ARM/MIPS CPU/SoC with open specifications.</p>
 </p>
   </div>
 </article>
