@@ -54,6 +54,75 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-call-center-reporting-revamp.html#xivo-call-center-reporting-revamp">XiVO Call Center Reporting Revamp</a></h2>
+    <p>
+      Posted on Thu 02 August 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/reporting.html">reporting</a>    </p>
+  </header>
+  <div>
+      <p>One of the main feature of XiVO 1.2 is the call center reporting.</p>
+<p>Motivation</p>
+<p>The first draft of this new feature proved to be hard to maintain and
+slow to generate statistics. Furthermore, the format of the cache (files
+containing one month of statistics in JSON format) was not easy to
+exploit and required more work while viewing daily statistics that would
+use raw data instead of the pre generated cache for speed reasons.</p>
+<p><img alt="statistic_queue.png" src="/public/.statistic_queue_m.jpg" title="statistic_queue.png, août 2012" /></p>
+<p>To fix the problems we had with this first version, we decided to
+rewrite the cache generation that is not dependent on statistic
+configuration, avoiding the need to regenerate the cache every time a
+configuration is changed.</p>
+<p>The new cache format uses tables in the asterisk database to store
+pre-analyzed data. These tables contains call related information (table
+stat_call_on_queue) and statistic for each hours of statistic
+(stat_queue_periodic).</p>
+<p>This new format make it a lot faster to generate the cache and easier to
+generate tables and graphics in the web interface. Using an hour as the
+base time for an entry also fix the problem of overlapping time range
+that we had to solve with month based cache, where a week could start in
+month n and end in month n + 1.</p>
+<p>Difference from the first version for the user</p>
+<p>The cache is only generated for complete hours. This means that if you
+generate the cache at 12h15 the cache will end at 11h59 and the next
+time the cache is generated, it will start at 12h00. The cache is also
+continuously generated (once a day) and since the cache is independent
+of the configuration, it does not have to be generated each time a
+change is made to the configuration.</p>
+<p>The way to generate the cache manually at this moment is to run
+xivo-stat fill_db from the command line on the XiVO. The generate cache
+option of the web interface will run this action when the old cache
+won't be required anymore.</p>
+<p>What is done</p>
+<p>Currently (version 12.14) all queue counters are now computed using the
+new cache. Some errors are still shown on some page that we could not
+port to the new system in time but most should be fixed in the next
+version.</p>
+<p>We are also working on the first agent counter that should be available
+in version (12.15) and all other agents counters should be added in the
+next 2 versions.</p>
+<p>Some changes to the configuration are to expected when our work will be
+done with the counters to reflect the new cache generation, but these
+changes should be minor and all migration will be handled automatically
+as usual.</p>
+<p>Work methodology</p>
+<p>A second aspect of this second version that was not present in the first
+one is that we are also developing tools to generate calls and check the
+generated statistics to avoid any regressions in future versions. This
+process has been more time consuming than developing the counters
+themselves but is a step to better test automation for XiVO.</p>
+<p>Documentation</p>
+<p>The documentation for call center statistics is
+available<a href="http://documentation.xivo.fr/dev/contact_center/statistics/statistics.html" title="Call center statistics">here</a>.</p>
+<p>The code</p>
+<p>xivo-stat is available at git://git.xivo.fr/official/xivo-stat.git</p>
+<p>xivo-callgen is available at git://git.xivo.fr/official/xivo-callgen.git</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/preparing-the-production-of-our-newer-prototype-xiohv5.html#preparing-the-production-of-our-newer-prototype-xiohv5">Preparing the production of our newer prototype (XIOHv5)</a></h2>
     <p>
       Posted on Wed 11 July 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
@@ -156,36 +225,6 @@ l'OpenHardware](http://www.youtube.com/watch?v=QyiHHfr_1zQ&list=UUwuwOISdsHyANAg
       <p>The association Asterisk France is continuing. Please reading the press
 document (in french).</p>
 <p><a href="/public/info_presse_asterisk-france.pdf">info_presse_asterisk-france.pdf</a></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/multicloning-with-clonezilla-part-1.html#multicloning-with-clonezilla-part-1">Multicloning with Clonezilla - part 1</a></h2>
-    <p>
-      Posted on Fri 29 June 2012 in <a href="http://blog.xivo.io/category/hardware.html">Hardware</a>
-    </p>
-  </header>
-  <div>
-      <p>First step, you need to boot on Clonezilla from the usb drive.Choose
-"Default settings: 800x600", use English language, and select "don't
-touch keymap".  </p>
-<p>Then, « Start Clonezilla »<br />
-Select the first option « work with disks or partitions using images »
-and « local_dev : use local device »<br />
-Enter  </p>
-<p>Choose the right external hard disk drive in the list (size of HDD can
-help you).<br />
-Select « Beginner » mode (you can choose expert mode if want more
-options).<br />
-Select « 1-2-mdisks » to restore the XiVO iso file.  </p>
-<p><img alt="Clonezilla-mode-select" src="/public/.clonezilla-select-mode_m.jpg" title="Clonezilla-mode-select, juin 2012" /><br />
-Use the image to restore and select drives that you want to clone.  </p>
-<p><img alt="clonezilla-add-hdd" src="/public/.clonezilla-add-hdd_m.jpg" title="clonezilla-add-hdd, juil. 2012" /><br />
-To finish : y (for yes) and y (yes)  </p>
-<p>After waiting, (5-20min) it's finished : drives are cloned.<br />
-You can « Poweroff » your computer and use your new hdds with XiVO.</p>
 </p>
   </div>
 </article>

@@ -1,5 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/articles.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2015-09-09T16:57:00-04:00</updated><entry><title>We are 6 and yes we have more than 150 phones :)</title><link href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html" rel="alternate"></link><published>2015-09-09T16:57:00-04:00</published><author><name>quintana</name></author><id>tag:blog.xivo.io,2015-09-09:we-are-6-and-yes-we-have-more-than-150-phones.html</id><summary type="html">&lt;p&gt;Hey XiVO community,&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>XiVO Blog</title><link href="http://blog.xivo.io/" rel="alternate"></link><link href="http://blog.xivo.io/feeds/articles.atom.xml" rel="self"></link><id>http://blog.xivo.io/</id><updated>2016-06-06T15:00:00-04:00</updated><entry><title>How we test multiple XiVO with Terraform</title><link href="http://blog.xivo.io/how-we-test-multiple-xivo-with-terraform.html" rel="alternate"></link><published>2016-06-06T15:00:00-04:00</published><author><name>sduthil</name></author><id>tag:blog.xivo.io,2016-06-06:how-we-test-multiple-xivo-with-terraform.html</id><summary type="html">&lt;p&gt;We are very fond of tests when developing XiVO, especially automated ones :)
+Currently, we have three levels of tests: unit-tests (very small), integration
+tests (medium size) and acceptance tests (large tests, which take a few hours to
+run). Acceptance tests also include manual tests, which we love hating of doing:
+manual testing takes us about half a day of 4 people, before each release. Of
+course we hate running manual tests when a machine could do it for us, so we're
+always wanting to automate them out.&lt;/p&gt;
+&lt;p&gt;On our journey towards the eradication of manual tests, we've encountered a
+quite friendly software called Terraform. It allows us to automatically deploy
+and configure XiVO instances, which is very helpful when testing in an
+almost-real environment. We'll introduce it and show you how we can deploy two
+XiVO with High Availability (HA) enabled, in about 250 lines of scripts and
+configuration.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://terraform.io"&gt;Terraform&lt;/a&gt; is written in Go by HashiCorp and allows you
+to deploy virtual machines, containers, databases and a lot of other instances
+on a variety of providers.&lt;/p&gt;
+&lt;p&gt;We use &lt;a href="https://openstack.org"&gt;OpenStack&lt;/a&gt; to host virtual machines, and it
+happens Terraform can talk to OpenStack to automatically create new virtual
+machines.&lt;/p&gt;
+&lt;p&gt;Who is going to glue this all together? Our trusted friend
+&lt;a href="https://jenkins.io"&gt;Jenkins&lt;/a&gt; (which you can meet on
+&lt;a href="http://jenkins.xivo.io"&gt;http://jenkins.xivo.io&lt;/a&gt;) is the perfect candidate.
+Here's the summary of &lt;a href="http://jenkins.xivo.io/acceptance-ha"&gt;his job&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The steps of the Jenkins job: clone, terraform, configure, test" src="/public/jenkins-terraform.svg" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Jenkins will fetch the latest code from our
+   &lt;a href="https://github.com/xivo-pbx"&gt;Github repositories&lt;/a&gt; (and &lt;a href="https://github.com/sboily/xivo-terraform"&gt;xivo-terraform&lt;/a&gt;, because tests or the deploying scripts might change&lt;/li&gt;
+&lt;li&gt;Jenkins gets ready to test and swears at us for doing such a boring job&lt;/li&gt;
+&lt;li&gt;Jenkins creates the configuration files for Terraform and runs &lt;code&gt;terraform apply&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Terraform tells OpenStack to create 2 Debian virtual machines, then installs XiVO on them, which takes about 15 minutes.&lt;/li&gt;
+&lt;li&gt;Jenkins finalizes the configuration of the XiVO by enabling the HA between the two machines.&lt;/li&gt;
+&lt;li&gt;Jenkins may now run the automatic tests for the HA, such as verifying data
+replication, shutting down the master, etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll get a bit more in details of the Terraform configuration files. Here goes the main one, &lt;code&gt;xivo.tf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;provider &amp;quot;openstack&amp;quot; {
+    user_name = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_name&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    password = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    tenant_name = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tenant_name&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    domain_name = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;domain_name&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    auth_url  = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;auth_url&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+}
+
+resource &amp;quot;openstack_compute_instance_v2&amp;quot; &amp;quot;xivo&amp;quot; {
+    name = &amp;quot;xivo-test-ha&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    region = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    image_id = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;image_id&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    flavor_id = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flavor_id&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    key_pair = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key_pair&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+
+    count = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+
+    security_groups = [
+        &amp;quot;default&amp;quot;
+    ]
+
+    user_data = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;\&lt;span class="s2"&gt;&amp;quot;files/cloud-init.txt&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+
+    network {
+        name = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    }
+
+    connection {
+        user = &amp;quot;root&amp;quot;
+        key_file = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key_file&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+    }
+
+    provisioner &amp;quot;local-exec&amp;quot; {
+        command =  &amp;quot;echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;:&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="n"&gt;fixed_ip_v4&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; &amp;gt;&amp;gt; private_ips.txt ; sleep 2&amp;quot;
+    }
+
+    provisioner &amp;quot;file&amp;quot; {
+        source = &amp;quot;private_ips.txt&amp;quot;
+        destination = &amp;quot;/tmp/private_ips.txt&amp;quot;
+    }
+
+    provisioner &amp;quot;remote-exec&amp;quot; {
+        inline = [
+            &amp;quot;wget --no-check-certificate https://raw.githubusercontent.com/sboily/xivo-terraform/master/bin/xivo_install_aws -O /tmp/xivo_install_aws&amp;quot;,
+            &amp;quot;bash /tmp/xivo_install_aws&amp;quot;
+        ]
+    }
+
+}
+
+output &amp;quot;ips&amp;quot; {
+   value = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;\&lt;span class="s2"&gt;&amp;quot; &lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;,openstack_compute_instance_v2.xivo.*.access_ip_v4)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Variables &lt;code&gt;${var.something}&lt;/code&gt; are defined in a separate file, &lt;code&gt;vars.tf&lt;/code&gt;, looking like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;variable &amp;quot;count&amp;quot; {
+  default = 2
+}
+
+variable &amp;quot;user_name&amp;quot; {
+    description = &amp;quot;Openstack username.&amp;quot;
+}
+
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;What, no values? No, that's only the definition of the variables. The values are set in a third file &lt;code&gt;terraform.tfvars&lt;/code&gt;, looking like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;user_name = &amp;quot;jenkins&amp;quot;
+password = &amp;quot;secret&amp;quot;
+tenant_name = &amp;quot;jenkins&amp;quot;
+auth_url = &amp;quot;http://openstack:5000/v3&amp;quot;
+key_pair = &amp;quot;jenkins&amp;quot;
+key_file = &amp;quot;/home/me/.ssh/id_rsa&amp;quot;
+network = &amp;quot;provider&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There are three interesting bits in &lt;code&gt;xivo.tf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;command =  &amp;quot;echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;:&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="n"&gt;fixed_ip_v4&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; &amp;gt;&amp;gt; private_ips.txt ; sleep 2&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will create a file containing the IP address of the two machines Terraform created on OpenStack, looking like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;10.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;10.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We decided &lt;code&gt;0&lt;/code&gt; would be the master and &lt;code&gt;1&lt;/code&gt; would be the slave. All the code we
+use to connect to the newly created machines rely on these two lines to know
+where the machines are, because the IP addresses are not fixed.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;user_data = &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;\&lt;span class="s2"&gt;&amp;quot;files/cloud-init.txt&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When the machine starts, a little software called &lt;a href="https://cloudinit.readthedocs.io/"&gt;Cloud-Init&lt;/a&gt; will make a HTTP request to get its configuration and do some changes on the machine, such as setting the hostname, allowing SSH connections, etc. The above line tells Openstack which configuration to expose to Cloud-Init.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;provisioner &amp;quot;remote-exec&amp;quot; {
+    inline = [
+        &amp;quot;wget --no-check-certificate https://raw.githubusercontent.com/sboily/xivo-terraform/master/bin/xivo_install_aws -O /tmp/xivo_install_aws&amp;quot;,
+        &amp;quot;bash /tmp/xivo_install_aws&amp;quot;
+    ]
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This script will be run after the machine is started, that will:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;install XiVO&lt;/li&gt;
+&lt;li&gt;configure the wizard&lt;/li&gt;
+&lt;li&gt;configure the HA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Don't hesitate to &lt;a href="https://github.com/sboily/xivo-terraform/tree/master/bin/xivo_install_aws"&gt;take a look&lt;/a&gt;, it's very straightforward.&lt;/p&gt;</summary></entry><entry><title>We are 6 and yes we have more than 150 phones :)</title><link href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html" rel="alternate"></link><published>2015-09-09T16:57:00-04:00</published><author><name>quintana</name></author><id>tag:blog.xivo.io,2015-09-09:we-are-6-and-yes-we-have-more-than-150-phones.html</id><summary type="html">&lt;p&gt;Hey XiVO community,&lt;/p&gt;
 &lt;p&gt;Yes we work on telecomunications/telecoms, we would like to share with
 you some photos from our office at Quebec city ! Thanks to Etienne to
 have counted the phones.&lt;/p&gt;

@@ -54,6 +54,109 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-12.html#xivo-12">XiVO 1.2</a></h2>
+    <p>
+      Posted on Tue 14 February 2012 in <a href="http://blog.xivo.io/category/articles.html">articles</a>
+    </p>
+  </header>
+  <div>
+      <p>As we enter 2012, we continue our development to better meet market
+expectations allowing XiVO to be deployed in more companies. XiVO is a
+real open and free alternative for your business phone system and it
+will allow you to go even further. It is with great pleasure that I
+announce the arrival of this new major release of XiVO which is also our
+last considering that our development model is replaced by the agile
+methodology (SCRUM).</p>
+<p>Why do we change ?</p>
+<p>Just because we want to be closer to your requests, be able to stand
+out, constantly innovate and for this we need a new vision of
+development. It's been several months since we changed our habits, our
+ways of building software, our vision of what a software is and we will
+continue in that direction. We still have a long way to go but it only
+makes XiVO better for everyone.</p>
+<p><img alt="xivo-web-1-2.png" src="/public/.xivo-web-1-2_m.jpg" title="xivo-web-1-2.png, fév. 2012" /></p>
+<p>In this new release we have upgraded the operating system from Lenny to
+Squeeze, updated Asterisk by installing and using the last “Long Term
+Supported” 1.8 version. These major changes are not only naturally
+bringing us a bunch of new native functionalities but also better
+performance and stability.</p>
+<p>Regarding XiVO, we reviewed our provisioning server which was designed
+at the beginning of XiVO and was not suited any more to the big
+architectures we are targeting.</p>
+<p>We have refreshed the web interface in terms of functionality and
+ergonomics to meet the new functionalities provided by Asterisk. We also
+changed the way configuration is done by using a new server dedicated to
+configuration management.</p>
+<p>The news also made us realize that we were not sure where we go with
+mysql and we chose to use Postgres as a basis to save our
+configurations.TDM card drivers are also updated when this new release
+is installed.</p>
+<p>CTI server and XiVO client were also mainly rewritten and refactored.</p>
+<p>With this new release we also started to work on refactoring some
+features which are not delivered now any more. At first, high
+availability and contact center are our current priorities and will be
+offered in the next coming releases.Our development method is based on
+short iterations of 2 weeks, which will produce a finished and working
+product. So every 2 weeks a new release is produced and you will be able
+to upgrade and enjoy bug fixes and new features. Do not hesitate to
+follow http://projects.xivo.fr and http://documentation.xivo.fr/ to get
+a better view.</p>
+<p>We will go through our process in more details in a later post to
+describe what we have set up in term of tests, documentation, bug
+tracking etc ....</p>
+<p>Below what's new in this release at a glance :</p>
+<ul>
+<li>Asterisk 1.8 (New options, SSL authentication, etc ...)</li>
+<li>Web interface<ul>
+<li>New way of defining schedules<ul>
+<li>Time zones</li>
+<li>More than one time slice per schedule</li>
+<li>More than one action when on closed</li>
+<li>Same schedule can be applied to more than one target
+    (incoming calls / internal)</li>
+</ul>
+</li>
+<li>Call pickups groups are more flexible, can include not only
+    group of users but also queues and users.</li>
+<li>SSL certificates management<ul>
+<li>Can be created, updated and deleted using the interface. Can
+    also be associated to different objects ( SIP accounts, CTI
+    server ....)</li>
+</ul>
+</li>
+<li>Ergonomics improvements<ul>
+<li>On session expiration, last page is displayed on reconnect.</li>
+<li>Sort per columns</li>
+<li>Automatic id and password generation for user accounts</li>
+<li>Edited object reference appears on all tabs</li>
+<li>Dynamic search on all objects lists (i.e. group
+    members selected)</li>
+<li>Error report on CSV import</li>
+<li>Displays free extensions (add/edit users, groups ...)</li>
+<li>Remembers last search and sort order, per object.</li>
+<li>links <em>create</em> open in a new tab</li>
+<li>Stay on current tab on page reload</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sip Accounts (lines) are now separated from users</li>
+<li>Provisioning is completely redesigned to incorporate new server.<ul>
+<li>New provisioning server integration</li>
+</ul>
+</li>
+<li>Queue penalty</li>
+<li>MWI remote subscribing</li>
+<li>Outbound calls redesigned</li>
+<li>Paging</li>
+<li>Queue logger daemon removed.</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/httptftp-requests-processing-in-provd-part-1.html#httptftp-requests-processing-in-provd-part-1">HTTP/TFTP requests processing in provd - part 1</a></h2>
     <p>
       Posted on Thu 09 February 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -292,52 +395,6 @@ together.</p>
 <p>Each component will become an independent <a href="http://git.proformatique.com/" title=" git repository ">git
 repository</a>
 http://git.proformatique.com/</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Around  XiVO - describe industrial installation process</a></h2>
-    <p>
-      Posted on Fri 06 January 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/pxe.html">PXE</a>    </p>
-  </header>
-  <div>
-      <p>There are four possibilities to install Xivo software :</p>
-<ul>
-<li>By hand ;)</li>
-<li>Using an installation script (only for gallifrey and skaro-dev at
-    the moment)</li>
-<li>Using an installation cd (available on http://mirror.xivo.fr/iso)</li>
-<li>Using pxe</li>
-</ul>
-<!-- -->
-
-<div class="highlight"><pre><span></span>
-</pre></div>
-
-
-<p>We use
-<a href="http://en.wikipedia.org/wiki/Preboot_Execution_Environment" title="pxe"></a>pxe
-for our installations.It is easier, we boot our client on pxe, the rest
-of the installation process is automatic</p>
-<p>We have 3 sites, 2 in France and 1 in Canada. The easier way for us is
-to centralize pxe configuration.</p>
-<p>Here is our architecture :</p>
-<p><img alt="xivo_pxe_arch" src="/public/.pxe_arch_s.jpg" title="xivo_pxe_arch, janv. 2012" />.</p>
-<p>You can find debian pxe documentation on
-http://d-i.alioth.debian.org/manual/en.i386/ch04s05.html, however you
-can find a lot of online (possibly outdated) documentation.</p>
-<p>You may find our pxe configuration on our git repositories :</p>
-<ul>
-<li>our pxe configuration on
-    http://git.xivo.fr/?p=official/debian-pxelinux.git;a=summary</li>
-<li>our installation class
-    http://git.xivo.fr/?p=official/debian-installer.git;a=summary</li>
-</ul>
-<p>I will fully explain our configuration in futures posts</p>
 </p>
   </div>
 </article>

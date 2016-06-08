@@ -54,6 +54,52 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1603.html#sprint-review-1603">Sprint Review 16.03</a></h2>
+    <p>
+      Posted on Mon 14 March 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.03.</p>
+<h2>New features in this sprint</h2>
+<p><strong>REST API:</strong> A new API for associating a device with a line has been added. Devices can now be fully provisioned and
+controlled via the REST API. This new API represents an additional step towards our long-term goal of offering a PBX
+system that is more flexible, customizable and useful for third party developers.</p>
+<p><strong>Switchboard Statistics</strong>: Calls that go through a switchboard will now generate statistics. Statistics provide
+valuable information to managers of an organization when analyzing the amount of calls they receive. These statistics
+can be consulted by downloading a CSV file.</p>
+<h2>Technical Features</h2>
+<p><strong>Websocketd</strong>: Connections made to websocketd can now use backends such as "xivo_user" or "ldap_user" to authenticate
+themselves. These connections will only receive events that they are authorized to see.</p>
+<p><strong>Service discovery</strong>: xivo-dird and xivo-agentd now register their services via consul.</p>
+<p><strong>LDAP authentication</strong>: After discussions with members of the community, the LDAP plugin has been rewritten in order to
+adapt more easily to the needs of our users. We have also added these new features:</p>
+<ul>
+<li>The plugin can optionally be configured to find a user via an LDAP search</li>
+<li>The attributes used for matching a user's username and email are configurable</li>
+</ul>
+<h2>Security Advisory</h2>
+<p>A security bug has been fixed in this sprint. Security advisories for vulnerable versions of XiVO
+can be consulted on the <a href="http://mirror.xivo.io/security">security advisory page</a></p>
+<h2>Ongoing features</h2>
+<p><strong>REST API</strong>: We are working on new APIs for managing a users's call services and call forwards. This will offer third
+parties more flexibility when developing applications that manage a user's services.</p>
+<p><strong>Web applications</strong>: Work on tools for connecting web applications to XiVO is ongoing. A good example of a Web application is a switchboard application, where the operator may answer, hold and transfer calls from his browser, effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full Web switchboard environment.</p>
+<hr />
+<p>See you at the next sprint review.</p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2">XiVO 16.03 Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/239">XiVO 16.03 Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
+<li><a href="http://projects.xivo.io/boards/8/topics/5048">Discussion on LDAP (fr)</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1602.html#sprint-review-1602">Sprint Review 16.02</a></h2>
     <p>
       Posted on Fri 19 February 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -264,66 +310,6 @@ May the freedom of XiVO bless your communications across the vast VoIP expanse.<
 <p>Sources:</p>
 <ul>
 <li><a href="http://projects.xivo.io/versions/235" title=" XiVO 15.19 Roadmap">XiVO 15.19 Roadmap</a></li>
-<li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
-</ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1518.html#sprint-review-1518">Sprint Review 15.18</a></h2>
-    <p>
-      Posted on Fri 13 November 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Hi everyone, this release was delayed by a week because we moved our development
-office in another spot in Quebec City. It's smaller, but more adapted to our
-team size (there are 6 of us now, and the previous office was designed for more
-than 10 people). And we managed to keep <a href="http://blog.xivo.io/we-are-6-and-yes-we-have-more-than-150-phones.html">all our
-phones</a>.
-Also, we've been told it was hard to know when the next release was due, so
-we've added the planned release dates in the
-<a href="http://projects.xivo.io/projects/xivo/roadmap">Roadmap</a>. Here are the news for
-the version 15.18 of XiVO.</p>
-<h2>New features in this sprint</h2>
-<p><strong>REST API:</strong> A new API for managing SCCP accounts has been added. The API can
-be used for creating SCCP accounts and associating them with users on a XiVO
-server. This API also offers third parties, such as developers or
-administrators, the flexibility of configuring all of the advanced SCCP
-parameters offered by asterisk. This new API helps us expand on our goal of
-offering a more customizable and flexible system ideal for use in a wide range
-of environments, such as cloud infrastructures.</p>
-<p><strong>Fax:</strong> The fax feature in the XiVO Client may now be used with encryption and
-NAT. We are fixing these issues so that we can make the XiVO Client encryption
-usable by default, to allow the new authentication system to be used (which will
-allow LDAP authentication).</p>
-<h2>Ongoing features</h2>
-<p><strong>HTTPS:</strong> We continue to extend the use of encryption for communication between
-XiVO components. From this version, consul and xivo-agent may only communicate
-over HTTPS. The goal is to allow XiVO components to be installed on different
-machines without sending important information in clear text, so that the load
-may be easily balanced in order to increase the maximum number of calls that
-XiVO can sustain.</p>
-<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
-voicemails. The goal is to make configuration of advanced parameters easier while
-still keeping the interface simple.</p>
-<p><strong>CTI:</strong> We are also working on making XiVO Client statuses to be visible across
-multiple XiVO servers. This means that we can see whether a user is on the phone
-or available, even if he is registered on another XiVO server.</p>
-<p><strong>Caller ID:</strong> Finally, we are changing the system of incoming caller ID lookup,
-so that it includes your personal contacts. This means that, when one of your
-personal contacts calls you, instead of seeing only her number, you will see her
-name (that you entered) along with her number.</p>
-<h2>Technical features</h2>
-<p><strong>Polycom phones:</strong> the new firmwares VVX 5.3.1 and SoundStation 4.0.9 are available.</p>
-<p><strong>Snom phones:</strong> the new firmware 8.7.5.28 is available.</p>
-<hr />
-<p>See you at the next sprint review.</p>
-<p>Sources:</p>
-<ul>
-<li><a href="http://projects.xivo.io/versions/234" title=" XiVO 15.18 Roadmap">XiVO 15.18 Roadmap</a></li>
 <li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
 </ul>
   </div>

@@ -54,6 +54,52 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Around  XiVO - describe industrial installation process</a></h2>
+    <p>
+      Posted on Fri 06 January 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/pxe.html">PXE</a>    </p>
+  </header>
+  <div>
+      <p>There are four possibilities to install Xivo software :</p>
+<ul>
+<li>By hand ;)</li>
+<li>Using an installation script (only for gallifrey and skaro-dev at
+    the moment)</li>
+<li>Using an installation cd (available on http://mirror.xivo.fr/iso)</li>
+<li>Using pxe</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+
+<p>We use
+<a href="http://en.wikipedia.org/wiki/Preboot_Execution_Environment" title="pxe"></a>pxe
+for our installations.It is easier, we boot our client on pxe, the rest
+of the installation process is automatic</p>
+<p>We have 3 sites, 2 in France and 1 in Canada. The easier way for us is
+to centralize pxe configuration.</p>
+<p>Here is our architecture :</p>
+<p><img alt="xivo_pxe_arch" src="/public/.pxe_arch_s.jpg" title="xivo_pxe_arch, janv. 2012" />.</p>
+<p>You can find debian pxe documentation on
+http://d-i.alioth.debian.org/manual/en.i386/ch04s05.html, however you
+can find a lot of online (possibly outdated) documentation.</p>
+<p>You may find our pxe configuration on our git repositories :</p>
+<ul>
+<li>our pxe configuration on
+    http://git.xivo.fr/?p=official/debian-pxelinux.git;a=summary</li>
+<li>our installation class
+    http://git.xivo.fr/?p=official/debian-installer.git;a=summary</li>
+</ul>
+<p>I will fully explain our configuration in futures posts</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/the-creation-of-a-new-xlet-for-the-xivo-client.html#the-creation-of-a-new-xlet-for-the-xivo-client">The creation of a new xlet for the XiVO client</a></h2>
     <p>
       Posted on Fri 30 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
@@ -333,40 +379,6 @@ playing a sound file is just a bit of custom dialplan away.</p>
 <p>Note that to make this work in XiVO 1.1, the dialplan shown here need to
 be modified (the "same" syntax is not supported in asterisk 1.4) and the
 "channel originate" command be replaced by "originate".</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/some-more-internationalization-in-xivo-part-1.html#some-more-internationalization-in-xivo-part-1">Some more internationalization in XiVO (part 1)</a></h2>
-    <p>
-      Posted on Fri 09 December 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo-12.html">xivo 1.2</a>,      <a href="http://blog.xivo.io/tag/xivo.html">xivo</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>,      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/i18n.html">i18n</a>    </p>
-  </header>
-  <div>
-      <p>We recently had a few bugs in XiVO about non-ASCII characters, mainly
-accented character, as we love them in French. We fixed the bugs, but
-there will certainly be more. We then decided to push the test a little
-further and try to flood a few data pipes with non-european Unicode
-characters, to see if potentially anything could flow in those pipes.</p>
-<p>Here's the result :<img alt="Japanese XiVO
-Client" src="/public/xivosoft/xivoclient-japanese.png" title="Japanese XiVO Client, déc. 2011" /></p>
-<p>We translated a few text fields in Japanese, even though it's probably
-not perfect Japanese, it's a little better than plain stupid automatic
-translation, thanks to one of our team members who knows a bit about
-Japanese. Japanese Caller ID are also displayed fine in softphones, we
-did not try real phones (yet).</p>
-<p>This exercise had multiple benefits :</p>
-<ul>
-<li>it allowed us to test the <a href="https://wiki.xivo.fr/index.php/XiVO_1.2-Skaro/CTI_XiVO_Client_Qt_Developer#Add_a_translation_for_the_XiVO_Client">XiVO Client internationalization
-    procedure</a></li>
-<li>we know Unicode is accepted in the main modules of XiVO</li>
-<li>we have the beginning of a Japanese translation for the XiVO Client</li>
-<li>it was not very long, 3 hours tops</li>
-<li>it was fun !</li>
-</ul>
 </p>
   </div>
 </article>
