@@ -21,7 +21,7 @@ machines.&lt;/p&gt;
 &lt;p&gt;Who is going to glue this all together? Our trusted friend
 &lt;a href="https://jenkins.io"&gt;Jenkins&lt;/a&gt; (which you can meet on
 &lt;a href="http://jenkins.xivo.io"&gt;http://jenkins.xivo.io&lt;/a&gt;) is the perfect candidate.
-Here's the summary of &lt;a href="http://jenkins.xivo.io/acceptance-ha"&gt;his job&lt;/a&gt;:&lt;/p&gt;
+Here's the summary of &lt;a href="http://jenkins.xivo.io/job/daily-acceptance-ha"&gt;his job&lt;/a&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The steps of the Jenkins job: clone, terraform, configure, test" src="/public/jenkins-terraform.svg" /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Jenkins will fetch the latest code from our
