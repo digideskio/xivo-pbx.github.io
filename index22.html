@@ -54,6 +54,39 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-git-architecture-is-evolving.html#xivo-git-architecture-is-evolving">XiVO GIT Architecture is evolving</a></h2>
+    <p>
+      Posted on Tue 17 January 2012 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>    </p>
+  </header>
+  <div>
+      <p>The <a href="https://twitter.com/#!/Xivodevteam" title=" # xivodevteam">#
+xivodevteam</a>
+decided to change the architecture of the git repository of
+<a href="/index.php?tag/XiVO">XiVO</a>.</p>
+<p>Why do we wanted to do this change ?</p>
+<ul>
+<li>It's easier for the community to work on small component rather than
+    on a big git repository</li>
+<li>Each component can be independent</li>
+<li>Allows usage of XiVO components in third-party systems</li>
+<li>Simplify and unify the names of the services</li>
+</ul>
+<p>Diagram of the migration of the git repository:</p>
+<p><a href="/public/git/xivo-git-architecture.png" title="XiVO REPOSITORY GIT ARCHITECTURE"><img alt="XiVO REPOSITORY GIT
+ARCHITECTURE" src="/public/git/.xivo-git-architecture_m.jpg" title="XiVO REPOSITORY GIT ARCHITECTURE, janv. 2012" /></a></p>
+<p>The large circle on the left is our warehouse with all the components
+together.</p>
+<p>Each component will become an independent <a href="http://git.proformatique.com/" title=" git repository ">git
+repository</a>
+http://git.proformatique.com/</p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/around-xivo-describe-industrial-installation-process.html#around-xivo-describe-industrial-installation-process">Around  XiVO - describe industrial installation process</a></h2>
     <p>
       Posted on Fri 06 January 2012 in <a href="http://blog.xivo.io/category/general.html">General</a>
@@ -331,54 +364,6 @@ test-program and 3xGbE interfaces connected together one-by-one</p>
 <p>We will update our different tests on the CPU boards and keep you update
 on the follow-ups of our design steps.</p>
 <p>Xavier Carcelle.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/automatically-originating-call-with-cron-and-xivo-12.html#automatically-originating-call-with-cron-and-xivo-12">Automatically originating call with cron and XiVO 1.2</a></h2>
-    <p>
-      Posted on Wed 14 December 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-    </p>
-  </header>
-  <div>
-      <p>This bit of dialplan simply set the name part of the caller ID and then
-call our phone, which in our example is SIP/abcdef. Note that we dial
-the phone directly instead of jumping into the standard XiVO dialplan,
-because we don't want the voicemail of the user to answer the call if it
-isn't answered in time.</p>
-<p>Now that this is done, we load the dialplan we just added previously
-with the following command:</p>
-<div class="highlight"><pre><span></span>asterisk -rx &quot;dialplan reload&quot;
-</pre></div>
-
-
-<p>Next step before writing our cron job is to test out the command that
-will make our automatic call origination works. This use the "channel
-originate" command available from the asterisk 1.8 CLI. Let's try it
-out:</p>
-<div class="highlight"><pre><span></span>asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
-</pre></div>
-
-
-<p>This makes our SIP/abcdef phone ring, showing that "Daily Scrum" is
-calling us, and once we answer the call, we are bridged into our
-conference room at extension 1051.</p>
-<p>So we reach the last step on our journey; writing our cron job. Let's
-create a file at <em>/etc/cron.d/daily-scrum</em> and write the following line:</p>
-<div class="highlight"><pre><span></span>0 9 * * 1-5 root   /usr/sbin/asterisk -rx &quot;channel originate Local/s@daily-scrum exten 1051&quot;
-</pre></div>
-
-
-<p>This cron job will launch our asterisk command every day of the week at
-9:00 AM.</p>
-<p>So that's it. Starting from this setup, it's possible to do other
-things. For example, paging and autoanswering a group of phones and then
-playing a sound file is just a bit of custom dialplan away.</p>
-<p>Note that to make this work in XiVO 1.1, the dialplan shown here need to
-be modified (the "same" syntax is not supported in asterisk 1.4) and the
-"channel originate" command be replaced by "originate".</p>
 </p>
   </div>
 </article>

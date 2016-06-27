@@ -54,6 +54,162 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/xivo-packages-with-no-sources.html#xivo-packages-with-no-sources">XiVO packages with no sources</a></h2>
+    <p>
+      Posted on Sun 10 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
+  </header>
+  <div>
+      <h4>XiVO packages with no source</h4>
+<p>The submit-xivo.sh command that is part of packaging-farm was improved
+to support the packages that have no source files such as pf-xivo and
+pf-xivo-backup.The changes were published as part of the
+<a href="http://packaging-farm.dachary.org/download/">2.0.6</a> release of
+packaging-farm.The relevant part of the documentation (man
+submit-xivo.sh) explain how to use it:</p>
+<div class="highlight"><pre><span></span>NAME
+       submit-xivo.sh - create a source package from XiVO repositories
+
+
+SYNOPSIS
+       [DIRECTORY=] submit-xivo.sh
+
+       [NOSOURCE=] submit-xivo.sh
+
+...
+NOSOURCE=
+       Some packages, such as pf-xivo or pf-xivo-backup do not have  a  corre-
+       sponding  source.   They  only  exist as a debian package with no file.
+       submit-xivo.sh(1) supports this special case with the NOSOURCE environ-
+       ment  variable.  If  it is set and no DIRECTORY environment variable is
+       set, it will submit a native debian package from the DEBIAN_GIT  direc-
+       tory  matching  the  content  of the NOSOURCE environment variable. For
+       instance:
+
+              NOSOURCE=pf-xivo submit-xivo.sh
+...
+       NOSOURCE=
+              the  directory  name  within the DEBIAN_GIT repository where the
+              package can be  found.   The  submit-xivo.sh  command  will  not
+              attempt to locate a source in the SOURCE_GIT repository. It will
+              submit a package that has the same name as the  content  of  the
+              NOSOURCE=  variable.  For  instance NOSOURCE=pf-xivo will submit
+              the pf-xivo package. The version number of the package is either
+              the  one  found in the debian/changelog, if it contains the con-
+              tent of the VERSION file found in the SOURCE_GIT repository. For
+              instance  if  the  first  line  of the debian/changelog contains
+              8:1.1.16~5 and the VERSION file contains 1.1.16 it won&#39;t be mod-
+              ified.  However,  if  VERSION contains 1.1.17 a debian/changelog
+              line will be  added,  preserving  the  epoch  and  will  contain
+              8:1.1.17.
+</pre></div>
+
+
+<p>The <strong>/var/cache/packaging-farm/build/gallifrey/Makefile</strong> and
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong> were updated to take
+advantage of this new feature as follows:</p>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
+<span class="x">        </span><span class="err">#</span><span class="x"> Submitted from the GIT debian repositories                                                                                                                          </span>
+<span class="x">        </span><span class="err">#</span><span class="x">                                                                                                                                                                     </span>
+<span class="x">        cd .. ; for package in pf-xivo pf-xivo-backup ; do packaging-farm NOSOURCE=</span><span class="p">$$</span><span class="nv">dir</span><span class="x"> submit ; done</span>
+</pre></div>
+
+
+<h4>bash -e behavior</h4>
+<p>The -e bash option is expected to end the script being run as soon as an
+error occurs. This is a convenient way to throw an exception from a
+nested function being run, should an irrecoverable error occur. However,
+the following code demonstrate that the -e option is sometime disabled:</p>
+<div class="highlight"><pre><span></span>set -ex
+
+  PS4=&#39; <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="cp">}</span>: <span class="nv">$LINENO</span>: &#39;
+
+  function f() {
+      set -e
+      false
+      echo $@
+  }
+
+  ! f why does it display ? It should stop because of -e
+  f
+</pre></div>
+
+
+<p>The -e behavior is <a href="http://mywiki.wooledge.org/BashFAQ/105">notoriously
+tricky</a> and packaging-farm was
+written to use it only when it has a is predictable. A question was
+<a href="http://stackoverflow.com/questions/6640120/why-is-bash-e-disabled-within-a-function-run-with-not">posted on
+stackoverflow</a>
+to explain this specific case. The same question asked on
+irc.freenode.net#bash did not bring any answer.</p>
+<h4>skaro and gallifrey build</h4>
+<p>Guillaume asked for a shortcut to rebuild the full distribution after
+updating a given package for skaro. Instead of running:</p>
+<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=confgen submit
+packaging-farm ARCHITECTURES=i386 pf-xivo-confgen
+packaging-farm skaro
+</pre></div>
+
+
+<p>the following rule was added to
+<strong>/var/cache/packaging-farm/build/skaro/Makefile</strong></p>
+<div class="highlight"><pre><span></span><span class="n">rebuild</span><span class="o">:</span> <span class="n">update</span> 
+        <span class="n">cd</span> <span class="o">..</span> <span class="o">;</span> <span class="n">packaging</span><span class="o">-</span><span class="n">farm</span> <span class="n">skaro</span>
+</pre></div>
+
+
+<p>so that it is possible to run</p>
+<div class="highlight"><pre><span></span>packaging-farm --cd skaro rebuild
+</pre></div>
+
+
+<p>to achieve the same result. There is some additional overhead because
+all newer packages will be rebuilt, not just the one of interest. That
+is, if someone updated asterisk since the last rebuild of skaro, it will
+also be rebuilt. It is believed that such a case is rare enough and does
+not warrant a special case. If it turns out to be wrong, an other, more
+specialized, shortcut can be added.</p>
+<h4>rebuilding packages and publishing repositories</h4>
+<div class="highlight"><pre><span></span>packaging-farm  allows  to  rebuild  the same version of a package. For
+       instance, let say foo-1.2 was built and was made available,  either  as
+       part  of  the package specific repository created with dpkg-scanpackage
+       or as part of a meta package repository created with reprepro(1) A user
+       then installs the package using
+
+              apt-get update
+              apt-get install foo
+
+       At  this  point  in  time,  the  developer  of foo find a minor bug and
+       rebuilds the package on packaging-farm  without  changing  the  version
+       number.   packaging-farm  allows  the developer to do that, in the same
+       way pbuilder or sbuild does. But that has an important consequence  for
+       the  user  who installed the foo package. There now is a new version of
+       the foo package that has exactly the same version as the  previous  one
+       but  is  not really the same.  The user needs to re-install the package
+       by explicitly asking for it as follows:
+
+              apt-get update
+              apt-get install --reinstall foo
+
+       Such a behavior is extremely confusing for the casual user. This is why
+       it  is  not recommended to advertise the packaging-farm repositories to
+       the general public. The recommended method is to create a reprepro mir-
+       ror  that  contains  a copy of the packaging-farm repository at a point
+       where all package versions have been updated to reflect the  change  of
+       the  packages.   The reprepro safeguard ( error : is already registered
+       with different checksums! ) provides a simple way to  ensure  that  the
+       repository  targeted for the public never publishes the same version of
+       the package with different content twice.
+</pre></div>
+
+
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-packaging-from-the-developer-point-of-view.html#xivo-packaging-from-the-developer-point-of-view">XiVO packaging from the developer point of view</a></h2>
     <p>
       Posted on Mon 04 July 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -525,188 +681,6 @@ completed successfully.</p>
         return <span class="nv">$result</span>
     fi
 }
-</pre></div>
-
-
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/using-and-updating-a-xivo-gallifrey-repository.html#using-and-updating-a-xivo-gallifrey-repository">Using and Updating a XiVO gallifrey repository</a></h2>
-    <p>
-      Posted on Mon 30 May 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/packages.html">packages</a>    </p>
-  </header>
-  <div>
-      <h4>Updating the repository</h4>
-<p>To figure out what needs updating, a query is made on the git
-repositories.</p>
-<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/VCS/sources/xivo-gallifrey
-git fetch
-git log --stat=2000,2000 ..origin/master
-</pre></div>
-
-
-<p>The <em>--stat</em> option shows which files are modified and the numbers after
-it ensure that they are not truncated. The first component of the file
-name designate the directory of interest. For instance</p>
-<div class="highlight"><pre><span></span>chan_sccp/patches/fix_forward_on_bad_numbers       |   13 ++
- chan_sccp/patches/fix_useless_channel_unlocks      |  155 ++++++++++++++++++++
-</pre></div>
-
-
-<p>says that we need to re-submit as follows:</p>
-<div class="highlight"><pre><span></span>packaging-farm DIRECTORY=chan_sccp submit
-</pre></div>
-
-
-<p>The same should be done for the git repository of the debian packages</p>
-<div class="highlight"><pre><span></span>cd /var/cache/packaging-farm/VCS/debian/lenny-xivo-gallifrey
-git fetch
-git log --stat=2000,2000 ..origin/master
-</pre></div>
-
-
-<p>There was a need to re-submit the following:</p>
-<div class="highlight"><pre><span></span><span class="x">for dir in web-interface chan_sccp ctiservers</span>
-<span class="x">do </span>
-<span class="x">  packaging-farm DIRECTORY=</span><span class="p">$</span><span class="nv">dir</span><span class="x"> submit</span>
-<span class="x">done</span>
-</pre></div>
-
-
-<p>and the repository was updated with:</p>
-<div class="highlight"><pre><span></span>packaging-farm gallifrey
-</pre></div>
-
-
-<p>after checking what would be done with</p>
-<div class="highlight"><pre><span></span>packaging-farm -n gallifrey
-</pre></div>
-
-
-<p>The <em>-n</em> flag semantic can be found in the GNU make documentation. The
-<em>packaging-farm</em> command wraps the <em>make</em> command.</p>
-<h4>Packaging farm release</h4>
-<p>The <a href="http://packaging-farm.dachary.org/download">1.2.41</a> version of
-packaging-farmcontains documentation improvements ( packaging-farm and
-packaging-farm.conf manual pages ) about troubleshooting a process that
-prevents a directory to umount and using RSYNC options to control what
-is being copied when building the package (for instance to ensure that
-the symbolic link target is copied instead of the symbolic link).The
-dependency graph failed to build the required packages: although it was
-accurate, in some cases it missed the corresponding action. As a
-consequence the child of the graph were updated but not the topmost
-parents.</p>
-<h4>Using XiVO with OVH</h4>
-<p>A <a href="https://gallifrey-test1.dachary.org/">virtual machine was setup</a>
-using the <a href="http://gallifrey.dachary.org/packaging-farm/gallifrey">gallifrey
-repository</a> and
-the following command:</p>
-<div class="highlight"><pre><span></span>apt-get install pf-xivo
-</pre></div>
-
-
-<p>The host firewall was configured to send the <em>5060</em> port to the virtual
-machine and forward the https port to the nginx proxy:</p>
-<div class="highlight"><pre><span></span><span class="gd">--- a/shorewall/params</span>
-<span class="gi">+++ b/shorewall/params</span>
-<span class="gu">@@ -28,4 +28,5 @@ IP_FAILOVER=66.254.41.119</span>
- VM_DEV_DACHARY=10.10.60.1
- VM_SKARO_XIVO=10.10.60.2
- VM_GALLIFREY_XIVO=10.10.60.3
-<span class="gi">+VM_GALLIFREY_TEST1=10.10.60.4</span>
- #LAST LINE -- DO NOT REMOVE
-<span class="gh">diff --git a/shorewall/rules b/shorewall/rules</span>
-<span class="gh">index 3a7ea65..66161c0 100644</span>
-<span class="gd">--- a/shorewall/rules</span>
-<span class="gi">+++ b/shorewall/rules</span>
-<span class="gu">@@ -39,11 +39,15 @@ ACCEPT              $FW             net             icmp</span>
-
- SSH(ACCEPT)    net             $FW
- HTTP(ACCEPT)   net             $FW
-<span class="gi">+HTTPS(ACCEPT)  net             $FW</span>
- # VNC ganeti
- ACCEPT         net             $FW             tcp     11000:11010
- # VNC libvirt
- ACCEPT         net             $FW             tcp     5900:5910
-
-<span class="gi">+DNAT           net             loc:$VM_GALLIFREY_TEST1 tcp            5060           -       $IP_FAILOVER</span>
-<span class="gi">+DNAT           net             loc:$VM_GALLIFREY_TEST1 udp            5060           -       $IP_FAILOVER</span>
-<span class="gi">+</span>
- # SSH remap
- DNAT           net             loc:$VM_DEV_DACHARY:22 tcp            22001           -       $IP_FAILOVER
- DNAT           net             loc:$VM_SKARO_XIVO:22 tcp             22002           -       $IP_FAILOVER
-</pre></div>
-
-
-<p>The nginx proxy was configured to reverse proxy https:</p>
-<div class="highlight"><pre><span></span><span class="gh">diff --git a/nginx/sites-available/gallifrey-test2.dachary.org b/nginx/sites-available/gallifrey-test2.dachary.org</span>
-new file mode 100644
-<span class="gh">index 0000000..2525ff9</span>
-<span class="gd">--- /dev/null</span>
-<span class="gi">+++ b/nginx/sites-available/gallifrey-test2.dachary.org</span>
-<span class="gu">@@ -0,0 +1,13 @@</span>
-<span class="gi">+server {</span>
-<span class="gi">+ ssl on;</span>
-<span class="gi">+ listen 443;</span>
-<span class="gi">+ server_name gallifrey-test2.dachary.org;</span>
-<span class="gi">+ access_log  /var/log/nginx/gallifrey.dachary.org.access.log;</span>
-<span class="gi">+ ssl_certificate /etc/nginx/server.crt;</span>
-<span class="gi">+ ssl_certificate_key /etc/nginx/server.key;</span>
-<span class="gi">+</span>
-<span class="gi">+ location / {</span>
-<span class="gi">+  proxy_pass https://10.10.70.71:443;</span>
-<span class="gi">+#  proxy_set_header Host $host;</span>
-<span class="gi">+ }</span>
-<span class="gi">+}</span>
-</pre></div>
-
-
-<p>And the corresponding certificates created as instructed in the nginx
-documentation.The <a href="https://wiki.xivo.fr/index.php/XiVO_1.1-Gallifrey/Trunk_SIP">IPPI
-instructions</a>
-were followed to connect the XiVO just created with an <a href="http://www.ovh.com/fr/telephonie/">OVH phone
-number</a>. All of the instructiosn
-listed for IPPI apply to OVH because they use the same system (Cirpack).
-The values for DTMF were left unchanged and NAT set to <em>Yes</em>.Debugging
-was made convenient with the asterisk console</p>
-<div class="highlight"><pre><span></span>$ asterisk -rvvvvv
-gallifrey-test1*CLI&gt; sip show registry
-Host                            Username       Refresh State                Reg.Time                 
-sip.ovh.net:5060                <span class="m">003384452800</span>       <span class="m">105</span> Registered           Mon, <span class="m">23</span> May <span class="m">2011</span> 11:38:12
-</pre></div>
-
-
-<p>And the actual SIP requests could be viewed with</p>
-<div class="highlight"><pre><span></span>gallifrey-test1*CLI&gt; set debug peer trunk_ovh
-</pre></div>
-
-
-<p>which was most convenient to submit the problems to
-irc.freenode.net#xivo and irc.freenode.net#asterisk.</p>
-<h4>Independent install of XiVO</h4>
-<p>Nicolas Hicher installed XiVO using</p>
-<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">http://gallifrey.dachary.org/packaging-farm/gallifrey/gnulinux/debian</span> <span class="kp">gallifrey-lenny</span> <span class="kp">main</span>
-</pre></div>
-
-
-<p>and</p>
-<div class="highlight"><pre><span></span>apt-get install dahdi-linux-modules-2.6.26-2-486
-apt-get install pf-xivo
-</pre></div>
-
-
-<p>(the actual package was adapted to the running kernel) and reported
-success</p>
-<div class="highlight"><pre><span></span>(11:53:20 AM) atarakt: Installation successful !!!
-(11:53:24 AM) atarakt: excellent =)
-(11:54:28 AM) atarakt: j&#39;ai un xivo qui tourne
-(11:57:37 AM) dachary: oO
-(11:57:50 AM) ***dachary débouche le champagne
 </pre></div>
 
 

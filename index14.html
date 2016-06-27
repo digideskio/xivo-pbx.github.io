@@ -54,6 +54,27 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1418.html#sprint-review-1418">Sprint review 14.18</a></h2>
+    <p>
+      Posted on Fri 26 September 2014 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+    </p>
+  </header>
+  <div>
+      <p>Here are a few links explaining what we are going to ship in XiVO 14.18:</p>
+<ul>
+<li><a href="https://projects.xivo.io/versions/209" title="https://projects.xivo.io/versions/209">Roadmap</a></li>
+<li><a href="http://documentation.xivo.fr/dev/administration/cli_tools/cli_tools.html#xivo-dist" title="http://documentation.xivo.fr/dev/administration/cli_tools/cli_tools.html#xivo-dist">xivo-dist</a>
+    to choose the version of XiVO before an upgrade</li>
+<li><a href="http://documentation.xivo.fr/dev/upgrade/archives.html#upgrade-from-an-older-archive-version-to-a-newer-archive-version" title="http://documentation.xivo.fr/dev/upgrade/archives.html#upgrade-from-an-older-archive-version-to-a-newer-archive-version">Procedure before
+    upgrade</a>
+    to explain how to choose the version when xivo-dist is not available</li>
+</ul>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/update-from-xivo-1320.html#update-from-xivo-1320">Update from XiVO 13.20</a></h2>
     <p>
       Posted on Mon 21 October 2013 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -233,62 +254,6 @@ shipping.</p>
 different locations are good and we are able to confirm that we can
 handle up to 1000 calls a day on a single XiVO IOH.</p>
 <p><strong>HaPPy 2013 OpenHardware to yall.</strong></p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/a-switchboard-for-xivo.html#a-switchboard-for-xivo">A Switchboard for XiVO</a></h2>
-    <p>
-      Posted on Fri 14 December 2012 in <a href="http://blog.xivo.io/category/software.html">Software</a>
-    </p>
-  </header>
-  <div>
-      <p>One of the long time missing feature of XiVO is a good switchboard
-interface. We havebeen working on a new switchboard profile for the XiVO
-client and this post isan overview of what you might expect in the next
-few releases.</p>
-<p><img alt="switchboard.png" src="/public/.switchboard_m.jpg" title="switchboard.png, déc. 2012" /></p>
-<p>As we've said before, we are now releasing a new version every two weeks
-andeach release must succeed our test suite before being sent into
-production.That means that we will have to ship the new switchboard one
-piece at a time. Thefirst three user stories of the switchboard will be
-available in the nextrelease (12.24). In fact, one of these story was
-already implemented in 12.23but we did not send this release into
-production since we are replacingchan_agent with xivo-agent, but that's
-another story.</p>
-<p>The first user story is to be able to answer an incoming call with a
-click ora key press. To accomplish this goal, we created a new xlet
-called switchboard,not to be confused with the switchboard profile. The
-switchboard xlet issplitted in three sections, incoming calls on the
-left, calls on hold on the right andthe current call on the top spanning
-from left to right. When a call reachesthe switchboard, it is shown in
-the list on the left of the switchboard. Theoperator can then press
-enter or click the call to answer it.</p>
-<p>The call flow leads us to the next user story, which is to show the
-currentcall at the top of the switchboard xlet. The caller id name and
-number areavailable and buttons are available for each actions that can
-be done on thatcall. Each button also has a key binding to allow fast
-call distribution.Actions will be added to this frame until each desired
-action is present.At the end of the current sprint, only hangup and hold
-will be available.</p>
-<p>The third story that we are addressing is the holded call list that is
-on theright side of the xlet. These are the calls that have been
-answered by theoperator a first time but that have not been distributed
-yet (excluding thecurrent call).</p>
-<p>All of these new functinnality are planned for version 12.24 that will
-bereleased on december 19th.</p>
-<p>What are the next steps</p>
-<ul>
-<li>Call transfers (the contact xlet can already be used to transfer to
-    other users)</li>
-<li>Call tracking (to know what happenned to previously
-    distributed calls)</li>
-</ul>
-<p>See the documentation for all the details to enable your new XiVO
-switchboard.</p>
-<p><a href="http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html">http://documentation.xivo.fr/dev/administration/switchboard/switchboard.html</a></p>
 </p>
   </div>
 </article>

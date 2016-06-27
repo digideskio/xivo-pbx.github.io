@@ -241,6 +241,30 @@ where the machines are, because the IP addresses are not fixed.</p>
 </article>
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1608.html#sprint-review-1608">Sprint Review 16.08</a></h2>
+    <p>
+      Posted on Mon 06 June 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Hello XiVO community! Here comes the release of XiVO 16.08!</p>
+<h2>New features in this sprint</h2>
+<p><strong>Provisioning</strong>: The provisioning server has been reinforced to avoid attacks allowing to discover phone credentials that would allow an attacker to start phone calls without authorization. Thank you to Jean-Loup Depoisier from the XiVO community for bringing this problem to our attention.</p>
+<h2>Ongoing features</h2>
+<p><strong>Call Transfers</strong>: We are working on a new API for managing call transfers. This will offer third parties more flexibility when developing applications that control the call flows, such as a Web Switchboard. In addition, this new API should solve a number of bugs related to call transfers. In this iteration we continued working on a version of the CTI server that uses this new API for all XiVO Client transfers.</p>
+<hr />
+<p>See you at the next sprint review!</p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#upgrade-notes">Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/244">XiVO 16.08 Roadmap</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1606.html#sprint-review-1606">Sprint Review 16.06</a></h2>
     <p>
       Posted on Mon 16 May 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -292,56 +316,6 @@ where the machines are, because the IP addresses are not fixed.</p>
 <ul>
 <li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2">XiVO 16.05 Upgrade notes</a></li>
 <li><a href="http://projects.xivo.io/versions/241">XiVO 16.05 Roadmap</a></li>
-<li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
-</ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1604.html#sprint-review-1604">Sprint Review 16.04</a></h2>
-    <p>
-      Posted on Mon 04 April 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.</p>
-<h2>New features in this sprint</h2>
-<p><strong>Fax</strong>: The Fax system in XiVO has been improved, thanks to the XiVO community (thank you Julien Revert). Fax files can be
-converted to PDF on reception. Files can also be deposited on a FTP server. Further details on how to configure these
-features can be found
-<a href="http://documentation.xivo.io/en/latest/administration/fax/fax.html#using-the-ftp-backend">in the documentation</a></p>
-<p><strong>Forwards</strong>: The behaviour of the call forwards BLFs is completely consistent across the unconditional, busy and no-answer
-forwards. A BLF (Busy Lamp Field) is a small light found next to the function key on a phone. The light helps indicate
-to the user if any call forwards are currently active.</p>
-<p><strong>XiVO Client</strong>: The Xlet People has received small mouse improvements: it is now possible to copy contact informations
-  to the clipboard, such as the phone number or email via a right click.</p>
-<p><strong>REST API</strong>: New APIs for managing forwards and services have been integrated to the user resource. All call forwards
-can now be fully controlled through the REST API. This new API represents an additional step towards our long-term goal
-of offering a PBX system that is more flexible, customizable and useful for third party developers.</p>
-<h2>Technical Features</h2>
-<p><strong>SCCP</strong>: SCCP phones can be configured to use the G.722 codec.</p>
-<p><strong>Digium</strong>: The firmware for Digium cards has been updated to the latest version which supports TE133 and TE435
-cards.</p>
-<p><strong>Yealink</strong>: The firmware for V80 has been updated to the latest version. Official support for the Yealink T40P and
-  community support for the T27P, T29G and T49G has also been added.</p>
-<h2>Ongoing features</h2>
-<p><strong>REST API</strong>: We are working on new APIs for managing call transfers and call permissions. Call permissions enable
-administrators to control which phone numbers are allowed to be called by users. This will offer third parties more
-flexibility when developing applications that control the call flows.</p>
-<p><strong>Web applications</strong>: Work on tools for connecting web applications to XiVO is ongoing. A good example of a Web
-  application is a switchboard application, where the operator may answer, hold and transfer calls from his browser,
-  effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full
-  Web switchboard environment.</p>
-<hr />
-<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I wish you shall
-remain in high spirits until our next fateful encounter, 3 weeks from now. May the freedom of XiVO bless your
-communications across the vast VoIP expanse.</em></p>
-<p>Sources:</p>
-<ul>
-<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2">XiVO 16.04 Upgrade notes</a></li>
-<li><a href="http://projects.xivo.io/versions/240">XiVO 16.04 Roadmap</a></li>
 <li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
 </ul>
   </div>

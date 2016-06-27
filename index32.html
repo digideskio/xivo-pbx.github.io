@@ -54,6 +54,96 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/new-schedule-jquery-widget-for-upcoming-xivo.html#new-schedule-jquery-widget-for-upcoming-xivo">New schedule jquery widget for upcoming XiVO</a></h2>
+    <p>
+      Posted on Fri 25 March 2011 in <a href="http://blog.xivo.io/category/software.html">Software</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/skaro.html">skaro</a>,      <a href="http://blog.xivo.io/tag/web-interface.html">web-interface</a>,      <a href="http://blog.xivo.io/tag/schedule.html">schedule</a>,      <a href="http://blog.xivo.io/tag/javascript.html">javascript</a>,      <a href="http://blog.xivo.io/tag/jquery.html">jquery</a>,      <a href="http://blog.xivo.io/tag/software.html">software</a>    </p>
+  </header>
+  <div>
+      <p><span class="Apple-style-span"
+style="font-size: 15px; font-weight: bold; ">How to use it</span></p>
+<p>Click once on the field with calendar icon to show the widget. Click
+again to hide it (or on the cross at title bar right's).Once visible,
+you can define your intervals:</p>
+<ol>
+<li>
+<p>for months and days</p>
+<ul>
+<li>select each month/day individually (a selected one move from
+    gray to yellow background)</li>
+<li>all/none button allow toggling all values at once</li>
+</ul>
+</li>
+<li>
+<p>for the time interval</p>
+<ul>
+<li>click down start or end toggle, then slide to adjust the value</li>
+<li>for a fine adjustment, use mouse wheel or up/down keyboard keys</li>
+</ul>
+</li>
+</ol>
+<p>NOTE: <strong>A datetime is considered in the schedule if it match all
+intervals (months, month days, week days and hours)</strong>.</p>
+<p>Lets see with a quick example:  </p>
+<p><a href="/public/xivo-schedule/example.png" title="example.png"><img alt="example.png" src="/public/xivo-schedule/.example_s.jpg" title="example.png, mar. 2011" /></a></p>
+<p>We have selected workdays from January to April, 8AM to 7PM.</p>
+<ul>
+<li>all datetimes with time lower than 8AM or higher than 7PM are out of
+    the schedule</li>
+<li>2011, march 25 9.30AM is in schedule, while 2012, march 25 9:30AM is
+    out (first is a friday, while last is a sunday)</li>
+</ul>
+<h3>Developpers: Including xivo-schedule in you pages</h3>
+<p>While developped for xivo, it can easily be integrated in other
+projects. xivo-schedule support jquery-ui themes and is multilingual
+(only french and english available at the moment).  </p>
+<p>xivo-schedule widget require jquery (&gt;= 1.5), jquery-ui (&gt;=1.8)
+and optionally jquery.mousewheel
+(<a href="http://brandonaaron.net/code/mousewheel/docs">http://brandonaaron.net/code/mousewheel/docs</a>).</p>
+<p>``` {style="font-size:small;"}
+<link rel="stylesheet"   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/ui-lightness/jquery-ui.css"   type="text/css" media="all" /><script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script><script src="jquery.mousewheel.min.js"></script></p>
+<div class="highlight"><pre><span></span>Then include xivo-schedule javascript and css files. Note that you can
+also include langpack(s) you want to use.
+
+``` {style=&quot;font-size:small;&quot;}
+<span class="nt">&lt;link</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;xivo.schedule.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule.js&quot;</span><span class="nt">&gt;&lt;/script&gt;&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;../src/xivo.schedule-fr.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>xivo-schedule required a text input to be attached to. If you want to
+get schedule intervals back, you also need 4 others text fields (one for
+months, monthdays, weekdays and time intervals), which will be filled
+with intervals raw value when the user will manipulate schedule widget.</p>
+<p>``` {style="font-size:small;"}
+    <form>
+      <div style="float:left">
+        <input id="schedule" type="text" /><br/>
+      </div></p>
+<p><div style="float:left; margin-left: 100px;">
+        <label for="sched-months">months :</label><input id="sched-months"    type="text" disabled /><br/>
+        <label for="sched-monthdays">month days :</label><input id="sched-monthdays" type="text" disabled /><br/>
+        <label for="sched-weekdays">week days :</label><input id="sched-weekdays"  type="text" disabled /><br/>
+        <label for="sched-hours">hours :</label><input id="sched-hours"     type="text" disabled />
+      </div>
+    </form></p>
+<div class="highlight"><pre><span></span>Finally, you initialize your schedule widget:
+
+``` {style=&quot;font-size:small;&quot;}
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>  $(function(){    $(&#39;#schedule&#39;).schedule({      &#39;language&#39;: &#39;fr&#39;,      &#39;inputs&#39;: {          &#39;months&#39;   : $(&#39;#sched-months&#39;),          &#39;monthdays&#39;: $(&#39;#sched-monthdays&#39;),          &#39;weekdays&#39; : $(&#39;#sched-weekdays&#39;),          &#39;hours&#39;    : $(&#39;#sched-hours&#39;)      },      &#39;defaults&#39;: {          &#39;months&#39;   : &#39;1,3-6,11,12&#39;,          &#39;monthdays&#39;: &#39;1,3,5,8,10,12-13,15,17,20,22,24-25,27,29&#39;,          &#39;weekdays&#39; : &#39;1,4-6&#39;,          &#39;hours&#39;    : &#39;08:35-17:30&#39;      }    });  });<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>and voila! see attached file for the complete sample.</p>
+<p><strong>xivo-schedule can be downloaded from <a href="git://git.xivo.fr/xivo-dalek.git">our git
+repository</a> or <a href="https://github.com/gbour/xivo-schedule">on
+github</a></strong></p>
+</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/xivo-sources-conventions-implemented-and-documented.html#xivo-sources-conventions-implemented-and-documented">XiVO sources conventions implemented and documented</a></h2>
     <p>
       Posted on Mon 21 March 2011 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -546,26 +636,6 @@ described in the <a href="http://blog.xivo.fr/index.php?post/2011/02/22/Creating
 repository</a>.In
 the second part of this entry, the script will be complete and a the
 XiVO skaro repository updated.</p>
-</p>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/looking-for-technical-documentation-on-the-matra-rc1173a.html#looking-for-technical-documentation-on-the-matra-rc1173a">Looking for technical documentation on the Matra RC1173A</a></h2>
-    <p>
-      Posted on Fri 04 March 2011 in <a href="http://blog.xivo.io/category/voip.html">VoIP</a>
-    </p>
-  </header>
-  <div>
-      <p>The picture below presents the only connector available on the Matra
-RC1173A  </p>
-<p><img alt="RC1173A
-connector" src="/public/.P1050040_m.jpg" title="RC1173A connector, mar. 2011" /></p>
-<p>After some studies, it seems that device is a "pupitre" from MATRA that
-sould be connected to a PABX Matracom (45xx series) of CGCT type.The
-device seems to be using a micro-controler Philips/RTC 84C21 and 84C85
-using probably the firmware HX00070xx et HX00072xx</p>
 </p>
   </div>
 </article>

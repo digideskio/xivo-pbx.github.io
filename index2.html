@@ -54,6 +54,56 @@
 
 <article>
   <header>
+    <h2><a href="http://blog.xivo.io/sprint-review-1604.html#sprint-review-1604">Sprint Review 16.04</a></h2>
+    <p>
+      Posted on Mon 04 April 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
+      &#8226; Tagged with
+      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
+  </header>
+  <div>
+      <p>Greetings fellow XiVO fans, it is my pleasure to announce the release of XiVO 16.04.</p>
+<h2>New features in this sprint</h2>
+<p><strong>Fax</strong>: The Fax system in XiVO has been improved, thanks to the XiVO community (thank you Julien Revert). Fax files can be
+converted to PDF on reception. Files can also be deposited on a FTP server. Further details on how to configure these
+features can be found
+<a href="http://documentation.xivo.io/en/latest/administration/fax/fax.html#using-the-ftp-backend">in the documentation</a></p>
+<p><strong>Forwards</strong>: The behaviour of the call forwards BLFs is completely consistent across the unconditional, busy and no-answer
+forwards. A BLF (Busy Lamp Field) is a small light found next to the function key on a phone. The light helps indicate
+to the user if any call forwards are currently active.</p>
+<p><strong>XiVO Client</strong>: The Xlet People has received small mouse improvements: it is now possible to copy contact informations
+  to the clipboard, such as the phone number or email via a right click.</p>
+<p><strong>REST API</strong>: New APIs for managing forwards and services have been integrated to the user resource. All call forwards
+can now be fully controlled through the REST API. This new API represents an additional step towards our long-term goal
+of offering a PBX system that is more flexible, customizable and useful for third party developers.</p>
+<h2>Technical Features</h2>
+<p><strong>SCCP</strong>: SCCP phones can be configured to use the G.722 codec.</p>
+<p><strong>Digium</strong>: The firmware for Digium cards has been updated to the latest version which supports TE133 and TE435
+cards.</p>
+<p><strong>Yealink</strong>: The firmware for V80 has been updated to the latest version. Official support for the Yealink T40P and
+  community support for the T27P, T29G and T49G has also been added.</p>
+<h2>Ongoing features</h2>
+<p><strong>REST API</strong>: We are working on new APIs for managing call transfers and call permissions. Call permissions enable
+administrators to control which phone numbers are allowed to be called by users. This will offer third parties more
+flexibility when developing applications that control the call flows.</p>
+<p><strong>Web applications</strong>: Work on tools for connecting web applications to XiVO is ongoing. A good example of a Web
+  application is a switchboard application, where the operator may answer, hold and transfer calls from his browser,
+  effectively controlling his physical phone. This may also be coupled with a WebRTC softphone, in order to have a full
+  Web switchboard environment.</p>
+<hr />
+<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to bid you a happy and invigorating farewell. I wish you shall
+remain in high spirits until our next fateful encounter, 3 weeks from now. May the freedom of XiVO bless your
+communications across the vast VoIP expanse.</em></p>
+<p>Sources:</p>
+<ul>
+<li><a href="http://documentation.xivo.io/en/latest/upgrade/upgrade.html#id2">XiVO 16.04 Upgrade notes</a></li>
+<li><a href="http://projects.xivo.io/versions/240">XiVO 16.04 Roadmap</a></li>
+<li><a href="http://documentation.xivo.io/en/latest/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
+</ul>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://blog.xivo.io/sprint-review-1603.html#sprint-review-1603">Sprint Review 16.03</a></h2>
     <p>
       Posted on Mon 14 March 2016 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
@@ -243,74 +293,6 @@ freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
 <li><a href="http://documentation.xivo.io/en/stable/upgrade/upgrade.html#id2">XiVO 15.20 Upgrade notes</a></li>
 <li><a href="http://projects.xivo.io/versions/236">XiVO 15.20 Roadmap</a></li>
 <li><a href="http://documentation.xivo.io/en/stable/api_sdk/rest_api/confd/changelog.html">REST API Changelog</a></li>
-</ul>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.xivo.io/sprint-review-1519.html#sprint-review-1519">Sprint Review 15.19</a></h2>
-    <p>
-      Posted on Fri 04 December 2015 in <a href="http://blog.xivo.io/category/xivo-ipbx.html">XiVO IPBX</a>
-      &#8226; Tagged with
-      <a href="http://blog.xivo.io/tag/xivo.html">XiVO</a>,      <a href="http://blog.xivo.io/tag/development.html">development</a>    </p>
-  </header>
-  <div>
-      <p>Greetings fellow XiVO fans ! I am pleased to announce that version 15.19 of XiVO has been released.
-This will be our last version released in 2015. The next version, 15.20, will be released during
-the month of January in 2016.</p>
-<h2>New features in this sprint</h2>
-<p><strong>Call Forwards</strong>: Unconditional forwards on a phone can be updated through a single operation. When you wish
-to update the phone number on a forward, simply dial <code>*21&lt;new_number&gt;</code> and the forward will be
-automatically updated.</p>
-<p><strong>REST API:</strong> A new API for importing users en masse has been added. A CSV file can be used for
-importing users, lines, extensions, cti profiles, incalls, and voicemails in a single operation. The
-goal of this API is to accelerate the installation and configuration of a server when deploying one
-or more XiVOs.</p>
-<p><strong>REST API:</strong> The search system on confd APIs has been improved. You can now filter results using
-exact matches on any field for a given resource. For example : If you have two users named "John
-Smith" and "Jane Smith", you can search for users who only have "Jane" as a firstname. These
-improvements allow API users to search and filter results more precisely.</p>
-<p><strong>REST API:</strong> A new API for remotely initiating calls has been added. This feature can be used
-for implementing custom services related to calling services, such as automatically dialing
-a client's phone number, or call reminders at a specific time.</p>
-<p><strong>XiVO Client</strong>: The new People xlet now has buttons for transfering calls to voicemails, sending
-emails, and chatting with other users. This means that it is now feature complete and can be used as
-a replacement for the old Contacts xlet. The XiVO dev team is very proud to have completed this major
-milestone ! The old Contacts xlet has now been removed from the client.</p>
-<p><strong>Caller ID:</strong> The caller ID lookup service has been improved. Lookups now include searches in your
-personal contacts. This means that when one of your personal contacts calls you, instead of seeing
-only her number, you will see her name along with her number.</p>
-<h2>Security Advisory</h2>
-<p>2 security bugs have been fixed in this sprint. Security advisories for vunerable versions of xivo
-have been released and can be consulted on the <a href="http://mirror.xivo.io/security">security advisory page</a></p>
-<h2>Ongoing features</h2>
-<p><strong>OS Upgrade:</strong> We will be upgrading the version of Debian GNU/Linux, on which XiVO is based, from
-Wheezy to Jessie. This will upgrade many libraires and programs running on
-a server to newer versions.</p>
-<p><strong>User import:</strong> We will be adding more features to the user import API in order
-to update information that has already been imported.</p>
-<p><strong>Lines:</strong> We are revamping the web interface in a similar fashion to what was done for
-voicemails. The goal is to make configuration of advanced parameters easier while
-still keeping the interface simple.</p>
-<p><strong>Switchboard:</strong> We are changing the internals of the Switchboard feature so that
-we can control more precisely how calls are answered, transferred, etc.</p>
-<h2>Technical features</h2>
-<ul>
-<li>We have started working on a permission system in order to better secure communications between
- services on a XiVO server. In the long term, this work will also enable users to access
- various xivo subsystems in a restricted mode, allowing them the possibility of customizing
- different features without impacting other parts of the system.</li>
-</ul>
-<hr />
-<p><em>My fellow xivoists, as the <strong>Lord of XiVO</strong> allow me to wish you all a merry christmas and a
-happy new year ! May your spirits remain joyous until the end of the year and throughout 2016.
-May the freedom of XiVO bless your communications across the vast VoIP expanse.</em></p>
-<p><img alt="XiVO Christmas Tree" src="http://blog.xivo.io/public/xivo_xmas_tree_2015.jpg" /></p>
-<p>Sources:</p>
-<ul>
-<li><a href="http://projects.xivo.io/versions/235" title=" XiVO 15.19 Roadmap">XiVO 15.19 Roadmap</a></li>
-<li><a href="http://documentation.xivo.fr/en/latest/api_sdk/rest_api/confd/changelog.html">xivo-confd Changelog</a></li>
 </ul>
   </div>
 </article>
